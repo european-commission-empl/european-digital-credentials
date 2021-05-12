@@ -1,0 +1,39 @@
+<div class="ecl-container pt-5">
+    <p *ngIf="linkExpirationDate">
+        {{ 'credentialExpire' | translate }}:
+        {{ linkExpirationDate }}
+    </p>
+    <h1 class="title-view-diploma">
+        {{ 'title.viewCredential' | translate }}
+    </h1>
+    <div class="toolbar-min-w-22">
+        <edci-viewer-diploma-toolbar
+            [isDetailDisabled]="isLoading"
+            [primaryLanguage]="primaryLanguage"
+            [availableLanguages]="availableLanguages"
+            (onLanguageChange)="onLanguageChange($event)"
+            (onNewCredentialUpload)="newCredentialUpload()"
+        ></edci-viewer-diploma-toolbar>
+    </div>
+
+    <div
+        class="shadow-sm rounded bg-white mt-2 pt-4 pb-5 w-100 diploma-container"
+    >
+        <div #cert class="wrapper">
+            <div
+                id="diploma-template"
+                *ngIf="html && !isLoading; else waitingForHTML"
+                [innerHTML]="html | edciSanitize: 'html'"
+            ></div>
+            <ng-template #waitingForHTML>
+                <mat-progress-spinner
+                    class="diploma-spinner"
+                    color="primary"
+                    mode="indeterminate"
+                    value="50"
+                >
+                </mat-progress-spinner>
+            </ng-template>
+        </div>
+    </div>
+</div>

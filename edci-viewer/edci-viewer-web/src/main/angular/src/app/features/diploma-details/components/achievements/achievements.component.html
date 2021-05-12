@@ -1,0 +1,39 @@
+<div class="col-12 pr-0 h-100 d-inline-flex">
+    <div class="col-5 pl-4 pr-5 pt-3 overflow-auto-details break-word">
+        <div *ngIf="achievements?.length > 0">
+            <div
+                *ngFor="let achievement of achievements; let i = index"
+                class="bg-transparent"
+            >
+                <div
+                    (click)="onSelect(achievement)"
+                    class=" main-item border-bottom list-item pl-1 cursor-pointer {{
+                        achievement['active'] ? 'selected' : ''
+                    }}"
+                >
+                    {{ achievement.title }}
+                </div>
+                <div
+                    *ngFor="let part of achievement.subAchievements"
+                    class="bg-transparent border-bottom cursor-pointer"
+                >
+                    <div
+                        (click)="onSelect(part)"
+                        class="list-item sub-item pl-4 {{
+                            part['active'] ? 'selected' : ''
+                        }}"
+                    >
+                        {{ part.title }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="col-7 py-4 px-5 h-100 bg-white border-left overflow-auto-details"
+    >
+        <edci-viewer-achievement-detail
+            [activeAchievement]="activeAchievement"
+        ></edci-viewer-achievement-detail>
+    </div>
+</div>

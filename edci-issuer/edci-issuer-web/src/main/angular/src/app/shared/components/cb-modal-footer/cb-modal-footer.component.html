@@ -1,0 +1,14 @@
+<button
+    class="ecl-button ecl-button--secondary modal-button-dismiss mr-4"
+    (click)="onClose.emit('cancel')"
+>
+    {{ 'common.cancel' | translate }}
+</button>
+
+<button
+    class="ecl-button ecl-button--primary modal-button-accept"
+    (click)="onSave.emit('save')"
+    [disabled]="isDisabled"
+>
+    {{ 'common.save' | translate }}
+</button>

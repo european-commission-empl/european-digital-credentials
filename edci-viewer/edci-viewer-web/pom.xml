@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.europa.ec.empl.edci.viewer</groupId>
+        <version>1.3.0-SNAPSHOT</version>
+        <artifactId>edci-viewer</artifactId>
+    </parent>
+
+    <artifactId>edci-viewer-web</artifactId>
+    <packaging>war</packaging>
+    <name>EDCI viewer web module</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.europa.ec.digit.uxatec.eui</groupId>
+            <artifactId>eui-angular2-servlet</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>edci-viewer-web-rest</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <finalName>europass2#edci-viewer</finalName>
+        <plugins>
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>${swagger.codegen.maven.plugin.version}</version>
+                <executions>
+                    <!--<execution>
+                        <id>mvc-swagger</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${basedir}/../edci-viewer-web-rest/target/generated-sources/swagger/swagger-mvc.json
+                            </inputSpec>
+                            <apiPackage>api</apiPackage>
+                            <modelPackage>model</modelPackage>
+                            <language>typescript-angular</language>
+                            <output>${basedir}/src/main/angular/src/app/shared/swagger</output>
+                    <templateDirectory>${basedir}/src/main/resources/custom-swagger-templates
+                    </templateDirectory>
+                </configuration>
+            </execution>
+            -->
+                    <execution>
+                        <id>api-swagger</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${basedir}/../edci-viewer-web-rest/target/generated-sources/swagger/swagger.json
+                            </inputSpec>
+                            <apiPackage>api</apiPackage>
+                            <modelPackage>model</modelPackage>
+                            <language>typescript-angular</language>
+                            <output>${basedir}/src/main/angular/src/app/shared/swagger</output>
+                            <!-- workaround to change mustache that generate a correct swagger for multipart files -->
+                            <templateDirectory>${basedir}/src/main/resources/custom-swagger-templates
+                            </templateDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>edci-viewer-web-rest-swagger</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/angular/dist</directory>
+                        </resource>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <outputDirectory>C:\Dev\EDCI\servers\apache-tomcat-8.0.41\webapps</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

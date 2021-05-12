@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog dbchangelog-3.8.xsd">
+
+
+    <changeSet id="EDCI-911" author="esayosll" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <comment>MIGRATION OF THE TITLE/DESCRIPTION FIELDS TO LOCALIZABLE INFO TABLE</comment>
+        <customChange class="eu.europa.ec.empl.edci.wallet.service.liquibase.CustomChangeWalletBlobs">
+        </customChange>
+        <rollback>
+            <customChange
+                    class="eu.europa.ec.empl.edci.wallet.service.liquibase.CustomChangeWalletBlobs"></customChange>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="EDCI-946" author="rdolcetr" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <dropColumn tableName="wallet_t" columnName="organization_id"/>
+    </changeSet>
+
+    <changeSet id="EDCI-911-2" author="rdolcetr" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <sqlFile path="EDCI-911_remove_wallet_credentials.sql" relativeToChangelogFile="true" endDelimiter=";"
+                 dbms="oracle"/>
+    </changeSet>
+
+</databaseChangeLog>

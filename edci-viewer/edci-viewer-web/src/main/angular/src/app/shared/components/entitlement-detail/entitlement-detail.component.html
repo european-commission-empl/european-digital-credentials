@@ -1,0 +1,249 @@
+<div *ngIf="activeEntitlement">
+    <h3
+        *ngIf="activeEntitlement?.title"
+        class="font-weight-bold col-12 detail__title"
+    >
+        <strong>{{ activeEntitlement.title }}</strong>
+    </h3>
+    <div
+        *ngIf="
+            activeEntitlement?.identifier ||
+            activeEntitlement?.issuedDate ||
+            activeEntitlement?.expiryDate
+        "
+        class="border-bottom"
+    >
+        <edci-viewer-identifiers
+            *ngIf="activeEntitlement?.identifier"
+            [identifiers]="activeEntitlement?.identifier"
+        ></edci-viewer-identifiers>
+        <p
+            *ngIf="
+                activeEntitlement?.issuedDate || activeEntitlement?.expiryDate
+            "
+            class="col-12"
+        >
+            <span *ngIf="activeEntitlement?.issuedDate">
+                <strong>
+                    {{ 'details.entitlements-tab.issueDate' | translate }}:
+                </strong>
+                {{ activeEntitlement.issuedDate }} </span
+            >{{
+                activeEntitlement?.issuedDate && activeEntitlement?.expiryDate
+                    ? ' | '
+                    : ''
+            }}<span *ngIf="activeEntitlement?.expiryDate">
+                <strong>
+                    {{ 'details.entitlements-tab.expiryDate' | translate }}:
+                </strong>
+                {{ activeEntitlement?.expiryDate }}
+            </span>
+        </p>
+    </div>
+    <div
+        *ngIf="activeEntitlement?.description"
+        class="pre-wrap border-bottom col-12"
+    >
+        <p>{{ activeEntitlement.description }}</p>
+    </div>
+    <div
+        *ngIf="activeEntitlement?.subEntitlements?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.entitlements-tab.subEntitlements' | translate }}:
+            </strong>
+        </p>
+        <p>
+            <span
+                *ngFor="
+                    let entitlement of activeEntitlement?.subEntitlements;
+                    let isLast = last
+                "
+            >
+                <a (click)="linkToEntitlement(entitlement)">{{
+                    entitlement.title
+                }}</a
+                >{{ isLast ? '' : ', ' }}
+            </span>
+        </p>
+    </div>
+    <div
+        *ngIf="activeEntitlement?.moreInformation?.length > 0"
+        class="border-bottom py-3"
+    >
+        <edci-viewer-more-information
+            [moreInformation]="activeEntitlement?.moreInformation"
+        ></edci-viewer-more-information>
+    </div>
+    <!-- Specification -->
+    <div *ngIf="activeEntitlement?.specifiedBy">
+        <div class="d-inline-flex pt-3 col-12">
+            <h3 class="font-weight-bold">
+                {{ 'details.entitlements-tab.specification' | translate }}
+            </h3>
+            <a
+                *ngIf="activeEntitlement?.specifiedBy?.homePage?.length > 0"
+                [href]="(activeEntitlement?.specifiedBy?.homePage)[0].link"
+                target="_blank"
+                class="mt-2 ml-2 no-decoration-underline"
+            >
+                <ux-a-icon
+                    iconClass="fa fa-link"
+                    [isRounded]="false"
+                ></ux-a-icon>
+            </a>
+        </div>
+        <div
+            *ngIf="
+                activeEntitlement?.specifiedBy?.title ||
+                activeEntitlement?.specifiedBy?.identifier?.length > 0
+            "
+            class="border-bottom"
+        >
+            <div *ngIf="activeEntitlement?.specifiedBy?.title" class="col-12">
+                <p>
+                    <strong>
+                        {{ activeEntitlement.specifiedBy?.title }}
+                    </strong>
+                </p>
+            </div>
+            <edci-viewer-identifiers
+                *ngIf="activeEntitlement?.specifiedBy?.identifier?.length > 0"
+                [identifiers]="activeEntitlement?.specifiedBy?.identifier"
+            >
+            </edci-viewer-identifiers>
+        </div>
+        <div
+            *ngIf="activeEntitlement?.specifiedBy?.description"
+            class="col-12 border-bottom"
+        >
+            <p>
+                {{ activeEntitlement.specifiedBy?.description }}
+            </p>
+        </div>
+        <div
+            *ngIf="
+                activeEntitlement?.specifiedBy?.entitlementType ||
+                activeEntitlement?.specifiedBy?.status ||
+                activeEntitlement?.specifiedBy?.validWith ||
+                activeEntitlement?.specifiedBy?.validWithin
+            "
+            class="border-bottom"
+        >
+            <div
+                class="d-inline-flex col-12"
+                *ngIf="
+                    activeEntitlement?.specifiedBy?.entitlementType ||
+                    activeEntitlement?.specifiedBy?.status
+                "
+            >
+                <p
+                    class="mr-1 col-6 p-0"
+                    *ngIf="activeEntitlement?.specifiedBy?.entitlementType"
+                >
+                    <strong>
+                        {{
+                            'details.entitlements-tab.entitlementType'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeEntitlement?.specifiedBy?.entitlementType }}
+                </p>
+                <p
+                    *ngIf="activeEntitlement?.specifiedBy?.status"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{ 'details.entitlements-tab.status' | translate }}:
+                    </strong>
+                    {{ activeEntitlement?.specifiedBy?.status }}
+                </p>
+            </div>
+            <div
+                class="d-inline-flex col-12"
+                *ngIf="
+                    activeEntitlement?.specifiedBy?.validWith ||
+                    activeEntitlement?.specifiedBy?.validWithin
+                "
+            >
+                <p
+                    class="mr-1 col-6 p-0"
+                    *ngIf="activeEntitlement?.specifiedBy?.validWith"
+                >
+                    <strong>
+                        {{ 'details.entitlements-tab.validWith' | translate }}:
+                    </strong>
+                    <a
+                        (click)="
+                            openValidWithModal(
+                                activeEntitlement?.specifiedBy?.validWith
+                            )
+                        "
+                    >
+                        {{
+                            activeEntitlement?.specifiedBy?.validWith
+                                ?.preferredName
+                        }}
+                    </a>
+                </p>
+                <p
+                    *ngIf="activeEntitlement?.specifiedBy?.validWithin"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.entitlements-tab.validWithin' | translate
+                        }}:
+                    </strong>
+                    {{
+                        activeEntitlement?.specifiedBy?.validWithin
+                            | edciJoin: ', '
+                    }}
+                </p>
+            </div>
+        </div>
+        <div
+            class="d-inline-flex border-bottom col-12"
+            *ngIf="activeEntitlement?.specifiedBy?.toWorkAs?.length > 0"
+        >
+            <p>
+                <strong>
+                    {{
+                        'details.entitlements-tab.entitlementToWorkAs'
+                            | translate
+                    }}:
+                </strong>
+                <span>
+                    {{
+                        activeEntitlement?.specifiedBy?.toWorkAs
+                            | edciJoin: ', '
+                    }}
+                </span>
+            </p>
+        </div>
+        <div
+            *ngIf="
+                activeEntitlement?.specifiedBy?.otherDocs?.length > 0 ||
+                activeEntitlement?.specifiedBy?.moreInformation?.length > 0
+            "
+            class="border-bottom"
+        >
+            <div class="mt-3 mb-3">
+                <edci-viewer-other-documents
+                    *ngIf="activeEntitlement?.specifiedBy?.otherDocs"
+                    [otherDocuments]="activeEntitlement.specifiedBy?.otherDocs"
+                ></edci-viewer-other-documents>
+            </div>
+            <div class="mt-3 mb-3">
+                <edci-viewer-more-information
+                    *ngIf="activeEntitlement?.specifiedBy?.moreInformation"
+                    [moreInformation]="
+                        activeEntitlement.specifiedBy?.moreInformation
+                    "
+                ></edci-viewer-more-information>
+            </div>
+        </div>
+    </div>
+</div>

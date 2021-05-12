@@ -1,0 +1,280 @@
+<div *ngIf="activeActivity" class="mt-2">
+    <h3
+        *ngIf="activeActivity.title"
+        class="col-12 font-weight-bold detail__title"
+    >
+        <strong>{{ activeActivity.title }}</strong>
+    </h3>
+    <div *ngIf="activeActivity?.identifier" class="border-bottom">
+        <edci-viewer-identifiers
+            [identifiers]="activeActivity.identifier"
+        ></edci-viewer-identifiers>
+    </div>
+    <div *ngIf="activeActivity.description" class="col-12 border-bottom">
+        <p>
+            {{ activeActivity.description }}
+        </p>
+    </div>
+    <div
+        *ngIf="
+            activeActivity.startDate ||
+            activeActivity.endDate ||
+            activeActivity.workloadInHours
+        "
+        class="border-bottom"
+    >
+        <p *ngIf="activeActivity.startDate" class="col-12">
+            <strong>
+                {{ "details.activities-tab.startDate" | translate }}:&nbsp;
+            </strong>
+            {{ activeActivity.startDate }}
+        </p>
+        <p *ngIf="activeActivity.endDate" class="col-12">
+            <strong>
+                {{ "details.activities-tab.endDate" | translate }}:&nbsp;
+            </strong>
+            {{ activeActivity.endDate }}
+        </p>
+        <div *ngIf="activeActivity.workloadInHours" class="col-12">
+            <p>
+                <strong>
+                    {{
+                        "details.activities-tab.workloadInHours" | translate
+                    }}:&nbsp;
+                </strong>
+                {{ activeActivity.workloadInHours }}
+            </p>
+        </div>
+    </div>
+    <div *ngIf="activeActivity.directedBy" class="col-12 border-bottom">
+        <p>
+            <strong>
+                {{ "details.activities-tab.directedBy" | translate }}:&nbsp;
+            </strong>
+            <a (click)="openDirectedByModal(activeActivity.directedBy)">
+                {{ activeActivity.directedBy.preferredName }}
+            </a>
+        </p>
+    </div>
+    <div
+        *ngIf="activeActivity?.location?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ "details.activities-tab.location" | translate }}:
+            </strong>
+        </p>
+        <div *ngFor="let location of activeActivity?.location">
+            <p>
+                <span *ngIf="location && location.geographicName">
+                    {{ location?.geographicName }}
+                    {{ location.spatialCode && location.spatialCode.length ? ', ' : '' }}
+                </span>
+                <span *ngIf="location && location.spatialCode">
+                    {{ location && location.spatialCode ? location.spatialCode.join(', ') :  '' }}
+                </span>
+            </p>
+            <div *ngIf="location.address">
+                <p *ngFor="let address of location.address">
+                    <strong>
+                        {{
+                            "details.credential-subject-tab.address"
+                                | translate
+                        }}:
+                    </strong>
+                    <span *ngIf="address.fullAddress">
+                        {{ address.fullAddress }}
+                    </span>
+                    <span *ngIf="address.countryCode">
+                        ({{ address.countryCode }})
+                    </span>
+                </p>
+            </div>
+            <div *ngIf="location?.description" class="border-bottom">
+                <p>
+                    {{ location?.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div
+        *ngIf="activeActivity?.influenced?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ "details.activities-tab.influences" | translate }}:&nbsp;
+            </strong>
+            <ng-container *ngFor="let achievement of activeActivity.influenced">
+                <span *ngIf="achievement?.title">
+                    <a (click)="linkToAchievement(achievement)">
+                        {{ achievement.title }}
+                    </a>
+                </span>
+            </ng-container>
+        </p>
+    </div>
+    <div
+        *ngIf="activeActivity?.subActivities?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ "details.activities-tab.subActivities" | translate }}:
+            </strong>
+            <br />
+            <span
+                *ngFor="
+                    let activity of activeActivity?.subActivities;
+                    let isLast = last
+                "
+            >
+                <a (click)="linkToActivity(activity)">{{ activity.title }}</a
+                >{{ isLast ? "" : ", " }}
+            </span>
+        </p>
+    </div>
+    <div
+        *ngIf="activeActivity?.moreInformation?.length > 0"
+        class="border-bottom mt-3"
+    >
+        <edci-viewer-more-information
+            [moreInformation]="activeActivity?.moreInformation"
+        ></edci-viewer-more-information>
+    </div>
+    <!-- Specification -->
+    <div *ngIf="activeActivity?.specifiedBy" class="d-inline-flex pt-3 col-12">
+        <h3 class="font-weight-bold">
+            {{ "details.activities-tab.specification" | translate }}
+        </h3>
+        <a
+            *ngIf="activeActivity?.specifiedBy?.homePage?.length > 0"
+            [href]="(activeActivity?.specifiedBy?.homePage)[0].link"
+            target="_blank"
+            class="mt-2 ml-2 no-decoration-underline"
+        >
+            <ux-a-icon iconClass="fa fa-link" [isRounded]="false"></ux-a-icon>
+        </a>
+    </div>
+    <div
+        *ngIf="activeActivity?.specifiedBy?.identifier?.length > 0"
+        class="border-bottom"
+    >
+        <edci-viewer-identifiers
+            [identifiers]="activeActivity?.specifiedBy?.identifier"
+        ></edci-viewer-identifiers>
+    </div>
+
+    <div
+        *ngIf="activeActivity?.specifiedBy?.description"
+        class="col-12 border-bottom"
+    >
+        <p>
+            {{ activeActivity?.specifiedBy?.description }}
+        </p>
+    </div>
+    <div
+        *ngIf="
+            activeActivity?.specifiedBy?.learningActivityType ||
+            activeActivity?.specifiedBy?.modeOfLearning ||
+            activeActivity?.specifiedBy?.workloadInHours ||
+            activeActivity?.specifiedBy?.instructionLanguage
+        "
+        class="border-bottom"
+    >
+        <div
+            *ngIf="
+                activeActivity?.specifiedBy?.learningActivityType ||
+                activeActivity?.specifiedBy?.modeOfLearning
+            "
+            class="col-12 d-inline-flex"
+        >
+            <p
+                *ngIf="activeActivity?.specifiedBy?.learningActivityType"
+                class="col-6 p-0 mr-1"
+            >
+                <strong>
+                    {{
+                        "details.activities-tab.learningActivityType"
+                            | translate
+                    }}:&nbsp;
+                </strong>
+                {{
+                    activeActivity?.specifiedBy?.learningActivityType
+                        | edciJoin: ", "
+                }}
+            </p>
+            <p
+                *ngIf="activeActivity?.specifiedBy?.modeOfLearning"
+                class="col-6 p-0"
+            >
+                <strong>
+                    {{
+                        "details.activities-tab.modeOfLearning" | translate
+                    }}:&nbsp;
+                </strong>
+                {{ activeActivity?.specifiedBy?.modeOfLearning }}
+            </p>
+        </div>
+        <div
+            *ngIf="
+                activeActivity?.specifiedBy?.workloadInHours ||
+                activeActivity?.specifiedBy?.instructionLanguage
+            "
+            class="col-12 d-inline-flex"
+        >
+            <p
+                *ngIf="activeActivity?.specifiedBy?.workloadInHours"
+                class="col-6 p-0 mr-1"
+            >
+                <strong>
+                    {{
+                        "details.activities-tab.notionalWorkloadInHours"
+                            | translate
+                    }}:&nbsp;
+                </strong>
+                {{ activeActivity?.specifiedBy?.workloadInHours }}
+            </p>
+            <p
+                *ngIf="activeActivity?.specifiedBy?.instructionLanguage"
+                class="col-6 p-0"
+            >
+                <strong>
+                    {{
+                        "details.activities-tab.languagesOfInstruction"
+                            | translate
+                    }}:&nbsp;
+                </strong>
+                {{
+                    activeActivity?.specifiedBy?.instructionLanguage
+                        | edciJoin: ", "
+                }}
+            </p>
+        </div>
+    </div>
+    <div
+        *ngIf="
+            activeActivity?.specifiedBy?.otherDocuments?.length > 0 ||
+            activeActivity?.specifiedBy?.moreInformation?.length > 0
+        "
+        class="border-bottom"
+    >
+        <div
+            *ngIf="activeActivity?.specifiedBy?.otherDocuments?.length > 0"
+            class="mt-3 mb-3"
+        >
+            <edci-viewer-other-documents
+                [otherDocuments]="activeActivity?.specifiedBy?.otherDocuments"
+            ></edci-viewer-other-documents>
+        </div>
+        <div
+            *ngIf="activeActivity?.specifiedBy?.moreInformation?.length > 0"
+            class="mt-3 mb-3"
+        >
+            <edci-viewer-more-information
+                [moreInformation]="activeActivity?.specifiedBy?.moreInformation"
+            ></edci-viewer-more-information>
+        </div>
+    </div>
+</div>

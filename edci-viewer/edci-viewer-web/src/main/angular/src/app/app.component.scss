@@ -1,0 +1,157 @@
+#app-wrapper {
+    height: 100%;
+
+    // No search bar
+    ecl-search-form {
+        display: none !important;
+    }
+
+    main {
+        padding-top: 0 !important;
+    }
+
+    .edci__content {
+        margin-bottom: 6rem !important;
+    }
+
+    #app-header {
+        height: 110px;
+
+        .right-content {
+            align-self: center;
+            -ms-flex-item-align: center;
+            -ms-grid-row-align: center;
+            margin-top: 0;
+            padding: 0;
+            position: absolute;
+            right: 0;
+            width: 45%;
+        }
+    }
+
+    #nav-bar {
+        #top-menu {
+            ul {
+                li {
+                    & + li {
+                        margin-left: 10px;
+                    }
+
+                    &:first-child {
+                        a {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    }
+
+                    &.selected,
+                    &:hover {
+                        a {
+                            background-color: rgba(255, 255, 255, 0.09);
+                            border-bottom: inherit;
+                            color: inherit !important;
+                        }
+                    }
+
+                    a {
+                        border-bottom: none;
+                        border-radius: 2px;
+                        line-height: normal;
+                        padding: 12px;
+                        text-transform: inherit;
+                    }
+                }
+            }
+        }
+    }
+
+    .login-button {
+        background: linear-gradient(to right, #0b94ae, #510de3);
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 2px 4px -2px black;
+        color: white;
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        padding: 8px 22px;
+    }
+
+    .credentials__links {
+        font-size: 1.3rem;
+        margin: 0;
+        padding-bottom: 2rem;
+        text-align: center;
+
+        .link__selected {
+            border-bottom: 1px solid black;
+            margin-right: 15rem;
+        }
+
+        .link__unselected {
+            cursor: pointer;
+        }
+    }
+
+    .ux-layout-nav-bar {
+        background-color: transparent;
+        background-image: url('src/assets/images/my-future-section.png');
+        background-repeat: round;
+        background-size: cover;
+        border: none;
+        box-shadow: none;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0;
+
+        .ux-layout-nav-bar__extra-info {
+            color: white;
+            padding: 50px 0 130px;
+            width: 100%;
+
+            h1 {
+                font-size: 60px;
+                font-weight: bold;
+            }
+
+            p {
+                font-size: 1.3rem;
+                line-height: 2.5rem;
+            }
+        }
+
+        .ux-layout-nav-bar__right-actions {
+            .username {
+                z-index: auto !important;
+            }
+        }
+    }
+
+    .edci-footer {
+        background-color: #d9d9d9;
+        border-top: 6px solid #004494;
+        bottom: 0;
+        height: 4rem;
+        position: absolute;
+        width: 100%;
+
+        > div {
+            padding-top: 1.5rem;
+            text-align: center;
+
+            > a {
+                color: #003776;
+            }
+        }
+    }
+
+    .edci-custom-europass__logo {
+        cursor: pointer;
+        width: 300px;
+    }
+
+    .logout-button {
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.09);
+        }
+    }
+}

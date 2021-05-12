@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog dbchangelog-3.8.xsd">
+
+    <changeSet id="EDCI-911-2" author="esayosll" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <sqlFile path="EDCI-911_fixCredentialCL.sql" relativeToChangelogFile="true" endDelimiter="\n/" dbms="oracle"/>
+    </changeSet>
+    <changeSet id="EDCI-911-3" author="jcastilq" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <sqlFile path="EDCI-911_genericSchema_to_http.sql" relativeToChangelogFile="true" endDelimiter="\n/"
+                 dbms="oracle"/>
+    </changeSet>
+    <changeSet id="EDCI-911-4" author="jcastilq" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <sqlFile path="EDCI-eu-lang-only.sql" relativeToChangelogFile="true" endDelimiter=";"
+                 dbms="oracle"/>
+    </changeSet>
+</databaseChangeLog>

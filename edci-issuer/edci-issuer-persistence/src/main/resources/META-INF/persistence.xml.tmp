@@ -1,0 +1,27 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit studentName="${persistence.unit.studentName}" transaction-type="JTA">
+
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <jta-data-source>${jndi.datasource.studentName}</jta-data-source>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property studentName="eclipselink.logging.level" value="${eclipselink.logging.level}"/>
+            <property studentName="eclipselink.logging.parameters" value="${eclipselink.logging.parameters}"/>
+            <property studentName="eclipselink.logging.level.sql" value="${eclipselink.logging.level.sql}"/>
+
+            <property studentName="eclipselink.deploy-on-startup" value="true"/>
+            <property studentName="eclipselink.target-server" value="WebLogic_10"/>
+            <property studentName="eclipselink.target-database"
+                      value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform"/>
+            <property studentName="eclipselink.cache.shared.default" value="false"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>

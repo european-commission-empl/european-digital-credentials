@@ -1,0 +1,819 @@
+<ux-modal
+    [id]="modalId"
+    class="activityModal"
+    [titleLabel]="modalTitle"
+    (onClose)="closeModal(false)"
+    customWidth="75%"
+>
+    <uxModalBody>
+        <form class="form-group col-6 required" [formGroup]="formGroup">
+            <label class="d-inline-flex control-label"
+                >{{ 'common.title' | translate }}
+            </label>
+            <input
+                type="text"
+                class="form-control"
+                [formControl]="defaultTitle"
+            />
+
+            <ux-control-feedback
+                *ngIf="defaultTitle.errors?.maxlength"
+                typeClass="danger"
+            >
+                {{ 'error.maxLength.255' | translate }}
+            </ux-control-feedback>
+
+            <ux-control-feedback
+                *ngIf="
+                    defaultTitle.invalid &&
+                    defaultTitle.errors?.required &&
+                    defaultTitle.touched
+                "
+                typeClass="danger"
+            >
+                {{ 'error.required' | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+                *ngIf="
+                    defaultTitle.invalid &&
+                    defaultTitle.errors?.onlySpaceError &&
+                    defaultTitle.touched
+                "
+                typeClass="danger"
+            >
+                {{ 'error.noBlankSpaceOnly' | translate }}
+            </ux-control-feedback>
+        </form>
+        <edci-cb-language-tabs
+            *ngIf="selectedLanguages?.length > 0"
+            [(selectedLanguages)]="selectedLanguages"
+            [language]="language"
+            (onLanguageChange)="languageTabSelected($event)"
+            (onLanguageRemoved)="languageRemoved($event)"
+            (onLanguageAdded)="languageAdded($event)"
+        ></edci-cb-language-tabs>
+        <div class="cb-modal-form-wrapper">
+            <form class="col-12" [formGroup]="formGroup">
+                <div class="col-12">
+                    <h1>
+                        {{ 'credential-builder.activities' | translate }}
+                    </h1>
+                </div>
+                <div
+                    *ngIf="title.controls[language]"
+                    class="form-group col-12 required"
+                    [formGroup]="title"
+                >
+                    <label class="d-inline-flex control-label"
+                        >{{
+                            'credential-builder.activities-tab.activityTitle'
+                                | translate
+                        }}
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        [formControl]="title.controls[language]"
+                    />
+                    <ng-container
+                        *ngFor="let control of title.controls | keyvalue"
+                    >
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === language &&
+                                control.value.errors?.maxlength
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.maxLength.4000' | translate }}
+                        </ux-control-feedback>
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === language &&
+                                control.value.invalid &&
+                                control.value.errors?.required &&
+                                control.value.touched
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.required' | translate }}
+                        </ux-control-feedback>
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === language &&
+                                control.value.invalid &&
+                                control.value.errors?.onlySpaceError &&
+                                control.value.touched
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.noBlankSpaceOnly' | translate }}
+                        </ux-control-feedback>
+                    </ng-container>
+                </div>
+                <div
+                    *ngIf="description.controls[language]"
+                    class="form-group col-12"
+                    [formGroup]="description"
+                >
+                    <label class="d-inline-flex"
+                        >{{ 'common.description' | translate }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.description'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <textarea
+                        class="form-control"
+                        [formControl]="description.controls[language]"
+                        rows="3"
+                    ></textarea>
+                    <ng-container
+                        *ngFor="let control of description.controls | keyvalue"
+                    >
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === language &&
+                                control.value.errors?.maxlength
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.maxLength.4000' | translate }}
+                        </ux-control-feedback>
+                    </ng-container>
+                </div>
+                <div class="col-12 d-inline-flex pl-0 pr-0">
+                    <div class="form-group col-6">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.activities-tab.startDate'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-right"
+                                uxTooltip="{{
+                                    'credential-builder.activities-tab.tooltips.startDate'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <ux-form-group [isVertical]="true" class="form-datepicker">
+                            <ux-datepicker
+                            formControlName="startDate"
+                            [placeholder]="'dd/mm/yyyy hh:mm'"
+                            [isDatetimepicker]="true"
+                            (onDateSelect)="checkValidDate()"
+                            ></ux-datepicker>
+                            <ux-control-feedback
+                                *ngIf="
+                                    startDate.invalid &&
+                                    startDate.errors?.invalidDateError
+                                "
+                                typeClass="danger"
+                            >
+                                {{
+                                    'error.minDate'
+                                        | translate
+                                            : {
+                                                  selfParam:
+                                                      'credential-builder.activities-tab.startDate'
+                                                      | translate,
+                                                  dateParam:
+                                                      'credential-builder.activities-tab.endDate'
+                                                      | translate
+                                              }
+                                }}
+                            </ux-control-feedback>
+                        </ux-form-group>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.activities-tab.endDate'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-left"
+                                uxTooltip="{{
+                                    'credential-builder.activities-tab.tooltips.endDate'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <ux-form-group [isVertical]="true" class="form-datepicker">
+                            <ux-datepicker
+                            formControlName="endDate"
+                            [placeholder]="'dd/mm/yyyy hh:mm'"
+                            [isDatetimepicker]="true"
+                            (onDateSelect)="checkValidDate()"
+                            ></ux-datepicker>
+                            <ux-control-feedback
+                                *ngIf="
+                                    startDate.invalid &&
+                                    startDate.errors?.invalidDateError
+                                "
+                                typeClass="danger"
+                            >
+                                {{
+                                    'error.maxDate'
+                                        | translate
+                                            : {
+                                                  selfParam:
+                                                      'credential-builder.activities-tab.endDate'
+                                                      | translate,
+                                                  dateParam:
+                                                      'credential-builder.activities-tab.startDate'
+                                                      | translate
+                                              }
+                                }}
+                            </ux-control-feedback>
+                        </ux-form-group>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.activities-tab.workload'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.workload'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="workload"
+                    />
+                    <ux-control-feedback
+                        *ngIf="workload.errors?.pattern"
+                        typeClass="danger"
+                    >
+                        {{ 'error.number' | translate }}
+                    </ux-control-feedback>
+                    <ux-control-feedback
+                        *ngIf="workload.errors?.maxlength"
+                        typeClass="danger"
+                    >
+                        {{ 'error.maxLength.9' | translate }}
+                    </ux-control-feedback>
+                </div>
+                <div class="form-group col-12">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.activities-tab.directedBy'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.directedBy'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <div class="entity-input">
+                        <edci-autocomplete
+                            entityType="organization"
+                            [isSingleSelection]="true"
+                            [preSelectedItems]="selectedDirectedBy"
+                            (onEntityClicked)="editEntityClicked($event)"
+                            (selectionChange)="onDirectedBySelectionChange($event)"
+                        >
+                        </edci-autocomplete>
+                        <ux-button
+                            styleClass="no-shadow"
+                            iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
+                            [isFlat]="true"
+                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            (click)="newEntityClicked('organization')"
+                        ></ux-button>
+                    </div>
+                </div>
+                <div class="col-12 d-inline-flex pl-0 pr-0">
+                    <div
+                        *ngIf="location.controls[language]"
+                        class="form-group col-9"
+                        [formGroup]="location"
+                    >
+                        <label class="d-inline-flex control-label"
+                            >{{
+                                'credential-builder.activities-tab.location'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-right"
+                                size="large"
+                                uxTooltip="{{
+                                    'credential-builder.activities-tab.tooltips.location'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [formControl]="location.controls[language]"
+                        />
+                        <ng-container
+                            *ngFor="let control of location.controls | keyvalue"
+                        >
+                            <ux-control-feedback
+                                *ngIf="
+                                    control.key === language &&
+                                    control.value.errors?.maxlength
+                                "
+                                typeClass="danger"
+                            >
+                                {{ 'error.maxLength.255' | translate }}
+                            </ux-control-feedback>
+                            <ux-control-feedback
+                                *ngIf="
+                                    control.key === language &&
+                                    control.value.invalid &&
+                                    control.value.errors?.required &&
+                                    control.value.touched
+                                "
+                                typeClass="danger"
+                            >
+                                {{ 'error.required' | translate }}
+                            </ux-control-feedback>
+                            <ux-control-feedback
+                                *ngIf="
+                                    control.key === language &&
+                                    control.value.invalid &&
+                                    control.value.errors?.onlySpaceError &&
+                                    control.value.touched
+                                "
+                                typeClass="danger"
+                            >
+                                {{ 'error.noBlankSpaceOnly' | translate }}
+                            </ux-control-feedback>
+                        </ng-container>
+                    </div>
+                    <div class="form-group col-3 pt-4">
+                        <edci-controlled-list
+                            entityType="atu"
+                            [itemsSelected]="locationNUTS"
+                            [activeLanguage]="language"
+                            [selectedLanguages]="selectedLanguages"
+                            (onError)="closeModal(false)"
+                            (onItemSelectionChange)="
+                                locationNUTSSelectionChange($event)
+                            "
+                        ></edci-controlled-list>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.activities-tab.subActivities'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.subActivities'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <div class="entity-input">
+                        <edci-autocomplete
+                            entityType="activity"
+                            [mainItemOid]="editActivityOid"
+                            (onEntityClicked)="editEntityClicked($event)"
+                            [preSelectedItems]="selectedSubActivities"
+                            (selectionChange)="
+                                onSubActivitiesSelectionChange($event)
+                            "
+                        >
+                        </edci-autocomplete>
+                        <ux-button
+                            styleClass="no-shadow"
+                            iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
+                            [isFlat]="true"
+                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            (click)="newEntityClicked('activity')"
+                        ></ux-button>
+                    </div>
+                </div>
+                <edci-more-information
+                    #additionalNote
+                    *ngIf="language"
+                    [headerLabel]="
+                        'credential-builder.activities-tab.moreInformation'
+                            | translate
+                    "
+                    [tooltip]="
+                        'credential-builder.activities-tab.tooltips.moreInformation'
+                            | translate
+                    "
+                    [selectedLanguages]="selectedLanguages"
+                    [additionalNoteToEdit]="additionalNoteView"
+                    [activeLanguage]="language"
+                >
+                </edci-more-information>
+                <!-- Specification -->
+                <div class="col-12">
+                    <h1>
+                        {{
+                            'credential-builder.activities-tab.activitySpecifications'
+                                | translate
+                        }}
+                    </h1>
+                </div>
+                <div
+                    *ngIf="specificationDescription.controls[language]"
+                    class="form-group col-12"
+                    [formGroup]="specificationDescription"
+                >
+                    <label class="d-inline-flex"
+                        >{{ 'common.description' | translate }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.description'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <textarea
+                        class="form-control"
+                        [formControl]="
+                            specificationDescription.controls[language]
+                        "
+                        rows="3"
+                    ></textarea>
+                    <ng-container
+                        *ngFor="
+                            let control of specificationDescription.controls
+                                | keyvalue
+                        "
+                    >
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === language &&
+                                control.value.errors?.maxlength
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.maxLength.4000' | translate }}
+                        </ux-control-feedback>
+                    </ng-container>
+                </div>
+                <div class="col-12 d-inline-flex pl-0 pr-0">
+                    <div class="form-group col-6">
+                        <edci-controlled-list-select
+                            label="{{
+                                'credential-builder.activities-tab.learningActivityType'
+                                    | translate
+                            }}"
+                            entityType="learning-activity"
+                            [activeLanguage]="language"
+                            [selectedLanguages]="selectedLanguages"
+                            formControlName="learningActivityType"
+                        ></edci-controlled-list-select>
+                    </div>
+                    <div class="form-group col-6">
+                        <edci-controlled-list-select
+                            label="{{
+                                'credential-builder.activities-tab.modeOfLearning'
+                                    | translate
+                            }}"
+                            entityType="learning-assessment"
+                            [activeLanguage]="language"
+                            [selectedLanguages]="selectedLanguages"
+                            formControlName="modeOfLearning"
+                        ></edci-controlled-list-select>
+                    </div>
+                </div>
+                <div class="col-12 d-inline-flex pl-0 pr-0">
+                    <div class="form-group col-6">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.activities-tab.notionalWorkload'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-right"
+                                size="large"
+                                uxTooltip="{{
+                                    'credential-builder.activities-tab.tooltips.notionalWorkload'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="specificationWorkload"
+                        />
+                        <ux-control-feedback
+                            *ngIf="specificationWorkload.errors?.pattern"
+                            typeClass="danger"
+                        >
+                            {{ 'error.number' | translate }}
+                        </ux-control-feedback>
+                        <ux-control-feedback
+                            *ngIf="specificationWorkload.errors?.maxlength"
+                            typeClass="danger"
+                        >
+                            {{ 'error.maxLength.9' | translate }}
+                        </ux-control-feedback>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.activities-tab.languagesOfInstruction'
+                                    | translate
+                            }}
+                        </label>
+                        <edci-controlled-list
+                            entityType="language"
+                            [itemsSelected]="activityLanguage"
+                            [selectedLanguages]="selectedLanguages"
+                            [activeLanguage]="language"
+                            (onError)="closeModal(false)"
+                            (onItemSelectionChange)="
+                                activityLanguageSelectionChange($event)
+                            "
+                        ></edci-controlled-list>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.activities-tab.homePage'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.activities-tab.tooltips.homePage'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="homePage"
+                    />
+                    <ux-control-feedback
+                        *ngIf="homePage.errors?.maxlength"
+                        typeClass="danger"
+                    >
+                        {{ 'error.maxLength.255' | translate }}
+                    </ux-control-feedback>
+                    <ux-control-feedback
+                        *ngIf="
+                            homePage.invalid &&
+                            homePage.errors?.pattern &&
+                            homePage.touched
+                        "
+                        typeClass="danger"
+                    >
+                        {{ 'error.urlPattern' | translate }}
+                    </ux-control-feedback>
+                </div>
+                <div formArrayName="supplementaryDocument">
+                    <div class="form-group col-12">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.assessment-tab.otherDocuments'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-right"
+                                size="large"
+                                uxTooltip="{{
+                                    'credential-builder.activities-tab.tooltips.otherDocuments'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <ng-container
+                            *ngFor="
+                                let otherDocuments of supplementaryDocument.controls;
+                                let i = index;
+                                let last = last
+                            "
+                        >
+                            <div [formGroupName]="i" class="d-flex mb-2">
+                                <div class="d-block col-6 pl-0">
+                                    <input
+                                        type="text"
+                                        class="form-control mr-3"
+                                        placeholder="{{
+                                            'common.title' | translate
+                                        }}"
+                                        formControlName="webDocumentTitle"
+                                    />
+
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            supplementaryDocument.controls[i][
+                                                'controls'
+                                            ].webDocumentTitle.errors?.maxlength
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.maxLength.255' | translate }}
+                                    </ux-control-feedback>
+                                </div>
+
+                                <div class="d-block col-5">
+                                    <input
+                                        type="text"
+                                        class="form-control mr-3"
+                                        placeholder="{{
+                                            'common.content' | translate
+                                        }}"
+                                        formControlName="webDocumentContent"
+                                    />
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            supplementaryDocument.controls[i]
+                                                .errors?.webDocumentError
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.webDocument' | translate }}
+                                    </ux-control-feedback>
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            supplementaryDocument.controls[i][
+                                                'controls'
+                                            ].webDocumentContent.invalid &&
+                                            supplementaryDocument.controls[i][
+                                                'controls'
+                                            ].webDocumentContent.errors
+                                                ?.pattern &&
+                                            supplementaryDocument.controls[i][
+                                                'controls'
+                                            ].webDocumentContent.touched
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.urlPattern' | translate }}
+                                    </ux-control-feedback>
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            supplementaryDocument.controls[i][
+                                                'controls'
+                                            ].webDocumentContent.errors
+                                                ?.maxLength
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.maxLength.255' | translate }}
+                                    </ux-control-feedback>
+                                </div>
+                                <ux-button
+                                    *ngIf="last"
+                                    styleClass="no-shadow"
+                                    [isFlat]="true"
+                                    iconClass="ux-icon ux-icon-plus-circle-thin-o ux-u-font-size-h3"
+                                    (click)="
+                                        credentialBuilderService.addOtherDocumentRow(
+                                            supplementaryDocument
+                                        )
+                                    "
+                                ></ux-button>
+                                <ux-button
+                                    *ngIf="
+                                        supplementaryDocument.controls?.length >
+                                        1
+                                    "
+                                    styleClass="no-shadow"
+                                    [isFlat]="true"
+                                    iconClass="fa fa-trash-o"
+                                    (click)="
+                                        credentialBuilderService.removeOtherDocumentRow(
+                                            supplementaryDocument,
+                                            i
+                                        )
+                                    "
+                                ></ux-button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <edci-more-information
+                    #additionalNoteSpecification
+                    *ngIf="language"
+                    [headerLabel]="
+                        'credential-builder.activities-tab.moreInformation'
+                            | translate
+                    "
+                    [tooltip]="
+                        'credential-builder.activities-tab.tooltips.moreInformation'
+                            | translate
+                    "
+                    [selectedLanguages]="selectedLanguages"
+                    [additionalNoteToEdit]="additionalNoteSpecView"
+                    [activeLanguage]="language"
+                >
+                </edci-more-information>
+            </form>
+        </div>
+    </uxModalBody>
+    <uxModalFooter>
+        <edci-cb-modal-footer
+            (onClose)="closeModal(false)"
+            (onSave)="onSave()"
+            [isDisabled]="isSaveDisabled"
+        ></edci-cb-modal-footer>
+    </uxModalFooter>
+</ux-modal>
+
+<div *ngIf="isLoading || isSaveDisabled" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+<ux-message-box
+    id="messageBoxNewEntityWarning"
+    titleLabel="{{ 'common.warning' | translate | uppercase }}"
+    acceptLabel="{{'Accept' | uppercase}}"
+    dismissLabel="{{'Dismiss' | uppercase}}"
+    (clicked)="newEntityClicked(null, $event)"
+>
+    <p>{{ 'credential-builder.formNewEntityWarning' | translate }}</p>
+</ux-message-box>
+
+<ux-message-box
+    id="messageBoxFormError"
+    titleLabel="{{ 'common.warning' | translate | uppercase }}"
+    messageBoxType="ok"
+>
+    <p>{{ 'credential-builder.formError' | translate }}</p>
+</ux-message-box>
+
+<edci-organizations-modal
+    *ngIf="openEntityModal['organization']?.isOpen"
+    [modalId]="openEntityModal['organization'].modalId"
+    [editOrganizationOid]="openEntityModal['organization'].oid"
+    [language]="defaultLanguage"
+    (onCloseModal)="closeNewEntityModal($event)"
+></edci-organizations-modal>
+
+<edci-activities-modal
+    *ngIf="openEntityModal['activity']?.isOpen"
+    [modalId]="openEntityModal['activity'].modalId"
+    [editActivityOid]="openEntityModal['activity'].oid"
+    [language]="defaultLanguage"
+    (onCloseModal)="closeNewEntityModal($event)"
+></edci-activities-modal>

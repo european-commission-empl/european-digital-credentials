@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="verification">
+    <ul class="timeline left-aligned"
+        th:if="${europassVerifications != null and !europassVerifications.empty}">
+        <div th:each="verification: ${europassVerifications}">
+
+            <li class="correct"
+                th:if="${verification.status.link.toString() == 'http://data.europa.eu/snb/verification-status/9895008394'}"
+                th:insert="tabs/fields/verification_field :: verification(${verification}, 'correct')">
+            </li>
+            <li class="incorrect"
+                th:if="${verification.status.link.toString() ==
+                'http://publications.europa.eu/resource/authority/snb/verification-status/9d26eb9a37'}"
+                th:insert="tabs/fields/verification_field :: verification(${verification}, 'incorrect')">
+            </li>
+
+            <li class="empty"
+                th:if="${verification.status.link.toString() == 'http://data.europa.eu/snb/verification-status/641f0c5e5d'}"
+                th:insert="tabs/fields/verification_field :: verification(${verification}, 'empty')"></li>
+
+        </div>
+    </ul>
+    <div style="page-break-after:always"></div>
+
+</div>
+</body>
+</html>

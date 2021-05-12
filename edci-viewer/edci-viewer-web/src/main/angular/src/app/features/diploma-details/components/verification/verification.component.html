@@ -1,0 +1,50 @@
+<div class="col-12 pr-0 h-100 d-inline-flex">
+    <div class="col-6 py-4 px-5">
+        <edci-viewer-display-diploma></edci-viewer-display-diploma>
+    </div>
+    <div
+        *ngIf="!isPreview"
+        class="col-6 h-100 bg-white border-left overflow-auto-details"
+    >
+        <h3 class="col-12 py-4 px-5 font-weight-bold">
+            {{ 'details.authenticationAndVerificationCheck' | translate }}
+        </h3>
+        <div class="mt-2 px-5 break-word">
+            <ux-timeline-items
+                *ngIf="steps; else waitingForSteps"
+                class="verification-steps"
+                [isLeftAligned]="true"
+            >
+                <ux-timeline-item
+                    *ngFor="let step of steps"
+                    class="verification-step"
+                    [label]="step.type | uppercase"
+                    [styleClass]="
+                        step.status.link === CONTROLLEDLISTCOLORS.GREEN
+                            ? 'correct'
+                            : step.status.link === CONTROLLEDLISTCOLORS.RED
+                            ? 'incorrect'
+                            : null
+                    "
+                    [subLabel]="step.description"
+                ></ux-timeline-item>
+                <ux-timeline-item
+                    *ngIf="isVerified"
+                    styleClass="verified"
+                    label="{{
+                        'details.verification-tab.verified' | translate
+                    }}"
+                ></ux-timeline-item>
+            </ux-timeline-items>
+        </div>
+        <ng-template #waitingForSteps>
+            <mat-progress-spinner
+                class="verify-spinner"
+                color="primary"
+                mode="indeterminate"
+                value="50"
+            >
+            </mat-progress-spinner>
+        </ng-template>
+    </div>
+</div>

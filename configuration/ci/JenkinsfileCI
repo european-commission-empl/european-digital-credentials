@@ -1,0 +1,976 @@
+node {
+	def version
+
+	def mvnHome
+	def jdkHome
+	def sonarScannerHome
+
+	def angularSrc
+	def externalLibsSrc
+	def earTarget
+	def nodeVersion
+
+	def gitlabToken = '9370e77889517ed73ab74aaa7d5821ed'
+
+	def versionNumber
+	def branchValue = env.BRANCH_NAME
+
+	env.DOCKER_HOST_EDCI = '52.57.141.197'
+
+	env.STEPS_USERNAME = 'mare'
+	env.STEPS_PASSWORD = 'mare2019'
+
+	env.CHROME_BIN="/usr/bin/chromium"
+
+	jdkHome = tool name: 'JDK 1.8.0_65', type: 'jdk'
+	env.JAVA_HOME = "${jdkHome}"
+
+	mvnHome = tool name: 'MAVEN 3.2.1 SONARQUBE 6', type: 'maven'
+	env.M2_HOME = "${mvnHome}"
+
+	sonarScannerHome = tool name: 'Sonar Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+
+	externalLibsSrc = 'configuration/external-libs'
+	nodeVersion = 'node-v8.9.3'
+
+	env.NODEJS_HOME = "${tool 'node-v8.9.3'}"
+	env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
+
+	env.CHROME_BIN="google-chrome"
+	env.NO_PROXY="localhost, 0.0.0.0/4201, 0.0.0.0/9876"
+
+	def now = new Date()
+	def timeStamp = now.format("yyyyMMdd-HHmmss", TimeZone.getTimeZone('Europe/Madrid'))
+
+	echo "BRANCH NAME: ${env.BRANCH_NAME}"
+
+   	if(!env.BRANCH_NAME.contains('QA')){
+		properties([
+			[$class: 'JiraProjectProperty', siteName: 'https://umane.everis.com/jiraproy/'],
+			buildDiscarder(logRotator(artifactDaysToKeepStr: '5', artifactNumToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '5')),
+			disableConcurrentBuilds(),
+			parameters([
+				booleanParam(
+					defaultValue: false,
+					description: 'Check build with sonar',
+					name: 'inspectSonar'
+				),
+				string(
+					defaultValue: 'dev-tomcat',
+					description: 'maven profile (do not type "-P value", just "value".',
+					name: 'mavenProfile',
+					trim: true
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Issuer',
+					name: 'buildIssuer'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Viewer',
+					name: 'buildViewer'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Wallet',
+					name: 'buildWallet'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Issuer at DEV TOMCAT',
+					name: 'deployIssuerDEVTOMCAT'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Viewer at DEV TOMCAT',
+					name: 'deployViewerDEVTOMCAT'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Wallet at DEV TOMCAT',
+					name: 'deployWalletDEVTOMCAT'
+				)
+			]),
+			pipelineTriggers([
+				[
+					$class: 'GitLabPushTrigger',
+					triggerOnPush: true,
+					triggerOnMergeRequest: true,
+					triggerOnAcceptedMergeRequest: true,
+					triggerOpenMergeRequestOnPush: 'never',
+					triggerOnApprovedMergeRequest: true,
+					noteRegex: 'Retry build',
+					ciSkip: true,
+					skipWorkInProgressMergeRequest: true,
+					setBuildDescription: true,
+					branchFilterType: 'RegexBasedFilter',
+					targetBranchRegex: '(.*develop.*|.*release.*)',
+					secretToken: gitlabToken,
+				]
+			])
+		])
+	}
+	if(env.BRANCH_NAME.contains('QA')){
+		properties([
+			[$class: 'JiraProjectProperty', siteName: 'https://umane.everis.com/jiraproy/'],
+			buildDiscarder(logRotator(artifactDaysToKeepStr: '5', artifactNumToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '5')),
+			disableConcurrentBuilds(),
+			parameters([
+				string(
+					defaultValue: 'qa-tomcat',
+					description: 'maven profile (do not type "-P value", just "value".',
+					name: 'mavenProfile',
+					trim: true
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Issuer',
+					name: 'buildIssuer'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Viewer',
+					name: 'buildViewer'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Build EDCI Wallet',
+					name: 'buildWallet'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Issuer at QA TOMCAT',
+					name: 'deployIssuerQATOMCAT'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Viewer at QA TOMCAT',
+					name: 'deployViewerQATOMCAT'
+				),
+				booleanParam(
+					defaultValue: false,
+					description: 'Deploy EDCI Wallet at QA TOMCAT',
+					name: 'deployWalletQATOMCAT'
+				)
+			]),
+			pipelineTriggers([
+				[
+					$class: 'GitLabPushTrigger',
+					triggerOnPush: true,
+					triggerOnMergeRequest: true,
+					triggerOnAcceptedMergeRequest: true,
+					triggerOpenMergeRequestOnPush: 'never',
+					triggerOnApprovedMergeRequest: true,
+					noteRegex: 'Retry build',
+					ciSkip: true,
+					skipWorkInProgressMergeRequest: true,
+					setBuildDescription: true,
+					branchFilterType: 'RegexBasedFilter',
+					targetBranchRegex: '(.*develop.*|.*release.*)',
+					secretToken: gitlabToken,
+				]
+			])
+		])
+	}
+
+	stage('Repository update') {
+		checkout([
+			$class: 'GitSCM',
+			branches: [
+				[name: '$BRANCH_NAME']
+			],
+			doGenerateSubmoduleConfigurations: false,
+			extensions: [],
+			submoduleCfg: [],
+			userRemoteConfigs: [
+				[credentialsId: '6ee756a1-2cd1-4274-8d5f-877b20217cac', url: 'https://umane.everis.com/git/EDCI/edci.git']
+			    /*[credentialsId: 'gitEdciGeneric', url: 'https://umane.everis.com/git/EDCI/edci.git']*/
+			]
+		])
+	}
+
+	stage('Generating build number') {
+		versionNumber = readFile 'buildNumber.properties'
+		versionNumber = versionNumber.trim()
+
+		if (versionNumber) {
+			if (branchValue.contains('/')) {
+				def brancParts = branchValue.split('/')
+				branchValue = brancParts[1].toUpperCase()
+			}
+
+			if (env.BRANCH_NAME.contains('release')) {
+				version = branchValue + "-" + params.mavenProfile + "-" + timeStamp
+			} else {
+				version = versionNumber + "-" + branchValue + "-" + params.mavenProfile + "-" + timeStamp
+			}
+		} else {
+			error "Build failed, version number required to execute the build"
+		}
+	}
+
+	/**/
+	stage('Update branch name and build number') {
+		def modifiedSonarTextBranchName = readFile('sonar-project.properties').replaceAll('sonar.branch.name=master','')
+        writeFile file: 'sonar-project.properties', text: modifiedSonarTextBranchName
+
+        def modifiedSonarTextBranchTarget = readFile('sonar-project.properties').replaceAll('sonar.branch.target=master','')
+        writeFile file: 'sonar-project.properties', text: modifiedSonarTextBranchTarget
+
+		def regexProjectVersion = "(.*)sonar.projectVersion=(.*)"
+		def modifiedSonarNumberText = readFile('sonar-project.properties').replaceAll(regexProjectVersion,'sonar.projectVersion=' + versionNumber)
+        writeFile file: 'sonar-project.properties', text: modifiedSonarNumberText
+	}
+	stage('Initialize dist folder/s') {
+		if(params.buildIssuer){
+			dir("edci-issuer/edci-issuer-web/src/main/angular") {
+			    sh "rm -rf dist"
+				sh "mkdir -p dist"
+			}
+		}
+		if(params.buildViewer){
+			dir("edci-viewer/edci-viewer-web/src/main/angular") {
+				sh "rm -rf dist"
+                sh "mkdir -p dist"
+			}
+		}
+		if(params.buildWallet){
+			dir("edci-wallet/edci-wallet-web/src/main/angular") {
+				sh "rm -rf dist"
+				sh "mkdir -p dist"
+			}
+		}
+	}
+
+	stage('Install local libs') {
+		dir(externalLibsSrc) {
+			configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+				/*if (isUnix()) {
+					sh "'${mvnHome}/bin/mvn' install:install-file -Dfile=wls-api-12.2.1.jar -DgroupId=weblogic -DartifactId=wls-api -Dversion=12.2.1 -Dpackaging=jar"
+				} else {
+					bat(/"${mvnHome}\bin\mvn" install:install-file -Dfile=wls-api-12.2.1.jar -DgroupId=weblogic -DartifactId=wls-api -Dversion=12.2.1 -Dpackaging=jar/)
+				}
+
+				if (isUnix()) {
+					sh "'${mvnHome}/bin/mvn' install:install-file -Dfile=MARE-Authorization-Module-0.1.jar -DgroupId=eu.europa.ec.mare -DartifactId=usm-mock -Dversion=0.1 -Dpackaging=jar"
+				} else {
+					bat(/"${mvnHome}\bin\mvn" install:install-file -Dfile=MARE-Authorization-Module-0.1.jar -DgroupId=eu.europa.ec.mare -DartifactId=usm-mock -Dversion=0.1 -Dpackaging=jar/)
+				}
+
+				if (isUnix()) {
+					sh "'${mvnHome}/bin/mvn' install:install-file -Dfile=ojdbc7-12.1.0.1.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar"
+				} else {
+					bat(/"${mvnHome}\bin\mvn" install:install-file -Dfile=ojdbc7-12.1.0.1.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar/)
+				}
+
+				*/
+				if (isUnix()) {
+					sh "'${mvnHome}/bin/mvn' install:install-file -Dfile=ecas-weblogic-12.2.1-authprovider-4.26.3.jar -DgroupId=eu.europa.ec.digit.iam.ecas.client -DartifactId=ecas-weblogic-12.2.1-authprovider -Dversion=4.26.3 -Dpackaging=jar"
+				} else {
+					bat(/"${mvnHome}\bin\mvn" install:install-file -Dfile=ecas-weblogic-12.2.1-authprovider-4.26.3.jar -DgroupId=eu.europa.ec.digit.iam.ecas.client -DartifactId=ecas-weblogic-12.2.1-authprovider -Dversion=4.26.3 -Dpackaging=jar/)
+				}
+
+				if (isUnix()) {
+					sh "'${mvnHome}/bin/mvn' install:install-file -Dfile=eui-angular2-servlet-1.0.0.jar -DgroupId=eu.europa.ec.digit.uxatec.eui -DartifactId=eui-angular2-servlet -Dversion=1.0.0 -Dpackaging=jar"
+				} else {
+					bat(/"${mvnHome}\bin\mvn" install:install-file -Dfile=eui-angular2-servlet-1.0.0.jar -DgroupId=eu.europa.ec.digit.uxatec.eui -DartifactId=eui-angular2-servlet -Dversion=1.0.0 -Dpackaging=jar/)
+				}
+
+			}
+		}
+	}
+
+
+	/*stage('Reset environment') {
+		if (isUnix()) {
+			sh "'${mvnHome}/bin/mvn' clean install -Dskip.tests=true -DskipTests=true"
+		} else {
+			bat(/"${mvnHome}\bin\mvn" clean install -Dskip.tests=true -DskipTests=true/)
+		}
+	}*/
+	stage('Back: Initialize') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn"  -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn"  -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true/)
+                }
+            }
+			if(params.buildIssuer){
+            	dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn"  -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+			}
+			if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn"  -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn"  -s $MAVEN_SETTINGS_XML clean install -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+		}
+	}
+
+
+	stage('Back: PMD Check') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=../configuration/quality/pmd/pmd_rules.xml -Dmaven.pmd.outputDirectory=target/pmd"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=..\configuration\quality\pmd\pmd_rules.xml -Dmaven.pmd.outputDirectory=target\pmd/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=../configuration/quality/pmd/pmd_rules.xml -Dmaven.pmd.outputDirectory=target/pmd"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=..\configuration\quality\pmd\pmd_rules.xml -Dmaven.pmd.outputDirectory=target\pmd/)
+                }
+            }
+            if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=../configuration/quality/pmd/pmd_rules.xml -Dmaven.pmd.outputDirectory=target/pmd"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=..\configuration\quality\pmd\pmd_rules.xml -Dmaven.pmd.outputDirectory=target\pmd/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=../configuration/quality/pmd/pmd_rules.xml -Dmaven.pmd.outputDirectory=target/pmd"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=..\configuration\quality\pmd\pmd_rules.xml -Dmaven.pmd.outputDirectory=target\pmd/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=../configuration/quality/pmd/pmd_rules.xml -Dmaven.pmd.outputDirectory=target/pmd"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" pmd:pmd  -s $MAVEN_SETTINGS_XML -Dmaven.pmd.rulesetfiles=..\configuration\quality\pmd\pmd_rules.xml -Dmaven.pmd.outputDirectory=target\pmd/)
+                    }
+                }
+            }
+		}
+	}
+
+
+	stage('Back: Checkstyle Check') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=../configuration/quality/checkstyle/checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target/checkstyle/checkstyle.xml"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=..\configuration\quality\checkstyle\checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target\checkstyle\checkstyle.xml/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=../configuration/quality/checkstyle/checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target/checkstyle/checkstyle.xml"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=..\configuration\quality\checkstyle\checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target\checkstyle\checkstyle.xml/)
+                }
+            }
+            if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=../configuration/quality/checkstyle/checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target/checkstyle/checkstyle.xml"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=..\configuration\quality\checkstyle\checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target\checkstyle\checkstyle.xml/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=../configuration/quality/checkstyle/checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target/checkstyle/checkstyle.xml"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=..\configuration\quality\checkstyle\checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target\checkstyle\checkstyle.xml/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=../configuration/quality/checkstyle/checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target/checkstyle/checkstyle.xml"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" checkstyle:checkstyle  -s $MAVEN_SETTINGS_XML -Dcheckstyle.config.location=..\configuration\quality\checkstyle\checkstyle_rules.xml -Dcheckstyle.includeTestResources=false -Dcheckstyle.output.file=target\checkstyle\checkstyle.xml/)
+                    }
+                }
+            }
+		}
+	}
+
+
+	stage('Back: Test') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}/)
+                }
+            }
+            if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" test -s $MAVEN_SETTINGS_XML -P ${mavenProfile}/)
+                    }
+                }
+            }
+		}
+	}
+
+	stage('Back: Generate Swagger') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "rm -rf edci-issuer-web/src/main/angular/src/app/shared/swagger"
+                        sh "'${mvnHome}/bin/mvn' compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "rm -rf edci-viewer-web/src/main/angular/src/app/shared/swagger"
+                        sh "'${mvnHome}/bin/mvn' compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "rm -rf edci-wallet-web/src/main/angular/src/app/shared/swagger"
+                        sh "'${mvnHome}/bin/mvn' compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" compile -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+		}
+	}
+
+
+	stage('Back: Generate Angular Client') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" generate-sources -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+		}
+	}
+/*
+	stage('Back: Javadoc') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' javadoc:javadoc -s $MAVEN_SETTINGS_XML"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" javadoc:javadoc -s $MAVEN_SETTINGS_XML/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' javadoc:javadoc -s $MAVEN_SETTINGS_XML"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" javadoc:javadoc -s $MAVEN_SETTINGS_XML/)
+                }
+            }
+            if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' javadoc:javadoc -s $MAVEN_SETTINGS_XML"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" javadoc:javadoc -s $MAVEN_SETTINGS_XML/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' javadoc:javadoc -s $MAVEN_SETTINGS_XML"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" javadoc:javadoc -s $MAVEN_SETTINGS_XML/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' javadoc:javadoc -s $MAVEN_SETTINGS_XML"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" javadoc:javadoc -s $MAVEN_SETTINGS_XML/)
+                    }
+                }
+            }
+		}
+	}
+*/
+	stage('Front: Initialize') {
+		if(params.buildIssuer){
+			dir("edci-issuer/edci-issuer-web/src/main/angular") {
+				if (!(fileExists('dist'))) {
+				if (isUnix()) {
+					sh "mkdir -p dist"
+				} else {
+					bat(/mkdir -p dist/)
+				}
+			}
+			}
+		}
+		if(params.buildViewer){
+			dir("edci-viewer/edci-viewer-web/src/main/angular") {
+				if (!(fileExists('dist'))) {
+					if (isUnix()) {
+						sh "mkdir -p dist"
+					} else {
+						bat(/mkdir -p dist/)
+					}
+				}
+			}
+		}
+	}
+	stage('Front: NPM install') {
+		if(params.buildIssuer){
+			dir("edci-issuer/edci-issuer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm install"
+						sh "npm install --only=dev"
+					} else {
+						bat(/npm install/)
+						bat(/npm install --only=dev/)
+					}
+				}
+			}
+		}
+		if(params.buildViewer){
+			dir("edci-viewer/edci-viewer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm install"
+						sh "npm install --only=dev"
+					} else {
+						bat(/npm install/)
+						bat(/npm install --only=dev/)
+					}
+				}
+			}
+		}
+	}
+
+	stage('Front: Lint Check') {
+		if(params.buildIssuer){
+			dir("edci-issuer/edci-issuer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "mkdir -p out"
+						sh "npm run lint-prod"
+					} else {
+						bat(/npm run lint-prod/)
+					}
+				}
+			}
+		}
+		if(params.buildViewer){
+			dir("edci-viewer/edci-viewer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "mkdir -p out"
+						sh "npm run lint-prod"
+					} else {
+						bat(/npm run lint-prod/)
+					}
+				}
+			}
+		}
+	}
+
+stage('Front: Build') {
+	if(params.buildIssuer){
+		dir("edci-issuer/edci-issuer-web/src/main/angular") {
+			if(mavenProfile == "default"){
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm run build"
+					} else {
+						bat(/npm run build/)
+					}
+				}
+			}else if(mavenProfile == "test"){
+				  nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					  if (isUnix()) {
+						  sh "npm run build-test"
+					  } else {
+						  bat(/npm run build-test/)
+					  }
+				  }
+			}else if(mavenProfile == "acceptance"){
+				   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					   if (isUnix()) {
+						   sh "npm run build-acceptance"
+					   } else {
+						   bat(/npm run build-acceptance/)
+					   }
+				   }
+			 }else if(mavenProfile == "production"){
+                   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+                       if (isUnix()) {
+                           sh "npm run build-prod"
+                       } else {
+                           bat(/npm run build-prod/)
+                       }
+                   }
+             }else{
+			   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+				   if (isUnix()) {
+					   sh "npm run build-${mavenProfile}"
+				   } else {
+					   bat(/npm run build-${mavenProfile}/)
+				   }
+			   }
+			}
+		}
+	}
+	if(params.buildViewer){
+		dir("edci-viewer/edci-viewer-web/src/main/angular") {
+			if(mavenProfile == "default"){
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm run build"
+					} else {
+						bat(/npm run build/)
+					}
+				}
+			}else if(mavenProfile == "test"){
+				  nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					  if (isUnix()) {
+						  sh "npm run build-test"
+					  } else {
+						  bat(/npm run build-test/)
+					  }
+				  }
+			}else if(mavenProfile == "acceptance"){
+				   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					   if (isUnix()) {
+						   sh "npm run build-acceptance"
+					   } else {
+						   bat(/npm run build-acceptance/)
+					   }
+				   }
+			 }else if(mavenProfile == "production"){
+                   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+                       if (isUnix()) {
+                           sh "npm run build-prod"
+                       } else {
+                           bat(/npm run build-prod/)
+                       }
+                   }
+             }else{
+			   nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+				   if (isUnix()) {
+					   sh "npm run build-${mavenProfile}"
+				   } else {
+					   bat(/npm run build-${mavenProfile}/)
+				   }
+			   }
+			}
+		}
+	}
+}
+	stage('Front: Compodoc') {
+		if(params.buildIssuer){
+			dir("edci-issuer/edci-issuer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm run compodoc"
+					} else {
+						bat(/npm run compodoc/)
+					}
+				}
+			}
+		}
+		if(params.buildViewer){
+			dir("edci-viewer/edci-viewer-web/src/main/angular") {
+				nodejs(configId: '86d85627-a785-406e-96cd-8a147be38402', nodeJSInstallationName: 'node-v8.9.3') {
+					if (isUnix()) {
+						sh "npm run compodoc"
+					} else {
+						bat(/npm run compodoc/)
+					}
+				}
+			}
+		}
+
+	}
+
+	stage('Package') {
+		configFileProvider([configFile(fileId: '23a28f45-b996-42fb-b424-25b18c1b918a', variable: 'MAVEN_SETTINGS_XML')]) {
+			dir("edci-commons/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                }
+            }
+            dir("edci-dss-utils/") {
+                if (isUnix()) {
+                    sh "'${mvnHome}/bin/mvn' package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                } else {
+                    bat(/"${mvnHome}\bin\mvn" package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                }
+            }
+            if(params.buildIssuer){
+                dir("edci-issuer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildViewer){
+                dir("edci-viewer/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+            if(params.buildWallet){
+                dir("edci-wallet/") {
+                    if (isUnix()) {
+                        sh "'${mvnHome}/bin/mvn' package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true"
+                    } else {
+                        bat(/"${mvnHome}\bin\mvn" package -s $MAVEN_SETTINGS_XML -P ${mavenProfile} -Dskip.tests=true -DskipTests=true/)
+                    }
+                }
+            }
+		}
+	}
+	stage('Sonar') {
+		withSonarQubeEnv('SonarQube 6') {
+			if ((env.BRANCH_NAME.contains('release') && env.BRANCH_NAME.contains(versionNumber)) || env.BRANCH_NAME.contains('feature/merge') || params.inspectSonar) {
+				if (isUnix()) {
+					sh "'${sonarScannerHome}/bin/sonar-scanner'"
+				} else {
+					bat(/"${sonarScannerHome}\bin\sonar-scanner"/)
+				}
+			} else {
+				echo "Skipping for this branch"
+			}
+		}
+	}
+
+	/*stage('Modify output') {
+		if(params.buildIssuer){
+			dir('edci-issuer/edci-issuer-ear/target') {
+				if (isUnix()) {
+					sh 'mv edci-issuer.ear ' + 'edci-issuer-' + version
+				} else {
+					bat(/"ren edci-issuer.ear " + 'edci-issuer-' + version/)
+				}
+			}
+		}
+		if(params.buildViewer){
+			dir('edci-viewer/edci-viewer-ear/target') {
+				if (isUnix()) {
+					sh 'mv edci-viewer.ear ' + 'edci-viewer-' + version
+				} else {
+					bat(/"ren edci-viewer.ear " + 'edci-viewer-' + version/)
+				}
+			}
+		}
+		if(params.buildWallet){
+			dir('edci-wallet/edci-wallet-ear/target') {
+				if (isUnix()) {
+					sh 'mv edci-wallet.ear ' + 'edci-wallet-' + version
+				} else {
+					bat(/"ren edci-wallet.ear " + 'edci-wallet-' + version/)
+				}
+			}
+		}
+	}*/
+
+	stage('Archive artifacts') {
+		archiveArtifacts artifacts: '**/target/*.war', fingerprint: true, onlyIfSuccessful: true
+		junit allowEmptyResults: true, testResults: '**/surefire-reports/*.xml'
+	}
+	/*if(env.BRANCH_NAME.contains('QA') || env.BRANCH_NAME.contains('development')){*/
+		/*stage('Publish build package DEV WLS') {
+			if (params.deployIssuerDEVWLS || params.deployViewerDEVWLS || params.deployWalletDEVWLS ) {
+				sh "curl -s http://whatismyip.akamai.com/"
+				sh "echo 'LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRXBBSUJBQUtDQVFFQXRXQ0dGY3NSamdpaE1TUEpZOEl3ano5dDZOcmpVay9rVWtLOXdTUjAyaUFHM0N3QjVwNkg1SHFXYTgxTw0KWFZML1UvaytSWGtWU3c5UUFFZGVsaDFleTJFWCtNV0piM01DaWRtVCs3cTdMemdVd3JpMU91RUsyZjh6dTVleFQ1ZGJGOXV0YS9MNg0KNFFOd1JlWGV4ZnVLSkhaMW0vM0k1dmhud3lYRlRsVG41Nmw0TXFwSDAxZjg3SDlubEM3dnE4VUp4ZkplUllHSGxqbnU1OEtQRDc5VA0KTm5zS1pnTUJERFFwZXJRaUxxRDd2UTlybkRlbXZZcnhQODZOSjUvZkFYbzg4NEpoaGprUktySzgwTVMxOGFRS2NCZ3RheWI4a2krNg0KL0ZlZHVoWWdhWEF0dVpCc0ZuRzRYYWllVE9BcmZWdWFlTUtXYjQ3cEwxUWNHSFlZWVBPRStRSURBUUFCQW9JQkFRQ2s3MTEvTytaKw0Kem9JbWVYQ05jdTFObGxTUVIxd29ZZFl5cDlaK2FIU0tWazFtc2U0WWxWam1BRVFCUy9WVEVFSjNUbE8rUVZtSHBDa1AxOWEvazMyOA0KWEZLOE9vVzcvMDN6cFJQWStmbDErdjJHQlFsb3ZYUnN3SkYrcVhibjlhODBodU94SW9mWlRwTXVQTmJVR3VXSU91REFOWXdYM1JRZQ0KZFo1eW1PczUwVzQ3NFp4cFJUSUhSOVJ4d0tOY2dtVVRjd1Z0WFZWakdsVkdmSm1qZDN0b0J1SmdKT0lZNWtzT3hVSEVwQUgycGVlMg0KTzRvR2RYalM3aUxtK1M0alVvZ0xmalFPSm9jemR1TkJxMTROa0JROWpvUUthbHBNdWhLMlNYcjNRMXJxVkZkN0tFY3ZBMnlrR2Y0bg0KRDZoTURNZzExb2dOSUFGQUwveTQvQzc4ckRxeEFvR0JBTm0wUC9yVkgxUWdpSHhwZHFDUWwvRjdRUGJWdEJLZzFmSnA3c2F3K1pvdA0KOGZxN2xyRlFyajdaNHphSGxUUWdyaDlYUmk4SzVwWUN4VXc2NkpMVkdnd083dTRLUVN4ZDltTXN0NlVoTExJTVNRTWZDMzhLSVd2bg0KVjJ2T3FWYk51R2txbzdpVlliN01hdEJYTWl3MWx5MzA4NUFFS05Yb1l6UmxYa2d5b3ZtakFvR0JBTlZJWUp2UU41MC9obTFJTjZqdQ0KUEpxUGZhRThqWXM1bXhKQ0R4aDl3N2VnWWgyYTB4Nys1THFkdU0rMHNzZjExUDVxV2pveGpaZkZLTVorM21yQmV6MGVOcEN4VjhQNQ0KRHFpKysxRkhUck9Fb2dVeVV0VG9ZT3lTOGxjendMSmpQaHZobHdsODI5UHdwTTJZSmZlWjRJemdESXdIOG0yRW50SXUzdkNRNUtpeg0KQW9HQkFJMUxmcWJtd2VHUkIrUnZjbzI5cXRBUTVkWU9WMFFyM1Evcmp3eW4raWdHSCtKUzgvZjdYRXZ3a0pab292N2xJdjIyWUJmUw0KSkZ4Q1Noa3l0cFh0OTJ6U0dHS29oeW9yaGVsU01aTGNHQzBxNmd3N2p2T1IrS1VXemRkcmx0NSt3R3lKUHg5aTNNQy8zYWVBb0ZDdg0KSzRLcFU1Y3FDL0xoVTluQzNORlJCQk92QW9HQUo5THMzd3NnNTBhdVJnZC9CUmIreitsTkR1Y3NrcnQ5M2duaG9iUVI4RjZORTNRTw0KU2JKVWFSZjhJeVJkWVlMZ2MyVE9WaUZjaStNdmV1akRoUEY5bm1yZXkyT2h2S0RyZ015d1Judm5FUlFKNEtpRjJPVk8rNzF3YktIbw0KTUNiaHVQa0ZaNnNkck5RNUlYNXdVR3cyQm5mclA5WllDT1VEZHNGenRUMkl4SXNDZ1lCa2J3T3BLYzkxM1pJakR4NHBRQ1A2WjVaRA0Kcnkra0cwK0d3VGZiZnlsWTcwbzdqMTdDOXJzR2FNR3IyeWZVQlRRMU1MR0Q4ZWtuVEN4S2t4QjVBbVpNUVdRSUdFM284NjJjQzRwMw0KM2lLVkVESEFldDVNMkxwb2Rvd3U5dWJFL05zUkZ1cWMwOU5XMjY2cUNQV05TSGFLNGRRMHN4ZEhyRkt0V1dMbm9UMEdGQT09DQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQ==' | base64 --decode > _tmp.pem;"
+				sh "chmod g-rwx _tmp.pem;"
+				sh "chmod o-rwx _tmp.pem;"
+				if(params.buildIssuer && params.deployIssuerDEV){
+					sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-issuer/edci-issuer-ear/target/edci-issuer-${version} edci@${env.DOCKER_HOST_EDCI}:/home/edci/autodeploy/edci-issuer.ear;"
+				}
+				if(params.buildViewer && params.deployViewerDEV){
+					sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-viewer/edci-viewer-ear/target/edci-viewer-${version} edci@${env.DOCKER_HOST_EDCI}:/home/edci/autodeploy/edci-viewer.ear;"
+				}
+				if(params.buildWallet && params.deployWalletDEV){
+					sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-wallet/edci-wallet-ear/target/edci-wallet-${version} edci@${env.DOCKER_HOST_EDCI}:/home/edci/autodeploy/edci-wallet.ear;"
+				}
+				sh "rm -f _tmp.pem"
+			} else {
+				echo "Skipping for this branch"
+			}
+		}*/
+
+		stage('Publish build package DEV TOMCAT') {
+				if (params.deployIssuerDEVTOMCAT || params.deployViewerDEVTOMCAT || params.deployWalletDEVTOMCAT ) {
+					sh "curl -s http://whatismyip.akamai.com/"
+					sh "echo 'LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRXBBSUJBQUtDQVFFQXRXQ0dGY3NSamdpaE1TUEpZOEl3ano5dDZOcmpVay9rVWtLOXdTUjAyaUFHM0N3QjVwNkg1SHFXYTgxTw0KWFZML1UvaytSWGtWU3c5UUFFZGVsaDFleTJFWCtNV0piM01DaWRtVCs3cTdMemdVd3JpMU91RUsyZjh6dTVleFQ1ZGJGOXV0YS9MNg0KNFFOd1JlWGV4ZnVLSkhaMW0vM0k1dmhud3lYRlRsVG41Nmw0TXFwSDAxZjg3SDlubEM3dnE4VUp4ZkplUllHSGxqbnU1OEtQRDc5VA0KTm5zS1pnTUJERFFwZXJRaUxxRDd2UTlybkRlbXZZcnhQODZOSjUvZkFYbzg4NEpoaGprUktySzgwTVMxOGFRS2NCZ3RheWI4a2krNg0KL0ZlZHVoWWdhWEF0dVpCc0ZuRzRYYWllVE9BcmZWdWFlTUtXYjQ3cEwxUWNHSFlZWVBPRStRSURBUUFCQW9JQkFRQ2s3MTEvTytaKw0Kem9JbWVYQ05jdTFObGxTUVIxd29ZZFl5cDlaK2FIU0tWazFtc2U0WWxWam1BRVFCUy9WVEVFSjNUbE8rUVZtSHBDa1AxOWEvazMyOA0KWEZLOE9vVzcvMDN6cFJQWStmbDErdjJHQlFsb3ZYUnN3SkYrcVhibjlhODBodU94SW9mWlRwTXVQTmJVR3VXSU91REFOWXdYM1JRZQ0KZFo1eW1PczUwVzQ3NFp4cFJUSUhSOVJ4d0tOY2dtVVRjd1Z0WFZWakdsVkdmSm1qZDN0b0J1SmdKT0lZNWtzT3hVSEVwQUgycGVlMg0KTzRvR2RYalM3aUxtK1M0alVvZ0xmalFPSm9jemR1TkJxMTROa0JROWpvUUthbHBNdWhLMlNYcjNRMXJxVkZkN0tFY3ZBMnlrR2Y0bg0KRDZoTURNZzExb2dOSUFGQUwveTQvQzc4ckRxeEFvR0JBTm0wUC9yVkgxUWdpSHhwZHFDUWwvRjdRUGJWdEJLZzFmSnA3c2F3K1pvdA0KOGZxN2xyRlFyajdaNHphSGxUUWdyaDlYUmk4SzVwWUN4VXc2NkpMVkdnd083dTRLUVN4ZDltTXN0NlVoTExJTVNRTWZDMzhLSVd2bg0KVjJ2T3FWYk51R2txbzdpVlliN01hdEJYTWl3MWx5MzA4NUFFS05Yb1l6UmxYa2d5b3ZtakFvR0JBTlZJWUp2UU41MC9obTFJTjZqdQ0KUEpxUGZhRThqWXM1bXhKQ0R4aDl3N2VnWWgyYTB4Nys1THFkdU0rMHNzZjExUDVxV2pveGpaZkZLTVorM21yQmV6MGVOcEN4VjhQNQ0KRHFpKysxRkhUck9Fb2dVeVV0VG9ZT3lTOGxjendMSmpQaHZobHdsODI5UHdwTTJZSmZlWjRJemdESXdIOG0yRW50SXUzdkNRNUtpeg0KQW9HQkFJMUxmcWJtd2VHUkIrUnZjbzI5cXRBUTVkWU9WMFFyM1Evcmp3eW4raWdHSCtKUzgvZjdYRXZ3a0pab292N2xJdjIyWUJmUw0KSkZ4Q1Noa3l0cFh0OTJ6U0dHS29oeW9yaGVsU01aTGNHQzBxNmd3N2p2T1IrS1VXemRkcmx0NSt3R3lKUHg5aTNNQy8zYWVBb0ZDdg0KSzRLcFU1Y3FDL0xoVTluQzNORlJCQk92QW9HQUo5THMzd3NnNTBhdVJnZC9CUmIreitsTkR1Y3NrcnQ5M2duaG9iUVI4RjZORTNRTw0KU2JKVWFSZjhJeVJkWVlMZ2MyVE9WaUZjaStNdmV1akRoUEY5bm1yZXkyT2h2S0RyZ015d1Judm5FUlFKNEtpRjJPVk8rNzF3YktIbw0KTUNiaHVQa0ZaNnNkck5RNUlYNXdVR3cyQm5mclA5WllDT1VEZHNGenRUMkl4SXNDZ1lCa2J3T3BLYzkxM1pJakR4NHBRQ1A2WjVaRA0Kcnkra0cwK0d3VGZiZnlsWTcwbzdqMTdDOXJzR2FNR3IyeWZVQlRRMU1MR0Q4ZWtuVEN4S2t4QjVBbVpNUVdRSUdFM284NjJjQzRwMw0KM2lLVkVESEFldDVNMkxwb2Rvd3U5dWJFL05zUkZ1cWMwOU5XMjY2cUNQV05TSGFLNGRRMHN4ZEhyRkt0V1dMbm9UMEdGQT09DQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQ==' | base64 --decode > _tmp.pem;"
+					sh "chmod g-rwx _tmp.pem;"
+					sh "chmod o-rwx _tmp.pem;"
+					if(params.buildIssuer && params.deployIssuerDEVTOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-issuer/edci-issuer-web/target/*issuer.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-issuer.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-issuer/edci-issuer-web-swagger-ui/target/*issuer-swaggerUI.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-issuer-swaggerUI.war;"
+					}
+					if(params.buildViewer && params.deployViewerDEVTOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-viewer/edci-viewer-web/target/*viewer.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-viewer.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-viewer/edci-viewer-web-swagger-ui/target/*viewer-swagger-ui.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-viewer-swaggerUI.war;"
+										}
+					if(params.buildWallet && params.deployWalletDEVTOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-wallet/edci-wallet-web/target/*wallet.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-wallet.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-wallet/edci-wallet-web-swagger-ui/target/*wallet-swagger-ui.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_DEV/apache-tomcat-8.0.41/webapps/europass2#edci-wallet-swaggerUI.war;"
+										}
+					sh "rm -f _tmp.pem"
+				} else {
+					echo "Skipping for this branch"
+				}
+			}
+
+			stage('Publish build package QA TOMCAT') {
+				if (params.deployIssuerQATOMCAT || params.deployViewerQATOMCAT || params.deployWalletQATOMCAT ) {
+					sh "curl -s http://whatismyip.akamai.com/"
+					sh "echo 'LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRXBBSUJBQUtDQVFFQXRXQ0dGY3NSamdpaE1TUEpZOEl3ano5dDZOcmpVay9rVWtLOXdTUjAyaUFHM0N3QjVwNkg1SHFXYTgxTw0KWFZML1UvaytSWGtWU3c5UUFFZGVsaDFleTJFWCtNV0piM01DaWRtVCs3cTdMemdVd3JpMU91RUsyZjh6dTVleFQ1ZGJGOXV0YS9MNg0KNFFOd1JlWGV4ZnVLSkhaMW0vM0k1dmhud3lYRlRsVG41Nmw0TXFwSDAxZjg3SDlubEM3dnE4VUp4ZkplUllHSGxqbnU1OEtQRDc5VA0KTm5zS1pnTUJERFFwZXJRaUxxRDd2UTlybkRlbXZZcnhQODZOSjUvZkFYbzg4NEpoaGprUktySzgwTVMxOGFRS2NCZ3RheWI4a2krNg0KL0ZlZHVoWWdhWEF0dVpCc0ZuRzRYYWllVE9BcmZWdWFlTUtXYjQ3cEwxUWNHSFlZWVBPRStRSURBUUFCQW9JQkFRQ2s3MTEvTytaKw0Kem9JbWVYQ05jdTFObGxTUVIxd29ZZFl5cDlaK2FIU0tWazFtc2U0WWxWam1BRVFCUy9WVEVFSjNUbE8rUVZtSHBDa1AxOWEvazMyOA0KWEZLOE9vVzcvMDN6cFJQWStmbDErdjJHQlFsb3ZYUnN3SkYrcVhibjlhODBodU94SW9mWlRwTXVQTmJVR3VXSU91REFOWXdYM1JRZQ0KZFo1eW1PczUwVzQ3NFp4cFJUSUhSOVJ4d0tOY2dtVVRjd1Z0WFZWakdsVkdmSm1qZDN0b0J1SmdKT0lZNWtzT3hVSEVwQUgycGVlMg0KTzRvR2RYalM3aUxtK1M0alVvZ0xmalFPSm9jemR1TkJxMTROa0JROWpvUUthbHBNdWhLMlNYcjNRMXJxVkZkN0tFY3ZBMnlrR2Y0bg0KRDZoTURNZzExb2dOSUFGQUwveTQvQzc4ckRxeEFvR0JBTm0wUC9yVkgxUWdpSHhwZHFDUWwvRjdRUGJWdEJLZzFmSnA3c2F3K1pvdA0KOGZxN2xyRlFyajdaNHphSGxUUWdyaDlYUmk4SzVwWUN4VXc2NkpMVkdnd083dTRLUVN4ZDltTXN0NlVoTExJTVNRTWZDMzhLSVd2bg0KVjJ2T3FWYk51R2txbzdpVlliN01hdEJYTWl3MWx5MzA4NUFFS05Yb1l6UmxYa2d5b3ZtakFvR0JBTlZJWUp2UU41MC9obTFJTjZqdQ0KUEpxUGZhRThqWXM1bXhKQ0R4aDl3N2VnWWgyYTB4Nys1THFkdU0rMHNzZjExUDVxV2pveGpaZkZLTVorM21yQmV6MGVOcEN4VjhQNQ0KRHFpKysxRkhUck9Fb2dVeVV0VG9ZT3lTOGxjendMSmpQaHZobHdsODI5UHdwTTJZSmZlWjRJemdESXdIOG0yRW50SXUzdkNRNUtpeg0KQW9HQkFJMUxmcWJtd2VHUkIrUnZjbzI5cXRBUTVkWU9WMFFyM1Evcmp3eW4raWdHSCtKUzgvZjdYRXZ3a0pab292N2xJdjIyWUJmUw0KSkZ4Q1Noa3l0cFh0OTJ6U0dHS29oeW9yaGVsU01aTGNHQzBxNmd3N2p2T1IrS1VXemRkcmx0NSt3R3lKUHg5aTNNQy8zYWVBb0ZDdg0KSzRLcFU1Y3FDL0xoVTluQzNORlJCQk92QW9HQUo5THMzd3NnNTBhdVJnZC9CUmIreitsTkR1Y3NrcnQ5M2duaG9iUVI4RjZORTNRTw0KU2JKVWFSZjhJeVJkWVlMZ2MyVE9WaUZjaStNdmV1akRoUEY5bm1yZXkyT2h2S0RyZ015d1Judm5FUlFKNEtpRjJPVk8rNzF3YktIbw0KTUNiaHVQa0ZaNnNkck5RNUlYNXdVR3cyQm5mclA5WllDT1VEZHNGenRUMkl4SXNDZ1lCa2J3T3BLYzkxM1pJakR4NHBRQ1A2WjVaRA0Kcnkra0cwK0d3VGZiZnlsWTcwbzdqMTdDOXJzR2FNR3IyeWZVQlRRMU1MR0Q4ZWtuVEN4S2t4QjVBbVpNUVdRSUdFM284NjJjQzRwMw0KM2lLVkVESEFldDVNMkxwb2Rvd3U5dWJFL05zUkZ1cWMwOU5XMjY2cUNQV05TSGFLNGRRMHN4ZEhyRkt0V1dMbm9UMEdGQT09DQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQ==' | base64 --decode > _tmp.pem;"
+					sh "chmod g-rwx _tmp.pem;"
+					sh "chmod o-rwx _tmp.pem;"
+					if(params.buildIssuer && params.deployIssuerQATOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-issuer/edci-issuer-web/target/*issuer.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-issuer.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-issuer/edci-issuer-web-swagger-ui/target/*issuer-swaggerUI.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-issuer-swaggerUI.war;"
+					}
+					if(params.buildViewer && params.deployViewerQATOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-viewer/edci-viewer-web/target/*viewer.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-viewer.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-viewer/edci-viewer-web-swagger-ui/target/*viewer-swagger-ui.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-viewer-swaggerUI.war;"
+										}
+					if(params.buildWallet && params.deployWalletQATOMCAT){
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-wallet/edci-wallet-web/target/*wallet.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-wallet.war;"
+						sh "rsync -v -e 'ssh -oStrictHostKeyChecking=no -i _tmp.pem' edci-wallet/edci-wallet-web-swagger-ui/target/*wallet-swagger-ui.war edci@${env.DOCKER_HOST_EDCI}:/home/edci/tomcat_QA/apache-tomcat-8.0.41/webapps/europass2#edci-wallet-swaggerUI.war;"
+										}
+					sh "rm -f _tmp.pem"
+				} else {
+					echo "Skipping for this branch"
+				}
+			}
+	/*}	*/
+	/*
+	stage('Schedule E2E Tests') {
+		if ((env.BRANCH_NAME.contains('release') && env.BRANCH_NAME.contains(versionNumber)) || params.executeE2ETests) {
+			build job: '../DGMare-Test', wait: false, propagate: false, parameters: [
+				[$class: 'StringParameterValue', name: 'branchName', value: "${env.BRANCH_NAME}"],
+				[$class: 'StringParameterValue', name: 'baseUrl', value: "${e2eUrl}"]
+			]
+		} else {
+			echo "Skipping for this branch"
+		}
+	}
+	stage('Sync Repositories') {
+		if (((env.BRANCH_NAME.contains('release') && env.BRANCH_NAME.contains(versionNumber)) || env.BRANCH_NAME.contains('develop')) || params.syncEURepo) {
+			build job: '../DGMare-Sync', wait: false, propagate: false, parameters: [
+				[$class: 'StringParameterValue', name: 'branchName', value: "${env.BRANCH_NAME}"]
+			]
+		} else {
+			echo "Skipping for this branch"
+		}
+	}
+	*/
+}

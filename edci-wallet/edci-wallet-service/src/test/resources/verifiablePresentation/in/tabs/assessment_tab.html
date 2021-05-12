@@ -1,0 +1,171 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="assessment(assessment, iter, sub)">
+
+    <h2 th:if="${!sub}" th:id=" ${assessment.id}"
+        class="assessment-title"
+        th:text="${iter + assessment.title}"></h2>
+    <h3 th:if="${sub}" th:id=" ${assessment.id}"
+        class="assessment-rel-title"
+        th:text="${iter + assessment.title}"></h3>
+
+    <div class="sub-section">
+        <p th:if="${assessment.grade}"><strong>[[#{details.achievements-tab.grade}]]: </strong><span
+                th:text="${assessment.grade}"></span></p>
+        <p th:if="${assessment.identifier != null and !assessment.identifier.empty}">
+        <ul style="list-style-type:none;padding-left:0px;">
+            <li th:each="iden : ${assessment.identifier}">
+                <div th:insert="tabs/fields/identifier_field :: identifier(${iden}, #{details.assessments-tab.identifier})"></div>
+            </li>
+        </ul>fi
+        </p>
+        <p th:if="${assessment.conductedBy != null && assessment.conductedBy.preferredName != null}">
+            <strong>[[#{details.assessments-tab.assessmentConductedBy}]]: </strong>
+            <a th:href="${'#' + assessment.conductedBy.id}"
+               th:text="${assessment.conductedBy.preferredName}"></a>
+        </p>
+        <p th:if="${assessment.idVerification}">
+            <strong>[[#{details.assessments-tab.methodOf}]]: </strong><span
+                th:text="${assessment.idVerification}"></span></p>
+
+        <div th:if="${assessment.description}">
+            <p th:text="${assessment.description}"></p>
+        </div>
+    </div>
+    <div th:if="${assessment.issuedDate}">
+        <p><strong>[[#{details.assessments-tab.assessmentDate}]]: </strong><span
+                th:text="${assessment.issuedDate}"></span>
+        </p>
+    </div>
+    <div th:if="${assessment.subAssessments != null and !assessment.subAssessments.empty}">
+        <strong>[[#{details.assessments-tab.subAssessments}]]: </strong>
+        <span th:each="assess: ${assessment.subAssessments}">
+                    <a th:href="${'#' + assess.id}"
+                       th:text="${assess.title}"></a>
+                        </span>
+    </div>
+
+    <div th:insert="tabs/fields/more_information_field :: moreInformation(${assessment.moreInformation})"></div>
+
+    <div th:if="${assessment.specifiedBy != null}">
+        <p><strong>[[#{details.assessments-tab.specification}]]</strong>
+            <span th:if="${assessment.specifiedBy.homePage != null and !assessment.specifiedBy.homePage.empty}">
+            <a th:href="@{${assessment.specifiedBy.homePage[0].link}}" style="text-decoration: none;">
+                <i class="fa fa-link" aria-hidden="true"></i>
+            </a>
+        </span>
+        </p>
+
+        <div th:if="${assessment.specifiedBy.title}">
+            <p><strong><span
+                    th:text="${assessment.specifiedBy.title}"></span></strong>
+            </p>
+        </div>
+        <p th:if="${assessment.specifiedBy.identifier != null and !assessment.specifiedBy.identifier.empty}">
+        <ul style="list-style-type:none;padding-left:0px;">
+            <li th:each="iden : ${assessment.specifiedBy.identifier}">
+                <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                <strong><span
+                        th:text="${iden.identifierSchemeId}"></span> [[#{details.identifier}]]: </strong><span
+                        th:text="${iden.content}"></span>
+                </span>
+                <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                <strong>[[#{details.assessments-tab.identifier}]]: </strong><span th:text="${iden.content}"></span>
+                </span>
+            </li>
+        </ul>
+        </p>
+        <div th:if="${assessment.specifiedBy.description}">
+            <p th:text="${assessment.specifiedBy.description}"></p>
+        </div>
+        <p th:if="${assessment.specifiedBy.type}">
+            <strong>[[#{details.assessments-tab.assessmentType}]]: </strong><span
+                th:text="${assessment.specifiedBy.type}"></span>
+        </p>
+        <p th:if="${assessment.specifiedBy.mode}">
+            <strong>[[#{details.assessments-tab.modeOfAssessment}]]: </strong><span
+                th:text="${assessment.specifiedBy.mode}"></span>
+        </p>
+        <p th:if="${assessment.specifiedBy.language}">
+            <strong>[[#{details.assessments-tab.languageOfAssessment}]]: </strong><span
+                th:text="${assessment.specifiedBy.language}"></span>
+        </p>
+        <p th:if="${assessment.specifiedBy.supplementaryDocument != null and !assessment.specifiedBy.supplementaryDocument.empty}">
+            <strong>[[#{details.assessments-tab.other.docs}]] </strong>
+        <ul style="list-style-type:none;padding-left:0px;"
+            th:each="document : ${assessment.specifiedBy.supplementaryDocument}">
+            <li><a th:href="@{${document.link}}">
+                <span th:text="${document.title != null} ? ${document.title} : ${document.link}"></span>
+            </a></li>
+        </ul>
+        </p>
+
+        <div th:insert="tabs/fields/more_information_field :: moreInformation(${assessment.specifiedBy.moreInformation})"></div>
+
+        <div th:if="${assessment.specifiedBy.gradingScheme != null}">
+            <strong>[[#{details.assessments-tab.gradingScheme}]]</strong></span>
+            <div th:if="${assessment.specifiedBy.gradingScheme.title}">
+                <strong><span th:text="${assessment.specifiedBy.gradingScheme.title}"></span></strong>
+            </div>
+            <p th:if="${assessment.specifiedBy.gradingScheme.identifier != null and !assessment.specifiedBy.gradingScheme.identifier.empty}">
+            <ul style="list-style-type:none;padding-left:0px;">
+                <li th:each="iden : ${assessment.specifiedBy.gradingScheme.identifier}">
+                        <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                        <strong><span
+                                th:text="${iden.identifierSchemeId}"></span> [[#{details.identifier}]]: </strong><span
+                                th:text="${iden.content}"></span>
+                        </span>
+                    <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                        <strong>[[#{details.assessments-tab.identifier}]]: </strong><span
+                            th:text="${iden.content}"></span>
+                        </span>
+                </li>
+            </ul>
+            </p>
+            <div th:if="${assessment.specifiedBy.gradingScheme.description}">
+                <span th:text="${assessment.specifiedBy.gradingScheme.description}"></span>
+            </div>
+            <p th:if="${assessment.specifiedBy.gradingScheme.supplementaryDocument}">
+                <strong>[[#{details.assessments-tab.other.docs}]] </strong>
+            <ul style="list-style-type:none;padding-left:0px;"
+                th:each="document : ${assessment.specifiedBy.gradingScheme.supplementaryDocument}">
+                <li><a th:href="@{${document.link}}">
+                    <span th:text="${document.title != null} ? ${document.title} : ${document.link}"></span>
+                </a></li>
+            </ul>
+            </p>
+        </div>
+        <div th:if="${assessment.specifiedBy.resultDistribution != null or
+                            assessment.specifiedBy.shortenedGrading != null}">
+            <div th:insert="tabs/fields/shortened_grading_field :: shortened(${assessment.specifiedBy.shortenedGrading})" ></div>
+            <div th:insert="tabs/fields/result_distribution_field :: resultDistribution(${assessment.specifiedBy.resultDistribution})" ></div>
+            <!--TODO: Anthony doubts-->
+            <!--<p th:if="${assessment.distributionCategoryLabel}">-->
+            <!--<strong>Category Label: </strong><span-->
+            <!--th:text="${assessment.distributionCategoryLabel}"></span>-->
+            <!--</p>-->
+            <!--<p th:if="${assessment.distributionCategoryScore}">-->
+            <!--<strong>Category Score: </strong><span-->
+            <!--th:text="${assessment.distributionCategoryScore}"></span>-->
+            <!--</p>-->
+            <!--<p th:if="${assessment.distributionCategoryMinimumScore}">-->
+            <!--<strong>Category Minimum Score: </strong><span-->
+            <!--th:text="${assessment.distributionCategoryMinimumScore}"></span>-->
+            <!--</p>-->
+            <!--<p th:if="${assessment.distributionCategoryMaximumScore}">-->
+            <!--<strong>Category Maximum Score: </strong><span-->
+            <!--th:text="${assessment.distributionCategoryMaximumScore}"></span>-->
+            <!--</p>-->
+            <!--<p th:if="${assessment.distributionCategoryStudentsCount}">-->
+            <!--<strong>Students with Grades in this Category: </strong><span-->
+            <!--th:text="${assessment.distributionCategoryStudentsCount}"></span>-->
+            <!--</p>-->
+        </div>
+    </div>
+    <div style="page-break-after:always"></div>
+</div>
+</body>
+</html>

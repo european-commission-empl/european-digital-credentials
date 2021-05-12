@@ -1,0 +1,20 @@
+.logo-upload-button {
+    span {
+        color: #333;
+        font-size: 14px !important;
+    }
+}
+
+.entity-input {
+    align-items: baseline;
+    display: flex !important;
+
+    .disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    edci-autocomplete {
+        flex-grow: 1;
+    }
+}

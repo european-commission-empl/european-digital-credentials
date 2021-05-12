@@ -1,0 +1,443 @@
+<div *ngIf="activeAssessment">
+    <h3
+        *ngIf="activeAssessment?.title"
+        class="font-weight-bold col-12 detail__title"
+    >
+        <strong>{{ activeAssessment.title }}</strong>
+    </h3>
+    <div
+        *ngIf="
+            activeAssessment?.grade ||
+            activeAssessment?.identifier?.length > 0 ||
+            activeAssessment?.conductedBy ||
+            activeAssessment?.idVerification
+        "
+        class="border-bottom"
+    >
+        <div *ngIf="activeAssessment?.grade" class="col-12">
+            <p>
+                <strong>
+                    {{ 'details.assessments-tab.grade' | translate }}:&nbsp;
+                </strong>
+                {{ activeAssessment.grade }}
+            </p>
+        </div>
+        <edci-viewer-identifiers
+            *ngIf="activeAssessment?.identifier?.length > 0"
+            [identifiers]="activeAssessment?.identifier"
+        >
+        </edci-viewer-identifiers>
+        <div *ngIf="activeAssessment?.conductedBy" class="col-12">
+            <p>
+                <strong>
+                    {{
+                        'details.assessments-tab.assessmentConductedBy'
+                            | translate
+                    }}:&nbsp;
+                </strong>
+                <a
+                    (click)="
+                        onOpenOrganizationModal(activeAssessment.conductedBy)
+                    "
+                >
+                    {{ activeAssessment.conductedBy.preferredName }}
+                </a>
+            </p>
+        </div>
+        <div *ngIf="activeAssessment?.idVerification" class="col-12">
+            <p>
+                <strong>
+                    {{ 'details.assessments-tab.methodOf' | translate }}:&nbsp;
+                </strong>
+                {{ activeAssessment.idVerification }}
+            </p>
+        </div>
+    </div>
+
+    <div *ngIf="activeAssessment.description" class="col-12 border-bottom">
+        <p>
+            {{ activeAssessment.description }}
+        </p>
+    </div>
+
+    <div *ngIf="activeAssessment?.issuedDate" class="col-12 border-bottom">
+        <p>
+            <strong>
+                {{
+                    'details.assessments-tab.assessmentDate' | translate
+                }}:&nbsp;
+            </strong>
+            {{ activeAssessment.issuedDate }}
+        </p>
+    </div>
+
+    <div
+        *ngIf="activeAssessment?.subAssessments?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.assessments-tab.subAssessments' | translate }}:
+            </strong>
+        </p>
+        <p>
+            <span
+                *ngFor="
+                    let assessment of activeAssessment?.subAssessments;
+                    let isLast = last
+                "
+            >
+                <a (click)="openSubAssessmentModal(assessment)">{{
+                    assessment.title
+                }}</a
+                >{{ isLast ? '' : ', ' }}
+            </span>
+        </p>
+    </div>
+
+    <div
+        *ngIf="activeAssessment?.moreInformation?.length > 0"
+        class="py-3 border-bottom"
+    >
+        <edci-viewer-more-information
+            [moreInformation]="activeAssessment?.moreInformation"
+        ></edci-viewer-more-information>
+    </div>
+
+    <!-- Specification -->
+    <div
+        *ngIf="
+            activeAssessment?.specifiedBy?.homePage?.length > 0 ||
+            activeAssessment?.specifiedBy?.title ||
+            activeAssessment?.specifiedBy?.identifier?.length > 0 ||
+            activeAssessment.specifiedBy?.description ||
+            activeAssessment?.specifiedBy?.type ||
+            activeAssessment?.specifiedBy?.mode ||
+            activeAssessment?.specifiedBy?.language ||
+            activeAssessment?.specifiedBy?.supplementaryDocument?.length > 0 ||
+            activeAssessment?.specifiedBy?.moreInformation?.length > 0
+        "
+    >
+        <div class="d-inline-flex pt-3 col-12">
+            <h3 class="font-weight-bold">
+                {{ 'details.assessments-tab.specification' | translate }}
+            </h3>
+            <a
+                *ngIf="activeAssessment?.specifiedBy?.homePage?.length > 0"
+                [href]="(activeAssessment?.specifiedBy?.homePage)[0].link"
+                target="_blank"
+                class="mt-2 ml-2 no-decoration-underline"
+            >
+                <ux-a-icon
+                    iconClass="fa fa-link"
+                    [isRounded]="false"
+                ></ux-a-icon>
+            </a>
+        </div>
+        <div
+            *ngIf="
+                activeAssessment?.specifiedBy?.title ||
+                activeAssessment?.specifiedBy?.identifier?.length > 0
+            "
+            class="border-bottom"
+        >
+            <div *ngIf="activeAssessment?.specifiedBy?.title" class="col-12">
+                <p>
+                    <strong>{{ activeAssessment.specifiedBy?.title }}</strong>
+                </p>
+            </div>
+            <edci-viewer-identifiers
+                *ngIf="activeAssessment?.specifiedBy?.identifier"
+                [identifiers]="activeAssessment?.specifiedBy?.identifier"
+            >
+            </edci-viewer-identifiers>
+        </div>
+
+        <div
+            *ngIf="activeAssessment.specifiedBy?.description"
+            class="col-12 border-bottom"
+        >
+            <p>
+                {{ activeAssessment.specifiedBy?.description }}
+            </p>
+        </div>
+        <div
+            class="d-inline-flex col-12"
+            *ngIf="
+                activeAssessment?.specifiedBy?.type ||
+                activeAssessment?.specifiedBy?.mode ||
+                activeAssessment?.specifiedBy?.language
+            "
+            class="border-bottom"
+        >
+            <p class="mr-1 col-6" *ngIf="activeAssessment?.specifiedBy?.type">
+                <strong>
+                    {{ 'details.assessments-tab.assessmentType' | translate }}:
+                </strong>
+                {{ activeAssessment?.specifiedBy?.type | edciJoin: ', ' }}
+            </p>
+            <p *ngIf="activeAssessment?.specifiedBy?.mode" class="col-6">
+                <strong>
+                    {{
+                        'details.assessments-tab.modeOfAssessment' | translate
+                    }}:
+                </strong>
+                {{ activeAssessment?.specifiedBy?.mode }}
+            </p>
+        </div>
+        <div
+            class="d-inline-flex col-12"
+            *ngIf="activeAssessment?.specifiedBy?.language"
+        >
+            <p class="mr-4">
+                <strong>
+                    {{
+                        'details.assessments-tab.languageOfAssessment'
+                            | translate
+                    }}:
+                </strong>
+                {{ activeAssessment?.specifiedBy?.language | edciJoin: ', ' }}
+            </p>
+        </div>
+        <div
+            *ngIf="
+                activeAssessment?.specifiedBy?.supplementaryDocument?.length >
+                    0 ||
+                activeAssessment?.specifiedBy?.moreInformation?.length > 0
+            "
+            class="border-bottom"
+        >
+            <div class="mt-3 mb-3">
+                <edci-viewer-other-documents
+                    *ngIf="activeAssessment?.specifiedBy?.supplementaryDocument"
+                    [otherDocuments]="
+                        activeAssessment?.specifiedBy?.supplementaryDocument
+                    "
+                ></edci-viewer-other-documents>
+            </div>
+            <div class="mt-3 mb-3">
+                <edci-viewer-more-information
+                    *ngIf="activeAssessment?.specifiedBy?.moreInformation"
+                    [moreInformation]="
+                        activeAssessment?.specifiedBy?.moreInformation
+                    "
+                ></edci-viewer-more-information>
+            </div>
+        </div>
+    </div>
+    <!-- Grade Scheme -->
+    <div
+        *ngIf="
+            activeAssessment.specifiedBy?.gradingScheme?.title ||
+            activeAssessment.specifiedBy?.gradingScheme?.identifier?.length >
+                0 ||
+            activeAssessment.specifiedBy?.gradingScheme?.description ||
+            activeAssessment.specifiedBy?.gradingScheme
+                ?.supplementaryDocument ||
+            activeAssessment?.specifiedBy?.shortenedGrading ||
+            activeAssessment?.specifiedBy?.resultDistribution
+        "
+    >
+        <div class="d-inline-flex col-12">
+            <h3 class="font-weight-bold">
+                {{ 'details.assessments-tab.gradingScheme' | translate }}
+            </h3>
+        </div>
+        <div
+            *ngIf="activeAssessment.specifiedBy?.gradingScheme?.title"
+            class="col-12"
+        >
+            <p>
+                <strong>
+                    {{ activeAssessment.specifiedBy?.gradingScheme?.title }}
+                </strong>
+            </p>
+        </div>
+        <edci-viewer-identifiers
+            *ngIf="
+                activeAssessment.specifiedBy?.gradingScheme?.identifier
+                    ?.length > 0
+            "
+            [identifiers]="
+                activeAssessment.specifiedBy?.gradingScheme?.identifier
+            "
+        >
+        </edci-viewer-identifiers>
+        <div
+            *ngIf="activeAssessment.specifiedBy?.gradingScheme?.description"
+            class="col-12"
+        >
+            <p>{{ activeAssessment.specifiedBy?.gradingScheme?.description }}</p>
+        </div>
+        <edci-viewer-other-documents
+            *ngIf="
+                activeAssessment.specifiedBy?.gradingScheme
+                    ?.supplementaryDocument
+            "
+            [otherDocuments]="
+                activeAssessment.specifiedBy?.gradingScheme
+                    ?.supplementaryDocument
+            "
+        ></edci-viewer-other-documents>
+    </div>
+    <!-- Grading Details -->
+    <div
+        *ngIf="
+            activeAssessment?.specifiedBy?.shortenedGrading ||
+            activeAssessment?.specifiedBy?.resultDistribution
+        "
+    >
+        <div class="d-inline-flex col-12">
+            <h3 class="font-weight-bold">
+                {{ 'details.assessments-tab.gradeDetails' | translate }}
+            </h3>
+        </div>
+        <div
+            *ngIf="activeAssessment?.specifiedBy?.shortenedGrading"
+            class="col-12 border-bottom"
+        >
+            <p class="d-inline-flex">
+                <span
+                    *ngIf="
+                        activeAssessment?.specifiedBy?.shortenedGrading
+                            ?.percentageLower
+                    "
+                    class="col-4 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.assessments-tab.percentageLower'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    {{
+                        activeAssessment?.specifiedBy?.shortenedGrading
+                            ?.percentageLower
+                    }}
+                </span>
+                <span
+                    *ngIf="
+                        activeAssessment?.specifiedBy?.shortenedGrading
+                            ?.percentageEqual
+                    "
+                    class="col-4 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.assessments-tab.percentageEqual'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    {{
+                        activeAssessment.specifiedBy?.shortenedGrading
+                            ?.percentageEqual
+                    }}
+                </span>
+                <span
+                    *ngIf="
+                        activeAssessment?.specifiedBy?.shortenedGrading
+                            ?.percentageHigher
+                    "
+                    class="col-4 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.assessments-tab.percentageHigher'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    {{
+                        activeAssessment?.specifiedBy?.shortenedGrading
+                            ?.percentageHigher
+                    }}
+                </span>
+            </p>
+        </div>
+        <div
+            *ngIf="
+                activeAssessment?.specifiedBy?.resultDistribution?.description
+            "
+            class="border-bottom"
+        >
+            <p>
+                <strong>
+                    {{
+                        'details.assessments-tab.distribution' | translate
+                    }}</strong
+                >
+                {{
+                    activeAssessment?.specifiedBy?.resultDistribution
+                        ?.description
+                }}
+            </p>
+        </div>
+        <div
+            *ngIf="activeAssessment?.specifiedBy?.resultDistribution?.category"
+            class="col-12 d-inline-flex"
+        >
+            <div
+                *ngFor="
+                    let resultDistributionCategory of activeAssessment
+                        ?.specifiedBy?.resultDistribution?.category
+                "
+            >
+                <p *ngIf="resultDistributionCategory?.label" class="mr-2">
+                    <strong>
+                        {{
+                            'details.assessments-tab.categoryLabel' | translate
+                        }}</strong
+                    >
+                    {{ resultDistributionCategory?.label }}
+                </p>
+                <p *ngIf="resultDistributionCategory?.score">
+                    <strong>
+                        {{
+                            'details.assessments-tab.categoryScore' | translate
+                        }}</strong
+                    >
+                    {{ resultDistributionCategory?.score }}
+                </p>
+                <div
+                    *ngIf="
+                        resultDistributionCategory?.minScore ||
+                        resultDistributionCategory?.maxScore
+                    "
+                    class="col-12 d-inline-flex"
+                >
+                    <p
+                        *ngIf="resultDistributionCategory?.minScore"
+                        class="mr-2"
+                    >
+                        <strong>
+                            {{
+                                'details.assessments-tab.categoryMinimumScore'
+                                    | translate
+                            }}</strong
+                        >
+                        {{ resultDistributionCategory?.minScore }}
+                    </p>
+                    <p *ngIf="resultDistributionCategory?.maxScore">
+                        <strong>
+                            {{
+                                'details.assessments-tab.categoryMaximumScore'
+                                    | translate
+                            }}</strong
+                        >
+                        {{ resultDistributionCategory?.maxScore }}
+                    </p>
+                </div>
+                <div *ngIf="resultDistributionCategory?.count" class="col-12">
+                    <p>
+                        <strong>
+                            {{
+                                'details.assessments-tab.studentsWithGradesInThisCategory'
+                                    | translate
+                            }}</strong
+                        >
+                        {{ resultDistributionCategory?.count }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

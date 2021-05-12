@@ -1,0 +1,10 @@
+.controlled-list__component {
+    .mat-input-element {
+        margin: 0 !important;
+        padding: 0.5rem 0.7rem;
+    }
+
+    > ux-autocomplete-tag input {
+        height: 37px !important;
+    }
+}

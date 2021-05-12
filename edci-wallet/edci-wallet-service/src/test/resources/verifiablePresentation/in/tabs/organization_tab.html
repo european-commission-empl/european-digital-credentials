@@ -1,0 +1,125 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="organization(org, iter)">
+
+    <!--TODO: Logo-->
+
+    <!--&lt;!&ndash; TODO: How do we handle a list of homepages?-->
+
+    <div th:id="${org.id}"></div>
+
+    <div th:if="${org.homepage == null or !org.homepage.empty}">
+        <h3 th:text="${iter + org.preferredName}"></h3>
+    </div>
+
+    <div th:if="${org.homepage != null and !org.homepage.empty}">
+        <a th:href="@{${org.homepage[0].link}}">
+            <h4 th:text="${org.preferredName}"></h4>
+        </a>
+    </div>
+
+    <b th:each="nameAlter, iter : ${org.alternativeName}">
+        <p th:text="${nameAlter}"></p>
+    </b>
+
+    <div th:each="location, iter : ${org.location}">
+        <p th:if="${location.geographicName != null}" th:text="${location.geographicName}"></p>
+        <span th:if="${location.spatialCode != null and !location.spatialCode.empty}">
+        <p th:each="item, iter : ${location.spatialCode}"
+           th:text="${iter.first} ?
+                        ('(' + ${item} + (${iter.last} ? ')' : '')):
+                    (!${iter.last} ? (${item} + ', '): (${item} + ')'))"></p>
+        </span>
+        <div th:each="address, iter : ${location.address}">
+            <p th:text="${address.fullAddress}"></p>
+            <p th:text="${address.countryCode}"></p>
+        </div>
+        <p th:text="${location.description}"></p>
+        <hr th:if="!${iter.last}"/>
+    </div>
+
+    <div th:if="${org.legalIdentifier != null
+                    or org.vatIdentifier != null
+                    or org.taxIdentifier != null
+                    or org.identifier != null}">
+        <p>[[#{details.organization-tab.identifiers}]]: </p>
+        <span th:if="${org.legalIdentifier.identifierSchemeId != null && org.legalIdentifier.content != null}">
+            <span><strong>[[#{details.organization-tab.legalIdentifier}]]: </strong></span>
+                        <strong><span
+                                th:text="${org.legalIdentifier.identifierSchemeId}"></span> [[#{details.identifier}]]: </strong><span
+                th:text="${org.legalIdentifier.content}"></span>
+        </span>
+
+        <span th:if="${org.legalIdentifier.identifierSchemeId == null && org.legalIdentifier.content != null}">
+            <span><strong>[[#{details.organization-tab.legalIdentifier}]]: </strong></span>
+            <span th:text="${org.legalIdentifier.content}"></span>
+        </span>
+
+        <p th:if="${org.vatIdentifier}">
+            <span><strong>[[#{details.organization-tab.vatIdentifier}]]: </strong></span>
+            <!--<span th:each="item, iter : ${org.vatIdentifier}"-->
+            <!--th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>-->
+        <ul style="list-style-type:none;padding-left: 0px;">
+            <li th:each="iden : ${org.vatIdentifier}">
+                            <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                            <strong><span
+                                    th:text="${iden.identifierSchemeId}"></span>: </strong><span
+                                    th:text="${iden.content}"></span>
+                            </span>
+                <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                            <span
+                                    th:text="${iden.content}"></span>
+                            </span>
+            </li>
+        </ul>
+        </p>
+        <p th:if="${org.taxIdentifier}">
+            <span><strong>[[#{details.organization-tab.taxIdentifier}]]: </strong></span>
+            <!--<span th:each="item, iter : ${org.taxIdentifier}"-->
+            <!--th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>-->
+        <ul style="list-style-type:none;padding-left: 0px;">
+            <li th:each="iden : ${org.taxIdentifier}">
+                            <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                            <strong><span
+                                    th:text="${iden.identifierSchemeId}"></span>: </strong><span
+                                    th:text="${iden.content}"></span>
+                            </span>
+                <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                            <span
+                                    th:text="${iden.content}"></span>
+                            </span>
+            </li>
+        </ul>
+        </p>
+        <p>
+        <ul style="list-style-type:none;padding-left: 0px;">
+            <li th:each="iden : ${org.identifier}">
+                <div th:insert="tabs/fields/identifier_field :: identifier(${iden}, #{details.organization-tab.identifier})"></div>
+            </li>
+        </ul>
+        </p>
+        <div th:insert="tabs/fields/contact_point_field :: contactPoint(${org})"></div>
+        </hr>
+        <!-- TODO: REMOVED <div th:if="${org.childOrganizations != null and !org.childOrganizations.empty}">-->
+        <!--<p>-->
+        <!--<span><strong>Child Organizations: </strong></span>-->
+        <!--<span th:each="childOrg: ${org.childOrganizations}">-->
+        <!--<label th:text="${childOrg.preferredName}"></label>-->
+        <!--</span>-->
+        <!--</p>-->
+        <!--</div>-->
+        <div th:if="${org.parentOrganization}">
+            <p>
+                <span><strong>[[#{details.organization-tab.parentOrganization}]]: </strong></span>
+                <a th:href="${'#' + org.parentOrganization.id}"
+                   th:text="${org.parentOrganization.preferredName}"></a>
+            </p>
+        </div>
+        <div style="page-break-after:always"></div>
+
+    </div>
+</body>
+</html>

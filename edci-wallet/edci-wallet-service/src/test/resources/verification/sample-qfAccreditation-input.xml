@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qmsAccreditations xmlns="http://data.europa.eu/esco/qms-xml/schema/accreditation"
+>
+    <accreditation id="http://data.europa.eu/esco/qdr/accreditation/0002">
+        <title lang="en">Qualification 1 Review</title>
+        <accreditedTo type="qualification"> <!-- todo define this type -->
+            <!-- references rdf:about of qualifications -->
+            <Qualification uri="http://www.example.com/qpilot/qualification/1">
+                <PreferredLabel lang="en">Title of the qualification in english</PreferredLabel>
+                <PreferredLabel lang="fr">Title of the qualification in french</PreferredLabel>
+                <Status>released</Status>
+                <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+                <AwardingActivities>
+                    <AssociatedWith>
+                        <organization id="http://www.example.com/qpilot/agent/3">
+                            <registration
+                                    schemeAgencyName="testName"
+                                    issuedDate="2000-10-01T00:00:00"
+                                    spatialID="http://publications.europa.eu/resource/authority/country/BEL">
+                                0123.456.789
+                            </registration>
+                            <vatIdentifier
+                                    schemeAgencyName="testName"
+                                    issuedDate="2000-10-01T00:00:00"
+                                    spatialID="http://publications.europa.eu/resource/authority/country/BEL">
+                                BE0123.456.789
+                            </vatIdentifier>
+                            <prefLabel lang="en">Full name of the organisation (agent 3)</prefLabel>
+                            <Status>released</Status>
+                            <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+                        </organization>
+                    </AssociatedWith>
+                    <AssociatedWith>
+                        <organization id="http://www.example.com/qpilot/agent/5">
+                            <registration
+                                    schemeAgencyName="testName"
+                                    issuedDate="2000-10-01T00:00:00"
+                                    spatialID="http://publications.europa.eu/resource/authority/country/BEL">
+                                0123.456.785
+                            </registration>
+                            <vatIdentifier
+                                    schemeAgencyName="testName"
+                                    issuedDate="2000-10-01T00:00:00"
+                                    spatialID="http://publications.europa.eu/resource/authority/country/BEL">
+                                BE0123.456.785
+                            </vatIdentifier>
+                            <prefLabel lang="en">Full name of the organisation (agent 5)</prefLabel>
+                            <Status>released</Status>
+                            <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+                        </organization>
+                    </AssociatedWith>
+                </AwardingActivities>
+            </Qualification>
+        </accreditedTo>
+        <accreditedBy>
+            <organization id="http://www.example.com/qpilot/agent/6">
+                <registration
+                        schemeAgencyName="testName"
+                        issuedDate="2000-10-01T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/BEL">0123.456.786
+                </registration>
+                <vatIdentifier
+                        schemeAgencyName="testName"
+                        issuedDate="2000-10-01T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/BEL">BE0123.456.786
+                </vatIdentifier>
+                <prefLabel lang="en">Full name of the organisation (agent 6)</prefLabel>
+                <Status>released</Status>
+                <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+            </organization>
+        </accreditedBy>
+        <limitField uri="http://data.europa.eu/esco/isced-f/0612"/>
+        <limitField uri="http://data.europa.eu/esco/isced-f/0613"/>
+        <limitEQFLevel uri="http://data.europa.eu/esco/eqf/6"/>
+        <limitEQFLevel uri="http://data.europa.eu/esco/eqf/7"/>
+        <limitJurisdiction uri="http://publications.europa.eu/resource/authority/country/BEL"/>
+        <issuedDate>2016-08-16T11:13:35</issuedDate>
+        <expiryDate>2020-08-16T11:13:35</expiryDate>
+        <Status>released</Status>
+        <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+        <accreditationBody>
+            <rdf:RDF
+                    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns:iso-thes="http://purl.org/iso25964/skos-thes#"
+                    xmlns:dct="http://purl.org/dc/terms/"
+                    xmlns:adms="http://www.w3.org/ns/adms#"
+                    xmlns:prov="http://www.w3.org/ns/prov#"
+                    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+                    xmlns:dcat="http://www.w3.org/ns/dcat#"
+                    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+                    xmlns:esco="http://data.europa.eu/esco/model#">
+                <esco:Qualification rdf:about="http://www.example.com/qpilot/qualification/1">
+                    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+                    <adms:identifier>
+                        <adms:Identifier>
+                            <skos:notation rdf:datatype="http://www.example.com/qpilot/datatype/BE-QF_Id">1
+                            </skos:notation>
+                        </adms:Identifier>
+                    </adms:identifier>
+                    <esco:referenceLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#language">en
+                    </esco:referenceLanguage>
+                    <skos:prefLabel xml:lang="en">Title of the qualification</skos:prefLabel>
+                    <skos:altLabel xml:lang="en">Alternative title of the qualification</skos:altLabel>
+                    <skos:definition>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral>Abstract definition of the qualification</esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                        </esco:NodeLiteral>
+                    </skos:definition>
+                    <dct:description>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral>Description of the learning outcomes of the qualification in terms of
+                                skills/competences and knowdledge
+                            </esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                        </esco:NodeLiteral>
+                    </dct:description>
+                    <esco:isPartialQualification rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false
+                    </esco:isPartialQualification>
+                    <esco:hasECTSCreditPoints rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.0
+                    </esco:hasECTSCreditPoints>
+                    <esco:hasISCED-FCode rdf:resource="http://data.europa.eu/esco/ConceptScheme/FoET2013/FoET/0612"/>
+                    <esco:waysToAcquire rdf:resource="http://data.europa.eu/esco/ways-to-acquire#non-formal-education"/>
+                    <esco:waysToAcquire rdf:resource="http://data.europa.eu/esco/ways-to-acquire#informal-learning"/>
+                    <esco:volumeOfLearning rdf:datatype="http://www.w3.org/2001/XMLSchema#duration">P2Y
+                    </esco:volumeOfLearning>
+                    <esco:expiryPeriod rdf:datatype="http://www.w3.org/2001/XMLSchema#duration">P10Y5M
+                    </esco:expiryPeriod>
+                    <foaf:homepage>
+                        <foaf:Document rdf:about="http://www.agent1.com/qpilot/qualifications?id=1">
+                            <dct:title xml:lang="en">title of the homepage of this qualification</dct:title>
+                            <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                        </foaf:Document>
+                    </foaf:homepage>
+                    <dcat:landingPage>
+                        <foaf:Document rdf:about="http://www.agent1.com/qpilot/qualifications">
+                            <dct:title xml:lang="en">title of the landing page that gives access to this qualification
+                            </dct:title>
+                            <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                        </foaf:Document>
+                    </dcat:landingPage>
+                    <esco:supplementaryDoc>
+                        <foaf:Document
+                                rdf:about="http://www.agent1.com/qualifications/docs/doc1_about_qualification1.pdf">
+                            <dct:title xml:lang="en">About the entry requirements of qualification 1</dct:title>
+                            <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                            <dct:subject
+                                    rdf:resource="http://data.europa.eu/esco/qualification-topics#entry-requirements"/>
+                        </foaf:Document>
+                    </esco:supplementaryDoc>
+                    <esco:supplementaryDoc>
+                        <foaf:Document
+                                rdf:about="http://www.agent1.com/qualifications/docs/doc2_about_qualification1.pdf">
+                            <dct:title xml:lang="en">About job opportunities of qualification 1</dct:title>
+                            <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                            <dct:subject
+                                    rdf:resource="http://data.europa.eu/esco/qualification-topics#labour-market-and-employment"/>
+                            <dct:subject
+                                    rdf:resource="http://data.europa.eu/esco/qualification-topics#history-and-lifecycle"/>
+                        </foaf:Document>
+                    </esco:supplementaryDoc>
+                    <esco:additionalNote>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral>Note about assessment procedures</esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                            <dct:subject rdf:resource="http://data.europa.eu/esco/qualification-topics#assessment"/>
+                        </esco:NodeLiteral>
+                    </esco:additionalNote>
+                    <esco:additionalNote>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral rdf:parseType="Literal">
+                                <h1>Note about regulations and certificates</h1>
+                                <div>some text</div>
+                            </esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                            <dct:subject
+                                    rdf:resource="http://data.europa.eu/esco/qualification-topics#regulations-and-certificates"/>
+                        </esco:NodeLiteral>
+                    </esco:additionalNote>
+                    <skos:changeNote>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral>note about fine grained changes of qualification 1</esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                        </esco:NodeLiteral>
+                    </skos:changeNote>
+                    <skos:historyNote>
+                        <esco:NodeLiteral>
+                            <esco:nodeLiteral>note about about major lifecycle changes of qualification 1 (e.g. past
+                                state/use/meaning of a qualification)
+                            </esco:nodeLiteral>
+                            <esco:language>en</esco:language>
+                        </esco:NodeLiteral>
+                    </skos:historyNote>
+                    <esco:hasAwardingActivity>
+                        <esco:AwardingActivity>
+                            <prov:used rdf:resource="http://www.example.com/qpilot/qualification/1"/>
+                            <prov:atLocation rdf:resource="http://data.europa.eu/esco/ConceptScheme/NUTS2008/c.BE"/>
+                        </esco:AwardingActivity>
+                    </esco:hasAwardingActivity>
+                    <esco:hasAwardingActivity>
+                        <esco:AwardingActivity>
+                            <prov:used rdf:resource="http://www.example.com/qpilot/qualification/1"/>
+                            <prov:wasAssociatedWith rdf:resource="http://www.example.com/qpilot/agent/1"/>
+                        </esco:AwardingActivity>
+                    </esco:hasAwardingActivity>
+                    <esco:hasAccreditation>
+                        <esco:Accreditation>
+                            <prov:hadPrimarySource rdf:resource="http://www.example.com/qpilot/qualification/1"/>
+                            <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">
+                                2016-08-16T11:13:35+02:00
+                            </dct:issued>
+                            <esco:reviewedAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">
+                                2018-08-16T11:13:35+02:00
+                            </esco:reviewedAtTime>
+                            <prov:wasAttributedTo rdf:resource="http://www.example.com/qpilot/agent/3"/>
+                            <foaf:homepage>
+                                <foaf:Document rdf:about="http://www.agent3.com/qpilot/accreditations?id=1">
+                                    <dct:title xml:lang="en">title of the home page of this accreditation</dct:title>
+                                    <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                                </foaf:Document>
+                            </foaf:homepage>
+                            <foaf:landingpage>
+                                <foaf:Document rdf:about="http://www.agent3.com/qpilot/accreditations">
+                                    <dct:title xml:lang="en">title of the landing page to have access to this
+                                        accreditation
+                                    </dct:title>
+                                    <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                                </foaf:Document>
+                            </foaf:landingpage>
+                        </esco:Accreditation>
+                    </esco:hasAccreditation>
+                    <esco:hasAssociation>
+                        <esco:AssociationObject>
+                            <dct:type rdf:resource="http://data.europa.eu/esco/association-type#qf-level"/>
+                            <esco:targetFramework
+                                    rdf:resource="http://data.europa.eu/esco/ConceptScheme/EQF2012/ConceptScheme"/>
+                            <esco:target rdf:resource="http://data.europa.eu/esco/ConceptScheme/EQF2012/7"/>
+                        </esco:AssociationObject>
+                    </esco:hasAssociation>
+                    <esco:hasAssociation>
+                        <esco:AssociationObject>
+                            <dct:type rdf:resource="http://data.europa.eu/esco/association-type#qf-level"/>
+                            <esco:targetFramework>
+                                <dct:Standard rdf:about="http://www.example.com/qpilot/standard/BE-QF">
+                                    <skos:altLabel xml:lang="en">BE-QF</skos:altLabel>
+                                    <skos:prefLabel xml:lang="en">Belgiums Qualifications Framework</skos:prefLabel>
+                                </dct:Standard>
+                            </esco:targetFramework>
+                            <esco:targetNotation>7</esco:targetNotation>
+                            <esco:targetName xml:lang="en">university graduate study</esco:targetName>
+                            <foaf:homepage>
+                                <foaf:Document rdf:about="http://www.agent2.com/qpilot/qualifications?id=1">
+                                    <dct:title xml:lang="en">title of the home page of this qualification published on
+                                        the national/regional qf portal
+                                    </dct:title>
+                                    <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                                </foaf:Document>
+                            </foaf:homepage>
+                            <foaf:homepage>
+                                <foaf:Document rdf:about="http://www.agent2.com/qpilot/qualifications">
+                                    <dct:title xml:lang="en">title of the landing page to get access to this
+                                        qualification published on the national/regional qf portal
+                                    </dct:title>
+                                    <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                                </foaf:Document>
+                            </foaf:homepage>
+                        </esco:AssociationObject>
+                    </esco:hasAssociation>
+                    <dct:publisher rdf:resource="http://www.example.com/qpilot/agent/1"/>
+                    <dct:rightsHolder rdf:resource="http://www.example.com/qpilot/agent/1"/>
+                    <dct:creator rdf:resource="http://www.example.com/qpilot/agent/1"/>
+                    <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-19T13:13:35+02:00
+                    </dct:issued>
+                    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-03-28T13:13:35+02:00
+                    </dct:modified>
+                    <iso-thes:status>released</iso-thes:status>
+                </esco:Qualification>
+                <foaf:Agent rdf:about="http://www.example.com/qpilot/agent/3">
+                    <foaf:name xml:lang="en">Full name of the organisation (agent 3)</foaf:name>
+                    <skos:altLabel xml:lang="en">Short name of the organisation (agent 2)</skos:altLabel>
+                    <dct:type rdf:resource="http://data.europa.eu/esco/agent-type#government-agency"/>
+                    <dct:spatial rdf:resource="http://data.europa.eu/esco/ConceptScheme/NUTS2008/c.BE"/>
+                    <foaf:homepage>
+                        <foaf:Document rdf:about="http://www.agent3.be">
+                            <dct:language rdf:resource="http://data.europa.eu/esco/ISO639-2/eng"/>
+                        </foaf:Document>
+                    </foaf:homepage>
+                    <foaf:mbox rdf:resource="mailto:info@agent3.be"/>
+                </foaf:Agent>
+            </rdf:RDF>
+        </accreditationBody>
+    </accreditation>
+</qmsAccreditations>

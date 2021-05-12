@@ -1,0 +1,39 @@
+<div class="col-12 pr-0 h-100 d-inline-flex">
+    <div class="col-5 pl-4 pr-5 pt-3 overflow-auto-details break-word">
+        <div *ngIf="entitlements?.length > 0">
+            <div
+                *ngFor="let entitlement of entitlements; let i = index"
+                class="bg-transparent"
+            >
+                <div
+                    (click)="onSelect(entitlement)"
+                    class=" main-item border-bottom list-item pl-1 cursor-pointer {{
+                        entitlement['active'] ? 'selected' : ''
+                    }}"
+                >
+                    {{ entitlement.title }}
+                </div>
+                <div
+                    *ngFor="let part of entitlement.subEntitlements"
+                    class="bg-transparent border-bottom cursor-pointer"
+                >
+                    <div
+                        (click)="onSelect(part)"
+                        class="list-item sub-item pl-4 {{
+                            part['active'] ? 'selected' : ''
+                        }}"
+                    >
+                        {{ part.title }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="col-7 py-4 px-5 h-100 bg-white border-left overflow-auto-details"
+    >
+        <edci-viewer-entitlement-detail
+            [activeEntitlement]="activeEntitlement"
+        ></edci-viewer-entitlement-detail>
+    </div>
+</div>

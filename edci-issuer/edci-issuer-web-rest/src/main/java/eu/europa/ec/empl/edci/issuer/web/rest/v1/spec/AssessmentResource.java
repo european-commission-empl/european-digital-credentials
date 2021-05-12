@@ -1,0 +1,301 @@
+package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
+
+import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
+import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
+import eu.europa.ec.empl.edci.issuer.entity.specs.AssessmentSpecDAO;
+import eu.europa.ec.empl.edci.issuer.entity.specs.OrganizationSpecDAO;
+import eu.europa.ec.empl.edci.issuer.service.spec.*;
+import eu.europa.ec.empl.edci.issuer.web.mapper.spec.AssessmentSpecRestMapper;
+import eu.europa.ec.empl.edci.issuer.web.mapper.spec.LearningAchievementSpecRestMapper;
+import eu.europa.ec.empl.edci.issuer.web.mapper.spec.LearningOutcomeSpecRestMapper;
+import eu.europa.ec.empl.edci.issuer.web.mapper.spec.OrganizationSpecRestMapper;
+import eu.europa.ec.empl.edci.issuer.web.model.SubresourcesOids;
+import eu.europa.ec.empl.edci.issuer.web.model.specs.AssessmentSpecView;
+import eu.europa.ec.empl.edci.issuer.web.model.specs.lite.AssessmentSpecLiteView;
+import eu.europa.ec.empl.edci.issuer.web.model.specs.lite.OrganizationSpecLiteView;
+import eu.europa.ec.empl.edci.repository.rest.CrudResource;
+import eu.europa.ec.empl.edci.repository.util.PageParam;
+import eu.europa.ec.empl.edci.security.EDCISecurityContextHolder;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Set;
+
+
+@Api(tags = {
+        "V1"
+})
+@Controller(value = "v1.AssessmentSpecResource")
+@PreAuthorize("isAuthenticated()")
+@RequestMapping(value = Version.V1 + Endpoint.V1.ASSESSMENTS_BASE)
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+public class AssessmentResource implements CrudResource {
+
+    @Autowired
+    private AssessmentSpecService assessmentService;
+
+    @Autowired
+    private AssessmentSpecRestMapper assessmentSpecRestMapper;
+
+    @Autowired
+    private LearningAchievementSpecService learningAchievementService;
+
+    @Autowired
+    private LearningAchievementSpecRestMapper learningAchievementSpecRestMapper;
+
+    @Autowired
+    private AssessmentSpecService assessmentSpecService;
+
+    @Autowired
+    private EntitlementSpecService entitlementSpecService;
+
+    @Autowired
+    private OrganizationSpecService organizationSpecService;
+
+    @Autowired
+    private OrganizationSpecRestMapper organizationSpecRestMapper;
+
+    @Autowired
+    private LearningOutcomeSpecService learningOutcomeSpecService;
+
+    @Autowired
+    private LearningOutcomeSpecRestMapper learningOutcomeSpecRestMapper;
+
+    @Autowired
+    private EDCISecurityContextHolder edciUserHolder;
+
+    @ApiOperation(value = "Create an assessment spec")
+    @PostMapping(value = Endpoint.V1.SPECS,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Resource<AssessmentSpecView>> createAssessment(
+            @RequestBody @Valid AssessmentSpecView assessmentView,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale
+    ) throws Exception {
+
+        final AssessmentSpecDAO assessmentDAO = assessmentSpecRestMapper.toDAO(assessmentView);
+
+        AssessmentSpecDAO assessmentCreatedDAO = assessmentService.save(assessmentDAO,
+                () -> {
+                    assessmentDAO.setHasPart(assessmentService.retrieveEntities(false, assessmentView.getRelHasPart().getOid()));
+                    assessmentDAO.setAssessedBy(organizationSpecService.retrieveEntities(false, assessmentView.getRelAssessedBy().getOid()));
+                }
+        );
+
+        return generateOkResponse(assessmentCreatedDAO, assessmentSpecRestMapper, generateAssessmentHateoas(assessmentCreatedDAO));
+    }
+
+    @ApiOperation(value = "Duplicate an activity spec")
+    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Resource<AssessmentSpecView>> duplicateAssessment(
+            @ApiParam(required = true, value = "The Credential oid") @PathVariable(Parameter.OID) Long oid,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+
+        AssessmentSpecDAO assessmentDAO = assessmentService.clone(oid, assessmentSpecRestMapper);
+
+        return generateOkResponse(assessmentDAO, assessmentSpecRestMapper, generateAssessmentHateoas(assessmentDAO));
+    }
+
+    @ApiOperation(value = "Update an assessment spec")
+    @PutMapping(value = Endpoint.V1.SPECS,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Resource<AssessmentSpecView>> updateAssessment(
+            @RequestBody @Valid AssessmentSpecView assessmentView,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+
+        if (!assessmentService.exists(assessmentView.getOid())) {
+            throw new EDCINotFoundException().addDescription("Assessment with.OID [" + assessmentView.getOid() + "] not found");
+        } else {
+            assessmentView.setOid(assessmentView.getOid());
+        }
+
+        final AssessmentSpecDAO assessmentDAO = assessmentSpecRestMapper.toDAO(assessmentView);
+
+        AssessmentSpecDAO assessmentCreatedDAO = assessmentService.save(assessmentDAO,
+                () -> {
+                    assessmentDAO.setHasPart(assessmentService.retrieveEntities(false, assessmentView.getRelHasPart().getOid()));
+                    assessmentDAO.setAssessedBy(organizationSpecService.retrieveEntities(false, assessmentView.getRelAssessedBy().getOid()));
+                }
+        );
+
+        return generateOkResponse(assessmentCreatedDAO, assessmentSpecRestMapper, generateAssessmentHateoas(assessmentCreatedDAO));
+    }
+
+    @ApiOperation(value = "Delete an assessment spec")
+    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity deleteAssessment(
+            @ApiParam(required = true, value = "The Assessment oid") @PathVariable(Parameter.OID) Long oid,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+        boolean removed = assessmentService.delete(oid);
+        return generateNoContentResponse();
+    }
+
+    @ApiOperation(value = "Gets an assessment")
+    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Resource<AssessmentSpecView>> getAssessment(
+            @ApiParam(required = true, value = "The Assessment.OID") @PathVariable(Parameter.OID) Long oid,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale
+    ) throws Exception {
+        AssessmentSpecDAO assessmentDAO = assessmentService.find(oid);
+        if (assessmentDAO == null) {
+            throw new EDCINotFoundException().addDescription("Assessment with oid [" + oid + "] not found");
+        }
+        return generateOkResponse(assessmentDAO, assessmentSpecRestMapper, generateAssessmentHateoas(assessmentDAO));
+    }
+
+    @ApiOperation(value = "Gets a list of assessments")
+    @GetMapping(value = Endpoint.V1.SPECS,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<PagedResources<AssessmentSpecLiteView>> listAssessment(
+            @ApiParam() @RequestParam(value = Parameter.SORT, required = false) String sort,
+            @ApiParam() @RequestParam(value = Parameter.DIRECTION, required = false, defaultValue = "ASC") String direction,
+            @ApiParam() @RequestParam(value = Parameter.PAGE, required = false, defaultValue = "0") Integer page,
+            @ApiParam() @RequestParam(value = Parameter.SIZE, required = false, defaultValue = PageParam.SIZE_PAGE_DEFAULT + "") Integer size,
+            @ApiParam() @RequestParam(value = Parameter.SEARCH, required = false) String search,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale
+    ) throws Exception {
+        PageParam pageParam = new PageParam(page, size, sort, direction);
+        Specification specif = buildSearchSpecification(search, assessmentSpecRestMapper, edciUserHolder);
+
+        Page<AssessmentSpecLiteView> products = assessmentService.findAll(specif, pageParam.toPageRequest(), assessmentSpecRestMapper);
+        return generateListResponse(products, "/specs");
+    }
+
+    @ApiOperation(value = "Gets a list of (hasPart) Assessments from assessments")
+    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_HAS_PART,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<PagedResources<AssessmentSpecLiteView>> listHasAssPart(
+            @ApiParam(required = true, value = "The Assessment oid") @PathVariable(Parameter.OID) Long oid,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale
+    ) throws Exception {
+
+        PageParam pageParam = new PageParam(0, 1);
+
+        AssessmentSpecDAO assessmentDAO = assessmentService.find(oid);
+        if (assessmentDAO == null) {
+            throw new EDCINotFoundException().addDescription("Assessment with oid [" + oid + "] not found");
+        }
+
+        return generateListResponse(assessmentDAO.getHasPart(), "/specs", assessmentSpecRestMapper);
+
+    }
+
+    @ApiOperation(value = "Link an existing related (hasPart) Assessments to a assessment")
+    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_HAS_PART,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<PagedResources<AssessmentSpecLiteView>> setHasAssPart(
+            @ApiParam(required = true, value = "The Assessment oid") @PathVariable(Parameter.OID) Long oid,
+            @RequestBody SubresourcesOids oids,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+
+        AssessmentSpecDAO assessmentDAO = assessmentService.find(oid);
+        if (assessmentDAO == null) {
+            throw new EDCINotFoundException().addDescription("Assessment with oid [" + oid + "] not found");
+        }
+
+        Set<AssessmentSpecDAO> entities = retrieveEntities(assessmentService, false, oids.getOid());
+
+        assessmentDAO.setHasPart(entities);
+
+        assessmentService.save(assessmentDAO);
+
+        return generateListResponse(assessmentDAO.getHasPart(), "/specs", assessmentSpecRestMapper);
+    }
+
+    @ApiOperation(value = "Gets a list of (AssessedBy) Organization from assessments")
+    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_ASSESSED_BY,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<PagedResources<OrganizationSpecLiteView>> listAssessedBy(
+            @ApiParam(required = true, value = "The Assessment oid") @PathVariable(Parameter.OID) Long oid,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale
+    ) throws Exception {
+
+        PageParam pageParam = new PageParam(0, 1);
+
+        AssessmentSpecDAO assessmentDAO = assessmentService.find(oid);
+        if (assessmentDAO == null) {
+            throw new EDCINotFoundException().addDescription("Assessment with oid [" + oid + "] not found");
+        }
+
+        return generateListResponse(assessmentDAO.getAssessedBy(), "/specs", organizationSpecRestMapper);
+
+    }
+
+    @ApiOperation(value = "Link an existing related (AssessedBy) Organization to a assessment")
+    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_ASSESSED_BY,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<PagedResources<OrganizationSpecLiteView>> setAssessedBy(
+            @ApiParam(required = true, value = "The Assessment oid") @PathVariable(Parameter.OID) Long oid,
+            @RequestBody SubresourcesOids oids,
+            @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+
+        AssessmentSpecDAO assessmentDAO = assessmentService.find(oid);
+        if (assessmentDAO == null) {
+            throw new EDCINotFoundException().addDescription("Assessment with oid [" + oid + "] not found");
+        }
+
+        Set<OrganizationSpecDAO> entities = retrieveEntities(organizationSpecService, false, oids.getOid());
+
+        assessmentDAO.setAssessedBy(entities);
+
+        assessmentService.save(assessmentDAO);
+
+        return generateListResponse(assessmentDAO.getAssessedBy(), "/specs", organizationSpecRestMapper);
+    }
+
+    public Link[] generateAssessmentHateoas(AssessmentSpecDAO assessmentDAO) {
+
+        if (assessmentDAO != null) {
+
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(AssessmentResource.class).slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk()).withSelfRel();
+
+            Link hateoasHasPart = ControllerLinkBuilder.linkTo(AssessmentResource.class)
+                    .slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk())
+                    .slash(Endpoint.V1.ASS_HAS_PART).withRel("hasPart");
+
+//            Link hateoasSpecOf = ControllerLinkBuilder.linkTo(AssessmentResource.class)
+//                    .slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk())
+//                    .slash(Endpoint.V1.ASS_SPECIFICATION_OF).withRel("specializationOf");
+
+            return new Link[]{
+                    hateoasSelf, hateoasHasPart//, hateoasSpecOf
+            };
+
+        } else {
+            return null;
+        }
+    }
+
+}

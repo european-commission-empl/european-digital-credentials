@@ -1,0 +1,604 @@
+<div *ngIf="activeAchievement" class="achievement-detail-page">
+    <h3
+        *ngIf="activeAchievement?.title"
+        class="font-weight-bold col-12 detail__title"
+    >
+        <strong>{{ activeAchievement.title }}</strong>
+    </h3>
+    <div
+        *ngIf="
+            activeAchievement?.identifier?.length > 0 ||
+            activeAchievement?.awardingDate ||
+            activeAchievement?.awardingBody
+        "
+        class="border-bottom"
+    >
+        <edci-viewer-identifiers
+            *ngIf="activeAchievement?.identifier?.length > 0"
+            [identifiers]="activeAchievement?.identifier"
+        >
+        </edci-viewer-identifiers>
+        <div
+            *ngIf="
+                activeAchievement?.awardingDate ||
+                activeAchievement?.awardingBody
+            "
+            class="col-12"
+        >
+            <p *ngIf="activeAchievement?.awardingDate">
+                <strong>
+                    {{ 'details.achievements-tab.awardingDate' | translate }}:
+                </strong>
+                {{ activeAchievement.awardingDate }}
+            </p>
+            <p *ngIf="activeAchievement?.awardingBody?.preferredName">
+                <strong>
+                    {{ 'details.achievements-tab.awardingBody' | translate }}:
+                </strong>
+                <a
+                    (click)="
+                        openAwardingBodyModal(activeAchievement.awardingBody)
+                    "
+                >
+                    {{ activeAchievement?.awardingBody?.preferredName }}
+                </a>
+            </p>
+        </div>
+    </div>
+    <div
+        *ngIf="activeAchievement?.description"
+        class="pre-wrap col-12 border-bottom"
+    >
+        <p>{{ activeAchievement.description }}</p>
+    </div>
+    <div
+        *ngIf="activeAchievement?.provenBy?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.achievements-tab.provenBy' | translate }}
+            </strong>
+        </p>
+        <table
+            *ngIf="activeAchievement?.provenBy?.length > 0"
+            class="table table-bordered size__16 col-12"
+        >
+            <thead>
+                <tr>
+                    <th scope="col">
+                        {{ 'details.achievements-tab.title' | translate }}
+                    </th>
+                    <th scope="col">
+                        {{ 'details.achievements-tab.grade' | translate }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container
+                    *ngFor="let assessment of activeAchievement.provenBy"
+                >
+                    <tr *ngIf="assessment?.title || assessment?.grade">
+                        <td>
+                            <a (click)="openAssessmentModal(assessment)">
+                                {{ assessment?.title }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ assessment?.grade }}
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <div
+        *ngIf="activeAchievement?.influencedBy?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.achievements-tab.influencedBy' | translate }}:
+            </strong>
+            <span
+                *ngFor="
+                    let activity of activeAchievement?.influencedBy;
+                    let isLast = last
+                "
+            >
+                <a (click)="linkToActivity(activity)">{{ activity.title }}</a
+                >{{ isLast ? '' : ', ' }}
+            </span>
+        </p>
+    </div>
+    <div
+        *ngIf="activeAchievement?.entitledOwnerTo?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.achievements-tab.entitlesOwnerTo' | translate }}:
+            </strong>
+            <span
+                *ngFor="
+                    let entitlement of activeAchievement?.entitledOwnerTo;
+                    let isLast = last
+                "
+            >
+                <a (click)="linkToEntitlement(entitlement)">
+                    {{ entitlement.title }} </a
+                >{{ isLast ? '' : ', ' }}
+            </span>
+        </p>
+    </div>
+    <div
+        *ngIf="activeAchievement?.subAchievements?.length > 0"
+        class="col-12 border-bottom"
+    >
+        <p>
+            <strong>
+                {{ 'details.achievements-tab.subAchievements' | translate }}
+            </strong>
+        </p>
+        <p>
+            <span
+                *ngFor="
+                    let achievement of activeAchievement?.subAchievements;
+                    let isLast = last
+                "
+            >
+                <a (click)="linkToAchievement(achievement)">{{
+                    achievement.title
+                }}</a
+                >{{ isLast ? '' : ', ' }}
+            </span>
+        </p>
+    </div>
+    <edci-viewer-more-information
+        *ngIf="activeAchievement?.moreInformation?.length > 0"
+        [moreInformation]="activeAchievement?.moreInformation"
+    ></edci-viewer-more-information>
+    <!-- Specification -->
+    <div
+        *ngIf="
+            activeAchievement?.specifiedBy?.homePage ||
+            activeAchievement?.specifiedBy?.learningOutcome?.length > 0 ||
+            activeAchievement?.specifiedBy?.workloadInHours ||
+            activeAchievement?.specifiedBy?.ectsCreditPoints ||
+            activeAchievement?.specifiedBy?.creditPoints?.length > 0 ||
+            activeAchievement?.specifiedBy?.thematicArea ||
+            activeAchievement?.specifiedBy?.learningMode ||
+            activeAchievement?.specifiedBy?.instructionLanguage ||
+            activeAchievement?.specifiedBy?.learningSetting ||
+            activeAchievement?.specifiedBy?.learningOpportunityType ||
+            activeAchievement?.specifiedBy?.entryRequirements ||
+            activeAchievement?.specifiedBy?.otherDocuments?.length > 0 ||
+            activeAchievement?.specifiedBy?.moreInformation?.length > 0
+        "
+    >
+        <div class="d-inline-flex pt-3 col-12">
+            <h3 class="font-weight-bold">
+                {{ 'details.achievements-tab.specification' | translate }}
+            </h3>
+            <a
+                *ngIf="activeAchievement?.specifiedBy?.homePage?.length > 0"
+                [href]="(activeAchievement?.specifiedBy?.homePage)[0].link"
+                target="_blank"
+                class="mt-2 ml-2 no-decoration-underline"
+            >
+                <ux-a-icon
+                    iconClass="fa fa-link"
+                    [isRounded]="false"
+                ></ux-a-icon>
+            </a>
+        </div>
+        <edci-viewer-identifiers
+            *ngIf="activeAchievement?.specifiedBy?.identifier"
+            [identifiers]="activeAchievement?.specifiedBy?.identifier"
+        ></edci-viewer-identifiers>
+        <div
+            *ngIf="activeAchievement?.specifiedBy?.learningOutcome?.length > 0"
+        >
+            <div class="col-12">
+                <p>
+                    <strong>
+                        {{
+                            'details.achievements-tab.learningOutcomes'
+                                | translate
+                        }}:
+                    </strong>
+                </p>
+            </div>
+            <div
+                *ngFor="
+                    let learningOutcome of activeAchievement?.specifiedBy
+                        ?.learningOutcome;
+                    let i = index
+                "
+                class="border-bottom"
+            >
+                <div
+                    class="col-12
+                    {{
+                        learningOutcome?.identifier?.length > 0 ||
+                        learningOutcome?.description ||
+                        learningOutcome?.type ||
+                        learningOutcome?.reusabilityLevel ||
+                        learningOutcome?.relatedESCOSkill ||
+                        learningOutcome?.relatedSkill
+                            ? 'cursor-pointer learning-outcome-title'
+                            : ''
+                    }}"
+                    (click)="
+                        isLearningOutcomeExpanded[
+                            i
+                        ] = !isLearningOutcomeExpanded[i]
+                    "
+                >
+                    <p class="font-weight-bold d-flex">
+                        {{ learningOutcome?.name }}
+                        <ux-a-icon
+                            *ngIf="
+                                learningOutcome?.identifier?.length > 0 ||
+                                learningOutcome?.description ||
+                                learningOutcome?.type ||
+                                learningOutcome?.reusabilityLevel ||
+                                learningOutcome?.relatedESCOSkill ||
+                                learningOutcome?.relatedSkill
+                            "
+                            class="ml-3"
+                            [iconClass]="
+                                isLearningOutcomeExpanded[i]
+                                    ? 'fa fa-chevron-up'
+                                    : 'fa fa-chevron-down'
+                            "
+                            [isRounded]="false"
+                        ></ux-a-icon>
+                    </p>
+                </div>
+                <div *ngIf="isLearningOutcomeExpanded[i]">
+                    <edci-viewer-identifiers
+                        *ngIf="learningOutcome?.identifier?.length > 0"
+                        [identifiers]="learningOutcome?.identifier"
+                    >
+                    </edci-viewer-identifiers>
+                    <p *ngIf="learningOutcome?.description" class="col-12">
+                        {{ learningOutcome?.description }}
+                    </p>
+                    <p *ngIf="learningOutcome?.type" class="col-12">
+                        <strong>
+                            {{ 'details.achievements-tab.type' | translate }}:
+                        </strong>
+                        {{ learningOutcome?.type }}
+                    </p>
+                    <p *ngIf="learningOutcome?.reusabilityLevel" class="col-12">
+                        <strong>
+                            {{
+                                'details.achievements-tab.reusabilityLevel'
+                                    | translate
+                            }}:
+                        </strong>
+                        {{ learningOutcome?.reusabilityLevel }}
+                    </p>
+                    <p *ngIf="learningOutcome?.relatedSkill" class="col-12">
+                        <strong>
+                            {{
+                                'details.achievement-tab.relatedSkill' | translate
+                            }}
+                        </strong>
+                        {{
+                            learningOutcome.relatedSkill | edciJoin: ', '
+                        }}
+                    </p>
+                    <p class="col-12 related_esco">
+                        <strong>
+                            {{
+                            'details.achievements-tab.relatedESCOSkills'
+                                | translate
+                            }}:
+                        </strong>
+                        <span
+                              *ngFor="let skill of learningOutcome?.relatedESCOSkill">
+                                    <a [href]="skill.link" target="_blank">{{skill.title}}</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div
+                *ngIf="activeAchievement?.specifiedBy?.definition"
+                class="border-bottom"
+            >
+                <p>
+                    {{ activeAchievement?.specifiedBy?.definition }}
+                </p>
+            </div>
+        </div>
+        <div
+            *ngIf="
+                activeAchievement?.specifiedBy?.workloadInHours ||
+                activeAchievement?.specifiedBy?.maximumDurationInMonths ||
+                activeAchievement?.specifiedBy?.ectsCreditPoints ||
+                activeAchievement?.specifiedBy?.creditPoints?.length > 0 ||
+                activeAchievement?.specifiedBy?.thematicArea ||
+                activeAchievement?.specifiedBy?.learningMode ||
+                activeAchievement?.specifiedBy?.instructionLanguage ||
+                activeAchievement?.specifiedBy?.learningSetting ||
+                activeAchievement?.specifiedBy?.learningOpportunityType ||
+                activeAchievement?.specifiedBy?.entryRequirements
+            "
+            class="border-bottom"
+        >
+            <div
+                *ngIf="
+                    activeAchievement?.specifiedBy?.workloadInHours ||
+                    activeAchievement?.specifiedBy?.maximumDurationInMonths
+                "
+                class="col-12"
+            >
+                <p *ngIf="activeAchievement?.specifiedBy?.workloadInHours">
+                    <strong>
+                        {{
+                            'details.achievements-tab.volumeOfLearning'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeAchievement?.specifiedBy?.workloadInHours }}
+                    {{
+                        activeAchievement?.specifiedBy?.workloadInHours === '1'
+                            ? ('hour' | translate)
+                            : ('hours' | translate)
+                    }}
+                </p>
+                <p
+                    *ngIf="
+                        activeAchievement?.specifiedBy?.maximumDurationInMonths
+                    "
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.maximumDuration'
+                                | translate
+                        }}:
+                    </strong>
+                    {{
+                        activeAchievement?.specifiedBy?.maximumDurationInMonths
+                    }}
+                    {{
+                        activeAchievement?.specifiedBy
+                            ?.maximumDurationInMonths === '1'
+                            ? ('month' | translate)
+                            : ('months' | translate)
+                    }}
+                </p>
+            </div>
+            <div
+                class="d-inline-flex col-12"
+                *ngIf="
+                    activeAchievement?.specifiedBy?.ectsCreditPoints ||
+                    activeAchievement?.specifiedBy?.creditPoints?.length > 0 || 
+                    activeAchievement?.specifiedBy?.thematicArea
+                "
+            >
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.ectsCreditPoints"
+                    class="col-6 p-0 mr-1"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.ECTSCreditPoints'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeAchievement?.specifiedBy?.ectsCreditPoints }}
+                </p>
+
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.thematicArea"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.thematicArea' | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{
+                            activeAchievement?.specifiedBy?.thematicArea
+                                | edciJoin: ', '
+                        }}
+                    </span>
+                </p>
+
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.creditPoints?.length > 0"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.creditPoints' | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{
+                            activeAchievement?.specifiedBy?.creditPoints
+                                | edciJoin: ', '
+                        }}
+                    </span>
+                </p>
+            </div>
+            <div
+                class="d-inline-flex col-12"
+                *ngIf="
+                    activeAchievement?.specifiedBy?.learningMode ||
+                    activeAchievement?.specifiedBy?.instructionLanguage
+                "
+            >
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.learningMode"
+                    class="col-6 p-0 mr-1"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.modeOfLearning'
+                                | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{
+                            activeAchievement?.specifiedBy?.learningMode
+                                | edciJoin: ', '
+                        }}
+                    </span>
+                </p>
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.instructionLanguage"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.languagesOfInstruction'
+                                | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{
+                            activeAchievement?.specifiedBy?.instructionLanguage
+                                | edciJoin: ', '
+                        }}
+                    </span>
+                </p>
+            </div>
+            <div
+                class="d-inline-flex col-12"
+                *ngIf="
+                    activeAchievement?.specifiedBy?.learningSetting ||
+                    activeAchievement?.specifiedBy?.learningOpportunityType
+                "
+            >
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.learningSetting"
+                    class="col-6 p-0 mr-1"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.learningSettings'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeAchievement?.specifiedBy?.learningSetting }}
+                </p>
+                <p
+                    *ngIf="
+                        activeAchievement?.specifiedBy?.learningOpportunityType
+                    "
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.learningOpportunityType'
+                                | translate
+                        }}:
+                    </strong>
+                    {{
+                        activeAchievement?.specifiedBy?.learningOpportunityType
+                            | edciJoin: ', '
+                    }}
+                </p>
+            </div>
+            <div
+                *ngIf="activeAchievement?.specifiedBy?.entryRequirements"
+                class="col-12"
+            >
+                <p>
+                    <strong>
+                        {{
+                            'details.achievements-tab.entryRequirements'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeAchievement?.specifiedBy?.entryRequirements }}
+                </p>
+            </div>
+        </div>
+        <div
+            *ngIf="
+                activeAchievement.specifiedBy?.otherDocuments?.length > 0 ||
+                activeAchievement?.specifiedBy?.moreInformation?.length > 0
+            "
+            class="border-bottom"
+        >
+            <div
+                *ngIf="
+                    activeAchievement.specifiedBy?.otherDocuments?.length > 0
+                "
+                class="mt-3 mb-3"
+            >
+                <edci-viewer-other-documents
+                    [otherDocuments]="
+                        activeAchievement.specifiedBy?.otherDocuments
+                    "
+                ></edci-viewer-other-documents>
+            </div>
+            <div
+                *ngIf="
+                    activeAchievement?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="mt-3 mb-3"
+            >
+                <edci-viewer-more-information
+                    [moreInformation]="
+                        activeAchievement?.specifiedBy?.moreInformation
+                    "
+                ></edci-viewer-more-information>
+            </div>
+        </div>
+    </div>
+
+    <!-- Qualification -->
+    <div *ngIf="activeAchievement?.specifiedBy?.qualification" class="pt-3">
+        <h3 class="font-weight-bold col-12">
+            {{ 'details.achievements-tab.qualification' | translate }}
+        </h3>
+        <div
+            class="d-inline-flex col-12"
+            *ngIf="
+                activeAchievement?.specifiedBy?.qualification?.eqfLevel ||
+                activeAchievement?.specifiedBy?.qualification?.nqfLevel
+            "
+        >
+            <p
+                class="mr-4"
+                *ngIf="activeAchievement?.specifiedBy?.qualification?.eqfLevel"
+            >
+                <strong>
+                    {{ 'details.achievements-tab.EQFLevel' | translate }}:
+                </strong>
+                {{ activeAchievement?.specifiedBy?.qualification?.eqfLevel }}
+            </p>
+            <p *ngIf="activeAchievement?.specifiedBy?.qualification?.nqfLevel">
+                <strong>
+                    {{ 'details.achievements-tab.NQFLevel' | translate }}:
+                </strong>
+                {{
+                    activeAchievement?.specifiedBy?.qualification?.nqfLevel
+                        | edciJoin: ', '
+                }}
+            </p>
+        </div>
+        <div class="col-12">
+            <p>
+                <strong>
+                    {{
+                        'details.achievements-tab.partialQualification' | translate
+                    }}:
+                </strong>
+                {{
+                    activeAchievement?.specifiedBy?.qualification
+                        ?.isPartialQualification
+                        ? ('yes' | translate)
+                        : ('no' | translate)
+                }}
+            </p>
+        </div>
+    </div>
+</div>

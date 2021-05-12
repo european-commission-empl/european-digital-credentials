@@ -1,0 +1,31 @@
+.htmlTemplateModal {
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    textarea {
+        height: 25rem;
+    }
+
+    .entity-input {
+        align-items: baseline;
+        display: flex !important;
+
+        .disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        edci-autocomplete {
+            flex-grow: 1;
+        }
+    }
+
+    .form-datepicker {
+        input,
+        button {
+            height: 36.8px;
+            position: relative;
+        }
+    }
+}

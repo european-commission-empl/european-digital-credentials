@@ -1,0 +1,102 @@
+{
+  "user-details": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "fullName": "John Doe"
+  },
+  "users": [],
+  "batchStatus": {
+    "type": "SEND",
+    "batchStatus": "COMPLETED",
+    "exportDate": "20/06/2019",
+    "exportProgress": 100,
+    "exportSummary": "482/482",
+    "jobId": "65sdq156wd5ght6g1-",
+    "validationProgress": 0,
+    "validationSummary": ""
+  },
+  "certificates": [
+    {
+      "id": 1,
+      "studentName": "Lyda",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 2,
+      "studentName": "Simone",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 3,
+      "studentName": "Jesse",
+      "course": "Diploma in Sociology",
+      "valid": false,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 4,
+      "studentName": "Elisa",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 5,
+      "studentName": "Cletus",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 6,
+      "studentName": "Nedra",
+      "course": "Volunteering in the Community",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 7,
+      "studentName": "Roxanne",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 8,
+      "studentName": "Chadrick",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    },
+    {
+      "id": 9,
+      "studentName": "Bonnie",
+      "course": "Diploma in Sociology",
+      "valid": true,
+      "sealed": null,
+      "sent": null,
+      "received": null
+    }
+  ]
+}

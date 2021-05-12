@@ -1,0 +1,36 @@
+<div *ngIf="isDisabled" class="input-disabled"></div>
+<form *ngIf="!isDisabled" class="controlled-list__component" [formGroup]="formGroup">
+    <ux-autocomplete-tag
+        *ngIf="!isSingleSelection; else singleSelection"
+        class="ocb__autocomplete-tag"
+        chipsPosition="bottom"
+        [items]="searchList"
+        (click)="onClick()"
+        [selectedItems]="selectedItems"
+        [outline]="true"
+        placeholder="{{ placeholder | translate }}"
+        [formControl]="multipleEntity"
+        (inputValueChange)="onSearchEntity($event)"
+        (selectionChanged)="onSelectionChange($event)"
+    ></ux-autocomplete-tag>
+    <ng-template #singleSelection>
+        <ux-autocomplete
+            class="ocb__autocomplete"
+            [items]="searchList"
+            (click)="onClick()"
+            (inputValueChange)="onSearchEntity($event)"
+            placeholder="{{ placeholder | translate }}"
+            [formControl]="singleEntity"
+            [isReadOnly]="selectedLanguages[0]?.code !== language"
+        ></ux-autocomplete>
+    </ng-template>
+    <div *ngIf="isLoading" class="form-input-spinner spinner-autocomplete">
+        <mat-progress-spinner
+            class="spinner"
+            color="primary"
+            mode="indeterminate"
+            value="50"
+        >
+        </mat-progress-spinner>
+    </div>
+</form>

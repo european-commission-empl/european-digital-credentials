@@ -1,0 +1,10 @@
+.create-page {
+    .ux-button {
+        padding: 0.8rem;
+
+        &.ux-button--with-label .ux-button__icon {
+            font-size: 1.1rem;
+            margin-right: 0.7rem;
+        }
+    }
+}

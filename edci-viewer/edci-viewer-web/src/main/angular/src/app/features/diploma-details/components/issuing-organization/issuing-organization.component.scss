@@ -1,0 +1,43 @@
+.organization-tab {
+    .img-logo-resp {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .diploma-logo {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        padding: 0 2rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .title {
+        color: #214493;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .link {
+        color: #214493;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .panel-header {
+        background: #fff !important;
+        padding: 0.75rem !important;
+    }
+
+    .panel-label {
+        color: #214493 !important;
+    }
+
+    .arrow-carousel {
+        align-items: center;
+        cursor: pointer;
+        margin-top: 30%;
+    }
+}

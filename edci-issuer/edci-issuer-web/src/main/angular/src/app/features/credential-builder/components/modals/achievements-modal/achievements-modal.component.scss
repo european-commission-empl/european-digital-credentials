@@ -1,0 +1,41 @@
+.achievementModal {
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    ux-dropdown-button > ux-button > button {
+        box-shadow: none !important;
+
+        .ux-button__content {
+            color: black;
+        }
+    }
+
+    .nqf-level {
+        .spinner-autocomplete {
+            top: 2px !important;
+        }
+    }
+
+    .entity-input {
+        align-items: baseline;
+        display: flex !important;
+
+        edci-autocomplete {
+            flex-grow: 1;
+        }
+
+        .disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+
+    .form-datepicker {
+        input,
+        button {
+            height: 36.8px;
+            position: relative;
+        }
+    }
+}

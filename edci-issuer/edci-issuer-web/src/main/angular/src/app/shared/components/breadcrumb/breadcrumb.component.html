@@ -1,0 +1,30 @@
+<nav
+    class="ecl-breadcrumb"
+    aria-label="You are here:"
+    data-ecl-breadcrumb="true"
+>
+    <ol class="ecl-breadcrumb__container">
+        <li
+            *ngFor="let item of parts; let i = index; let last = last"
+            data-ecl-breadcrumb-item="static"
+            aria-hidden="false"
+            class="ecl-breadcrumb__segment"
+        >
+            <a
+                [routerLink]="item.url"
+                routerLinkActive="active-link"
+                class="ecl-breadcrumb__link ecl-link ecl-link--standalone"
+                >{{ item.label }}</a
+            >
+            <svg
+                *ngIf="!last"
+                focusable="false"
+                aria-hidden="true"
+                role="presentation"
+                class="ecl-breadcrumb__icon ecl-icon ecl-icon--xs ecl-icon--rotate-90"
+            >
+                <use xlink:href="assets/icons.svg#ui--corner-arrow"></use>
+            </svg>
+        </li>
+    </ol>
+</nav>

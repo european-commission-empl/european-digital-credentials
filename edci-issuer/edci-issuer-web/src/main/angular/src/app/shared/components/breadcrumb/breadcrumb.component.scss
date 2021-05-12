@@ -1,0 +1,28 @@
+:host {
+    .ecl-breadcrumb {
+        background-color: transparent;
+
+        .ecl-breadcrumb__container {
+            border-bottom: none;
+
+            .ecl-breadcrumb__link,
+            .ecl-breadcrumb__link:hover,
+            .ecl-breadcrumb__link:active,
+            .ecl-breadcrumb__link:focus,
+            .ecl-breadcrumb__link:visited {
+                color: var(--primary);
+
+                &.active-link {
+                    color: #333;
+                }
+            }
+
+            .ecl-breadcrumb__icon {
+                fill: var(--primary);
+                height: 0.75rem;
+                margin: 0.1rem 0.5rem !important;
+                width: 0.75rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <localRepository>[LOCAL_REPOSITORY_PATH]</localRepository>
+
+    <pluginGroups>
+        <pluginGroup>org.jacoco</pluginGroup>
+    </pluginGroups>
+
+    <proxies>
+    </proxies>
+
+    <servers>
+    </servers>
+
+    <mirrors>
+    </mirrors>
+
+    <profiles>
+
+        <profile>
+
+            <id>external</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>env.USERDOMAIN</name>
+                    <value>NET1</value>
+                </property>
+            </activation>
+
+            <repositories>
+
+                <repository>
+                    <id>Red Hat</id>
+                    <url>https://maven.repository.redhat.com/ga/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </repository>
+
+                <repository>
+                    <id>cronapp</id>
+                    <url>https://artifactory.cronapp.io/public-release/</url>
+                </repository>
+
+                <repository>
+                    <id>nexus-ec</id>
+                    <url>http://central.maven.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+
+                <repository>
+                    <id>joinup-dss-thirdparty</id>
+                    <url>http://joinup.ec.europa.eu/site/sd-dss/maven2</url>
+                </repository>
+
+                <repository>
+                    <id>joinup</id>
+                    <name>Joinup</name>
+                    <url>https://joinup.ec.europa.eu/nexus/content/groups/public/</url>
+                </repository>
+
+                <repository>
+                    <id>cefdigital</id>
+                    <name>cefdigital</name>
+                    <url>https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/</url>
+                </repository>
+
+            </repositories>
+
+            <pluginRepositories>
+
+                <pluginRepository>
+                    <id>Red Hat</id>
+                    <url>https://maven.repository.redhat.com/ga/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>cronapp</id>
+                    <url>https://artifactory.cronapp.io/public-release/</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>Central</id>
+                    <url>http://central.maven.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+
+            </pluginRepositories>
+
+        </profile>
+
+        <profile>
+
+            <id>local-repo</id>
+            <repositories>
+                <repository>
+                    <id>local</id>
+                    <name>Local</name>
+                    <url>[LOCAL_REPOSITORY_PATH]</url>
+                </repository>
+            </repositories>
+
+        </profile>
+
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>external</activeProfile>
+        <activeProfile>local-repo</activeProfile>
+    </activeProfiles>
+
+</settings>
+

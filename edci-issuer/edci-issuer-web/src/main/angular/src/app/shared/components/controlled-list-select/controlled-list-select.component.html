@@ -1,0 +1,46 @@
+<label
+    *ngIf="label"
+    class="{{ required ? 'control-label' : '' }}
+    {{ tooltip ? 'd-inline-flex' : '' }} w-100"
+    >{{ label }}
+    <ux-a-icon
+        *ngIf="tooltip"
+        iconClass="fa fa-info-circle"
+        [isRounded]="false"
+        [isSmall]="true"
+        position="top-right"
+        size="large"
+        uxTooltip="{{
+            'credential-builder.achievements-tab.tooltips.entryRequirements'
+                | translate
+        }}"
+    ></ux-a-icon>
+</label>
+<ng-container *ngIf="isListFull || isDisabled; else loadingSpinner">
+    <select
+        type="form-control"
+        class="w-100 cl-dropdown {{ isDisabled ? 'disabled' : '' }}"
+        (blur)="onTouched($event)"
+        [(ngModel)]="selectedEntity"
+        [compareWith]="checkEntity"
+        [disabled]="isDisabled || selectedLanguages[0]?.code !== language"
+    >
+        <option [ngValue]="undefined">
+            {{ 'selector.placeholder.selectOption' | translate }}
+        </option>
+        <option *ngFor="let entity of entityList" [ngValue]="entity">
+            {{ entity.targetName.contents | extractLabel: language:true }}
+        </option>
+    </select>
+</ng-container>
+<ng-template #loadingSpinner>
+    <div class="form-input-spinner">
+        <mat-progress-spinner
+            class="spinner"
+            color="primary"
+            mode="indeterminate"
+            value="50"
+        >
+        </mat-progress-spinner>
+    </div>
+</ng-template>

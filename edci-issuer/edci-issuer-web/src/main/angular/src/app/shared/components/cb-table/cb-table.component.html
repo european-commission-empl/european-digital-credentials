@@ -1,0 +1,114 @@
+<p-table
+    id="cb-table"
+    *ngIf="items?.length > 0"
+    dataKey="oid"
+    selectionMode="single"
+    [first]="first"
+    [value]="items"
+    [responsive]="false"
+    [paginator]="true"
+    [rows]="perPage"
+    [totalRecords]="totalItems"
+    [resetPageOnSort]="false"
+    [sortField]="sortField"
+    [lazy]="true"
+    [lazyLoadOnInit]="false"
+    [loading]="loading"
+    (onPage)="onPageChange($event)"
+    (onSort)="onSortChange($event)"
+>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th class="w-25" pSortableColumn="auditDAO.updateDate">
+                {{ 'common.date' | translate | uppercase }}
+                <p-sortIcon field="auditDAO.updateDate"></p-sortIcon>
+            </th>
+            <th class="w-35 pl-0" pSortableColumn="defaultTitle">
+                {{ 'common.title' | translate | uppercase }}
+                <p-sortIcon field="defaultTitle"></p-sortIcon>
+            </th>
+
+            <th *ngIf="isCredential">
+                {{ 'common.issue' | translate | uppercase }}
+            </th>
+            <th class="text-center">
+                {{ 'common.edit' | translate | uppercase }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item let-index="rowIndex">
+        <!-- rowIndex % perPage to get the index of the item on the specific page -->
+        <tr
+            class="{{
+                index % perPage === selectedRowIndex ? 'ui-state-highlight' : ''
+            }}"
+        >
+            <td (click)="onRowSelect(index % perPage, item.oid)">
+                {{ item.additionalInfo.updatedOn | date: 'dd/MM/yyyy' }}
+            </td>
+            <td
+                (click)="onRowSelect(index % perPage, item.oid)"
+                class="select-highlight f-16 pl-0"
+            >
+                {{ item.defaultTitle }}
+            </td>
+            <td *ngIf="isCredential" class="cursor-default">
+                <div class="d-block issue-button">
+                    <ux-button
+                        [isFlat]="true"
+                        class="overflow-visible"
+                        styleClass="no-box"
+                        typeClass="primary"
+                        iconClass="fa fa-paper-plane"
+                        (click)="onIssue.emit(item.oid)"
+                        title="{{ 'common.issue' | translate }}"
+                    ></ux-button>
+                </div>
+            </td>
+            <td
+                class="justify-content-center d-inline-flex w-100 cursor-default"
+            >
+                <ux-dropdown-button
+                    iconClass="fa fa-ellipsis-v"
+                    typeClass="primary"
+                >
+                    <ux-dropdown-button-item
+                        label="{{ 'common.edit' | translate }}"
+                        iconClass="fa fa-pencil"
+                        styleClass="p-0"
+                        (click)="onEdit.emit(item.oid)"
+                    >
+                    </ux-dropdown-button-item>
+                    <ux-dropdown-button-item
+                        label="{{
+                            'credential-builder.achievements-tab.delete'
+                                | translate
+                        }}"
+                        iconClass="fa fa-trash"
+                        (click)="onRequestDelete(item)"
+                    >
+                    </ux-dropdown-button-item>
+                    <ux-dropdown-button-item
+                        label="{{
+                            'credential-builder.achievements-tab.duplicate'
+                                | translate
+                        }}"
+                        iconClass="fa fa-files-o"
+                        (click)="onDuplicate.emit(item.oid)"
+                    >
+                    </ux-dropdown-button-item>
+                </ux-dropdown-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<ux-message-box
+    id="messageBoxDelete"
+    titleLabel="{{ 'common.warning' | translate | uppercase }}"
+    acceptLabel="{{ 'common.yes' | translate | uppercase }}"
+    dismissLabel="{{ 'common.no' | translate | uppercase }}"
+    (clicked)="onAcceptDelete($event)"
+>
+    <p>{{ 'credential-builder.deleteWarning' | translate }}</p>
+</ux-message-box>

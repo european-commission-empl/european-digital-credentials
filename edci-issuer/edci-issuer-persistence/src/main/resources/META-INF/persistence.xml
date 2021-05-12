@@ -1,0 +1,28 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="${persistence.unit.name}" transaction-type="${transaction.type}">
+
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <jta-data-source>${jndi.datasource.name}</jta-data-source>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="eclipselink.logging.level" value="${log.level.jpa}"/>
+            <property name="eclipselink.logging.parameters" value="${eclipselink.logging.parameters}"/>
+            <property name="eclipselink.logging.level.sql" value="${log.level.jpa}"/>
+
+            <property name="eclipselink.deploy-on-startup" value="true"/>
+            <property name="eclipselink.target-server" value="${eclipselink.target.server}"/>
+            <property name="eclipselink.target-database"
+                      value="org.eclipse.persistence.platform.database.oracle.Oracle11Platform"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
+            <property name="eclipselink.ddl-generation" value="${eclipselink.ddl-generation}"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>

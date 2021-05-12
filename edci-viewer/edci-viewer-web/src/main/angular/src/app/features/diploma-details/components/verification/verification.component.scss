@@ -1,0 +1,86 @@
+.verification-steps {
+    > ul.timeline.left-aligned {
+        &::before {
+            background-color: rgba(157, 157, 157, 0.3);
+            border-radius: 3.5px;
+            width: 6px;
+        }
+
+        li {
+            cursor: auto;
+
+            .icon {
+                color: #333;
+                left: 6px;
+            }
+        }
+    }
+}
+
+.verification-step {
+    > li.correct > span.ux-icon-circle-o {
+        background: transparent;
+
+        &::before {
+            background: white;
+            border-radius: 50%;
+            color: #479f4b;
+            content: '\f058';
+            /* stylelint-disable */
+            font-family: FontAwesome;
+            /* stylelint-enable */
+            font-size: 26px;
+        }
+
+        div.content {
+            cursor: auto;
+        }
+    }
+
+    > li.incorrect > span.ux-icon-circle-o::before {
+        background: white;
+        border-radius: 50%;
+        color: red;
+        content: '\f057';
+        /* stylelint-disable */
+        font-family: FontAwesome;
+        /* stylelint-enable */
+        font-size: 26px;
+    }
+
+    > li.verified {
+        cursor: auto;
+
+        > span.ux-icon-circle-o {
+            background: #f8f8f8;
+            height: 5rem;
+            left: 0 !important;
+            padding-top: 0.5rem;
+            width: 3rem;
+
+            &::before {
+                background-image: url(../../../../../assets/icons/verified-icon.svg);
+                background-repeat: no-repeat;
+                background-size: 2.5rem auto;
+                content: '';
+                display: block;
+                height: 3rem;
+                width: 3rem;
+            }
+        }
+
+        div.title {
+            color: #479f4b !important;
+            margin-top: 1rem;
+        }
+    }
+}
+
+ul.timeline li:hover .content {
+    background: transparent;
+}
+
+.verify-spinner {
+    left: 40%;
+    margin-top: 40%;
+}

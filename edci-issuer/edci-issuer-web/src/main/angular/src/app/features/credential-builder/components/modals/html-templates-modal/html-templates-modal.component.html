@@ -1,0 +1,254 @@
+<ux-modal
+    [id]="modalId"
+    class="htmlTemplateModal"
+    [titleLabel]="modalTitle"
+    (onClose)="closeModal(false)"
+    customWidth="75%"
+>
+    <uxModalBody>
+        <form class="form-group col-6 required" [formGroup]="formGroup">
+            <label class="d-inline-flex control-label"
+                >{{ 'common.title' | translate }}
+            </label>
+            <input
+                type="text"
+                class="form-control"
+                [formControl]="defaultTitle"
+            />
+
+            <ux-control-feedback
+                *ngIf="defaultTitle.errors?.maxlength"
+                typeClass="danger"
+            >
+                {{ 'error.maxLength.255' | translate }}
+            </ux-control-feedback>
+
+            <ux-control-feedback
+                *ngIf="
+                    defaultTitle.invalid &&
+                    defaultTitle.errors?.required &&
+                    defaultTitle.touched
+                "
+                typeClass="danger"
+            >
+                {{ 'error.required' | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+                *ngIf="
+                    defaultTitle.invalid &&
+                    defaultTitle.errors?.onlySpaceError &&
+                    defaultTitle.touched
+                "
+                typeClass="danger"
+            >
+                {{ 'error.noBlankSpaceOnly' | translate }}
+            </ux-control-feedback>
+        </form>
+        <edci-cb-language-tabs
+            *ngIf="selectedLanguages?.length > 0"
+            [(selectedLanguages)]="selectedLanguages"
+            [language]="language"
+            (onLanguageChange)="languageTabSelected($event)"
+            (onLanguageRemoved)="languageRemoved($event)"
+            (onLanguageAdded)="languageAdded($event)"
+        ></edci-cb-language-tabs>
+        <div class="cb-modal-form-wrapper">
+            <form class="col-12" [formGroup]="formGroup">
+                <div class="col-12">
+                    <h1>
+                        {{ 'credential-builder.HTMLTemplates' | translate }}
+                    </h1>
+                </div>
+                <div
+                    *ngIf="html"
+                    class="form-group col-12"
+                >
+                    <label class="d-inline-flex required"
+                        >{{ 'common.html' | translate }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.html-templates-tab.tooltips.html'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <textarea
+                        class="html-body form-control"
+                        [formControl]="html"
+                        rows="3"
+                    ></textarea>
+                    <ux-control-feedback
+                        *ngIf="
+                            html.invalid &&
+                            html.errors?.required &&
+                            html.touched
+                        "
+                        typeClass="danger"
+                    >
+                        {{ 'error.required' | translate }}
+                    </ux-control-feedback>
+                </div>
+                <div
+                    *ngIf="file"
+                    class="form-group col-12"
+                    [formGroup]="file">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.html-templates-tab.background'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            uxTooltip="{{
+                                'credential-builder.html-templates-tab.tooltips.background'
+                                    | translate
+                            }}"
+                        ></ux-a-icon>
+                    </label>
+                    <div>
+                        <div *ngIf="backgroundPreviewURL" style="display:flex;">
+                            <img *ngIf="backgroundPreviewURL"
+                            src="{{ backgroundPreviewURL }}"
+                            [height]="isLogoNotAvailable ? '100' : '200'"
+                            [title]="isLogoNotAvailable ? 'Preview not available' : ''"
+                            class="mb-3"/>
+                            <ux-button
+                                styleClass="no-shadow"
+                                [isFlat]="true"
+                                iconClass="fa fa-trash-o"
+                                (click)="deleteLogo()"
+                            ></ux-button>
+                        </div>
+                        <edci-upload
+                                styleClass="logo-upload-button"
+                                [label]="
+                                    'credential-builder.organizations-tab.upload-logo'
+                                        | translate
+                                "
+                                [isIconOnly]="false"
+                                [isSecondary]="true"
+                                [allowedFiles]="imageExtensions"
+                                [needsConfirmation]="false"
+                                (newDocuments)="onNewBackgroundFile($event)"
+                            ></edci-upload>
+                    </div>
+                </div>
+                <div *ngIf="listOfFormArray">
+                    <div class="form-group col-12">
+                        <label class="d-inline-flex"
+                            >{{
+                                'credential-builder.html-templates-tab.labels'
+                                    | translate
+                            }}
+                            <ux-a-icon
+                                iconClass="fa fa-info-circle"
+                                [isRounded]="false"
+                                [isSmall]="true"
+                                position="top-right"
+                                size="large"
+                                uxTooltip="{{
+                                    'credential-builder.html-templates-tab.tooltips.labels'
+                                        | translate
+                                }}"
+                            ></ux-a-icon>
+                        </label>
+                        <ng-container
+                            *ngFor="
+                                let row of listOfFormArray[language];
+                                let i = index;
+                                let last = last
+                            "
+                        >
+                            <div class="d-flex mb-2">
+                                <div class="d-block col-6 pl-0">
+                                    <input
+                                        type="text"
+                                        class="form-control mr-3"
+                                        placeholder="{{
+                                            'common.labelKey' | translate
+                                        }}"
+                                        [ngModelOptions]="{ standalone: true }"
+                                        [(ngModel)]="listOfFormArray[language][i].key"
+                                    />
+                                    <div *ngFor="let element of listOfFormArray[language];
+                                                let indexOfElem = index">
+                                        <ux-control-feedback
+                                        *ngIf="i !== indexOfElem && element.key && element.key === listOfFormArray[language][i].key"
+                                        typeClass="danger">
+                                            {{ 'error.unique' | translate }}
+                                        </ux-control-feedback>
+                                    </div>
+                                </div>
+                                <div class="d-block col-5">
+                                    <input
+                                        type="text"
+                                        class="form-control mr-3"
+                                        placeholder="{{
+                                            'common.labelContent' | translate
+                                        }}"
+                                        [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="listOfFormArray[language][i].value"
+                                    />
+                                    <ux-control-feedback
+                                        *ngIf="listOfFormArray[language][i].key && !listOfFormArray[language][i].value"
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.webDocument' | translate }}
+                                    </ux-control-feedback>
+                                </div>
+                                <ux-button
+                                    *ngIf="last"
+                                    styleClass="no-shadow"
+                                    [isFlat]="true"
+                                    iconClass="ux-icon ux-icon-plus-circle-thin-o ux-u-font-size-h3"
+                                    (click)="createRow(language)"
+                                ></ux-button>
+                                <ux-button
+                                    *ngIf="listOfFormArray[language].length > 1"
+                                    styleClass="no-shadow"
+                                    [isFlat]="true"
+                                    iconClass="fa fa-trash-o"
+                                    (click)="deleteRow(language, i)"
+                                ></ux-button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </form>
+            </div>
+    </uxModalBody>
+    <uxModalFooter>
+        <edci-cb-modal-footer
+            (onClose)="closeModal(false)"
+            (onSave)="onSave()"
+            [isDisabled]="isSaveDisabled"
+        ></edci-cb-modal-footer>
+    </uxModalFooter>
+</ux-modal>
+
+<div *ngIf="isLoading || isSaveDisabled" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+<ux-message-box
+    id="messageBoxFormError"
+    titleLabel="{{ 'common.warning' | translate | uppercase }}"
+    messageBoxType="ok"
+>
+    <p>{{ 'credential-builder.formError' | translate }}</p>
+</ux-message-box>

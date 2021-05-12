@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-5.2.xsd
+                           http://www.springframework.org/schema/security/oauth2
+                           https://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- BASIC AUTH FOR ADMIN ENDPOINTS -->
+    <security:http auto-config="false" pattern="${admin.pattern}" authentication-manager-ref="authenticationManager"
+                   use-expressions="true" request-matcher="regex">
+        <security:intercept-url pattern="${admin.pattern}" access="hasRole('ROLE_ADMIN')"/>
+        <security:http-basic/>
+        <security:csrf disabled="true"/>
+    </security:http>
+
+    <!--Api Protected Area, Respond with 401 -->
+    <security:http auto-config="false" use-expressions="true" create-session="always" disable-url-rewriting="true"
+                   request-matcher="regex" pattern="/.*" authentication-manager-ref="authenticationManager"
+                   entry-point-ref="oauth2AuthenticationEntryPoint">
+        <!--Login-->
+        <security:custom-filter after="PRE_AUTH_FILTER"
+                                ref="openIdConnectAuthenticationFilter"/>
+        <security:logout logout-url="${oidc.logout.url}" invalidate-session="true"
+                         success-handler-ref="logoutSuccessHandler"/>
+        <!--Api Protected Area-->
+        <security:custom-filter after="SECURITY_CONTEXT_FILTER" ref="corsFilter"/>
+        <security:custom-filter before="PRE_AUTH_FILTER" ref="resourceServerFilter"/>
+        <security:custom-filter before="SESSION_MANAGEMENT_FILTER" ref="EDCISessionManagementFilter"/>
+        <security:session-management session-fixation-protection="none"/>
+        <security:csrf token-repository-ref="cookieCsrfTokenRepository" disabled="${oidc.csrf.disabled}"/>
+    </security:http>
+
+
+    <oauth:resource-server id="resourceServerFilter" token-services-ref="introspectingService" stateless="false"
+                           authentication-manager-ref="authenticationManager"/>
+
+    <!--OPENID Config-->
+    <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"
+                                     authentication-manager-ref="authenticationManager"/>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="openIdConnectAuthenticationProvider"/>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="${admin.user}" password="{noop}${admin.password}" authorities="ROLE_ADMIN"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- Authentication Provider -->
+    <bean id="openIdConnectAuthenticationProvider"
+          class="eu.europa.ec.empl.edci.security.oidc.EDCIOIDCAuthenticationProvider">
+        <property name="tokenServices" ref="introspectingService"/>
+        <property name="configService" ref="issuerConfigService"/>
+        <property name="authoritiesMapper" ref="namedAdminAuthoritiesMapper"/>
+    </bean>
+
+    <!-- The authentication filter -->
+    <bean id="openIdConnectAuthenticationFilter"
+          class="eu.europa.ec.empl.edci.security.oidc.filter.EDCIOIDCAuthenticationFilter">
+        <property name="configService" ref="issuerConfigService"/>
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="issuerService" ref="staticIssuerService"/>
+        <property name="serverConfigurationService" ref="dynamicServerConfigurationService"/>
+        <property name="clientConfigurationService" ref="staticClientConfigurationService"/>
+        <property name="authRequestOptionsService" ref="staticAuthRequestOptionsService"/>
+        <property name="authRequestUrlBuilder" ref="plainAuthRequestUrlBuilder"/>
+        <property name="authenticationSuccessHandler" ref="EDCIAuthenticationSuccessHandler"/>
+    </bean>
+
+    <!-- EDCI Dependency beans -->
+    <bean id="namedAdminAuthoritiesMapper" class="org.mitre.openid.connect.client.NamedAdminAuthoritiesMapper"/>
+
+    <bean id="issuerConfigService" class="eu.europa.ec.empl.edci.issuer.service.IssuerConfigService"/>
+    <!-- Session options -->
+    <bean name="EDCISessionManagementFilter"
+          class="org.springframework.security.web.session.SessionManagementFilter">
+        <constructor-arg name="securityContextRepository" ref="httpSessionSecurityContextRepository"/>
+        <property name="invalidSessionStrategy" ref="EDCISimpleRedirectInvalidSessionStrategy"/>
+    </bean>
+
+    <bean id="allAuthenticatedUserService"
+          class="eu.europa.ec.empl.edci.issuer.service.security.UserDetailsServiceCustom"/>
+
+    <bean id="logoutSuccessHandler"
+          class="eu.europa.ec.empl.edci.security.oidc.EDCILogoutSuccessHandler">
+        <property name="serverConfigurationService" ref="dynamicServerConfigurationService"/>
+        <property name="configService" ref="issuerConfigService"/>
+    </bean>
+
+
+    <!-- MitreId Dependency beans -->
+    <bean id="introspectingService" class="org.mitre.oauth2.introspectingfilter.IntrospectingTokenService">
+        <property name="introspectionConfigurationService" ref="staticIntrospectionConfigurationService"/>
+        <property name="introspectionAuthorityGranter" ref="simpleIntrospectionAuthorityGranter"/>
+    </bean>
+
+    <bean id="simpleIntrospectionAuthorityGranter"
+          class=" org.mitre.oauth2.introspectingfilter.service.impl.SimpleIntrospectionAuthorityGranter"/>
+
+
+    <bean class="org.mitre.openid.connect.client.service.impl.DynamicServerConfigurationService"
+          id="dynamicServerConfigurationService"/>
+
+    <bean class="org.mitre.openid.connect.client.service.impl.StaticAuthRequestOptionsService"
+          id="staticAuthRequestOptionsService"/>
+
+
+    <bean class="org.mitre.openid.connect.client.service.impl.PlainAuthRequestUrlBuilder"
+          id="plainAuthRequestUrlBuilder"/>
+
+    <!-- Spring Dependencies-->
+    <bean id="httpSessionSecurityContextRepository"
+          class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
+
+    <bean id="cookieCsrfTokenRepository" class="org.springframework.security.web.csrf.CookieCsrfTokenRepository">
+        <property name="cookieHttpOnly" value="false"/>
+    </bean>
+
+    <bean id="corsFilter" class="eu.europa.ec.empl.edci.security.filter.CorsFilter"/>
+
+    <bean id="oauth2AuthenticationEntryPoint"
+          class="eu.europa.ec.empl.edci.security.oauth2.EDCIOAuth2AuthenticationEntryPoint"/>
+
+</beans>
