@@ -1,0 +1,30 @@
+<div class="col-12 pr-0 pl-0 h-100 d-inline-flex organization-tab">
+    <div class="col-6 py-4 px-5 d-block overflow-auto-details break-word">
+        <edci-viewer-organization-detail
+            *ngIf="activeOrganisation"
+            [organization]="activeOrganisation"
+            titleSection="{{ 'details.issuing-organization' | translate }}"
+            subTitleSection="{{
+                'details.organization-tab.issuingOrganization' | translate
+            }}"
+            [showVP]="!organizationPresentation"
+        ></edci-viewer-organization-detail>
+        <edci-viewer-organization-detail
+            *ngIf="organizationPresentation"
+            styleClass="mt-3"
+            [organization]="organizationPresentation"
+            titleSection="{{ 'details.sealing-organization' | translate }}"
+            subTitleSection="{{
+                'details.organization-tab.sealingOrganization' | translate
+            }}"
+            [showVP]="true"
+        ></edci-viewer-organization-detail>
+    </div>
+    <div class="col-6 h-100 bg-white text-center overflow-auto-details">
+        <img
+            class="img-logo-resp diploma-logo"
+            *ngIf="issuerLogo"
+            [src]="issuerLogo | edciSanitize: 'resourceUrl'"
+        />
+    </div>
+</div>

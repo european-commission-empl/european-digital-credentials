@@ -1,0 +1,25 @@
+<ux-tabs
+    *ngIf="selectedLanguages?.length > 0"
+    class="modal-tabs"
+    (tabClosed)="languageTabClosed($event)"
+    (tabSelected)="languageTabSelected($event)"
+>
+    <ux-tab
+        *ngFor="let language of selectedLanguages; let isFirst = first"
+        [label]="language.code | uppercase"
+        [isActive]="isFirst"
+        [isClosable]="!isFirst"
+    >
+    </ux-tab>
+    <uxTabsRightContent>
+        <ux-dropdown-button
+            styleClass="mr-2"
+            iconClass="fa fa-chevron-down"
+            [links]="languages"
+            [label]="activeLanguage"
+            [isOutline]="true"
+            [isUpdateLabelFromSelectedItem]="true"
+            (linkSelected)="onLanguageSelected($event)"
+        ></ux-dropdown-button>
+    </uxTabsRightContent>
+</ux-tabs>

@@ -1,0 +1,38 @@
+#issueModal {
+    .modal-header {
+        display: none;
+    }
+
+    .cb-modal-form-wrapper {
+        font-size: 14px;
+    }
+
+    .modal-button-accept {
+        padding: 0.8rem 4rem;
+    }
+
+    .modal-button-dismiss {
+        padding: 0.7rem 3.9rem;
+    }
+
+    .ux-modal__body {
+        padding: 1rem 8rem;
+    }
+
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    .form-header > .ux-layout-page-header-wrapper {
+        padding-left: 0.75rem !important;
+    }
+
+    .form-datepicker {
+        input,
+        button {
+            bottom: 6px;
+            height: 36.8px;
+            position: relative;
+        }
+    }
+}

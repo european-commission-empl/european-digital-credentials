@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.europa.ec.empl.edci.wallet</groupId>
+        <version>1.4.1-SNAPSHOT</version>
+        <artifactId>edci-wallet</artifactId>
+    </parent>
+    <artifactId>edci-wallet-common</artifactId>
+    <packaging>jar</packaging>
+
+    <name>edci-wallet common module</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--
+      <dependency>
+          <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+          <artifactId>dss-reports</artifactId>
+          <version>${project.sd-ssd.version}</version>
+      </dependency>
+      -->
+        <dependency>
+            <groupId>eu.europa.ec.empl.edci</groupId>
+            <artifactId>edci-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+            <artifactId>dss-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+            <artifactId>dss-tsl-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+            <artifactId>dss-utils-apache-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--MITRE-->
+        <!--<dependency>
+            <groupId>org.mitre</groupId>
+            <artifactId>openid-connect-common</artifactId>
+        </dependency>-->
+
+
+    </dependencies>
+
+</project>

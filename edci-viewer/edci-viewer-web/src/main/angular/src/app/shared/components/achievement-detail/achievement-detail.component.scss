@@ -1,0 +1,13 @@
+.achievement-detail-page {
+    .related_esco {
+        span:not(:last-child)::after {
+            content: ", ";
+        }
+    }
+}
+
+div.learning-outcome-title {
+    > p {
+        color: #164194;
+    }
+}

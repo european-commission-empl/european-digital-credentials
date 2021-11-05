@@ -1,0 +1,255 @@
+<div *ngIf="organization" class="col-12 {{ styleClass }}">
+    <div class="border-bottom">
+        <div class="text-center">
+            <img
+                *ngIf="logo && organization['isModal']"
+                class="fit-image"
+                alt="organization-logo"
+                [src]="logo"
+            />
+        </div>
+
+        <h2 *ngIf="titleSection" class="font-weight-bold col-12">
+            {{ titleSection }}
+        </h2>
+
+        <p *ngIf="subTitleSection" class="col-12">
+            {{ subTitleSection }}
+        </p>
+
+        <div *ngIf="sealLongDescription && showVP" class="col-12">
+            <p class="verified f-14">
+                {{ sealLongDescription | edciTranslate: language }}
+            </p>
+        </div>
+
+        <div
+            *ngIf="organization?.preferredName || organization?.alternativeName"
+            class="col-12"
+        >
+            <h3
+                *ngIf="organization?.preferredName"
+                class="font-weight-bold d-flex"
+            >
+                {{ organization?.preferredName }}
+                <a
+                    *ngIf="organization?.homepage?.length > 0"
+                    [href]="(organization?.homepage)[0].link"
+                    target="_blank"
+                    class="mt-1 ml-2 d-inline-block no-decoration-underline"
+                >
+                    <ux-a-icon
+                        iconClass="fa fa-link"
+                        [isRounded]="false"
+                    ></ux-a-icon>
+                </a>
+            </h3>
+            <h3
+                *ngIf="
+                    !organization?.preferredName &&
+                    organization?.alternativeName
+                "
+                class="font-weight-bold"
+            >
+                {{ organization?.alternativeName }}
+                <a
+                    *ngIf="organization?.homepage?.length > 0"
+                    [href]="(organization?.homepage)[0].link"
+                    target="_blank"
+                    class="mt-2 ml-2 d-inline-block no-decoration-underline"
+                >
+                    <ux-a-icon
+                        iconClass="fa fa-link"
+                        [isRounded]="false"
+                    ></ux-a-icon>
+                </a>
+            </h3>
+        </div>
+
+        <h4
+            class="col-12 font-weight-bold mt-2 mb-3"
+            *ngIf="organization?.alternativeName && organization?.preferredName"
+        >
+            {{ organization?.alternativeName }}
+        </h4>
+
+        <div *ngIf="organization?.location" class="col-12">
+            <div *ngFor="let location of organization?.location">
+                <p>
+                    <span *ngIf="location?.geographicName"
+                        >{{ location?.geographicName
+                        }}{{
+                            location?.geographicName && location?.spatialCode
+                                ? ', '
+                                : ''
+                        }}</span
+                    ><span *ngIf="location?.spatialCode">{{
+                        location?.spatialCode | edciJoin: ', '
+                    }}</span>
+                </p>
+                <div *ngIf="location.address">
+                    <p *ngFor="let address of location.address">
+                        <strong *ngIf="address.fullAddress">
+                            {{
+                                'details.credential-subject-tab.address'
+                                    | translate
+                            }}:
+                        </strong>
+                        <span *ngIf="address.fullAddress">
+                            {{ address.fullAddress }}
+                        </span>
+                    </p>
+                    <p *ngFor="let address of location.address">
+                        <strong *ngIf="address.countryCode">
+                            {{
+                                'credential-builder.organizations-tab.country'
+                                    | translate
+                            }}:
+                        </strong>
+                        <span *ngIf="address.countryCode">
+                            {{ address.countryCode }}
+                        </span>
+                    </p>
+                </div>
+                <div *ngIf="location?.description" class="col-12 border-bottom">
+                    <p>
+                        {{ location?.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div
+            *ngIf="
+                organization?.legalIdentifier ||
+                organization?.vatIdentifier ||
+                organization?.taxIdentifier ||
+                organization?.identifier?.length > 0
+            "
+        >
+            <p class="col-12">
+                <strong>
+                    {{ 'details.organization-tab.identifiers' | translate }}:
+                </strong>
+            </p>
+            <div *ngIf="organization?.legalIdentifier">
+                <p class="col-12">
+                    <strong>
+                        {{
+                            'details.organization-tab.legalIdentifier'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    <span>
+                        <span>
+                            {{ organization?.legalIdentifier?.content }}
+                        </span>
+                    </span>
+                </p>
+            </div>
+            <div *ngIf="organization?.vatIdentifier" class="col-12">
+                <hr />
+                <p>
+                    <strong>
+                        {{
+                            'details.organization-tab.vatIdentifier'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    <edci-viewer-identifiers
+                        *ngIf="organization?.vatIdentifier?.length > 0"
+                        [identifiers]="organization?.vatIdentifier"
+                        [showLiteral]="false"
+                    >
+                    </edci-viewer-identifiers>
+                </p>
+                <hr />
+            </div>
+            <div *ngIf="organization?.taxIdentifier" class="col-12">
+                <p>
+                    <strong>
+                        {{
+                            'details.organization-tab.taxIdentifier'
+                                | translate
+                        }}:&nbsp;
+                    </strong>
+                    <edci-viewer-identifiers
+                        *ngIf="organization?.taxIdentifier?.length > 0"
+                        [identifiers]="organization?.taxIdentifier"
+                        [showLiteral]="false"
+                    >
+                    </edci-viewer-identifiers>
+                </p>
+                <hr />
+            </div>
+            <edci-viewer-identifiers
+                *ngIf="organization?.identifier?.length > 0"
+                [identifiers]="organization?.identifier"
+            >
+            </edci-viewer-identifiers>
+        </div>
+
+        <div *ngFor="let contactView of organization?.contactPoint">
+            <div *ngIf="contactView.address">
+                <p *ngFor="let address of contactView.address" class="col-12">
+                    <strong>
+                        {{
+                            'details.credential-subject-tab.address'
+                                | translate
+                        }}:
+                    </strong>
+                    <span *ngIf="address.fullAddress">
+                        {{ address.fullAddress }}
+                    </span>
+                    <span *ngIf="address.countryCode">
+                        ({{ address.countryCode }})
+                    </span>
+                </p>
+            </div>
+            <div *ngIf="contactView.phone">
+                <p *ngFor="let phone of contactView.phone" class="col-12">
+                    <strong>
+                        {{
+                            'details.credential-subject-tab.phone' | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{ phone }}
+                    </span>
+                </p>
+            </div>
+            <div *ngIf="contactView.email">
+                <p *ngFor="let email of contactView.email" class="col-12">
+                    <strong>
+                        {{
+                            'details.credential-subject-tab.email' | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{ email }}
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div *ngIf="organization?.parentOrganization">
+            <p class="col-12">
+                <strong>
+                    {{
+                        'details.organization-tab.parentOrganization'
+                            | translate
+                    }}:&nbsp;
+                </strong>
+            </p>
+            <p class="col-12">
+                <a
+                    (click)="
+                        changeSelection(organization?.parentOrganization?.id)
+                    "
+                >
+                    {{ organization.parentOrganization.preferredName }}
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

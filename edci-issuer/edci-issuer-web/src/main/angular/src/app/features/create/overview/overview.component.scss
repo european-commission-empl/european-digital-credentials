@@ -1,0 +1,155 @@
+@import 'global/variables.scss';
+
+.overview-page {
+    a {
+        transition: 0.13s all ease-in-out;
+
+        &.disabled {
+            color: $gray-dark;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    #overview-page__info {
+        .hint-text {
+            color: $placeholder-text;
+        }
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        height: 0 !important;
+    }
+
+    .table-container {
+        position: relative;
+
+        table {
+            width: 100%;
+
+            /* Override material styles */
+            tr.mat-header-row {
+                height: 45px;
+            }
+
+            td.mat-cell,
+            td.mat-footer-cell,
+            th.mat-header-cell {
+                border: none;
+            }
+
+            thead {
+                border-radius: 5px 0 0 5px;
+
+                tr {
+                    background: #edf1f4;
+
+                    th {
+                        color: #333;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        padding: 1rem;
+                        text-transform: uppercase;
+                        vertical-align: middle;
+                        word-break: break-word;
+                    }
+                }
+            }
+
+            tbody {
+                border-radius: 0 5px 5px 0;
+
+                tr {
+                    &:nth-child(even) {
+                        background: #fbfcfe;
+                    }
+
+                    td {
+                        padding: 1rem;
+                        vertical-align: middle;
+                        word-break: break-word;
+
+                        .mat-icon {
+                            font-size: 22px;
+                        }
+
+                        &.mat-column-actions {
+                            > a + a {
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .course {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    mat-toolbar-row {
+        background: white;
+        justify-content: space-between;
+
+        .csv-box {
+            cursor: pointer;
+            display: flex;
+            left: 4px;
+            position: relative;
+
+            .text {
+                font-size: 0.9rem;
+                font-weight: bold;
+                margin-left: 1rem;
+                margin-top: 0.15rem;
+            }
+        }
+
+        .disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    }
+}
+
+.loading-shade {
+    align-items: center;
+    background: rgba(113, 113, 113, 0.15);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+
+    .loading-shade__wrapper {
+        align-items: center;
+        background: white;
+        border: 6px solid $ongoing;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 750px;
+        padding: 20px;
+
+        .mat-progress-spinner circle,
+        .mat-spinner circle {
+            stroke: $ongoing;
+        }
+
+        span {
+            display: block;
+            margin-top: 20px;
+        }
+    }
+}

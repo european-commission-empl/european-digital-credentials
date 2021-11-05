@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.europa.ec.empl.edci.wallet</groupId>
+        <version>1.4.1-SNAPSHOT</version>
+        <artifactId>edci-wallet</artifactId>
+    </parent>
+
+    <artifactId>edci-wallet-web-swagger-ui</artifactId>
+    <packaging>war</packaging>
+    <name>edci-wallet web SwaggerUI module</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>edci-wallet-web-rest</artifactId>
+            <version>1.4.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>europass2#edci-wallet-swaggerUI</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>pre-install</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <target>
+                                <copy file="${basedir}/../edci-wallet-web-rest/target/generated-sources/swagger/swagger.json"
+                                      tofile="${basedir}/target/europass2#edci-wallet-swaggerUI/swagger.json"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,18 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body th:fragment="identifier(iden, details)">
+    <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+        <strong>
+            <span th:text="${iden.identifierSchemeId}"></span>
+            [[#{details.identifier}]]:
+        </strong>
+        <span th:text="${iden.content}"></span>
+    </span>
+    <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+        <strong>[[${details}]]: </strong>
+        <span th:text="${iden.content}"></span>
+    </span>
+</body>
+</html>

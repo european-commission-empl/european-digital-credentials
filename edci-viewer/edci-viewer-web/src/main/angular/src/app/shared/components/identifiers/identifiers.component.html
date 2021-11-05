@@ -1,0 +1,16 @@
+<div *ngIf="identifiers?.length > 0" class="col-12">
+    <div *ngFor="let id of identifiers">
+        <p>
+            <strong
+                ><span *ngIf="id.identifierSchemeId">
+                    {{ id.identifierSchemeId }}
+                </span>
+                <span *ngIf="showLiteral">
+                    {{ 'details.identifier' | translate }}:
+                </span>
+            </strong>
+            <span *ngIf="id.spatialId">{{ id.spatialId }}&nbsp;</span>
+            <span>{{ id.content }}</span>
+        </p>
+    </div>
+</div>

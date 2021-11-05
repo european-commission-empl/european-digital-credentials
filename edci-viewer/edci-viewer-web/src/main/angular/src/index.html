@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            http-equiv="Cache-control"
+            content="no-cache, no-store, must-revalidate"
+        />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>EDCI Viewer</title>
+        <base href="/" />
+        <script>
+            window.EDCIContext = $FRONTEND_CONTEXT;
+        </script>
+        <script src="assets/env.js"></script>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link
+            rel="apple-touch-icon"
+            href="/src/assets/icons/apple-touch-icon.png"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <meta name="apple-mobile-web-app-title" content="EDCI Viewer" />
+        <meta
+            name="msapplication-TileImage"
+            content="/src/assets/icons/icon-192x192.png"
+        />
+        <meta name="msapplication-TileColor" content="#fff" />
+        <meta name="theme-color" content="#3f51b5" />
+        <meta name="viewport"/>
+        <!-- Don't remove the following 2 lines -->
+        <!-- open-id-inject -->
+        <!-- end-open-id-inject -->
+    </head>
+
+    <body>
+        <noscript>
+            <div>
+                This page needs JavaScript to work properly. Please enable
+                JavaScript in this page
+            </div>
+        </noscript>
+        <div id="cred-wrapper" style="display: none;">
+            <myXml></myXml>
+        </div>
+        <edci-viewer-root>
+            <div id="loader-wrapper">
+                <div id="loader"></div>
+            </div>
+        </edci-viewer-root>
+    </body>
+</html>

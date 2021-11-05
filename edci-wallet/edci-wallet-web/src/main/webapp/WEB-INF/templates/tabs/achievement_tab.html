@@ -1,0 +1,191 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="achievement(achievement, iter, sub)">
+
+
+    <h2 th:if="${!sub}" th:id=" ${achievement.id}"
+        class="achievement-title"
+        th:text="${iter + achievement.title}"></h2>
+    <h3 th:if="${sub}" th:id=" ${achievement.id}"
+        class="achievement-rel-title"
+        th:text="${iter + achievement.title}"></h3>
+
+    <div class="summary">
+        <p th:if="${achievement.identifier}">
+        <ul style="list-style-type:none;padding-left: 0px;">
+            <li th:each="iden : ${achievement.identifier}">
+                <div th:insert="tabs/fields/identifier_field :: identifier(${iden}, #{details.achievements-tab.identifier})"></div>
+            </li>
+        </ul>
+        </p>
+        <p th:if="${achievement.awardingDate}">
+            <strong>[[#{details.achievements-tab.awardingDate}]]: </strong><span
+                th:text="${achievement.awardingDate}"></span>
+        </p>
+        <p th:if="${achievement.awardingBody}">
+            <strong>[[#{details.achievements-tab.awardingBody}]]: </strong>
+            <a th:href="${'#' + achievement.awardingBody.id}"
+               th:text="${achievement.awardingBody.preferredName}"></a>
+        </p>
+    </div>
+    <div th:if="${achievement.description}">
+        <p><span th:text="${achievement.description}"></span></p>
+    </div>
+    <div th:if="${achievement.provenBy != null and !achievement.provenBy.empty}">
+        <strong>[[#{details.achievements-tab.provenBy}]]</strong>
+        <table id="table-proven-by">
+            <tr>
+                <th style="text-align: left;">[[#{details.achievements-tab.title}]]</th>
+                <th style="text-align: left;">[[#{details.achievements-tab.grade}]]</th>
+            </tr>
+            <tr th:each="assessment : ${achievement.provenBy}">
+                <td><a th:href="${'#' + assessment.id}"
+                       th:text="${assessment.title}"></a></td>
+                <td><span th:text="${assessment.grade}"></span></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${achievement.influencedBy != null and !achievement.influencedBy.empty}">
+        <strong>[[#{details.achievements-tab.influencedBy}]]: </strong>
+        <p th:each="influence : ${achievement.influencedBy}">
+            <a th:href="${'#' + influence.id}"
+               th:text="${influence.title}"></a>
+        </p>
+
+    </div>
+    <div th:if="${achievement.entitledOwnerTo != null and !achievement.entitledOwnerTo.empty}">
+        <strong>[[#{details.achievements-tab.entitledTo}]]: </strong>
+        <p th:each="entitles : ${achievement.entitledOwnerTo}">
+            <a th:href="${'#' + entitles.id}"
+               th:text="${entitles.title}"></a>
+        </p>
+
+    </div>
+
+    <div th:insert="tabs/fields/more_information_field :: moreInformation(${achievement.moreInformation})"></div>
+
+    <div th:if="${achievement.subAchievements != null and !achievement.subAchievements.empty}">
+        <p><strong>[[#{details.achievements-tab.subAchievements}]]</strong></p>
+        <p th:each="subach : ${achievement.subAchievements}">
+            <a th:href="${'#' + subach.id}"
+               th:text="${subach.title}"></a>
+        </p>
+    </div>
+
+    <div th:if="${achievement.specifiedBy != null}">
+
+        <p th:insert="tabs/fields/specifiedBy_field :: specified(${achievement.specifiedBy}, #{details.achievements-tab.specification})"></p>
+
+        <p th:if="${achievement.specifiedBy.learningOutcome != null and !achievement.specifiedBy.learningOutcome.empty}">
+            <strong>[[#{details.achievements-tab.learningOutcomes}]]: </strong>
+            <div th:each="outcome : ${achievement.specifiedBy.learningOutcome}">
+        <p th:if="${outcome.identifier}">
+        <ul style="list-style-type:none;padding-left: 0px;">
+            <li th:each="iden : ${outcome.identifier}">
+                        <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                        <strong><span
+                                th:text="${iden.identifierSchemeId}"></span> [[#{details.identifier}]]: </strong><span
+                                th:text="${iden.content}"></span>
+                        </span>
+                <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                        <strong>[[#{details.achievements-tab.learningOutcomes.identifier}]]: </strong><span
+                        th:text="${iden.content}"></span>
+                        </span>
+            </li>
+        </ul>
+        </p>
+        <p th:if="${outcome.name != null}">
+            <strong>[[#{details.achievements-tab.learningOutcomes.name}]]: </strong>
+            <span th:text="${outcome.name}"></span>
+        </p>
+        <p th:if="${outcome.description != null}">
+            <strong>[[#{details.achievements-tab.learningOutcomes.descr}]]: </strong>
+            <span th:text="${outcome.description}"></span>
+        </p>
+        <p th:if="${outcome.type != null}" >
+            <strong>[[#{details.achievements-tab.learningOutcomes.type}]]: </strong>
+            <span th:text="${outcome.type}"></span>
+        </p>
+        <p th:if="${outcome.reusabilityLevel != null}" >
+            <strong>[[#{details.achievements-tab.learningOutcomes.level}]]: </strong>
+            <span th:if="${outcome.reusabilityLevel != null}" th:text="${outcome.reusabilityLevel}"></span>
+        </p>
+        <p th:if="${outcome.relatedSkill != null && !outcome.relatedSkill.empty}">
+            <strong>[[#{details.achievements-tab.learningOutcomes.related.skills}]]: </strong>
+            <span th:each="item, iter : ${outcome.relatedSkill}" th:text="!${iter.last} ? ${item} + ', ': ${item}">
+            </span>
+        </p>
+        <p th:if="${outcome.relatedESCOSkill != null && !outcome.relatedESCOSkill.empty}">
+            <strong>[[#{details.achievements-tab.learningOutcomes.skills}]]: </strong>
+            <a th:each="item, iter : ${outcome.relatedESCOSkill}" th:href="@{${item.link}}"
+               th:text="!${iter.last} ? ${item.title} + ', ': ${item.title}"></a>
+        </p>
+        <hr/>
+    </div>
+    </p>
+    <p th:if="${achievement.specifiedBy.workloadInHours}">
+        <strong>[[#{details.achievements-tab.volumeOfLearning}]]: </strong>
+        <span th:text="${achievement.specifiedBy.workloadInHours}"></span>
+        <span th:if="${achievement.specifiedBy.workloadInHours} == 1"> [[#{hour}]]</span>
+        <span th:unless="${achievement.specifiedBy.workloadInHours} == 1"> [[#{hours}]]</span>
+    </p>
+    <p th:if="${achievement.specifiedBy.maximumDurationInMonths}">
+        <strong>[[#{details.achievements-tab.maximumDuration}]]: </strong>
+        <span th:text="${achievement.specifiedBy.maximumDurationInMonths}"></span>
+        <span th:if="${achievement.specifiedBy.maximumDurationInMonths} == 1"> [[#{month}]]</span>
+        <span th:unless="${achievement.specifiedBy.maximumDurationInMonths} == 1"> [[#{months}]]</span>
+    </p>
+    <p th:if="${achievement.specifiedBy.ectsCreditPoints}">
+        <strong>[[#{details.achievements-tab.ECTSCreditPoints}]]: </strong><span
+            th:text="${achievement.specifiedBy.ectsCreditPoints}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.thematicArea != null and !achievement.specifiedBy.thematicArea.empty}">
+        <strong>[[#{details.achievements-tab.thematicArea}]]: </strong>
+        <span th:each="item, iter : ${achievement.specifiedBy.thematicArea}"
+              th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.learningMode != null and !achievement.specifiedBy.learningMode.empty}">
+        <strong>[[#{details.achievements-tab.modeOfLearning}]]: </strong>
+        <span th:each="item, iter : ${achievement.specifiedBy.learningMode}"
+              th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.learningSetting}">
+        <strong>[[#{details.achievements-tab.learningSettings}]]: </strong><span
+            th:text="${achievement.specifiedBy.learningSetting}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.learningOpportunityType}">
+        <strong>[[#{details.achievements-tab.learningOpportunityType}]]: </strong>
+        <span th:each="item, iter : ${achievement.specifiedBy.learningOpportunityType}"
+              th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.instructionLanguage != null and !achievement.specifiedBy.instructionLanguage.empty}">
+        <strong>[[#{details.achievements-tab.languagesOfInstruction}]]: </strong>
+        <span th:each="item, iter : ${achievement.specifiedBy.instructionLanguage}"
+              th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.entryRequirements}">
+        <strong>[[#{details.achievements-tab.entryRequirements}]]: </strong><span
+            th:text="${achievement.specifiedBy.entryRequirements}"></span>
+    </p>
+    <p th:if="${achievement.specifiedBy.otherDocuments != null and !achievement.specifiedBy.otherDocuments.empty}">
+        <strong>[[#{details.achievements-tab.other.docs}]]</strong>
+    <ul style="list-style-type:none;padding-left:0px;"
+        th:each="document : ${achievement.specifiedBy.otherDocuments}">
+        <li><a th:href="@{${document.link}}">
+            <span th:text="${document.title != null} ? ${document.title} : ${document.link}"></span>
+        </a></li>
+    </ul>
+    </p>
+
+    <div th:insert="tabs/fields/more_information_field :: moreInformation(${achievement.specifiedBy.moreInformation})"></div>
+
+    <div th:insert="tabs/fields/qualification_field :: qualification(${achievement.specifiedBy.qualification})"></div>
+
+</div>
+<div style="page-break-after:always"></div>
+</div>
+</body>
+</html>

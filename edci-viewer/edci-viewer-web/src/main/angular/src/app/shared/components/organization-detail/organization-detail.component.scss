@@ -1,0 +1,24 @@
+.fit-image {
+    max-height: 15rem;
+    max-width: 80%;
+}
+
+.verified {
+    display: flex;
+
+    &::before {
+        background: white;
+        border-radius: 50%;
+        color: #479f4b;
+        content: '\f058';
+        /* stylelint-disable */
+        font-family: FontAwesome;
+        /* stylelint-enable */
+        font-size: 26px;
+        margin-right: 10px;
+    }
+}
+
+.f-14 {
+    font-size: 14px;
+}

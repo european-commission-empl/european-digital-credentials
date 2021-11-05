@@ -1,0 +1,17 @@
+.snack-bar {
+    font-size: 13px;
+    padding: 3px;
+
+    > .snack-bar-code {
+        font-weight: 600;
+    }
+
+    a {
+        background: rgba(255, 255, 255, 0.13);
+        border: 1px solid white;
+        border-radius: 3px;
+        color: white;
+        margin-left: 4px;
+        padding: 3px 8px;
+    }
+}

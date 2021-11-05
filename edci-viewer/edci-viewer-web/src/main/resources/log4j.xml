@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="true">
+
+    <appender name="CONSOLE_APPENDER" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %c{1} - %x - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="FILE_APPENDER" class="org.apache.log4j.RollingFileAppender">
+        <param name="file" value="${log.file}.log"/>
+        <param name="MaxFileSize" value="30MB"/>
+        <param name="MaxBackupIndex" value="20"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="ActiveFileName" value="${log.file}.log"/>
+            <param name="FileNamePattern" value="${log.file}.%d{mm}.log.gz"/>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
+            <param name="MaxFileSize" value="30MB"/>
+        </triggeringPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="NULL_APPENDER" class="org.apache.log4j.varia.NullAppender"/>
+    <category name="org" additivity="true">
+        <level value="${log.level}"/>
+    </category>
+    <category name="eu" additivity="true">
+        <level value="${log.level}"/>
+    </category>
+    <category name="com.zaxxer.hikari" additivity="true">
+        <level value="${log.level}"/>
+    </category>
+    <root>
+        <priority value="${log.level}"/>
+        <appender-ref ref="FILE_APPENDER"/>
+        <appender-ref ref="${console.appender.ref}"/>
+    </root>
+    <logger name="org.apache.http">
+        <level value="${log.apache.level}"/>
+    </logger>
+    <logger name="httpclient">
+        <level value="${log.apache.level}"/>
+    </logger>
+    <logger name="org.apache.xml">
+        <level value="${log.apache.level}"/>
+    </logger>
+    <logger name="org.apache.jcp.xml">
+        <level value="${log.apache.level}"/>
+    </logger>
+</log4j:configuration>

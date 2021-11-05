@@ -1,0 +1,19 @@
+<div th:fragment="qualification(qualification)">
+    <div th:if="${qualification != null}">
+        <strong>[[#{details.achievements-tab.qualification}]]</strong></span>
+        <p th:if="${qualification.eqfLevel}">
+            <strong>[[#{details.achievements-tab.EQFLevel}]]: </strong><span
+                th:text="${qualification.eqfLevel}"></span>
+        </p>
+        <p th:if="${qualification.nqfLevel != null}">
+            <strong>[[#{details.achievements-tab.NQFLevel}]]: </strong>
+            <span th:each="item, iter : ${qualification.nqfLevel}"
+                  th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+        </p>
+        <p th:if="${qualification.isPartialQualification != null}">
+            <strong>[[#{details.achievements-tab.partialQualification}]]: </strong>
+            <span th:if="${qualification.isPartialQualification} == true"><span>Yes</span></span>
+            <span th:if="${qualification.isPartialQualification} == false"><span>No</span></span>
+        </p>
+    </div>
+</div>

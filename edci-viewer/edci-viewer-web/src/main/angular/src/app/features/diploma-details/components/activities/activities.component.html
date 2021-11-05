@@ -1,0 +1,37 @@
+<div class="col-12 p-0 h-100 d-inline-flex">
+    <!-- <div class="col-5 pl-4 pr-5 pt-3 overflow-auto-details break-word">
+        <div *ngIf="activities">
+            <div
+                *ngFor="let activity of activities; let i = index"
+                class="bg-transparent"
+            >
+                <div
+                    (click)="onSelect(activity)"
+                    class=" main-item border-bottom list-item pl-1 cursor-pointer {{
+                        activity['active'] ? 'selected' : ''
+                    }}"
+                >
+                    {{ activity.title }}
+                </div>
+                <div
+                    *ngFor="let part of activity.subActivities"
+                    class="bg-transparent border-bottom cursor-pointer"
+                >
+                    <div
+                        (click)="onSelect(part)"
+                        class="list-item sub-item pl-4 {{
+                            part['active'] ? 'selected' : ''
+                        }}"
+                    >
+                        {{ part.title }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="col-12 py-4 px-5 h-100 bg-white overflow-auto-details">
+        <edci-viewer-activity-detail
+            [activeActivity]="activeActivity"
+        ></edci-viewer-activity-detail>
+    </div>
+</div>

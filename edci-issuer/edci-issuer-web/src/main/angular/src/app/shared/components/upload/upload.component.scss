@@ -1,0 +1,46 @@
+.upload-component {
+    .file-list .file-item {
+        background-color: transparent;
+        background-image: none;
+        border: 1px solid #777;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem 0.4rem;
+        transition: 0.13s all ease-in-out;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.02);
+            border-color: #444;
+        }
+
+        .ux-a-icon__icon {
+            font-size: 1.6rem !important;
+        }
+    }
+
+    .ecl-file__container {
+        border: 1px solid #cacaca;
+        border-radius: 3px;
+        padding: 1rem;
+
+        .ecl-file__title {
+            text-align: left;
+        }
+
+        .ecl-file__download {
+            display: none;
+        }
+    }
+
+    .upload-progress-card {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 300px;
+        z-index: 999;
+    }
+
+    // .icon-navigation-label {
+    //     height: 45px;
+    // }
+}
