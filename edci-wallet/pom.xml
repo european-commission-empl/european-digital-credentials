@@ -136,7 +136,7 @@
 
         <!-- EDCI DATA MODEL -->
 
-        <edci.commons.version>2.0</edci.commons.version>
+        <edci.commons.version>2.1</edci.commons.version>
 
     </properties>
 

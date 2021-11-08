@@ -90,7 +90,7 @@
         <http.mime.version>4.5.3</http.mime.version>
         <!--INTERNAL VERSIONS-->
         <edci.dss.utils.version>1.0</edci.dss.utils.version>
-        <edci.commons.version>2.0</edci.commons.version>
+        <edci.commons.version>2.1</edci.commons.version>
         <!-- MITREID VERSIONS-->
         <mitreid.version>1.3.3</mitreid.version>
         <nimbus.jwt.version>7.1</nimbus.jwt.version>
