@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
-import sun.misc.BASE64Encoder;
 
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
