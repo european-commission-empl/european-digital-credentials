@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>1.4.1-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
     <artifactId>edci-issuer-persistence</artifactId>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>eu.europa.ec.empl.edci.issuer</groupId>
             <artifactId>edci-issuer-common</artifactId>
-            <version>1.4.1-SNAPSHOT</version>
+            <version>1.4.1-RELEASE</version>
         </dependency>
 
         <!-- LIQUIBASE -->

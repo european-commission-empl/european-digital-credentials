@@ -6,11 +6,11 @@
     <parent>
         <groupId>eu.europa.ec.empl.edci</groupId>
         <artifactId>edci</artifactId>
-        <version>1.4.1-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
     </parent>
     <groupId>eu.europa.ec.empl.edci.issuer</groupId>
     <artifactId>edci-issuer</artifactId>
-    <version>1.4.1-SNAPSHOT</version>
+    <version>1.4.1-RELEASE</version>
     <packaging>pom</packaging>
     <name>edci-issuer</name>
     <description>J2EE, SpringMVC, eUI application</description>

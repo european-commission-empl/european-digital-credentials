@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.wallet</groupId>
-        <version>1.4.1-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-wallet</artifactId>
     </parent>
 
@@ -121,13 +121,13 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-wallet-common</artifactId>
-            <version>1.4.1-SNAPSHOT</version>
+            <version>1.4.1-RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-wallet-service</artifactId>
-            <version>1.4.1-SNAPSHOT</version>
+            <version>1.4.1-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
