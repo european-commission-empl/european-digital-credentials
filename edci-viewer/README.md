@@ -154,6 +154,7 @@ The front-end application residing in edci-Viewer-web must be compiled prior to 
 Keep in mind that any change to the API that would change swagger definition, requires a previous compilation of the back-end code.
 ``` 
 npm install
+npm run lint
 npm run build-[profile]
 ```
 ##### Maven

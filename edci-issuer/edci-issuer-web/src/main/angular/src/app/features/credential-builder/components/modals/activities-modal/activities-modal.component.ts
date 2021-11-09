@@ -366,18 +366,18 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
                 defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
-                case 'organization':
-                    this.selectedDirectedBy = item;
-                    break;
-                case 'activity':
-                    this.selectedSubActivities =
+            case 'organization':
+                this.selectedDirectedBy = item;
+                break;
+            case 'activity':
+                this.selectedSubActivities =
                         this.credentialBuilderService.fillMultipleInput(
                             this.selectedSubActivities,
                             this.subActivitiesOidList,
                             item,
                             this.unsavedActivities
                         );
-                    break;
+                break;
             }
         }
     }
