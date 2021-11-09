@@ -19,10 +19,10 @@ export interface Page {
     size?: number;
     content?: Array<any>;
     number?: number;
+    last?: boolean;
     sort?: Sort;
+    numberOfElements?: number;
     first?: boolean;
     pageable?: Pageable;
-    last?: boolean;
-    numberOfElements?: number;
     empty?: boolean;
 }

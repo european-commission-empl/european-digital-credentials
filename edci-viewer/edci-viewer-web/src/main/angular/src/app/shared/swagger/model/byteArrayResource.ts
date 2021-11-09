@@ -19,7 +19,7 @@ export interface ByteArrayResource {
     url?: string;
     file?: Blob;
     open?: boolean;
-    uri?: string;
     readable?: boolean;
+    uri?: string;
     filename?: string;
 }

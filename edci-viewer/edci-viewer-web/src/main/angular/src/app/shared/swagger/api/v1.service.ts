@@ -127,24 +127,29 @@ export class V1Service {
     }
 
     /**
-     * Get Shared Presentation XML
+     * Get Shared Presentation PDF
      * 
      * @param shareHash 
+     * @param pdfType The information that we want into the PDF: full/diploma. By default Diploma
      * @param locale locale
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public downloadShareLinkPresentationXML(shareHash: string, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<string>>;
-    public downloadShareLinkPresentationXML(shareHash: string, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<string>>>;
-    public downloadShareLinkPresentationXML(shareHash: string, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<string>>>;
-    public downloadShareLinkPresentationXML(shareHash: string, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public downloadShareLinkPresentationPDF(shareHash: string, pdfType?: string, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
+    public downloadShareLinkPresentationPDF(shareHash: string, pdfType?: string, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
+    public downloadShareLinkPresentationPDF(shareHash: string, pdfType?: string, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
+    public downloadShareLinkPresentationPDF(shareHash: string, pdfType?: string, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (shareHash === null || shareHash === undefined) {
-            throw new Error('Required parameter shareHash was null or undefined when calling downloadShareLinkPresentationXML.');
+            throw new Error('Required parameter shareHash was null or undefined when calling downloadShareLinkPresentationPDF.');
         }
 
 
+
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (pdfType !== undefined && pdfType !== null) {
+            queryParameters = queryParameters.set('pdfType', <any>pdfType);
+        }
         if (locale !== undefined && locale !== null) {
             queryParameters = queryParameters.set('locale', <any>locale);
         }
@@ -153,7 +158,7 @@ export class V1Service {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/octet-stream'
+            'application/pdf'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -164,7 +169,7 @@ export class V1Service {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<Array<string>>(`${this.basePath}/v1/sharelinks/${encodeURIComponent(String(shareHash))}/presentation`,
+        return this.httpClient.get<ByteArrayResource>(`${this.basePath}/v1/sharelinks/${encodeURIComponent(String(shareHash))}/presentation`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -241,21 +246,26 @@ export class V1Service {
      * Downloads a file containing verifiable presentation of the credential
      * 
      * @param file 
+     * @param pdfType The information that we want into the PDF: full/diploma. By default Diploma
      * @param locale locale
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (file === null || file === undefined) {
-            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationXMLFromFile.');
+            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationPDFFromFile.');
         }
 
 
+
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (pdfType !== undefined && pdfType !== null) {
+            queryParameters = queryParameters.set('pdfType', <any>pdfType);
+        }
         if (locale !== undefined && locale !== null) {
             queryParameters = queryParameters.set('locale', <any>locale);
         }
@@ -264,7 +274,7 @@ export class V1Service {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/octet-stream'
+            'application/pdf'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
