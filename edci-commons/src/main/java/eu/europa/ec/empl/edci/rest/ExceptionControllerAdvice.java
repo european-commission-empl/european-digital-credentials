@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.constants.ErrorCode;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
 import eu.europa.ec.empl.edci.exception.ApiErrorMessage;
 import eu.europa.ec.empl.edci.exception.EDCIException;
 import eu.europa.ec.empl.edci.exception.EDCIRestException;
@@ -28,8 +29,10 @@ import org.springframework.security.oauth2.provider.error.DefaultWebResponseExce
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.persistence.PersistenceException;
@@ -94,6 +97,18 @@ public class ExceptionControllerAdvice {
         return generateResponse(error,
                 prepareHttpHeadersForJSONException(),
                 HttpStatus.valueOf(ex.getResponse() != null ? ex.getResponse().getStatus() : 500));
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<?> handleMissinParametersExceptions(HttpServletRequest req, MissingServletRequestParameterException ex) {
+        EDCIBadRequestException edciBadRequestException = new EDCIBadRequestException(EDCIMessageKeys.Exception.BadRquest.MISSING_PARAMETER, ex.getParameterName());
+        return this.handleEDCIException(req, edciBadRequestException.setCause(ex));
+    }
+
+    @ExceptionHandler(MissingServletRequestPartException.class)
+    public ResponseEntity<?> handleMissingServletRequestPartException(HttpServletRequest req, MissingServletRequestPartException ex) {
+        EDCIBadRequestException edciBadRequestException = new EDCIBadRequestException(EDCIMessageKeys.Exception.BadRquest.MISSING_REQUEST_PART, ex.getRequestPartName());
+        return this.handleEDCIException(req, edciBadRequestException.setCause(ex));
     }
 
     @ExceptionHandler({JsonMappingException.class, HttpMessageNotReadableException.class, MethodArgumentNotValidException.class})
@@ -239,7 +254,7 @@ public class ExceptionControllerAdvice {
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-            mapper.setDateFormat(new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT));
+            mapper.setDateFormat(new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT));
             jsonString = mapper.writeValueAsString(exceptionResponse);
         } catch (JsonProcessingException e) {
             logger.error(e.getMessage(), e);

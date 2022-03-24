@@ -283,9 +283,9 @@
                                         achievementDetails?.specifiedBy
                                             ?.qualificationCode?.length > 0 ||
                                         achievementDetails?.specifiedBy
-                                            ?.ectscreditPoints?.content ||
+                                            ?.ectsCreditPoints?.content ||
                                         achievementDetails?.specifiedBy
-                                            ?.iscedfcode?.length > 0)) ||
+                                            ?.iscedFCode?.length > 0)) ||
                                 learningOutcomes?.length > 0
                             "
                             class="col-12 mt-3 border-bottom"
@@ -385,18 +385,18 @@
                                 class="col-12 p-0"
                                 *ngIf="
                                     achievementDetails?.specifiedBy
-                                        ?.ectscreditPoints?.content
+                                        ?.ectsCreditPoints?.content
                                 "
                             >
                                 <!-- ||
-                            (achievementDetails?.specifiedBy?.iscedfcode &&
-                                achievementDetails?.specifiedBy?.iscedfcode
+                            (achievementDetails?.specifiedBy?.iscedFCode &&
+                                achievementDetails?.specifiedBy?.iscedFCode
                                     ?.length > 0) -->
                                 <p
                                     class="mr-4"
                                     *ngIf="
                                         achievementDetails?.specifiedBy
-                                            ?.ectscreditPoints?.content
+                                            ?.ectsCreditPoints?.content
                                     "
                                 >
                                     <strong>
@@ -407,13 +407,13 @@
                                     </strong>
                                     {{
                                         achievementDetails.specifiedBy
-                                            .ectscreditPoints.content
+                                            .ectsCreditPoints.content
                                     }}
                                 </p>
                                 <!-- <p
                             *ngIf="
-                                achievementDetails?.specifiedBy?.iscedfcode &&
-                                achievementDetails?.specifiedBy?.iscedfcode
+                                achievementDetails?.specifiedBy?.iscedFCode &&
+                                achievementDetails?.specifiedBy?.iscedFCode
                                     ?.length > 0
                             "
                         >
@@ -424,7 +424,7 @@
                                 }}:
                             </strong>
                             {{
-                                achievementDetails.specifiedBy.iscedfcode[0]
+                                achievementDetails.specifiedBy.iscedFCode[0]
                                     .content
                             }}
                         </p> -->

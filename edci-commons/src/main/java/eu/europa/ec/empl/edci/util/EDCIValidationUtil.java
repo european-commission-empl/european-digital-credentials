@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.util;
 
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.IdentifiableName;
 import eu.europa.ec.empl.edci.datamodel.validation.ValidationResult;
@@ -34,11 +34,11 @@ public class EDCIValidationUtil {
         //String parameterPath = fullPath.substring(fullPath.lastIndexOf(".") + 1);
         IdentifiableName informativeName = this.getDeepestIdentifiableName(constraintViolation);
 
-        variables.put(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_CLASSNAME, informativeName.getClassName());
-        variables.put(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_FIELDNAME, informativeName.getFieldName());
-        variables.put(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_FIELDVALUE, informativeName.getFieldValue());
+        variables.put(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_CLASSNAME, informativeName.getClassName());
+        variables.put(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_FIELDNAME, informativeName.getFieldName());
+        variables.put(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_INFORMATIVENAME_FIELDVALUE, informativeName.getFieldValue());
 
-        variables.put(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_FIELDNAME, fullPath);
+        variables.put(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_FIELDNAME, fullPath);
         return variables;
     }
 
@@ -67,9 +67,9 @@ public class EDCIValidationUtil {
                     parameterPath.remove(parameterPath.size() - 1);
                 } else if (!identifiableName.isFullyInformed()) {
                     //If nothing found, fill all with "Undefined"
-                    identifiableName.setFieldValue(this.getEdciMessageService().getMessage(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
-                    identifiableName.setFieldName(this.getEdciMessageService().getMessage(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
-                    identifiableName.setClassName(this.getEdciMessageService().getMessage(MessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
+                    identifiableName.setFieldValue(this.getEdciMessageService().getMessage(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
+                    identifiableName.setFieldName(this.getEdciMessageService().getMessage(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
+                    identifiableName.setClassName(this.getEdciMessageService().getMessage(EDCIMessageKeys.Validation.VALIDATION_MESSAGE_VARIABLE_UNFOUND));
                     //If message source is not available, a break is required
                     if (!identifiableName.isFullyInformed()) {
                         identifiableName.init();

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { UxDynamicModalConfig, UxDynamicModalService } from '@eui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
@@ -37,6 +37,9 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     primaryLanguage: string;
     availableLanguages: string[];
+    type: string;
+    credential: EuropassCredentialPresentationView;
+    scrollPosition: number[] = [0, 0];
 
     constructor(
         private apiService: V1Service,
@@ -48,6 +51,7 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.handleNavigationScroll();
         if (this.shareDataService.toolbarLanguage) {
             this.language = this.shareDataService.toolbarLanguage;
             this.checkSession(true);
@@ -55,7 +59,8 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
             this.language = this.translateService.currentLang;
             this.checkSession();
         }
-        this.openEntityModal();
+        this.type = sessionStorage.getItem('diplomaType');
+        // this.openEntityModal();
     }
 
     ngOnDestroy() {
@@ -83,7 +88,11 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
             : null;
     }
 
-    private setCredentialDetailsXML(xml: Blob, language: string, byNewLang: boolean = false): void {
+    private setCredentialDetailsXML(
+        xml: Blob,
+        language: string,
+        byNewLang: boolean = false
+    ): void {
         this.apiService
             .getCredentialDetail(xml, language)
             .takeUntil(this.destroy$)
@@ -92,7 +101,7 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
                     this.addDetailsToSession(data);
                     if (!byNewLang) {
                         this.primaryLanguage =
-                        data.credentialMetadata.primaryLanguage;
+                            data.credentialMetadata.primaryLanguage;
                         this.language = this.primaryLanguage;
                         this.shareDataService.toolbarLanguage = this.language;
                     }
@@ -112,7 +121,8 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
             .subscribe(
                 (data: EuropassCredentialPresentationView) => {
                     this.addDetailsToSession(data);
-                    this.primaryLanguage = data.credentialMetadata.primaryLanguage;
+                    this.primaryLanguage =
+                        data.credentialMetadata.primaryLanguage;
                     this.availableLanguages =
                         data.credentialMetadata.availableLanguages;
                 },
@@ -129,7 +139,8 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
             .subscribe(
                 (data: EuropassCredentialPresentationView) => {
                     this.addDetailsToSession(data);
-                    this.primaryLanguage = data.credentialMetadata.primaryLanguage;
+                    this.primaryLanguage =
+                        data.credentialMetadata.primaryLanguage;
                     this.availableLanguages =
                         data.credentialMetadata.availableLanguages;
                 },
@@ -143,6 +154,7 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
         credential: EuropassCredentialPresentationView
     ) {
         this.setLabels(credential);
+        this.credential = credential;
         this.shareDataService.achievements = credential.achievements;
         this.shareDataService.activities = credential.activities;
         this.shareDataService.credentialSubject = credential.credentialSubject;
@@ -208,7 +220,11 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
             this.XMLFile = new Blob([sessionStorage.getItem('diplomaXML')], {
                 type: 'text/xml',
             });
-            this.setCredentialDetailsXML(this.XMLFile, this.language, byNewLang);
+            this.setCredentialDetailsXML(
+                this.XMLFile,
+                this.language,
+                byNewLang
+            );
         }
     }
 
@@ -243,7 +259,9 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
     }
 
     private get(credential: any, entity: string): number {
-        return credential && credential[entity] && credential[entity].length ? credential[entity].length : 0;
+        return credential && credential[entity] && credential[entity].length
+            ? credential[entity].length
+            : 0;
     }
 
     private showSubCredentialsTab(
@@ -280,6 +298,24 @@ export class DiplomaDetailsComponent implements OnInit, OnDestroy {
                     },
                 });
                 this.uxDynamicModalService.openModal(config);
+            });
+    }
+
+    private handleNavigationScroll(): void {
+        this.router.events
+            .filter(
+                (event) =>
+                    event instanceof NavigationStart ||
+                    event instanceof NavigationEnd
+            )
+            .takeUntil(this.destroy$)
+            .subscribe((event) => {
+                event instanceof NavigationStart
+                    ? (this.scrollPosition = [window.scrollX, window.scrollY])
+                    : window.scrollTo(
+                          this.scrollPosition[0],
+                          this.scrollPosition[1]
+                      );
             });
     }
 }

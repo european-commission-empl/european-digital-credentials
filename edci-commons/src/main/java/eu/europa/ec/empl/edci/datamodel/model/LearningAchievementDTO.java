@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.base.RootEntity;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Identifier;
@@ -24,11 +24,11 @@ public class LearningAchievementDTO implements RootEntity, Nameable {
     @XmlTransient
     private String pk;
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_ID_NOTNULL)
     private URI id; //1
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_TITLE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_TITLE_NOTNULL)
     @Valid
     private Text title; //1
     @Valid
@@ -51,7 +51,7 @@ public class LearningAchievementDTO implements RootEntity, Nameable {
     private List<LearningAchievementDTO> hasPart; //*
     @XmlIDREF
     @XmlPath("specifiedBy/@idref")
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_SPECIFIEDBY_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGACHIEVEMENT_SPECIFIEDBY_NOTNULL)
     @Valid
     private LearningSpecificationDTO specifiedBy; //1
     @Valid

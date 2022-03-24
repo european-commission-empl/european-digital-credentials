@@ -1,5 +1,5 @@
-<div *ngIf="isDisabled" class="input-disabled"></div>
-<form *ngIf="!isDisabled" class="controlled-list__component" [formGroup]="formGroup">
+<div *ngIf="isDisabled && !isSingleSelection" class="input-disabled"></div>
+<form class="controlled-list__component" [formGroup]="formGroup">
     <ux-autocomplete-tag
         *ngIf="!isSingleSelection; else singleSelection"
         class="ocb__autocomplete-tag"

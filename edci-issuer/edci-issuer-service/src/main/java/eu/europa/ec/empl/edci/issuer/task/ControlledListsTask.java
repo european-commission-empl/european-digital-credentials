@@ -1,9 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.task;
 
 import eu.europa.ec.empl.edci.service.RDFsparqlBridgeService;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConstants;
-import eu.europa.ec.empl.edci.issuer.mapper.ControlledListsMapper;
-import eu.europa.ec.empl.edci.issuer.service.IssuerConfigService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -31,7 +28,7 @@ public class ControlledListsTask {
 //    @PostConstruct //When starting the server
 //    @Deprecated
 //    public void loadControlledListsOnStartup() {
-//        if (issuerConfigService.getBoolean(Constant.CONFIG_PROPERTY_LOAD_CONTROLLED_LISTS_STARTUP)) {
+//        if (issuerConfigService.getBoolean(Constant.LOAD_CONTROLLED_LISTS_STARTUP)) {
 //            controlledListsService.loadControlledLists(false);
 //        }
 //    }
@@ -39,7 +36,7 @@ public class ControlledListsTask {
 //    @Scheduled(cron = "0 0 0 1 1/1 *") //Monthly
 //    @Deprecated
 //    public void loadControlledListsMonthly() {
-//        if (issuerConfigService.getBoolean(Constant.CONFIG_PROPERTY_LOAD_CONTROLLED_LISTS_MONTHLY)) {
+//        if (issuerConfigService.getBoolean(Constant.LOAD_CONTROLLED_LISTS_MONTHLY)) {
 //            controlledListsService.loadControlledLists(false);
 //        }
 //    }

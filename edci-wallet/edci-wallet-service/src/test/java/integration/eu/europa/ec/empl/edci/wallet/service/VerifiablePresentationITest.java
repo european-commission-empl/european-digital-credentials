@@ -6,26 +6,21 @@ import eu.europa.ec.empl.edci.mapper.EuropassCredentialPresentationMapper;
 import eu.europa.ec.empl.edci.mapper.PresentationCommonsMapper;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
 import eu.europa.ec.empl.edci.util.*;
-import eu.europa.ec.empl.edci.wallet.common.model.ShareLinkDTO;
 import eu.europa.ec.empl.edci.wallet.service.CredentialService;
 import eu.europa.ec.empl.edci.wallet.service.ShareLinkService;
 import eu.europa.ec.empl.edci.wallet.service.WalletConfigService;
 import eu.europa.ec.empl.edci.wallet.service.utils.CredentialUtil;
 import integration.eu.europa.ec.empl.base.AbstractIntegrationBaseTest;
-import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.mapstruct.factory.Mappers;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class VerifiablePresentationITest extends AbstractIntegrationBaseTest {
 
@@ -145,7 +140,7 @@ public class VerifiablePresentationITest extends AbstractIntegrationBaseTest {
 //
 //    }
 
-    @Test
+   /* @Test
     public void downloadVerifiablePresentationPDF_shouldBuildPDF_whenHavingAValidCredential() throws Exception {
 
         try {
@@ -155,6 +150,8 @@ public class VerifiablePresentationITest extends AbstractIntegrationBaseTest {
 
         Mockito.doReturn("https://webgate.acceptance.ec.europa.eu/europass/eportfolio/api/office/generate/pdf")
                 .when(credentialService).getPdfDownloadUrl();
+        Mockito.doReturn("https://dgempl-single-portal-demo-1.arhs-developments.com/europass/eportfolio/api/office/generate/png")
+                .when(imageUtil).getImageDownloadUrl();
         Mockito.doReturn(new ShareLinkDTO())
                 .when(shareLinkService).createShareLink(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(), ArgumentMatchers.any(Date.class));
         Mockito.doReturn("https://www.google.com")
@@ -166,11 +163,30 @@ public class VerifiablePresentationITest extends AbstractIntegrationBaseTest {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateEngine.setTemplateResolver(templateResolver);
 
-        byte[] pdfBytes = credentialService.downloadVerifiablePresentationPDF(presentationDTO, "https://dev.everisdx.io/europass2/edci-viewer/#/shareview/38PCz2kDp4JkAzWl").getBody().getByteArray();
+        byte[] pdfBytes = credentialService.downloadVerifiablePresentationPDF(presentationDTO, "https://dev.everisdx.io/europass2/edci-viewer/#/shareview/38PCz2kDp4JkAzWl", EDCIWalletConstants.CREDENTIAL_PDF_TYPE_FULL).getBody().getByteArray();
 
         FileUtils.writeByteArrayToFile(new File("src/test/resources/verifiablePresentation/out/verifiable_presentation"
                 + new SimpleDateFormat("HHmmss").format(new Date()) + ".pdf"), pdfBytes);
         Assert.assertTrue(true);
     }
 
+    @Test
+    public void downloadDiplomaImg_shouldBuildImage_whenHavingAValidCredential() throws Exception {
+
+        try {
+            FileUtils.cleanDirectory(new File("src/test/resources/verifiablePresentation/out"));
+        } catch (Throwable t) {
+        }
+
+        Mockito.doReturn("https://dgempl-single-portal-demo-1.arhs-developments.com/europass/eportfolio/api/office/generate/png")
+                .when(imageUtil).getImageDownloadUrl();
+        Mockito.doReturn("https://www.google.com")
+                .when(walletConfigService).getString(ArgumentMatchers.anyString());
+
+        byte[] pdfBytes = diplomaUtils.generateDiplomaImage(presentationDTO);
+
+        FileUtils.writeByteArrayToFile(new File("src/test/resources/verifiablePresentation/out/diploma"
+                + new SimpleDateFormat("HHmmss").format(new Date()) + ".jpg"), pdfBytes);
+
+    }*/
 }

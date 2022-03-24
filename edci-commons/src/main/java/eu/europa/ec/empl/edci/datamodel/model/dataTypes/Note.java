@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Localizable;
 
 import javax.validation.Valid;
@@ -23,8 +23,8 @@ public class Note implements Localizable {
 
     @XmlElement(name = "text")
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_NOTE_CONTENT_MIN)
-    @Size(min = 1, message = MessageKeys.Validation.VALIDATION_NOTE_CONTENT_MIN)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_NOTE_CONTENT_MIN)
+    @Size(min = 1, message = EDCIMessageKeys.Validation.VALIDATION_NOTE_CONTENT_MIN)
     private List<Content> contents;
     @XmlElement(name = "subject")
     private String topic;

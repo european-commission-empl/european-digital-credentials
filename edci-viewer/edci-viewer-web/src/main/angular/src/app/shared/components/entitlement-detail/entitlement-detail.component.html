@@ -62,7 +62,7 @@
                     let isLast = last
                 "
             >
-                <a (click)="linkToEntitlement(entitlement)">{{
+                <a (click)="changeSelection(entitlement.id)">{{
                     entitlement.title
                 }}</a
                 >{{ isLast ? '' : ', ' }}
@@ -177,8 +177,8 @@
                     </strong>
                     <a
                         (click)="
-                            openValidWithModal(
-                                activeEntitlement?.specifiedBy?.validWith
+                            changeSelection(
+                                activeEntitlement?.specifiedBy?.validWith.id
                             )
                         "
                     >

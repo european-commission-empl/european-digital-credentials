@@ -1,10 +1,12 @@
 package eu.europa.ec.empl.edci.util;
 
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.DisplayParametersDTO;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.MediaObject;
+import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
 import eu.europa.ec.empl.edci.datamodel.view.EuropassDiplomaDTO;
@@ -42,6 +44,9 @@ public class DiplomaUtils {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private ImageUtil imageUtil;
+
     public void setHTML(EuropassCredentialDTO europassCredentialDTO, EuropassDiplomaDTO europassDiplomaDTO) {
 
         String html = null;
@@ -50,7 +55,7 @@ public class DiplomaUtils {
             html = htmlSanitizerUtil.processWildcardsHTML(europassCredentialDTO);
         } else {
             try {
-                html = htmlSanitizerUtil.processWildcardsHTML(getClassPathResource(EuropassConstants.DEFAULT_VIEWER_DIPLOMA_PATH, false),
+                html = htmlSanitizerUtil.processWildcardsHTML(getClassPathResource(EDCIConstants.DEFAULT_VIEWER_DIPLOMA_PATH, false),
                         edciCredentialModelUtil.toXML(europassCredentialDTO));
             } catch (Exception e) {
                 logger.error(e);
@@ -71,14 +76,14 @@ public class DiplomaUtils {
                 logo.append("data:").append(mimeType).append(";base64,").append(new String(Base64.getEncoder().encode(europassCredentialDTO.getIssuer().getLogo().getContent()), StandardCharsets.UTF_8));
             } else {
                 // TODO EDCI_751 throw exception invalid mimetype
-                MediaObject logoObject = getMediaObject(EuropassConstants.DEFAULT_VIEWER_LOGO_BKG_IMG_PATH);
+                MediaObject logoObject = getMediaObject(EDCIConstants.DEFAULT_VIEWER_LOGO_BKG_IMG_PATH);
                 europassCredentialDTO.getIssuer().setLogo(logoObject);
                 logo.append("data:image/png;base64,").append(new String(Base64.getEncoder().encode(logoObject.getContent()), StandardCharsets.UTF_8));
 
             }
 
         } else {
-            MediaObject logoObject = getMediaObject(EuropassConstants.DEFAULT_VIEWER_LOGO_BKG_IMG_PATH);
+            MediaObject logoObject = getMediaObject(EDCIConstants.DEFAULT_VIEWER_LOGO_BKG_IMG_PATH);
             europassCredentialDTO.getIssuer().setLogo(logoObject);
             logo.append("data:image/png;base64,").append(new String(Base64.getEncoder().encode(logoObject.getContent()), StandardCharsets.UTF_8));
         }
@@ -97,12 +102,12 @@ public class DiplomaUtils {
                 backgroundImage.append("data:").append(mimeType).append(";base64,").append(new String(Base64.getEncoder().encode(europassCredentialDTO.getDisplay().getBackground().getContent()), StandardCharsets.UTF_8));
             } else {
                 // TODO EDCI_751 throw exception invalid mimetype
-                MediaObject backgroundObject = getMediaObject(EuropassConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
+                MediaObject backgroundObject = getMediaObject(EDCIConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
                 europassCredentialDTO.getDisplay().setBackground(backgroundObject);
                 backgroundImage.append("data:image/png;base64,").append(new String(Base64.getEncoder().encode(backgroundObject.getContent()), StandardCharsets.UTF_8));
             }
         } else {
-            MediaObject backgroundObject = getMediaObject(EuropassConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
+            MediaObject backgroundObject = getMediaObject(EDCIConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
             europassCredentialDTO.getDisplay().setBackground(backgroundObject);
             backgroundImage.append("data:image/png;base64,").append(new String(Base64.getEncoder().encode(backgroundObject.getContent()), StandardCharsets.UTF_8));
         }
@@ -126,19 +131,20 @@ public class DiplomaUtils {
 
     }
 
-    public EuropassDiplomaDTO extractEuropassDiplomaDTO(EuropassCredentialDTO europassCredentialDTO, String locale) {
+    public EuropassDiplomaDTO extractEuropassDiplomaDTO(CredentialHolderDTO credentialholderDTO, String locale) {
 
         Locale current = LocaleContextHolder.getLocale();
 
         EuropassDiplomaDTO europassDiplomaDTO = new EuropassDiplomaDTO();
 
         try {
+            EuropassCredentialDTO europassCredentialDTO = credentialholderDTO.getCredential();
 
             //Setting the Locale for the diploma that will be retrieved
             if (locale == null) {
                 locale = europassCredentialDTO.getCredential().getPrimaryLanguage();
                 if (locale == null) {
-                    locale = EuropassConstants.DEFAULT_LOCALE;
+                    locale = EDCIConstants.DEFAULT_LOCALE;
                 }
                 LocaleContextHolder.setLocale(LocaleUtils.toLocale(locale));
             }
@@ -148,6 +154,7 @@ public class DiplomaUtils {
             }
 
             europassDiplomaDTO.setId(europassCredentialDTO.getId());
+            europassDiplomaDTO.setType(edciCredentialModelUtil.isPresentation(credentialholderDTO) ? EDCIConstants.Certificate.CREDENTIAL_TYPE_EUROPASS_PRESENTATION : EDCIConstants.Certificate.CREDENTIAL_TYPE_EUROPASS_CREDENTIAL);
             europassDiplomaDTO.setPrimaryLanguage(europassCredentialDTO.getPrimaryLanguage());
             europassDiplomaDTO.setAvailableLanguages(europassCredentialDTO.getAvailableLanguages());
 
@@ -184,6 +191,27 @@ public class DiplomaUtils {
             logger.error(ioe.getMessage());
             throw new EDCIException().setCause(ioe).addDescription(String.format("IOException from %s", path));
         }
+    }
+
+    /*
+     * Gets a JPEG image of a credential's diploma
+     */
+    public byte[] generateDiplomaImage(CredentialHolderDTO credentialHolderDTO) {
+
+        byte[] bytes = null;
+
+        try {
+
+            EuropassDiplomaDTO diploma = extractEuropassDiplomaDTO(credentialHolderDTO, EDCIConstants.DEFAULT_LOCALE);
+
+            bytes = imageUtil.htmlToImage(diploma.getHtml(), EDCIConfig.Defaults.DIPLOMA_PAGE_SIZE, EDCIConfig.Defaults.DIPLOMA_PAGE_MARGINS);
+
+        } catch (Exception e) {
+            logger.error(e);
+            throw new EDCIException(e);
+        }
+
+        return bytes;
     }
 
     public void setValidator(Validator validator) {

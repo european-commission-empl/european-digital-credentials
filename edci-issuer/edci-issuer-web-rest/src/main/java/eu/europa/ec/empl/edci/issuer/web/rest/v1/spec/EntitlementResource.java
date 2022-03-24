@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.dataContainers.EntitlemSpecificationDCDAO;
 import eu.europa.ec.empl.edci.issuer.entity.specs.EntitlementSpecDAO;
@@ -45,7 +45,7 @@ import java.util.Set;
 })
 @Controller(value = "v1.EntitlementSpecResource")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(value = Version.V1 + Endpoint.V1.ENTITLEMENTS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.ENTITLEMENTS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class EntitlementResource implements CrudResource {
 
@@ -77,7 +77,7 @@ public class EntitlementResource implements CrudResource {
     private LearningOutcomeSpecRestMapper learningOutcomeSpecRestMapper;
 
     @ApiOperation(value = "Create an entitlement spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -98,7 +98,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate an activity spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<EntitlementSpecView>> duplicateEntitlement(
@@ -111,7 +111,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update an entitlement spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -139,7 +139,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an entitlement spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteEntitlement(
@@ -150,7 +150,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an entitlement")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<EntitlementSpecView>> getEntitlement(
@@ -165,7 +165,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of entitlements")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<EntitlementSpecLiteView>> listEntitlement(
@@ -184,7 +184,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of (hasPart) Entitlements from entitlements")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ENT_HAS_PART,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ENT_HAS_PART,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<EntitlementSpecLiteView>> listHasEntPart(
@@ -204,7 +204,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing related (hasPart) Entitlements to a entitlement")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ENT_HAS_PART,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ENT_HAS_PART,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -228,7 +228,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a subresource (Organization)")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ENT_VALID_WITH,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ENT_VALID_WITH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<OrganizationSpecView>> getValidWith(
@@ -253,7 +253,7 @@ public class EntitlementResource implements CrudResource {
 
 
     @ApiOperation(value = "Link an existing subresource (Organization)")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ENT_VALID_WITH,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ENT_VALID_WITH,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -282,7 +282,7 @@ public class EntitlementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Deletes an existing subresource (Organization)")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ENT_VALID_WITH,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ENT_VALID_WITH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteProvenBy(
@@ -308,15 +308,15 @@ public class EntitlementResource implements CrudResource {
 
         if (entitlementDAO != null) {
 
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(EntitlementResource.class).slash(Endpoint.V1.SPECS).slash(entitlementDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(EntitlementResource.class).slash(IssuerEndpoint.V1.SPECS).slash(entitlementDAO.getPk()).withSelfRel();
 
             Link hateoasHasPart = ControllerLinkBuilder.linkTo(EntitlementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(entitlementDAO.getPk())
-                    .slash(Endpoint.V1.ENT_HAS_PART).withRel("hasPart");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(entitlementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ENT_HAS_PART).withRel("hasPart");
 
             Link hateoasvalidWith = ControllerLinkBuilder.linkTo(EntitlementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(entitlementDAO.getPk())
-                    .slash(Endpoint.V1.ENT_VALID_WITH).withRel("validWith");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(entitlementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ENT_VALID_WITH).withRel("validWith");
 
             return new Link[]{
                     hateoasSelf, hateoasHasPart, hateoasvalidWith

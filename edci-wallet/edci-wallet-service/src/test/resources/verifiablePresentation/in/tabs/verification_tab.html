@@ -6,21 +6,52 @@
 <div th:fragment="verification">
     <ul class="timeline left-aligned"
         th:if="${europassVerifications != null and !europassVerifications.empty}">
-        <div th:each="verification: ${europassVerifications}">
+        <div th:each="verification, iter : ${europassVerifications}">
 
             <li class="correct"
                 th:if="${verification.status.link.toString() == 'http://data.europa.eu/snb/verification-status/9895008394'}"
                 th:insert="tabs/fields/verification_field :: verification(${verification}, 'correct')">
             </li>
+
             <li class="incorrect"
                 th:if="${verification.status.link.toString() ==
-                'http://publications.europa.eu/resource/authority/snb/verification-status/9d26eb9a37'}"
+                'http://data.europa.eu/snb/verification-status/9d26eb9a37'}"
                 th:insert="tabs/fields/verification_field :: verification(${verification}, 'incorrect')">
             </li>
 
             <li class="empty"
                 th:if="${verification.status.link.toString() == 'http://data.europa.eu/snb/verification-status/641f0c5e5d'}"
                 th:insert="tabs/fields/verification_field :: verification(${verification}, 'empty')"></li>
+
+            <li class="ribbon" th:if="${iter.last && ribbon == 'correct'}">
+                <div class="status-icon-background"></div>
+                <img class="status-icon-ribbon" src="data:image/svg+xml;base64,PHN2ZyBjb2xvcj0iIzQ3OWY0YiIgYXJpYS1oaWRkZW49InRydWUiIGZvY3VzYWJsZT0iZmFsc2UiIGRhdGEtcHJlZml4PSJmYXMiIGRhdGEtaWNvbj0iYXdhcmQiIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1hd2FyZCBmYS13LTEyIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM4NCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTk3LjEyIDM2Mi42M2MtOC42OS04LjY5LTQuMTYtNi4yNC0yNS4xMi0xMS44NS05LjUxLTIuNTUtMTcuODctNy40NS0yNS40My0xMy4zMkwxLjIgNDQ4LjdjLTQuMzkgMTAuNzcgMy44MSAyMi40NyAxNS40MyAyMi4wM2w1Mi42OS0yLjAxTDEwNS41NiA1MDdjOCA4LjQ0IDIyLjA0IDUuODEgMjYuNDMtNC45Nmw1Mi4wNS0xMjcuNjJjLTEwLjg0IDYuMDQtMjIuODcgOS41OC0zNS4zMSA5LjU4LTE5LjUgMC0zNy44Mi03LjU5LTUxLjYxLTIxLjM3ek0zODIuOCA0NDguN2wtNDUuMzctMTExLjI0Yy03LjU2IDUuODgtMTUuOTIgMTAuNzctMjUuNDMgMTMuMzItMjEuMDcgNS42NC0xNi40NSAzLjE4LTI1LjEyIDExLjg1LTEzLjc5IDEzLjc4LTMyLjEyIDIxLjM3LTUxLjYyIDIxLjM3LTEyLjQ0IDAtMjQuNDctMy41NS0zNS4zMS05LjU4TDI1MiA1MDIuMDRjNC4zOSAxMC43NyAxOC40NCAxMy40IDI2LjQzIDQuOTZsMzYuMjUtMzguMjggNTIuNjkgMi4wMWMxMS42Mi40NCAxOS44Mi0xMS4yNyAxNS40My0yMi4wM3pNMjYzIDM0MGMxNS4yOC0xNS41NSAxNy4wMy0xNC4yMSAzOC43OS0yMC4xNCAxMy44OS0zLjc5IDI0Ljc1LTE0Ljg0IDI4LjQ3LTI4Ljk4IDcuNDgtMjguNCA1LjU0LTI0Ljk3IDI1Ljk1LTQ1Ljc1IDEwLjE3LTEwLjM1IDE0LjE0LTI1LjQ0IDEwLjQyLTM5LjU4LTcuNDctMjguMzgtNy40OC0yNC40MiAwLTUyLjgzIDMuNzItMTQuMTQtLjI1LTI5LjIzLTEwLjQyLTM5LjU4LTIwLjQxLTIwLjc4LTE4LjQ3LTE3LjM2LTI1Ljk1LTQ1Ljc1LTMuNzItMTQuMTQtMTQuNTgtMjUuMTktMjguNDctMjguOTgtMjcuODgtNy42MS0yNC41Mi01LjYyLTQ0Ljk1LTI2LjQxLTEwLjE3LTEwLjM1LTI1LTE0LjQtMzguODktMTAuNjEtMjcuODcgNy42LTIzLjk4IDcuNjEtNTEuOSAwLTEzLjg5LTMuNzktMjguNzIuMjUtMzguODkgMTAuNjEtMjAuNDEgMjAuNzgtMTcuMDUgMTguOC00NC45NCAyNi40MS0xMy44OSAzLjc5LTI0Ljc1IDE0Ljg0LTI4LjQ3IDI4Ljk4LTcuNDcgMjguMzktNS41NCAyNC45Ny0yNS45NSA0NS43NS0xMC4xNyAxMC4zNS0xNC4xNSAyNS40NC0xMC40MiAzOS41OCA3LjQ3IDI4LjM2IDcuNDggMjQuNCAwIDUyLjgyLTMuNzIgMTQuMTQuMjUgMjkuMjMgMTAuNDIgMzkuNTkgMjAuNDEgMjAuNzggMTguNDcgMTcuMzUgMjUuOTUgNDUuNzUgMy43MiAxNC4xNCAxNC41OCAyNS4xOSAyOC40NyAyOC45OEMxMDQuNiAzMjUuOTYgMTA2LjI3IDMyNSAxMjEgMzQwYzEzLjIzIDEzLjQ3IDMzLjg0IDE1Ljg4IDQ5Ljc0IDUuODJhMzkuNjc2IDM5LjY3NiAwIDAgMSA0Mi41MyAwYzE1Ljg5IDEwLjA2IDM2LjUgNy42NSA0OS43My01Ljgyek05Ny42NiAxNzUuOTZjMC01My4wMyA0Mi4yNC05Ni4wMiA5NC4zNC05Ni4wMnM5NC4zNCA0Mi45OSA5NC4zNCA5Ni4wMi00Mi4yNCA5Ni4wMi05NC4zNCA5Ni4wMi05NC4zNC00Mi45OS05NC4zNC05Ni4wMnoiPjwvcGF0aD48L3N2Zz4NCg==">
+                <div class="content">
+                    <div class="title title-ribbon-correct ng-star-inserted">
+                        <span>[[#{ribbon.correct}]]</span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="ribbon" th:if="${iter.last && ribbon == 'warning'}">
+                <div class="status-icon-background"></div>
+                <img class="status-icon-ribbon" src="data:image/svg+xml;base64,PHN2ZyBjb2xvcj0iIzQ3OWY0YiIgYXJpYS1oaWRkZW49InRydWUiIGZvY3VzYWJsZT0iZmFsc2UiIGRhdGEtcHJlZml4PSJmYXMiIGRhdGEtaWNvbj0iYXdhcmQiIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1hd2FyZCBmYS13LTEyIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM4NCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTk3LjEyIDM2Mi42M2MtOC42OS04LjY5LTQuMTYtNi4yNC0yNS4xMi0xMS44NS05LjUxLTIuNTUtMTcuODctNy40NS0yNS40My0xMy4zMkwxLjIgNDQ4LjdjLTQuMzkgMTAuNzcgMy44MSAyMi40NyAxNS40MyAyMi4wM2w1Mi42OS0yLjAxTDEwNS41NiA1MDdjOCA4LjQ0IDIyLjA0IDUuODEgMjYuNDMtNC45Nmw1Mi4wNS0xMjcuNjJjLTEwLjg0IDYuMDQtMjIuODcgOS41OC0zNS4zMSA5LjU4LTE5LjUgMC0zNy44Mi03LjU5LTUxLjYxLTIxLjM3ek0zODIuOCA0NDguN2wtNDUuMzctMTExLjI0Yy03LjU2IDUuODgtMTUuOTIgMTAuNzctMjUuNDMgMTMuMzItMjEuMDcgNS42NC0xNi40NSAzLjE4LTI1LjEyIDExLjg1LTEzLjc5IDEzLjc4LTMyLjEyIDIxLjM3LTUxLjYyIDIxLjM3LTEyLjQ0IDAtMjQuNDctMy41NS0zNS4zMS05LjU4TDI1MiA1MDIuMDRjNC4zOSAxMC43NyAxOC40NCAxMy40IDI2LjQzIDQuOTZsMzYuMjUtMzguMjggNTIuNjkgMi4wMWMxMS42Mi40NCAxOS44Mi0xMS4yNyAxNS40My0yMi4wM3pNMjYzIDM0MGMxNS4yOC0xNS41NSAxNy4wMy0xNC4yMSAzOC43OS0yMC4xNCAxMy44OS0zLjc5IDI0Ljc1LTE0Ljg0IDI4LjQ3LTI4Ljk4IDcuNDgtMjguNCA1LjU0LTI0Ljk3IDI1Ljk1LTQ1Ljc1IDEwLjE3LTEwLjM1IDE0LjE0LTI1LjQ0IDEwLjQyLTM5LjU4LTcuNDctMjguMzgtNy40OC0yNC40MiAwLTUyLjgzIDMuNzItMTQuMTQtLjI1LTI5LjIzLTEwLjQyLTM5LjU4LTIwLjQxLTIwLjc4LTE4LjQ3LTE3LjM2LTI1Ljk1LTQ1Ljc1LTMuNzItMTQuMTQtMTQuNTgtMjUuMTktMjguNDctMjguOTgtMjcuODgtNy42MS0yNC41Mi01LjYyLTQ0Ljk1LTI2LjQxLTEwLjE3LTEwLjM1LTI1LTE0LjQtMzguODktMTAuNjEtMjcuODcgNy42LTIzLjk4IDcuNjEtNTEuOSAwLTEzLjg5LTMuNzktMjguNzIuMjUtMzguODkgMTAuNjEtMjAuNDEgMjAuNzgtMTcuMDUgMTguOC00NC45NCAyNi40MS0xMy44OSAzLjc5LTI0Ljc1IDE0Ljg0LTI4LjQ3IDI4Ljk4LTcuNDcgMjguMzktNS41NCAyNC45Ny0yNS45NSA0NS43NS0xMC4xNyAxMC4zNS0xNC4xNSAyNS40NC0xMC40MiAzOS41OCA3LjQ3IDI4LjM2IDcuNDggMjQuNCAwIDUyLjgyLTMuNzIgMTQuMTQuMjUgMjkuMjMgMTAuNDIgMzkuNTkgMjAuNDEgMjAuNzggMTguNDcgMTcuMzUgMjUuOTUgNDUuNzUgMy43MiAxNC4xNCAxNC41OCAyNS4xOSAyOC40NyAyOC45OEMxMDQuNiAzMjUuOTYgMTA2LjI3IDMyNSAxMjEgMzQwYzEzLjIzIDEzLjQ3IDMzLjg0IDE1Ljg4IDQ5Ljc0IDUuODJhMzkuNjc2IDM5LjY3NiAwIDAgMSA0Mi41MyAwYzE1Ljg5IDEwLjA2IDM2LjUgNy42NSA0OS43My01Ljgyek05Ny42NiAxNzUuOTZjMC01My4wMyA0Mi4yNC05Ni4wMiA5NC4zNC05Ni4wMnM5NC4zNCA0Mi45OSA5NC4zNCA5Ni4wMi00Mi4yNCA5Ni4wMi05NC4zNCA5Ni4wMi05NC4zNC00Mi45OS05NC4zNC05Ni4wMnoiPjwvcGF0aD48L3N2Zz4NCg==">
+                <div class="content">
+                    <div class="title title-ribbon-warning ng-star-inserted">
+                        <span>[[#{ribbon.warning}]]</span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="ribbon" th:if="${iter.last && ribbon == 'incorrect'}">
+                <div class="status-icon-background"></div>
+                <img class="status-icon-ribbon" src="data:image/svg+xml;base64,PHN2ZyBjb2xvcj0iI2ZmMDAwMCIgYXJpYS1oaWRkZW49InRydWUiIGZvY3VzYWJsZT0iZmFsc2UiIGRhdGEtcHJlZml4PSJmYXMiIGRhdGEtaWNvbj0iYXdhcmQiIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1hd2FyZCBmYS13LTEyIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM4NCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTk3LjEyIDM2Mi42M2MtOC42OS04LjY5LTQuMTYtNi4yNC0yNS4xMi0xMS44NS05LjUxLTIuNTUtMTcuODctNy40NS0yNS40My0xMy4zMkwxLjIgNDQ4LjdjLTQuMzkgMTAuNzcgMy44MSAyMi40NyAxNS40MyAyMi4wM2w1Mi42OS0yLjAxTDEwNS41NiA1MDdjOCA4LjQ0IDIyLjA0IDUuODEgMjYuNDMtNC45Nmw1Mi4wNS0xMjcuNjJjLTEwLjg0IDYuMDQtMjIuODcgOS41OC0zNS4zMSA5LjU4LTE5LjUgMC0zNy44Mi03LjU5LTUxLjYxLTIxLjM3ek0zODIuOCA0NDguN2wtNDUuMzctMTExLjI0Yy03LjU2IDUuODgtMTUuOTIgMTAuNzctMjUuNDMgMTMuMzItMjEuMDcgNS42NC0xNi40NSAzLjE4LTI1LjEyIDExLjg1LTEzLjc5IDEzLjc4LTMyLjEyIDIxLjM3LTUxLjYyIDIxLjM3LTEyLjQ0IDAtMjQuNDctMy41NS0zNS4zMS05LjU4TDI1MiA1MDIuMDRjNC4zOSAxMC43NyAxOC40NCAxMy40IDI2LjQzIDQuOTZsMzYuMjUtMzguMjggNTIuNjkgMi4wMWMxMS42Mi40NCAxOS44Mi0xMS4yNyAxNS40My0yMi4wM3pNMjYzIDM0MGMxNS4yOC0xNS41NSAxNy4wMy0xNC4yMSAzOC43OS0yMC4xNCAxMy44OS0zLjc5IDI0Ljc1LTE0Ljg0IDI4LjQ3LTI4Ljk4IDcuNDgtMjguNCA1LjU0LTI0Ljk3IDI1Ljk1LTQ1Ljc1IDEwLjE3LTEwLjM1IDE0LjE0LTI1LjQ0IDEwLjQyLTM5LjU4LTcuNDctMjguMzgtNy40OC0yNC40MiAwLTUyLjgzIDMuNzItMTQuMTQtLjI1LTI5LjIzLTEwLjQyLTM5LjU4LTIwLjQxLTIwLjc4LTE4LjQ3LTE3LjM2LTI1Ljk1LTQ1Ljc1LTMuNzItMTQuMTQtMTQuNTgtMjUuMTktMjguNDctMjguOTgtMjcuODgtNy42MS0yNC41Mi01LjYyLTQ0Ljk1LTI2LjQxLTEwLjE3LTEwLjM1LTI1LTE0LjQtMzguODktMTAuNjEtMjcuODcgNy42LTIzLjk4IDcuNjEtNTEuOSAwLTEzLjg5LTMuNzktMjguNzIuMjUtMzguODkgMTAuNjEtMjAuNDEgMjAuNzgtMTcuMDUgMTguOC00NC45NCAyNi40MS0xMy44OSAzLjc5LTI0Ljc1IDE0Ljg0LTI4LjQ3IDI4Ljk4LTcuNDcgMjguMzktNS41NCAyNC45Ny0yNS45NSA0NS43NS0xMC4xNyAxMC4zNS0xNC4xNSAyNS40NC0xMC40MiAzOS41OCA3LjQ3IDI4LjM2IDcuNDggMjQuNCAwIDUyLjgyLTMuNzIgMTQuMTQuMjUgMjkuMjMgMTAuNDIgMzkuNTkgMjAuNDEgMjAuNzggMTguNDcgMTcuMzUgMjUuOTUgNDUuNzUgMy43MiAxNC4xNCAxNC41OCAyNS4xOSAyOC40NyAyOC45OEMxMDQuNiAzMjUuOTYgMTA2LjI3IDMyNSAxMjEgMzQwYzEzLjIzIDEzLjQ3IDMzLjg0IDE1Ljg4IDQ5Ljc0IDUuODJhMzkuNjc2IDM5LjY3NiAwIDAgMSA0Mi41MyAwYzE1Ljg5IDEwLjA2IDM2LjUgNy42NSA0OS43My01Ljgyek05Ny42NiAxNzUuOTZjMC01My4wMyA0Mi4yNC05Ni4wMiA5NC4zNC05Ni4wMnM5NC4zNCA0Mi45OSA5NC4zNCA5Ni4wMi00Mi4yNCA5Ni4wMi05NC4zNCA5Ni4wMi05NC4zNC00Mi45OS05NC4zNC05Ni4wMnoiPjwvcGF0aD48L3N2Zz4NCg==">
+                <div class="content">
+                    <div class="title title-ribbon-incorrect ng-star-inserted">
+                        <span>[[#{ribbon.failed}]]</span>
+                    </div>
+                </div>
+            </li>
 
         </div>
     </ul>

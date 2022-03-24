@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
 
@@ -9,18 +9,18 @@ import javax.xml.bind.annotation.*;
 import java.net.URI;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"id", "type", "status", "longDescription", "description"})
+@XmlType(propOrder = {"id", "type", "status", "description", "longDescription"})
 public class VerificationCheckDTO {
 
     @XmlAttribute
     private URI id;
 
     @NotNull
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Code type;
 
     @NotNull
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Code status;
 
 //    @XmlTransient
@@ -29,10 +29,10 @@ public class VerificationCheckDTO {
 //    @XmlTransient
 //    private Code verificationStep;
 
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Text longDescription;
 
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Text description;
 
     public URI getId() {

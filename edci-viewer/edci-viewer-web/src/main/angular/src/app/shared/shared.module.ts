@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import {
     UxButtonComponentModule,
     UxControlFeedbackComponentModule,
+    UxDatepickerComponentModule,
     UxDropdownButtonComponentModule,
     UxDynamicComponentService,
     UxDynamicModalComponentModule,
@@ -19,10 +20,11 @@ import {
     UxTimelineItemComponentModule,
     UxTimelineItemsComponentModule,
     UxTooltipModule,
-    UxDatepickerComponentModule
 } from '@eui/core';
 import { EclAllModule } from '@eui/ecl-core';
 import { TranslateModule } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 import { AchievementDetailComponent } from './components/achievement-detail/achievement-detail.component';
 import { ActivityDetailComponent } from './components/activity-detail/activity-detail.component';
 import { AssessmentDetailComponent } from './components/assessment-detail/assessment-detail.component';
@@ -33,12 +35,15 @@ import { IdentifiersComponent } from './components/identifiers/identifiers.compo
 import { MoreInformationComponent } from './components/more-information/more-information.component';
 import { OrganizationDetailComponent } from './components/organization-detail/organization-detail.component';
 import { OtherDocumentsComponent } from './components/other-documents/other-documents.component';
+import { MenuItemComponent } from './components/side-menu-tiem-list/menu-item/menu-item.component';
+import { MenuListComponent } from './components/side-menu-tiem-list/menu-list/menu-list.component';
+import { SideMenuItemListComponent } from './components/side-menu-tiem-list/side-menu-item-list.component';
 import { CopyClipboardDirective } from './directives/copy-to-clipboard.directive';
+import { HasChildrenPipe } from './pipes/has-children.pipe';
 import { JoinPipe } from './pipes/join.pipe';
 import { JoinPipeAddress } from './pipes/join.pipe.address';
+import { MultilingualPipe } from './pipes/multilingual.pipe';
 import { SafePipe } from './pipes/sanitize.pipe';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -52,6 +57,7 @@ import { MessageService } from 'primeng/api';
         TranslateModule,
         UxButtonComponentModule,
         UxControlFeedbackComponentModule,
+        UxDatepickerComponentModule,
         UxDropdownButtonComponentModule,
         UxDynamicModalComponentModule,
         UxFormControlComponentModule,
@@ -63,7 +69,6 @@ import { MessageService } from 'primeng/api';
         UxTimelineItemComponentModule,
         UxTimelineItemsComponentModule,
         UxTooltipModule,
-        UxDatepickerComponentModule
     ],
     declarations: [
         AchievementDetailComponent,
@@ -76,10 +81,15 @@ import { MessageService } from 'primeng/api';
         IdentifiersComponent,
         JoinPipe,
         JoinPipeAddress,
+        HasChildrenPipe,
+        MenuItemComponent,
         MoreInformationComponent,
+        MultilingualPipe,
         OrganizationDetailComponent,
         OtherDocumentsComponent,
         SafePipe,
+        SideMenuItemListComponent,
+        MenuListComponent,
     ],
     exports: [
         AchievementDetailComponent,
@@ -95,17 +105,23 @@ import { MessageService } from 'primeng/api';
         IdentifiersComponent,
         JoinPipe,
         JoinPipeAddress,
+        HasChildrenPipe,
         MatProgressSpinnerModule,
+        MenuItemComponent,
         MoreInformationComponent,
+        MultilingualPipe,
         OrganizationDetailComponent,
         OtherDocumentsComponent,
         ReactiveFormsModule,
         RouterModule,
         SafePipe,
+        SideMenuItemListComponent,
+        MenuListComponent,
         ToastModule,
         TranslateModule,
         UxButtonComponentModule,
         UxControlFeedbackComponentModule,
+        UxDatepickerComponentModule,
         UxDropdownButtonComponentModule,
         UxDynamicModalComponentModule,
         UxFormControlComponentModule,
@@ -117,7 +133,6 @@ import { MessageService } from 'primeng/api';
         UxTimelineItemComponentModule,
         UxTimelineItemsComponentModule,
         UxTooltipModule,
-        UxDatepickerComponentModule
     ],
     providers: [
         UxDynamicComponentService,

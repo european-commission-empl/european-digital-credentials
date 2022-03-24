@@ -10,9 +10,9 @@ public enum ControlledListConcept {
     VERIFICATION_CHECKS_SEAL(ControlledList.VERIFICATION_CHECKS, "http://data.europa.eu/snb/verification/f9c2016fe9"),
     VERIFICATION_CHECKS_CUSTOM(ControlledList.VERIFICATION_CHECKS, "http://data.europa.eu/snb/verification/c_50990fe3"),
 
-    VERIFICATION_TYPE_NOTARIZED_COPY(ControlledList.VERIFICATION_TYPE, "http://52.57.141.197/fs/0.10.0/vp/certifiedCopy"),
-    VERIFICATION_TYPE_MANDATED_ISSUE(ControlledList.VERIFICATION_TYPE, "http://52.57.141.197/fs/0.10.0/vp/signOnBehalf"),
-    VERIFICATION_TYPE_SHARED(ControlledList.VERIFICATION_TYPE, "http://52.57.141.197/fs/0.10.0/vp/export"),
+    VERIFICATION_TYPE_NOTARIZED_COPY(ControlledList.VERIFICATION_TYPE, "http://data.europa.eu/snb/verifiable-presentation/c_e01977e3"),
+    VERIFICATION_TYPE_MANDATED_ISSUE(ControlledList.VERIFICATION_TYPE, "http://data.europa.eu/snb/verifiable-presentation/c_825cddc0"),
+    VERIFICATION_TYPE_SHARED(ControlledList.VERIFICATION_TYPE, "http://data.europa.eu/snb/verifiable-presentation/c_409018f7"),
 
     VERIFICATION_STATUS_SKIPPED(ControlledList.VERIFICATION_STATUS, "http://data.europa.eu/snb/verification-status/641f0c5e5d"),
     VERIFICATION_STATUS_OK(ControlledList.VERIFICATION_STATUS, "http://data.europa.eu/snb/verification-status/9895008394"),

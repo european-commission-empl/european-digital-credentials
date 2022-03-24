@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.listener;
 
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.model.*;
 import eu.europa.ec.empl.edci.util.EDCICredentialModelUtil;
 import eu.europa.ec.empl.edci.util.ReflectiveUtil;
@@ -122,8 +122,8 @@ public class EDCIJAXBMarshalListener extends Marshaller.Listener {
         if (source instanceof MailboxDTO) {
             MailboxDTO mailboxDTO = (MailboxDTO) source;
             String mailToString = mailboxDTO.getId().toString();
-            if (!mailToString.contains(Defaults.DEFAULT_MAILTO)) {
-                mailToString = Defaults.DEFAULT_MAILTO.concat(mailToString);
+            if (!mailToString.contains(EDCIConfig.Defaults.DEFAULT_MAILTO)) {
+                mailToString = EDCIConfig.Defaults.DEFAULT_MAILTO.concat(mailToString);
                 mailboxDTO.setId(URI.create(mailToString));
             }
         }

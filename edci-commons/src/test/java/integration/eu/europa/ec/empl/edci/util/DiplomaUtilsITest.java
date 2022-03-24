@@ -1,6 +1,6 @@
 package integration.eu.europa.ec.empl.edci.util;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.utils.NamespaceResolver;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
 import eu.europa.ec.empl.edci.util.EDCICredentialModelUtil;
@@ -97,8 +97,8 @@ public class DiplomaUtilsITest extends AbstractIntegrationBaseTest {
         Document doc = buildCredentialDoc();
         XPath xpath = prepareXPath(doc);
 
-        Date dateTmp = new SimpleDateFormat(EuropassConstants.DATE_ISO_8601).parse("2020-06-21T18:27:21+02:00");
-        String valueRef = new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT).format(dateTmp);
+        Date dateTmp = new SimpleDateFormat(EDCIConstants.DATE_ISO_8601).parse("2020-06-21T18:27:21+02:00");
+        String valueRef = new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT).format(dateTmp);
 
         String valueDate = htmlSanitizerUtil.getValue(doc, xpath, "/eup:europassCredential/cred:validFrom");
 

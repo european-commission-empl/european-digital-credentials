@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
@@ -18,7 +18,7 @@ import java.util.List;
 @XmlType(propOrder = {"id", "title", "language", "subject"})
 public class WebDocumentDTO implements Nameable {
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_WEBDOCUMENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_WEBDOCUMENT_ID_NOTNULL)
     @XmlAttribute(name = "uri")
     private URL id; //1
     @Valid

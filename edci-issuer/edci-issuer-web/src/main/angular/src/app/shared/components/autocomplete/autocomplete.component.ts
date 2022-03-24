@@ -1,14 +1,18 @@
 import {
+    AfterViewInit,
     Component,
+    ElementRef,
     EventEmitter,
     Input,
     OnInit,
     Output,
     ViewChild,
-    AfterViewInit, ElementRef,
+    Renderer2,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UxAutoCompleteComponent, UxAutoCompleteTagComponent } from '@eui/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CredentialBuilderService } from '@services/credential-builder.service';
 import { Constants } from '@shared/constants';
 import { ItemSpecLiteView } from '@shared/models/item-spec-lite-view.model';
 import { SelectedItemList } from '@shared/models/selected-item-list.modal';
@@ -32,8 +36,6 @@ import {
 } from '@shared/swagger';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
-import { UxAutoCompleteComponent, UxAutoCompleteTagComponent } from '@eui/core';
-import { CredentialBuilderService } from '@services/credential-builder.service';
 
 @Component({
     selector: 'edci-autocomplete',
@@ -45,8 +47,8 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     @ViewChild('divMultipleInput') myDivElementRef: ElementRef;
     @ViewChild('autocomplete') autocomplete: UxAutoCompleteComponent;
 
-    @Output() onEntityClicked: EventEmitter<{ type: string, oid: number}>
-        = new EventEmitter<{ type: string, oid: number}>();
+    @Output() onEntityClicked: EventEmitter<{ type: string; oid: number }> =
+        new EventEmitter<{ type: string; oid: number }>();
 
     private _isDisabled: boolean = false;
 
@@ -103,9 +105,10 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     @Input() isSingleSelection: boolean = false;
     @Input() defaultLanguage: string;
 
-    @Output() selectionChange: EventEmitter<
-        number | number[]
-    > = new EventEmitter<number | number[]>();
+    @Output() selectedItemsChange: EventEmitter<SelectedTagItemList[]> =
+        new EventEmitter<SelectedTagItemList[]>();
+    @Output() selectionChange: EventEmitter<number | number[]> =
+        new EventEmitter<number | number[]>();
 
     get isDisabled(): boolean {
         return this._isDisabled;
@@ -124,10 +127,13 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     isLoading: boolean = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     textToSearch: string;
-    listAddedItemsFromAllResults: { [key: string]: SelectedTagItemList | SelectedItemList } = {};
+    listAddedItemsFromAllResults: {
+        [key: string]: SelectedTagItemList | SelectedItemList;
+    } = {};
 
     constructor(
         private api: V1Service,
+        private renderer: Renderer2,
         private translateService: TranslateService,
         private credentialBuilderService: CredentialBuilderService
     ) {}
@@ -178,34 +184,10 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     }
 
     onItemAdded(oid: number): void {
-        if (this.isSingleSelection) {
-            for (const iterator of this.searchList) {
-                if (iterator.id === String(oid)) {
-                    let selectedItem = {
-                        id: String(iterator),
-                        label: iterator[this.entityType].defaultTitle,
-                        typeClass: null,
-                        iconClass: null,
-                        isDeletable: true
-                    };
-                    selectedItem[this.entityType] = iterator[this.entityType];
-                    this.selectedItems = [selectedItem];
-                    this.selectionChange.emit([iterator.id]);
-                    break;
-                }
-            }
-            this.addClickEventToTags();
-        } else {
-            this.selectedItems = this.selectedItems.filter(
-                (item: SelectedTagItemList) => {
-                    return item.id !== Constants.EMPTY_RESULT_ID;
-                }
-            );
-            this.addClickEventToTags();
-            if (oid) {
-                this.itemsOidList.push(oid);
-                this.selectionChange.emit(this.itemsOidList);
-            }
+        if (oid) {
+            this.itemsOidList.push(oid);
+            this.selectionChange.emit(this.itemsOidList);
+            this.selectedItemsChange.emit(this.selectedItems);
         }
     }
 
@@ -215,33 +197,101 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             if (index !== -1) {
                 this.itemsOidList.splice(index, 1);
             }
-            this.selectionChange.emit(this.itemsOidList);
+            if (this.isSingleSelection) {
+                this.showSingleInput();
+            }
+            this.selectionChange.emit(
+                this.itemsOidList.length === 0 && this.isSingleSelection
+                    ? null
+                    : this.itemsOidList
+            );
+        }
+    }
+
+    onSelectionChange(selection: SelectedTagItemList[]) {
+        this.selectedItems = selection;
+        this.selectedItems = this.selectedItems.filter(
+            (item: SelectedTagItemList) => {
+                return item.id !== Constants.EMPTY_RESULT_ID;
+            }
+        );
+        if (this.isSingleSelection) {
+            this.hideSingleInput();
+        }
+        if (this.selectedItems.length > 0) {
+            this.addClickEventToTags();
         }
     }
 
     private addClickEventToTags() {
-        // TODO: NEXT SPRINT
-        /*const classOfLabels = '.ux-chips-list__chip-label';
+        const classOfLabels = '.ux-chips-list__chip-label';
         const isDisabled = this.credentialBuilderService.isNewEntityDisabled;
+        const elementEventHandler = (event) => {
+            if (event && event.currentTarget) {
+                this.onEntityClicked.emit({
+                    oid: event.currentTarget.id,
+                    type: this.entityType,
+                });
+            }
+        };
         setTimeout(() => {
-            const children = this.myDivElementRef.nativeElement.querySelectorAll(classOfLabels);
+            const children =
+                this.myDivElementRef.nativeElement.querySelectorAll(
+                    classOfLabels
+                );
+
             Array.from(children).forEach((e, i) => {
                 if (!isDisabled) {
                     children[i].style.cursor = 'pointer';
                     if (this.entityType) {
-                        children[i].id = this.selectedItems[i][this.entityType].oid;
-                        children[i].addEventListener('click', (event) => {
-                            if (event && event.currentTarget) {
-                                this.onEntityClicked.emit({
-                                    oid: event.currentTarget.id,
-                                    type: this.entityType
-                                });
-                            }
-                        });
+                        // Prevent adding multiple listeners to same tag
+                        if (!children[i].id) {
+                            children[i].id =
+                                this.selectedItems[i][this.entityType].oid;
+                            this.renderer.listen(
+                                children[i],
+                                'click',
+                                elementEventHandler
+                            );
+                        }
                     }
                 }
             });
-        }, 100);*/
+        }, 100);
+    }
+
+    private hideSingleInput() {
+        const classOfLabel = '.mat-chip-list';
+        const classOfAutocomplete = '.ux-autocomplete-tag__field-wrapper';
+        setTimeout(() => {
+            const matchip =
+                this.myDivElementRef.nativeElement.querySelectorAll('mat-chip');
+            const autocomplete =
+                this.myDivElementRef.nativeElement.querySelectorAll(
+                    classOfAutocomplete
+                )[0];
+            const parentLabel =
+                this.myDivElementRef.nativeElement.querySelectorAll(
+                    classOfLabel
+                )[0];
+            if (parentLabel && autocomplete && matchip && matchip.length > 0) {
+                matchip[0].style.justifyContent = 'space-between';
+                autocomplete.style.display = 'none';
+                parentLabel.style.width = '100%';
+                parentLabel.children[0].style.display = 'block';
+            }
+        }, 1);
+    }
+
+    private showSingleInput() {
+        const classOfAutocomplete = '.ux-autocomplete-tag__field-wrapper';
+        const autocomplete =
+            this.myDivElementRef.nativeElement.querySelectorAll(
+                classOfAutocomplete
+            )[0];
+        if (autocomplete) {
+            autocomplete.style.display = '';
+        }
     }
 
     private setSingleItem(
@@ -259,11 +309,14 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 label: item.defaultTitle,
                 typeClass: null,
                 iconClass: null,
-                isDeletable: true
+                isDeletable: true,
             };
             selectedItem[this.entityType] = item;
             this.selectedItems = [selectedItem];
             this.addClickEventToTags();
+            if (this.selectedItems.length) {
+                this.hideSingleInput();
+            }
             this.selectionChange.emit([item.oid]);
             this.autocompleteForm.patchValue({ item: selectedItem });
         }
@@ -280,14 +333,15 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     ): void {
         if (items && items.content) {
             if (this.selectedItems.length) {
-                const validItems = this.preserveSelection(items);
-                this.selectedItems = this.getItems(validItems.content);
+                this.selectedItems = this.getItems(items.content);
                 this.addClickEventToTags();
-                this.setOids(validItems.content);
+                this.setOids(items.content);
             } else {
                 this.selectedItems = this.getItems(items.content);
-                this.selectedItems.forEach(s => {
-                    this.listAddedItemsFromAllResults[this.returnExistentElement(s).oid] = s;
+                this.selectedItems.forEach((s) => {
+                    this.listAddedItemsFromAllResults[
+                        this.returnExistentElement(s).oid
+                    ] = s;
                 });
                 this.addClickEventToTags();
                 this.setOids(items.content);
@@ -316,6 +370,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 (results: PagedResourcesLearningAchievementSpecLiteView) => {
                     if (results.content.length) {
                         this.searchList = this.getItems(results.content);
+                        if (this.searchList.length === 0) {
+                            this.searchList = this.createEmptyResultsMessage();
+                        }
                     } else {
                         this.searchList = this.createEmptyResultsMessage();
                     }
@@ -338,6 +395,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             .subscribe((results: PagedResourcesAssessmentSpecLiteView) => {
                 if (results.content.length) {
                     this.searchList = this.getItems(results.content);
+                    if (this.searchList.length === 0) {
+                        this.searchList = this.createEmptyResultsMessage();
+                    }
                 } else {
                     this.searchList = this.createEmptyResultsMessage();
                 }
@@ -359,6 +419,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             .subscribe((results: PagedResourcesOrganizationSpecLiteView) => {
                 if (results.content.length) {
                     this.searchList = this.getItems(results.content);
+                    if (this.searchList.length === 0) {
+                        this.searchList = this.createEmptyResultsMessage();
+                    }
                 } else {
                     this.searchList = this.createEmptyResultsMessage();
                 }
@@ -380,6 +443,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             .subscribe((results: PagedResourcesLearningOutcomeSpecLiteView) => {
                 if (results.content.length) {
                     this.searchList = this.getItems(results.content);
+                    if (this.searchList.length === 0) {
+                        this.searchList = this.createEmptyResultsMessage();
+                    }
                 } else {
                     this.searchList = this.createEmptyResultsMessage();
                 }
@@ -401,6 +467,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
             .subscribe((results: PagedResourcesEntitlementSpecLiteView) => {
                 if (results.content.length) {
                     this.searchList = this.getItems(results.content);
+                    if (this.searchList.length === 0) {
+                        this.searchList = this.createEmptyResultsMessage();
+                    }
                 } else {
                     this.searchList = this.createEmptyResultsMessage();
                 }
@@ -423,6 +492,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 (results: PagedResourcesLearningActivitySpecLiteView) => {
                     if (results.content.length) {
                         this.searchList = this.getItems(results.content);
+                        if (this.searchList.length === 0) {
+                            this.searchList = this.createEmptyResultsMessage();
+                        }
                     } else {
                         this.searchList = this.createEmptyResultsMessage();
                     }
@@ -442,16 +514,17 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 this.translateService.currentLang
             )
             .takeUntil(this.destroy$)
-            .subscribe(
-                (results: PagedResourcesDiplomaSpecLiteView) => {
-                    if (results.content.length) {
-                        this.searchList = this.getItems(results.content);
-                    } else {
+            .subscribe((results: PagedResourcesDiplomaSpecLiteView) => {
+                if (results.content.length) {
+                    this.searchList = this.getItems(results.content);
+                    if (this.searchList.length === 0) {
                         this.searchList = this.createEmptyResultsMessage();
                     }
-                    this.textToSearch = '';
+                } else {
+                    this.searchList = this.createEmptyResultsMessage();
                 }
-            );
+                this.textToSearch = '';
+            });
     }
 
     private searchString(searchText: string): string {
@@ -474,13 +547,29 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
                 !this.defaultLanguage ||
                 item.defaultLanguage === this.defaultLanguage
             ) {
+                if (!item.defaultTitle) {
+                    item = this.addMissingLabel(item);
+                }
+                item['isNew'] = false;
                 let pushItem = this.getTagItemList(item);
                 pushItem[this.entityType] = item;
                 tagList.push(pushItem);
             }
         });
         this.isLoading = false;
+
         return tagList;
+    }
+
+    private addMissingLabel(itemNoLabel: ItemSpecLiteView): ItemSpecLiteView {
+        const noLabelOid: number = itemNoLabel.oid;
+        let itemWithLabel: ItemSpecLiteView;
+        this.selectedItems.forEach((item) => {
+            if (this.returnExistentElement(item).oid === noLabelOid) {
+                itemWithLabel = this.returnExistentElement(item);
+            }
+        });
+        return itemWithLabel;
     }
 
     private createEmptyResultsMessage(): SelectedTagItemList[] {
@@ -536,48 +625,23 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         }
     }
 
-    private preserveSelection(items): any {
-        const itemsOfSelectedItems = this.selectedItems.map( c => {
-            return this.returnExistentElement(c);
-        });
-        const newItems = {
-            content: []
-        };
-        items.content.forEach((content) => {
-            itemsOfSelectedItems.forEach((itemOfSelectedItem) => {
-                if (content.oid === itemOfSelectedItem.oid) {
-                    if (!content.defaultTitle) {
-                        newItems.content.push(itemOfSelectedItem);
-                    } else {
-                        if (content.isNew) {
-                            for (let k = 0; k < newItems.content.length; k++) {
-                                if (content.oid === newItems.content[k].oid) {
-                                    newItems.content[k] = content;
-                                    break;
-                                }
-                            }
-                        } else {
-                            newItems.content.push(content);
-                        }
-                    }
-                }
-            });
-            if (!itemsOfSelectedItems.map(it => it.oid ).includes(content.oid)) {
-                if (content.isNew) {
-                    newItems.content.push(content);
-                }
-            }
-        });
-        return newItems;
-    }
-
-    private returnExistentElement(e: any): LearningAchievementSpecLiteView | LearningOutcomeSpecLiteView | LearningActivitySpecLiteView
-        | AssessmentSpecLiteView | OrganizationSpecLiteView | EntitlementSpecView {
-        return e['achievement'] ||
-        e['learningOutcome'] ||
-        e['activity'] ||
-        e['assessment'] ||
-        e['organization'] ||
-        e['entitlement'] || null;
+    private returnExistentElement(
+        e: any
+    ):
+        | LearningAchievementSpecLiteView
+        | LearningOutcomeSpecLiteView
+        | LearningActivitySpecLiteView
+        | AssessmentSpecLiteView
+        | OrganizationSpecLiteView
+        | EntitlementSpecView {
+        return (
+            e['achievement'] ||
+            e['learningOutcome'] ||
+            e['activity'] ||
+            e['assessment'] ||
+            e['organization'] ||
+            e['entitlement'] ||
+            null
+        );
     }
 }

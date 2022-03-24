@@ -33,7 +33,7 @@ public abstract class EDCIAuthorizationService implements IEDCIAuthorizationServ
 
     @Override
     public boolean isMockUserActive() {
-        return this.getConfigService().getBoolean(EDCIConfig.OIDC_MOCK_USER_ACTIVE);
+        return this.getConfigService().getBoolean(EDCIConfig.Security.MOCK_USER_ACTIVE);
     }
 
     @Override

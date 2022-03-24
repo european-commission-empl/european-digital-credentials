@@ -1,16 +1,12 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.specs.DiplomaSpecDAO;
-import eu.europa.ec.empl.edci.issuer.service.spec.EntitlementSpecService;
-import eu.europa.ec.empl.edci.issuer.service.spec.LearningAchievementSpecService;
-import eu.europa.ec.empl.edci.issuer.service.spec.LearningActivitySpecService;
 import eu.europa.ec.empl.edci.issuer.service.spec.DiplomaSpecService;
 import eu.europa.ec.empl.edci.issuer.web.mapper.spec.DiplomaSpecRestMapper;
-import eu.europa.ec.empl.edci.issuer.web.model.SubresourcesOids;
 import eu.europa.ec.empl.edci.issuer.web.model.specs.DiplomaSpecView;
 import eu.europa.ec.empl.edci.issuer.web.model.specs.lite.DiplomaSpecLiteView;
 import eu.europa.ec.empl.edci.repository.rest.CrudResource;
@@ -40,7 +36,7 @@ import javax.validation.Valid;
         "V1"
 })
 @Controller(value = "v1.DiplomaSpecResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.DIPLOMA_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.DIPLOMA_BASE)
 @PreAuthorize("isAuthenticated()")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class DiplomaResource implements CrudResource {
@@ -55,12 +51,12 @@ public class DiplomaResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @ApiOperation(value = "Create an diploma spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<DiplomaSpecView>> createDiploma(@RequestBody @Valid DiplomaSpecView diplomaView,
-                                                                             @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
+                                                                   @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) throws Exception {
 
         final DiplomaSpecDAO diplomaDAO = diplomaSpecRestMapper.toDAO(diplomaView);
 
@@ -70,7 +66,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate a activity spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<DiplomaSpecView>> duplicateDiploma(
@@ -83,7 +79,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update an diploma spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -105,7 +101,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Upload a diploma background")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.BACKGROUND,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.BACKGROUND,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -118,7 +114,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an diploma spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteDiploma(
@@ -129,7 +125,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an diploma")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<DiplomaSpecView>> getDiploma(
@@ -144,7 +140,7 @@ public class DiplomaResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of diplomas")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<DiplomaSpecLiteView>> listDiploma(
@@ -165,7 +161,7 @@ public class DiplomaResource implements CrudResource {
     public Link[] generateDiplomaHateoas(DiplomaSpecDAO diplomaDAO) {
 
         if (diplomaDAO != null) {
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(DiplomaResource.class).slash(Endpoint.V1.SPECS).slash(diplomaDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(DiplomaResource.class).slash(IssuerEndpoint.V1.SPECS).slash(diplomaDAO.getPk()).withSelfRel();
 
             return new Link[]{
                     hateoasSelf

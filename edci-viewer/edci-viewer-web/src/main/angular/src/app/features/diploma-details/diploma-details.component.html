@@ -76,14 +76,16 @@
             [isDetails]="true"
             [primaryLanguage]="language"
             [availableLanguages]="availableLanguages"
+            [isXMLDisabled]="type === 'VP'"
             (onLanguageChange)="onLanguageChange($event)"
+            [isXMLDisabled]="header.credentialType === 'export'"
         ></edci-viewer-diploma-toolbar>
         <div
             *ngIf="!reloadDetailsLanguage; else reloadingDetails"
             class="body-container col-12 pb-5 p-0"
         >
-            <div class="col-2 sidebar-container p-0 mr-4">
-                <ux-layout-sidebar-items
+            <div class="col-3 sidebar-container p-0 mr-1">
+                <!-- <ux-layout-sidebar-items
                     *ngIf="items"
                     [isInnerNavigationSidebar]="true"
                 >
@@ -96,9 +98,11 @@
                             url="{{ item.url }}"
                         ></ux-layout-sidebar-item>
                     </ng-container>
-                </ux-layout-sidebar-items>
+                </ux-layout-sidebar-items> -->
+                <edci-side-menu-item-list [items]="credential">
+                </edci-side-menu-item-list>
             </div>
-            <div class="col-10 info-container diploma-details pr-0 pr-4">
+            <div class="col-9 info-container diploma-details pr-0">
                 <router-outlet></router-outlet>
             </div>
         </div>

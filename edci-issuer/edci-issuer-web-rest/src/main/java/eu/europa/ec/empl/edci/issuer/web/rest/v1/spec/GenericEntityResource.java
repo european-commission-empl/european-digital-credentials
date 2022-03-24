@@ -1,14 +1,12 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
 import eu.europa.ec.empl.edci.constants.ControlledList;
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
-import eu.europa.ec.empl.edci.issuer.entity.controlledLists.ElementCLDAO;
 import eu.europa.ec.empl.edci.issuer.service.IssuerConfigService;
-import eu.europa.ec.empl.edci.issuer.service.spec.ControlledListsOldService;
 import eu.europa.ec.empl.edci.issuer.service.spec.EscoBridgeService;
 import eu.europa.ec.empl.edci.issuer.utils.ecso.EscoElementPayload;
 import eu.europa.ec.empl.edci.issuer.web.mapper.spec.GenericEntitiyRestMapper;
@@ -25,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,7 +40,7 @@ import java.util.stream.Collectors;
         "V1"
 })
 @Controller(value = "v1.GenericEntityResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.GENERIC_ENTITIES_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.GENERIC_ENTITIES_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET})
 public class GenericEntityResource implements CrudResource {
 
@@ -57,16 +54,13 @@ public class GenericEntityResource implements CrudResource {
     private RDFsparqlBridgeService rdfSparqlBridgeService;
 
     @Autowired
-    private ControlledListsOldService controlledListsService;
-
-    @Autowired
     private GenericEntitiyRestMapper genericEntitiyRestMapper;
 
     @Autowired
     private IssuerConfigService issuerConfigService;
 
     @ApiOperation(value = "Get some resources by uri")
-    @GetMapping(value = Endpoint.V1.GENERIC_ENTITY + Parameter.Path.TYPE,
+    @GetMapping(value = IssuerEndpoint.V1.GENERIC_ENTITY + Parameter.Path.TYPE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @PreAuthorize("isAuthenticated()")
@@ -155,6 +149,8 @@ public class GenericEntityResource implements CrudResource {
             } catch (Exception e) {
                 reqLangs = new ArrayList<>();
             }
+        } else {
+            reqLangs = new ArrayList<>();
         }
 
         //ESCO
@@ -196,30 +192,6 @@ public class GenericEntityResource implements CrudResource {
         }
 
         return generateListResponse(returnValue, "/specs");
-    }
-
-
-    @Deprecated
-    public Page<CodeDTView> searchControlledListElem(String type, Integer page, Integer size, String sort, String direction, String search, String locale) {
-
-        String searchBy = "targetName.name~" + search + ";targetName.lang:" + locale;
-        String searchSpecification = searchBy + ";targetFrameworkURI:" + type;
-
-        PageParam pageParam = new PageParam(page, size, sort, direction);
-        Specification specif = buildSearchSpecification(searchSpecification, null, null);
-
-        Page<ElementCLDAO> elementCLList = controlledListsService.findAll(specif, pageParam.toPageRequest());
-
-        //TODO: remove distinct when no duplicates are found. Theres a bug with specifications: EDCI-446
-        List<CodeDTView> codeList = genericEntitiyRestMapper.toCodeViewList(elementCLList.getContent(), locale).stream().distinct().collect(Collectors.toList());
-
-        Page<CodeDTView> pageResult = new PageImpl<CodeDTView>(
-                codeList,
-                pageParam.toPageRequest(),
-                codeList.size());
-
-        return pageResult;
-
     }
 
     @ApiOperation(value = "Checks the external services availability", hidden = true)

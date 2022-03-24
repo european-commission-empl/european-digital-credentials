@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
-
 import { FileSizePipe } from '@shared/pipes/file-size.pipe';
-import { HasLanguagePipe, ExtractLabelPipe } from './multilingual.pipe';
+import { ExtractLabelPipe, HasLanguagePipe } from './multilingual.pipe';
+import { OcbModalBreadcrumbPipe } from './ocb-modal-breadcrumb.pipe';
 
-// pipes
-export const pipes = [FileSizePipe, ExtractLabelPipe, HasLanguagePipe];
+export const pipes = [
+    FileSizePipe,
+    ExtractLabelPipe,
+    HasLanguagePipe,
+    OcbModalBreadcrumbPipe,
+];
 
 @NgModule({
     declarations: pipes,

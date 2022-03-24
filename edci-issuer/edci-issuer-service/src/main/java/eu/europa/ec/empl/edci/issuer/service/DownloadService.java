@@ -4,13 +4,12 @@ package eu.europa.ec.empl.edci.issuer.service;
 import eu.europa.ec.empl.edci.annotation.Resize;
 import eu.europa.ec.empl.edci.constants.ControlledList;
 import eu.europa.ec.empl.edci.constants.ControlledListConcept;
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.model.base.DownloadableAsset;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.exception.EDCIException;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessages;
+import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessageKeys;
 import eu.europa.ec.empl.edci.issuer.mapper.ControlledListsMapper;
-import eu.europa.ec.empl.edci.issuer.service.spec.ControlledListsOldService;
 import eu.europa.ec.empl.edci.issuer.util.FileUtil;
 import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
@@ -44,9 +43,6 @@ public class DownloadService {
 
     @Autowired
     public ResourcesUtil resourcesUtil;
-
-    @Autowired
-    private ControlledListsOldService controlledListsService;
 
     @Autowired
     public IssuerConfigService issuerConfigService;
@@ -103,7 +99,7 @@ public class DownloadService {
             } catch (EDCIException ex) {
                 error = edciMessageService.getMessage(ex.getMessageKey(), downloadableAsset.getContentUrl());
             } catch (Exception e) {
-                error = edciMessageService.getMessage(EDCIIssuerMessages.ERROR_DOWNLOADABLE_ASSET, downloadableAsset.getContentUrl());
+                error = edciMessageService.getMessage(EDCIIssuerMessageKeys.ERROR_DOWNLOADABLE_ASSET, downloadableAsset.getContentUrl());
             }
         }
         return error;
@@ -111,7 +107,7 @@ public class DownloadService {
 
     private void downloadFile(DownloadableAsset downloadableAsset, Annotation annotation) throws IOException {
         dataLoaderUtil.setProxyConfig(issuerConfigService.proxyEDCIConfig());
-        Code encoding = controlledListCommonsService.searchConceptByUri(ControlledList.ENCODING.getUrl(), ControlledListConcept.ENCODING_BASE64.getUrl(), Defaults.DEFAULT_LOCALE);
+        Code encoding = controlledListCommonsService.searchConceptByUri(ControlledList.ENCODING.getUrl(), ControlledListConcept.ENCODING_BASE64.getUrl(), EDCIConfig.Defaults.DEFAULT_LOCALE);
         dataLoaderUtil.downloadAsset(downloadableAsset, (fileType) -> fileUtil.getFileType(fileType), imageUtil, encoding, annotation);
 
     }

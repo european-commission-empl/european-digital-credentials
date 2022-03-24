@@ -10,6 +10,9 @@ import org.mitre.openid.connect.client.service.impl.StaticClientConfigurationSer
 import org.mitre.openid.connect.client.service.impl.StaticSingleIssuerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.Environment;
+import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 
 import java.util.*;
@@ -49,20 +52,40 @@ public interface IConfigService {
         return this.getString(key) == null ? null : this.getString(key).split(",");
     }
 
+    abstract Map<String, Object> getFrontEndProperties();
+
+    default Map<String, Object> getFrontPropertiesFromFile(Environment env, String filePath) {
+        //Get Only FileName
+        String frontFile = filePath.substring(filePath.lastIndexOf("/") + 1);
+        Map<String, Object> map = new HashMap<>();
+        //Search for property source
+        for (Iterator it = ((AbstractEnvironment) env).getPropertySources().iterator(); it.hasNext(); ) {
+            Object propertySource = it.next();
+            if (propertySource instanceof ResourcePropertySource
+                    && ((ResourcePropertySource) propertySource).getName().contains(frontFile)) {
+                //Add all properties from property source
+                map.putAll(((ResourcePropertySource) propertySource).getSource());
+            }
+        }
+        return map;
+    }
+
     /**
      * OIDC CONFIGURATION
      **/
     @Bean
     default RegisteredClient registeredClient() {
         RegisteredClient registeredClient = new RegisteredClient();
-        registeredClient.setClientId(this.getString(EDCIConfig.OIDC_CLIENTID));
-        registeredClient.setClientSecret(this.getString(EDCIConfig.OIDC_SECRET));
-        Set<String> scopes = new HashSet<>(Arrays.asList(this.getString(EDCIConfig.OIDC_SCOPES).split(",")));
+        registeredClient.setClientId(this.getString(EDCIConfig.Security.CLIENT_ID));
+        registeredClient.setClientSecret(this.getString(EDCIConfig.Security.CLIENT_SECRET));
+        Set<String> scopes = new HashSet<>(Arrays.asList(this.getString(EDCIConfig.Security.SCOPES).split(",")));
         registeredClient.setScope(scopes);
-        registeredClient.setCodeChallengeMethod(PKCEAlgorithm.parse(this.getString(EDCIConfig.OIDC_CODE_CHALLENGE_METHOD)));
-        registeredClient.setRequestObjectSigningAlg(JWSAlgorithm.parse(this.getString(EDCIConfig.OIDC_SIGNING_ALG)));
+        if (this.getString(EDCIConfig.Security.CODE_CHALLENGE_METHOD) != null) {
+            registeredClient.setCodeChallengeMethod(PKCEAlgorithm.parse(this.getString(EDCIConfig.Security.CODE_CHALLENGE_METHOD)));
+        }
+        registeredClient.setRequestObjectSigningAlg(JWSAlgorithm.parse(this.getString(EDCIConfig.Security.SIGNING_ALG)));
         Set<String> redirectUris = new HashSet<>();
-        redirectUris.add(this.getString(EDCIConfig.OIDC_REDIRECT_URL));
+        redirectUris.add(this.getString(EDCIConfig.Security.REDIRECT_URL));
         registeredClient.setRedirectUris(redirectUris);
         return registeredClient;
     }
@@ -70,7 +93,7 @@ public interface IConfigService {
     @Bean
     default StaticSingleIssuerService staticIssuerService() {
         StaticSingleIssuerService staticSingleIssuerService = new StaticSingleIssuerService();
-        staticSingleIssuerService.setIssuer(this.getString(EDCIConfig.OIDC_IDP_URL));
+        staticSingleIssuerService.setIssuer(this.getString(EDCIConfig.Security.IDP_URL));
         return staticSingleIssuerService;
     }
 
@@ -85,7 +108,7 @@ public interface IConfigService {
     default StaticClientConfigurationService staticClientConfigurationService() {
         StaticClientConfigurationService staticClientConfigurationService = new StaticClientConfigurationService();
         Map<String, RegisteredClient> registeredClientMap = new HashMap<>();
-        registeredClientMap.put(this.getString(EDCIConfig.OIDC_IDP_URL), this.registeredClient());
+        registeredClientMap.put(this.getString(EDCIConfig.Security.IDP_URL), this.registeredClient());
         staticClientConfigurationService.setClients(registeredClientMap);
         return staticClientConfigurationService;
     }
@@ -94,16 +117,16 @@ public interface IConfigService {
     @Bean
     default StaticIntrospectionConfigurationService staticIntrospectionConfigurationService() {
         StaticIntrospectionConfigurationService staticIntrospectionConfigurationService = new StaticIntrospectionConfigurationService();
-        staticIntrospectionConfigurationService.setIntrospectionUrl(this.getString(EDCIConfig.OIDC_INTROSPECTION_URL));
+        staticIntrospectionConfigurationService.setIntrospectionUrl(this.getString(EDCIConfig.Security.INTROSPECTION_URL));
         staticIntrospectionConfigurationService.setClientConfiguration(this.registeredClient());
         return staticIntrospectionConfigurationService;
     }
 
     @Bean
     default EDCISimpleRedirectInvalidSessionStrategy EDCISimpleRedirectInvalidSessionStrategy() {
-        String invalidSessionUrl = this.getString(EDCIConfig.OIDC_INVALID_SESSION_URL);
+        String invalidSessionUrl = this.getString(EDCIConfig.Security.INVALID_SESSION_URL);
         EDCISimpleRedirectInvalidSessionStrategy edciSimpleRedirectInvalidSessionStrategy = new EDCISimpleRedirectInvalidSessionStrategy(invalidSessionUrl);
-        edciSimpleRedirectInvalidSessionStrategy.setRedirectTo(this.getString(EDCIConfig.OIDC_EXPIRED_SESSION_REDIRECT_URL));
+        edciSimpleRedirectInvalidSessionStrategy.setRedirectTo(this.getString(EDCIConfig.Security.EXPIRED_SESSION_REDIRECT_URL));
         edciSimpleRedirectInvalidSessionStrategy.setCreateNewSession(false);
         return edciSimpleRedirectInvalidSessionStrategy;
     }

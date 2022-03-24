@@ -20,6 +20,7 @@
     <security:http auto-config="false" use-expressions="true" create-session="stateless" disable-url-rewriting="true"
                    request-matcher="regex" pattern="/.*" authentication-manager-ref="authenticationManager"
                    entry-point-ref="oauth2AuthenticationEntryPoint">
+        <security:custom-filter after="SECURITY_CONTEXT_FILTER" ref="corsFilter"/>
         <security:custom-filter ref="localeChangeFilter" after="CORS_FILTER"/>
         <security:intercept-url pattern=".*" access="permitAll()" method="OPTIONS"/>
         <security:custom-filter before="PRE_AUTH_FILTER" ref="resourceServerFilter"/>
@@ -58,7 +59,7 @@
     <bean class="org.mitre.openid.connect.client.service.impl.DynamicServerConfigurationService"
           id="dynamicServerConfigurationService"/>
 
-    <bean id="issuerConfigService" class="eu.europa.ec.empl.edci.wallet.service.WalletConfigService"/>
+    <bean id="walletConfigService" class="eu.europa.ec.empl.edci.wallet.service.WalletConfigService"/>
 
     <bean id="namedAdminAuthoritiesMapper" class="org.mitre.openid.connect.client.NamedAdminAuthoritiesMapper"/>
 
@@ -72,4 +73,5 @@
         <property name="parameterName" value="${locale.parameter.name}"/>
     </bean>
 
+    <bean id="corsFilter" class="eu.europa.ec.empl.edci.security.filter.CorsFilter"/>
 </beans>

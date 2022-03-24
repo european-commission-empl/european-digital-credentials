@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ShareDataService } from 'src/app/core/services/share-data.service';
 import { CredentialSubjectTabView } from 'src/app/shared/swagger/model/credentialSubjectTabView';
 
@@ -8,17 +9,33 @@ import { CredentialSubjectTabView } from 'src/app/shared/swagger/model/credentia
     styleUrls: ['./credential-owner.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class CredentialOwnerComponent {
-    credentialOwner: CredentialSubjectTabView = this.shareDataService
-        .credentialSubject;
+export class CredentialOwnerComponent implements OnInit, OnDestroy {
+    subject: CredentialSubjectTabView = this.shareDataService.activeEntity;
 
-    constructor(private shareDataService: ShareDataService) {
+    destroy$: Subject<boolean> = new Subject<boolean>();
+
+    constructor(private shareDataService: ShareDataService) {}
+
+    ngOnInit(): void {
+        this.shareDataService
+            .changeEntitySelection()
+            .takeUntil(this.destroy$)
+            .subscribe((subject) => {
+                this.subject = subject;
+            });
     }
 
+    ngOnDestroy() {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
+    }
     existContactInfo(): boolean {
-        for (let i = 0; i < this.credentialOwner.contactPoint.length; i++) {
-            if (this.credentialOwner.contactPoint[i].address || this.credentialOwner.contactPoint[i].phone ||
-                this.credentialOwner.contactPoint[i].email) {
+        for (let i = 0; i < this.subject.contactPoint.length; i++) {
+            if (
+                this.subject.contactPoint[i].address ||
+                this.subject.contactPoint[i].phone ||
+                this.subject.contactPoint[i].email
+            ) {
                 return true;
             }
         }

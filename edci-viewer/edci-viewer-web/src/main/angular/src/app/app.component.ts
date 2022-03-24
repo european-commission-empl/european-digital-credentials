@@ -7,13 +7,12 @@ import {
     ViewEncapsulation,
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { UxEuLanguages } from '@eui/core';
+import { EclAppShellLanguageChangeEvent } from '@eui/ecl-core';
 import { EclLanguage } from '@eui/ecl-core/lib/model/ecl-language.model';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ViewerService } from './core/services/viewer.service';
-import { EclAppShellLanguageChangeEvent } from '@eui/ecl-core';
 import { UserDetailsView, V1Service } from './shared/swagger';
 
 @Component({
@@ -23,9 +22,11 @@ import { UserDetailsView, V1Service } from './shared/swagger';
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
-    languages: Array<EclLanguage> = this.viewerService.addMissingLanguages(
-        UxEuLanguages.getLanguages()
-    );
+    // languages: Array<EclLanguage> = this.viewerService.addMissingLanguages(
+    //     UxEuLanguages.getLanguages()
+    // );
+    languages: Array<EclLanguage> = [{ code: 'en', label: 'English' }];
+
     logoEuropass: Node = this.renderer.createElement('img');
     showExtraInfo: boolean = false;
     europassRoot: string = environment.europassRoot;
@@ -134,14 +135,14 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
      * Log-in / Log-out methods
      */
     onLogin(): void {
-        window.location.href = `${this.basePath}${
+        window.location.href = `${environment.viewerBaseUrl}${
             environment.loginUrl
         }?redirectURI=${encodeURIComponent(window.location.href)}`;
     }
 
     onLogout(): void {
         this.viewerService
-            .doPost(environment.apiBaseUrl + environment.logoutUrl, null)
+            .doPost(environment.viewerBaseUrl + environment.logoutUrl, null)
             .takeUntil(this.destroy$)
             .subscribe((res) => (window.location.href = res.redirectUrl));
     }
@@ -151,11 +152,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
      */
     private setLogoDisplay(): void {
         const language = this.selectedLanguage.toUpperCase();
-        this.renderer.setAttribute(
-            this.logoEuropass,
-            'src',
-            `${environment.headerImagePath}${language}.svg`
-        );
+        let imgSrc = `${environment.headerImagePath}${language}.svg`;
+        if (!this.hasBranding) {
+            imgSrc = environment.headerImagePath;
+        }
+        this.renderer.setAttribute(this.logoEuropass, 'src', imgSrc);
     }
 
     /**

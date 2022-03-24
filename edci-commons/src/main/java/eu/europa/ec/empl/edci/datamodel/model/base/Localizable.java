@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.base;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Content;
 import org.springframework.context.i18n.LocaleContextHolder;
 
@@ -31,7 +31,7 @@ public interface Localizable {
         if (content.isPresent()) {
             return content.get();
         }
-        content = this.getLocalizedContent(EuropassConstants.DEFAULT_LOCALE, contents);
+        content = this.getLocalizedContent(EDCIConstants.DEFAULT_LOCALE, contents);
         if (content.isPresent()) {
             return content.get();
         }

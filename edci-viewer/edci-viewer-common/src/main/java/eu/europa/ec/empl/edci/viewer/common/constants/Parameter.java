@@ -15,5 +15,6 @@ public class Parameter {
     public static final String FILE = "file";
     public static final String WALLET_USER_ID = "_userId";
     public static final String LOCALE = "locale";
+    public static final String PDF_TYPE = "pdfType";
 
 }

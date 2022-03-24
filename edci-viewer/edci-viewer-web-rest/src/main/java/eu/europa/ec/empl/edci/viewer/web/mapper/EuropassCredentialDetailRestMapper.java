@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.viewer.web.mapper;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.view.EuropassDiplomaDTO;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
@@ -17,8 +17,8 @@ import java.util.List;
 
 public interface EuropassCredentialDetailRestMapper {
 
-    SimpleDateFormat formatterdateOnly = new SimpleDateFormat(EuropassConstants.DATE_LOCAL);
-    SimpleDateFormat formatterdateFull = new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT);
+    SimpleDateFormat formatterdateOnly = new SimpleDateFormat(EDCIConstants.DATE_LOCAL);
+    SimpleDateFormat formatterdateFull = new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT);
 
     default EuropassCredentialDetailView toVO(EuropassCredentialDTO europassCredentialDTO, @Context String locale) {
         EuropassCredentialDetailView credentialDetailView = new EuropassCredentialDetailView();

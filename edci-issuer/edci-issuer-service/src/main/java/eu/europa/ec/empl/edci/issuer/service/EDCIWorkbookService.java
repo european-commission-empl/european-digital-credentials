@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.service;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.AssessmentDTO;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.PersonDTO;
@@ -10,7 +10,7 @@ import eu.europa.ec.empl.edci.datamodel.model.dataTypes.GradeObject;
 import eu.europa.ec.empl.edci.exception.EDCIException;
 import eu.europa.ec.empl.edci.exception.FileBaseDataException;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessages;
+import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessageKeys;
 import eu.europa.ec.empl.edci.issuer.common.constants.XLS;
 import eu.europa.ec.empl.edci.issuer.common.constants.XLS.EQUIVALENCE;
 import eu.europa.ec.empl.edci.issuer.common.model.AssessmentsListIssueDTO;
@@ -84,7 +84,7 @@ public class EDCIWorkbookService implements IWorkBookService {
     public FileUtil fileUtil;
 
     @Autowired
-    private FileService fileService;
+    private IssuerFileService fileService;
 
 
     /*public enum PARSE_TYPE { //Moved to XLS
@@ -127,7 +127,7 @@ public class EDCIWorkbookService implements IWorkBookService {
             edciWorkBookWriter.replaceRecipientTemplateHeaders(recipientSheet, lang);
             return recipientWorkbook;
         } catch (IOException | InvalidFormatException e) {
-            throw new EDCIException(EDCIIssuerMessages.ERROR_RECIPIENT_TEMPLATE_INVALID, fileUtil.getTemplateFilePath(XLS.RECIPIENT_TEMPLATE_NAME));
+            throw new EDCIException(EDCIIssuerMessageKeys.ERROR_RECIPIENT_TEMPLATE_INVALID, fileUtil.getTemplateFilePath(XLS.RECIPIENT_TEMPLATE_NAME));
         }
     }
 
@@ -143,6 +143,10 @@ public class EDCIWorkbookService implements IWorkBookService {
         Map<Long, String> assessmentGrades;
 
         List<RecipientDataDTO> recipientDataDTOS = new ArrayList<>();
+        if (personMap == null || personMap.size() == 0) {
+            throw new EDCIException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_EMPTY);
+        }
+
         for (Map.Entry<Integer, Object> personEntry : personMap.entrySet()) {
             PersonDTO personDTO = (PersonDTO) personEntry.getValue();
             int row = personEntry.getKey();
@@ -174,8 +178,8 @@ public class EDCIWorkbookService implements IWorkBookService {
             return credentialDTO;
         }).collect(Collectors.toList());
         //Stop any operations if no credentials were found
-        if (europassCredentialDTOS.size() == 0) {
-            throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_CREDENTIAL_NOTFOUND);
+        if (europassCredentialDTOS.isEmpty() || europassCredentialDTOS.size() == 1 && europassCredentialDTOS.get(0).getIdentifiableName().equals("")) {
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_CREDENTIAL_NOTFOUND);
         }
 
         //Execute actions that will be shared across object references (ie: downloaded assets)
@@ -191,11 +195,16 @@ public class EDCIWorkbookService implements IWorkBookService {
             EuropassCredentialDTO[] europassCredentialDTOSArray = europassCredentialDTOS.toArray(new EuropassCredentialDTO[europassCredentialDTOS.size()]);
             processedCredentials = edciCredentialModelUtil.cloneArrayModel(europassCredentialDTOSArray);
         } catch (JAXBException | IOException e) {
-            throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_CREDENTIAL_GENERATION);
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_CREDENTIAL_GENERATION);
         }
 
         Map<Integer, Object> personsMap = clasifiedBag.get(EQUIVALENCE.GRADE_HOLDER.getKey());
         Map<Integer, AssessmentDTO> assessmentMap = new HashMap<>();
+
+        if (personsMap == null || personsMap.size() == 0) {
+            throw new EDCIException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_EMPTY);
+        }
+
 
         if (clasifiedBag.get(EQUIVALENCE.GRADEABLE_ITEM.getKey()) != null) {
             clasifiedBag.get(EQUIVALENCE.GRADEABLE_ITEM.getKey()).entrySet().stream().forEach(entry -> {
@@ -218,7 +227,7 @@ public class EDCIWorkbookService implements IWorkBookService {
         try {
             holderField = reflectiveUtil.findField(europassCredentialDTOS.get(0), Class.forName(EQUIVALENCE.GRADE_HOLDER.getValue()));
         } catch (ClassNotFoundException e) {
-            throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_HOLDERCLASS_NOTVALID, EQUIVALENCE.GRADE_HOLDER.getValue());
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_HOLDERCLASS_NOTVALID, EQUIVALENCE.GRADE_HOLDER.getValue());
         }
         //Get the class of the gradeable items
         Class gradeableClass = gradeableItems.entrySet().iterator().next().getValue().getClass();
@@ -247,7 +256,7 @@ public class EDCIWorkbookService implements IWorkBookService {
                 }
 
             } catch (ReflectiveOperationException e) {
-                throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_HOLDERFIELD_NOTVALID, holderField.getName());
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_HOLDERFIELD_NOTVALID, holderField.getName());
             }
 
         }

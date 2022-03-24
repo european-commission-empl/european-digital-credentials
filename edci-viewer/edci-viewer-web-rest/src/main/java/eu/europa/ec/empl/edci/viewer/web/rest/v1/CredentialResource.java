@@ -1,14 +1,13 @@
 package eu.europa.ec.empl.edci.viewer.web.rest.v1;
 
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.view.*;
 import eu.europa.ec.empl.edci.exception.ApiErrorMessage;
 import eu.europa.ec.empl.edci.mapper.EuropassCredentialPresentationMapper;
 import eu.europa.ec.empl.edci.util.Validator;
-import eu.europa.ec.empl.edci.viewer.common.constants.Endpoint;
 import eu.europa.ec.empl.edci.viewer.common.constants.Parameter;
+import eu.europa.ec.empl.edci.viewer.common.constants.ViewerEndpoint;
 import eu.europa.ec.empl.edci.viewer.service.CredentialDetailService;
 import eu.europa.ec.empl.edci.viewer.service.CredentialService;
 import eu.europa.ec.empl.edci.viewer.web.mapper.EuropassCredentialDetailRestMapper;
@@ -33,7 +32,7 @@ import java.util.List;
         "V1"
 })
 @Controller(value = "v1.CredentialResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.CREDENTIALS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + ViewerEndpoint.V1.CREDENTIALS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
 public class CredentialResource implements CrudResource {
 
@@ -56,7 +55,7 @@ public class CredentialResource implements CrudResource {
     private Validator validator;
 
     @ApiOperation(value = "Get visual representation of a diploma from XML")
-    @PostMapping(value = Endpoint.V1.DIPLOMA,
+    @PostMapping(value = ViewerEndpoint.V1.DIPLOMA,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -66,7 +65,7 @@ public class CredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get Visual representation of a diploma from Wallet Address and CredUUID")
-    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + Endpoint.V1.DIPLOMA,
+    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + ViewerEndpoint.V1.DIPLOMA,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @PreAuthorize("isAuthenticated()")
@@ -76,7 +75,7 @@ public class CredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get detailed representation of a diploma from XML")
-    @PostMapping(value = Endpoint.V1.DETAILS,
+    @PostMapping(value = ViewerEndpoint.V1.DETAILS,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -86,17 +85,17 @@ public class CredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get detailed representation of a Diploma stored in a wallet")
-    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + Endpoint.V1.DETAILS, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + ViewerEndpoint.V1.DETAILS, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @PreAuthorize("isAuthenticated()")
     public EuropassCredentialPresentationView getCredentialDetail(@PathVariable(Parameter.WALLET_USER_ID) String userId, @PathVariable(Parameter.UUID) String credentialUUID,
                                                                   @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
-        if (validator.isEmpty(locale)) locale = EuropassConstants.DEFAULT_LOCALE;
+        if (validator.isEmpty(locale)) locale = EDCIConstants.DEFAULT_LOCALE;
         return europassCredentialPresentationMapper.toEuropassCredentialPresentationView(credentialDetailService.getCredentialDetail(userId, credentialUUID), false);
     }
 
     @ApiOperation(value = "Get verification report from a credential")
-    @PostMapping(value = Endpoint.V1.VERIFICATION,
+    @PostMapping(value = ViewerEndpoint.V1.VERIFICATION,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -106,7 +105,7 @@ public class CredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get verification report from wallet credential uuid")
-    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + Endpoint.V1.VERIFY,
+    @GetMapping(value = Parameter.Path.WALLET_USER_ID + Parameter.Path.UUID + ViewerEndpoint.V1.VERIFY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @PreAuthorize("isAuthenticated()")
@@ -119,7 +118,7 @@ public class CredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Create Share Link of a Credential")
-    @PostMapping(value = Parameter.Path.WALLET_USER_ID + Endpoint.V1.CREDENTIALS_BASE + Parameter.Path.UUID + Endpoint.V1.SHARELINKS_BASE,
+    @PostMapping(value = Parameter.Path.WALLET_USER_ID + ViewerEndpoint.V1.CREDENTIALS_BASE + Parameter.Path.UUID + ViewerEndpoint.V1.SHARELINKS_BASE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -138,7 +137,7 @@ public class CredentialResource implements CrudResource {
 
     //Post or get?
     @ApiOperation(value = "Downloads a file containing verifiable presentation of the credential in XML format")
-    @PostMapping(value = Parameter.Path.WALLET_USER_ID + Endpoint.V1.DOWNLOAD_VERIFIABLE,
+    @PostMapping(value = Parameter.Path.WALLET_USER_ID + ViewerEndpoint.V1.DOWNLOAD_VERIFIABLE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ApiResponses({
@@ -155,7 +154,7 @@ public class CredentialResource implements CrudResource {
 
 
     @ApiOperation(value = "Downloads a file containing verifiable presentation of the credential in PDF format")
-    @PostMapping(value = Parameter.Path.WALLET_USER_ID + Endpoint.V1.DOWNLOAD_VERIFIABLE,
+    @PostMapping(value = Parameter.Path.WALLET_USER_ID + ViewerEndpoint.V1.DOWNLOAD_VERIFIABLE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_PDF_VALUE)
     @ApiResponses({
@@ -165,27 +164,29 @@ public class CredentialResource implements CrudResource {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(@RequestBody CredentialBaseView credential,
                                                                                @PathVariable(Parameter.WALLET_USER_ID) String userId,
+                                                                               @ApiParam(required = false, value = "The information that we want into the PDF: full/diploma. By default Diploma", defaultValue = "diploma") @RequestParam(value = Parameter.PDF_TYPE, required = false) String pdfType,
                                                                                @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
-        return credentialService.downloadVerifiablePresentationPDF(credential, locale, userId);
+        return credentialService.downloadVerifiablePresentationPDF(credential, locale, userId, pdfType);
 
     }
 
     @ApiOperation(value = "Downloads a file containing verifiable presentation of the credential")
-    @PostMapping(value = Endpoint.V1.DOWNLOAD_PRESENTATION,
+    @PostMapping(value = ViewerEndpoint.V1.DOWNLOAD_PRESENTATION,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_PDF_VALUE)
     @ApiResponses({
             @ApiResponse(code = 500, response = ApiErrorMessage.class, message = "There's been an unexpected error")
     })
     public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDFFromFile(@RequestPart(value = "file") MultipartFile file,
+                                                                                       @ApiParam(required = false, value = "The information that we want into the PDF: full/diploma. By default Diploma", defaultValue = "diploma") @RequestParam(value = Parameter.PDF_TYPE, required = false) String pdfType,
                                                                                        @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
 
-        return credentialService.downloadVerifiablePresentationPDF(file);
+        return credentialService.downloadVerifiablePresentationPDF(file, pdfType);
 
     }
 
     @ApiOperation(value = "Downloads a file containing verifiable presentation of the credential")
-    @PostMapping(value = Endpoint.V1.DOWNLOAD_PRESENTATION,
+    @PostMapping(value = ViewerEndpoint.V1.DOWNLOAD_PRESENTATION,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ApiResponses({

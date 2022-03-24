@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 
 import javax.validation.constraints.NotNull;
@@ -11,10 +11,10 @@ import javax.xml.bind.annotation.*;
 public class Code implements Nameable { //See EDCI-751 for any doubts here
 
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CODE_URI_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CODE_URI_NOTNULL)
     private String uri; //1
     @XmlElement(name = "targetName")
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CODE_TARGETNAME_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CODE_TARGETNAME_NOTNULL)
     private Text targetName; //1
     @XmlElement(name = "targetDescription")
     private Text targetDescription; //0..1

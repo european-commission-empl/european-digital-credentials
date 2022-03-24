@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.viewer.web.rest.v1;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Api(description = "TestResource", tags = {
         "V1"
 })
-@RequestMapping(Version.V1 + "/test")
+@RequestMapping(EDCIConstants.Version.V1 + "/test")
 @ResponseStatus(HttpStatus.OK)
 public class TestResource {
 

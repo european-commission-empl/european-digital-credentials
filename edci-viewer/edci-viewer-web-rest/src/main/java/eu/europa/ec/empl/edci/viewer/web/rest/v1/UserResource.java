@@ -1,12 +1,12 @@
 package eu.europa.ec.empl.edci.viewer.web.rest.v1;
 
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.security.model.mapper.UserRestMapper;
 import eu.europa.ec.empl.edci.security.model.view.UserDetailsView;
 import eu.europa.ec.empl.edci.security.service.EDCIUserService;
-import eu.europa.ec.empl.edci.viewer.common.constants.Endpoint;
 import eu.europa.ec.empl.edci.viewer.common.constants.Parameter;
+import eu.europa.ec.empl.edci.viewer.common.constants.ViewerEndpoint;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
         "V1"
 })
 @Controller(value = "v1.UserResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.USER_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + ViewerEndpoint.V1.USER_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class UserResource {
 
@@ -30,7 +30,7 @@ public class UserResource {
     private UserRestMapper userRestMapper;
 
     @ApiOperation(value = "Gets user details or isAuthenticated:false if not authenticated")
-    @GetMapping(value = Endpoint.V1.USER_DETAILS,
+    @GetMapping(value = ViewerEndpoint.V1.USER_DETAILS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UserDetailsView getUserDetails(

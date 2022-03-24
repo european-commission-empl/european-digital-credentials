@@ -1,16 +1,17 @@
 package eu.europa.ec.empl.edci.wallet.service;
 
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.ControlledListConcept;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.constants.ErrorCode;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.EuropassPresentationDTO;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.VerificationCheckDTO;
 import eu.europa.ec.empl.edci.datamodel.view.EuropassCredentialPresentationView;
-import eu.europa.ec.empl.edci.datamodel.view.EuropassDiplomaDTO;
-import eu.europa.ec.empl.edci.dss.validation.DSSValidationUtils;
+import eu.europa.ec.empl.edci.datamodel.view.VerificationCheckFieldView;
+import eu.europa.ec.empl.edci.dss.service.DSSEDCIValidationService;
 import eu.europa.ec.empl.edci.exception.EDCIException;
+import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
 import eu.europa.ec.empl.edci.mapper.EuropassCredentialPresentationMapper;
 import eu.europa.ec.empl.edci.service.EDCIMailService;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
@@ -21,6 +22,7 @@ import eu.europa.ec.empl.edci.wallet.common.constants.Parameter;
 import eu.europa.ec.empl.edci.wallet.common.model.CredentialDTO;
 import eu.europa.ec.empl.edci.wallet.common.model.ShareLinkDTO;
 import eu.europa.ec.empl.edci.wallet.common.model.WalletDTO;
+import eu.europa.ec.empl.edci.wallet.entity.CredentialDAO;
 import eu.europa.ec.empl.edci.wallet.mapper.CredentialMapper;
 import eu.europa.ec.empl.edci.wallet.mapper.WalletMapper;
 import eu.europa.ec.empl.edci.wallet.repository.CredentialRepository;
@@ -31,6 +33,7 @@ import eu.europa.esig.dss.validation.reports.Reports;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.LocaleUtils;
 import org.apache.log4j.Logger;
+import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.core.io.ByteArrayResource;
@@ -51,7 +54,10 @@ import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -122,6 +128,9 @@ public class CredentialService {
     @Autowired
     private CertificateVerifier certificateVerifier;
 
+    @Autowired
+    private DSSEDCIValidationService dssedciValidationService;
+
     /*BUSINESS LOGIC METHODS**/
 
     public String getDDBBCredType(CredentialHolderDTO credentialHolderDTO) {
@@ -133,7 +142,7 @@ public class CredentialService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public CredentialDTO createCredential(CredentialDTO credentialDTO) {
+    public CredentialDTO createCredential(CredentialDTO credentialDTO, Boolean sendMail) {
 
         WalletDTO walletDTO = walletService.fetchWalletByUserId(credentialDTO.getWalletDTO().getUserId());
 
@@ -142,8 +151,7 @@ public class CredentialService {
         try {
             //Check if seal with a valid Qseal
             if (!walletConfigService.getBoolean("allow.unsigned.credentials", false)) {
-                DSSValidationUtils dssValidationUtils = new DSSValidationUtils();
-                Reports reports = dssValidationUtils.validateXML(credentialDTO.getCredentialXML(), certificateVerifier);
+                Reports reports = dssedciValidationService.validateXML(credentialDTO.getCredentialXML(), false);
                 if (reports == null || !(reports.getSimpleReport().getValidSignaturesCount() > 0)) {
                     throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_UNSIGNED, "wallet.credential.not.sealed.error", credentialDTO.getUuid());
                 }
@@ -156,7 +164,9 @@ public class CredentialService {
 
 
             savedCredentialDTO = this.addCredentialEntity(credentialDTO);
-            sendCreateNotificationEmail(savedCredentialDTO);
+            if (sendMail == null || sendMail) {
+                sendCreateNotificationEmail(savedCredentialDTO);
+            }
         } catch (JAXBException e) {
             throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_NOT_READABLE, "wallet.xml.unreadable").setCause(e);
         } catch (IOException e) {
@@ -166,20 +176,46 @@ public class CredentialService {
         return savedCredentialDTO;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public CredentialDTO createCredentialByEmail(CredentialDTO credentialDTO, String userEmail, Boolean sendMail) {
+        WalletDTO wallet = null;
+
+        EmailValidator emailValidator = new EmailValidator();
+        if (!emailValidator.isValid(userEmail, null)) {
+            throw new EDCIBadRequestException().addDescription("Invalid email");
+        }
+        //Check if auto creation of temporal wallets is activated
+        if (walletConfigService.get("wallet.create.sending.credential", Boolean.class, true)) {
+            wallet = walletService.fetchWalletByUserEmail(userEmail, false);
+            //If no wallet detected and auto-creation enabled, use addBulkWalletEntity
+            if (wallet == null) {
+                wallet = new WalletDTO();
+                wallet.setUserEmail(userEmail);
+                wallet = walletService.addBulkWalletEntity(wallet);
+            }
+        } else {
+            //If auto creation not enabled, just try to fetch by email, an exception if thrown if it does not exist
+            wallet = walletService.fetchWalletByUserEmail(userEmail);
+        }
+        //set appropriate wallet and create the credential with normal method, so notifications are sent
+        credentialDTO.setWalletDTO(wallet);
+        return this.createCredential(credentialDTO, sendMail);
+    }
 
     public void sendCreateNotificationEmail(CredentialDTO credentialDTO) {
-        EuropassCredentialDTO europassCredentialDTO = null;
+        CredentialHolderDTO credentialHolderDTO = null;
         //get context locale as default
         String locale = LocaleContextHolder.getLocale().toString();
         //Read credential bytes and extract locale
         try {
-            europassCredentialDTO = edciCredentialModelUtil.fromByteArray(credentialDTO.getCredentialXML()).getCredential();
-            locale = edciCredentialModelUtil.guessCredentialLocale(europassCredentialDTO).toString();
-        } catch (JAXBException e) {
-            throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_NOT_READABLE, "wallet.xml.unreadable").setCause(e);
-        } catch (IOException e) {
+            credentialHolderDTO = edciCredentialModelUtil.fromByteArray(credentialDTO.getCredentialXML());
+
+        } catch (JAXBException | IOException e) {
             throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_NOT_READABLE, "wallet.xml.unreadable").setCause(e);
         }
+
+        EuropassCredentialDTO europassCredentialDTO = credentialHolderDTO.getCredential();
+        locale = edciCredentialModelUtil.guessCredentialLocale(europassCredentialDTO).toString();
 
         String subject = edciMessageService.getMessage(LocaleUtils.toLocale(locale), EDCIWalletMessages.MAIL_SUBJECT, europassCredentialDTO.getTitle().getLocalizedStringOrAny(locale));
         String toEmail = credentialDTO.getWalletDTO().getUserEmail();
@@ -191,6 +227,10 @@ public class CredentialService {
         wildCards.put(EDCIWalletConstants.MAIL_WILDCARD_CREDENTIALNAME, europassCredentialDTO.getTitle().getLocalizedStringOrAny(locale));
         wildCards.put(EDCIWalletConstants.MAIL_WILDCARD_EUROPASSURL, walletConfigService.getString(EDCIWalletConstants.CONFIG_EUROPASS_URL));
 
+        //check presentation-dependent items
+        if (edciCredentialModelUtil.isPresentation(credentialHolderDTO)) {
+            wildCards.put(EDCIWalletConstants.MAIL_WILDCARD_ISSUER, credentialHolderDTO.getIssuer().getPreferredName().getLocalizedStringOrAny(locale));
+        }
         //Check temporay-dependent items
         String templateFileName = EDCIWalletConstants.TEMPLATE_MAIL_WALLET_CREATED_CRED;
         byte[] attachment = null;
@@ -203,11 +243,19 @@ public class CredentialService {
             fileName = edciCredentialModelUtil.getEncodedFileName(europassCredentialDTO, locale);
             viewerURL = walletConfigService.getString(EDCIWalletConstants.CONFIG_PROPERTY_VIEWER_URL);
         }
+        byte[] thumbnail = null;
+        try {
+            thumbnail = getDiplomaImage(credentialDTO.getWalletDTO().getUserId(), credentialDTO.getUuid());
+        } catch (Exception e) {
+            logger.error(String.format("Could not generate diploma thumbnail for credential %s", credentialDTO.getUuid()), e);
+        }
+
 
         wildCards.put(EDCIWalletConstants.MAIL_WILDCARD_VIEWER_URL, viewerURL);
+
         try {
             edciMailService.sendTemplatedEmail(EDCIWalletConstants.MAIL_TEMPLATES_DIRECTORY, templateFileName,
-                    subject, wildCards, Collections.singletonList(toEmail), locale, attachment, fileName);
+                    subject, wildCards, Collections.singletonList(toEmail), locale, attachment, fileName, thumbnail);
         } catch (EDCIException e) {
             throw new EDCIException().addDescription(String.format("Error sending creation mail, %s", e.getDescription())).setCause(e);
         }
@@ -238,7 +286,21 @@ public class CredentialService {
         //TODO: By now the wallet only returns credentials
         try {
             cred = edciCredentialModelUtil.fromByteArray(credentialDTO.getCredentialXML());
-            credentialDTO.setCredentialXML(edciCredentialModelUtil.toXML(retrieveVP ? cred : cred.getCredential()).getBytes()); //TODO: Temporary change
+            String credentialString = null;
+
+            if (!retrieveVP) {
+                Marshaller marshaller = xmlUtil.getMarshallerWithSchemaLocation(cred.getCredential().getClass(),
+                        edciCredentialModelUtil.getSchemaLocation(cred.getCredential().getClass(), cred.getCredential().getType().getUri()));
+                try (StringWriter stringWriter = new StringWriter()) {
+                    marshaller.marshal(cred.getCredential(), stringWriter);
+                    credentialString = stringWriter.toString();
+                }
+            } else {
+                credentialString = edciCredentialModelUtil.toXML(cred);
+            }
+
+            credentialDTO.setCredentialXML(credentialString.getBytes()); //TODO: Temporary change
+
         } catch (JAXBException e) {
             throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_NOT_READABLE, "wallet.xml.unreadable").setCause(e);
         } catch (IOException e) {
@@ -246,7 +308,7 @@ public class CredentialService {
         }
 
         return new ResponseEntity<byte[]>(credentialDTO.getCredentialXML(),
-                credentialUtil.prepareHttpHeadersForCredentialDownload(Defaults.CREDENTIAL_DEFAULT_PREFIX
+                credentialUtil.prepareHttpHeadersForFile(EDCIConfig.Defaults.CREDENTIAL_DEFAULT_PREFIX
                         .concat(new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date())) + ".xml", MediaType.APPLICATION_OCTET_STREAM_VALUE), HttpStatus.OK);
 
     }
@@ -266,11 +328,11 @@ public class CredentialService {
 
         walletService.validateWalletExists(userId);
 
-        return downloadVerifiablePresentationXML(fetchCredentialByUUID(userId, credentialUuid), expirationdate, false);
+        return downloadVerifiablePresentationXML(fetchCredentialByUUID(userId, credentialUuid), expirationdate);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(EuropassPresentationDTO europassPresentationDTO, Date expirationdate, boolean onlyRetrieveVP) {
+    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(EuropassPresentationDTO europassPresentationDTO, Date expirationdate, String schemaVersion) {
 
         europassPresentationDTO.setExpirationDate(expirationdate);
 
@@ -279,7 +341,7 @@ public class CredentialService {
 
             ByteArrayOutputStream sw = new ByteArrayOutputStream();
 
-            String schemaLocation = edciCredentialModelUtil.getSchemaLocation(EuropassPresentationDTO.class, europassPresentationDTO.getType().getUri());
+            String schemaLocation = edciCredentialModelUtil.getSchemaLocation(EuropassPresentationDTO.class, europassPresentationDTO.getType().getUri(), schemaVersion);
             Marshaller jaxbMarshaller = xmlUtil.getMarshallerWithSchemaLocation(EuropassPresentationDTO.class, schemaLocation);
             jaxbMarshaller.marshal(europassPresentationDTO, sw);
 
@@ -295,20 +357,22 @@ public class CredentialService {
         }
 
         //ToDo -> MARSHAL TO A FILE? SIGN ARRAY OF BYTES?
-        return new ResponseEntity<byte[]>(bytes, credentialUtil.prepareHttpHeadersForCredentialDownload(Defaults.CREDENTIAL_DEFAULT_PREFIX.concat(new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date())).concat(".xml"), MediaType.APPLICATION_OCTET_STREAM_VALUE), HttpStatus.OK);
+        return new ResponseEntity<byte[]>(bytes, credentialUtil.prepareHttpHeadersForFile(EDCIConfig.Defaults.CREDENTIAL_DEFAULT_PREFIX.concat(new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date())).concat(".xml"), MediaType.APPLICATION_OCTET_STREAM_VALUE), HttpStatus.OK);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(CredentialDTO credentialDTOs, Date expirationdate, boolean onlyRetrieveVP) {
+    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(CredentialDTO credentialDTOs, Date expirationdate) {
 
-        return downloadVerifiablePresentationXML(credentialUtil.buildEuropassVerifiablePresentation(credentialDTOs, onlyRetrieveVP), expirationdate, onlyRetrieveVP);
+        String schemaVersion = edciCredentialModelUtil.getSchemaVersionFromBytes(credentialDTOs.getCredentialXML());
+        return downloadVerifiablePresentationXML(credentialUtil.buildEuropassVerifiablePresentation(credentialDTOs), expirationdate, schemaVersion);
 
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(byte[] europassPresentationBytes, Date expirationdate, boolean onlyRetrieveVP) {
+    public ResponseEntity<byte[]> downloadVerifiablePresentationXML(byte[] europassPresentationBytes, Date expirationdate) {
 
-        return downloadVerifiablePresentationXML(credentialUtil.buildEuropassVerifiablePresentation(europassPresentationBytes, onlyRetrieveVP), expirationdate, onlyRetrieveVP);
+        String schemaVersion = edciCredentialModelUtil.getSchemaVersionFromBytes(europassPresentationBytes);
+        return downloadVerifiablePresentationXML(credentialUtil.buildEuropassVerifiablePresentation(europassPresentationBytes), expirationdate, schemaVersion);
 
     }
 
@@ -376,20 +440,9 @@ public class CredentialService {
     /*
      * Gets a verifiable presentation of the credential in PDF format (signed)
      */
-    public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(String userId, String uuidCred, Date expirationdate, boolean onlyRetrieveVP) {
+    public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(CredentialDTO credentialDTOS, Date expirationdate, String pdfType) {
 
-        walletService.validateWalletExists(userId);
-
-        return downloadVerifiablePresentationPDF(fetchCredentialByUUID(userId, uuidCred), expirationdate, onlyRetrieveVP);
-
-    }
-
-    /*
-     * Gets a verifiable presentation of the credential in PDF format (signed)
-     */
-    public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(CredentialDTO credentialDTOS, Date expirationdate, boolean onlyRetrieveVP) {
-
-        EuropassPresentationDTO europassPresentationDTO = credentialUtil.buildEuropassVerifiablePresentation(credentialDTOS, onlyRetrieveVP);
+        EuropassPresentationDTO europassPresentationDTO = credentialUtil.buildEuropassVerifiablePresentation(credentialDTOS);
         europassPresentationDTO.setExpirationDate(expirationdate);
 
         String shareLink = null;
@@ -398,14 +451,26 @@ public class CredentialService {
             shareLink = walletConfigService.getString(EDCIWalletConstants.CONFIG_PROPERTY_VIEWER_SHARED_URL).replaceAll(Parameter.SHARED_HASH, shLinkDTO.getShareHash());
         }
 
-        return downloadVerifiablePresentationPDF(europassPresentationDTO, shareLink);
+        return downloadVerifiablePresentationPDF(europassPresentationDTO, credentialDTOS, shareLink, pdfType);
     }
 
     /*
      * Gets a verifiable presentation of the credential in PDF format (signed)
      */
-    public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(EuropassPresentationDTO europassPresentationDTO, String shareLink) {
+    public ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(EuropassPresentationDTO europassPresentationDTO, String shareLink, String pdfType) {
+        return downloadVerifiablePresentationPDF(europassPresentationDTO, null, shareLink, pdfType);
+    }
+
+    /*
+     * Gets a verifiable presentation of the credential in PDF format (signed)
+     */
+    protected ResponseEntity<ByteArrayResource> downloadVerifiablePresentationPDF(EuropassPresentationDTO europassPresentationDTO, CredentialDTO credentialDTOS, String shareLink, String pdfType) {
         try {
+
+            //By default we'll always return the Diploma PDF (Diploma + verification checks)
+            if (StringUtils.isEmpty(pdfType)) {
+                pdfType = EDCIWalletConstants.CREDENTIAL_PDF_TYPE_DIPLOMA;
+            }
 
             Context context = new Context();
 
@@ -418,14 +483,41 @@ public class CredentialService {
             } catch (JAXBException e) {
                 throw new EDCIException("wallet.credential.parsing.subcredential.error").setCause(e);
             }
-            EuropassDiplomaDTO diploma = diplomaUtils.extractEuropassDiplomaDTO(europassCredentialDTO, EuropassConstants.DEFAULT_LOCALE);
+            List<VerificationCheckFieldView> verifications = europassCredentialPresentationMapper.toVerificationCheckFieldViewList(europassPresentationDTO.getVerifications());
+
+            byte[] diploma = null;
+
+            if (credentialDTOS != null && credentialDTOS.getWalletDTO() != null) {
+                diploma = getDiplomaImage(credentialDTOS.getWalletDTO().getUserId(), credentialDTOS.getUuid());
+            } else {
+                diploma = diplomaUtils.generateDiplomaImage(europassPresentationDTO);
+            }
+
             context.setVariable("indexCount", new AtomicInteger(1));
             context.setVariable("europassCredentialDetailView", europassCredentialDetailView);
             context.setVariable("europassCredential", europassPresentationDTO.getCredential());
-            context.setVariable("europassVerifications", europassCredentialPresentationMapper.toVerificationCheckFieldViewList(europassPresentationDTO.getVerifications()));
+            context.setVariable("europassVerifications", verifications);
             context.setVariable("europassSubCredentials", subCredentials);
-            context.setVariable("diploma", diploma);
+            context.setVariable("diploma", new StringBuffer("data:image/jpeg;base64,").append(new String(Base64.getEncoder().encode(diploma),
+                    StandardCharsets.UTF_8).toString()));
 
+            String ribbon = "correct";
+            try {
+                for (VerificationCheckFieldView verification : verifications) {
+                    if (ControlledListConcept.VERIFICATION_STATUS_ERROR.getUrl().equals(verification.getStatus().getLink().toString())) {
+                        ribbon = "incorrect";
+                        break;
+                    }
+                    if (ControlledListConcept.VERIFICATION_STATUS_SKIPPED.getUrl().equals(verification.getStatus().getLink().toString())
+                            && ControlledListConcept.VERIFICATION_CHECKS_SEAL.getUrl().equals(verification.getType().getLink().toString())) {
+                        ribbon = "warning";
+                    }
+                }
+            } catch (Exception e) {
+                logger.error("Error iterating verifications to check the ribbon status", e);
+                ribbon = "incorrect";
+            }
+            context.setVariable("ribbon", ribbon);
             // Add european logo (footer)
             context.setLocale(LocaleContextHolder.getLocale());
             String b64 = Base64.getEncoder().encodeToString(getLogo(LocaleContextHolder.getLocale().getLanguage()).getBytes());
@@ -438,7 +530,12 @@ public class CredentialService {
                                 imageUtil.generateQRCodeImageBytes(shareLink, "png")), StandardCharsets.UTF_8).toString())); //
             }
 
-            String html = processTemplate("verifiable_presentation_template", context);
+            String html = null;
+            if (EDCIWalletConstants.CREDENTIAL_PDF_TYPE_FULL.equalsIgnoreCase(pdfType)) {
+                html = processTemplate("verifiable_presentation_template", context);
+            } else {
+                html = processTemplate("verifiable_diploma_template", context);
+            }
 
             String pdfDownloadURL = getPdfDownloadUrl();
 
@@ -460,14 +557,14 @@ public class CredentialService {
 
                 String fileName = "";
                 try {
-                    fileName = Defaults.CREDENTIAL_DEFAULT_PREFIX.concat(new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()));
+                    fileName = EDCIConfig.Defaults.CREDENTIAL_DEFAULT_PREFIX.concat(new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()));
                 } catch (Exception e) {
                     logger.error(e);
                     fileName = "Credential";
                 }
 
                 return new ResponseEntity<ByteArrayResource>(resource,
-                        credentialUtil.prepareHttpHeadersForCredentialDownload(fileName.concat(".pdf"), MediaType.APPLICATION_PDF_VALUE), HttpStatus.OK);
+                        credentialUtil.prepareHttpHeadersForFile(fileName.concat(".pdf"), MediaType.APPLICATION_PDF_VALUE), HttpStatus.OK);
             } else {
                 return null;
             }
@@ -476,6 +573,45 @@ public class CredentialService {
             logger.error(e);
             throw new EDCIException(e);
         }
+    }
+
+    /*
+     * Gets a PNG image of a credential's diploma
+     */
+    public byte[] getDiplomaImage(String userId, String uuid) {
+
+        byte[] diploma = null;
+        CredentialDAO credential = null;
+
+        if (credentialExists(userId, uuid)) {
+            credential = credentialRepository.fetchByUUID(userId, uuid);
+        } else {
+            throw new EDCIException(HttpStatus.NOT_FOUND, ErrorCode.CREDENTIAL_NOT_EXISTS_UUID, "wallet.credential.uuid.not.exists.error", uuid);
+        }
+
+        //If the diploma is stored in the database, we retrieve it
+        if (credential.getDiplomaImage() != null) {
+            logger.debug("Diploma from credential " + uuid + " retrieved from database");
+            diploma = credential.getDiplomaImage();
+        } else {
+
+            //If not, we generate it
+            try {
+                logger.debug("Generating diploma for credential " + uuid);
+                diploma = diplomaUtils.generateDiplomaImage(edciCredentialModelUtil.fromByteArray(credential.getCredentialXML()));
+            } catch (Exception e) {
+                throw new EDCIException();
+            }
+
+            //If we have enabled the database storage of the diploma we save it for later accesses
+            if (walletConfigService.getBoolean("store.diploma.database", true)) {
+                logger.debug("Saving diploma from credential " + uuid + " into database");
+                credential.setDiplomaImage(diploma);
+                credentialRepository.save(credential);
+            }
+        }
+
+        return diploma;
     }
 
     public String getPdfDownloadUrl() {
@@ -488,7 +624,7 @@ public class CredentialService {
 
     private String getLogo(String locale) {
         if (locale == null) {
-            locale = Defaults.DEFAULT_LOCALE;
+            locale = EDCIConfig.Defaults.DEFAULT_LOCALE;
         }
         ClassPathResource template = new ClassPathResource(
                 "logo/".concat("logo")
@@ -503,4 +639,6 @@ public class CredentialService {
         }
         return logoSource;
     }
+
+
 }

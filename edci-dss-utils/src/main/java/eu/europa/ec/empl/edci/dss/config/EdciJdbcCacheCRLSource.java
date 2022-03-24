@@ -8,12 +8,27 @@ import eu.europa.esig.dss.service.crl.JdbcCacheCRLSource;
  */
 public class EdciJdbcCacheCRLSource extends JdbcCacheCRLSource {
 
+    private static final String SQL_INIT_CREATE_TABLE_FIXED_ORA = "CREATE TABLE CACHED_CRL (ID CHAR(40), DATA BLOB, ISSUER BLOB)";
+    private static final String SQL_INIT_CREATE_TABLE_FIXED_GENERIC = "CREATE TABLE CACHED_CRL (ID CHAR(40), DATA BLOB, ISSUER BLOB)";
 
-    private static final String SQL_INIT_CREATE_TABLE_FIXED = "CREATE TABLE CACHED_CRL (ID CHAR(40), DATA BLOB, SIGNATURE_ALGORITHM VARCHAR(20), THIS_UPDATE TIMESTAMP, NEXT_UPDATE TIMESTAMP, EXPIRED_CERTS_ON_CRL TIMESTAMP, ISSUER BLOB, ISSUER_PRINCIPAL_MATCH NUMBER(1), SIGNATURE_INTACT NUMBER(1), CRL_SIGN_KEY_USAGE NUMBER(1), UNKNOWN_CRITICAL_EXTENSION NUMBER(1), SIGNATURE_INVALID_REASON VARCHAR(256))";
+    private String database;
+
+    public EdciJdbcCacheCRLSource() {
+        this.database = "Oracle11";
+    }
+
+    public EdciJdbcCacheCRLSource(String database) {
+        this.database = database;
+    }
 
     @Override
     protected String getCreateTableQuery() {
-        return SQL_INIT_CREATE_TABLE_FIXED;
+        if (this.database != null && this.database.startsWith("Oracle")) {
+            return SQL_INIT_CREATE_TABLE_FIXED_ORA;
+        } else {
+            return SQL_INIT_CREATE_TABLE_FIXED_GENERIC;
+        }
+
     }
 
 }

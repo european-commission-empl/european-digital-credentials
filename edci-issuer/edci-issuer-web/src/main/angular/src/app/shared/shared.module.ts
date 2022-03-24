@@ -9,6 +9,7 @@ import {
     UxBlockContentComponentModule,
     UxButtonComponentModule,
     UxControlFeedbackComponentModule,
+    UxDatepickerComponentModule,
     UxDropdownButtonComponentModule,
     UxDropdownButtonItemComponentModule,
     UxDynamicComponentService,
@@ -25,7 +26,6 @@ import {
     UxTabComponentModule,
     UxTabsComponentModule,
     UxTooltipModule,
-    UxDatepickerComponentModule
 } from '@eui/core';
 import { EclAllModule } from '@eui/ecl-core';
 import { TranslateModule } from '@ngx-translate/core';
@@ -39,6 +39,7 @@ import { CbTabHeaderComponent } from './components/cb-tab-header/cb-tab-header.c
 import { CbTableComponent } from './components/cb-table/cb-table.component';
 import { ControlledListComponent } from './components/controled-list/controlled-list.component';
 import { ControlledListSelectComponent } from './components/controlled-list-select/controlled-list-select.component';
+import { CustomHtmlLabelsComponent } from './components/custom-html-labels/custom-html-labels.component';
 import { MoreInformationComponent } from './components/more-information/more-information.component';
 import { NexUDialogComponent } from './components/nexU-dialog/nexu-dialog.component';
 import { ProgressbarComponent } from './components/progress-bar/progress-bar.component';
@@ -47,9 +48,9 @@ import { SpinnerDialogComponent } from './components/spinner-dialog/spinner-dial
 import { UploadComponent } from './components/upload/upload.component';
 import { RouteTransformerDirective } from './directives/routeTransformer.directive';
 import { MaterialModule } from './material/material.module';
+import { ExtractLabelPipe } from './pipes/multilingual.pipe';
 import { PipesModule } from './pipes/pipes.module';
 import { PrimeNgModule } from './primeng/primeng.module';
-import { ExtractLabelPipe } from './pipes/multilingual.pipe';
 
 @NgModule({
     imports: [
@@ -69,6 +70,7 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         UxBlockContentComponentModule,
         UxButtonComponentModule,
         UxControlFeedbackComponentModule,
+        UxDatepickerComponentModule,
         UxDropdownButtonComponentModule,
         UxDropdownButtonItemComponentModule,
         UxDynamicModalComponentModule,
@@ -84,7 +86,6 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         UxTabComponentModule,
         UxTabsComponentModule,
         UxTooltipModule,
-        UxDatepickerComponentModule
     ],
     declarations: [
         AutocompleteComponent,
@@ -95,6 +96,7 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         CbTableComponent,
         ControlledListComponent,
         ControlledListSelectComponent,
+        CustomHtmlLabelsComponent,
         MoreInformationComponent,
         NexUDialogComponent,
         ProgressbarComponent,
@@ -113,6 +115,7 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         CommonModule,
         ControlledListComponent,
         ControlledListSelectComponent,
+        CustomHtmlLabelsComponent,
         DragDropModule,
         EclAllModule,
         FormsModule,
@@ -134,6 +137,7 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         UxBlockContentComponentModule,
         UxButtonComponentModule,
         UxControlFeedbackComponentModule,
+        UxDatepickerComponentModule,
         UxDropdownButtonComponentModule,
         UxDropdownButtonItemComponentModule,
         UxDynamicModalComponentModule,
@@ -149,7 +153,6 @@ import { ExtractLabelPipe } from './pipes/multilingual.pipe';
         UxTabComponentModule,
         UxTabsComponentModule,
         UxTooltipModule,
-        UxDatepickerComponentModule
     ],
     providers: [
         ExtractLabelPipe,

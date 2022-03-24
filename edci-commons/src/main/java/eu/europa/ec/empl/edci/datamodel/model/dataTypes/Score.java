@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 public class Score implements Nameable {
 
     @XmlValue
-    @NotNull(message = MessageKeys.Validation.VALIDATION_SCORE_CONTENT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_SCORE_CONTENT_NOTNULL)
     private String content; //1
     @XmlAttribute(name = "schemeID")
     // @NotNull(message = Message.VALIDATION_SCORE_SCORINGSCHEMEID_NOTNULL)

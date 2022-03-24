@@ -2,16 +2,10 @@ package eu.europa.ec.empl.edci.issuer.service.spec;
 
 import eu.europa.ec.empl.base.AbstractUnitBaseTest;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
 
 import java.io.IOException;
 
 public class ControlledListsServiceTest extends AbstractUnitBaseTest {
-
-    @InjectMocks
-    @Spy
-    ControlledListsOldService controlledListsService;
 
     @Test
     public void loadRDFControlledList_shouldLoadXML_OLDandNEW() throws IOException {

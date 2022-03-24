@@ -10,7 +10,11 @@ import {
 } from '@eui/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { TranslateModule, MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
+import {
+    TranslateModule,
+    MissingTranslationHandler,
+    MissingTranslationHandlerParams,
+} from '@ngx-translate/core';
 import { V1Service } from '@shared/swagger';
 import { appConfig } from '../../config';
 import { environment } from '@environments/environment';
@@ -19,6 +23,7 @@ import { FooterComponent } from './components/app-shell/footer/footer.component'
 import { getReducers, metaReducers, REDUCER_TOKEN } from './reducers/index';
 import { AppShellComponent } from './components/app-shell/app-shell.component';
 import * as enJSON from 'assets/i18n/en.json';
+import { BASE_PATH } from './../shared/swagger/variables';
 
 const commonProviders = [
     {
@@ -35,6 +40,10 @@ const commonProviders = [
         provide: HTTP_INTERCEPTORS,
         useClass: CsrfPreventionInterceptor,
         multi: true,
+    },
+    {
+        provide: BASE_PATH,
+        useValue: environment.apiBaseUrl,
     },
     V1Service,
 ];
@@ -65,11 +74,14 @@ const productionProviders = [
         useClass: CsrfPreventionInterceptor,
         multi: true,
     },
+    {
+        provide: BASE_PATH,
+        useValue: environment.apiBaseUrl,
+    },
     V1Service,
 ];
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
-
-    constructor() { }
+    constructor() {}
 
     handle(params: MissingTranslationHandlerParams) {
         return enJSON['default'][params.key];
@@ -78,7 +90,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 
 translateConfig['missingTranslationHandler'] = {
     provide: MissingTranslationHandler,
-    useClass: MyMissingTranslationHandler
+    useClass: MyMissingTranslationHandler,
 };
 
 @NgModule({

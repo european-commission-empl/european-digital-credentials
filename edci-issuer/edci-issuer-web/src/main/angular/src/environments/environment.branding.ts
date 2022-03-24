@@ -2,26 +2,26 @@
 // run npm run build
 
 export const environment = {
-    production: false,
-    enableDevToolRedux: true,
-    hasLabelsOnly: true,
-    apiBaseUrl: 'http://localhost:8080/europass2/edci-issuer',
-    viewerBaseUrl: 'http://localhost:8080/europass2/edci-viewer',
-    loginUrl: '/auth/oidc/eulogin',
-    logoutUrl: '/auth/oidc/eulogin/logout',
-    europassRoot: 'https://webgate.acceptance.ec.europa.eu/europass',
-    isMockUser: true,
-    csrfEnabled: false,
-    hasBranding: false,
-    headerImagePath: 'imagePath',
-    homeMainTitle: 'translated.label.main.title',
-    homeMainDescription: 'translated.label.main.description',
-    concentText: 'translated.label.concentText',
-    homeCredentialsForIssuersTitle: 'translated.label.home.credentials.title',
-    homeCredentialsForIssuersDescription:
-        'translated.label.home.credentials.description',
-    homeCredentialsForIssuersDescriptionWithLink:
-        'translated.label.home.credentials.description.link',
+    production: window['EDCIContext'].production === 'true',
+    enableDevToolRedux: window['EDCIContext'].enableDevToolRedux === 'true',
+    hasLabelsOnly: window['EDCIContext'].hasLabelsOnly === 'true',
+    issuerBaseUrl : window['EDCIContext'].issuerBaseUrl,
+    apiBaseUrl: window['EDCIContext'].apiBaseUrl,
+    viewerBaseUrl: window['EDCIContext'].viewerBaseUrl,
+    loginUrl: window['EDCIContext'].loginUrl,
+    logoutUrl: window['EDCIContext'].logoutUrl,
+    europassRoot: window['EDCIContext'].europassRoot,
+    csrfEnabled: window['EDCIContext'].csrfEnabled === 'true',
+    isMockUser: window['EDCIContext'].isMockUser === 'true',
+    hasBranding: window['EDCIContext'].hasBranding === 'true',
+    headerImagePath: window['EDCIContext'].headerImagePath,
+    homeMainTitle: window['EDCIContext'].homeMainTitle,
+    homeMainDescription: window['EDCIContext'].homeMainDescription,
+    concentText: window['EDCIContext'].concentText,
+    homeCredentialsForIssuersTitle: window['EDCIContext'].homeCredentialsForIssuersTitle,
+    homeCredentialsForIssuersDescription: window['EDCIContext'].homeCredentialsForIssuersDescription,
+    homeCredentialsForIssuersDescriptionWithLink: window['EDCIContext'].homeCredentialsForIssuersDescriptionWithLink,
+    enabledLocalSealing: window['EDCIContext'].enabledLocalSealing === 'true'
 };
 
 /*

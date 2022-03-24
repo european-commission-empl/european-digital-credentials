@@ -1,11 +1,11 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1;
 
-import eu.europa.ec.empl.edci.constants.Version;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.mapper.CredentialMapper;
 import eu.europa.ec.empl.edci.issuer.service.CredentialService;
-import eu.europa.ec.empl.edci.issuer.service.FileService;
+import eu.europa.ec.empl.edci.issuer.service.IssuerFileService;
 import eu.europa.ec.empl.edci.issuer.service.spec.AssessmentSpecService;
 import eu.europa.ec.empl.edci.issuer.service.spec.EuropassCredentialSpecService;
 import eu.europa.ec.empl.edci.issuer.service.spec.LearningAchievementSpecService;
@@ -16,6 +16,7 @@ import eu.europa.ec.empl.edci.issuer.web.model.CredentialFileUploadResponseView;
 import eu.europa.ec.empl.edci.issuer.web.model.CredentialView;
 import eu.europa.ec.empl.edci.issuer.web.model.StatusView;
 import eu.europa.ec.empl.edci.issuer.web.model.data.IssueBuildCredentialView;
+import eu.europa.ec.empl.edci.issuer.web.model.signature.LocalSignatureRequestView;
 import eu.europa.ec.empl.edci.issuer.web.model.signature.SignatureBytesView;
 import eu.europa.ec.empl.edci.issuer.web.model.signature.SignatureNexuView;
 import eu.europa.ec.empl.edci.issuer.web.model.signature.SignatureParametersView;
@@ -41,7 +42,7 @@ import java.util.List;
         "V1"
 })
 @Controller(value = "v1.CredentialResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.CREDENTIALS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.CREDENTIALS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 public class CredentialResource { //extends AbstractBaseResource { //TODO: use datamodel class
 
@@ -49,7 +50,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     private FileRestMapper fileRestMapper;
 
     @Autowired
-    private FileService dynamicFileService;
+    private IssuerFileService dynamicFileService;
 
     @Autowired
     private CredentialService credentialService;
@@ -77,7 +78,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
 
 
     @ApiOperation(value = "Upload some credentials in XML")
-    @PostMapping(value = Endpoint.V1.CREDENTIALS_UPLOAD,
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_UPLOAD,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -86,8 +87,19 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
         return fileRestMapper.toFileUploadVO(credentialService.uploadCredentials(file, locale));
     }
 
+    @ApiOperation(value = "Seal a list of credentials using locally stored cert")
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_SEAL_LOCAL,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public List<CredentialView> sealCredentialsLocalCertificate(@RequestBody LocalSignatureRequestView localSignatureRequestViews,
+                                                                @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
+        return credentialRestMapper.toVOList(this.getCredentialService().signFromLocalCert(credentialRestMapper.toDTO(localSignatureRequestViews)));
+    }
+
     @ApiOperation(value = "Seal a list of credentials with nexu data")
-    @PostMapping(value = Endpoint.V1.CREDENTIALS_SEAL,
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_SEAL,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -97,7 +109,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation(value = "Delete credential based on uuid")
-    @DeleteMapping(value = Endpoint.V1.ROOT + Parameter.Path.UUID,
+    @DeleteMapping(value = IssuerEndpoint.V1.ROOT + Parameter.Path.UUID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public StatusView deleteCredentials(@PathVariable(Parameter.UUID) String uuid,
@@ -106,7 +118,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation(value = "Download a credential XML file", response = File.class)
-    @GetMapping(value = Endpoint.V1.ROOT + Parameter.Path.UUID,
+    @GetMapping(value = IssuerEndpoint.V1.ROOT + Parameter.Path.UUID,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<byte[]> downloadCredential(@PathVariable(Parameter.UUID) String uuid,
                                                      @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
@@ -114,7 +126,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation("Send credentials to owners via email and to their wallet addresses (TBD)")
-    @PostMapping(value = Endpoint.V1.CREDENTIALS_SEND,
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_SEND,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<CredentialView> sendCredentials(@RequestBody List<CredentialView> credentialViewList,
@@ -123,7 +135,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation("Get Bytes from Signature parameters")
-    @PostMapping(value = Endpoint.V1.CREDENTIALS_BYTES,
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_BYTES,
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<SignatureBytesView> getSignatureBytes(@RequestBody SignatureParametersView signatureParametersView,
@@ -132,7 +144,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation(value = "Issue a credential")
-    @PostMapping(value = Endpoint.V1.CREDENTIALS_ISSUE,
+    @PostMapping(value = IssuerEndpoint.V1.CREDENTIALS_ISSUE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -142,7 +154,7 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
     }
 
     @ApiOperation(value = "Get a Test Credential for Nexus Signature", response = File.class)
-    @GetMapping(value = Endpoint.V1.TEST_CREDENTIAL, produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = IssuerEndpoint.V1.TEST_CREDENTIAL, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<byte[]> getTestCredential() {
         return new ResponseEntity<byte[]>(credentialService.getTestCredential(), prepareHttpHeadersForCredentialDownload("testCredential.xml", MediaType.APPLICATION_XML_VALUE), HttpStatus.OK);
     }
@@ -152,5 +164,13 @@ public class CredentialResource { //extends AbstractBaseResource { //TODO: use d
         httpHeaders.set(HttpHeaders.CONTENT_TYPE, mediaType);
         httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + fileName + "\"");
         return httpHeaders;
+    }
+
+    public CredentialService getCredentialService() {
+        return credentialService;
+    }
+
+    public void setCredentialService(CredentialService credentialService) {
+        this.credentialService = credentialService;
     }
 }

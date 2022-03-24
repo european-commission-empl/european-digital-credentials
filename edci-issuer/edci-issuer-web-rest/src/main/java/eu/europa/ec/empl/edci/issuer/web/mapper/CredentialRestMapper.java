@@ -1,10 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.mapper;
 
-import eu.europa.ec.empl.edci.issuer.common.model.CredentialDTO;
-import eu.europa.ec.empl.edci.issuer.common.model.CredentialHashDTO;
-import eu.europa.ec.empl.edci.issuer.common.model.IssueBuildCredentialDTO;
-import eu.europa.ec.empl.edci.issuer.common.model.RecipientDataDTO;
-import eu.europa.ec.empl.edci.issuer.common.model.signature.*;
+import eu.europa.ec.empl.edci.dss.model.signature.*;
+import eu.europa.ec.empl.edci.issuer.common.model.*;
+import eu.europa.ec.empl.edci.issuer.common.model.open.PublicSealAndSendDTO;
 import eu.europa.ec.empl.edci.issuer.mapper.datamodel.*;
 import eu.europa.ec.empl.edci.issuer.web.model.CredentialHashResponseView;
 import eu.europa.ec.empl.edci.issuer.web.model.CredentialHashView;
@@ -12,8 +10,11 @@ import eu.europa.ec.empl.edci.issuer.web.model.CredentialView;
 import eu.europa.ec.empl.edci.issuer.web.model.data.IssueBuildCredentialView;
 import eu.europa.ec.empl.edci.issuer.web.model.data.RecipientDataView;
 import eu.europa.ec.empl.edci.issuer.web.model.signature.*;
+import eu.europa.ec.empl.edci.issuer.web.model.specs.PublicSealAndSendView;
 import eu.europa.ec.empl.edci.mapper.commons.StringDateMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 import java.util.List;
 
@@ -62,13 +63,13 @@ public interface CredentialRestMapper {
 
     List<SignatureBytesView> toVOByteList(List<SignatureBytesDTO> signatureBytesDTOList);
 
-    SignatureNexuDTO toDTO(SignatureNexuView signatureNexuView);
+    EDCIIssuerSignatureNexuDTO toDTO(SignatureNexuView signatureNexuView);
 
-    SignatureNexuView toVO(SignatureNexuDTO signatureNexuDTO);
+    SignatureNexuView toVO(EDCIIssuerSignatureNexuDTO signatureNexuDTO);
 
-    List<SignatureNexuDTO> toDTOSignatureList(List<SignatureNexuView> signatureNexuViews);
+    List<EDCIIssuerSignatureNexuDTO> toDTOSignatureList(List<SignatureNexuView> signatureNexuViews);
 
-    List<SignatureNexuView> toVOSignatureList(List<SignatureNexuDTO> signatureNexuDTOS);
+    List<SignatureNexuView> toVOSignatureList(List<EDCIIssuerSignatureNexuDTO> signatureNexuDTOS);
 
     SignatureNexuResponseDTO toDTO(SignatureNexuResponseView signatureNexuResponseView);
 
@@ -77,6 +78,20 @@ public interface CredentialRestMapper {
     SignatureNexuFeedbackDTO toDTO(SignatureNexuFeedbackView signatureNexuFeedbackView);
 
     SignatureNexuFeedbackView toVO(SignatureNexuFeedbackDTO signatureNexuFeedbackDTO);
+
+    PublicSealAndSendDTO toDTO(PublicSealAndSendView publicSealAndSendView);
+
+    PublicSealAndSendView toVO(PublicSealAndSendDTO publicSealAndSendDTO);
+
+    @Mappings({
+            @Mapping(source = "credentialViews", target = "credentialDTO")
+    })
+    LocalSignatureRequestDTO toDTO(LocalSignatureRequestView localSignatureRequestView);
+
+    @Mappings({
+            @Mapping(source = "credentialDTO", target = "credentialViews")
+    })
+    LocalSignatureRequestView toVO(LocalSignatureRequestDTO localSignatureRequestDTO);
 
     SignatureNexuInfoDTO toDTO(SignatureNexuInfoView signatureNexuInfoView);
 

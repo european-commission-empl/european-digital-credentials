@@ -27,16 +27,18 @@ export class ViewerInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         // Required for CSRF Spring protection
-        if (
-            request.method !== 'GET' &&
-            request.method !== 'OPTIONS' &&
-            environment.csrfEnabled
-        ) {
-            request = request.clone({
-                setHeaders: {
-                    'X-XSRF-TOKEN': this.getCookieValue('XSRF-TOKEN'),
-                },
-            });
+        if (environment.csrfEnabled) {
+            if (
+                request.method !== 'GET' &&
+                request.method !== 'OPTIONS' &&
+                (request.url.startsWith(environment.apiBaseUrl) || request.url.includes(environment.loginUrl))
+            ) {
+                request = request.clone({
+                    setHeaders: {
+                        'X-XSRF-TOKEN': this.getCookieValue('XSRF-TOKEN'),
+                    },
+                });
+            }
         }
         // Required for debug in localhost:4200
         if (environment.isMockUser && request.method !== 'OPTIONS') {

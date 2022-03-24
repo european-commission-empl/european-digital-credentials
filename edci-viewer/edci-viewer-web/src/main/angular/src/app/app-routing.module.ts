@@ -30,7 +30,7 @@ export const routes: Routes = [
     {
         path: 'view/:userId/:id',
         loadChildren: './features/diploma/diploma.module#Module',
-        canActivate: [ViewerGuard]
+        canActivate: [ViewerGuard],
     },
     { path: '**', redirectTo: 'home' },
 ];
@@ -39,8 +39,7 @@ const routerOptions: ExtraOptions = {
     useHash: true,
     enableTracing: false,
     anchorScrolling: 'enabled',
-    onSameUrlNavigation: 'reload',
-    scrollPositionRestoration: 'enabled',
+    onSameUrlNavigation: 'ignore',
     preloadingStrategy: CustomPreloadingStrategy,
 };
 

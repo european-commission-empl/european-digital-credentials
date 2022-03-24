@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
     <artifactId>edci-issuer-persistence</artifactId>
@@ -14,6 +14,18 @@
 
     <name>EDCI issuer persistence module</name>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
 
@@ -58,9 +70,9 @@
 
         <!-- INNER DEPENDENCIES -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>eu.europa.ec.empl.edci.issuer</groupId>
             <artifactId>edci-issuer-common</artifactId>
-            <version>${project.version}</version>
+            <version>1.4.1-RELEASE</version>
         </dependency>
 
         <!-- LIQUIBASE -->
@@ -68,6 +80,12 @@
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>ojdbc8</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.ojdbc.version}</version>
         </dependency>
 
         <dependency>
@@ -115,9 +133,6 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
-                <configuration>
-                    <propertyFile>src/main/resources/META-INF/liquibase.properties</propertyFile>
-                </configuration>
             </plugin>
         </plugins>
 

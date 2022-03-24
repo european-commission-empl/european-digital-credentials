@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.datamodel.model.base;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateTimeAdapter;
 import eu.europa.ec.empl.edci.datamodel.validation.AfterSealing;
 
@@ -31,19 +31,19 @@ public abstract class VerifiableCredentialDTO implements RootEntity, Nameable {
 
     @XmlAttribute
     private String xsdVersion = "0.10.0";
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_ID_NOTNULL)
-    @XmlAttribute(namespace = EuropassConstants.NAMESPACE_CRED_URI)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_ID_NOTNULL)
+    @XmlAttribute(namespace = EDCIConstants.NAMESPACE_CRED_URI)
     private URI id; //1
     @XmlJavaTypeAdapter(DateTimeAdapter.class)
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_CRED_URI)
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUED_NOTNULL, groups = AfterSealing.class)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_CRED_URI)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUED_NOTNULL, groups = AfterSealing.class)
     private Date issued; //1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUANCEDATE_NOTNULL)
-    @XmlElement(name = "validFrom", namespace = EuropassConstants.NAMESPACE_CRED_URI)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUANCEDATE_NOTNULL)
+    @XmlElement(name = "validFrom", namespace = EDCIConstants.NAMESPACE_CRED_URI)
     @XmlJavaTypeAdapter(DateTimeAdapter.class)
     private Date issuanceDate; //1
     @XmlJavaTypeAdapter(DateTimeAdapter.class)
-    @XmlElement(name = "validUntil", namespace = EuropassConstants.NAMESPACE_CRED_URI)
+    @XmlElement(name = "validUntil", namespace = EDCIConstants.NAMESPACE_CRED_URI)
     private Date expirationDate; //0..1
 
     public Boolean getValid() {

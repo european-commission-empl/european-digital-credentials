@@ -1,8 +1,9 @@
 package eu.europa.ec.empl.edci.issuer.util;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.exception.FileBaseDataException;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConstants;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerConstants;
 import eu.europa.ec.empl.edci.util.Validator;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
@@ -40,9 +41,9 @@ public interface IWorkBookReader {
      */
     default List<String> getCSVListCellValue(Cell cell) {
         List<String> list = new ArrayList<String>();
-        String referenceString = getStringCellValue(cell).replaceAll("[\n\r]", EDCIIssuerConstants.STRING_EMPTY);
-        if (referenceString != null && !referenceString.equals(EDCIIssuerConstants.STRING_EMPTY)) {
-            list = Arrays.asList(referenceString.split(EDCIIssuerConstants.STRING_SEMICOLON));
+        String referenceString = getStringCellValue(cell).replaceAll("[\n\r]", EDCIConstants.StringPool.STRING_EMPTY);
+        if (referenceString != null && !referenceString.equals(EDCIConstants.StringPool.STRING_EMPTY)) {
+            list = Arrays.asList(referenceString.split(EDCIConstants.StringPool.STRING_SEMICOLON));
         }
         return list;
     }
@@ -109,7 +110,7 @@ public interface IWorkBookReader {
      * @return the boolean value
      */
     default Boolean getBooleanCellValue(Cell cell) {
-        if (!getStringCellValue(cell).equals(EDCIIssuerConstants.STRING_EMPTY)) {
+        if (!getStringCellValue(cell).equals(EDCIConstants.StringPool.STRING_EMPTY)) {
             return Boolean.valueOf(getStringCellValue(cell));
         } else {
             return false;
@@ -128,7 +129,7 @@ public interface IWorkBookReader {
         try {
             date = cell.getDateCellValue();
         } catch (Exception e) {
-            throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_DATE_FORMAT_ERROR, String.valueOf(cell.getRowIndex()), String.valueOf(cell.getColumnIndex()), cell.getSheet().getSheetName());
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_DATE_FORMAT_ERROR, String.valueOf(cell.getRowIndex()), String.valueOf(cell.getColumnIndex()), cell.getSheet().getSheetName());
         }
 
         return date;
@@ -143,9 +144,9 @@ public interface IWorkBookReader {
                 break;
             case NUMERIC:
                 Double value = cell.getNumericCellValue();
-                if (Pattern.matches(EDCIIssuerConstants.XLS_PATTERN_FORCENUMBERASTEXT, cell.getCellStyle().getDataFormatString())) {
-                    object = new DecimalFormat("#.##").format(value * 100).concat(EDCIIssuerConstants.STRING_PERCENTAGE);
-                } else if (Pattern.matches(EDCIIssuerConstants.XLS_PATTERN_FORCENUMBERASDATE, cell.getCellStyle().getDataFormatString())) {
+                if (Pattern.matches(IssuerConstants.XLS_PATTERN_FORCENUMBERASTEXT, cell.getCellStyle().getDataFormatString())) {
+                    object = new DecimalFormat("#.##").format(value * 100).concat(EDCIConstants.StringPool.STRING_PERCENTAGE);
+                } else if (Pattern.matches(IssuerConstants.XLS_PATTERN_FORCENUMBERASDATE, cell.getCellStyle().getDataFormatString())) {
                     object = cell.getDateCellValue();
                 } else {
                     object = cell.getNumericCellValue();
@@ -155,11 +156,11 @@ public interface IWorkBookReader {
                 object = cell.getBooleanCellValue();
                 break;
             case BLANK:
-                object = EDCIIssuerConstants.STRING_EMPTY;
+                object = EDCIConstants.StringPool.STRING_EMPTY;
                 break;
             default:
                 getLogger().error("[E] - Unsupported cell type, fallback to blank");
-                object = EDCIIssuerConstants.STRING_EMPTY;
+                object = EDCIConstants.StringPool.STRING_EMPTY;
                 break;
         }
         return this.getValidator().isEmpty(object) ? null : object;
@@ -172,7 +173,7 @@ public interface IWorkBookReader {
      * @return the Object safe value
      */
     default Object getSafeCellValue(Cell cell) {
-        if(getLogger().isTraceEnabled()) {
+        if (getLogger().isTraceEnabled()) {
             getLogger().trace(String.format("Getting Cell with format : [%s]", cell.getCellStyle().getDataFormatString()));
         }
         Object object = null;
@@ -186,7 +187,7 @@ public interface IWorkBookReader {
                 object = getSafeCellValue(formulaCell);
                 //Too many use cases to catch specific exceptions, null value should be OK if exception thrown
             } catch (Exception e) {
-                if(getLogger().isTraceEnabled()) {
+                if (getLogger().isTraceEnabled()) {
                     getLogger().trace(String.format("Could not create cell Reference from formula, tyring cachedType [%s] -> [%s]", cell.getCellFormula(), getCellInfo(cell)));
                 }
                 object = getSafeCellValue(cell.getCachedFormulaResultType(), cell);
@@ -196,7 +197,7 @@ public interface IWorkBookReader {
             object = getSafeCellValue(cell.getCellType(), cell);
         }
         if (this.getValidator().notEmpty(object)) {
-            if(getLogger().isTraceEnabled()) {
+            if (getLogger().isTraceEnabled()) {
                 getLogger().trace(String.format("Value extracted from cell : [%s]", String.valueOf(object)));
                 getLogger().trace(String.format("Instance extracted from cell: [%s]", object.getClass().getName()));
             }

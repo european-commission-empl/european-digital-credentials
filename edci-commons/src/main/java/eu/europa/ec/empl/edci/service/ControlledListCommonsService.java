@@ -2,7 +2,7 @@ package eu.europa.ec.empl.edci.service;
 
 import eu.europa.ec.empl.edci.constants.ControlledList;
 import eu.europa.ec.empl.edci.constants.ControlledListConcept;
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.controlledList.RDFConcept;
 import eu.europa.ec.empl.edci.datamodel.controlledList.RDFConceptScheme;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -63,17 +63,9 @@ public class ControlledListCommonsService {
     @Cacheable("CL_sparQL")
     public Code searchConceptByUri(String targetFramework, String uri, String locale) {
 
-        if (targetFramework.equals(ControlledList.VERIFICATION_TYPE.getUrl())) {
-            Code rdfConcept = new Code(uri,
-                    new Text(uri.split("/vp/")[1], "en"), new Text(uri.split("/vp/")[1], "en"),
-                    ControlledList.VERIFICATION_TYPE.getUrl(), ControlledList.VERIFICATION_TYPE.getName(),
-                    new Text("Europass Presentation", "en"));
-            return rdfConcept;
-        }
-
         //ToDo -> Remove when translations are up in publications office.
         if (targetFramework.equals(ControlledList.VERIFICATION_CHECKS.getUrl())) {
-            locale = Defaults.DEFAULT_LOCALE;
+            locale = EDCIConfig.Defaults.DEFAULT_LOCALE;
         }
 
         RDFConceptScheme controlledListCS = rdfSparqlBridgeService.searchConceptScheme(targetFramework);
@@ -89,16 +81,6 @@ public class ControlledListCommonsService {
     }
 
     public List<Code> searchConceptsByUri(String targetFramework, String locale, Collection<String> retrieveLangs, String... uris) {
-
-        if (targetFramework.equals(ControlledList.VERIFICATION_TYPE.getUrl())) {
-            List<Code> returnValues = new ArrayList<>();
-            Code rdfConcept = new Code(ControlledListConcept.VERIFICATION_TYPE_MANDATED_ISSUE.getUrl(),
-                    new Text(uris[0].split("/vp/")[1], "en"), new Text(uris[0].split("/vp/")[1], "en"),
-                    ControlledList.VERIFICATION_TYPE.getUrl(), ControlledList.VERIFICATION_TYPE.getName(),
-                    new Text("Europass Presentation", "en"));
-            returnValues.add(rdfConcept);
-            return returnValues;
-        }
 
         RDFConceptScheme controlledListCS = rdfSparqlBridgeService.searchConceptScheme(targetFramework);
 
@@ -116,15 +98,6 @@ public class ControlledListCommonsService {
 
     public RDFConcept searchRDFConceptByUri(String targetFramework, String uri) {
 
-        if (targetFramework.equals(ControlledList.VERIFICATION_TYPE.getUrl())) {
-            //TODO: remake this when externalResources are published
-            RDFConcept rdfConcept = new RDFConcept();
-            rdfConcept.setUri(uri);
-            rdfConcept.addTargetName("en", uri.split("/vp/")[1]);
-            rdfConcept.setTargetFrameworkUri(targetFramework);
-            return rdfConcept;
-        }
-
         List<RDFConcept> rdfConcepts = rdfSparqlBridgeService.searchRDFConcepts(targetFramework, LocaleContextHolder.getLocale().getLanguage(), ALLOWED_LANGS, uri);
 
         if (rdfConcepts != null && rdfConcepts.size() > 0) {
@@ -136,19 +109,6 @@ public class ControlledListCommonsService {
     }
 
     public List<RDFConcept> searchRDFConceptsByUri(String targetFramework, String locale, Collection<String> retrieveLangs, String... uris) {
-
-        if (targetFramework.equals(ControlledList.VERIFICATION_TYPE.getUrl())) {
-            //TODO: remake this when externalResources are published
-            List<RDFConcept> returnValues = new ArrayList<>();
-            for (String uri : uris) {
-                RDFConcept rdfConcept = new RDFConcept();
-                rdfConcept.setUri(uri);
-                rdfConcept.addTargetName("en", uri.split("/vp/")[1]);
-                rdfConcept.setTargetFrameworkUri(targetFramework);
-                returnValues.add(rdfConcept);
-            }
-            return returnValues;
-        }
 
         return rdfSparqlBridgeService.searchRDFConcepts(targetFramework, locale, retrieveLangs, uris);
 

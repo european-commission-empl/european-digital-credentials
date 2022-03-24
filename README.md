@@ -6,7 +6,7 @@ The Europass Digital Credential Infrastructure is a set of standards, services a
 
 ### Wallet
 
-The EDCI wallet is a backend service that receives credentials from the issuer, stores them and serves them to wallet front-ends such as the Europass or the EDCI Viewer. It also serves 'share' requests to other systems.
+The EDCI wallet is a backend eu.europa.ec.empl.edci.dss.service that receives credentials from the issuer, stores them and serves them to wallet front-ends such as the Europass or the EDCI Viewer. It also serves 'share' requests to other systems.
 
 More information: [Wallet](edci-wallet/README.md)
 

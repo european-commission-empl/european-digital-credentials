@@ -29,7 +29,7 @@ export class ViewerGuard implements CanActivate {
             }),
             tap((authenticated: boolean) => {
                 if (!authenticated) {
-                    window.location.href = `${this.basePath}${
+                    window.location.href = `${environment.viewerBaseUrl}${
                         environment.loginUrl
                     }?${Constants.PARAMETER_REDIRECTURI}=${encodeURIComponent(window.location.href)}`;
                 }

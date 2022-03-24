@@ -19,7 +19,7 @@ public class CredentialLocalizableInfoDAO implements IGenericDAO {
     public static final String INDEX_NAME = "IDX_" + TABLE_SHORT;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     private Long pk;

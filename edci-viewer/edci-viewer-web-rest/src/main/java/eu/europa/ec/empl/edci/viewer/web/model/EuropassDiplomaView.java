@@ -11,6 +11,7 @@ public class EuropassDiplomaView {
     private String html;
     private String backgroundImage;
     private String logo;
+    private String type;
     //    @JsonFormat(pattern = "dd-MM-YYYY")
     private String expirationDate;
     private String primaryLanguage;
@@ -73,5 +74,13 @@ public class EuropassDiplomaView {
 
     public void setAvailableLanguages(List<String> availableLanguages) {
         this.availableLanguages = availableLanguages;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

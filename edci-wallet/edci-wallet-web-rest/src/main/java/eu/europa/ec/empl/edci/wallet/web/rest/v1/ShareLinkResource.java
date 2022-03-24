@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.wallet.web.rest.v1;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.view.ShareLinkInfoView;
 import eu.europa.ec.empl.edci.datamodel.view.ShareLinkView;
 import eu.europa.ec.empl.edci.datamodel.view.VerificationCheckView;
@@ -8,8 +8,8 @@ import eu.europa.ec.empl.edci.exception.ApiErrorMessage;
 import eu.europa.ec.empl.edci.repository.rest.CrudResource;
 import eu.europa.ec.empl.edci.repository.util.PageParam;
 import eu.europa.ec.empl.edci.wallet.common.constants.EDCIWalletConstants;
-import eu.europa.ec.empl.edci.wallet.common.constants.Endpoint;
 import eu.europa.ec.empl.edci.wallet.common.constants.Parameter;
+import eu.europa.ec.empl.edci.wallet.common.constants.WalletEndpoint;
 import eu.europa.ec.empl.edci.wallet.common.model.ShareLinkDTO;
 import eu.europa.ec.empl.edci.wallet.entity.ShareLinkDAO;
 import eu.europa.ec.empl.edci.wallet.mapper.ShareLinkMapper;
@@ -37,10 +37,10 @@ import java.io.IOException;
 import java.util.List;
 
 @Api(tags = {
-        "V1" + Endpoint.V1.SHARELINKS_BASE
+        "V1" + WalletEndpoint.V1.SHARELINKS_BASE
 }, description = "ShareLink API")
 @Controller(value = "v1.ShareLinkResource")
-@RequestMapping(value = Version.V1)
+@RequestMapping(value = EDCIConstants.Version.V1)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class ShareLinkResource implements CrudResource {
 
@@ -66,7 +66,7 @@ public class ShareLinkResource implements CrudResource {
 
     //TODO vp: why delete this?
     @ApiOperation(value = "Download Shared Link Credential")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + Endpoint.V1.CREDENTIALS_BASE,
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + WalletEndpoint.V1.CREDENTIALS_BASE,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ApiResponses({
             @ApiResponse(code = 403, response = ApiErrorMessage.class, message = "The link is invalid or has expired"),
@@ -78,7 +78,7 @@ public class ShareLinkResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get Share Link of a Credential")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH,
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ApiResponses({
@@ -94,7 +94,7 @@ public class ShareLinkResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get Share Link given a wallet address")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE,
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ApiResponses({
@@ -124,11 +124,11 @@ public class ShareLinkResource implements CrudResource {
 
         Page<ShareLinkDAO> resultPage = shareLinkService.findAll(specif, pageParam.toPageRequest());
 
-        return generateListResponse(resultPage.map(dao -> shareLinkRestMapper.toResponseVO(shareLinkMapper.toDTO(dao))), Endpoint.V1.SHARELINKS_BASE);
+        return generateListResponse(resultPage.map(dao -> shareLinkRestMapper.toResponseVO(shareLinkMapper.toDTO(dao))), WalletEndpoint.V1.SHARELINKS_BASE);
     }
 
     @ApiOperation(value = "Delete Share Link of a Credential")
-    @DeleteMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH)
+    @DeleteMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH)
     @ResponseBody
     @ApiResponses({
             @ApiResponse(code = 403, response = ApiErrorMessage.class, message = "The link is invalid"),
@@ -146,7 +146,7 @@ public class ShareLinkResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update Share Link of a Credential")
-    @PutMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH,
+    @PutMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ApiResponses({
@@ -166,7 +166,7 @@ public class ShareLinkResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get Shared Presentation XML")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + Endpoint.V1.SHARELINK_PRESENTATION, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + WalletEndpoint.V1.SHARELINK_PRESENTATION, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @ApiResponses({
             @ApiResponse(code = 403, response = ApiErrorMessage.class, message = "The link is invalid or has expired"),
             @ApiResponse(code = 500, response = ApiErrorMessage.class, message = "There's been an unexpected error")
@@ -177,19 +177,20 @@ public class ShareLinkResource implements CrudResource {
     }
 
     @ApiOperation(value = "Get Shared Presentation PDF")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + Endpoint.V1.SHARELINK_PRESENTATION, produces = MediaType.APPLICATION_PDF_VALUE)
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + WalletEndpoint.V1.SHARELINK_PRESENTATION, produces = MediaType.APPLICATION_PDF_VALUE)
     @ApiResponses({
             @ApiResponse(code = 403, response = ApiErrorMessage.class, message = "The link is invalid or has expired"),
             @ApiResponse(code = 500, response = ApiErrorMessage.class, message = "There's been an unexpected error")
     })
     public ResponseEntity<ByteArrayResource> downloadShareLinkPresentationPDF(@PathVariable(Parameter.SHARED_HASH) String shareHash,
+                                                                              @ApiParam(required = false, value = "The information that we want into the PDF: full/diploma. By default Diploma", defaultValue = "diploma") @RequestParam(value = Parameter.PDF_TYPE, required = false) String pdfType,
                                                                               @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
-        return shareLinkService.downloadShareLinkPresentationPDF(shareHash);
+        return shareLinkService.downloadShareLinkPresentationPDF(shareHash, pdfType);
     }
 
 
     @ApiOperation(value = "Get verification from a credential XML")
-    @GetMapping(value = Endpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + Endpoint.V1.VERIFY,
+    @GetMapping(value = WalletEndpoint.V1.SHARELINKS_BASE + Parameter.Path.SHARED_HASH + WalletEndpoint.V1.VERIFY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ApiResponses({
@@ -209,14 +210,14 @@ public class ShareLinkResource implements CrudResource {
 
         if (shareResponse != null) {
 
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(ShareLinkResource.class).slash(Endpoint.V1.SHARELINKS_BASE)
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(ShareLinkResource.class).slash(WalletEndpoint.V1.SHARELINKS_BASE)
                     .slash(shareResponse.getShareHash()).withSelfRel(); //TODO: MediaType ContentType
 
             Link hateoasViewer = new Link(walletConfigService.getString(EDCIWalletConstants.CONFIG_PROPERTY_VIEWER_SHARED_URL)
                     .replaceAll(Parameter.SHARED_HASH, shareResponse.getShareHash()), "view");
 
-            Link hateoasPresentation = ControllerLinkBuilder.linkTo(ShareLinkResource.class).slash(Endpoint.V1.SHARELINKS_BASE)
-                    .slash(shareResponse.getShareHash()).slash(Endpoint.V1.SHARELINK_PRESENTATION).withRel("presentation");
+            Link hateoasPresentation = ControllerLinkBuilder.linkTo(ShareLinkResource.class).slash(WalletEndpoint.V1.SHARELINKS_BASE)
+                    .slash(shareResponse.getShareHash()).slash(WalletEndpoint.V1.SHARELINK_PRESENTATION).withRel("presentation");
 
             return new Link[]{
                     hateoasSelf, hateoasViewer, hateoasPresentation

@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LegalIdentifier extends Identifier {
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEGALIDENTIFIER_SPATIALID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEGALIDENTIFIER_SPATIALID_NOTNULL)
     @XmlAttribute(name = "spatialID")
     private String spatialId; //1
 

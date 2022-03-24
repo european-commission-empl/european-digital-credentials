@@ -3,9 +3,8 @@ package eu.europa.ec.empl.edci.viewer.service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.constants.ErrorCode;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.view.EuropassDiplomaDTO;
 import eu.europa.ec.empl.edci.exception.EDCIException;
@@ -13,8 +12,8 @@ import eu.europa.ec.empl.edci.exception.EDCIRestException;
 import eu.europa.ec.empl.edci.util.DiplomaUtils;
 import eu.europa.ec.empl.edci.util.EDCICredentialModelUtil;
 import eu.europa.ec.empl.edci.util.WalletResourceUtil;
-import eu.europa.ec.empl.edci.viewer.common.Constants;
 import eu.europa.ec.empl.edci.viewer.common.constants.Parameter;
+import eu.europa.ec.empl.edci.viewer.common.constants.ViewerConfig;
 import eu.europa.ec.empl.edci.viewer.common.model.ShareLinkFetchResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +48,7 @@ public class ShareLinkDetailService {
         String response = null;
         try {
             response = walletResourceUtils.doWalletGetRequest(
-                    viewerConfigService.getString(Constants.CONFIG_PROPERTY_WALLET_DOWNLOAD_SHARED_XML).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
+                    viewerConfigService.getString(ViewerConfig.Viewer.WALLET_DOWNLOAD_SHARED_XML).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
                     null, MediaType.APPLICATION_OCTET_STREAM, String.class, false);
 
 
@@ -61,7 +60,7 @@ public class ShareLinkDetailService {
             }
         } catch (JAXBException e) {
             logger.error(String.format("JAXBException: %s", e.getMessage()), e);
-            throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_INVALID_FORMAT, MessageKeys.Exception.BadRquest.UPLOAD_CREDENTIAL_BAD_FORMAT).setCause(e);
+            throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_INVALID_FORMAT, EDCIMessageKeys.Exception.BadRquest.UPLOAD_CREDENTIAL_BAD_FORMAT).setCause(e);
         } catch (EDCIRestException e) {
             throw e;
         } catch (Exception e) {
@@ -77,24 +76,24 @@ public class ShareLinkDetailService {
         String shareLinkResponse = null;
         try {
             response = walletResourceUtils.doWalletGetRequest(
-                    viewerConfigService.getString(Constants.CONFIG_PROPERTY_WALLET_DOWNLOAD_SHARED_XML).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
+                    viewerConfigService.getString(ViewerConfig.Viewer.WALLET_DOWNLOAD_SHARED_XML).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
                     null, MediaType.APPLICATION_OCTET_STREAM, String.class, false);
 
             europassCredentialDTO = edciCredentialModelUtil.fromXML(response);
 
             shareLinkResponse = walletResourceUtils.doWalletGetRequest(
-                    viewerConfigService.getString(Constants.CONFIG_PROPERTY_WALLET_SHARELINK_FETCH).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
+                    viewerConfigService.getString(ViewerConfig.Viewer.WALLET_SHARELINK_FETCH).replaceAll(Pattern.quote(Parameter.SHARE_HASH), shareHash),
                     null, MediaType.APPLICATION_JSON, String.class, false);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             ShareLinkFetchResponseDTO shareLinkFetchResponseDTO = objectMapper.readValue(shareLinkResponse, ShareLinkFetchResponseDTO.class);
-            europassDiplomaDTO = europassCredentialViewerUtils.extractEuropassDiplomaDTO(europassCredentialDTO.getCredential(), locale);
+            europassDiplomaDTO = europassCredentialViewerUtils.extractEuropassDiplomaDTO(europassCredentialDTO, locale);
             europassDiplomaDTO.setExpirationDate(shareLinkFetchResponseDTO.getExpirationDate());
 
             logger.trace(String.format("ShareLink Expiration Date: [%s]", shareLinkFetchResponseDTO.getExpirationDate()));
         } catch (JAXBException e) {
             logger.error(String.format("JAXBException: %s", e.getMessage()), e);
-            throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_INVALID_FORMAT, MessageKeys.Exception.BadRquest.UPLOAD_CREDENTIAL_BAD_FORMAT).setCause(e);
+            throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_INVALID_FORMAT, EDCIMessageKeys.Exception.BadRquest.UPLOAD_CREDENTIAL_BAD_FORMAT).setCause(e);
         } catch (EDCIRestException e) {
             throw e;
         } catch (Exception e) {

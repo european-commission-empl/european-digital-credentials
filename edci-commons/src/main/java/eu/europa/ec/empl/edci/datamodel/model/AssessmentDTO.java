@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateTimeAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.base.Gradeable;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
@@ -27,18 +27,18 @@ public class AssessmentDTO implements RootEntity, Gradeable, Nameable {
     @XmlTransient
     private String pk;
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ASSESSMENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ASSESSMENT_ID_NOTNULL)
     private URI id; //1
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ASSESSMENT_TITLE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ASSESSMENT_TITLE_NOTNULL)
     @Valid
     private Text title; //1
     @Valid
     private Text description; //0..1
     @Valid
     private List<Note> additionalNote; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ASSESSMENT_GRADE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ASSESSMENT_GRADE_NOTNULL)
     @Valid
     private Score grade; //1
     @Valid

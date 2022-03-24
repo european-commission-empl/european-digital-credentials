@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.specs.AssessmentSpecDAO;
 import eu.europa.ec.empl.edci.issuer.entity.specs.OrganizationSpecDAO;
@@ -43,7 +43,7 @@ import java.util.Set;
 })
 @Controller(value = "v1.AssessmentSpecResource")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(value = Version.V1 + Endpoint.V1.ASSESSMENTS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.ASSESSMENTS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class AssessmentResource implements CrudResource {
 
@@ -81,7 +81,7 @@ public class AssessmentResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @ApiOperation(value = "Create an assessment spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -103,7 +103,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate an activity spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<AssessmentSpecView>> duplicateAssessment(
@@ -116,7 +116,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update an assessment spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -143,7 +143,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an assessment spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteAssessment(
@@ -154,7 +154,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an assessment")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<AssessmentSpecView>> getAssessment(
@@ -169,7 +169,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of assessments")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<AssessmentSpecLiteView>> listAssessment(
@@ -188,7 +188,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of (hasPart) Assessments from assessments")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_HAS_PART,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ASS_HAS_PART,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<AssessmentSpecLiteView>> listHasAssPart(
@@ -208,7 +208,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing related (hasPart) Assessments to a assessment")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_HAS_PART,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ASS_HAS_PART,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -232,7 +232,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of (AssessedBy) Organization from assessments")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_ASSESSED_BY,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ASS_ASSESSED_BY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<OrganizationSpecLiteView>> listAssessedBy(
@@ -252,7 +252,7 @@ public class AssessmentResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing related (AssessedBy) Organization to a assessment")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ASS_ASSESSED_BY,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ASS_ASSESSED_BY,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -279,11 +279,11 @@ public class AssessmentResource implements CrudResource {
 
         if (assessmentDAO != null) {
 
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(AssessmentResource.class).slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(AssessmentResource.class).slash(IssuerEndpoint.V1.SPECS).slash(assessmentDAO.getPk()).withSelfRel();
 
             Link hateoasHasPart = ControllerLinkBuilder.linkTo(AssessmentResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk())
-                    .slash(Endpoint.V1.ASS_HAS_PART).withRel("hasPart");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(assessmentDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ASS_HAS_PART).withRel("hasPart");
 
 //            Link hateoasSpecOf = ControllerLinkBuilder.linkTo(AssessmentResource.class)
 //                    .slash(Endpoint.V1.SPECS).slash(assessmentDAO.getPk())

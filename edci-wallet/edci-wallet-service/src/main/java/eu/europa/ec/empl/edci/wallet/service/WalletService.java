@@ -48,6 +48,19 @@ public class WalletService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
+    public WalletDTO updateWallet(WalletDTO walletDTO) {
+
+        WalletDAO wallet = this.fetchWalletDAOByUserId(walletDTO.getUserId());
+
+        wallet.setUserEmail(walletDTO.getUserEmail());
+
+        this.walletRepository.save(wallet);
+
+        return walletMapper.toDTO(wallet);
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<WalletDTO> createBulkWallet(List<WalletDTO> walletDTOList) {
 
         List<WalletDTO> wallets = new ArrayList<>();
@@ -95,6 +108,12 @@ public class WalletService {
     public WalletDTO fetchWalletByUserId(String userId) {
         validateWalletExists(userId);
         return walletMapper.toDTO(walletRepository.fetchByUserId(userId));
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public WalletDAO fetchWalletDAOByUserId(String userId) {
+        validateWalletExists(userId);
+        return walletRepository.fetchByUserId(userId);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

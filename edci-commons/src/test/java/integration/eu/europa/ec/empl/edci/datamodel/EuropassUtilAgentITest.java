@@ -1,6 +1,6 @@
 package integration.eu.europa.ec.empl.edci.datamodel;
 
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.model.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class EuropassUtilAgentITest extends EuropassUtilITest {
     public void parsePerson_WithContactPoint_ShouldHaveMailTo() throws IOException, JAXBException {
         PersonDTO personDTO = createPersonDTO();
         String xml = xmlUtil.toXML(personDTO, PersonDTO.class);
-        Assert.assertTrue(xml.contains(Defaults.DEFAULT_MAILTO));
+        Assert.assertTrue(xml.contains(EDCIConfig.Defaults.DEFAULT_MAILTO));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class EuropassUtilAgentITest extends EuropassUtilITest {
         for (ContactPoint contactPoint : personDTO.getContactPoint()) {
             for (MailboxDTO mailboxDTO : contactPoint.getEmail()) {
                 String mail = mailboxDTO.getId().toString();
-                if (mail.contains(Defaults.DEFAULT_MAILTO)) noMailTo = false;
+                if (mail.contains(EDCIConfig.Defaults.DEFAULT_MAILTO)) noMailTo = false;
             }
         }
         Assert.assertTrue(noMailTo);
@@ -57,7 +57,7 @@ public class EuropassUtilAgentITest extends EuropassUtilITest {
         for (ContactPoint contactPoint : personDTO.getContactPoint()) {
             for (MailboxDTO mailboxDTO : contactPoint.getEmail()) {
                 String mail = mailboxDTO.getId().toString();
-                if (mail.contains(Defaults.DEFAULT_MAILTO)) noMailTo = false;
+                if (mail.contains(EDCIConfig.Defaults.DEFAULT_MAILTO)) noMailTo = false;
                 System.out.println(mail);
             }
         }

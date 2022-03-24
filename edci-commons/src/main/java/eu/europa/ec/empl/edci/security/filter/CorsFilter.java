@@ -49,6 +49,9 @@ public class CorsFilter implements Filter {
         }
 
         if (allowedDomains == null || allowedDomains.contains(request.getHeader(HttpHeaders.ORIGIN))) {
+            if (logger.isDebugEnabled()) {
+                logger.debug(String.format("[D] - Adding Allow Origin: %s", request.getHeader(HttpHeaders.ORIGIN)));
+            }
             ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, request.getHeader(HttpHeaders.ORIGIN));
             ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
         } else {
@@ -56,21 +59,22 @@ public class CorsFilter implements Filter {
         }
 
         ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, HttpMethod.GET + ", " + HttpMethod.OPTIONS + ", " + HttpMethod.HEAD + ", " + HttpMethod.PUT + ", " + HttpMethod.POST + ", " + HttpMethod.DELETE);
-        ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, HttpHeaders.CONTENT_TYPE + ", x-requested-with, " + HttpHeaders.AUTHORIZATION);
+        ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, HttpHeaders.CONTENT_TYPE + ", x-requested-with, " + HttpHeaders.AUTHORIZATION + ", x-xsrf-token");
         ((HttpServletResponse) servletResponse).addHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
 
         logger.debug("[D] - Inside Cors Filter ");
 
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-        // For HTTP OPTIONS verb/method reply with ACCEPTED status code -- per CORS handshake
-       /* if (request.getMethod().equals("OPTIONS")) {
-            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
-            return;
-        }*/
-
         // pass the request along the filter chain
-        filterChain.doFilter(request, servletResponse);
+        if (request.getMethod().equals("OPTIONS")) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("[D] - OPTIONS Request Found - Returning 200");
+            }
+            resp.setStatus(HttpServletResponse.SC_ACCEPTED);
+        } else {
+            filterChain.doFilter(request, servletResponse);
+        }
     }
 
     @Override

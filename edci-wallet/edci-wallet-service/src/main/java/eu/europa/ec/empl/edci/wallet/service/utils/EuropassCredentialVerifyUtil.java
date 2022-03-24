@@ -3,9 +3,9 @@ package eu.europa.ec.empl.edci.wallet.service.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.europa.ec.empl.edci.constants.ControlledListConcept;
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.constants.ErrorCode;
-import eu.europa.ec.empl.edci.constants.XML;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.LearningAchievementDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
@@ -14,7 +14,7 @@ import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.EuropassPresentationDTO;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.VerificationCheckDTO;
 import eu.europa.ec.empl.edci.datamodel.validation.ValidationResult;
-import eu.europa.ec.empl.edci.dss.validation.DSSValidationUtils;
+import eu.europa.ec.empl.edci.dss.service.DSSEDCIValidationService;
 import eu.europa.ec.empl.edci.exception.EDCIException;
 import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
@@ -26,7 +26,7 @@ import eu.europa.ec.empl.edci.wallet.common.model.verification.QMSAccreditation;
 import eu.europa.ec.empl.edci.wallet.common.model.verification.QMSAccreditations;
 import eu.europa.ec.empl.edci.wallet.service.WalletConfigService;
 import eu.europa.esig.dss.diagnostic.CertificateWrapper;
-import eu.europa.esig.dss.validation.CertificateVerifier;
+import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import eu.europa.esig.dss.validation.reports.Reports;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +86,9 @@ public class EuropassCredentialVerifyUtil {
     private EDCICredentialModelUtil edciCredentialModelUtil;
 
     @Autowired
+    private DSSEDCIValidationService dssedciValidationService;
+
+    @Autowired
     EDCIMessageService messageSource;
 
     @Autowired
@@ -95,7 +98,7 @@ public class EuropassCredentialVerifyUtil {
     private XmlUtil xmlUtil;
 
     @Autowired
-    private CertificateVerifier certificateVerifier;
+    private CommonCertificateVerifier certificateVerifier;
 
     @Autowired
     private WalletConfigService walletConfigService;
@@ -129,22 +132,26 @@ public class EuropassCredentialVerifyUtil {
     public List<VerificationCheckDTO> verifyCredential(CredentialHolderDTO credential, byte[] xmlBytes) {
 
         VerificationCheckDTO[] credentialReport = new VerificationCheckDTO[6]; //It's an array to preserve the order
+        List<Locale> localeEng = new ArrayList<>();
+        localeEng.add(new Locale(EDCIConfig.Defaults.DEFAULT_LOCALE));
+        List<Locale> locales = credential.getCredential().getAvailableLanguages() != null && !credential.getCredential().getAvailableLanguages().isEmpty() ?
+                credential.getCredential().getAvailableLanguages().stream().map(lang -> new Locale(lang)).collect(Collectors.toList()) : localeEng;
 
         ExecutorService executor = Executors.newFixedThreadPool(walletConfigService.getInteger("verifyCredential.num.threads", 7));
 
         ContextAwareRunnable formatCheck = new ContextAwareRunnable(() -> {
-            Thread.currentThread().setName("verifyCredential.formatCheck."+credential.getId());
+            Thread.currentThread().setName("verifyCredential.formatCheck." + credential.getId());
             //TODO VP: see EDCI-1092
             //ControlledListConcept.VERIFICATION_CHECKS_FORMAT
-            credentialReport[0] = buildFormatVerificationCheck(xmlBytes); //TODO: fix me for credential only
+            credentialReport[0] = buildFormatVerificationCheck(xmlBytes, locales); //TODO: fix me for credential only
         }, RequestContextHolder.currentRequestAttributes());
 
         executor.submit(formatCheck);
 
         ContextAwareRunnable verificationCheck = new ContextAwareRunnable(() -> {
-            Thread.currentThread().setName("verifyCredential.verificationCheck."+credential.getId());
+            Thread.currentThread().setName("verifyCredential.verificationCheck." + credential.getId());
             //ControlledListConcept.VERIFICATION_CHECKS_SEAL
-            credentialReport[1] = buildSealVerificationCheck(xmlBytes);
+            credentialReport[1] = buildSealVerificationCheck(xmlBytes, locales);
         }, RequestContextHolder.currentRequestAttributes());
 
         executor.submit(verificationCheck);
@@ -158,25 +165,25 @@ public class EuropassCredentialVerifyUtil {
 //        executor.submit(ownerVerificationCheck);
 
         ContextAwareRunnable revocationVerificationCheck = new ContextAwareRunnable(() -> {
-            Thread.currentThread().setName("verifyCredential.revocationVerificationCheck."+credential.getId());
+            Thread.currentThread().setName("verifyCredential.revocationVerificationCheck." + credential.getId());
             //ControlledListConcept.VERIFICATION_CHECKS_REVOCATION
-            credentialReport[3] = buildRevocationVerificationCheck(xmlBytes);
+            credentialReport[3] = buildRevocationVerificationCheck(xmlBytes, locales);
         }, RequestContextHolder.currentRequestAttributes());
 
         executor.submit(revocationVerificationCheck);
 
         ContextAwareRunnable accredtiationVerificationCheck = new ContextAwareRunnable(() -> {
-            Thread.currentThread().setName("verifyCredential.accredtiationVerificationCheck."+credential.getId());
+            Thread.currentThread().setName("verifyCredential.accredtiationVerificationCheck." + credential.getId());
             //ControlledListConcept.VERIFICATION_CHECKS_ACCREDITATION
-            credentialReport[4] = buildAccredtiationVerificationCheck(xmlBytes);
+            credentialReport[4] = buildAccredtiationVerificationCheck(xmlBytes, locales);
         }, RequestContextHolder.currentRequestAttributes());
 
         executor.submit(accredtiationVerificationCheck);
 
         ContextAwareRunnable validityVerificationCheck = new ContextAwareRunnable(() -> {
-            Thread.currentThread().setName("verifyCredential.validityVerificationCheck."+credential.getId());
+            Thread.currentThread().setName("verifyCredential.validityVerificationCheck." + credential.getId());
             //ControlledListConcept.VERIFICATION_CHECKS_EXPIRY
-            credentialReport[5] = buildValidityVerificationCheck(least(credential.getExpirationDate(), credential.getCredential().getExpirationDate()));
+            credentialReport[5] = buildValidityVerificationCheck(least(credential.getExpirationDate(), credential.getCredential().getExpirationDate()), locales);
         }, RequestContextHolder.currentRequestAttributes());
 
         executor.submit(validityVerificationCheck);
@@ -221,29 +228,29 @@ public class EuropassCredentialVerifyUtil {
         return validationResult.isValid();
     }
 
-    private VerificationCheckDTO buildFormatVerificationCheck(byte[] bytes) {
+    private VerificationCheckDTO buildFormatVerificationCheck(byte[] bytes, List<Locale> locales) {
 
         VerificationCheckDTO verificationCheckDTO = new VerificationCheckDTO();
 
         Boolean isValid = validateFormat(bytes);
         ControlledListConcept statusCode;
 
-        Text desc = null;
+        Text desc = new Text();
         if (isValid == null) {
-            desc = new Text(messageSource.getMessage("verify.check.unavailable"), LocaleContextHolder.getLocale().getLanguage());
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.unavailable"), locale.getLanguage()));
             statusCode = ControlledListConcept.VERIFICATION_STATUS_SKIPPED;
         } else {
             if (isValid) {
-                desc = new Text(messageSource.getMessage("verify.check.valid"), LocaleContextHolder.getLocale().getLanguage());
+                locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.valid"), locale.getLanguage()));
                 statusCode = ControlledListConcept.VERIFICATION_STATUS_OK;
             } else {
-                desc = new Text(messageSource.getMessage("verify.check.unreadable"), LocaleContextHolder.getLocale().getLanguage());
+                locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.unreadable"), locale.getLanguage()));
                 statusCode = ControlledListConcept.VERIFICATION_STATUS_ERROR;
             }
         }
 
         verificationCheckDTO.setDescription(desc);
-        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(statusCode, Defaults.DEFAULT_LOCALE));
+        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(statusCode, EDCIConfig.Defaults.DEFAULT_LOCALE));
         verificationCheckDTO.setType(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_CHECKS_FORMAT));
 
         return verificationCheckDTO;
@@ -261,10 +268,10 @@ public class EuropassCredentialVerifyUtil {
         try {
             boolean institutionalAccreditationExists = Math.random() < 0.7;
             if (institutionalAccreditationExists) {
-                resource = new ClassPathResource(EDCIWalletConstants.INSTITUTIONAL_ACCREDITATION.concat(XML.EXTENSION_XML));
+                resource = new ClassPathResource(EDCIWalletConstants.INSTITUTIONAL_ACCREDITATION.concat(EDCIConstants.XML.EXTENSION_XML));
                 jaxbContext = JAXBContext.newInstance(QMSAccreditations.class);
             } else {
-                resource = new ClassPathResource(EDCIWalletConstants.QUALIFICATION_ACCREDITATION.concat(XML.EXTENSION_XML));
+                resource = new ClassPathResource(EDCIWalletConstants.QUALIFICATION_ACCREDITATION.concat(EDCIConstants.XML.EXTENSION_XML));
                 jaxbContext = JAXBContext.newInstance(QMSAccreditations.class);
             }
         } catch (JAXBException e) {
@@ -289,10 +296,10 @@ public class EuropassCredentialVerifyUtil {
         logger.trace("Accreditations length: " + qmsAccreditations.getAccreditation().size());
         for (QMSAccreditation qmsAccreditation : qmsAccreditations.getAccreditation()) {
             if (europassCredentialDTO.getIssuanceDate().after(qmsAccreditation.getIssuedDate()) && europassCredentialDTO.getIssuanceDate().before(qmsAccreditation.getExpiryDate())) {
-                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, Defaults.DEFAULT_LOCALE));
+                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, EDCIConfig.Defaults.DEFAULT_LOCALE));
                 desc = new Text(messageSource.getMessage("verify.check.still.valid"), LocaleContextHolder.getLocale().getLanguage());
             } else {
-                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, Defaults.DEFAULT_LOCALE));
+                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, EDCIConfig.Defaults.DEFAULT_LOCALE));
                 //TODO: What if cred.issueDate before accr.issueDate?
                 desc = new Text(messageSource.getMessage("verify.check.expired"), LocaleContextHolder.getLocale().getLanguage());
             }
@@ -312,81 +319,84 @@ public class EuropassCredentialVerifyUtil {
         return verificationCheckDTO;
     }
 
-    private VerificationCheckDTO buildAccredtiationVerificationCheck(byte[] xmlBytes) {
+    private VerificationCheckDTO buildAccredtiationVerificationCheck(byte[] xmlBytes, List<Locale> locales) {
         VerificationCheckDTO verificationCheckDTO = new VerificationCheckDTO();
-        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, Defaults.DEFAULT_LOCALE));
+        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, EDCIConfig.Defaults.DEFAULT_LOCALE));
         verificationCheckDTO.setType(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_CHECKS_ACCREDITATION));
 
-        verificationCheckDTO.setDescription(new Text(messageSource.getMessage("verify.check.verification.skipped"), LocaleContextHolder.getLocale().getLanguage()));
+        Text desc = new Text();
+        locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.verification.skipped"), locale.getLanguage()));
+        verificationCheckDTO.setDescription(desc);
 
         return verificationCheckDTO;
     }
 
-    private VerificationCheckDTO buildRevocationVerificationCheck(byte[] xmlBytes) {
+    private VerificationCheckDTO buildRevocationVerificationCheck(byte[] xmlBytes, List<Locale> locales) {
         VerificationCheckDTO verificationCheckDTO = new VerificationCheckDTO();
-        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, Defaults.DEFAULT_LOCALE));
+        verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, EDCIConfig.Defaults.DEFAULT_LOCALE));
         verificationCheckDTO.setType(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_CHECKS_REVOCATION));
 
-        verificationCheckDTO.setDescription(new Text(messageSource.getMessage("verify.check.verification.skipped"), LocaleContextHolder.getLocale().getLanguage()));
+        Text desc = new Text();
+        locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.verification.skipped"), locale.getLanguage()));
+        verificationCheckDTO.setDescription(desc);
 
         return verificationCheckDTO;
     }
 
     public boolean containsAnySignature(byte[] xmlBytes) {
-        DSSValidationUtils dssValidationUtils = new DSSValidationUtils();
-        Reports reports = dssValidationUtils.validateXML(xmlBytes, certificateVerifier);
+        DSSEDCIValidationService dssValidationUtils = new DSSEDCIValidationService();
+        Reports reports = dssValidationUtils.validateXML(xmlBytes, false);
         return reports.getSimpleReport().getSignaturesCount() > 0;
     }
 
-    private VerificationCheckDTO buildSealVerificationCheck(byte[] xmlBytes) {
+    private VerificationCheckDTO buildSealVerificationCheck(byte[] xmlBytes, List<Locale> locales) {
         VerificationCheckDTO verificationCheckDTO = new VerificationCheckDTO();
-        Text desc = null;
-        Text descLong = null;
-        DSSValidationUtils dssValidationUtils = new DSSValidationUtils();
-        Reports reports = dssValidationUtils.validateXML(xmlBytes, certificateVerifier);
+        Text desc = new Text();
+        Text descLong = new Text();
+        Reports reports = this.getDssedciValidationService().validateXML(xmlBytes, false);
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("Valid Signature Count: " + reports.getSimpleReport().getValidSignaturesCount());
+            logger.debug("Errors: " + reports.getSimpleReport().getErrors(reports.getSimpleReport().getFirstSignatureId()));
+        }
         if (reports == null) {
-            desc = new Text(messageSource.getMessage("verify.check.seal.broken"), LocaleContextHolder.getLocale().getLanguage());
-            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, Defaults.DEFAULT_LOCALE));
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.seal.broken"), locale.getLanguage()));
+            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, EDCIConfig.Defaults.DEFAULT_LOCALE));
         } else if (reports.getSimpleReport().getSignaturesCount() < 1) {
-            desc = new Text(messageSource.getMessage("verify.check.not.sealed"), LocaleContextHolder.getLocale().getLanguage());
-            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, Defaults.DEFAULT_LOCALE));
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.not.sealed"), locale.getLanguage()));
+            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_SKIPPED, EDCIConfig.Defaults.DEFAULT_LOCALE));
         } else if (reports.getSimpleReport().getValidSignaturesCount() > 0) {
-            String issuer = EDCIWalletConstants.STRING_BLANK;
+            //Get short issuer, initialize both values to it
+            String shortIssuer;
+            shortIssuer = reports.getSimpleReport().getSignedBy(reports.getSimpleReport().getFirstSignatureId());
+            StringBuilder longIssuerSB = new StringBuilder().append(shortIssuer);
+            //loop through report used certificates
             List<CertificateWrapper> usedCertificates = reports.getDiagnosticData().getUsedCertificates();
-            //Get the first cert that matches the signer, it's common name is the sort Issuer description
-            Optional<CertificateWrapper> firstCert = usedCertificates.stream().filter(item -> item.getId().equals(reports.getSimpleReport().getSignedBy(reports.getSimpleReport().getFirstSignatureId()))).findFirst();
-            String shortIssuer = EDCIWalletConstants.STRING_BLANK;
-            if (firstCert.isPresent()) {
-                shortIssuer = firstCert.get().getCommonName();
+            for (int i = 0; i < usedCertificates.size(); i++) {
+                longIssuerSB.append(usedCertificates.get(i).getCommonName().concat(EDCIConstants.StringPool.STRING_SPACE).concat(EDCIConstants.StringPool.STRING_SEMICOLON));
             }
-            for (CertificateWrapper usedCertificate : usedCertificates) {
-                if (usedCertificate.getId().equals(reports.getSimpleReport().getSignedBy(reports.getSimpleReport().getFirstSignatureId()))) {
-                    issuer = usedCertificate.getCommonName();
-                    for (CertificateWrapper cw : usedCertificate.getCertificateChain()) {
-                        issuer = issuer.concat(";").concat(cw.getCommonName());
-                    }
-                    issuer = issuer.concat(",");
-                }
-            }
+
+            longIssuerSB.append(EDCIConstants.StringPool.STRING_COMMA);
             Date issueDate = reports.getSimpleReport().getSigningTime(reports.getSimpleReport().getFirstSignatureId());
-            descLong = new Text(messageSource.getMessage("verify.check.sealed", issuer, issueDate), LocaleContextHolder.getLocale().getLanguage());
-            desc = new Text(messageSource.getMessage("verify.check.sealed.short", shortIssuer), LocaleContextHolder.getLocale().getLanguage());
-            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, Defaults.DEFAULT_LOCALE));
+            locales.forEach(locale -> descLong.addContent(messageSource.getMessage(locale, "verify.check.sealed", longIssuerSB.toString(), issueDate), locale.getLanguage()));
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.sealed.short", shortIssuer), locale.getLanguage()));
+            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, EDCIConfig.Defaults.DEFAULT_LOCALE));
         } else {
             StringBuilder errors = new StringBuilder();
             for (String error : reports.getSimpleReport().getErrors(reports.getSimpleReport().getFirstSignatureId())) {
                 errors.append(error).append(";");
             }
-            desc = new Text(messageSource.getMessage("verify.check.seal.broken"), LocaleContextHolder.getLocale().getLanguage());
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.seal.broken"), locale.getLanguage()));
             logger.error("verify.check.seal.broken " + errors.toString());
-            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, Defaults.DEFAULT_LOCALE));
+            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, EDCIConfig.Defaults.DEFAULT_LOCALE));
         }
 
         verificationCheckDTO.setType(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_CHECKS_SEAL));
 
         verificationCheckDTO.setDescription(desc);
-        verificationCheckDTO.setLongDescription(descLong);
+        if (descLong != null && descLong.getContents() != null && !descLong.getContents().isEmpty()) {
+            verificationCheckDTO.setLongDescription(descLong);
+        }
 
         return verificationCheckDTO;
     }
@@ -435,23 +445,23 @@ public class EuropassCredentialVerifyUtil {
 //    }
 
 
-    private VerificationCheckDTO buildValidityVerificationCheck(Date expirationDate) {
+    private VerificationCheckDTO buildValidityVerificationCheck(Date expirationDate, List<Locale> locales) {
 
         VerificationCheckDTO verificationCheckDTO = new VerificationCheckDTO();
-        Text desc = null;
+        Text desc = new Text();
 
         verificationCheckDTO.setType(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_CHECKS_EXPIRY));
         if (expirationDate != null) {
             if (credentialUtil.validateExpiry(expirationDate)) {
-                desc = new Text(messageSource.getMessage("verify.check.still.valid"), LocaleContextHolder.getLocale().getLanguage());
-                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, Defaults.DEFAULT_LOCALE));
+                locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.still.valid"), locale.getLanguage()));
+                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, EDCIConfig.Defaults.DEFAULT_LOCALE));
             } else {
-                desc = new Text(messageSource.getMessage("verify.check.expired", expirationDate), LocaleContextHolder.getLocale().getLanguage());
-                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, Defaults.DEFAULT_LOCALE));
+                locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.expired", expirationDate), locale.getLanguage()));
+                verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_ERROR, EDCIConfig.Defaults.DEFAULT_LOCALE));
             }
         } else {
-            desc = new Text(messageSource.getMessage("verify.check.still.valid"), LocaleContextHolder.getLocale().getLanguage());
-            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, Defaults.DEFAULT_LOCALE));
+            locales.forEach(locale -> desc.addContent(messageSource.getMessage(locale, "verify.check.still.valid"), locale.getLanguage()));
+            verificationCheckDTO.setStatus(controlledListCommonsService.searchConceptByConcept(ControlledListConcept.VERIFICATION_STATUS_OK, EDCIConfig.Defaults.DEFAULT_LOCALE));
 
         }
 
@@ -462,4 +472,11 @@ public class EuropassCredentialVerifyUtil {
     }
 
 
+    public DSSEDCIValidationService getDssedciValidationService() {
+        return dssedciValidationService;
+    }
+
+    public void setDssedciValidationService(DSSEDCIValidationService dssedciValidationService) {
+        this.dssedciValidationService = dssedciValidationService;
+    }
 }

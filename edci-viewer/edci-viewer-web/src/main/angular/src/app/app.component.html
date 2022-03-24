@@ -59,9 +59,11 @@
                     }}</strong></ux-button
                 >
                 <ng-template #notLogged>
-                    <span uxTooltip="{{userInfo.sub}}" class="pt-2 pr-3 username ux-u-color-grey-lightester-2">{{
-                        userInfo.name
-                    }}</span>
+                    <span
+                        uxTooltip="{{ userInfo.sub }}"
+                        class="pt-2 pr-3 username ux-u-color-grey-lightester-2"
+                        >{{ userInfo.name }}</span
+                    >
                     <ux-button
                         styleClass="no-shadow pt-1 logout-button ux-u-color-grey-lightester-2"
                         [isFlat]="true"
@@ -98,41 +100,35 @@
 
     <ng-template eclSlot="footer">
         <div *ngIf="hasBranding" class="edci-footer">
-            <div class="ecl-container">
-                <div class="row">
-                    <a
-                        class="col-3"
-                        href="https://europa.eu/european-union/about-eu/working_{{
-                            selectedLanguage
-                        }}"
-                    >
-                        {{ 'footer.workForEU' | translate }}
-                    </a>
-                    <a
-                        class="col-3"
-                        href="https://europa.eu/european-union/abouteuropa/legal_notices_{{
-                            selectedLanguage
-                        }}"
-                    >
-                        {{ 'footer.legalNotice' | translate }}
-                    </a>
-                    <a
-                        class="col-3"
-                        href="https://europa.eu/european-union/abouteuropa/language-policy_{{
-                            selectedLanguage
-                        }}"
-                    >
-                        {{ 'footer.languagePolicy' | translate }}
-                    </a>
-                    <a
-                        class="col-3"
-                        href="https://europa.eu/european-union/abouteuropa/accessibility_{{
-                            selectedLanguage
-                        }}"
-                    >
-                        {{ 'footer.webAccessibility' | translate }}
-                    </a>
-                </div>
+            <div class="ecl-container edci-footer_wrapper">
+                <a
+                    href="https://europa.eu/european-union/about-eu/working_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.workForEU' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/legal_notices_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.legalNotice' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/language-policy_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.languagePolicy' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/accessibility_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.webAccessibility' | translate }}
+                </a>
             </div>
         </div>
     </ng-template>

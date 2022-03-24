@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CredentialSubjectTabView implements ITabView {
 
+    private String id;
     private String givenNames;
     private String fullName;
     private String familyName;
@@ -24,6 +25,14 @@ public class CredentialSubjectTabView implements ITabView {
 
     public CredentialSubjectTabView() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<LocationFieldView> getHasLocation() {

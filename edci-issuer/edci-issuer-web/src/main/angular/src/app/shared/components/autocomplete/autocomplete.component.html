@@ -14,10 +14,11 @@
         (itemAdded)="onItemAdded($event[entityType]?.oid)"
         (itemRemoved)="onItemRemoved($event[entityType]?.oid)"
         (inputValueChange)="onSearchItem($event)"
+        (selectionChanged)="onSelectionChange($event)"
     ></ux-autocomplete-tag>
 </div>
 <ng-template #singleSelection>
-    <ng-container [formGroup]="autocompleteForm">
+    <ng-container *ngIf="isSingleSelection" [formGroup]="autocompleteForm">
         <div #divMultipleInput>
             <ux-autocomplete-tag
                 #autocomplete
@@ -26,10 +27,14 @@
                 (click)="onClick()"
                 [selectedItems]="selectedItems"
                 [outline]="true"
-                placeholder="{{ 'credential-builder.inputCharacters' | translate }}"
+                placeholder="{{
+                    'credential-builder.inputCharacters' | translate
+                }}"
                 (itemAdded)="onItemAdded($event[entityType]?.oid)"
                 (itemRemoved)="onItemRemoved($event[entityType]?.oid)"
-                (inputValueChange)="onSearchItem($event)">
+                (inputValueChange)="onSearchItem($event)"
+                (selectionChanged)="onSelectionChange($event)"
+            >
             </ux-autocomplete-tag>
         </div>
         <!-- <ux-autocomplete

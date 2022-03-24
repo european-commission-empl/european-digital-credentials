@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation, } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UxLanguage, UxService } from '@eui/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,7 +16,8 @@ import { NotificationService } from '@services/error.service';
 import { MultilingualService } from '@services/multilingual.service';
 import { Constants, Entities } from '@shared/constants';
 import {
-    ContentDTView, DiplomaSpecLiteView,
+    ContentDTView,
+    DiplomaSpecLiteView,
     EuropassCredentialSpecView,
     NoteDTView,
     PagedResourcesEntitlementSpecLiteView,
@@ -18,10 +27,15 @@ import {
     SubresourcesOids,
     TextDTView,
     V1Service,
+    EntitlementSpecLiteView,
+    LearningActivitySpecLiteView,
+    LearningAchievementSpecLiteView,
 } from '@shared/swagger';
 import { noSpaceValidator } from '@shared/validators/no-space-validator';
+import { dateValidator } from '@shared/validators/date-validator';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
+import { SelectedTagItemList } from '@shared/models/selected-tag-item-list.model';
 
 @Component({
     selector: 'edci-credentials-modal',
@@ -30,6 +44,7 @@ import { Subject } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
 })
 export class CredentialsModalComponent implements OnInit, OnDestroy {
+    modalTitleBreadcrumb: string[];
     get defaultTitle() {
         return this.formGroup.get('defaultTitle') as FormControl;
     }
@@ -77,17 +92,17 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
     selectedAchievements: PagedResourcesLearningAchievementSpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     selectedActivities: PagedResourcesLearningActivitySpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     selectedEntitlements: PagedResourcesEntitlementSpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     selectedHtmlTemplates: DiplomaSpecLiteView;
     achievementsOidList: number[] = [];
@@ -95,9 +110,12 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
     entitlementsOidList: number[] = [];
     htmlTemplateOid: number;
     selectedIssuingOrganization: ResourceOrganizationSpecView;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
-
+    validFromValueInvalid: boolean;
+    expiryDateValueInvalid: boolean;
     formGroup = new FormGroup({
         defaultTitle: new FormControl(null, [
             Validators.maxLength(Constants.MAX_LENGTH_DEFAULT),
@@ -106,11 +124,14 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
         ]),
         title: new FormGroup({}),
         description: new FormGroup({}),
-        validFrom: new FormControl(null, [Validators.required]),
-        expiryDate: new FormControl(null),
+        validFrom: new FormControl(null, [Validators.required, dateValidator]),
+        expiryDate: new FormControl(null, [dateValidator]),
         issuingOrganization: new FormControl(null, [Validators.required]),
         credentialType: new FormControl(null, [Validators.required]),
     });
+    unsavedEntitlements: EntitlementSpecLiteView[] = [];
+    unsavedActivities: LearningActivitySpecLiteView[] = [];
+    unsavedAchivements: LearningAchievementSpecLiteView[] = [];
 
     constructor(
         public uxService: UxService,
@@ -119,10 +140,12 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
         private translateService: TranslateService,
         private notificationService: NotificationService,
         private multilingualService: MultilingualService,
-        private dateFormatService: DateFormatService,
+        private dateFormatService: DateFormatService
     ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (this.editCredentialOid) {
             this.getCredentialDetails();
         } else {
@@ -150,7 +173,9 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
 
     onSave(): void {
         this.isLoading = true;
-        if (this.formGroup.invalid) {
+        this.validateFormDatesValues();
+
+        if (this.formGroup.invalid || this.validFromValueInvalid || this.expiryDateValueInvalid) {
             this.uxService.markControlsTouched(this.formGroup);
             this.isLoading = false;
             this.uxService.openMessageBox('messageBoxFormError');
@@ -166,6 +191,7 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
     }
 
     checkValidDate(): void {
+        this.validateFormDatesValues();
         if (
             !this.dateFormatService.validateDates(
                 this.validFrom.value,
@@ -208,54 +234,102 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
         this.achievementsOidList = oids;
     }
 
+    onSelectedAchivementChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedAchivements.push(item.achievement);
+        });
+    }
+
     onActivitySelectionChange(oids: number[]): void {
         this.activitiesOidList = oids;
+    }
+
+    onSelectedActivityChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedActivities.push(item.activity);
+        });
     }
 
     onEntitlementSelectionChange(oids: number[]): void {
         this.entitlementsOidList = oids;
     }
 
+    onSelectedEntitlementChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedEntitlements.push(item.entitlement);
+        });
+    }
+
     onHTMLTemplateSelectionChange(oid: number): void {
         this.htmlTemplateOid = oid;
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'achievement':
                 this.selectedAchievements =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedAchievements, this.achievementsOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedAchievements,
+                            this.achievementsOidList,
+                            item,
+                            this.unsavedAchivements
+                        );
                 break;
             case 'organization':
                 this.selectedIssuingOrganization = item;
                 break;
             case 'activity':
                 this.selectedActivities =
-                this.credentialBuilderService.fillMultipleInput(this.selectedActivities, this.activitiesOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedActivities,
+                            this.activitiesOidList,
+                            item,
+                            this.unsavedActivities
+                        );
                 break;
             case 'entitlement':
                 this.selectedEntitlements =
-                this.credentialBuilderService.fillMultipleInput(this.selectedEntitlements, this.entitlementsOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedEntitlements,
+                            this.entitlementsOidList,
+                            item,
+                            this.unsavedEntitlements
+                        );
                 break;
             case 'htmlTemplate':
                 this.selectedHtmlTemplates = item;
@@ -264,7 +338,7 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -273,11 +347,12 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -294,13 +369,15 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
             .subscribe(
                 (credential: EuropassCredentialSpecView) => {
                     this.editCredential = credential;
-                    this.availableLanguages = this.editCredential.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editCredential.additionalInfo.languages;
                     this.language = this.editCredential.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editCredential.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editCredential.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.getIssuingOrganization();
                     this.setForm();
                 },
@@ -391,9 +468,8 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
 
     private getDescription(): NoteDTView {
         let description: NoteDTView = null;
-        let descriptionContents: ContentDTView[] = this.multilingualService.formToView(
-            this.description.value
-        );
+        let descriptionContents: ContentDTView[] =
+            this.multilingualService.formToView(this.description.value);
         if (descriptionContents.length > 0) {
             description = {
                 contents: descriptionContents,
@@ -583,8 +659,13 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
     private setHTMLTemplateTo(): SubresourcesOids {
         let relHTMLTemplateTo: SubresourcesOids = null;
         if (this.htmlTemplateOid) {
-            relHTMLTemplateTo = { oid: [
-                Array.isArray(this.htmlTemplateOid) ? this.htmlTemplateOid[0] : this.htmlTemplateOid] };
+            relHTMLTemplateTo = {
+                oid: [
+                    Array.isArray(this.htmlTemplateOid)
+                        ? this.htmlTemplateOid[0]
+                        : this.htmlTemplateOid,
+                ],
+            };
         }
         return relHTMLTemplateTo;
     }
@@ -594,9 +675,29 @@ export class CredentialsModalComponent implements OnInit, OnDestroy {
         if (this.issuingOrganization.value) {
             relIssuingOrganization = {
                 oid: [
-                    Array.isArray(this.issuingOrganization.value) ? this.issuingOrganization.value[0] : this.issuingOrganization.value]
+                    Array.isArray(this.issuingOrganization.value)
+                        ? this.issuingOrganization.value[0]
+                        : this.issuingOrganization.value,
+                ],
             };
         }
         return relIssuingOrganization;
     }
+
+    private validateFormDatesValues() {
+        if (this.validFrom.value && !this.dateFormatService.validateDate(this.validFrom.value)) {
+            this.validFromValueInvalid = true;
+            this.validFrom.reset();
+        } else {
+            this.validFromValueInvalid = false;
+        }
+
+        if (this.expiryDate.value && !this.dateFormatService.validateDate(this.expiryDate.value)) {
+            this.expiryDateValueInvalid = true;
+            this.expiryDate.reset();
+        } else {
+            this.expiryDateValueInvalid = false;
+        }
+    }
+
 }

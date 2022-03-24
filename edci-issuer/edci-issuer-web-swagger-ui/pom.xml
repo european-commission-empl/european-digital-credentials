@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
 
@@ -11,6 +11,18 @@
     <packaging>war</packaging>
     <name>EDCI issuer web SwaggerUI module</name>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <finalName>europass2#edci-issuer-swaggerUI</finalName>
@@ -45,7 +57,7 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <target>
-                                <copy file="${basedir}/../edci-issuer-web-rest/target/generated-sources/swagger/swagger.json"
+                                <copy file="${basedir}/../edci-issuer-web-rest/target/generated-sources/swaggerUI/swagger.json"
                                       tofile="${basedir}/target/europass2#edci-issuer-swaggerUI/swagger.json"/>
                             </target>
                         </configuration>

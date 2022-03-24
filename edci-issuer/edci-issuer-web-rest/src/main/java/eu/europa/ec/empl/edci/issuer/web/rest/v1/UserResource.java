@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1;
 
 
-import eu.europa.ec.empl.edci.constants.Version;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.security.model.mapper.UserRestMapper;
 import eu.europa.ec.empl.edci.security.model.view.UserDetailsView;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
         "V1"
 })
 @Controller(value = "v1.UserResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.USER_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.USER_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class UserResource {
 
@@ -30,7 +30,7 @@ public class UserResource {
     private UserRestMapper userRestMapper;
 
     @ApiOperation(value = "Gets user details or isAuthenticated:false if not authenticated")
-    @GetMapping(value = Endpoint.V1.USER_DETAILS,
+    @GetMapping(value = IssuerEndpoint.V1.USER_DETAILS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UserDetailsView getUserDetails(

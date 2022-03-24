@@ -1,4 +1,4 @@
-<div class="col-12 pr-0 h-100 d-inline-flex">
+<div class="col-12 p-0 h-100 d-inline-flex">
     <div class="col-6 py-4 px-5">
         <edci-viewer-display-diploma></edci-viewer-display-diploma>
     </div>
@@ -18,22 +18,29 @@
                 <ux-timeline-item
                     *ngFor="let step of steps"
                     class="verification-step"
-                    [label]="step.type | uppercase"
+                    [label]="
+                        step.type.titleAvailableLangs
+                            ? (step.type.titleAvailableLangs
+                              | edciTranslate: language
+                              | uppercase)
+                            : (step.type.title | uppercase)
+                    "
                     [styleClass]="
-                        step.status.link === CONTROLLEDLISTCOLORS.GREEN
+                        step.status.link === CONTROLLED_LIST_COLORS.GREEN
                             ? 'correct'
-                            : step.status.link === CONTROLLEDLISTCOLORS.RED
+                            : step.status.link === CONTROLLED_LIST_COLORS.RED
                             ? 'incorrect'
+                            : step.status.link === 'ribbon-failed'
+                            ? 'ribbon-failed'
+                            : step.status.link === 'ribbon-warning'
+                            ? 'ribbon-warning'
+                            : step.status.link === 'ribbon'
+                            ? 'ribbon'
                             : null
                     "
-                    [subLabel]="step.description"
-                ></ux-timeline-item>
-                <ux-timeline-item
-                    *ngIf="isVerified"
-                    styleClass="verified"
-                    label="{{
-                        'details.verification-tab.verified' | translate
-                    }}"
+                    [subLabel]="
+                        step.descrAvailableLangs | edciTranslate: language
+                    "
                 ></ux-timeline-item>
             </ux-timeline-items>
         </div>

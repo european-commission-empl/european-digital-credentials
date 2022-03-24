@@ -8,6 +8,7 @@ public class CredentialDTO {
     private String uuid;
     private WalletDTO walletDTO;
     private byte[] credentialXML;
+    private byte[] diplomaImage;
     private List<ShareLinkDTO> shareLinkDTOList;
     private List<CredentialLocalizableInfoDTO> credentialLocalizableInfoDTOS;
     private String type;
@@ -54,6 +55,14 @@ public class CredentialDTO {
 
     public void setWalletDTO(WalletDTO walletDTO) {
         this.walletDTO = walletDTO;
+    }
+
+    public byte[] getDiplomaImage() {
+        return diplomaImage;
+    }
+
+    public void setDiplomaImage(byte[] diplomaImage) {
+        this.diplomaImage = diplomaImage;
     }
 
     public List<CredentialLocalizableInfoDTO> getCredentialLocalizableInfoDTOS() {

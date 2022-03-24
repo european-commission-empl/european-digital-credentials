@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Identifier;
@@ -24,7 +24,7 @@ public class AddressDTO implements Nameable {
     private Note fullAddress; //0..1
     @XmlElement(name = "country")
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ADDRESS_COUNTRYCODE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ADDRESS_COUNTRYCODE_NOTNULL)
     private Code countryCode; //1
 
     @Override

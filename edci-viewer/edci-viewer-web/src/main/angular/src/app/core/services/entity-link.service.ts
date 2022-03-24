@@ -23,8 +23,8 @@ export class EntityLinkService {
     }
 
     isAchievementAvailable(achievementId: string): boolean {
-        const achievementList: AchievementTabView[] = this.shareDataService
-            .achievements;
+        const achievementList: AchievementTabView[] =
+            this.shareDataService.achievements;
         const isItemAvailable: boolean = this.checkEntityAvailability(
             achievementId,
             achievementList,
@@ -34,8 +34,8 @@ export class EntityLinkService {
     }
 
     isActivityAvailable(activityId: string): boolean {
-        const activityList: ActivityTabView[] = this.shareDataService
-            .activities;
+        const activityList: ActivityTabView[] =
+            this.shareDataService.activities;
         const isItemAvailable: boolean = this.checkEntityAvailability(
             activityId,
             activityList,
@@ -45,14 +45,21 @@ export class EntityLinkService {
     }
 
     isEntitlementAvailable(entitlementId: string): boolean {
-        const entitlementList: EntitlementTabView[] = this.shareDataService
-            .entitlements;
+        const entitlementList: EntitlementTabView[] =
+            this.shareDataService.entitlements;
         const isItemAvailable: boolean = this.checkEntityAvailability(
             entitlementId,
             entitlementList,
             'subEntitlements'
         );
         return this.shareDataService.modalsOpen === 0 && isItemAvailable;
+    }
+
+    changeSelection(id: string): void {
+        this.shareDataService.emitHierarchyTree([
+            ...this.shareDataService.hierarchyTree,
+            id,
+        ]);
     }
 
     private checkEntityAvailability(

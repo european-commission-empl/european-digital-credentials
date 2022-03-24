@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model.base;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 
 import java.net.URI;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public interface Identifiable extends Nameable {
         if (object.getClass().getAnnotation(EDCIIdentifier.class) != null) {
             return object.getClass().getAnnotation(EDCIIdentifier.class).prefix();
         }
-        return Defaults.XML_IDENTIFIER_PREFIX;
+        return EDCIConfig.Defaults.XML_IDENTIFIER_PREFIX;
     }
 
     default void initIdentifiable() {

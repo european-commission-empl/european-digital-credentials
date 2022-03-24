@@ -38,9 +38,18 @@ import { ShareLinkView, V1Service } from '../../swagger';
 export class DiplomaToolbarComponent implements OnInit, OnDestroy {
     private _availableLanguages: string[] = [];
     private _primaryLanguage: string;
+    private _isXMLDisabled: boolean = false;
+
     @ViewChild('inputFile') inputFile: ElementRef;
     @Input() isDetailDisabled: boolean = true;
     @Input() isDetails: boolean = false;
+    @Input() set isXMLDisabled(value: boolean) {
+        this._isXMLDisabled = value;
+        this.setExportDropdown();
+    }
+    get isXMLDisabled(): boolean {
+        return this._isXMLDisabled;
+    }
     @Input() set availableLanguages(languages: string[]) {
         this._availableLanguages = languages;
         this.setLanguageDropdown();
@@ -210,12 +219,14 @@ export class DiplomaToolbarComponent implements OnInit, OnDestroy {
     generateLink(): void {
         this.dateChange = false;
         this.loading = true;
-        const dateTime: string = moment(this.date).set({
+        const dateTime: string = moment(this.date)
+            .set({
                 hour: 23,
                 minute: 59,
                 second: 59,
-                millisecond: 999
-            }).format('YYYY-MM-DDTHH:mm:ssZ');
+                millisecond: 999,
+            })
+            .format('YYYY-MM-DDTHH:mm:ssZ');
         this.userId = this.shareDataService.userId;
         this.credId = this.shareDataService.credentialId;
         const shareLinkView: ShareLinkView = { expirationDate: dateTime };
@@ -382,7 +393,7 @@ export class DiplomaToolbarComponent implements OnInit, OnDestroy {
         body = body.append('file', <any>xmlBlob) || body;
         this.isDownloading = true;
         this.http
-            .post(`${this.basePath}/api/v1/credentials/presentation`, body, {
+            .post(`${this.basePath}/v1/credentials/presentation`, body, {
                 params: { locale: this.locale },
                 headers: headers,
                 responseType: 'blob',
@@ -460,7 +471,7 @@ export class DiplomaToolbarComponent implements OnInit, OnDestroy {
                 label: this.translateService.instant('downloadXml'),
                 iconClass: 'fa fa-file-code-o',
                 tooltipLabel: this.translateService.instant('details.download'),
-                disabled: this.isPreview,
+                disabled: this.isPreview || this.isXMLDisabled,
                 command: () => this.downloadVP('XML'),
             }),
             new UxLink({

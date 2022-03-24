@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.util;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.utils.NamespaceResolver;
 import eu.europa.ec.empl.edci.exception.EDCIException;
@@ -149,11 +149,11 @@ public class HtmlSanitizerUtil {
             Matcher matcherShort = DATE_SHORT_PATTERN.matcher(node.getTextContent());
 
             if (matcherFull.matches()) {
-                Date dateTmp = new SimpleDateFormat(EuropassConstants.DATE_ISO_8601).parse(node.getTextContent());
-                date = new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT).format(dateTmp);
+                Date dateTmp = new SimpleDateFormat(EDCIConstants.DATE_ISO_8601).parse(node.getTextContent());
+                date = new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT).format(dateTmp);
             } else if (matcherShort.matches()) {
-                Date dateTmp = new SimpleDateFormat(EuropassConstants.DATE_LOCAL).parse(node.getTextContent());
-                date = new SimpleDateFormat(EuropassConstants.DATE_FRONT_LOCAL).format(dateTmp);
+                Date dateTmp = new SimpleDateFormat(EDCIConstants.DATE_LOCAL).parse(node.getTextContent());
+                date = new SimpleDateFormat(EDCIConstants.DATE_FRONT_LOCAL).format(dateTmp);
             }
 
         } catch (Exception e) {
@@ -197,30 +197,37 @@ public class HtmlSanitizerUtil {
 
         try {
             XPathExpression expr = xpath.compile(expression);
-            Element result = (Element) expr.evaluate(doc, XPathConstants.NODE);
+            Node node = (Node) expr.evaluate(doc, XPathConstants.NODE);
 
-            if (result == null) {
-                logger.debug("Property not found using expression " + expression);
-            } else if (isMediaObject(result)) {
-                value = buildImageBase64(result);
-            } else if (!hasChildElements(result)) {
-
-                String period = getPeriod(result);
-
-                String date = getDate(result);
-
-                if (period != null) {
-                    value = period;
-                } else if (date != null) {
-                    value = date;
-                } else {
-                    value = result.getTextContent();
-                }
-
+            //If we are getting an attibute, we always want it's text
+            if (!(node instanceof Element)) {
+                value = node.getTextContent();
+            //If not, we get the Element and start the parsing
             } else {
 
-                value = getMultilangText(result);
+                Element result = (Element) expr.evaluate(doc, XPathConstants.NODE);
 
+                if (result == null) {
+                    logger.debug("Property not found using expression " + expression);
+                } else if (isMediaObject(result)) {
+                    value = buildImageBase64(result);
+                } else if (!hasChildElements(result)) {
+
+                    String period = getPeriod(result);
+
+                    String date = getDate(result);
+
+                    if (period != null) {
+                        value = period;
+                    } else if (date != null) {
+                        value = date;
+                    } else {
+                        value = result.getTextContent();
+                    }
+
+                } else {
+                    value = getMultilangText(result);
+                }
             }
         } catch (Exception e) {
             logger.error(e);
@@ -300,7 +307,7 @@ public class HtmlSanitizerUtil {
             String backgroundImg = getValue(doc, xpath, "/eup:europassCredential/eup:displayParameters/eup:background");
 
             if (backgroundImg == null || !backgroundImg.contains("base64")) {
-                backgroundImg = getDefaultBackground(EuropassConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
+                backgroundImg = getDefaultBackground(EDCIConstants.DEFAULT_VIEWER_DIPLOMA_BKG_IMG_PATH);
             }
             background = "background: url(" + backgroundImg + ") no-repeat center center; background-size: contain;";
 

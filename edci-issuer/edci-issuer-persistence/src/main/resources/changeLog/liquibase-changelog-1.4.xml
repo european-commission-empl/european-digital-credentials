@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.4" global="false"/>
+
+    <changeSet id="rename_diploma_column" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="FIELD_SPEC_DIPLOMA_IDENTIF" columnName="DT_LABEL_PK" />
+            <not>
+                <columnExists tableName="FIELD_SPEC_DIPLOMA_IDENTIF" columnName="DT_LABELS_PK" />
+            </not>
+        </preConditions>
+        <renameColumn tableName="FIELD_SPEC_DIPLOMA_IDENTIF" oldColumnName="DT_LABEL_PK" newColumnName="DT_LABELS_PK"/>
+    </changeSet>
+
+    <changeSet id="remove_diploma_column" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="FIELD_SPEC_DIPLOMA_IDENTIF" columnName="DT_LABEL_PK" />
+            <columnExists tableName="FIELD_SPEC_DIPLOMA_IDENTIF" columnName="DT_LABELS_PK" />
+        </preConditions>
+        <dropColumn tableName="FIELD_SPEC_DIPLOMA_IDENTIF" columnName="DT_LABEL_PK"/>
+    </changeSet>
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

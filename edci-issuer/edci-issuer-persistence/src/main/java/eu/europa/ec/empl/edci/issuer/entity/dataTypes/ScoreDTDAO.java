@@ -15,7 +15,7 @@ public class ScoreDTDAO implements IGenericDAO {
     public static final String TABLE_SEQ = TABLE + "DT_SCORE_SEQ";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     private Long pk;

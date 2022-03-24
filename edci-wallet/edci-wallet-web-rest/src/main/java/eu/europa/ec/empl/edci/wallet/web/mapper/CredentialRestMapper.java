@@ -61,7 +61,9 @@ public interface CredentialRestMapper {
 
     @AfterMapping
     default void setViewerURL(@MappingTarget CredentialView credentialView, CredentialDTO credentialDTO, @Context WalletConfigService walletConfigService, @Context CredentialLocalizableInfoUtil credentialLocalizableInfoUtil) {
-        credentialView.setViewerURL(walletConfigService.getViewerURL(credentialDTO));
+        if (credentialDTO.getWalletDTO() != null && !credentialDTO.getWalletDTO().getTemporary()) {
+            credentialView.setViewerURL(walletConfigService.getViewerURL(credentialDTO));
+        }
     }
 
 

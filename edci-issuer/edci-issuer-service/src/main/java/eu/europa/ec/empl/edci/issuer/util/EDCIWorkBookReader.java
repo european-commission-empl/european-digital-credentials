@@ -2,7 +2,7 @@ package eu.europa.ec.empl.edci.issuer.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Association;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.GradeObject;
 import eu.europa.ec.empl.edci.exception.FileBaseDataException;
@@ -137,7 +137,7 @@ public class EDCIWorkBookReader implements IWorkBookReader {
         List<String> languages = this.extractMetaDataStringRow(XLS.DEFINITION_COLUMN + 1, columnInfoEndIndex, sheet.getRow(XLS.LANGUAGE_ROW));
 
         if (types.size() < fields.size())
-            throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_FORMAT_SHEET_ERROR, String.valueOf(classNames.size()), String.valueOf(types.size()), sheet.getSheetName());
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_FORMAT_SHEET_ERROR, String.valueOf(classNames.size()), String.valueOf(types.size()), sheet.getSheetName());
         ;
 
         for (int i = 0; i < fields.size(); i++) {
@@ -188,7 +188,7 @@ public class EDCIWorkBookReader implements IWorkBookReader {
             switch (parseType) {
                 case PROPERTY:
                     if (!reflectiveUtil.getEquivalences().containsKey(columnInfo.getClassName()))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
 
                     className = reflectiveUtil.getEquivalences().get(columnInfo.getClassName());
                     try {
@@ -201,7 +201,7 @@ public class EDCIWorkBookReader implements IWorkBookReader {
                     break;
                 case ASSOCIATION:
                     if (!reflectiveUtil.getEquivalences().containsKey(columnInfo.getClassName()))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
 
                     edciWorkBookUtil.updateAssociationListWithCellAndColumnInfo(columnInfo.getClassName(), columnInfo.getField(), columnInfo.getRangeProperty(), currentCell.getRowIndex(), currentCell, associations);
 
@@ -209,16 +209,16 @@ public class EDCIWorkBookReader implements IWorkBookReader {
                 case NESTED_ASSOCIATION:
                     int splitIndex = columnInfo.getClassName().indexOf(XLS.SPLIT_CHARACTER_NESTED_ASSETS);
                     if (splitIndex == -1)
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_NESTEDASSOCIATION_NOTFOUND, currentCell);
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_NESTEDASSOCIATION_NOTFOUND, currentCell);
 
                     className = columnInfo.getClassName().substring(0, splitIndex);
                     String field = columnInfo.getClassName().substring(splitIndex + 1).concat(String.valueOf(XLS.SPLIT_CHARACTER_NESTED_ASSETS)).concat(columnInfo.getField());
 
                     if (validator.isEmpty(className))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTFOUND, currentCell);
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTFOUND, currentCell);
 
                     if (!reflectiveUtil.getEquivalences().containsKey(className))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
 
                     edciWorkBookUtil.updateAssociationListWithCellAndColumnInfo(className, field, columnInfo.getRangeProperty(), currentCell.getRowIndex(), currentCell, associations);
 
@@ -226,11 +226,11 @@ public class EDCIWorkBookReader implements IWorkBookReader {
                 //ToDO -> Deprecated (unUsed)
                 case EXTERNAL_ASSOCIATION:
                     if (!reflectiveUtil.getEquivalences().containsKey(columnInfo.getClassName()))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
 
                     List<String> originInfo = Arrays.asList(columnInfo.getField().split(XLS.SPLIT_STRING_NESTED_ASSETS));
                     if (originInfo.size() != 2)
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_EXTERNALASSOCIATION_INVALIDFORMAT, currentCell);
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_EXTERNALASSOCIATION_INVALIDFORMAT, currentCell);
 
                     edciWorkBookUtil.updateAssociationListWithCellAndColumnInfo(originInfo.get(0), originInfo.get(1), columnInfo.getRangeProperty(), columnInfo.getRangeRef() - 1, currentCell, associations);
                     break;
@@ -239,12 +239,12 @@ public class EDCIWorkBookReader implements IWorkBookReader {
                     List<String> classParameterPath = Arrays.asList(columnInfo.getClassName().split(XLS.SPLIT_STRING_NESTED_ASSETS));
 
                     if (classParameterPath.isEmpty())
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_NESTEDPROPERTY_NOTFOUND, currentCell);
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_NESTEDPROPERTY_NOTFOUND, currentCell);
 
                     className = classParameterPath.get(0);
 
                     if (!reflectiveUtil.getEquivalences().containsKey(className))
-                        throw edciWorkBookUtil.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
+                        throw edciWorkBookUtil.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_NOTPARTOFDATAMODEL, currentCell, columnInfo.getClassName());
 
                     //get real classname
 
@@ -308,7 +308,7 @@ public class EDCIWorkBookReader implements IWorkBookReader {
             throw fileBaseDataException;
         }
 
-        FileBaseDataException fbde = new FileBaseDataException(MessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR, e);
+        FileBaseDataException fbde = new FileBaseDataException(EDCIMessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR, e);
         edciWorkBookUtil.addFileBaseDataExceptionCellData(fbde, currentCell);
         throw fbde;
     }

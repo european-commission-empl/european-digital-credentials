@@ -1,4 +1,11 @@
-import { Component, EventEmitter, forwardRef, Input, OnDestroy, Output } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    forwardRef,
+    Input,
+    OnDestroy,
+    Output,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UxLanguage } from '@eui/core';
 import { ExtractLabelPipe } from '@shared/pipes/multilingual.pipe';
@@ -18,7 +25,8 @@ import { takeUntil } from 'rxjs/operators';
         },
     ],
 })
-export class ControlledListSelectComponent implements ControlValueAccessor, OnDestroy {
+export class ControlledListSelectComponent
+    implements ControlValueAccessor, OnDestroy {
     private _language: string;
     private _selectedEntity: CodeDTView;
     private _isDisabled: boolean;
@@ -156,11 +164,14 @@ export class ControlledListSelectComponent implements ControlValueAccessor, OnDe
                 this.parent,
                 this.requestedLanguages,
                 this.language
-            ).pipe(takeUntil(this.destroy$))
+            )
+            .pipe(takeUntil(this.destroy$))
             .subscribe(
                 (entity: Page) => {
+                    this.entityList = [];
                     entity.content.forEach((element: CodeDTView) => {
                         // Credential Type only display generic
+
                         if (this.entityType === 'credential') {
                             if (
                                 element.uri ===

@@ -35,11 +35,16 @@ import {
     ScoreDTView,
     SubresourcesOids,
     V1Service,
+    LearningActivitySpecLiteView,
+    LearningAchievementSpecLiteView,
+    LearningOutcomeSpecLiteView,
 } from '@shared/swagger';
 import { noSpaceValidator } from '@shared/validators/no-space-validator';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { dateValidator } from '@shared/validators/date-validator';
+import { SelectedTagItemList } from '@shared/models/selected-tag-item-list.model';
 
 @Component({
     selector: 'edci-achievements-modal',
@@ -136,7 +141,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
     @Input() language: string;
     @Input() modalId: string = 'achievementModal';
     @Input() editAchievementOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
     @ViewChild('additionalNoteSpecification')
     additionalNoteSpecification: MoreInformationComponent;
     @ViewChild('additionalNote')
@@ -157,13 +166,13 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
     selectedSubAchievements: PagedResourcesLearningAchievementSpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     subAchievementOidList: number[] = [];
     selectedLearningOutcomes: PagedResourcesLearningOutcomeSpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     learningOutcomesOidList: number[] = [];
     influencedByOidList: number[] = [];
@@ -172,11 +181,13 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
     selectedInfluencedBy: PagedResourcesLearningActivitySpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     selectedEntitledTo: EntitlementSpecLiteView;
     indexToNextTab: number;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
 
     isPartialQualificationDropDown: UxLink[] = [
@@ -199,7 +210,7 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         ]),
         // Achievement
         title: new FormGroup({}),
-        awardingDate: new FormControl(''),
+        awardingDate: new FormControl('', [dateValidator]),
         awardingBody: new FormControl(null),
         description: new FormGroup({}),
         provenBy: new FormControl(null),
@@ -234,6 +245,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         accreditation: new FormControl({ value: '', disabled: true }),
         partialQualification: new FormControl(null),
     });
+    modalTitleBreadcrumb: string[];
+    awardingDateValueInvalid: boolean;
+    unsavedActivities: LearningActivitySpecLiteView[] = [];
+    unsavedAchivements: LearningAchievementSpecLiteView[] = [];
+    unsavedLearning: LearningOutcomeSpecLiteView[] = [];
 
     constructor(
         public uxService: UxService,
@@ -243,16 +259,22 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private multilingualService: MultilingualService,
         private dateFormatService: DateFormatService
-    ) { }
+    ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         this.awardingDateValueChange();
         this.titleValueChangeAutocomplete();
         if (this.editAchievementOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.achievements-tab.editAchievement');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.achievements-tab.editAchievement'
+            );
             this.getAchievementDetails();
         } else {
-            this.modalTitle = this.translateService.instant('credential-builder.achievements-tab.createAchievement');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.achievements-tab.createAchievement'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.credentialBuilderService.addOtherDocumentRow(
                 this.otherWebDocuments
@@ -271,9 +293,15 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }
+
+    checkValidDate() {
+        this.validateFormDatesValues();
+    }
+
     onSave(): void {
         this.isLoading = true;
-        if (this.isFormInvalid() || this.nqfLevelInvalid()) {
+        this.validateFormDatesValues();
+        if (this.isFormInvalid() || this.nqfLevelInvalid() || this.awardingDateValueInvalid) {
             this.uxService.markControlsTouched(this.formGroup);
             this.isLoading = false;
             this.uxService.openMessageBox('messageBoxFormError');
@@ -318,21 +346,24 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
     }
 
     titleValueChangeAutocomplete(): void {
-        this.title.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value) => {
-            if (
-                this.specificationTitle.controls[this.language] &&
-                this.specificationTitle.controls[this.language].pristine
-            ) {
-                this.specificationTitle.controls[this.language].setValue(
-                    value[this.language]
-                );
-            }
-        });
+        this.title.valueChanges
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((value) => {
+                if (
+                    this.specificationTitle.controls[this.language] &&
+                    this.specificationTitle.controls[this.language].pristine
+                ) {
+                    this.specificationTitle.controls[this.language].setValue(
+                        value[this.language]
+                    );
+                }
+            });
     }
 
     awardingDateValueChange(): void {
         this.awardingDate.valueChanges
-            .pipe(takeUntil(this.destroy$)).subscribe((dateValue) => {
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((dateValue) => {
                 const validator = dateValue ? Validators.required : null;
                 this.isAwardingBodyRequired = !!dateValue;
                 this.awardingBody.setValidators(validator);
@@ -344,8 +375,20 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         this.subAchievementOidList = oids;
     }
 
+    onSelectedAchivementChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedAchivements.push(item.achievement);
+        });
+    }
+
     onLearningOutcomeSelectionChange(oids: number[]): void {
         this.learningOutcomesOidList = oids;
+    }
+
+    onSelectedLearningChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedLearning.push(item.learningOutcome);
+        });
     }
 
     onAwardingBodySelectionChange(oid: number): void {
@@ -362,6 +405,12 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
 
     onInfluencedBySelectionChange(oids: number[]): void {
         this.influencedByOidList = oids;
+    }
+
+    onSelectedActivitiesChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedActivities.push(item.activity);
+        });
     }
 
     onEntitledToSelectionChange(oid: number): void {
@@ -383,30 +432,45 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
     nqfLevelParentSelectionChange(nqfLevelParent: CodeDTView): void {
         if (_get(this.nqfLevelParent, 'uri') !== _get(nqfLevelParent, 'uri')) {
             this.nqfLevelParent = nqfLevelParent;
-            this.nqfLevel = [];
+            this.nqfLevel = null;
         }
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'organization':
@@ -417,24 +481,39 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
                 break;
             case 'activity':
                 this.selectedInfluencedBy =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedInfluencedBy, this.influencedByOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedInfluencedBy,
+                            this.influencedByOidList,
+                            item,
+                            this.unsavedActivities
+                        );
                 break;
             case 'entitlement':
                 this.selectedEntitledTo = item;
                 break;
             case 'achievement':
                 this.selectedSubAchievements =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedSubAchievements, this.subAchievementOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedSubAchievements,
+                            this.subAchievementOidList,
+                            item,
+                            this.unsavedAchivements
+                        );
                 break;
             case 'learningOutcome':
                 this.selectedLearningOutcomes =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedLearningOutcomes, this.learningOutcomesOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedLearningOutcomes,
+                            this.learningOutcomesOidList,
+                            item,
+                            this.unsavedLearning
+                        );
                 break;
             }
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -443,11 +522,12 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -467,7 +547,9 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             .listSubAchievements(
                 this.editAchievement.oid,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (
                     achievements: PagedResourcesLearningAchievementSpecLiteView
                 ) => {
@@ -482,7 +564,9 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             .listLearningOutcomes(
                 this.editAchievement.oid,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (
                     learningOutcome: PagedResourcesLearningOutcomeSpecLiteView
                 ) => {
@@ -497,16 +581,20 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             .getLearningAchievement(
                 this.editAchievementOid,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (achievement: LearningAchievementSpecView) => {
                     this.editAchievement = achievement;
-                    this.availableLanguages = this.editAchievement.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editAchievement.additionalInfo.languages;
                     this.language = this.editAchievement.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editAchievement.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editAchievement.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.credentialBuilderService.extractWebDocuments(
                         _get(
                             this.editAchievement,
@@ -603,10 +691,16 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             .updateLearningAchievement(
                 this.achievementBody,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (achievement: ResourceLearningAchievementSpecView) => {
                     this.showNotification();
-                    this.closeModal(true, achievement.oid, achievement.defaultTitle);
+                    this.closeModal(
+                        true,
+                        achievement.oid,
+                        achievement.defaultTitle
+                    );
                 },
                 (err) => {
                     this.closeModal(false);
@@ -696,7 +790,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         let relProvenBy: SubresourcesOids = null;
         if (this.provenBy.value) {
             relProvenBy = {
-                oid: [Array.isArray(this.provenBy.value) ? this.provenBy.value[0] : this.provenBy.value],
+                oid: [
+                    Array.isArray(this.provenBy.value)
+                        ? this.provenBy.value[0]
+                        : this.provenBy.value,
+                ],
             };
         }
         return relProvenBy;
@@ -716,7 +814,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         let relEntitledTo: SubresourcesOids = null;
         if (this.entitledTo.value) {
             relEntitledTo = {
-                oid: [Array.isArray(this.entitledTo.value) ? this.entitledTo.value[0] : this.entitledTo.value],
+                oid: [
+                    Array.isArray(this.entitledTo.value)
+                        ? this.entitledTo.value[0]
+                        : this.entitledTo.value,
+                ],
             };
         }
         return relEntitledTo;
@@ -726,7 +828,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
         let relAwardingBody: SubresourcesOids = null;
         if (this.awardingBody.value) {
             relAwardingBody = {
-                oid: [Array.isArray(this.awardingBody.value) ? this.awardingBody.value[0] : this.awardingBody.value],
+                oid: [
+                    Array.isArray(this.awardingBody.value)
+                        ? this.awardingBody.value[0]
+                        : this.awardingBody.value,
+                ],
             };
         }
         return relAwardingBody;
@@ -742,7 +848,11 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             .subscribe(
                 (achievement: ResourceLearningAchievementSpecView) => {
                     this.showNotification();
-                    this.closeModal(true, achievement.oid, achievement.defaultTitle);
+                    this.closeModal(
+                        true,
+                        achievement.oid,
+                        achievement.defaultTitle
+                    );
                 },
                 (err) => {
                     this.closeModal(false);
@@ -793,31 +903,34 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             ),
             maximumDuration: this.maxDuration.value,
             volumeOfLearning: this.workload.value,
-            ectscreditPoints: this.getCreditPoints(),
+            ectsCreditPoints: this.getCreditPoints(),
             homePage: this.credentialBuilderService.getHomePage(
                 this.homePage.value
             ),
-            supplementaryDocument: this.credentialBuilderService.getOtherDocument(
-                this.otherWebDocuments,
-                this.defaultLanguage
-            ),
-            iscedfcode: this.credentialBuilderService.getArrayFromSingleItem(
+            supplementaryDocument:
+                this.credentialBuilderService.getOtherDocument(
+                    this.otherWebDocuments,
+                    this.defaultLanguage
+                ),
+            iscedFCode: this.credentialBuilderService.getArrayFromSingleItem(
                 this.thematicArea.value
             ),
             mode: this.credentialBuilderService.getArrayFromSingleItem(
                 this.modeOfLearning.value
             ),
             learningSetting: this.learningSetting.value,
-            learningOpportunityType: this.credentialBuilderService.getArrayFromSingleItem(
-                this.learningOpportunityType.value
-            ),
+            learningOpportunityType:
+                this.credentialBuilderService.getArrayFromSingleItem(
+                    this.learningOpportunityType.value
+                ),
             eqfLevel: this.eqfLevel.value,
             nqfLevel: Array.isArray(this.nqfLevel)
                 ? this.nqfLevel
                 : [this.nqfLevel],
             nqfLevelParent: this.nqfLevelParent,
             language: this.achievementLanguage,
-            additionalNote: this.additionalNoteSpecification.getAdditionalNotes(),
+            additionalNote:
+                this.additionalNoteSpecification.getAdditionalNotes(),
             entryRequirementsNote: this.credentialBuilderService.getDTView(
                 this.entryRequirements
             ),
@@ -882,12 +995,12 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
             ),
             ectsCredits: _get(
                 this.editAchievement,
-                'specifiedBy.ectscreditPoints.content',
+                'specifiedBy.ectsCreditPoints.content',
                 null
             ),
             thematicArea: _get(
                 this.editAchievement,
-                'specifiedBy.iscedfcode[0]',
+                'specifiedBy.iscedFCode[0]',
                 null
             ),
             modeOfLearning: _get(
@@ -1038,5 +1151,14 @@ export class AchievementsModalComponent implements OnInit, OnDestroy {
                 this.specificationTitle.controls[language].markAsDirty();
             }
         );
+    }
+
+    private validateFormDatesValues() {
+        if (this.awardingDate.value && !this.dateFormatService.validateDate(this.awardingDate.value)) {
+            this.awardingDateValueInvalid = true;
+            this.awardingDate.reset();
+        } else {
+            this.awardingDateValueInvalid = false;
+        }
     }
 }

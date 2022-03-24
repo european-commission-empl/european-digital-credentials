@@ -19,7 +19,7 @@
 
         <div *ngIf="sealLongDescription && showVP" class="col-12">
             <p class="verified f-14">
-                {{ sealLongDescription }}
+                {{ sealLongDescription | edciTranslate: language }}
             </p>
         </div>
 
@@ -244,9 +244,7 @@
             <p class="col-12">
                 <a
                     (click)="
-                        openParentOrganizationModal(
-                            organization?.parentOrganization
-                        )
+                        changeSelection(organization?.parentOrganization?.id)
                     "
                 >
                     {{ organization.parentOrganization.preferredName }}

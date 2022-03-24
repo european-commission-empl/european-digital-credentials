@@ -1,0 +1,82 @@
+version: "3.0"
+services:
+  mysqldb:
+    image: kiceurope/mysqldb:latest
+    container_name: mysqldb
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234mraf
+      - MYSQL_USER=edci
+      - MYSQL_PASSWORD=1234mraf
+    volumes:
+      - "C://Dev/EDCI/dockers/docker_mysql/datadir:/var/lib/mysql"
+    ports:
+      - 3307:3306
+      - 33060:33060
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    command: -b 0.0.0.0 -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=MYSQL
+      - DB_ADDR=mysqldb
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=kyk1234
+    ports:
+      - "9000:8080"
+    depends_on:
+      - mysqldb
+  issuer:
+    image: kiceurope/issuer:QA
+    container_name: issuer
+    build: edci-issuer/
+    environment:
+      - JPDA_ENABLED=true
+      - JPDA_TRANSPORT=dt_socket
+      - JPDA_ADDRESS=8000
+      - WAIT_FOR_HOST=mysqldb
+      - WAIT_FOR_PORT=3306
+      - WAIT_FOR_TIMEOUT=60
+    volumes:
+      - "C://Dev/EDCI/dockers/docker_issuer/issuer:/usr/local/tomcat/conf/edci/issuer"
+      - "C://Dev/EDCI/dockers/docker_issuer/credentials:/usr/local/tomcat/temp/credentials"
+      - "C://Dev/EDCI/dockers/docker_issuer/logs:/usr/local/tomcat/logs"
+    ports:
+      - "8383:8080"
+      - "9383:8000"
+  wallet:
+    image: kiceurope/wallet:QA
+    container_name: wallet
+    build: edci-wallet/
+    environment:
+      - JPDA_ENABLED=true
+      - JPDA_TRANSPORT=dt_socket
+      - JPDA_ADDRESS=8000
+      - WAIT_FOR_HOST=mysqldb
+      - WAIT_FOR_PORT=3306
+      - WAIT_FOR_TIMEOUT=60
+    volumes:
+      - "C://Dev/EDCI/dockers/docker_wallet/wallet:/usr/local/tomcat/conf/edci/wallet"
+      - "C://Dev/EDCI/dockers/docker_wallet/logs:/usr/local/tomcat/logs"
+    ports:
+      - "8181:8080"
+      - "9181:8000"
+  viewer:
+    image: kiceurope/viewer:QA
+    container_name: viewer
+    build: edci-viewer/
+    environment:
+      - JPDA_ENABLED=true
+      - JPDA_TRANSPORT=dt_socket
+      - JPDA_ADDRESS=8000
+      - WAIT_FOR_HOST=mysqldb
+      - WAIT_FOR_PORT=3306
+      - WAIT_FOR_TIMEOUT=60
+    volumes:
+      - "C://Dev/EDCI/dockers/docker_viewer/viewer:/usr/local/tomcat/conf/edci/viewer"
+      - "C://Dev/EDCI/dockers/docker_viewer/logs:/usr/local/tomcat/logs"
+    ports:
+      - "8282:8080"
+      - "9282:8000"

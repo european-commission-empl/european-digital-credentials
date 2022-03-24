@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Measure {
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_MEASURE_CONTENT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_MEASURE_CONTENT_NOTNULL)
     private Float content; //1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_MEASURE_UNIT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_MEASURE_UNIT_NOTNULL)
     private String unit; //1
 
     public Float getContent() {

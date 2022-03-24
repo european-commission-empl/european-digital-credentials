@@ -7,7 +7,7 @@
 
     <!--<httpRedirector>eu.europa.ec.digitb3.mvc.web.security.ecas.HttpRedirectorSupport</httpRedirector>-->
 
-    <!--<serviceResolver>eu.cec.digit.ecas.client.resolver.service.ReverseProxyAwareServiceResolver</serviceResolver>-->
+    <!--<serviceResolver>eu.cec.digit.ecas.client.resolver.eu.europa.ec.empl.edci.dss.service.ReverseProxyAwareServiceResolver</serviceResolver>-->
 
 
     <serverContextPath>/viewer</serverContextPath>

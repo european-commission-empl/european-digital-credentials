@@ -3,13 +3,26 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
 
     <artifactId>edci-issuer-web</artifactId>
     <packaging>war</packaging>
     <name>EDCI issuer web module</name>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -20,11 +33,10 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-issuer-web-rest</artifactId>
-            <version>${project.version}</version>
+            <version>1.4.1-RELEASE</version>
         </dependency>
 
     </dependencies>
-
 
     <build>
         <finalName>europass2#edci-issuer</finalName>
@@ -35,6 +47,7 @@
                 <version>${swagger.codegen.maven.plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>swagger-codegen</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -58,7 +71,7 @@
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>edci-issuer-web-rest-swagger</artifactId>
-                        <version>${project.version}</version>
+                        <version>1.4.1-RELEASE</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -92,9 +105,33 @@
                             </includes>
                         </resource>
                     </webResources>
-                    <outputDirectory>C:\Dev\EDCI\servers\apache-tomcat-8.0.41\webapps</outputDirectory>
+                    <!--<outputDirectory>C:\Dev\EDCI\dockers\docker_issuer\webapps</outputDirectory>-->
                 </configuration>
             </plugin>
+            <!--<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <id>docker-build</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <workingDirectory>C:\Dev\EDCI\gitSrc\edci\edci-issuer</workingDirectory>
+                            <arguments>
+                                <argument>build</argument>++m,,
+                                <argument>-t</argument>
+                                <argument>kiceurope/issuer:QA</argument>
+                                <argument>.</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 </project>

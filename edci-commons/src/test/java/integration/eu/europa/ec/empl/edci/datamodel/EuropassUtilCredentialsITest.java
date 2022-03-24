@@ -59,14 +59,6 @@ public class EuropassUtilCredentialsITest extends EuropassUtilITest {
         Assert.assertTrue(schemaLocation == null);
     }
 
-
-    @Test
-    public void createTestMockEuropassCredential_ShouldBeOK() throws Exception {
-        EuropassCredentialDTO europassCredentialDTO = mockFactoryUtil.createNexusTestMockCredential();
-        byte[] bytes = xmlUtil.toByteArray(europassCredentialDTO);
-        System.out.println(new String(bytes, StandardCharsets.UTF_8));
-    }
-
     // @Test
     public void parseEuropassCredential_noAssociations_ShouldMatchXSD() throws IOException, JAXBException {
         GregorianCalendar gregorianCalendar = new GregorianCalendar(2031, 8, 16, 11, 35, 35);/**/

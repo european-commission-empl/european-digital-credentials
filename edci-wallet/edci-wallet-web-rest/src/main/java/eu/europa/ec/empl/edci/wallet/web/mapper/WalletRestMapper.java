@@ -13,7 +13,11 @@ public interface WalletRestMapper {
 
     public WalletDTO toDTO(WalletCreateView walletCreateView);
 
+    public WalletDTO toDTO(WalletModifyView walletModifyView);
+
     public WalletCreateResponseView toVO(WalletDTO walletDTO);
+
+    public WalletResponseView toVOResponse(WalletDTO walletDTO);
 
     public WalletCreateBulkResponseElemView toVOBulkElem(WalletDTO walletDTO);
 

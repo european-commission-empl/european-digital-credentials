@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import { HttpModule } from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from '@core/httpinterceptors/response.interceptor';
 import { MultilingualService } from '@services/multilingual.service';
+import { BASE_PATH } from './shared/swagger/variables';
+import { environment } from '@environments/environment';
 
 @NgModule({
     declarations: [AppComponent],
@@ -21,14 +23,18 @@ import { MultilingualService } from '@services/multilingual.service';
         RouterModule,
         HttpModule,
     ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ApiInterceptor,
-            multi: true,
-        },
-        MultilingualService,
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: ApiInterceptor,
+        multi: true,
+    },
+    {
+        provide: BASE_PATH,
+        useValue: environment.apiBaseUrl
+    },
+        MultilingualService
     ],
     bootstrap: [AppComponent],
 })
+
 export class AppModule {}

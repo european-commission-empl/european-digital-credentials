@@ -6,13 +6,27 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>1.3.0-SNAPSHOT</version>
+        <version>1.4.1-RELEASE</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
+    <version>1.4.1-RELEASE</version>
     <artifactId>edci-issuer-common</artifactId>
     <packaging>jar</packaging>
 
     <name>EDCI issuer common module</name>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <!-- SPRING -->
@@ -62,6 +76,11 @@
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.europa.ec.empl.edci</groupId>
+            <artifactId>edci-dss-utils</artifactId>
         </dependency>
     </dependencies>
 

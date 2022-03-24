@@ -8,7 +8,7 @@ import eu.europa.ec.empl.edci.issuer.entity.specs.LearningAchievementSpecDAO;
 import eu.europa.ec.empl.edci.issuer.mapper.datamodel.AssessmentMapper;
 import eu.europa.ec.empl.edci.issuer.repository.EuropassCredentialSpecRepository;
 import eu.europa.ec.empl.edci.issuer.service.EDCIWorkbookService;
-import eu.europa.ec.empl.edci.issuer.service.FileService;
+import eu.europa.ec.empl.edci.issuer.service.IssuerFileService;
 import eu.europa.ec.empl.edci.issuer.util.FileUtil;
 import eu.europa.ec.empl.edci.repository.mapper.IRestMapper;
 import eu.europa.ec.empl.edci.repository.service.CrudService;
@@ -52,7 +52,7 @@ public class EuropassCredentialSpecService implements CrudService<EuropassCreden
     private FileUtil fileUtil;
 
     @Autowired
-    private FileService fileService;
+    private IssuerFileService fileService;
 
     @Override
     public EuropassCredentialSpecRepository getRepository() {
@@ -150,11 +150,11 @@ public class EuropassCredentialSpecService implements CrudService<EuropassCreden
         this.fileUtil = fileUtil;
     }
 
-    public FileService getFileService() {
+    public IssuerFileService getFileService() {
         return fileService;
     }
 
-    public void setFileService(FileService fileService) {
+    public void setFileService(IssuerFileService fileService) {
         this.fileService = fileService;
     }
 }

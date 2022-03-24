@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.adapter;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.DateFormat;
@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateAdapter extends XmlAdapter<String, Date> {
-    private final DateFormat dateFormat = new SimpleDateFormat(EuropassConstants.DATE_LOCAL);
+    private final DateFormat dateFormat = new SimpleDateFormat(EDCIConstants.DATE_LOCAL);
 
     @Override
     public Date unmarshal(String xml) throws Exception {

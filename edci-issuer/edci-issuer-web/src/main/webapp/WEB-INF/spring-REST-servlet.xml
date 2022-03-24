@@ -42,7 +42,7 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="eu.europa.ec.empl.edci.issuer.web"/>
+    <context:component-scan base-package="eu.europa.ec.empl.edci.issuer.web.rest"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
@@ -52,6 +52,11 @@
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
         <property name="order" value="1"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <mvc:interceptors>

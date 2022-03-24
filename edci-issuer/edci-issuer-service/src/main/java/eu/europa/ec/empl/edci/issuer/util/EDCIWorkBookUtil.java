@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.util;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Localizable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Association;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.GradeObject;
@@ -102,11 +102,11 @@ public class EDCIWorkBookUtil {
                 return result;
             } else {
                 //message never used¿
-                throw new FileBaseDataException(MessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
             }
         } else {
             //message never used?
-            throw new FileBaseDataException(MessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
         }
     }
 
@@ -139,20 +139,20 @@ public class EDCIWorkBookUtil {
             try {
                 srcObject = findItemInBag(association.getSrcClass(), association.getSrcId(), classifiedBag);
             } catch (FileBaseDataException e) {
-                throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_ERROR, String.valueOf(association.getDestId()), association.getDestClass());
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_ERROR, String.valueOf(association.getDestId()), association.getDestClass());
             }
 
             try {
                 destObject = findItemInBag(association.getDestClass(), association.getDestId(), classifiedBag);
             } catch (FileBaseDataException e) {
-                throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_ERROR, String.valueOf(association.getDestId()), association.getDestClass());
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_ERROR, String.valueOf(association.getDestId()), association.getDestClass());
             }
 
             if (Pattern.matches(XLS.SPLIT_PATTERN_NESTED_ASSETS, association.getSrcFieldAssociation())) {
                 List<String> parameterPath = new ArrayList<String>(Arrays.asList(association.getSrcFieldAssociation().split(XLS.SPLIT_STRING_NESTED_ASSETS)));
 
                 if (parameterPath.size() <= 1) {
-                    throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_NESTEDPROPERTY_MISSINGINFO);
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_NESTEDPROPERTY_MISSINGINFO);
                 }
                 String fieldName = parameterPath.remove(parameterPath.size() - 1);
 
@@ -170,7 +170,7 @@ public class EDCIWorkBookUtil {
                     try {
                         srcObject = reflectiveUtil.castToChild(field.getDeclaringClass(), srcObject, null);
                     } catch (ReflectiveOperationException e) {
-                        throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_CAST_FAILED, srcObject.getClass().getName(), field.getDeclaringClass().getName());
+                        throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_CAST_FAILED, srcObject.getClass().getName(), field.getDeclaringClass().getName());
                     }
                 }
                 try {
@@ -181,10 +181,10 @@ public class EDCIWorkBookUtil {
                         reflectiveUtil.setField(field.getName(), srcObject, destObject);
                     }
                 } catch (ReflectiveOperationException e) {
-                    throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_PROCESS_ERROR, field.getName(), srcObject.getClass().getName(), destObject.getClass().getName());
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_PROCESS_ERROR, field.getName(), srcObject.getClass().getName(), destObject.getClass().getName());
                 }
             } else {
-                throw new FileBaseDataException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, association.getSrcFieldAssociation(), association.getSrcClass());
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, association.getSrcFieldAssociation(), association.getSrcClass());
             }
 
         }
@@ -209,7 +209,7 @@ public class EDCIWorkBookUtil {
                         updateAssociationListWithCellAndColumnInfo(srcClass, destId.intValue(), field, destClass, srcId, associations);
                     }
                 } catch (NumberFormatException e) {
-                    throw this.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_FORMAT_ERORR, currentCell, String.valueOf(cellObject));
+                    throw this.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ASSOCIATION_FORMAT_ERORR, currentCell, String.valueOf(cellObject));
                 }
             }
         }
@@ -229,7 +229,7 @@ public class EDCIWorkBookUtil {
         XLS.PARSE_CASE parseCase = getPropertyParseCase(columnInfo);
         Field field = reflectiveUtil.findField(instance.getClass(), columnInfo.getField());
         if (validator.isEmpty(field))
-            throw new FileBaseDataException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, columnInfo.getField(), columnInfo.getClassName());
+            throw new FileBaseDataException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, columnInfo.getField(), columnInfo.getClassName());
 
         if (reflectiveUtil.isChildField(instance.getClass(), field)) {
             instance = reflectiveUtil.castToChild(field.getDeclaringClass(), instance, parentInstance);
@@ -310,7 +310,7 @@ public class EDCIWorkBookUtil {
                 if (!isEntityScanned(scannedEntities, entity)) {
                     sheetEntities.add(entity);
                 } else {
-                    throw this.createFileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_DEFINITION_FORMAT, currentCell, entity);
+                    throw this.createFileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_DEFINITION_FORMAT, currentCell, entity);
                 }
             }
         }
@@ -360,7 +360,7 @@ public class EDCIWorkBookUtil {
                         List<Object> arrayList = reflectiveUtil.getOrInstanciateListField(targetField, instance);
                         arrayList.add(cellObject);
                     } else {
-                        throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_LIST, columnInfo.getField());
+                        throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_ENTITY_LIST, columnInfo.getField());
                     }
                 }
                 break;
@@ -402,7 +402,7 @@ public class EDCIWorkBookUtil {
                     if (reflectiveUtil.isPrimitiveList(innerField)) {
                         innerList.add(cellObject);
                     } else {
-                        throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_NONSTRING_LIST_ITEM, innerField.getName(), cellObject.toString());
+                        throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_NONSTRING_LIST_ITEM, innerField.getName(), cellObject.toString());
                     }
 
                 } else {
@@ -424,7 +424,7 @@ public class EDCIWorkBookUtil {
 
                 break;
             default:
-                throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_UNVALID_COLUMINFO);
+                throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_UNVALID_COLUMINFO);
         }
 
         logger.trace("[E] - updateObjectWithCellInfo");

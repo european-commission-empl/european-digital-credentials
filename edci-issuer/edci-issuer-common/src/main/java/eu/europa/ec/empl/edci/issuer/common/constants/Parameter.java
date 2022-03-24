@@ -17,6 +17,7 @@ public class Parameter {
     }
 
     public static final String FILE = "_file";
+    public static final String FILES = "_files";
     public static final String EMAIL = "_email";
     public static final String EXCEL_TYPE = "_type";
     public static final String UUID = "_uuid";
@@ -26,7 +27,9 @@ public class Parameter {
     public static final String ID = "_id";
     public static final String OID = "oid";
     public static final String LOCALE = "locale";
+    public static final String PASSWORD = "password";
     public static final String REQ_LANGS = "requestedLangs";
+    public static final String SIGN_ON_BEHALF = "signOnBehalf";
 
     public static final String TYPE = "type";
     public static final String SORT = "sort";

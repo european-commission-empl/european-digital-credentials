@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.util.proxy;
 
 import eu.europa.ec.empl.edci.annotation.Resize;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.MediaObject;
 import eu.europa.ec.empl.edci.datamodel.model.base.DownloadableAsset;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -396,11 +396,11 @@ public class DataLoaderUtil {
                 try {
                     contentType = findCodeByTargetName.apply(headerContent.split("/")[1]);
                 } catch (Exception e) {
-                    throw new EDCIException(MessageKeys.Exception.BadRquest.CONTENT_TYPE_NOTFOUND, contentUrl.toString());
+                    throw new EDCIException(EDCIMessageKeys.Exception.BadRquest.CONTENT_TYPE_NOTFOUND, contentUrl.toString());
                 }
 
                 if (contentType == null) {
-                    throw new EDCIException(MessageKeys.Exception.BadRquest.CONTENT_TYPE_NOTFOUND, contentUrl.toString());
+                    throw new EDCIException(EDCIMessageKeys.Exception.BadRquest.CONTENT_TYPE_NOTFOUND, contentUrl.toString());
                 }
 
                 mediaObject.setContentEncoding(encoding);

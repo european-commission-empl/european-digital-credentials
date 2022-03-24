@@ -8,12 +8,12 @@
                            http://www.springframework.org/schema/security/spring-security-5.2.xsd">
 
     <security:http auto-config="false" use-expressions="true" create-session="always" disable-url-rewriting="true"
-                   request-matcher="regex" pattern="(/api/.*|/auth/.*)" entry-point-ref="oauth2AuthenticationEntryPoint"
+                   request-matcher="regex" pattern="/.*" entry-point-ref="oauth2AuthenticationEntryPoint"
                    authentication-manager-ref="authenticationManager">
         <security:custom-filter after="SECURITY_CONTEXT_FILTER" ref="corsFilter"/>
         <security:custom-filter before="SESSION_MANAGEMENT_FILTER" ref="EDCISessionManagementFilter"/>
-        <security:session-management session-fixation-protection="none"/>
         <security:intercept-url pattern=".*" access="permitAll()" method="OPTIONS"/>
+        <security:session-management session-fixation-protection="none"/>
         <security:custom-filter after="PRE_AUTH_FILTER"
                                 ref="openIdConnectAuthenticationFilter"/>
         <security:logout logout-url="${oidc.logout.url}" invalidate-session="true"
@@ -67,13 +67,14 @@
         <property name="authenticationSuccessHandler" ref="EDCIAuthenticationSuccessHandler"/>
     </bean>
 
-    <bean id="viewerConfigService" class="eu.europa.ec.empl.edci.viewer.service.ViewerConfigService"/>
+    <bean id="viewerConfigService"
+          class="eu.europa.ec.empl.edci.viewer.service.ViewerConfigService"/>
 
 
     <bean class="org.mitre.openid.connect.client.service.impl.StaticAuthRequestOptionsService"
           id="staticAuthRequestOptionsService"/>
 
-    <bean class="org.mitre.openid.connect.client.service.impl.PlainAuthRequestUrlBuilder"
+    <bean class="eu.europa.ec.empl.edci.security.oidc.EDCIPlainAuthRequestUrlBuilder"
           id="plainAuthRequestUrlBuilder"/>
 
     <!-- BEANS -->

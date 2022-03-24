@@ -4,7 +4,7 @@ package eu.europa.ec.empl.edci.issuer.web;
 //import eu.cec.digit.ecas.client.Client;
 //import eu.cec.digit.ecas.client.EcasUtil;
 //import eu.cec.digit.ecas.client.configuration.EcasConfigurationIntf;
-//import eu.cec.digit.ecas.client.resolver.service.StatefulServiceResolver;
+//import eu.cec.digit.ecas.client.resolver.eu.europa.ec.empl.edci.dss.service.StatefulServiceResolver;
 //import eu.cec.digit.ecas.util.RFC3986PercentCodec;
 
 //import org.slf4j.Logger;
@@ -57,23 +57,23 @@ public class SingleSignoutController implements ServletContextAware {
 //
 //        StatefulServiceResolver serviceResolver = (StatefulServiceResolver) ecasClientConfig.getServiceResolver();
 //
-//        // 2. Find the service:
-//        logger.debug("2. Find the service:");
-//        String service = serviceResolver.getService(request);
+//        // 2. Find the eu.europa.ec.empl.edci.dss.service:
+//        logger.debug("2. Find the eu.europa.ec.empl.edci.dss.service:");
+//        String eu.europa.ec.empl.edci.dss.service = serviceResolver.getService(request);
 //        if (logger.isInfoEnabled()) {
-//            logger.info("serviceResolver.getService(request)={" + service + "}");
+//            logger.info("serviceResolver.getService(request)={" + eu.europa.ec.empl.edci.dss.service + "}");
 //        }
 //
 //        //3. Construct the root URL of the application
 //        logger.debug("3. Construct the root URL of the application");
 //        String contextRoot = servletContext.getContextPath();
-//        int position = service.indexOf(contextRoot);
+//        int position = eu.europa.ec.empl.edci.dss.service.indexOf(contextRoot);
 //
 //        final String rootUrl;
 //        if (position >= 0) {
-//            rootUrl = service.substring(0, position) + contextRoot;
+//            rootUrl = eu.europa.ec.empl.edci.dss.service.substring(0, position) + contextRoot;
 //        } else {
-//            rootUrl = service;
+//            rootUrl = eu.europa.ec.empl.edci.dss.service;
 //        }
 //
 //        //4. Invalidate session to perform local Logout

@@ -71,8 +71,7 @@ export class CredentialBuilderComponent implements OnInit, OnDestroy {
             new UxLink({
                 label: this.translateService.instant(
                     'breadcrumb.credentialBuilder'
-                ),
-                url: '/credential-templates',
+                )
             }),
         ];
     }

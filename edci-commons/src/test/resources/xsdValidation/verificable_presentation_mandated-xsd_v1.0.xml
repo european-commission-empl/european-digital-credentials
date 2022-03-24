@@ -3,20 +3,15 @@
         xsi:schemaLocation="http://data.europa.eu/snb http://publications.europa.eu/resource/schema/presentation/mandatedschema_1.0.xsd"
         xmlns="http://data.europa.eu/snb" xmlns:vp="http://data.europa.eu/snb/vp"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
         xmlns:cred="http://data.europa.eu/europass/model/credentials/w3c#"
-        xmlns:ns0="http://data.europa.eu/snb"
         id="urn:epass:default:ae74ef86-7afd-452e-89c6-2dfc5963a486">
-    <vp:type targetFrameworkUrl="http://52.57.141.197/fs/0.10.0/vp/types" targetNotation="verification"
-             uri="http://52.57.141.197/fs/0.10.0/vp/certifiedCopy">
+    <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verifiable-presentation/25831c2"
+             uri="http://data.europa.eu/snb/verifiable-presentation/c_409018f7">
         <targetName>
-            <text lang="en" content-type="text/plain">certifiedCopy</text>
+            <text lang="en" content-type="text/plain">Shared Credential</text>
         </targetName>
-        <targetDescription>
-            <text lang="en" content-type="text/plain">certifiedCopy</text>
-        </targetDescription>
         <targetFrameworkName>
-            <text lang="en" content-type="text/plain">Europass Presentation</text>
+            <text lang="en" content-type="text/plain">Europass Verifiable Presentation Type</text>
         </targetFrameworkName>
     </vp:type>
     <vp:expirationDate>2021-03-24T00:00:00+01:00</vp:expirationDate>

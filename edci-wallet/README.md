@@ -29,7 +29,7 @@ CEF DSS – java library to create/validate e-signature (XAdES, PAdES, etc.)
 Although it is possible to change the configuration to work with any OS, application server and database,
  the most tested configuration, the one explained in this document and the one used during development is the following:
 ##### Application Server
-Apache Tomcat 8.0
+Apache Tomcat 9.0
 ##### Database
 Oracle 12c
 ##### Operating System
@@ -75,27 +75,36 @@ This module provies an automatic system of API documentation, it will take the s
 ##### edci-wallet-ear
 This module is only responsible of packaging all of the modules into an ear file for deployment, thus no code resides here.
 ## Configuration
+##### Profiles
+The project can be configured and compiled with a variety of profiles, which can be used to provide a set of configurations for multiple environments.
+The profile that is being used is specified at compilation time for both front-end and back-end, and must be the same for both compilation steps.
+The current supported profiles are:
+* default: this is the default profile used for development, which is the same as local-tomcat.
+* local-tomcat: profile used for local development, the artifact can be deployed in a local tomcat 9+ environment.
+* qa-tomcat: this profile is used for a QA environment, mostly for integration testing.
+* acceptance: used mostly for UAT tests in a controlled environment.
+* production: the profile used for live environment.
 ##### Compile-time configuration files 
 Some of the properties that reside in the project, are used in XML files that are included in the artifact are compile time. 
 Because of this, changing any of these properties requires a recompilation of the project.
 
-The backend files containing properties that can only be changed in compile time  reside in the edci-issuer-web module, inside the config folder, here you will find the following folders containing configuration:
+The backend files containing properties that can only be changed in compile time  reside in the edci-wallet-web module, inside the config folder, here you will find the following folders containing configuration:
 * cache: contains ehcache.xml file.
-* issuer: contains basic properties for all the profiles.
+* wallet: contains basic properties for all the profiles.
 
 Also, you will find an ext folder with an example of the files required as run-time configuration properties.
 
 For front-end properties, all of the configurations can be found under the /environments folder, with environment.[profile].ts naming. 
 ##### Run-time configuration files
-A good portion of the properties reside outside of the project, by default, the application expects to found this files in the file:${catalina.base}/conf/edci/issuer/ folder.
-This path can be changed at the EDCIIssuerConfig class. The expected files are:
-* issuer.properties
-* issuer_dss.properties
+A good portion of the properties reside outside of the project, by default, the application expects to found this files in the file:${catalina.base}/conf/edci/wallet/ folder.
+This path can be changed at the EDCIWalletConfig class. The expected files are:
+* wallet.properties
+* wallet_dss.properties
 * mail.properties
 * proxy.properties
 * security.properties
  
-These properties can be changed without recompiling the EDCI Issuer, but keep in mind that the application server must be restarted for the changes to take place.
+These properties can be changed without recompiling the EDCI Wallet, but keep in mind that the application server must be restarted for the changes to take place.
 ##### Application server JNDI resources
 There are some important configurations that need to already present in the application server, namely the database and the mail session.
 
@@ -110,9 +119,10 @@ In order to compile the EDCI Wallet you will need
 ##### Deployment requirements
 * Application Server - the development has been done in tomcat
 * Internet accesss - the app requieres access to external resources, a proxy can be configured
-* AppServer provided Jar Dependencies in the app server libraries directory:
+* AppServer provided Jar Dependencies in the app server libraries directory: 
+  (Jars can be found in: edci\edci-wallet\edci-wallet-web\src\main\resources-unfiltered\lib\ext)
     +   apache-log4j-extras-1.2.17.jar
-    +   bcprov-jdk15on-1.62.jar
+    +   bcprov-jdk15on-1.68.jar
     +   javaee-api-7.0.jar
     +   javax.mail-1.5.0.jar
     +   jstl-1.2.jar
@@ -120,14 +130,20 @@ In order to compile the EDCI Wallet you will need
     +   the application server must have the drivers for your database of choice
 * Relational database
 
-If you are trying to deploy the EDCI Issuer project in a tomcat application server, you can check our [tomcat configuration](../configuration/documentation/tomcatConfiguration.md) page.
+If you are trying to deploy the EDCI Wallet project in a tomcat application server, you can check our [tomcat configuration](../configuration/documentation/tomcatConfiguration.md) page.
 
 ##### GIT
-The source code is stored in this GIT repository: (TODO - repo URL)[REPO url] It can be downloaded easily is by cloning it into it's desired folder with this command:
+The source code is stored in this GIT repository: [european-commission-europass/europass-digital-credentials](https://github.com/european-commission-europass/europass-digital-credentials) It can be downloaded easily is by cloning it into it's desired folder with this command:
 ```
-git clone [TODO - repo URL]
+git clone https://github.com/european-commission-europass/europass-digital-credentials.git
 ```
 #### Building process:
+#### External dependencies intallation
+The EDCI Wallet makes uses of external libraries that are not available in public repositories. Because of this, external dependencies are included at /edci/configuration/external-libs folder.
+Before building the EDCI Wallet, these dependencies must be installed into the local maven repository, this can easily be done by executing the following commands:
+ 
+ * mvn install:install-file -DgroupId=eu.europa.ec.digit.uxatec.eui -DartifactId=eui-angular2-servlet -Dpackaging=jar -Dversion=1.0.0 -Dfile=configuration/external-libs/eui-angular2-servlet-1.0.0.jar
+
 ##### Maven
 This project uses maven to manage the projects build. Keep in mind that some of the edci-dss-utils project artifacts must be downloaded from specific respositories, [Here](../configuration/documentation/mvn_settings.xml) is an example of a basic maven configuration that can be used as a template (keep in mind that some values must be changed). 
 Once the maven settings are ready, just execute the usual maven command using parent pom.xml with the desired profile, if no one is selected, default is used.

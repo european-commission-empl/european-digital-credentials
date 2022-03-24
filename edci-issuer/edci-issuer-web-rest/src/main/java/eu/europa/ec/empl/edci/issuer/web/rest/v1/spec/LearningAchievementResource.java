@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.dataContainers.AwardingProcessDCDAO;
 import eu.europa.ec.empl.edci.issuer.entity.dataContainers.LearningSpecificationDCDAO;
@@ -41,7 +41,7 @@ import java.util.Set;
 })
 @Controller(value = "v1.LearningAchievementSpecResource")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(value = Version.V1 + Endpoint.V1.ACHIEVEMENTS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.ACHIEVEMENTS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class LearningAchievementResource implements CrudResource {
 
@@ -85,7 +85,7 @@ public class LearningAchievementResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @ApiOperation(value = "Create an learningAchievement spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -111,7 +111,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate an achievement spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<LearningAchievementSpecView>> duplicateLearningAchievement(
@@ -124,7 +124,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update an learningAchievement spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -156,7 +156,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an learningAchievement spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteLearningAchievement(
@@ -167,7 +167,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an learningAchievement")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<LearningAchievementSpecView>> getLearningAchievement(
@@ -182,7 +182,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of learningAchievements")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningAchievementSpecLiteView>> listLearningAchievement(
@@ -201,7 +201,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_AWARDING_BODY,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_AWARDING_BODY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<OrganizationSpecLiteView>> listAwardingBodies(
@@ -225,7 +225,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_AWARDING_BODY,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_AWARDING_BODY,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -254,7 +254,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a subresource (Assessment)")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_PROVEN_BY,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_PROVEN_BY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<AssessmentSpecView>> getProvenBy(
@@ -280,7 +280,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource  (Assessment)")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_PROVEN_BY,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_PROVEN_BY,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -305,7 +305,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Deletes an existing subresource (Assessment)")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_PROVEN_BY,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_PROVEN_BY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteProvenBy(
@@ -326,7 +326,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_INFLUENCED_BY,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_INFLUENCED_BY,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningActivitySpecLiteView>> listInfluencedBy(
@@ -346,7 +346,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_INFLUENCED_BY,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_INFLUENCED_BY,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -371,7 +371,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_ENTITLES_TO,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_ENTITLES_TO,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<EntitlementSpecLiteView>> listEntitlesTo(
@@ -391,7 +391,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_ENTITLES_TO,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_ENTITLES_TO,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -415,7 +415,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_SUB_ACHIEVEMENTS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_SUB_ACHIEVEMENTS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningAchievementSpecLiteView>> listSubAchievements(
@@ -435,7 +435,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_SUB_ACHIEVEMENTS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_SUB_ACHIEVEMENTS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -460,7 +460,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_LEARNING_OUTCOMES,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_LEARNING_OUTCOMES,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningOutcomeSpecLiteView>> listLearningOutcomes(
@@ -484,7 +484,7 @@ public class LearningAchievementResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ACH_LEARNING_OUTCOMES,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ACH_LEARNING_OUTCOMES,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -515,31 +515,31 @@ public class LearningAchievementResource implements CrudResource {
     public Link[] generateLearningAchievementHateoas(LearningAchievementSpecDAO learningAchievementDAO) {
 
         if (learningAchievementDAO != null) {
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(LearningAchievementResource.class).slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(LearningAchievementResource.class).slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk()).withSelfRel();
 
             Link hateoasAW = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_AWARDING_BODY).withRel("awardingBody");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_AWARDING_BODY).withRel("awardingBody");
 
             Link hateoasPB = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_PROVEN_BY).withRel("provenBy");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_PROVEN_BY).withRel("provenBy");
 
             Link hateoasIB = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_INFLUENCED_BY).withRel("influencedBy");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_INFLUENCED_BY).withRel("influencedBy");
 
             Link hateoasET = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_ENTITLES_TO).withRel("entitlesTo");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_ENTITLES_TO).withRel("entitlesTo");
 
             Link hateoasSA = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_SUB_ACHIEVEMENTS).withRel("subAchievements");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_SUB_ACHIEVEMENTS).withRel("subAchievements");
 
             Link hateoasLO = ControllerLinkBuilder.linkTo(LearningAchievementResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
-                    .slash(Endpoint.V1.ACH_LEARNING_OUTCOMES).withRel("learningOutcomes");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(learningAchievementDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ACH_LEARNING_OUTCOMES).withRel("learningOutcomes");
 
             return new Link[]{
                     hateoasSelf, hateoasAW, hateoasPB, hateoasIB, hateoasET, hateoasSA, hateoasLO

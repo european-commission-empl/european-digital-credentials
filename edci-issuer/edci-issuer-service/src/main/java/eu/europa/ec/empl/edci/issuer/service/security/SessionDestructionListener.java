@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.service.security;
 
-import eu.europa.ec.empl.edci.issuer.service.FileService;
+import eu.europa.ec.empl.edci.issuer.service.IssuerFileService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -15,7 +15,7 @@ public class SessionDestructionListener implements ApplicationListener<SessionDe
     private Logger logger = Logger.getLogger(SessionDestructionListener.class);
 
     @Autowired
-    private FileService dynamicFileService;
+    private IssuerFileService dynamicFileService;
 
     @Override
     public void onApplicationEvent(SessionDestroyedEvent sessionDestroyedEvent) {

@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.mapper;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.*;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.*;
 import eu.europa.ec.empl.edci.datamodel.view.*;
@@ -17,9 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Date;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
@@ -27,8 +25,8 @@ public interface PresentationCommonsMapper {
 
     public static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(PresentationCommonsMapper.class);
 
-    static SimpleDateFormat formatterDateFull = new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT);
-    static SimpleDateFormat formatterDateOnly = new SimpleDateFormat(EuropassConstants.DATE_FRONT_LOCAL);
+    static SimpleDateFormat formatterDateFull = new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT);
+    static SimpleDateFormat formatterDateOnly = new SimpleDateFormat(EDCIConstants.DATE_FRONT_LOCAL);
 
     public static final Validator val = new Validator();
 
@@ -38,6 +36,17 @@ public interface PresentationCommonsMapper {
         }
 
         return title.getStringContent();
+    }
+
+    default Map<String,String> toMapText(Text title) {
+        if (title == null) {
+            return null;
+        }
+
+        Map<String, String> returnMap = new HashMap<>();
+        title.getContents().forEach(c-> returnMap.put(c.getLanguage(), c.getContent()));
+
+        return returnMap;
     }
 
     default String toStringNote(Note note) {
@@ -135,6 +144,7 @@ public interface PresentationCommonsMapper {
         try {
             lfv.setLink(new URL(code.getUri()));
             lfv.setTitle(code.getTargetName().getStringContent(LocaleContextHolder.getLocale().getLanguage()));
+            code.getTargetName().getContents().forEach(c-> lfv.getTitleAvailableLangs().put(c.getLanguage(), c.getContent()));
         } catch (MalformedURLException e) {
             logger.error("Error mapping linkField. Leaving the object null", e);
         }

@@ -8,6 +8,7 @@ import {
     V1Service,
     VerificationCheckView,
 } from 'src/app/shared/swagger';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'edci-viewer-verification',
@@ -19,25 +20,37 @@ export class VerificationComponent implements OnInit, OnDestroy {
     XMLFile: Blob = new Blob([sessionStorage.getItem('diplomaXML')], {
         type: 'text/xml',
     });
-    credentialOwner: CredentialSubjectTabView = this.shareDataService
-        .credentialSubject;
+    credentialOwner: CredentialSubjectTabView =
+        this.shareDataService.credentialSubject;
     credId: string = sessionStorage.getItem('credId') || null;
     userId: string = sessionStorage.getItem('userId') || null;
     shareLink: string = sessionStorage.getItem('shareLink');
     language: string = this.shareDataService.toolbarLanguage;
     isPreview: boolean;
     steps: VerificationCheckView[] = this.shareDataService.verificationSteps;
-    isVerified: boolean;
     destroy$: Subject<boolean> = new Subject<boolean>();
-    CONTROLLEDLISTCOLORS = {
+    CONTROLLED_LIST_COLORS = {
         RED: 'http://data.europa.eu/snb/verification-status/9d26eb9a37',
-        GREEN: 'http://data.europa.eu/snb/verification-status/9895008394'
+        GREEN: 'http://data.europa.eu/snb/verification-status/9895008394',
+        GREY: 'http://data.europa.eu/snb/verification-status/641f0c5e5d',
     };
 
+    ignoredVerificationStepTypeLinks: string[] = [
+        'http://data.europa.eu/snb/verification/271aef9eb4',
+        'http://data.europa.eu/snb/verification/e2bbc86a28',
+    ];
+
+    ribbonLabel = {
+        correct: '',
+        incorrect: '',
+        warning: '',
+    };
+    ribbonState: number = this.shareDataService.ribbonState;
     constructor(
         private apiService: V1Service,
         private router: Router,
-        private shareDataService: ShareDataService
+        private shareDataService: ShareDataService,
+        private translateService: TranslateService
     ) {
         /**
          * Reset steps since language will change.
@@ -47,12 +60,15 @@ export class VerificationComponent implements OnInit, OnDestroy {
          */
         this.shareDataService.toolbarLanguageChange
             .takeUntil(this.destroy$)
-            .subscribe((res) => {
-                this.saveSteps(null);
+            .subscribe((language) => {
+                this.getRibbonTranslation(language);
             });
     }
 
     ngOnInit() {
+        if (!this.language) {
+            this.language = this.translateService.currentLang;
+        }
         this.isPreview = !!sessionStorage.getItem('isPreview');
         if (!this.steps) {
             this.getVerificationData();
@@ -62,6 +78,29 @@ export class VerificationComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
+    }
+
+    private getRibbonTranslation(language: string): void {
+        this.translateService
+            .getTranslation(language)
+            .subscribe((translations) => {
+                // REVIEW:  Waiting For translation  files to be filled
+                this.ribbonLabel.correct =
+                    translations['details.verification-tab.ribbon-correct'] ||
+                    'Verified';
+                this.ribbonLabel.incorrect =
+                    translations['details.verification-tab.ribbon-incorrect'] ||
+                    'Verification Failed';
+                this.ribbonLabel.warning =
+                    translations['details.verification-tab.ribbon-warning'] ||
+                    'Partially Verified';
+                this.steps[this.steps.length - 1].type.title =
+                    this.ribbonState === 2
+                        ? this.ribbonLabel.incorrect
+                        : this.ribbonState === 1
+                        ? this.ribbonLabel.warning
+                        : this.ribbonLabel.correct;
+            });
     }
 
     private getVerificationData() {
@@ -124,11 +163,62 @@ export class VerificationComponent implements OnInit, OnDestroy {
     }
 
     private saveSteps(steps: VerificationCheckView[]) {
-        this.steps = steps;
-        this.shareDataService.verificationSteps = steps;
-        sessionStorage.setItem('verificationSteps', JSON.stringify(steps));
         if (steps) {
-            this.isVerified = !steps.find((value) => value.status.link !== this.CONTROLLEDLISTCOLORS.GREEN);
+            this.shareDataService.setVerificationSteps(steps);
+            this.getRibbonTranslation(this.language);
+            // Ribbon state => 0 OK, 1 Grey, 2 KO
+            let ribbonState: number = 0;
+            for (const step of steps) {
+                if (
+                    !this.ignoredVerificationStepTypeLinks.find(
+                        (str) => str === step.type.link
+                    )
+                ) {
+                    if (step.status.link === this.CONTROLLED_LIST_COLORS.RED) {
+                        ribbonState = 2;
+                        break;
+                    }
+                    if (step.status.link === this.CONTROLLED_LIST_COLORS.GREY) {
+                        ribbonState = 1;
+                    }
+                }
+            }
+            this.addRibbonStep(steps, ribbonState);
         }
+    }
+
+    private addRibbonStep(
+        steps: VerificationCheckView[],
+        ribbonState: number
+    ): void {
+        // Ribbon state => 0 OK, 1 Grey, 2 KO
+        this.ribbonState = ribbonState;
+        this.steps = steps.concat({
+            status: {
+                link:
+                    ribbonState === 2
+                        ? 'ribbon-failed'
+                        : ribbonState === 1
+                        ? 'ribbon-warning'
+                        : 'ribbon',
+                title:
+                    ribbonState === 2
+                        ? 'ribbon-failed'
+                        : ribbonState === 1
+                        ? 'ribbon-warning'
+                        : 'ribbon',
+            },
+            type: {
+                title:
+                    ribbonState === 2
+                        ? this.ribbonLabel.incorrect
+                        : ribbonState === 1
+                        ? this.ribbonLabel.warning
+                        : this.ribbonLabel.correct,
+            },
+        });
+        this.shareDataService.verificationSteps = this.steps;
+        this.shareDataService.ribbonState = ribbonState;
+        sessionStorage.setItem('verificationSteps', JSON.stringify(this.steps));
     }
 }

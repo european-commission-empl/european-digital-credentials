@@ -23,6 +23,8 @@ public class Parameter {
     public static final String CRED_ID = "credId";
     public static final String ID = "id";
     public static final String UUID = "uuid";
+    public static final String PDF_TYPE = "pdfType";
+    public static final String SEND_MAIL = "sendEmail";
 
     public static final String SORT = "sort";
     public static final String DIRECTION = "direction";

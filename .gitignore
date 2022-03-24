@@ -38,8 +38,8 @@ npm-debug.log
 .vscode
 *.log
 *.stackdump
-**/swagger
-**/swagger/**
+#**/swagger
+#**/swagger/**
 .vagrant/
 *.box
 cleanEnv.sh

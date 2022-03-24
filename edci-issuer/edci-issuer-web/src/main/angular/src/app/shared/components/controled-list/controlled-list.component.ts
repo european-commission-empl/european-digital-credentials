@@ -36,9 +36,21 @@ export class ControlledListComponent implements OnInit, OnDestroy {
         this._isDisabled = disabled;
         disabled ? this.singleEntity.disable() : this.singleEntity.enable();
         disabled ? this.multipleEntity.disable() : this.multipleEntity.enable();
+        if (disabled && this.isDefaultLanguage) {
+            this.itemsSelected = null;
+            this.formGroup.patchValue({
+                singleEntity: null,
+            });
+        }
     }
     @Input() set activeLanguage(language: string) {
         this._language = language;
+        // If it is not default language component should be readOnly / disabled
+        if (this.selectedLanguages && this.selectedLanguages[0]) {
+            this.isDefaultLanguage =
+                this.selectedLanguages[0].code === language;
+            this.isDisabled = !this.isDefaultLanguage;
+        }
         if (this.selectedItems.length > 0) {
             this.changeSelectedItemsLabel();
         } else if (this.singleEntity.value) {
@@ -88,9 +100,8 @@ export class ControlledListComponent implements OnInit, OnDestroy {
     }
 
     @Output()
-    onItemSelectionChange: EventEmitter<
-        CodeDTView[] | CodeDTView
-    > = new EventEmitter();
+    onItemSelectionChange: EventEmitter<CodeDTView[] | CodeDTView> =
+        new EventEmitter();
     @Output() onError: EventEmitter<any> = new EventEmitter();
 
     searchList: SelectedTagItemList[] | SelectedItemList[] = [];
@@ -102,9 +113,10 @@ export class ControlledListComponent implements OnInit, OnDestroy {
     isLoading: boolean = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     selectedItems: SelectedTagItemList[] = [];
-    placeholder: string = 'credential-builder.inputCharacters';
+    placeholder: string = '';
     textToSearch: string;
     allResults: SelectedTagItemList[] | SelectedItemList[] = [];
+    isDefaultLanguage: boolean = true;
 
     get parent(): string {
         return this._parent;
@@ -179,7 +191,7 @@ export class ControlledListComponent implements OnInit, OnDestroy {
 
     onClick() {
         if (!this.textToSearch && this.entityType) {
-            if (this.allResults.length) {
+            if (this.allResults.length && this.isSingleSelection) {
                 this.searchList = this.allResults;
             } else {
                 this.listEntities('');
@@ -230,18 +242,23 @@ export class ControlledListComponent implements OnInit, OnDestroy {
     }
 
     private createEmptyResultsMessage(): SelectedTagItemList[] {
-        return [{
-            id: Constants.EMPTY_RESULT_ID,
-            label: this.translateService.instant('credential-builder.emptyResults'),
-            isDeletable: true,
-            typeClass: null,
-        }];
+        return [
+            {
+                id: Constants.EMPTY_RESULT_ID,
+                label: this.translateService.instant(
+                    'credential-builder.emptyResults'
+                ),
+                isDeletable: true,
+                typeClass: null,
+            },
+        ];
     }
 
     private getEntityTagItemList(
         itemList: CodeDTView[]
     ): SelectedTagItemList[] {
         const entityTagList: SelectedTagItemList[] = [];
+        this.sortEntities(itemList);
         itemList.forEach((item: CodeDTView) => {
             entityTagList.push({
                 id: item.uri,
@@ -275,14 +292,12 @@ export class ControlledListComponent implements OnInit, OnDestroy {
                     (entities: CodeDTView[]) => {
                         if (this.isSingleSelection) {
                             this.formGroup.patchValue({
-                                singleEntity: this.getEntityItemList(
-                                    entities
-                                )[0],
+                                singleEntity:
+                                    this.getEntityItemList(entities)[0],
                             });
                         } else {
-                            this.selectedItems = this.getEntityTagItemList(
-                                entities
-                            );
+                            this.selectedItems =
+                                this.getEntityTagItemList(entities);
                             this.onItemSelectionChange.emit(entities);
                         }
                     },
@@ -293,6 +308,7 @@ export class ControlledListComponent implements OnInit, OnDestroy {
 
     private getEntityItemList(itemList: CodeDTView[]): SelectedItemList[] {
         const searchList: SelectedItemList[] = [];
+        this.sortEntities(itemList);
         itemList.forEach((item: CodeDTView) => {
             searchList.push({
                 id: item.uri,
@@ -307,6 +323,20 @@ export class ControlledListComponent implements OnInit, OnDestroy {
             });
         });
         return searchList;
+    }
+
+    private sortEntities(itemList: CodeDTView[]): void {
+        // Getting element 0 since we only want the defaultLanguage for the sort
+        // since any other would result in a readonly form
+        itemList = itemList.sort((a, b) => {
+            return a.targetName.contents[0].content.localeCompare(
+                b.targetName.contents[0].content,
+                this.selectedLanguages[0]
+                    ? this.selectedLanguages[0].code
+                    : this.language,
+                { sensitivity: 'base' }
+            );
+        });
     }
 
     private changeSelectedItemsLabel(): void {

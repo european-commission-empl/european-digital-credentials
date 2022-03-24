@@ -44,6 +44,7 @@ import { takeUntil } from 'rxjs/operators';
     encapsulation: ViewEncapsulation.None,
 })
 export class OrganizationsModalComponent implements OnInit, OnDestroy {
+    modalTitleBreadcrumb: string[];
     get legalAddress() {
         return this.formGroup.get('legalAddress') as FormGroup;
     }
@@ -128,7 +129,11 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
     @Input() modalId: string = 'organizationModal';
     @Input() language: string;
     @Input() editOrganizationOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
 
     editOrganization: OrganizationSpecView;
     imageExtensions: string[] = ['jpeg', 'jpg', 'png'];
@@ -144,7 +149,9 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
     organizationBody: OrganizationSpecView;
     locationNUTS: CodeDTView[] = [];
     indexToNextTab: number;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
     isNewEntityDisabled: boolean;
     isSaveDisabled: boolean = false;
@@ -230,11 +237,17 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (this.editOrganizationOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.organizations-tab.editOrganization');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.organizations-tab.editOrganization'
+            );
             this.getOrganizationDetails();
         } else {
-            this.modalTitle = this.translateService.instant('credential-builder.organizations-tab.createOrganization');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.organizations-tab.createOrganization'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.defaultLanguage = this.language;
             this.selectedLanguages.push({
@@ -344,26 +357,41 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
         });
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'organization':
@@ -373,7 +401,7 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -386,11 +414,12 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -406,13 +435,15 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe((organization: OrganizationSpecView) => {
                 this.editOrganization = organization;
-                this.availableLanguages = this.editOrganization.additionalInfo.languages;
+                this.availableLanguages =
+                    this.editOrganization.additionalInfo.languages;
                 this.language = this.editOrganization.defaultLanguage;
                 this.defaultLanguage = this.language;
-                this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                    this.editOrganization.additionalInfo.languages,
-                    this.defaultLanguage
-                );
+                this.selectedLanguages =
+                    this.multilingualService.setUsedLanguages(
+                        this.editOrganization.additionalInfo.languages,
+                        this.defaultLanguage
+                    );
                 this.extractIdentifiers();
                 this.setForm();
                 this.getLogo();
@@ -426,13 +457,18 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
             this.logoPreviewURL =
                 'data:image/png;base64,' + this.editOrganization.logo.content;
             this.base64FromRequest = this.editOrganization.logo.content;
-            const contentTypeSplitted = this.editOrganization.logo.contentType.uri.split('/');
-            this.extensionOfRequestBackground = contentTypeSplitted[contentTypeSplitted.length - 1];
-        } else if (this.editOrganization.logo && !this.editOrganization.logo.content && this.editOrganization.logo.contentUrl) {
+            const contentTypeSplitted =
+                this.editOrganization.logo.contentType.uri.split('/');
+            this.extensionOfRequestBackground =
+                contentTypeSplitted[contentTypeSplitted.length - 1];
+        } else if (
+            this.editOrganization.logo &&
+            !this.editOrganization.logo.content &&
+            this.editOrganization.logo.contentUrl
+        ) {
             this.isLogoNotAvailable = true;
             this.logoPreviewURL = 'assets/images/image-not-found.svg';
         }
-
     }
 
     private addNewLanguageControl(language: string): void {
@@ -553,7 +589,11 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
                 .addLogo(organization.oid, this.logo)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(() => {
-                    this.closeModal(true, organization.oid, organization.defaultTitle);
+                    this.closeModal(
+                        true,
+                        organization.oid,
+                        organization.defaultTitle
+                    );
                     this.showNotification();
                 });
         } else {
@@ -565,7 +605,11 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
         let relUnitOf: SubresourcesOids = null;
         if (this.parentOrganization.value) {
             relUnitOf = {
-                oid: [Array.isArray(this.parentOrganization.value) ? this.parentOrganization.value[0] : this.parentOrganization.value],
+                oid: [
+                    Array.isArray(this.parentOrganization.value)
+                        ? this.parentOrganization.value[0]
+                        : this.parentOrganization.value,
+                ],
             };
         }
         return relUnitOf;
@@ -676,9 +720,8 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
 
     private getAlternativeName(): Array<TextDTView> {
         let alternativeName: TextDTView[] = null;
-        let alternativeNameContents: ContentDTView[] = this.multilingualService.formToView(
-            this.alternativeName.value
-        );
+        let alternativeNameContents: ContentDTView[] =
+            this.multilingualService.formToView(this.alternativeName.value);
         if (alternativeNameContents.length > 0) {
             alternativeName = [
                 {
@@ -753,9 +796,8 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
 
     private getGeographicName(): TextDTView {
         let geographicName: TextDTView = null;
-        let geographicNameContents: ContentDTView[] = this.multilingualService.formToView(
-            this.locationName.value
-        );
+        let geographicNameContents: ContentDTView[] =
+            this.multilingualService.formToView(this.locationName.value);
         if (geographicNameContents.length > 0) {
             geographicName = { contents: geographicNameContents };
         }
@@ -764,9 +806,8 @@ export class OrganizationsModalComponent implements OnInit, OnDestroy {
 
     private getFullAddress(): NoteDTView {
         let fullAddress: NoteDTView = null;
-        let fullAddressContents: ContentDTView[] = this.multilingualService.formToView(
-            this.legalAddress.value
-        );
+        let fullAddressContents: ContentDTView[] =
+            this.multilingualService.formToView(this.legalAddress.value);
         if (fullAddressContents.length > 0) {
             fullAddress = { contents: fullAddressContents };
         }

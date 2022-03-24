@@ -1,18 +1,22 @@
 package eu.europa.ec.empl.edci.datamodel.view;
 
+import java.util.Map;
+
 public class VerificationCheckView {
 
     private String id;
-    private String type;
+    private LinkFieldView type;
     private LinkFieldView status;
     private String longDescription;
     private String description;
+    private Map<String, String> longDescrAvailableLangs;
+    private Map<String, String> descrAvailableLangs;
 
-    public String getType() {
+    public LinkFieldView getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(LinkFieldView type) {
         this.type = type;
     }
 
@@ -46,5 +50,21 @@ public class VerificationCheckView {
 
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
+    }
+
+    public Map<String, String> getLongDescrAvailableLangs() {
+        return longDescrAvailableLangs;
+    }
+
+    public void setLongDescrAvailableLangs(Map<String, String> longDescrAvailableLangs) {
+        this.longDescrAvailableLangs = longDescrAvailableLangs;
+    }
+
+    public Map<String, String> getDescrAvailableLangs() {
+        return descrAvailableLangs;
+    }
+
+    public void setDescrAvailableLangs(Map<String, String> descrAvailableLangs) {
+        this.descrAvailableLangs = descrAvailableLangs;
     }
 }

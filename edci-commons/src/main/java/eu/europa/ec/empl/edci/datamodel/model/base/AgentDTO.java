@@ -2,7 +2,7 @@ package eu.europa.ec.empl.edci.datamodel.model.base;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.ContactPoint;
 import eu.europa.ec.empl.edci.datamodel.model.OrganizationDTO;
 import eu.europa.ec.empl.edci.datamodel.model.PersonDTO;
@@ -35,7 +35,7 @@ public abstract class AgentDTO implements Nameable, RootEntity {
     @XmlID
     @XmlIDExtension
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_AGENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_AGENT_ID_NOTNULL)
     private URI id; //1
     @Valid
     private List<Identifier> identifier; //*

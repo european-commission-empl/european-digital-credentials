@@ -1,10 +1,10 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1;
 
-import eu.europa.ec.empl.edci.constants.Version;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.common.model.RecipientFileDTO;
-import eu.europa.ec.empl.edci.issuer.service.FileService;
+import eu.europa.ec.empl.edci.issuer.service.IssuerFileService;
 import eu.europa.ec.empl.edci.issuer.web.mapper.CredentialRestMapper;
 import eu.europa.ec.empl.edci.issuer.web.mapper.FileRestMapper;
 import eu.europa.ec.empl.edci.issuer.web.model.CLElementBasicView;
@@ -30,12 +30,12 @@ import java.util.Set;
         "V1"
 })
 @Controller(value = "v1.FileResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.FILES_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.FILES_BASE)
 //@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE})
 public class FileResource {
 
     @Autowired
-    private FileService fileService;
+    private IssuerFileService fileService;
 
     @Autowired
     private FileRestMapper fileRestMapper;
@@ -50,7 +50,7 @@ public class FileResource {
 
 
     @ApiOperation(value = "Uploads credentials on XLS format")
-    @PostMapping(value = Endpoint.V1.TEMPLATES + Endpoint.V1.CREDENTIALS,
+    @PostMapping(value = IssuerEndpoint.V1.TEMPLATES + IssuerEndpoint.V1.CREDENTIALS,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -61,7 +61,7 @@ public class FileResource {
     }
 
     @ApiOperation(value = "Upload recipients on XLS format")
-    @PostMapping(value = Endpoint.V1.TEMPLATES + Endpoint.V1.RECIPIENTS,
+    @PostMapping(value = IssuerEndpoint.V1.TEMPLATES + IssuerEndpoint.V1.RECIPIENTS,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -74,7 +74,7 @@ public class FileResource {
     }
 
     @ApiOperation(value = "Downloads an XLS template to add credentials ", response = File.class)
-    @GetMapping(value = Endpoint.V1.TEMPLATES + Parameter.Path.EXCEL_TYPE,
+    @GetMapping(value = IssuerEndpoint.V1.TEMPLATES + Parameter.Path.EXCEL_TYPE,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> getCredentialTemplate(@PathVariable(Parameter.EXCEL_TYPE) String type,
                                                         @ApiParam(value = "locale") @RequestParam(value = Parameter.LOCALE, required = false) String locale) {
@@ -82,7 +82,7 @@ public class FileResource {
     }
 
     @ApiOperation(value = "Lists available XLS templates")
-    @GetMapping(value = Endpoint.V1.TEMPLATES, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = IssuerEndpoint.V1.TEMPLATES, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Set<CLElementBasicView> getAvailableTemplates() {
         return fileRestMapper.toVOSet(fileService.getAvailableTemplates());

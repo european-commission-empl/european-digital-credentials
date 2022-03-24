@@ -23,7 +23,7 @@ import { REDUCER_TOKEN, getReducers, metaReducers } from './reducers';
 import { SharedModule } from '../shared/shared.module';
 
 import { DisplayErrorService } from './services/response-error-growl.service';
-import { V1Service } from '../shared/swagger';
+import { BASE_PATH, V1Service } from '../shared/swagger';
 import { EntityLinkService } from './services/entity-link.service';
 import { ShareDataService } from './services/share-data.service';
 import { ViewerService } from './services/viewer.service';
@@ -43,6 +43,10 @@ const commonProviders = [
         provide: HTTP_INTERCEPTORS,
         useClass: CsrfPreventionInterceptor,
         multi: true,
+    },
+    {
+        provide: BASE_PATH,
+        useValue: environment.apiBaseUrl,
     },
     V1Service,
     DisplayErrorService,
@@ -76,6 +80,10 @@ const productionProviders = [
         provide: HTTP_INTERCEPTORS,
         useClass: CsrfPreventionInterceptor,
         multi: true,
+    },
+    {
+        provide: BASE_PATH,
+        useValue: environment.apiBaseUrl,
     },
     V1Service,
     DisplayErrorService,

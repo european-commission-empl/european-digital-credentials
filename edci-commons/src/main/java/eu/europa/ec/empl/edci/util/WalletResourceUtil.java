@@ -39,7 +39,7 @@ public class WalletResourceUtil implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.setWalletClientId(configService.getString(EDCIConfig.OIDC_WALLET_CLIENT_ID));
+        this.setWalletClientId(configService.getString(EDCIConfig.Security.WALLET_CLIENT_ID));
     }
 
     public <T> T doWalletGetRequest(String url, MediaType contentType, MediaType accept, Class<T> responseType, boolean addAuthToken) {

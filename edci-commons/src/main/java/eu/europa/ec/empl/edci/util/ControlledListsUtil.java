@@ -42,11 +42,11 @@ public class ControlledListsUtil {
             this.extension = extension;
         }
 
-        private String getValue() {
+        public String getValue() {
             return mime;
         }
 
-        private String getExtension() {
+        public String getExtension() {
             return extension;
         }
     }

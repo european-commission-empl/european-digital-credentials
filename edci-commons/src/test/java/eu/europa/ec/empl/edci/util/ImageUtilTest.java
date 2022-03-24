@@ -1,10 +1,12 @@
 package eu.europa.ec.empl.edci.util;
 
 import eu.europa.ec.empl.base.AbstractUnitBaseTest;
+import eu.europa.ec.empl.edci.config.service.IConfigService;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,6 +15,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 public class ImageUtilTest extends AbstractUnitBaseTest {
+
+    @Mock
+    IConfigService configService;
 
     @InjectMocks
     private ImageUtil imageUtil;
@@ -34,6 +39,25 @@ public class ImageUtilTest extends AbstractUnitBaseTest {
         Assert.assertTrue(resizedImg.getWidth() <= width);
 
     }
+
+   /* @Test
+    public void htmlToImage_shouldReturnAnImage_givenAnHTML() throws Exception {
+
+        Mockito.doReturn("https://dgempl-single-portal-demo-1.arhs-developments.com/europass/eportfolio/api/office/generate/png")
+                .when(configService).getString("png.download.url");
+
+        //GEt this image in DinA4 format
+        byte[] imageData = imageUtil.htmlToImage("<div style=\"height:300px;background:red;\">TEST</div>",
+                EDCIConfig.Defaults.DIPLOMA_PAGE_SIZE, EDCIConfig.Defaults.DIPLOMA_PAGE_MARGINS);
+
+        try (ByteArrayInputStream in = new ByteArrayInputStream(imageData); ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
+            BufferedImage img = ImageIO.read(in);
+
+            Assert.assertEquals(img.getHeight(), 1123);
+            Assert.assertEquals(img.getWidth(), 794);
+        }
+
+    }*/
 
     @Test
     public void resizeImage_shouldResizeImage_whenABufferedImageIsPassed_2() throws Exception {

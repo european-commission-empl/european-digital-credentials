@@ -35,12 +35,15 @@ import { Subject } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
 })
 export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
-
     @Input() modalTitle: string;
     @Input() modalId: string = 'learningOutcomeModal';
     @Input() language: string;
     @Input() editLearningOutcomeOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
 
     isLoading: boolean = true;
     editLearningOutcome: LearningOutcomeSpecView;
@@ -62,6 +65,7 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
         reusabilityLevel: new FormControl(null),
         description: new FormGroup({}),
     });
+    modalTitleBreadcrumb: string[];
 
     get defaultTitle() {
         return this.formGroup.get('defaultTitle') as FormControl;
@@ -94,11 +98,17 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (this.editLearningOutcomeOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.learning-outcomes-tab.editLearningOutcome');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.learning-outcomes-tab.editLearningOutcome'
+            );
             this.getLearningOutcomeDetail();
         } else {
-            this.modalTitle = this.translateService.instant('credential-builder.learning-outcomes-tab.createLearningOutcome');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.learning-outcomes-tab.createLearningOutcome'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.defaultLanguage = this.language;
             this.selectedLanguages.push({
@@ -169,13 +179,15 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
             .subscribe(
                 (learningOutcome: LearningOutcomeSpecView) => {
                     this.editLearningOutcome = learningOutcome;
-                    this.availableLanguages = this.editLearningOutcome.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editLearningOutcome.additionalInfo.languages;
                     this.language = this.editLearningOutcome.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editLearningOutcome.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editLearningOutcome.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.setForm();
                 },
                 (err) => this.closeModal(false)
@@ -216,7 +228,11 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, learningOutcome.oid, learningOutcome.defaultTitle);
+                    this.closeModal(
+                        true,
+                        learningOutcome.oid,
+                        learningOutcome.defaultTitle
+                    );
                 },
                 (err) => {
                     this.closeModal(false);
@@ -243,7 +259,11 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, learningOutcome.oid, learningOutcome.defaultTitle);
+                    this.closeModal(
+                        true,
+                        learningOutcome.oid,
+                        learningOutcome.defaultTitle
+                    );
                 },
                 (err) => {
                     this.isLoading = false;
@@ -294,9 +314,8 @@ export class LearningOutcomesModalComponent implements OnInit, OnDestroy {
 
     private getDescription(): NoteDTView {
         let description: NoteDTView = null;
-        const descriptionValue: ContentDTView[] = this.multilingualService.formToView(
-            this.description.value
-        );
+        const descriptionValue: ContentDTView[] =
+            this.multilingualService.formToView(this.description.value);
 
         if (descriptionValue.length > 0) {
             description = {

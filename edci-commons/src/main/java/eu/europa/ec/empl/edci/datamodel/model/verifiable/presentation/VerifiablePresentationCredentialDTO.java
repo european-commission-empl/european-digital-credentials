@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 
 import javax.validation.constraints.NotNull;
@@ -14,8 +14,8 @@ import java.net.URI;
 @Deprecated
 public class VerifiablePresentationCredentialDTO {
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_ID_NOTNULL)
-    @XmlAttribute(namespace = EuropassConstants.NAMESPACE_CRED_URI)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_ID_NOTNULL)
+    @XmlAttribute(namespace = EDCIConstants.NAMESPACE_CRED_URI)
     private URI id; //1
 
     //@JacksonXmlCData

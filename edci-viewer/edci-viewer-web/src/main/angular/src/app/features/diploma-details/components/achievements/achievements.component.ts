@@ -22,17 +22,23 @@ export class AchievementsComponent implements OnDestroy {
         private activatedRoute: ActivatedRoute,
         private shareDataService: ShareDataService
     ) {
-        this.activatedRoute.queryParams
+        // this.activatedRoute.queryParams
+        //     .takeUntil(this.destroy$)
+        //     .subscribe((params) => {
+        //         this.activeId = params.id;
+        //         if (this.achievements) {
+        //             if (!this.activeId) {
+        //                 this.setInitialActiveAchievement();
+        //             } else {
+        //                 this.setAchievementById();
+        //             }
+        //         }
+        //     });
+        this.shareDataService
+            .changeEntitySelection()
             .takeUntil(this.destroy$)
-            .subscribe((params) => {
-                this.activeId = params.id;
-                if (this.achievements) {
-                    if (!this.activeId) {
-                        this.setInitialActiveAchievement();
-                    } else {
-                        this.setAchievementById();
-                    }
-                }
+            .subscribe((achievement) => {
+                this.activeAchievement = achievement;
             });
     }
 
@@ -41,77 +47,77 @@ export class AchievementsComponent implements OnDestroy {
         this.destroy$.unsubscribe();
     }
 
-    onSelect(event) {
-        this.achievements.forEach((achievement: AchievementTabView) => {
-            achievement['active'] = false;
-            if (achievement.subAchievements) {
-                achievement.subAchievements.forEach(
-                    (part: AchievementTabView) => {
-                        part['active'] = false;
-                    }
-                );
-            }
-        });
-        event.active = true;
-        this.activeAchievement = event;
-        this.setQueryParams();
-    }
+    // onSelect(event) {
+    //     this.achievements.forEach((achievement: AchievementTabView) => {
+    //         achievement['active'] = false;
+    //         if (achievement.subAchievements) {
+    //             achievement.subAchievements.forEach(
+    //                 (part: AchievementTabView) => {
+    //                     part['active'] = false;
+    //                 }
+    //             );
+    //         }
+    //     });
+    //     event.active = true;
+    //     this.activeAchievement = event;
+    //     this.setQueryParams();
+    // }
 
-    goToLinkedDestination(id: string, destination: string) {
-        this.router.navigate([`/diploma-details/${destination}`], {
-            queryParams: { id: id },
-        });
-    }
+    // goToLinkedDestination(id: string, destination: string) {
+    //     this.router.navigate([`/diploma-details/${destination}`], {
+    //         queryParams: { id: id },
+    //     });
+    // }
 
-    private setInitialActiveAchievement() {
-        this.achievements.forEach(
-            (achievement: AchievementTabView, i: number) => {
-                if (i === 0) {
-                    achievement['active'] = true;
-                } else {
-                    achievement['active'] = false;
-                }
-                if (achievement.subAchievements) {
-                    achievement.subAchievements.forEach(
-                        (part: AchievementTabView) => {
-                            part['active'] = false;
-                        }
-                    );
-                }
-            }
-        );
-        this.activeAchievement = this.achievements[0];
-        this.setQueryParams();
-    }
+    // private setInitialActiveAchievement() {
+    //     this.achievements.forEach(
+    //         (achievement: AchievementTabView, i: number) => {
+    //             if (i === 0) {
+    //                 achievement['active'] = true;
+    //             } else {
+    //                 achievement['active'] = false;
+    //             }
+    //             if (achievement.subAchievements) {
+    //                 achievement.subAchievements.forEach(
+    //                     (part: AchievementTabView) => {
+    //                         part['active'] = false;
+    //                     }
+    //                 );
+    //             }
+    //         }
+    //     );
+    //     this.activeAchievement = this.achievements[0];
+    //     this.setQueryParams();
+    // }
 
-    private setAchievementById() {
-        this.achievements.forEach((achievement: AchievementTabView) => {
-            if (achievement.id === this.activeId) {
-                achievement['active'] = true;
-                this.activeAchievement = achievement;
-            } else {
-                achievement['active'] = false;
-            }
-            if (achievement.subAchievements) {
-                achievement.subAchievements.forEach(
-                    (part: AchievementTabView) => {
-                        if (part.id === this.activeId) {
-                            part['active'] = true;
-                            this.activeAchievement = part;
-                        } else {
-                            part['active'] = false;
-                        }
-                    }
-                );
-            }
-        });
-    }
+    // private setAchievementById() {
+    //     this.achievements.forEach((achievement: AchievementTabView) => {
+    //         if (achievement.id === this.activeId) {
+    //             achievement['active'] = true;
+    //             this.activeAchievement = achievement;
+    //         } else {
+    //             achievement['active'] = false;
+    //         }
+    //         if (achievement.subAchievements) {
+    //             achievement.subAchievements.forEach(
+    //                 (part: AchievementTabView) => {
+    //                     if (part.id === this.activeId) {
+    //                         part['active'] = true;
+    //                         this.activeAchievement = part;
+    //                     } else {
+    //                         part['active'] = false;
+    //                     }
+    //                 }
+    //             );
+    //         }
+    //     });
+    // }
 
-    private setQueryParams() {
-        this.router.navigate([], {
-            relativeTo: this.activatedRoute,
-            queryParams: { id: this.activeAchievement.id },
-            queryParamsHandling: 'merge',
-        });
-    }
+    // private setQueryParams() {
+    //     this.router.navigate([], {
+    //         relativeTo: this.activatedRoute,
+    //         queryParams: { id: this.activeAchievement.id },
+    //         queryParamsHandling: 'merge',
+    //     });
+    // }
 }

@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.specs.LearningOutcomeSpecDAO;
 import eu.europa.ec.empl.edci.issuer.service.spec.LearningOutcomeSpecService;
@@ -35,7 +35,7 @@ import javax.validation.Valid;
 })
 @Controller(value = "v1.LearningOutcomeSpecResource")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(value = Version.V1 + Endpoint.V1.LEARNING_OUTCOMES_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.LEARNING_OUTCOMES_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class LearningOutcomeResource implements CrudResource {
 
@@ -49,7 +49,7 @@ public class LearningOutcomeResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @ApiOperation(value = "Create an learningOutcome spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -64,7 +64,7 @@ public class LearningOutcomeResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate a activity spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<LearningOutcomeSpecView>> duplicateLearningOutcome(
@@ -78,7 +78,7 @@ public class LearningOutcomeResource implements CrudResource {
 
 
     @ApiOperation(value = "Update an learningOutcome spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -100,7 +100,7 @@ public class LearningOutcomeResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an learningOutcome spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteLearningOutcome(
@@ -111,7 +111,7 @@ public class LearningOutcomeResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an learningOutcome")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<LearningOutcomeSpecView>> getLearningOutcome(
@@ -126,7 +126,7 @@ public class LearningOutcomeResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of learningOutcomes")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningOutcomeSpecLiteView>> listLearningOutcome(
@@ -147,7 +147,7 @@ public class LearningOutcomeResource implements CrudResource {
     public Link[] generateLearningOutcomeHateoas(LearningOutcomeSpecDAO learningOutcomeDAO) {
 
         if (learningOutcomeDAO != null) {
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(LearningOutcomeResource.class).slash(Endpoint.V1.SPECS).slash(learningOutcomeDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(LearningOutcomeResource.class).slash(IssuerEndpoint.V1.SPECS).slash(learningOutcomeDAO.getPk()).withSelfRel();
 
             return new Link[]{
                     hateoasSelf

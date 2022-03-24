@@ -1,18 +1,19 @@
 package eu.europa.ec.empl.edci.util;
 
 import eu.europa.ec.empl.edci.config.service.IConfigService;
-import eu.europa.ec.empl.edci.constants.ControlledList;
-import eu.europa.ec.empl.edci.constants.ControlledListConcept;
-import eu.europa.ec.empl.edci.constants.EDCIConfig;
-import eu.europa.ec.empl.edci.constants.XML;
+import eu.europa.ec.empl.edci.constants.*;
+import eu.europa.ec.empl.edci.datamodel.model.ContactPoint;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
+import eu.europa.ec.empl.edci.datamodel.model.PersonDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.Localizable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.DownloadableObject;
+import eu.europa.ec.empl.edci.datamodel.model.dataTypes.SchemaLocation;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.EuropassPresentationDTO;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.VerificationCheckDTO;
 import eu.europa.ec.empl.edci.exception.EDCIException;
+import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
 import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.LocaleUtils;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.internet.MimeUtility;
 import javax.xml.bind.JAXBException;
@@ -29,6 +31,8 @@ import java.io.*;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component
@@ -49,6 +53,18 @@ public class EDCICredentialModelUtil {
     @Autowired
     private IConfigService iConfigService;
 
+    public boolean isPresentation(CredentialHolderDTO credentialHolderDTO) {
+        return credentialHolderDTO instanceof EuropassPresentationDTO;
+    }
+
+    public EuropassPresentationDTO createPresentation(EuropassCredentialDTO europassCredentialDTO) {
+        EuropassPresentationDTO presentation = new EuropassPresentationDTO();
+        presentation.setVerifiableCredential(europassCredentialDTO);
+        presentation.setType(this.getTypeCode(EuropassPresentationDTO.class, ControlledListConcept.VERIFICATION_TYPE_MANDATED_ISSUE.getUrl()));
+        presentation.setId(URI.create(presentation.getPrefix(presentation).concat(UUID.randomUUID().toString())));
+        return presentation;
+    }
+
     public Locale guessCredentialLocale(EuropassCredentialDTO europassCredentialDTO) {
         Locale locale = null;
         //ToDo -> Trim values?
@@ -65,6 +81,25 @@ public class EDCICredentialModelUtil {
         return locale;
     }
 
+    public String getSubjectFirstEmail(CredentialHolderDTO credentialHolderDTO) {
+        PersonDTO subject = credentialHolderDTO.getCredential().getCredentialSubject();
+        Optional<ContactPoint> contactPoint = Optional.empty();
+        if (subject != null && subject.getContactPoint() != null) {
+            contactPoint = subject.getContactPoint().stream().filter(cPoint -> cPoint.getEmail() != null && !cPoint.getEmail().isEmpty()).findFirst();
+        }
+        return contactPoint.isPresent() ? contactPoint.get().getEmail().get(0).getId().toString() : null;
+    }
+
+    public String getSubjectFirstWalletAddress(CredentialHolderDTO credentialHolderDTO) {
+        PersonDTO subject = credentialHolderDTO.getCredential().getCredentialSubject();
+        Optional<ContactPoint> contactPoint = Optional.empty();
+        if (subject != null && subject.getContactPoint() != null) {
+            contactPoint = subject.getContactPoint().stream().filter(cPoint -> cPoint.getWalletAddress() != null && !cPoint.getWalletAddress().isEmpty()).findFirst();
+        }
+        return contactPoint.isPresent() ? contactPoint.get().getWalletAddress().get(0) : null;
+
+    }
+
     public String getFileName(CredentialHolderDTO credentialHolderDTO, String locale) {
         return this.getFileName(credentialHolderDTO.getCredential(), locale);
     }
@@ -73,7 +108,7 @@ public class EDCICredentialModelUtil {
         String fileName = europassCredentialDTO.getCredentialSubject().getFullName().getLocalizedStringOrAny(locale)
                 .concat(" - ")
                 .concat(europassCredentialDTO.getTitle().getLocalizedStringOrAny(locale))
-                .concat(XML.EXTENSION_XML);
+                .concat(EDCIConstants.XML.EXTENSION_XML);
         fileName = fileName.replaceAll("[:\\\\/*?|<>]", "_");
         return fileName;
     }
@@ -85,7 +120,9 @@ public class EDCICredentialModelUtil {
     public String getEncodedFileName(EuropassCredentialDTO europassCredentialDTO, String locale) {
         String fileName = this.getFileName(europassCredentialDTO, locale);
         try {
-            fileName = MimeUtility.encodeText(fileName, StandardCharsets.UTF_8.name(), null);
+            if (iConfigService.getBoolean(EDCIConfig.Mail.ENCODE_MAIL_ATTACHMENT, false)) {
+                fileName = MimeUtility.encodeText(fileName, StandardCharsets.UTF_8.name(), null);
+            }
         } catch (UnsupportedEncodingException e) {
             logger.error("error encodig attached fileName");
         }
@@ -96,15 +133,42 @@ public class EDCICredentialModelUtil {
         return this.fromByteArray(xml).getCredential().getPrimaryLanguage();
     }
 
+    public String getSchemaVersionFromBytes(byte[] credentialBytes) {
+
+        String schemaVersion = EDCIConfig.SCHEMA_VERSION_CURRENT;
+        try {
+            SchemaLocation schemaLocation = xmlUtil.getUniqueSchemaLocation(credentialBytes);
+            if (schemaLocation.getLocation().endsWith("1.1.xsd")) {
+                schemaVersion = EDCIConfig.SCHEMA_VERSION_1_1;
+            } else {
+                schemaVersion = EDCIConfig.SCHEMA_VERSION_1_0;
+            }
+        } catch (Exception e) {
+            throw new EDCIException(ErrorCode.CREDENTIAL_SCHEMA_LOCATION_ERR, "global.internal.error");
+        }
+        return schemaVersion;
+    }
+
     public String getSchemaLocation(Class<? extends CredentialHolderDTO> presentationClass, String type) {
+        return getSchemaLocation(presentationClass, type, EDCIConfig.SCHEMA_VERSION_CURRENT);
+    }
+
+    public String getSchemaLocation(Class<? extends CredentialHolderDTO> presentationClass, String type, String version) {
 
         String schemaLocation = null;
 
         if (EuropassPresentationDTO.class.isAssignableFrom(presentationClass)) {
-            schemaLocation = iConfigService.getString(EDCIConfig.VP_SCHEMA_LOCATION);
+            if (EDCIConfig.SCHEMA_VERSION_CURRENT.equalsIgnoreCase(version) || EDCIConfig.SCHEMA_VERSION_1_1.equalsIgnoreCase(version)) {
+                schemaLocation = iConfigService.getString(EDCIConfig.VP_SCHEMA_LOCATION_1_1);
+            } else {
+                schemaLocation = iConfigService.getString(EDCIConfig.VP_SCHEMA_LOCATION_1_0);
+            }
         } else {
-            //TODO vp, what here?
-            schemaLocation = iConfigService.getString(EDCIConfig.CREDENTIAL_SCHEMA_LOCATION);
+            if (EDCIConfig.SCHEMA_VERSION_CURRENT.equalsIgnoreCase(version) || EDCIConfig.SCHEMA_VERSION_1_1.equalsIgnoreCase(version)) {
+                schemaLocation = iConfigService.getString(EDCIConfig.CREDENTIAL_SCHEMA_LOCATION_1_1);
+            } else {
+                schemaLocation = iConfigService.getString(EDCIConfig.CREDENTIAL_SCHEMA_LOCATION_1_0);
+            }
         }
 
         return schemaLocation;
@@ -243,6 +307,30 @@ public class EDCICredentialModelUtil {
         return cred;
     }
 
+
+    public String getXmlFromInputString(InputStream inputStream) {
+        String xml = null;
+        try {
+            try {
+
+                if (inputStream != null) {
+                    StringWriter writer = new StringWriter();
+                    org.apache.commons.io.IOUtils.copy(inputStream, writer, StandardCharsets.UTF_8.name());
+                    xml = writer.toString();
+                }
+            } catch (IOException exception) {
+                logger.error("[E] - Error recovering input stream from xml", exception);
+            }
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                throw new EDCIException().addDescription("[E] - error in final input stream close").setCause(e);
+            }
+        }
+        return xml;
+    }
+
     /*PERSENTATION METHODS*/
     public EuropassPresentationDTO toVerifiablePresentation(CredentialHolderDTO credentialHolder, List<VerificationCheckDTO> verificationDTOList) {
         //TODO vp confirm this when we have a VP. Do we return the VP immediatelly?
@@ -300,4 +388,27 @@ public class EDCICredentialModelUtil {
                 .collect(Collectors.toSet());
         return languages;
     }
+
+    public List<String> splitUploadMultipleCredentialsFile(MultipartFile file, String regex) {
+        List<String> credentialXmls = new ArrayList<>();
+        String fileContent = "";
+        try {
+            fileContent = new String(file.getBytes(), StandardCharsets.UTF_8);
+            Pattern credPattern = Pattern.compile(regex, Pattern.DOTALL);
+            Matcher matcher = credPattern.matcher(fileContent);
+            while (matcher.find()) {
+                String match = matcher.group();
+                credentialXmls.add(match);
+            }
+        } catch (Exception e) {
+            logger.error("Error reading multiple credentials file content");
+            throw new EDCIBadRequestException(EDCIMessageKeys.Exception.BadRquest.UPLOAD_CREDENTIAL_BAD_FORMAT).setCause(e);
+        }
+        return credentialXmls;
+    }
+
+    public String addUploadMultipleCredentialsWrapper(String originalXml) {
+        return EDCIConstants.XML.MULTIPLE_CREDENDTIALS_WRAPPER_OPEN + originalXml + EDCIConstants.XML.MULTIPLE_CREDENDTIALS_WRAPPER_CLOSE;
+    }
+
 }

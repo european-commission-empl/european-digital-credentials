@@ -19,7 +19,7 @@ public class IdentifierDTDAO implements IGenericDAO {
     public static final String TABLE_SEQ = TABLE + "_SEQ";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     private Long pk;
@@ -36,7 +36,7 @@ public class IdentifierDTDAO implements IGenericDAO {
     @Column(name = "ISSUED_DATE")
     private LocalDate issuedDate; //0..1
 
-    @Column(name = "IDENTIFIER_TYPE", columnDefinition = "VARCHAR2(4000)")
+    @Column(name = "IDENTIFIER_TYPE", length = 4000)
     private Set<String> identifierType; //*
 
     public String getContent() {

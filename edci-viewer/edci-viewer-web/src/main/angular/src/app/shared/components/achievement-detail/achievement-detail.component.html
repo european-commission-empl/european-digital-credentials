@@ -35,11 +35,7 @@
                 <strong>
                     {{ 'details.achievements-tab.awardingBody' | translate }}:
                 </strong>
-                <a
-                    (click)="
-                        openAwardingBodyModal(activeAchievement.awardingBody)
-                    "
-                >
+                <a (click)="changeSelection(activeAchievement.awardingBody.id)">
                     {{ activeAchievement?.awardingBody?.preferredName }}
                 </a>
             </p>
@@ -80,7 +76,7 @@
                 >
                     <tr *ngIf="assessment?.title || assessment?.grade">
                         <td>
-                            <a (click)="openAssessmentModal(assessment)">
+                            <a (click)="changeSelection(assessment.id)">
                                 {{ assessment?.title }}
                             </a>
                         </td>
@@ -106,7 +102,9 @@
                     let isLast = last
                 "
             >
-                <a (click)="linkToActivity(activity)">{{ activity.title }}</a
+                <a (click)="changeSelection(activity.id)">{{
+                    activity.title
+                }}</a
                 >{{ isLast ? '' : ', ' }}
             </span>
         </p>
@@ -125,7 +123,7 @@
                     let isLast = last
                 "
             >
-                <a (click)="linkToEntitlement(entitlement)">
+                <a (click)="changeSelection(entitlement.id)">
                     {{ entitlement.title }} </a
                 >{{ isLast ? '' : ', ' }}
             </span>
@@ -147,7 +145,7 @@
                     let isLast = last
                 "
             >
-                <a (click)="linkToAchievement(achievement)">{{
+                <a (click)="changeSelection(achievement.id)">{{
                     achievement.title
                 }}</a
                 >{{ isLast ? '' : ', ' }}
@@ -230,9 +228,8 @@
                             : ''
                     }}"
                     (click)="
-                        isLearningOutcomeExpanded[
-                            i
-                        ] = !isLearningOutcomeExpanded[i]
+                        isLearningOutcomeExpanded[i] =
+                            !isLearningOutcomeExpanded[i]
                     "
                 >
                     <p class="font-weight-bold d-flex">
@@ -280,27 +277,32 @@
                         </strong>
                         {{ learningOutcome?.reusabilityLevel }}
                     </p>
+                    <p class="col-12 related_esco">
+                        <strong>
+                            {{
+                                'details.achievements-tab.relatedESCOSkills'
+                                    | translate
+                            }}:
+                        </strong>
+                        <span
+                            *ngFor="
+                                let skill of learningOutcome?.relatedESCOSkill
+                            "
+                        >
+                            <a [href]="skill.link" target="_blank">{{
+                                skill.title
+                            }}</a>
+                        </span>
+                    </p>
                     <p *ngIf="learningOutcome?.relatedSkill" class="col-12">
                         <strong>
                             {{
                                 'details.achievement-tab.relatedSkill' | translate
-                            }}
+                            }}:
                         </strong>
                         {{
                             learningOutcome.relatedSkill | edciJoin: ', '
                         }}
-                    </p>
-                    <p class="col-12 related_esco">
-                        <strong>
-                            {{
-                            'details.achievements-tab.relatedESCOSkills'
-                                | translate
-                            }}:
-                        </strong>
-                        <span
-                              *ngFor="let skill of learningOutcome?.relatedESCOSkill">
-                                    <a [href]="skill.link" target="_blank">{{skill.title}}</a>
-                        </span>
                     </p>
                 </div>
             </div>
@@ -327,15 +329,28 @@
                 activeAchievement?.specifiedBy?.entryRequirements
             "
             class="border-bottom"
-        >
+        >   
+            <div *ngIf="activeAchievement?.specifiedBy?.instructionLanguage" class="d-inline-flex" class="col-12">
+                <p class="col-12 p-0">
+                <strong>
+                    {{
+                        'details.activities-tab.languagesOfInstruction' | translate
+                    }}:
+                </strong>
+                    {{
+                        activeAchievement?.specifiedBy?.instructionLanguage
+                            | edciJoin: ', '
+                    }}
+                </p>
+            </div>
             <div
                 *ngIf="
                     activeAchievement?.specifiedBy?.workloadInHours ||
                     activeAchievement?.specifiedBy?.maximumDurationInMonths
                 "
-                class="col-12"
+                class="d-inline-flex col-12"
             >
-                <p *ngIf="activeAchievement?.specifiedBy?.workloadInHours">
+                <p class ="col-6 p-0 mr-1" *ngIf="activeAchievement?.specifiedBy?.workloadInHours">
                     <strong>
                         {{
                             'details.achievements-tab.volumeOfLearning'
@@ -349,7 +364,7 @@
                             : ('hours' | translate)
                     }}
                 </p>
-                <p
+                <p class="col-6 p-0"
                     *ngIf="
                         activeAchievement?.specifiedBy?.maximumDurationInMonths
                     "
@@ -375,8 +390,8 @@
                 class="d-inline-flex col-12"
                 *ngIf="
                     activeAchievement?.specifiedBy?.ectsCreditPoints ||
-                    activeAchievement?.specifiedBy?.creditPoints?.length > 0 || 
-                    activeAchievement?.specifiedBy?.thematicArea
+                    activeAchievement?.specifiedBy?.creditPoints?.length > 0 ||
+                    activeAchievement?.specifiedBy?.creditPoints
                 "
             >
                 <p
@@ -393,24 +408,9 @@
                 </p>
 
                 <p
-                    *ngIf="activeAchievement?.specifiedBy?.thematicArea"
-                    class="col-6 p-0"
-                >
-                    <strong>
-                        {{
-                            'details.achievements-tab.thematicArea' | translate
-                        }}:
-                    </strong>
-                    <span>
-                        {{
-                            activeAchievement?.specifiedBy?.thematicArea
-                                | edciJoin: ', '
-                        }}
-                    </span>
-                </p>
-
-                <p
-                    *ngIf="activeAchievement?.specifiedBy?.creditPoints?.length > 0"
+                    *ngIf="
+                        activeAchievement?.specifiedBy?.creditPoints?.length > 0
+                    "
                     class="col-6 p-0"
                 >
                     <strong>
@@ -430,9 +430,21 @@
                 class="d-inline-flex col-12"
                 *ngIf="
                     activeAchievement?.specifiedBy?.learningMode ||
-                    activeAchievement?.specifiedBy?.instructionLanguage
+                    activeAchievement?.specifiedBy?.learningSetting
                 "
             >
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.learningSetting"
+                    class="col-6 p-0 mr-1"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.learningSettings'
+                                | translate
+                        }}:
+                    </strong>
+                    {{ activeAchievement?.specifiedBy?.learningSetting }}
+                </p>
                 <p
                     *ngIf="activeAchievement?.specifiedBy?.learningMode"
                     class="col-6 p-0 mr-1"
@@ -450,43 +462,14 @@
                         }}
                     </span>
                 </p>
-                <p
-                    *ngIf="activeAchievement?.specifiedBy?.instructionLanguage"
-                    class="col-6 p-0"
-                >
-                    <strong>
-                        {{
-                            'details.achievements-tab.languagesOfInstruction'
-                                | translate
-                        }}:
-                    </strong>
-                    <span>
-                        {{
-                            activeAchievement?.specifiedBy?.instructionLanguage
-                                | edciJoin: ', '
-                        }}
-                    </span>
-                </p>
             </div>
             <div
                 class="d-inline-flex col-12"
                 *ngIf="
-                    activeAchievement?.specifiedBy?.learningSetting ||
+                    activeAchievement?.specifiedBy?.thematicArea ||
                     activeAchievement?.specifiedBy?.learningOpportunityType
                 "
             >
-                <p
-                    *ngIf="activeAchievement?.specifiedBy?.learningSetting"
-                    class="col-6 p-0 mr-1"
-                >
-                    <strong>
-                        {{
-                            'details.achievements-tab.learningSettings'
-                                | translate
-                        }}:
-                    </strong>
-                    {{ activeAchievement?.specifiedBy?.learningSetting }}
-                </p>
                 <p
                     *ngIf="
                         activeAchievement?.specifiedBy?.learningOpportunityType
@@ -503,6 +486,22 @@
                         activeAchievement?.specifiedBy?.learningOpportunityType
                             | edciJoin: ', '
                     }}
+                </p>
+                <p
+                    *ngIf="activeAchievement?.specifiedBy?.thematicArea"
+                    class="col-6 p-0"
+                >
+                    <strong>
+                        {{
+                            'details.achievements-tab.thematicArea' | translate
+                        }}:
+                    </strong>
+                    <span>
+                        {{
+                            activeAchievement?.specifiedBy?.thematicArea
+                                | edciJoin: ', '
+                        }}
+                    </span>
                 </p>
             </div>
             <div
@@ -589,7 +588,8 @@
             <p>
                 <strong>
                     {{
-                        'details.achievements-tab.partialQualification' | translate
+                        'details.achievements-tab.partialQualification'
+                            | translate
                     }}:
                 </strong>
                 {{

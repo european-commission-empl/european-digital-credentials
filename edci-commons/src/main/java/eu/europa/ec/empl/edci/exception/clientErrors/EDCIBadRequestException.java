@@ -13,6 +13,10 @@ public class EDCIBadRequestException extends EDCIException {
         super(STATUS, MSG);
     }
 
+    public EDCIBadRequestException(HttpStatus httpStatus, ErrorCode errorCode, String messageKey, String... messageArgs) {
+        super(httpStatus, errorCode, messageKey, messageArgs);
+    }
+
     public EDCIBadRequestException(ErrorCode code) {
         super(STATUS, code, MSG);
     }

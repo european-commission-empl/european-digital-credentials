@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlValue;
 public class Notation {
 
     @XmlValue
-    @NotNull(message = MessageKeys.Validation.VALIDATION_NOTATION_CONTENT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_NOTATION_CONTENT_NOTNULL)
     @Valid
     private String content; //1
     @XmlAttribute

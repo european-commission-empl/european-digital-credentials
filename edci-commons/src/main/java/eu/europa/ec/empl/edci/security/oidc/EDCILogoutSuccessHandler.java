@@ -37,10 +37,17 @@ public class EDCILogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler impl
             String redirectUrl = "";
             if (!oidcAuthenticationToken.getUserInfo().getSub().equals(this.createMockUser().getUserInfo().getSub())) {
                 String issuer = oidcAuthenticationToken.getIssuer();
-                String endSessionEndpoint = serverConfigurationService.getServerConfiguration(issuer).getEndSessionEndpoint();
+                String endSessionEndpoint = this.getConfigService().getString(EDCIConfig.Security.IDP_END_SESSION_URL, null);
+                try {
+                    endSessionEndpoint = serverConfigurationService.getServerConfiguration(issuer).getEndSessionEndpoint();
+
+                } catch (Exception e) {
+                    logger.error("[D] - Could not find a end session URL from server configuration");
+                }
+
                 URI uri = UriComponentsBuilder.fromUriString(endSessionEndpoint)
                         .queryParam("id_token_hint", oidcAuthenticationToken.getIdToken().serialize())
-                        .queryParam("post_logout_redirect_uri", this.getConfigService().getString(EDCIConfig.OIDC_POST_LOGOUT_URL)).build().encode().toUri();
+                        .queryParam("post_logout_redirect_uri", this.getConfigService().getString(EDCIConfig.Security.POST_LOGOUT_URL)).build().encode().toUri();
 
                 redirectUrl = uri.toString();
             } else {
@@ -75,7 +82,7 @@ public class EDCILogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler impl
     }
 
     private OIDCAuthenticationToken createMockUser() {
-        DefaultUserInfo user = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(this.getConfigService().getString(EDCIConfig.OIDC_MOCK_USER_INFO), DefaultUserInfo.class);
+        DefaultUserInfo user = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(this.getConfigService().getString(EDCIConfig.Security.MOCK_USER_INFO), DefaultUserInfo.class);
         return new OIDCAuthenticationToken("mockuser", "mockIDP", user, null, null, null, null);
     }
 

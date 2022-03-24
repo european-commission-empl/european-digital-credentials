@@ -86,10 +86,10 @@ public class ShareLinkService implements WalletCrudService<ShareLinkDAO> {
         return addShareLinkEntity(shareLinkDTOAux);
     }
 
-    public ResponseEntity<ByteArrayResource> downloadShareLinkPresentationPDF(String sharedURL) {
+    public ResponseEntity<ByteArrayResource> downloadShareLinkPresentationPDF(String sharedURL, String pdfType) {
         ShareLinkDTO shareLinkDTO = this.fetchShareLinkBySharedURL(sharedURL);
         if (!isShareLinkExpired(shareLinkDTO)) {
-            return credentialService.downloadVerifiablePresentationPDF(shareLinkDTO.getCredentialDTO(), shareLinkDTO.getExpirationDate(), false);
+            return credentialService.downloadVerifiablePresentationPDF(shareLinkDTO.getCredentialDTO(), shareLinkDTO.getExpirationDate(), pdfType);
         } else {
             shareLinkDTO.setExpired(true);
             this.shareLinkRepository.save(shareLinkMapper.toDAO(shareLinkDTO));
@@ -119,7 +119,7 @@ public class ShareLinkService implements WalletCrudService<ShareLinkDAO> {
     public ResponseEntity<byte[]> downloadShareLinkPresentationXML(String sharedURL) {
         ShareLinkDTO shareLinkDTO = this.fetchShareLinkBySharedURL(sharedURL);
         if (!isShareLinkExpired(shareLinkDTO)) {
-            return credentialService.downloadVerifiablePresentationXML(shareLinkDTO.getCredentialDTO(), shareLinkDTO.getExpirationDate(), false);
+            return credentialService.downloadVerifiablePresentationXML(shareLinkDTO.getCredentialDTO(), shareLinkDTO.getExpirationDate());
         } else {
             shareLinkDTO.setExpired(true);
             this.shareLinkRepository.save(shareLinkMapper.toDAO(shareLinkDTO));

@@ -12,6 +12,7 @@ public class EuropassDiplomaDTO {
     private String html;
     private String backgroundImage;
     private String logo;
+    private String type;
     private Date expirationDate;
     private String primaryLanguage;
     private List<String> availableLanguages;
@@ -79,5 +80,13 @@ public class EuropassDiplomaDTO {
 
     public void setAvailableLanguages(List<String> availableLanguages) {
         this.availableLanguages = availableLanguages;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

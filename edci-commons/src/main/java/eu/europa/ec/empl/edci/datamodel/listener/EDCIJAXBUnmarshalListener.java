@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.listener;
 
 
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.model.MailboxDTO;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -20,8 +20,8 @@ public class EDCIJAXBUnmarshalListener extends Unmarshaller.Listener {
             MailboxDTO mailboxDTO = (MailboxDTO) target;
             String mailString = mailboxDTO.getId().toString();
 
-            if (mailString.contains(Defaults.DEFAULT_MAILTO)) {
-                mailString = mailString.replace(Defaults.DEFAULT_MAILTO, "");
+            if (mailString.contains(EDCIConfig.Defaults.DEFAULT_MAILTO)) {
+                mailString = mailString.replace(EDCIConfig.Defaults.DEFAULT_MAILTO, "");
                 mailboxDTO.setId(URI.create(mailString));
             }
         }

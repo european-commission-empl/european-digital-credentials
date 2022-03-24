@@ -2,8 +2,8 @@ package eu.europa.ec.empl.edci.datamodel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.VerifiableCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.*;
@@ -28,22 +28,22 @@ public class EuropassCredentialDTO extends VerifiableCredentialDTO implements Cr
 
     @Valid
     private List<Identifier> identifier = new ArrayList<>(); //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_TYPE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_TYPE_NOTNULL)
     @Valid
     private Code type;
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_TITLE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_TITLE_NOTNULL)
     @Valid
     private Text title; //1
     @Valid
     private Note description; //0..1
     @XmlIDREF
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUER_NOTNULl)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_ISSUER_NOTNULl)
     @XmlPath("cred:issuer/@idref")
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_CRED_URI)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_CRED_URI)
     private OrganizationDTO issuer; //1
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_CREDENTIALSUBJECT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_CREDENTIALSUBJECT_NOTNULL)
     private PersonDTO credentialSubject; //1
     @XmlTransient
     @Valid

@@ -4,6 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import eu.europa.ec.empl.edci.config.service.IConfigService;
 import eu.europa.ec.empl.edci.constants.ControlledList;
 import eu.europa.ec.empl.edci.constants.ControlledListConcept;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
@@ -21,6 +24,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -37,6 +41,9 @@ public class ImageUtil {
 
     public static int BACKGROUND_HEIGHT = 1754; //For 150 ppi
     public static int BACKGROUND_WIDTH = 0; //Proporcional to height
+
+    @Autowired
+    private IConfigService configService;
 
 //    protected final static Pattern mimeType = Pattern.compile("^data:([a-zA-Z0-9]+/([a-zA-Z0-9]+)).*,.*");
 //
@@ -93,6 +100,57 @@ public class ImageUtil {
 //        BufferedImage resizedImg = resizeImage(img, targetWidth, targetHeight);
 //        return encodeToString(resizedImg, getType(base64Image));
 //    }
+
+    public String getImageDownloadUrl() {
+        return getConfigService().getString("png.download.url");
+    }
+
+    /**
+     * Generates an image in JPG format from a given HTML usign the defined in "png.download.url" property.
+     * The process generates a PDF from the HTML and then a PNG from the PDF. After this the PNG is converted to a JPG to use less disk when stored.
+     * @param html html used for the image generation
+     * @param size Size of the Image generated. If the size is smaller than the resulting image, this one will be split into different pages
+     * @param margin image margins
+     * @return
+     * @throws IOException
+     */
+    public byte[] htmlToImage(String html, String size, String margin) throws IOException {
+
+        String header = "<head>\n" +
+                " <style type=\"text/css\"> \n" +
+                "     @page { size: " + size + "; margin: " + margin + "; } \n" +
+                "</style>\n" +
+                "</head>\n";
+
+        String imageDownloadURL = getImageDownloadUrl();
+
+        byte[] bytes = null;
+
+        if (imageDownloadURL != null && !imageDownloadURL.isEmpty()) {
+            bytes = new EDCIRestRequestBuilder(HttpMethod.POST, imageDownloadURL)
+                    .addHeaderRequestedWith()
+                    .addHeaders(MediaType.MULTIPART_FORM_DATA, MediaType.IMAGE_PNG)
+                    .addBody(EDCIRestRequestBuilder.prepareMultiPartStringBody("html", header + html, new HashMap<>()))
+                    .buildRequest(byte[].class)
+                    .execute();
+        }
+
+        byte[] jpegImage = null;
+        try (ByteArrayInputStream in = new ByteArrayInputStream(bytes); ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
+            BufferedImage image = ImageIO.read(in);
+            BufferedImage result = new BufferedImage(
+                    image.getWidth(),
+                    image.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+            result.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
+            ImageIO.write(result, "jpg", buffer);
+            jpegImage = buffer.toByteArray();
+        }
+
+        return jpegImage;
+
+    }
+
 
     public BufferedImage resizeImage(BufferedImage originalImage, int targetHeightpx, int targetWidthpx) throws IOException {
 
@@ -171,6 +229,10 @@ public class ImageUtil {
 
     public Code getBase64Encoding() {
         return controlledListCommonsService.searchConceptByUri(ControlledList.ENCODING.getUrl(), ControlledListConcept.ENCODING_BASE64.getUrl(), LocaleContextHolder.getLocale().toString());
+    }
+
+    protected IConfigService getConfigService() {
+        return configService;
     }
 
 }

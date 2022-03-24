@@ -227,8 +227,6 @@
             <xs:enumeration value="http://data.europa.eu/snb/qualification-topics#ways-to-acquire"/>
             <xs:enumeration
                     value="http://data.europa.eu/snb/qualification-topics#history-and-lifecycle"/>
-            <xs:enumeration
-                    value="http://data.europa.eu/snb/qualification-topics#labour-market-and-employment"/>
             <xs:enumeration value="http://data.europa.eu/snb/qualification-topics#pathways"/>
         </xs:restriction>
     </xs:simpleType>
@@ -2866,7 +2864,7 @@
                     </xs:complexContent>
                 </xs:complexType>
             </xs:element>
-            <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="childCredentials"
+            <xs:element form="qualified" maxOccurs="1" minOccurs="0" name="childCredentials"
                         type="ChildCredentialsType">
                 <xs:annotation>
                     <xs:documentation>Container element that records all the verifiable child

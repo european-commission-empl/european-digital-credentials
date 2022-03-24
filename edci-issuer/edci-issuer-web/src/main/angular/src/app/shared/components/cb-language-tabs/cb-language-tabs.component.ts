@@ -1,5 +1,20 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation, } from '@angular/core';
-import { UxEuLanguages, UxLanguage, UxLink, UxService, UxTabComponent, } from '@eui/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewEncapsulation,
+} from '@angular/core';
+import {
+    UxEuLanguages,
+    UxLanguage,
+    UxLink,
+    UxService,
+    UxTabComponent,
+} from '@eui/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IssuerService } from '@services/issuer.service';
 
@@ -12,9 +27,8 @@ import { IssuerService } from '@services/issuer.service';
 export class CbLanguageTabsComponent implements OnInit, OnChanges {
     @Input() selectedLanguages: UxLanguage[] = [];
     @Input() language: string;
-    @Output() selectedLanguagesChange: EventEmitter<
-        UxLanguage[]
-    > = new EventEmitter<UxLanguage[]>();
+    @Output() selectedLanguagesChange: EventEmitter<UxLanguage[]> =
+        new EventEmitter<UxLanguage[]>();
     @Output() onLanguageChange: EventEmitter<string> = new EventEmitter();
     @Output() onLanguageRemoved: EventEmitter<string> = new EventEmitter();
     @Output() onLanguageAdded: EventEmitter<string> = new EventEmitter();
@@ -26,17 +40,18 @@ export class CbLanguageTabsComponent implements OnInit, OnChanges {
         private issuerService: IssuerService,
         private translateService: TranslateService
     ) {
-        const languageList = this.issuerService.addMissingLanguages(
-            UxEuLanguages.getLanguages()
-        );
-        languageList.forEach((language) => {
-            this.languages.push(
-                new UxLink({
-                    id: language.code,
-                    label: language.label,
-                })
-            );
-        });
+        // const languageList = this.issuerService.addMissingLanguages(
+        //     UxEuLanguages.getLanguages()
+        // );
+        // languageList.forEach((language) => {
+        //     this.languages.push(
+        //         new UxLink({
+        //             id: language.code,
+        //             label: language.label,
+        //         })
+        //     );
+        // });
+        this.languages = [new UxLink({ id: 'en', label: 'English' })];
     }
 
     ngOnInit() {

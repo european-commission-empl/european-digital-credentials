@@ -17,14 +17,10 @@
         "start-proxy": "npm run clean && eui-scripts serve-app --configuration=proxy",
         "start-openid": "npm run clean && eui-scripts serve-app --configuration=local-openid",
         "build": "eui-scripts build-app",
-        "build-dev-wls": "eui-scripts build-app  --skipTest --configuration=devwls",
-        "build-dev-tomcat": "eui-scripts build-app  --skipTest --configuration=devtomcat",
         "build-qa-tomcat": "eui-scripts build-app  --skipTest --configuration=qatomcat",
         "build-prod": "eui-scripts build-app --skipTest --configuration=production",
-        "build-test": "eui-scripts build-app --skipTest --configuration=test",
         "build-acceptance": "eui-scripts build-app --skipTest --configuration=acceptance",
         "build-local-tomcat": "eui-scripts build-app  --skipTest --configuration=localtomcat",
-        "build-local-wls": "eui-scripts build-app --skipTest --configuration=localwls",
         "no-branding": "eui-scripts build-app --skipTest --configuration=no-branding",
         "build-prod-ci": "ncp tsconfig-ci.json tsconfig.json && npm run build-prod",
         "pkg:init": "eui-cli -m",
@@ -52,7 +48,7 @@
         "css-vars-ponyfill": "^2.1.2"
     },
     "devDependencies": {
-        "@compodoc/compodoc": "1.1.9",
+        "@compodoc/compodoc": "^1.1.11",
         "karma": "3.1.4",
         "karma-chrome-launcher": "2.2.0",
         "karma-cli": "2.0.0",

@@ -16,7 +16,7 @@ public class StandardDTDAO implements IGenericDAO {
     public static final String TABLE_SEQ = TABLE + "_SEQ";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     private Long pk;

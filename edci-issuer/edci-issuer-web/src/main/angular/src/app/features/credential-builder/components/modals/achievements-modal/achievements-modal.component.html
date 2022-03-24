@@ -1,7 +1,11 @@
 <ux-modal
-    id="{{modalId}}"
+    id="{{ modalId }}"
     class="achievementModal"
-    [titleLabel]="modalTitle"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
     (onClose)="closeModal(false)"
     customWidth="75%"
 >
@@ -136,7 +140,14 @@
                                 formControlName="awardingDate"
                                 [placeholder]="'dd/mm/yyyy hh:mm'"
                                 [isDatetimepicker]="true"
+                                (onDateSelect)="checkValidDate()"
                             ></ux-datepicker>
+                            <ux-control-feedback
+                                *ngIf="awardingDateValueInvalid"
+                                typeClass="danger"
+                            >
+                                {{ 'error.invalidDate' | translate }}
+                            </ux-control-feedback>
                         </ux-form-group>
                     </div>
                     <div
@@ -169,6 +180,7 @@
                                 entityType="organization"
                                 [isSingleSelection]="true"
                                 [preSelectedItems]="selectedAwardingBody"
+                                [defaultLanguage]="defaultLanguage"
                                 (onEntityClicked)="editEntityClicked($event)"
                                 (selectionChange)="
                                     onAwardingBodySelectionChange($event)
@@ -179,7 +191,11 @@
                                 styleClass="no-shadow"
                                 iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                                 [isFlat]="true"
-                                [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                                [ngClass]="{
+                                    disabled:
+                                        this.credentialBuilderService
+                                            .isNewEntityDisabled
+                                }"
                                 (click)="newEntityClicked('organization')"
                             ></ux-button>
                         </div>
@@ -251,6 +267,7 @@
                         <edci-autocomplete
                             entityType="assessment"
                             [isSingleSelection]="true"
+                            [defaultLanguage]="defaultLanguage"
                             [preSelectedItems]="selectedProvenBy"
                             (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
@@ -262,7 +279,11 @@
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
                             (click)="newEntityClicked('assessment')"
                         ></ux-button>
                     </div>
@@ -289,18 +310,26 @@
                         <edci-autocomplete
                             entityType="activity"
                             [preSelectedItems]="selectedInfluencedBy"
+                            [defaultLanguage]="defaultLanguage"
                             (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
                                 onInfluencedBySelectionChange($event)
                             "
+                            (selectedItemsChange)="onSelectedActivitiesChange($event)"
                         >
                         </edci-autocomplete>
                         <ux-button
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
-                            (click)="newEntityClicked('activity')"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
+                            (click)="
+                                newEntityClicked('activity', undefined, true)
+                            "
                         ></ux-button>
                     </div>
                 </div>
@@ -326,6 +355,7 @@
                         <edci-autocomplete
                             entityType="entitlement"
                             [isSingleSelection]="true"
+                            [defaultLanguage]="defaultLanguage"
                             [preSelectedItems]="selectedEntitledTo"
                             (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
@@ -334,10 +364,14 @@
                         >
                         </edci-autocomplete>
                         <ux-button
-                            styleClass="no-shadow"D
+                            styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
                             (click)="newEntityClicked('entitlement')"
                         ></ux-button>
                     </div>
@@ -364,19 +398,27 @@
                         <edci-autocomplete
                             entityType="achievement"
                             [mainItemOid]="editAchievementOid"
+                            [defaultLanguage]="defaultLanguage"
                             [preSelectedItems]="selectedSubAchievements"
                             (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
                                 onSubAchievementSelectionChange($event)
                             "
+                            (selectedItemsChange)="onSelectedAchivementChange($event)"
                         >
                         </edci-autocomplete>
                         <ux-button
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
-                            (click)="newEntityClicked('achievement')"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
+                            (click)="
+                                newEntityClicked('achievement', undefined, true)
+                            "
                         ></ux-button>
                     </div>
                 </div>
@@ -479,18 +521,30 @@
                         <edci-autocomplete
                             entityType="learningOutcome"
                             [preSelectedItems]="selectedLearningOutcomes"
+                            [defaultLanguage]="defaultLanguage"
                             (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
                                 onLearningOutcomeSelectionChange($event)
                             "
+                            (selectedItemsChange)="onSelectedLearningChange($event)"
                         >
                         </edci-autocomplete>
                         <ux-button
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
-                            (click)="newEntityClicked('learningOutcome')"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
+                            (click)="
+                                newEntityClicked(
+                                    'learningOutcome',
+                                    undefined,
+                                    true
+                                )
+                            "
                         ></ux-button>
                     </div>
                 </div>

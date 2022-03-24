@@ -4,7 +4,6 @@ package eu.europa.ec.empl.edci.issuer.service;
 import eu.europa.ec.empl.base.AbstractUnitBaseTest;
 import eu.europa.ec.empl.edci.datamodel.controlledList.RDFConcept;
 import eu.europa.ec.empl.edci.issuer.common.model.ELementCLBasicDTO;
-import eu.europa.ec.empl.edci.issuer.service.spec.ControlledListsOldService;
 import eu.europa.ec.empl.edci.issuer.util.FileUtil;
 import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
 import org.junit.Assert;
@@ -19,13 +18,10 @@ import java.util.Set;
 public class FileServiceTest extends AbstractUnitBaseTest {
 
     @InjectMocks
-    FileService fileService;
+    IssuerFileService fileService;
 
     @Spy
     FileUtil fileUtil;
-
-    @Spy
-    ControlledListsOldService controlledListsService;
 
     @Mock
     private ControlledListCommonsService controlledListCommonsService;

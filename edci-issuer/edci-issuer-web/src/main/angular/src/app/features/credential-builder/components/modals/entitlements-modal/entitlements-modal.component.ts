@@ -27,10 +27,13 @@ import {
     ResourceOrganizationSpecView,
     SubresourcesOids,
     V1Service,
+    EntitlementSpecLiteView,
 } from '@shared/swagger';
 import { noSpaceValidator } from '@shared/validators/no-space-validator';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
+import { dateValidator } from '@shared/validators/date-validator';
+import { SelectedTagItemList } from '@shared/models/selected-tag-item-list.model';
 
 @Component({
     selector: 'edci-entitlements-modal',
@@ -39,12 +42,15 @@ import { Subject } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
 })
 export class EntitlementsModalComponent implements OnInit, OnDestroy {
-
     @Input() modalTitle: string;
     @Input() modalId: string = 'entitlementModal';
     @Input() language: string;
     @Input() editEntitlementOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
     @ViewChild('additionalNoteSpecification')
     additionalNoteSpecification: MoreInformationComponent;
     @ViewChild('additionalNote')
@@ -65,9 +71,12 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
     selectedSubEntitlements: PagedResourcesEntitlementSpecLiteView;
     subEntitlementsOidList: number[] = [];
     indexToNextTab: number;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
     isNewEntityDisabled: boolean;
+    unsavedEntitlements: EntitlementSpecLiteView[] = [];
 
     formGroup = new FormGroup({
         defaultTitle: new FormControl(null, [
@@ -77,8 +86,8 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
         ]),
         title: new FormGroup({}),
         description: new FormGroup({}),
-        issueDate: new FormControl(null),
-        expiryDate: new FormControl(null),
+        issueDate: new FormControl(null, [dateValidator]),
+        expiryDate: new FormControl(null, [dateValidator]),
         // Specification
         specifiedBy: new FormGroup({
             specificationTitle: new FormGroup({}),
@@ -100,6 +109,9 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
             moreInformation: new FormGroup({}),
         }),
     });
+    modalTitleBreadcrumb: string[];
+    issueDateValueInvalid: boolean;
+    expiryDateValueInvalid: boolean;
 
     get defaultTitle() {
         return this.formGroup.get('defaultTitle') as FormControl;
@@ -179,13 +191,19 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
         private dateFormatService: DateFormatService
     ) {}
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         this.specificationTitleValueChange();
         this.titleValueChangeAutocomplete();
         if (this.editEntitlementOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.entitlements-tab.editEntitlement');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.entitlements-tab.editEntitlement'
+            );
             this.getEntitlementDetails();
         } else {
-            this.modalTitle = this.translateService.instant('credential-builder.entitlements-tab.createEntitlement');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.entitlements-tab.createEntitlement'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.defaultLanguage = this.translateService.currentLang;
             this.credentialBuilderService.addOtherDocumentRow(
@@ -206,7 +224,8 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
     }
 
     onSave(): void {
-        if (this.formGroup.invalid) {
+        this.validateFormDatesValues();
+        if (this.formGroup.invalid || this.issueDateValueInvalid || this.expiryDateValueInvalid) {
             this.uxService.markControlsTouched(this.formGroup);
             this.isLoading = false;
             this.uxService.openMessageBox('messageBoxFormError');
@@ -222,6 +241,7 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
     }
 
     checkValidDate(): void {
+        this.validateFormDatesValues();
         if (
             !this.dateFormatService.validateDates(
                 this.issueDate.value,
@@ -286,6 +306,12 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
         this.subEntitlementsOidList = oids;
     }
 
+    onSelectedEntitlementChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedEntitlements.push(item.entitlement);
+        });
+    }
+
     titleValueChangeAutocomplete(): void {
         this.title.valueChanges.takeUntil(this.destroy$).subscribe((value) => {
             if (
@@ -321,37 +347,57 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
         });
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'entitlement':
                 this.selectedSubEntitlements =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedSubEntitlements, this.subEntitlementsOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedSubEntitlements,
+                            this.subEntitlementsOidList,
+                            item,
+                            this.unsavedEntitlements
+                        );
                 break;
             }
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -360,11 +406,12 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -397,7 +444,11 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
         let relValidWith: SubresourcesOids = null;
         if (this.limitOrganization.value && !this.specDisabled) {
             relValidWith = {
-                oid: [this.limitOrganization.value],
+                oid: [
+                    Array.isArray(this.limitOrganization.value)
+                        ? this.limitOrganization.value[0]
+                        : this.limitOrganization.value
+                ]
             };
         }
         return relValidWith;
@@ -413,13 +464,15 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
             .subscribe(
                 (entitlement: EntitlementSpecView) => {
                     this.editEntitlement = entitlement;
-                    this.availableLanguages = this.editEntitlement.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editEntitlement.additionalInfo.languages;
                     this.language = this.editEntitlement.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editEntitlement.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editEntitlement.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.credentialBuilderService.extractWebDocuments(
                         _get(
                             this.editEntitlement,
@@ -524,7 +577,11 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, entitlement.oid, entitlement.defaultTitle);
+                    this.closeModal(
+                        true,
+                        entitlement.oid,
+                        entitlement.defaultTitle
+                    );
                 },
                 (err) => {
                     this.closeModal(false);
@@ -550,7 +607,11 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, entitlement.oid, entitlement.defaultTitle);
+                    this.closeModal(
+                        true,
+                        entitlement.oid,
+                        entitlement.defaultTitle
+                    );
                 },
                 (err) => {
                     this.closeModal(false);
@@ -605,11 +666,13 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
                 homePage: this.credentialBuilderService.getHomePage(
                     this.homePage.value
                 ),
-                supplementaryDocument: this.credentialBuilderService.getOtherDocument(
-                    this.otherWebDocuments,
-                    this.defaultLanguage
-                ),
-                additionalNote: this.additionalNoteSpecification.getAdditionalNotes(),
+                supplementaryDocument:
+                    this.credentialBuilderService.getOtherDocument(
+                        this.otherWebDocuments,
+                        this.defaultLanguage
+                    ),
+                additionalNote:
+                    this.additionalNoteSpecification.getAdditionalNotes(),
             };
         }
         return specifiedBy;
@@ -769,5 +832,21 @@ export class EntitlementsModalComponent implements OnInit, OnDestroy {
                 this.specificationTitle.controls[language].markAsDirty();
             }
         );
+    }
+
+    private validateFormDatesValues() {
+        if (this.issueDate.value && !this.dateFormatService.validateDate(this.issueDate.value)) {
+            this.issueDateValueInvalid = true;
+            this.issueDate.reset();
+        } else {
+            this.issueDateValueInvalid = false;
+        }
+
+        if (this.expiryDate.value && !this.dateFormatService.validateDate(this.expiryDate.value)) {
+            this.expiryDateValueInvalid = true;
+            this.expiryDate.reset();
+        } else {
+            this.expiryDateValueInvalid = false;
+        }
     }
 }

@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Identifiable;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -26,13 +26,13 @@ public class EntitlementSpecificationDTO implements Identifiable, Nameable {
     @XmlAttribute
     @XmlID
     @XmlIDExtension
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_ID_NOTNULL)
     private URI id; //1
     @XmlTransient
     private String pk;
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_TYPE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_TYPE_NOTNULL)
     @Valid
     @XmlElement(name = "type")
     private Code entitlementType;
@@ -51,7 +51,7 @@ public class EntitlementSpecificationDTO implements Identifiable, Nameable {
     @Valid
     @XmlElement(name = "supplementaryDoc")
     private List<WebDocumentDTO> supplementaryDocument;
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_STATUS_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ENTITLEMENTSPEC_STATUS_NOTNULL)
     @Valid
     private Code status; //1
     @XmlIDREF

@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.service;
 
 import eu.europa.ec.empl.edci.config.service.IConfigService;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.controlledList.RDFConcept;
 import eu.europa.ec.empl.edci.datamodel.controlledList.RDFConceptScheme;
 import org.apache.commons.lang3.StringUtils;
@@ -78,7 +78,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -134,7 +134,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -192,7 +192,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -255,7 +255,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -305,7 +305,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), queryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), queryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -359,7 +359,7 @@ public class RDFsparqlBridgeService {
         Set<RDFConcept> rdfConcepts = null;
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -417,7 +417,7 @@ public class RDFsparqlBridgeService {
                     "}  \n";
         }
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), queryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), queryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 
@@ -460,7 +460,7 @@ public class RDFsparqlBridgeService {
                 "}";
 
         try (QueryExecution qexec = QueryExecutionFactory.sparqlService(
-                iConfigService.getString(EuropassConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
+                iConfigService.getString(EDCIConstants.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT), outerQueryString, targetFramework)) {
 
             ResultSet rs = qexec.execSelect();
 

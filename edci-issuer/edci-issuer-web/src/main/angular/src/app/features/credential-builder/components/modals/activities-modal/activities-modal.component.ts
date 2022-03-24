@@ -30,11 +30,14 @@ import {
     SubresourcesOids,
     TextDTView,
     V1Service,
+    LearningActivitySpecLiteView,
 } from '@shared/swagger';
 import { noSpaceValidator } from '@shared/validators/no-space-validator';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { dateValidator } from '@shared/validators/date-validator';
+import { SelectedTagItemList } from '@shared/models/selected-tag-item-list.model';
 
 @Component({
     selector: 'edci-activities-modal',
@@ -44,6 +47,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ActivitiesModalComponent implements OnInit, OnDestroy {
     selectedDirectedBy: OrganizationSpecLiteView;
+    modalTitleBreadcrumb: string[];
     get defaultTitle() {
         return this.formGroup.get('defaultTitle') as FormControl;
     }
@@ -104,7 +108,11 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     @Input() language: string;
     @Input() modalId: string = 'activityModal';
     @Input() editActivityOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
     @ViewChild('additionalNoteSpecification')
     additionalNoteSpecification: MoreInformationComponent;
     @ViewChild('additionalNote')
@@ -125,11 +133,13 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     selectedSubActivities: PagedResourcesLearningActivitySpecLiteView = {
         content: [],
         links: [],
-        page: null
+        page: null,
     };
     subActivitiesOidList: number[] = [];
     indexToNextTab: number;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
     formGroup = new FormGroup({
         // Activity
@@ -140,8 +150,8 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
         ]),
         title: new FormGroup({}),
         description: new FormGroup({}),
-        startDate: new FormControl(null),
-        endDate: new FormControl(null),
+        startDate: new FormControl(null, [dateValidator]),
+        endDate: new FormControl(null, [dateValidator]),
         workload: new FormControl(null, [
             Validators.maxLength(Constants.MAX_LENGTH_INTEGERS),
             Validators.pattern(Constants.INTEGER_REGULAR_EXPRESSION),
@@ -162,6 +172,9 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
         ]),
         supplementaryDocument: new FormArray([]),
     });
+    startDateValueInvalid: boolean;
+    endDateValueInvalid: boolean;
+    unsavedActivities: LearningActivitySpecLiteView[] = [];
 
     constructor(
         public uxService: UxService,
@@ -174,11 +187,17 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (this.editActivityOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.activities-tab.editActivity');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.activities-tab.editActivity'
+            );
             this.getActivityDetails();
         } else {
-            this.modalTitle = this.translateService.instant('credential-builder.activities-tab.createActivity');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.activities-tab.createActivity'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.credentialBuilderService.addOtherDocumentRow(
                 this.supplementaryDocument
@@ -197,8 +216,14 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }
+
     onSave(): void {
-        if (this.isFormInvalid()) {
+        this.validateFormDatesValues();
+        if (
+            this.isFormInvalid() ||
+            this.startDateValueInvalid ||
+            this.endDateValueInvalid
+        ) {
             this.uxService.markControlsTouched(this.formGroup);
             this.isLoading = false;
             this.uxService.openMessageBox('messageBoxFormError');
@@ -214,8 +239,9 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     }
 
     checkValidDate(): void {
+        this.validateFormDatesValues();
         if (
-            !this.dateFormatService.validateDates(
+            !this.dateFormatService.validateActivityDates(
                 this.startDate.value,
                 this.endDate.value
             )
@@ -229,7 +255,7 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     }
 
     closeModal(isEdit: boolean, oid?: number, title?: string): void {
-        this.onCloseModal.emit( { isEdit, oid, title } );
+        this.onCloseModal.emit({ isEdit, oid, title });
         this.formGroup.reset();
         this.isSaveDisabled = false;
     }
@@ -261,7 +287,9 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
             .createLearningActivity(
                 this.activityBody,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (activity: LearningActivitySpecView) => {
                     this.notificationService.showNotification({
                         severity: 'success',
@@ -291,30 +319,51 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
         this.subActivitiesOidList = oids;
     }
 
+    onSelectedActivitiesChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach((item) => {
+            this.unsavedActivities.push(item.activity);
+        });
+    }
+
     onDirectedBySelectionChange(oid: number): void {
         this.formGroup.patchValue({ directedBy: oid });
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'organization':
@@ -322,13 +371,18 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
                 break;
             case 'activity':
                 this.selectedSubActivities =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedSubActivities, this.subActivitiesOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedSubActivities,
+                            this.subActivitiesOidList,
+                            item,
+                            this.unsavedActivities
+                        );
                 break;
             }
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -337,11 +391,12 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -354,16 +409,19 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
                 this.editActivityOid,
                 this.translateService.currentLang
             )
-            .pipe(takeUntil(this.destroy$)).subscribe(
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (credential: ResourceLearningActivitySpecView) => {
                     this.editActivity = credential;
-                    this.availableLanguages = this.editActivity.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editActivity.additionalInfo.languages;
                     this.language = this.editActivity.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editActivity.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editActivity.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.credentialBuilderService.extractWebDocuments(
                         _get(
                             this.editActivity,
@@ -492,32 +550,34 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
                 this.specificationDescription
             ),
             workload: this.specificationWorkload.value,
-            supplementaryDocument: this.credentialBuilderService.getOtherDocument(
-                this.supplementaryDocument,
-                this.defaultLanguage
-            ),
+            supplementaryDocument:
+                this.credentialBuilderService.getOtherDocument(
+                    this.supplementaryDocument,
+                    this.defaultLanguage
+                ),
             language:
                 _get(this.activityLanguage, 'length', 0) > 0
                     ? this.activityLanguage
                     : null,
 
-            learningActivityType: this.credentialBuilderService.getArrayFromSingleItem(
-                this.learningActivityType.value
-            ),
+            learningActivityType:
+                this.credentialBuilderService.getArrayFromSingleItem(
+                    this.learningActivityType.value
+                ),
             mode: this.modeOfLearning.value,
             homePage: this.credentialBuilderService.getHomePage(
                 this.homePage.value
             ),
-            additionalNote: this.additionalNoteSpecification.getAdditionalNotes(),
+            additionalNote:
+                this.additionalNoteSpecification.getAdditionalNotes(),
         };
         return this.credentialBuilderService.getObjectIfContent(specifiedBy);
     }
 
     private getLocation(): LocationDCView[] {
         let location: LocationDCView[] = null;
-        const geographicName: TextDTView = this.credentialBuilderService.getDTView(
-            this.location
-        );
+        const geographicName: TextDTView =
+            this.credentialBuilderService.getDTView(this.location);
         if (geographicName || this.locationNUTS.length > 0) {
             location = [
                 {
@@ -559,7 +619,11 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
         let relDirectedBy: SubresourcesOids = null;
         if (this.directedBy.value) {
             relDirectedBy = {
-                oid: [Array.isArray(this.directedBy.value) ? this.directedBy.value[0] : this.directedBy.value],
+                oid: [
+                    Array.isArray(this.directedBy.value)
+                        ? this.directedBy.value[0]
+                        : this.directedBy.value,
+                ],
             };
         }
         return relDirectedBy;
@@ -690,5 +754,27 @@ export class ActivitiesModalComponent implements OnInit, OnDestroy {
     private moreInformationAddLanguage(language: string): void {
         this.additionalNote.languageAdded(language);
         this.additionalNoteSpecification.languageAdded(language);
+    }
+
+    private validateFormDatesValues() {
+        if (
+            this.startDate.value &&
+            !this.dateFormatService.validateDate(this.startDate.value)
+        ) {
+            this.startDateValueInvalid = true;
+            this.startDate.reset();
+        } else {
+            this.startDateValueInvalid = false;
+        }
+
+        if (
+            this.endDate.value &&
+            !this.dateFormatService.validateDate(this.endDate.value)
+        ) {
+            this.endDateValueInvalid = true;
+            this.endDate.reset();
+        } else {
+            this.endDateValueInvalid = false;
+        }
     }
 }

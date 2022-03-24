@@ -106,7 +106,7 @@ public class EDCIOIDCAuthenticationProvider extends OIDCAuthenticationProvider i
         boolean isMockUser = false;
 
         //it is found a mock token on the request (probably from localhost:4200)
-        if (this.getConfigService().getBoolean(EDCIConfig.OIDC_MOCK_USER_ACTIVE)) {
+        if (this.getConfigService().getBoolean(EDCIConfig.Security.MOCK_USER_ACTIVE)) {
             //If mock token and no authenticated return mock user
             isMockUser = true;
             logger.debug("Mock user is active");
@@ -166,7 +166,7 @@ public class EDCIOIDCAuthenticationProvider extends OIDCAuthenticationProvider i
     }
 
     private Authentication createMockUser() {
-        DefaultUserInfo user = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(this.getConfigService().getString(EDCIConfig.OIDC_MOCK_USER_INFO), DefaultUserInfo.class);
+        DefaultUserInfo user = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(this.getConfigService().getString(EDCIConfig.Security.MOCK_USER_INFO), DefaultUserInfo.class);
         return new OIDCAuthenticationToken("mockuser", "mockIDP", user, null, null, null, null);
     }
 

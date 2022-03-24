@@ -28,7 +28,7 @@ export class CredentialBuilderGuard implements CanActivate {
             }),
             tap((authenticated: boolean) => {
                 if (!authenticated) {
-                    window.location.href = `${this.basePath}${
+                    window.location.href = `${environment.issuerBaseUrl}${
                         environment.loginUrl
                     }`;
                 }

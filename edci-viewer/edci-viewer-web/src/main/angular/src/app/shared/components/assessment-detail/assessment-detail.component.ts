@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { OrganizationTabView, AssessmentTabView } from '../../swagger';
 import { EntityLinkService } from 'src/app/core/services/entity-link.service';
-import { TranslateService } from '@ngx-translate/core';
-import { EntityModalInformation } from '../../model/entityModalInformation';
+import { AssessmentTabView } from '../../swagger';
 
 @Component({
     selector: 'edci-viewer-assessment-detail',
@@ -10,35 +8,43 @@ import { EntityModalInformation } from '../../model/entityModalInformation';
     styleUrls: ['./assessment-detail.component.scss'],
 })
 export class AssessmentDetailComponent {
-    @Input() activeAssessment: AssessmentTabView;
+    private _activeAssessment: AssessmentTabView;
 
-    constructor(
-        private entityLinkService: EntityLinkService,
-        private translateService: TranslateService
-    ) {}
-
-    openSubAssessmentModal(assessment: AssessmentTabView): void {
-        const info: EntityModalInformation = {
-            id: assessment.id,
-            entityName: 'assessment',
-            entity: assessment,
-            modalTitle: this.translateService.instant(
-                'details.assessments-tab.subAssessment'
-            ),
-        };
-        this.entityLinkService.sendEntityModalInformation(info);
+    @Input() set activeAssessment(value: AssessmentTabView) {
+        this._activeAssessment = value;
+    }
+    get activeAssessment(): AssessmentTabView {
+        return this._activeAssessment;
     }
 
-    onOpenOrganizationModal(organization: OrganizationTabView): void {
-        organization['isModal'] = true;
-        const info: EntityModalInformation = {
-            id: new Date().toISOString(),
-            entityName: 'organization',
-            entity: organization,
-            modalTitle: this.translateService.instant(
-                'details.assessments-tab.assessmentConductedBy'
-            ),
-        };
-        this.entityLinkService.sendEntityModalInformation(info);
+    constructor(private entityLinkService: EntityLinkService) {}
+
+    changeSelection(id: string): void {
+        this.entityLinkService.changeSelection(id);
     }
+
+    // openSubAssessmentModal(assessment: AssessmentTabView): void {
+    //     const info: EntityModalInformation = {
+    //         id: assessment.id,
+    //         entityName: 'assessment',
+    //         entity: assessment,
+    //         modalTitle: this.translateService.instant(
+    //             'details.assessments-tab.subAssessment'
+    //         ),
+    //     };
+    //     this.entityLinkService.sendEntityModalInformation(info);
+    // }
+
+    // onOpenOrganizationModal(organization: OrganizationTabView): void {
+    //     organization['isModal'] = true;
+    //     const info: EntityModalInformation = {
+    //         id: new Date().toISOString(),
+    //         entityName: 'organization',
+    //         entity: organization,
+    //         modalTitle: this.translateService.instant(
+    //             'details.assessments-tab.assessmentConductedBy'
+    //         ),
+    //     };
+    //     this.entityLinkService.sendEntityModalInformation(info);
+    // }
 }

@@ -1,7 +1,7 @@
 package integration.eu.europa.ec.empl.edci.datamodel;
 
 import eu.europa.ec.empl.edci.constants.ControlledListConcept;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.listener.EDCIJAXBMarshalListener;
 import eu.europa.ec.empl.edci.datamodel.listener.EDCIJAXBUnmarshalListener;
 import eu.europa.ec.empl.edci.datamodel.model.*;
@@ -81,8 +81,8 @@ public class EuropassUtilITest extends AbstractIntegrationBaseTest {
         Mockito.lenient().when(edcijaxbListener.getReflectiveUtil()).thenReturn(reflectiveUtil);
         Mockito.lenient().when(edcijaxbListener.getEdciCredentialModelUtil()).thenReturn(edciCredentialModelUtil);
         Mockito.lenient().when(reflectiveUtil.getValidator()).thenReturn(validator);
-        Mockito.lenient().when(edciMessageService.getMessage(MessageKeys.Exception.Global.GLOBAL_COLUMN)).thenReturn("column");
-        Mockito.lenient().when(edciMessageService.getMessage(MessageKeys.Exception.Global.GLOBAL_LINE)).thenReturn("line");
+        Mockito.lenient().when(edciMessageService.getMessage(EDCIMessageKeys.Exception.Global.GLOBAL_COLUMN)).thenReturn("column");
+        Mockito.lenient().when(edciMessageService.getMessage(EDCIMessageKeys.Exception.Global.GLOBAL_LINE)).thenReturn("line");
         // Mockito.doReturn("certifies that").when(edciMessageService).getMessage(Mockito.anyString());
     }
 

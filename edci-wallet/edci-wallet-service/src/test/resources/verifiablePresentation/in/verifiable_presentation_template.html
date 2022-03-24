@@ -103,7 +103,7 @@ html, body {
 }
 
 .footer img {
-	height: 5mm;
+	width: 170px;
 }
 
 
@@ -187,7 +187,6 @@ html, body {
 .sharelink-url {
     position: absolute;
     top: 882px;
-    text-align:center;
     left: 50%;
     transform: translate(-50%);
     font-size:0.75em;
@@ -203,6 +202,7 @@ html, body {
     display: block;
     position: absolute;
     top: -.75rem;
+    height: 93%;
 }
 
 #zero.page .content ul.timeline li {
@@ -264,6 +264,13 @@ html, body {
     height: 15px;
 }
 
+#zero.page .content ul.timeline li > .ux-icon-circle-o img {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 2;
+}
+
 #one.page .content ul.timeline li .content {
     padding-bottom: 2rem;
     padding-left: 3rem;
@@ -293,14 +300,6 @@ html, body {
     position: relative;
 }
 
-#one.page .content ul.timeline li.correct > .ux-icon-circle-o::before{
-    background: #fff;
-    border-radius: 50%;
-    color: #479f4b;
-    content: '\f058';
-    font-family: FontAwesome;
-    font-size: 26px;
-}
 
 @page {
 	size: A4 portrait; /* can use also 'landscape' for orientation */
@@ -346,9 +345,17 @@ html, body {
     width: 100% !important;
 }
 .diploma {
-    height: 234.35mm;
+    height: 297mm;
     padding-bottom: 2rem;
-    width: 170mm;
+    width: 210mm;
+    position: relative;
+    top: -35mm;
+    left: -20mm;
+    z-index: 2;
+}
+.diploma-img {
+    max-width:100%;
+    max-height:100%;
 }
 .diploma-spinner {
     left: 40%;
@@ -487,61 +494,37 @@ ol.elemList li:before {
     width: 26px;
 }
 
+.status-icon-ribbon {
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+    top: 1px;
+    left: 10px;
+}
 
+.title-ribbon-correct span {
+    color: green;
+}
 
+.title-ribbon-warning span {
+    color: #ffd114;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.title-ribbon-incorrect span {
+    color: red;
+}
 
     </style>
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <td>
-            <div class="header-space">&nbsp;</div>
-        </td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            <div class="content">
-                <section class="page">
-                    <div class="diploma" th:utext="${diploma.html}">
-                    </div>
-                </section>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td>
-            <div class="footer-space">&nbsp;</div>
-        </td>
-    </tr>
-    </tfoot>
-</table>
+<section id="diplomaPage" class="pageDiploma">
+    <div class="diploma">
+        <img class="diploma-img"
+             th:if="${diploma != null}"
+             th:src="${diploma}"/>
+    </div>
+</section>
 
 <div class="header"
      th:if="${europassCredentialDetailView.issuerCredential != null and europassCredentialDetailView.credentialMetadata != null}">
@@ -556,7 +539,7 @@ ol.elemList li:before {
 
 <div class="footer">
     <div>
-        <img src="data:image/png;base64,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"
+        <img th:src="${europeLogo}"
              alt="European Union logo"/>
     </div>
 </div>
@@ -613,24 +596,13 @@ ol.elemList li:before {
             <a href="#eight" th:text="#{details.assessments}"></a>
         </li>
     </ol>
+
 </section>
 
 <section th:if="${europassCredentialDetailView.issuerCredential} != null" id="one" class="page">
     <h1>[[${indexCount.andIncrement}]].- [[#{details.issuing.sealing.organisations}]]</h1>
     <div class="content">
-        <ul th:if="${verification != null && verification.longDescription != null && verification.type == 'seal' &&
-            verification.status == 'http://data.europa.eu/snb/verification-status/9895008394'}"
-            class="timeline left-aligned">
-            <li class="correct">
-                <img class="status-icon" src="data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgY29sb3I9IiM0NzlmNGIiIGZvY3VzYWJsZT0iZmFsc2UiIGRhdGEtcHJlZml4PSJmYXMiIGRhdGEtaWNvbj0iY2hlY2stY2lyY2xlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtY2hlY2stY2lyY2xlIGZhLXctMTYiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNNTA0IDI1NmMwIDEzNi45NjctMTExLjAzMyAyNDgtMjQ4IDI0OFM4IDM5Mi45NjcgOCAyNTYgMTE5LjAzMyA4IDI1NiA4czI0OCAxMTEuMDMzIDI0OCAyNDh6TTIyNy4zMTQgMzg3LjMxNGwxODQtMTg0YzYuMjQ4LTYuMjQ4IDYuMjQ4LTE2LjM3OSAwLTIyLjYyN2wtMjIuNjI3LTIyLjYyN2MtNi4yNDgtNi4yNDktMTYuMzc5LTYuMjQ5LTIyLjYyOCAwTDIxNiAzMDguMTE4bC03MC4wNTktNzAuMDU5Yy02LjI0OC02LjI0OC0xNi4zNzktNi4yNDgtMjIuNjI4IDBsLTIyLjYyNyAyMi42MjdjLTYuMjQ4IDYuMjQ4LTYuMjQ4IDE2LjM3OSAwIDIyLjYyN2wxMDQgMTA0YzYuMjQ5IDYuMjQ5IDE2LjM3OSA2LjI0OSAyMi42MjguMDAxeiIvPjwvc3ZnPg==">
-                <div class="content">
-                    <div class="sub ng-star-inserted">
-                        <span th:text="${europassVerifications[1].longDescription}"></span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div th:insert="tabs/issuers_tab :: organization(orgCred=${europassCredentialDetailView.issuerCredential}, orgVerif=${europassCredentialDetailView.issuerPresentation}, iter=1+'. ')"></div>
+        <div th:insert="tabs/issuers_tab :: organization(orgCred=${europassCredentialDetailView.issuerCredential}, orgVerif=${europassCredentialDetailView.issuerPresentation}, iter=1+'. ', europassVerifications=${europassVerifications})"></div>
     </div>
 </section>
 
@@ -686,7 +658,7 @@ ol.elemList li:before {
                     <span th:text="${activity.title}"></span>
                 </li>
                 <li th:if="!${europassCredentialDetailView.activitiesList.empty}"
-                    th:text="#{details.rel.activities}"></li>
+                        th:text="#{details.rel.activities}"></li>
                 <ol class="elemList">
                     <li th:each="activity : ${europassCredentialDetailView.activitiesList}">
                         <span th:text="${activity.title}"></span>

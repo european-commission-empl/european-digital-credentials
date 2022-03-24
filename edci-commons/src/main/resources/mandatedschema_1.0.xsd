@@ -17,7 +17,7 @@
             <xs:documentation/>
         </xs:annotation>
         <xs:restriction base="DocumentURLType">
-            <xs:enumeration value="http://52.57.141.197/fs/0.10.0/vp/types"/>
+            <xs:enumeration value="http://data.europa.eu/snb/verifiable-presentation/25831c2"/>
         </xs:restriction>
     </xs:simpleType>
 

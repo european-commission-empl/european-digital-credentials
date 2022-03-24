@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.util;
 
 import eu.europa.ec.empl.edci.EDCIResourceResolver;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.listener.EDCIJAXBMarshalListener;
 import eu.europa.ec.empl.edci.datamodel.listener.EDCIJAXBUnmarshalListener;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
@@ -9,6 +9,7 @@ import eu.europa.ec.empl.edci.datamodel.model.dataTypes.SchemaLocation;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.EuropassPresentationDTO;
 import eu.europa.ec.empl.edci.datamodel.validation.ValidationError;
 import eu.europa.ec.empl.edci.datamodel.validation.ValidationResult;
+import eu.europa.ec.empl.edci.exception.EDCIException;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
 import org.apache.commons.io.IOUtils;
@@ -117,9 +118,9 @@ public class XmlUtil {
             ValidationError validationError = new ValidationError();
             validationError.setErrorMessage(String.format("%s [%s: %d/ %s: %d]",
                     e.getLocalizedMessage(),
-                    edciMessageService.getMessage(MessageKeys.Exception.Global.GLOBAL_LINE),
+                    edciMessageService.getMessage(EDCIMessageKeys.Exception.Global.GLOBAL_LINE),
                     e.getLineNumber(),
-                    edciMessageService.getMessage(MessageKeys.Exception.Global.GLOBAL_COLUMN),
+                    edciMessageService.getMessage(EDCIMessageKeys.Exception.Global.GLOBAL_COLUMN),
                     e.getColumnNumber()));
 
             validationResult.addValidationError(validationError);
@@ -143,15 +144,16 @@ public class XmlUtil {
 
     /*INPUT STREAM METHODS*/
     public <T> T fromInputStream(InputStream inputStream, Class<T> clazz) throws JAXBException, IOException {
-        StringWriter writer = new StringWriter();
-        IOUtils.copy(inputStream, writer, StandardCharsets.UTF_8.toString());
-        String originalXML = writer.toString();
-        T object = fromString(originalXML, clazz);
+        T object = null;
+        try (StringWriter writer = new StringWriter()) {
+            IOUtils.copy(inputStream, writer, StandardCharsets.UTF_8.toString());
+            String originalXML = writer.toString();
+            object = fromString(originalXML, clazz);
 
-        if (object != null && !clazz.isAssignableFrom(object.getClass())) {
-            throw new EDCIBadRequestException().addDescription("Unmarshalled object " + object.getClass() + " does not match the expected class " + clazz);
+            if (object != null && !clazz.isAssignableFrom(object.getClass())) {
+                throw new EDCIBadRequestException().addDescription("Unmarshalled object " + object.getClass() + " does not match the expected class " + clazz);
+            }
         }
-
         return object;
     }
 
@@ -171,10 +173,15 @@ public class XmlUtil {
     }
 
     public String toXML(Object object, Class clazz) throws JAXBException {
-        StringWriter stringWriter = new StringWriter();
-        Marshaller marshaller = this.getMarshaller(clazz);
-        marshaller.marshal(object, stringWriter);
-        return stringWriter.toString();
+        String xml = null;
+        try (StringWriter stringWriter = new StringWriter()) {
+            Marshaller marshaller = this.getMarshaller(clazz);
+            marshaller.marshal(object, stringWriter);
+            xml = stringWriter.toString();
+        } catch (IOException e) {
+            throw new EDCIException();
+        }
+        return xml;
     }
 
     /*INNER UTIL METHODS*/

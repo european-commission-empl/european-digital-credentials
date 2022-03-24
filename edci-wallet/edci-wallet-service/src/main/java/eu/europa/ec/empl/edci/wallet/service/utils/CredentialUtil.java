@@ -91,19 +91,19 @@ public class CredentialUtil {
 
 
     /*UTIL METHODS*/
-    public HttpHeaders prepareHttpHeadersForCredentialDownload(String fileName, String mediaType) {
+    public HttpHeaders prepareHttpHeadersForFile(String fileName, String mediaType) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.CONTENT_TYPE, mediaType);
         httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + fileName + "\"");
         return httpHeaders;
     }
 
-    public EuropassPresentationDTO buildEuropassVerifiablePresentation(CredentialDTO credentialDTOS, boolean onlyRetrieveVP) {
+    public EuropassPresentationDTO buildEuropassVerifiablePresentation(CredentialDTO credentialDTOS) {
 
-        return buildEuropassVerifiablePresentation(credentialDTOS.getCredentialXML(), onlyRetrieveVP);
+        return buildEuropassVerifiablePresentation(credentialDTOS.getCredentialXML());
     }
 
-    public EuropassPresentationDTO buildEuropassVerifiablePresentation(byte[] credentialXMLs, boolean onlyRetrieveVP) {
+    public EuropassPresentationDTO buildEuropassVerifiablePresentation(byte[] credentialXMLs) {
 
         EuropassPresentationDTO verifiablePresentationDTO = null;
 
@@ -111,12 +111,8 @@ public class CredentialUtil {
 
             CredentialHolderDTO holder = edciCredentialModelUtil.fromByteArray(credentialXMLs);
 
-            if (holder instanceof EuropassPresentationDTO && onlyRetrieveVP) {
-                verifiablePresentationDTO = (EuropassPresentationDTO) holder;
-            } else {
-                //TODO vp, que passa amb el issuer de la VP si estem recuperant-ne una?
-                verifiablePresentationDTO = edciCredentialModelUtil.toVerifiablePresentation(holder, europassCredentialVerifyUtil.verifyCredential(credentialXMLs));
-            }
+            //TODO vp, que passa amb el issuer de la VP si estem recuperant-ne una?
+            verifiablePresentationDTO = edciCredentialModelUtil.toVerifiablePresentation(holder, europassCredentialVerifyUtil.verifyCredential(credentialXMLs));
         } catch (JAXBException e) {
             throw new EDCIException(HttpStatus.BAD_REQUEST, ErrorCode.CREDENTIAL_NOT_READABLE, "wallet.xml.unreadable").setCause(e);
         } catch (IOException e) {

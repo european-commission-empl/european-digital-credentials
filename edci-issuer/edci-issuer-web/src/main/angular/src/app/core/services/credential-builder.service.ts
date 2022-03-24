@@ -17,12 +17,12 @@ import { Constants } from '@shared/constants';
     providedIn: 'root',
 })
 export class CredentialBuilderService {
-
     public redirectToTab: Subject<number> = new Subject();
     public redirectToPage: Subject<number> = new Subject();
     modalIdNumber: number = 0;
     listModalIds: string[] = [];
     isNewEntityDisabled: boolean;
+    listModalTitles: string[] = [];
 
     constructor(private multilingualService: MultilingualService) {}
 
@@ -128,22 +128,6 @@ export class CredentialBuilderService {
         );
     }
 
-    addOtherLabelRow(formArray: any, lang: string) {
-        formArray.push(
-            new FormGroup(
-                {
-                    webDocumentTitle: new FormControl(null, [
-                        Validators.maxLength(Constants.MAX_LENGTH_DEFAULT),
-                    ]),
-                    webDocumentContent: new FormControl(null, [
-                        Validators.maxLength(Constants.MAX_LENGTH_DEFAULT),
-                    ]),
-                },
-                webDocumentValidator
-            )
-        );
-    }
-
     removeOtherDocumentRow(formArray: FormArray, index: number) {
         formArray.removeAt(index);
     }
@@ -172,27 +156,46 @@ export class CredentialBuilderService {
         return this.isObjectEmpty(object) ? null : object;
     }
 
-    generateNewIdModal(): string {
+    generateNewIdModal(modalTitle: string): string {
         const newModalId = `newModal${this.modalIdNumber++}`;
         this.listModalIds.push(newModalId);
+        this.listModalTitles.push(modalTitle);
         this.isNewEntityDisabled = this.listModalIds.length >= 2;
         return newModalId;
     }
 
     getIdFromLastModalAndRemove(): string {
         const modalIdDeleted = this.listModalIds.pop();
+        if (this.listModalIds.length === 1) {
+            this.listModalTitles.pop();
+        } else {
+            this.listModalTitles = [];
+        }
         this.isNewEntityDisabled = this.listModalIds.length >= 2;
         return modalIdDeleted;
     }
 
-    fillMultipleInput<T>(obj: any, selectedOids: number[], itemToPush: any): T {
-        const oidsOfObjToCompare = obj.content.map(c => c.oid);
-        const oidsToBeIncluded = selectedOids.filter(c => {
+    fillMultipleInput<T>(obj: any, selectedOids: number[], itemToPush: any, unsavedItems: any = []): T {
+        const oidsOfObjToCompare = obj.content.map((c) => c.oid);
+        const oidsToBeIncluded = selectedOids.filter((c) => {
             return !oidsOfObjToCompare.includes(c);
         });
-        const newContent = obj.content.concat(oidsToBeIncluded.map( o => { return { oid: o }; } ));
+        const newContent = obj.content.concat(
+            oidsToBeIncluded.map((o) => {
+                return unsavedItems.find(f => f.oid === o);
+            })
+        );
+
         itemToPush['isNew'] = true;
-        newContent.push(itemToPush);
+        if (selectedOids.includes(itemToPush.oid)) {
+            newContent.forEach((element, index) => {
+                if (element.oid === itemToPush.oid) {
+                    newContent[index] = itemToPush;
+                }
+            });
+        } else {
+            newContent.push(itemToPush);
+        }
         return {
             content: newContent,
             links: obj.links,

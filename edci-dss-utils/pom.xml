@@ -6,7 +6,7 @@
 
     <groupId>eu.europa.ec.empl.edci</groupId>
     <artifactId>edci-dss-utils</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
 
     <name>edci-dss-utils</name>
 
@@ -16,17 +16,33 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <jackson.version>2.10.1</jackson.version>
         <eclipselink.version>2.6.4</eclipselink.version>
-        <!--<slf4j.version>1.7.21</slf4j.version>-->
         <log4j.version>1.2.17</log4j.version>
         <jdk.version>1.8</jdk.version>
         <spring.version>5.2.9.RELEASE</spring.version>
         <spring.data.jpa.version>2.3.4.RELEASE</spring.data.jpa.version>
-        <project.sd-ssd.version>5.5</project.sd-ssd.version>
+        <project.sd-ssd.version>5.8</project.sd-ssd.version>
         <mockito.version>2.23.0</mockito.version>
-
+        <bcprov.jdk15on.version>1.68</bcprov.jdk15on.version>
+        <junit.version>4.11</junit.version>
+        <maven.jar.plugin>3.0.2</maven.jar.plugin>
+        <maven.surefire.plugin>2.14.1</maven.surefire.plugin>
+        <log4j.version>1.2.17</log4j.version>
         <!-- EDCI DATA MODEL -->
-        <edci.commons.version>2.0</edci.commons.version>
+        <edci.commons.version>2.1</edci.commons.version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -35,10 +51,11 @@
             <version>${edci.commons.version}</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <groupId>eu.europa.ec.empl.edci</groupId>
+            <artifactId>edci-commons</artifactId>
+            <version>${edci.commons.version}</version>
             <scope>test</scope>
+            <type>test-jar</type>
         </dependency>
 
         <dependency>
@@ -46,21 +63,6 @@
             <artifactId>eclipselink</artifactId>
             <version>${eclipselink.version}</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-log4j12</artifactId>-->
-        <!--<version>${slf4j.version}</version>-->
-        <!--<exclusions>-->
-        <!--<exclusion>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-api</artifactId>-->
-        <!--</exclusion>-->
-        <!--<exclusion>-->
-        <!--<artifactId>log4j</artifactId>-->
-        <!--<groupId>log4j</groupId>-->
-        <!--</exclusion>-->
-        <!--</exclusions>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>log4j</groupId>
@@ -85,14 +87,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-
 
         <!-- SPRING DEPENDENCIES -->
         <dependency>
@@ -128,11 +122,6 @@
             <artifactId>dss-service</artifactId>
             <version>${project.sd-ssd.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>eu.europa.ec.joinup.sd-dss</groupId>-->
-        <!--            <artifactId>dss-crl-parser-stream</artifactId>-->
-        <!--            <version>${project.sd-ssd.version}</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>eu.europa.ec.joinup.sd-dss</groupId>
             <artifactId>dss-token</artifactId>
@@ -160,6 +149,52 @@
             <artifactId>HikariCP</artifactId>
             <version>3.3.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>${bcprov.jdk15on.version}</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.jmx</groupId>
+                    <artifactId>jmxri</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.jdmk</groupId>
+                    <artifactId>jmxtools</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.jms</groupId>
+                    <artifactId>jms</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.email</groupId>
+                    <artifactId>email</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -184,12 +219,54 @@
                     <version>3.8.0</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.22.1</version>
-                </plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-surefire-plugin</artifactId>
+                      <version>${maven.surefire.plugin}</version>
+                      <configuration>
+                          <skipTests>false</skipTests>
+                      </configuration>
+                      <executions>
+                          <execution>
+                              <id>unit-tests</id>
+                              <phase>test</phase>
+                              <goals>
+                                  <goal>test</goal>
+                              </goals>
+                              <configuration>
+                                  <skipTests>false</skipTests>
+                                  <includes>
+                                      <include>**/*Test.java</include>
+                                  </includes>
+                                  <excludes>
+                                      <exclude>**/integration/**/*ITest.java</exclude>
+                                  </excludes>
+                              </configuration>
+                          </execution>
+                          <execution>
+                              <id>integration-tests</id>
+                              <phase>integration-test</phase>
+                              <goals>
+                                  <goal>test</goal>
+                              </goals>
+                              <configuration>
+                                  <skipTests>false</skipTests>
+                                  <includes>
+                                      <include>**/*ITest.java</include>
+                                  </includes>
+                              </configuration>
+                          </execution>
+                      </executions>
+                  </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>${maven.jar.plugin}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>

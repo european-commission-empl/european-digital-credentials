@@ -120,15 +120,15 @@ main {
         color: rgb(0, 0, 0);
     }
 
-    &:not(:disabled):not(.disabled):not([class*='btn-outline-']) {
-        //tslint:disable-next-line: declaration-colon-newline-after
-        box-shadow:
-            //tslint
-            0 3px 1px -2px rgba(0, 0, 0, 0.2),
-            //tslint
-            0 2px 2px 0 rgba(0, 0, 0, 0.14),
-            0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    }
+    // &:not(:disabled):not(.disabled):not([class*='btn-outline-']) {
+    //     //tslint:disable-next-line: declaration-colon-newline-after
+    //     box-shadow:
+    //         //tslint
+    //         0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    //         //tslint
+    //         0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    //         0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    // }
 }
 
 /* Custom Material snacks status */
@@ -258,7 +258,9 @@ main {
 }
 
 .overflow-auto-credential-builder {
+    max-height: 60vh;
     overflow: auto !important;
+    word-break: break-word;
 
     /* width */
     &::-webkit-scrollbar {
@@ -429,6 +431,7 @@ ux-autocomplete.ocb__autocomplete > .ux-autocomplete > input {
     border-radius: 3px;
     color: #757575;
     height: 37px;
+    margin-bottom: 4px;
 }
 
 // Modal focus

@@ -202,6 +202,7 @@ html, body {
     display: block;
     position: absolute;
     top: -.75rem;
+    height: 93%;
 }
 
 #zero.page .content ul.timeline li {
@@ -344,9 +345,17 @@ html, body {
     width: 100% !important;
 }
 .diploma {
-    height: 234.35mm;
+    height: 297mm;
     padding-bottom: 2rem;
-    width: 170mm;
+    width: 210mm;
+    position: relative;
+    top: -35mm;
+    left: -20mm;
+    z-index: 2;
+}
+.diploma-img {
+    max-width:100%;
+    max-height:100%;
 }
 .diploma-spinner {
     left: 40%;
@@ -485,54 +494,37 @@ ol.elemList li:before {
     width: 26px;
 }
 
+.status-icon-ribbon {
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+    top: 1px;
+    left: 10px;
+}
 
+.title-ribbon-correct span {
+    color: green;
+}
 
+.title-ribbon-warning span {
+    color: #f08d23;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.title-ribbon-incorrect span {
+    color: red;
+}
 
     </style>
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <td>
-            <div class="header-space">&nbsp;</div>
-        </td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            <div class="content">
-                <section class="page">
-                    <div class="diploma" th:utext="${diploma.html}">
-                    </div>
-                </section>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-        <td>
-            <div class="footer-space">&nbsp;</div>
-        </td>
-    </tr>
-    </tfoot>
-</table>
+<section id="diplomaPage" class="pageDiploma">
+    <div class="diploma">
+        <img class="diploma-img"
+             th:if="${diploma != null}"
+             th:src="${diploma}"/>
+    </div>
+</section>
 
 <div class="header"
      th:if="${europassCredentialDetailView.issuerCredential != null and europassCredentialDetailView.credentialMetadata != null}">
@@ -610,21 +602,7 @@ ol.elemList li:before {
 <section th:if="${europassCredentialDetailView.issuerCredential} != null" id="one" class="page">
     <h1>[[${indexCount.andIncrement}]].- [[#{details.issuing.sealing.organisations}]]</h1>
     <div class="content">
-        <span th:each="verification: ${europassVerifications}">
-        <ul th:if="${verification != null && verification.longDescription != null && verification.type.link.toString() == 'http://data.europa.eu/snb/verification/f9c2016fe9' &&
-            verification.status.link.toString() == 'http://data.europa.eu/snb/verification-status/9895008394'}"
-            class="timeline left-aligned">
-            <li class="correct">
-                <img class="status-icon" src="data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgY29sb3I9IiM0NzlmNGIiIGZvY3VzYWJsZT0iZmFsc2UiIGRhdGEtcHJlZml4PSJmYXMiIGRhdGEtaWNvbj0iY2hlY2stY2lyY2xlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtY2hlY2stY2lyY2xlIGZhLXctMTYiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNNTA0IDI1NmMwIDEzNi45NjctMTExLjAzMyAyNDgtMjQ4IDI0OFM4IDM5Mi45NjcgOCAyNTYgMTE5LjAzMyA4IDI1NiA4czI0OCAxMTEuMDMzIDI0OCAyNDh6TTIyNy4zMTQgMzg3LjMxNGwxODQtMTg0YzYuMjQ4LTYuMjQ4IDYuMjQ4LTE2LjM3OSAwLTIyLjYyN2wtMjIuNjI3LTIyLjYyN2MtNi4yNDgtNi4yNDktMTYuMzc5LTYuMjQ5LTIyLjYyOCAwTDIxNiAzMDguMTE4bC03MC4wNTktNzAuMDU5Yy02LjI0OC02LjI0OC0xNi4zNzktNi4yNDgtMjIuNjI4IDBsLTIyLjYyNyAyMi42MjdjLTYuMjQ4IDYuMjQ4LTYuMjQ4IDE2LjM3OSAwIDIyLjYyN2wxMDQgMTA0YzYuMjQ5IDYuMjQ5IDE2LjM3OSA2LjI0OSAyMi42MjguMDAxeiIvPjwvc3ZnPg==">
-                <div class="content">
-                    <div class="sub ng-star-inserted">
-                        <span th:text="${verification.longDescription}"></span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        </span>
-        <div th:insert="tabs/issuers_tab :: organization(orgCred=${europassCredentialDetailView.issuerCredential}, orgVerif=${europassCredentialDetailView.issuerPresentation}, iter=1+'. ')"></div>
+        <div th:insert="tabs/issuers_tab :: organization(orgCred=${europassCredentialDetailView.issuerCredential}, orgVerif=${europassCredentialDetailView.issuerPresentation}, iter=1+'. ', europassVerifications=${europassVerifications})"></div>
     </div>
 </section>
 

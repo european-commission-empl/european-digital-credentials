@@ -25,13 +25,13 @@ public class LearningSpecificationDCView extends DataContainerView {
 
     private Set<WebDocumentDCView> supplementaryDocument; //*
 
-    private Set<CodeDTView> ISCEDFCode; //*
+    private Set<CodeDTView> iscedFCode; //*
 
     private Set<CodeDTView> educationSubject; //* EducationSubjectAssociationDTView
 
     private Long volumeOfLearning; //0..1
 
-    private ScoreDTView ECTSCreditPoints; //0..1
+    private ScoreDTView ectsCreditPoints; //0..1
 
     private Set<ScoreDTView> creditPoints; //*
 
@@ -183,28 +183,12 @@ public class LearningSpecificationDCView extends DataContainerView {
         this.supplementaryDocument = supplementaryDocument;
     }
 
-    public Set<CodeDTView> getISCEDFCode() {
-        return ISCEDFCode;
-    }
-
-    public void setISCEDFCode(Set<CodeDTView> ISCEDFCode) {
-        this.ISCEDFCode = ISCEDFCode;
-    }
-
     public Long getVolumeOfLearning() {
         return volumeOfLearning;
     }
 
     public void setVolumeOfLearning(Long volumeOfLearning) {
         this.volumeOfLearning = volumeOfLearning;
-    }
-
-    public ScoreDTView getECTSCreditPoints() {
-        return ECTSCreditPoints;
-    }
-
-    public void setECTSCreditPoints(ScoreDTView ECTSCreditPoints) {
-        this.ECTSCreditPoints = ECTSCreditPoints;
     }
 
     public Set<ScoreDTView> getCreditPoints() {
@@ -277,6 +261,22 @@ public class LearningSpecificationDCView extends DataContainerView {
 
     public void setEntryRequirementsNote(NoteDTView entryRequirementsNote) {
         this.entryRequirementsNote = entryRequirementsNote;
+    }
+
+    public Set<CodeDTView> getIscedFCode() {
+        return iscedFCode;
+    }
+
+    public void setIscedFCode(Set<CodeDTView> iscedFCode) {
+        this.iscedFCode = iscedFCode;
+    }
+
+    public ScoreDTView getEctsCreditPoints() {
+        return ectsCreditPoints;
+    }
+
+    public void setEctsCreditPoints(ScoreDTView ectsCreditPoints) {
+        this.ectsCreditPoints = ectsCreditPoints;
     }
 
     public Set<AwardingOpportunityDCView> getAwardingOpportunity() {

@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.web.model.signature;
 
-import eu.europa.ec.empl.edci.issuer.common.model.signature.DSSTimestampDTO;
+import eu.europa.ec.empl.edci.dss.model.signature.DSSTimestampDTO;
 import eu.europa.ec.empl.edci.issuer.web.model.CredentialView;
 
 import java.util.Date;

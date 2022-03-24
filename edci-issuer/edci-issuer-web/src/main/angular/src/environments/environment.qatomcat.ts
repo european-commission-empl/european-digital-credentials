@@ -4,25 +4,24 @@
 // npm run build-qatomcat
 
 export const environment = {
-    production: true,
-    enableDevToolRedux: true,
-    hasLabelsOnly: true,
-    apiBaseUrl: 'https://dev.everisdx.io:443/europass2/edci-issuer',
-    viewerBaseUrl: 'https://dev.everisdx.io:443/europass2/edci-viewer',
-    loginUrl: '/auth/oidc/eulogin',
-    logoutUrl: '/auth/oidc/eulogin/logout',
-    europassRoot: 'https://webgate.acceptance.ec.europa.eu/europass',
-    isMockUser: false,
-    csrfEnabled: true,
-    hasBranding: true,
-    headerImagePath: 'assets/images/logo_countries/',
-    homeMainTitle: 'home.main-info.title',
-    homeMainDescription: 'home.main-info.description',
-    concentText: 'credential-builder.concent',
-    homeCredentialsForIssuersTitle:
-        'home.menu-links.credentials-for-issuers.title',
-    homeCredentialsForIssuersDescription:
-        'home.menu-links.credentials-for-issuers.content.description-1',
-    homeCredentialsForIssuersDescriptionWithLink:
-        'home.menu-links.credentials-for-issuers.content.description-2',
+    production: window['EDCIContext'].production === 'true',
+    enableDevToolRedux: window['EDCIContext'].enableDevToolRedux === 'true',
+    hasLabelsOnly: window['EDCIContext'].hasLabelsOnly === 'true',
+    issuerBaseUrl : window['EDCIContext'].issuerBaseUrl,
+    apiBaseUrl: window['EDCIContext'].apiBaseUrl,
+    viewerBaseUrl: window['EDCIContext'].viewerBaseUrl,
+    loginUrl: window['EDCIContext'].loginUrl,
+    logoutUrl: window['EDCIContext'].logoutUrl,
+    europassRoot: window['EDCIContext'].europassRoot,
+    csrfEnabled: window['EDCIContext'].csrfEnabled === 'true',
+    isMockUser: window['EDCIContext'].isMockUser === 'true',
+    hasBranding: window['EDCIContext'].hasBranding === 'true',
+    headerImagePath: window['EDCIContext'].headerImagePath,
+    homeMainTitle: window['EDCIContext'].homeMainTitle,
+    homeMainDescription: window['EDCIContext'].homeMainDescription,
+    concentText: window['EDCIContext'].concentText,
+    homeCredentialsForIssuersTitle: window['EDCIContext'].homeCredentialsForIssuersTitle,
+    homeCredentialsForIssuersDescription: window['EDCIContext'].homeCredentialsForIssuersDescription,
+    homeCredentialsForIssuersDescriptionWithLink: window['EDCIContext'].homeCredentialsForIssuersDescriptionWithLink,
+    enabledLocalSealing: window['EDCIContext'].enabledLocalSealing === 'true'
 };

@@ -36,6 +36,8 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
     uploadFromDiplomaView: boolean = false;
     primaryLanguage: string;
     availableLanguages: string[];
+    type: string;
+    resetVariablesDone: boolean = true;
 
     constructor(
         private router: Router,
@@ -80,7 +82,12 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isLoading = true;
         this.uploadFromDiplomaView = true;
         this.language = this.shareDataService.toolbarLanguage || undefined;
-        this.getDiploma(this.shareDataService.uploadedXML, this.language, false, true);
+        this.getDiploma(
+            this.shareDataService.uploadedXML,
+            this.language,
+            false,
+            true
+        );
     }
 
     /**
@@ -142,14 +149,12 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
                     ? params['shareLink']
                     : sessionStorage.getItem('shareLink');
                 this.apiService
-                    .getSharedCredentialDiploma(
-                        shareLink,
-                        lang
-                    )
+                    .getSharedCredentialDiploma(shareLink, lang)
                     .takeUntil(this.destroy$)
                     .subscribe(
                         (credential: EuropassDiplomaView) => {
                             this.resetVariables();
+                            this.resetVerificationSteps();
                             this.linkExpirationDate = credential.expirationDate;
                             sessionStorage.setItem(
                                 'linkExpirationDate',
@@ -157,13 +162,20 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
                             );
                             sessionStorage.setItem('shareLink', shareLink);
                             if (!byNewLang) {
-                                this.primaryLanguage = credential.primaryLanguage;
-                                this.shareDataService.toolbarLanguage = credential.primaryLanguage;
+                                this.primaryLanguage =
+                                    credential.primaryLanguage;
+                                this.shareDataService.toolbarLanguage =
+                                    credential.primaryLanguage;
                             }
                             this.availableLanguages =
                                 credential.availableLanguages;
                             this.shareDataService.shareLink = shareLink;
                             this.html = credential.html;
+                            this.type = credential.type;
+                            sessionStorage.setItem(
+                                'diplomaType',
+                                credential.type
+                            );
                             this.isLoading = false;
                         },
                         (response: HttpErrorResponse) => {
@@ -189,18 +201,26 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
                     .subscribe(
                         (credential: EuropassDiplomaView) => {
                             this.resetVariables();
+                            this.resetVerificationSteps();
                             sessionStorage.setItem('credId', credentialId);
                             sessionStorage.setItem('userId', userId);
                             if (!byNewLang) {
-                                this.primaryLanguage = credential.primaryLanguage;
-                                this.shareDataService.toolbarLanguage = credential.primaryLanguage;
+                                this.primaryLanguage =
+                                    credential.primaryLanguage;
+                                this.shareDataService.toolbarLanguage =
+                                    credential.primaryLanguage;
                             }
                             this.availableLanguages =
                                 credential.availableLanguages;
                             this.shareDataService.credentialId = credentialId;
                             this.shareDataService.userId = userId;
                             this.html = credential.html;
+                            this.type = credential.type;
                             this.isLoading = false;
+                            sessionStorage.setItem(
+                                'diplomaType',
+                                credential.type
+                            );
                         },
                         (response: HttpErrorResponse) => {
                             this.errorResponse(response);
@@ -216,8 +236,16 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigate(['home']);
     }
 
-    private getDiploma(xml: string, lang: string, byNewLang: boolean = false, fromNewCredentialButton = false): void {
+    private getDiploma(
+        xml: string,
+        lang: string,
+        byNewLang: boolean = false,
+        fromNewCredentialButton = false
+    ): void {
         this.isPreview = !!sessionStorage.getItem('isPreview');
+        if (this.isPreview) {
+            window.resizeTo(1079, 649);
+        }
         const xmlBlob: Blob = new Blob([xml], {
             type: 'text/xml',
         });
@@ -227,19 +255,20 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
             .subscribe(
                 (data: EuropassDiplomaView) => {
                     this.resetVariables();
+                    this.resetVerificationSteps();
                     if (this.isPreview) {
                         sessionStorage.setItem('isPreview', 'true');
                     }
                     if (!byNewLang) {
                         this.primaryLanguage = data.primaryLanguage;
-                        this.shareDataService.toolbarLanguage = data.primaryLanguage;
+                        this.shareDataService.toolbarLanguage =
+                            data.primaryLanguage;
                     }
                     this.availableLanguages = data.availableLanguages;
                     this.html = data.html;
+                    this.type = data.type;
                     this.isLoading = false;
-                    if (this.uploadFromDiplomaView) {
-                        this.resetVerificationSteps();
-                    }
+                    sessionStorage.setItem('diplomaType', data.type);
                     sessionStorage.setItem('diplomaXML', xml);
                 },
                 (response: HttpErrorResponse) => {
@@ -258,6 +287,7 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
     private resetVerificationSteps(): void {
         sessionStorage.setItem('verificationSteps', null);
         this.shareDataService.verificationSteps = null;
+        this.shareDataService.setVerificationSteps(null);
     }
 
     private isShareView(): boolean {
@@ -284,7 +314,10 @@ export class DiplomaComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private resetVariables(): void {
+        this.resetVariablesDone = false;
         sessionStorage.clear();
         this.shareDataService.verificationSteps = null;
+        this.shareDataService.credentialId = null;
+        this.resetVariablesDone = true;
     }
 }

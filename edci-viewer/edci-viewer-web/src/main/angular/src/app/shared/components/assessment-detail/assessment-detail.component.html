@@ -35,11 +35,7 @@
                             | translate
                     }}:&nbsp;
                 </strong>
-                <a
-                    (click)="
-                        onOpenOrganizationModal(activeAssessment.conductedBy)
-                    "
-                >
+                <a (click)="changeSelection(activeAssessment.conductedBy.id)">
                     {{ activeAssessment.conductedBy.preferredName }}
                 </a>
             </p>
@@ -87,7 +83,7 @@
                     let isLast = last
                 "
             >
-                <a (click)="openSubAssessmentModal(assessment)">{{
+                <a (click)="changeSelection(assessment.id)">{{
                     assessment.title
                 }}</a
                 >{{ isLast ? '' : ', ' }}
@@ -267,7 +263,9 @@
             *ngIf="activeAssessment.specifiedBy?.gradingScheme?.description"
             class="col-12"
         >
-            <p>{{ activeAssessment.specifiedBy?.gradingScheme?.description }}</p>
+            <p>
+                {{ activeAssessment.specifiedBy?.gradingScheme?.description }}
+            </p>
         </div>
         <edci-viewer-other-documents
             *ngIf="

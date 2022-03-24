@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Identifiable;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -28,13 +28,13 @@ public class LearningOpportunityDTO implements Identifiable, Nameable {
     @XmlAttribute
     @XmlID
     @XmlIDExtension
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_ID_NOTNULL)
     private URI id; //1
     @XmlTransient
     private String pk;
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_TITLE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_TITLE_NOTNULL)
     @Valid
     private Text title; //1
     @Valid
@@ -64,7 +64,7 @@ public class LearningOpportunityDTO implements Identifiable, Nameable {
     private List<PriceDetailsDTO> priceDetails; //*
     @XmlIDREF
     @XmlPath("specifiedBy/@idref")
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_SPECIFIEDBY_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_SPECIFIEDBY_NOTNULL)
     @Valid
     private LearningSpecificationDTO specifiedBy; //1
     @Valid

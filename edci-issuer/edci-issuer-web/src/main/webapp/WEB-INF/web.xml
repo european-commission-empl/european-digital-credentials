@@ -20,6 +20,21 @@
         <servlet-name>spring-REST</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>spring-MVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>throwExceptionIfNoHandlerFound</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring-MVC</servlet-name>
+        <url-pattern>/mvc/*</url-pattern>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
 
 
     <listener>
@@ -30,7 +45,7 @@
     </listener>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>home</welcome-file>
     </welcome-file-list>
 
 
@@ -76,41 +91,6 @@
         <filter-name>eu.europa.ec.digit.uxatec.eui.angular2.servlet.CsrfPreventionFilter</filter-name>
         <url-pattern>/awfawfgwag/*</url-pattern>
     </filter-mapping>
-
-    <!-- <filter>
-         <filter-name>CorsFilter</filter-name>
-         <filter-class>eu.euroappa.ec.empl.edci.issuer.web.filter.CorsFilter</filter-class>
-     </filter>
-
-     <filter-mapping>
-         <filter-name>CorsFilter</filter-name>
-         <url-pattern>/api/*</url-pattern>
-     </filter-mapping>-->
-
-    <!-- This is an example security constraint for a resource that requires only authentication but not authorization: -->
-    <!-- EVERIS
-   <security-constraint>
-       <web-resource-collection>
-           <web-resource-name>ecasV2-minimal</web-resource-name>
-           <description>
-               This is the protected area of the application.
-           </description>
-           <url-pattern>/*</url-pattern>
-       </web-resource-collection>
-       <auth-constraint>
-           <description>
-               Requires users to be authenticated but does not require them to be authorized.
-           </description>
-           <role-name>*</role-name>
-       </auth-constraint>
-       <user-data-constraint>
-           <description>
-               Encryption is not required for this area.
-           </description>
-           <transport-guarantee>NONE</transport-guarantee>
-       </user-data-constraint>
-   </security-constraint>
-    -->
 
 
 </web-app>

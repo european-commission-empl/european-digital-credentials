@@ -53,5 +53,8 @@ public abstract class EDCIWalletConstants {
     public static final String CREDENTIAL_STORED_TYPE_EUROPASS_CREDENTIAL = "EC";
     public static final String CREDENTIAL_STORED_TYPE_EUROPASS_PRESENTATION = "EP";
 
+    public static final String CREDENTIAL_PDF_TYPE_FULL = "full";
+    public static final String CREDENTIAL_PDF_TYPE_DIPLOMA = "diploma";
+
 
 }

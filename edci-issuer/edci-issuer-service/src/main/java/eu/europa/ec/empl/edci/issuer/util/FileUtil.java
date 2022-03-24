@@ -1,15 +1,17 @@
 package eu.europa.ec.empl.edci.issuer.util;
 
 import eu.europa.ec.empl.edci.constants.ControlledList;
-import eu.europa.ec.empl.edci.constants.Defaults;
-import eu.europa.ec.empl.edci.constants.XML;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConstants;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerConfig;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerConstants;
 import eu.europa.ec.empl.edci.issuer.common.model.CredentialDTO;
 import eu.europa.ec.empl.edci.issuer.service.IssuerConfigService;
 import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
+import eu.europa.ec.empl.edci.service.EDCIFileService;
 import eu.europa.ec.empl.edci.util.EDCICredentialModelUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -34,6 +36,9 @@ import java.nio.file.Paths;
 public class FileUtil {
 
     private static final Logger logger = Logger.getLogger(FileUtil.class);
+
+    @Autowired
+    private EDCIFileService edciFileService;
 
     @Autowired
     private IssuerConfigService issuerConfigService;
@@ -63,18 +68,29 @@ public class FileUtil {
     @PostConstruct
     public void createOrCleanCredentialsFolder() {
         try {
-            File dirCred = getOrCreateFolder(issuerConfigService.getString(EDCIIssuerConstants.CONFIG_PROPERTY_TMP_DATA_LOCATION)
-                    .concat(issuerConfigService.getString(EDCIIssuerConstants.CONFIG_PROPERTY_TMP_CRED_FOLDER)));
+            File dirCred = getOrCreateFolder(issuerConfigService.getString(IssuerConfig.Issuer.TMP_DATA_LOCATION)
+                    .concat(issuerConfigService.getString(IssuerConfig.Issuer.TMP_CRED_FOLDER)));
             FileUtils.cleanDirectory(dirCred);
         } catch (IOException e) {
             logger.error("Error creating or cleaning the credentials temporal folder", e);
         }
     }
 
-    public String getFolderName(String sessionId) {
-        return issuerConfigService.getString(EDCIIssuerConstants.CONFIG_PROPERTY_TMP_DATA_LOCATION)
-                .concat(issuerConfigService.getString(EDCIIssuerConstants.CONFIG_PROPERTY_TMP_CRED_FOLDER))
-                .concat(sessionId).concat(EDCIIssuerConstants.STRING_SLASH);
+    public String getCredentialPublicFolderName() {
+        String folderName = getCredentialTemporalFolderName().concat(issuerConfigService.getString(IssuerConfig.Issuer.TMP_PUBLIC_CRED_FOLDER));
+        return folderName.endsWith(EDCIConstants.StringPool.STRING_SLASH) ? folderName : folderName.concat(EDCIConstants.StringPool.STRING_SLASH);
+    }
+
+    public String getCredentialTemporalFolderName() {
+        return this.getTemporalDataLocation().concat(issuerConfigService.getString(IssuerConfig.Issuer.TMP_CRED_FOLDER));
+    }
+
+    public String getCredentialPrivateFolderName(String sessionId) {
+        return getCredentialTemporalFolderName().concat(sessionId).concat(EDCIConstants.StringPool.STRING_SLASH);
+    }
+
+    private String getTemporalDataLocation() {
+        return issuerConfigService.getString(IssuerConfig.Issuer.TMP_DATA_LOCATION);
     }
 
     @Cacheable("CL_FileType")
@@ -83,12 +99,12 @@ public class FileUtil {
         if (extension.equalsIgnoreCase("JPG")) {
             fileType = "JPEG";
         }
-        Page<Code> fileTypeCode = controlledListCommonsService.searchConcepts(ControlledList.FILE_TYPE.getUrl(), fileType, Defaults.DEFAULT_LOCALE, 0, 1, null);
+        Page<Code> fileTypeCode = controlledListCommonsService.searchConcepts(ControlledList.FILE_TYPE.getUrl(), fileType, EDCIConfig.Defaults.DEFAULT_LOCALE, 0, 1, null);
         return fileTypeCode != null ? fileTypeCode.getContent().get(0) : null;
     }
 
     public String getFileName(String credId) {
-        return EDCIIssuerConstants.XML_FILE_PREFIX.concat(credId.substring(credId.lastIndexOf(":") + 1)).concat(XML.EXTENSION_XML);
+        return IssuerConstants.XML_FILE_PREFIX.concat(credId.substring(credId.lastIndexOf(":") + 1)).concat(EDCIConstants.XML.EXTENSION_XML);
     }
 
     public String getCredentialFileAbsolutePath(CredentialDTO credentialDTO) {
@@ -101,12 +117,12 @@ public class FileUtil {
     }
 
     public String getCredentialFileAbsolutePath(String credId, String sessionId) {
-        return getFolderName(sessionId).concat(getFileName(credId));
+        return getCredentialPrivateFolderName(sessionId).concat(getFileName(credId));
     }
 
     public File getOrCreateFolder(String folderName) {
 
-        File folder = new File(folderName);
+        File folder = this.getEdciFileService().getOrCreateFile(folderName);
 
         if (!folder.exists() || !folder.isDirectory()) {
             folder.mkdir();
@@ -121,15 +137,39 @@ public class FileUtil {
     }
 
     public String getTemplateFilePath(String type) {
-        return EDCIIssuerConstants.TEMPLATES_DIRECTORY
+        return IssuerConstants.TEMPLATES_DIRECTORY
                 .concat("/").concat(this.getTemplateFileName(type));
     }
 
     public String getTemplateFileName(String type) {
-        return EDCIIssuerConstants.EXCEL_TEMPLATE_PREFIX
+        return IssuerConstants.EXCEL_TEMPLATE_PREFIX
                 .concat(type.replaceAll("\\s", "_").toLowerCase())
-                .concat(EDCIIssuerConstants.EXTENSION_XLSM);
+                .concat(IssuerConstants.EXTENSION_XLSM);
     }
 
 
+    /*public MultipartFile createMultipartFile(byte[] bytes, String fieldName, String uuid) {
+        File file = new File(this.getTemporalDataLocation().concat(EDCIConstants.StringPool.STRING_SLASH).concat(uuid));
+        FileItem fileItem = null;
+        try {
+            if (file.createNewFile()) {
+                fileItem = new DiskFileItem(fieldName, Files.probeContentType(file.toPath()), false, file.getName(), (int) file.length(), file.getParentFile());
+                InputStream input = new FileInputStream(file);
+                OutputStream os = fileItem.getOutputStream();
+                IOUtils.copy(input, os);
+            }
+        } catch (IOException ex) {
+            logger.error(String.format("Could not create multipartFile for file with uuid %s", uuid));
+        }
+
+        return new CommonsMultipartFile(fileItem);
+    }*/
+
+    public EDCIFileService getEdciFileService() {
+        return edciFileService;
+    }
+
+    public void setEdciFileService(EDCIFileService edciFileService) {
+        this.edciFileService = edciFileService;
+    }
 }

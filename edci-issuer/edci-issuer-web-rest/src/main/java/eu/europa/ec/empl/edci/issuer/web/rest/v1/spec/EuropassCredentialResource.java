@@ -1,11 +1,11 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.specs.*;
-import eu.europa.ec.empl.edci.issuer.service.FileService;
+import eu.europa.ec.empl.edci.issuer.service.IssuerFileService;
 import eu.europa.ec.empl.edci.issuer.service.spec.*;
 import eu.europa.ec.empl.edci.issuer.web.mapper.spec.*;
 import eu.europa.ec.empl.edci.issuer.web.model.SubresourcesOids;
@@ -46,7 +46,7 @@ import java.util.Set;
 })
 @Controller(value = "v1.CredentialSpecResource")
 @PreAuthorize("isAuthenticated()")
-@RequestMapping(value = Version.V1 + Endpoint.V1.CREDENTIALS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.CREDENTIALS_BASE)
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class EuropassCredentialResource implements CrudResource {
 
@@ -93,10 +93,10 @@ public class EuropassCredentialResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @Autowired
-    private FileService fileService;
+    private IssuerFileService fileService;
 
     @ApiOperation(value = "Create a credential spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -119,7 +119,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update a credential spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -148,7 +148,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate a credential spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<EuropassCredentialSpecView>> duplicateCredential(
@@ -161,7 +161,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete a credential spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteCredential(
@@ -172,7 +172,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a credential")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<EuropassCredentialSpecView>> getCredential(
@@ -188,7 +188,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of credentials")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<EuropassCredentialSpecLiteView>> listCredential(
@@ -209,7 +209,7 @@ public class EuropassCredentialResource implements CrudResource {
 
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ACHIEVED,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ACHIEVED,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningAchievementSpecLiteView>> listAchieved(
@@ -229,7 +229,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ACHIEVED,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ACHIEVED,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -254,7 +254,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_PERFORMED,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_PERFORMED,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<LearningActivitySpecLiteView>> listPerformed(
@@ -274,7 +274,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_PERFORMED,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_PERFORMED,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -299,7 +299,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of subresources")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ENTITLED_TO,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ENTITLED_TO,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<EntitlementSpecLiteView>> listEntitledTo(
@@ -319,7 +319,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing subresource")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ENTITLED_TO,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ENTITLED_TO,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -344,7 +344,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing related organization to a credential")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ISSUER,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ISSUER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -368,7 +368,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Deletes the credential issuer")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ISSUER,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ISSUER,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -389,7 +389,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a recipient template based on a credential spec", response = File.class)
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.RECIPIENTS + Endpoint.V1.TEMPLATES,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.RECIPIENTS + IssuerEndpoint.V1.TEMPLATES,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> getRecipientTemplate(
             @ApiParam(required = true, value = "The Credential oid") @PathVariable(Parameter.OID) Long oid,
@@ -399,7 +399,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets the credential issuer")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ISSUER,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ISSUER,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<OrganizationSpecView>> getIssuer(
@@ -417,7 +417,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets all the assessments for the issue form")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_ISSUE_ASSESSMENTS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_ISSUE_ASSESSMENTS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<AssessmentsListIssueView>> getIssuerAssessmentGrades(
@@ -431,7 +431,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing diploma to a credential")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_DIPLOMA,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_DIPLOMA,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -455,7 +455,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Deletes an existing linked diploma to a credential")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_DIPLOMA,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_DIPLOMA,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -477,7 +477,7 @@ public class EuropassCredentialResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets the credential's diploma")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.CRED_DIPLOMA,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.CRED_DIPLOMA,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<DiplomaSpecView>> getDiploma(
@@ -496,27 +496,27 @@ public class EuropassCredentialResource implements CrudResource {
 
     public Link[] generateCredentialHateoas(EuropassCredentialSpecDAO credentialDAO) {
 
-        Link hateoasSelf = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class).slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk()).withSelfRel();
+        Link hateoasSelf = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class).slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk()).withSelfRel();
 
         Link hateoasLearningAchievements = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class)
-                .slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk())
-                .slash(Endpoint.V1.CRED_ACHIEVED).withRel("achieved");
+                .slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk())
+                .slash(IssuerEndpoint.V1.CRED_ACHIEVED).withRel("achieved");
 
         Link hateoasLearningActivities = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class)
-                .slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk())
-                .slash(Endpoint.V1.CRED_PERFORMED).withRel("performed");
+                .slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk())
+                .slash(IssuerEndpoint.V1.CRED_PERFORMED).withRel("performed");
 
         Link hateoasLearningAEntitlements = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class)
-                .slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk())
-                .slash(Endpoint.V1.CRED_ENTITLED_TO).withRel("entitledTo");
+                .slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk())
+                .slash(IssuerEndpoint.V1.CRED_ENTITLED_TO).withRel("entitledTo");
 
         Link hateoasIssuer = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class)
-                .slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk())
-                .slash(Endpoint.V1.CRED_ISSUER).withRel("issuer");
+                .slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk())
+                .slash(IssuerEndpoint.V1.CRED_ISSUER).withRel("issuer");
 
         Link hateoasDiploma = ControllerLinkBuilder.linkTo(EuropassCredentialResource.class)
-                .slash(Endpoint.V1.SPECS).slash(credentialDAO.getPk())
-                .slash(Endpoint.V1.CRED_DIPLOMA).withRel("diploma");
+                .slash(IssuerEndpoint.V1.SPECS).slash(credentialDAO.getPk())
+                .slash(IssuerEndpoint.V1.CRED_DIPLOMA).withRel("diploma");
 
         return new Link[]{
                 hateoasSelf, hateoasLearningAchievements, hateoasLearningActivities, hateoasLearningAEntitlements, hateoasIssuer, hateoasDiploma

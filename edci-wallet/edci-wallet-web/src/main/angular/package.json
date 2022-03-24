@@ -34,6 +34,6 @@
     },
     "private": true,
     "dependencies": {
-        "@eui/deps-base": "7.10.0"
+        "@eui/deps-base": "7.19.1"
     }
 }

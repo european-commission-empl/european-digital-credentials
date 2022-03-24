@@ -1,12 +1,12 @@
 package eu.europa.ec.empl.edci.issuer.mapper;
 
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.*;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.LegalIdentifier;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Note;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCIBadRequestException;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConstants;
 import eu.europa.ec.empl.edci.issuer.common.model.CredentialDTO;
 import eu.europa.ec.empl.edci.issuer.common.model.RecipientDataDTO;
 import eu.europa.ec.empl.edci.issuer.entity.dataTypes.ScoreDTDAO;
@@ -68,7 +68,7 @@ public interface CredentialMapper {
         if (personDTO != null && personDTO.getContactPoint() != null) {
             contactPoint = personDTO.getContactPoint().stream().filter(cPoint -> cPoint.getEmail() != null && !cPoint.getEmail().isEmpty()).findFirst();
         }
-        return contactPoint.isPresent() ? contactPoint.get().getEmail().get(0).getId().toString().replaceAll(Defaults.DEFAULT_MAILTO, "") : "";
+        return contactPoint.isPresent() ? contactPoint.get().getEmail().get(0).getId().toString().replaceAll(EDCIConfig.Defaults.DEFAULT_MAILTO, "") : "";
     }
 
     @Named("getWalletAddress")
@@ -99,14 +99,13 @@ public interface CredentialMapper {
     EuropassCredentialDTO toDTO(EuropassCredentialSpecDAO credential, RecipientDataDTO recipient, Map<Long, String> assessments, @Context String locale);
 
     default LegalIdentifier recipientDataDTOToLegalIdentifier(RecipientDataDTO recipientDataDTO) {
-        if (recipientDataDTO == null || recipientDataDTO.getNationalIdentifier() == null || recipientDataDTO.getNationalIdentifierSpatialId() == null) {
-            return null;
+        LegalIdentifier mappingTarget = null;
+        if (recipientDataDTO.getNationalIdentifier() != null || recipientDataDTO.getNationalIdentifierSpatialId() != null) {
+            mappingTarget = new LegalIdentifier();
+
+            mappingTarget.setContent(recipientDataDTO.getNationalIdentifier());
+            mappingTarget.setSpatialId(recipientDataDTO.getNationalIdentifierSpatialId());
         }
-
-        LegalIdentifier mappingTarget = new LegalIdentifier();
-
-        mappingTarget.setContent(recipientDataDTO.getNationalIdentifier());
-        mappingTarget.setSpatialId(recipientDataDTO.getNationalIdentifierSpatialId());
 
         return mappingTarget;
     }
@@ -161,40 +160,28 @@ public interface CredentialMapper {
     default void fillCredentialSubject(EuropassCredentialSpecDAO credential, RecipientDataDTO recipient, Map<Long, String> assessments,
                                        @Context String locale, @MappingTarget EuropassCredentialDTO result) {
 
-        result.getCredentialSubject().setFullName(new Text(recipient.getFirstName() + EDCIIssuerConstants.STRING_SPACE + recipient.getLastName(), locale));
+        result.getCredentialSubject().setFullName(new Text(recipient.getFirstName() + EDCIConstants.StringPool.STRING_SPACE + recipient.getLastName(), locale));
         result.getCredentialSubject().setContactPoint(generateContactPoint(recipient, locale));
 
-        if (recipient.getAddressCountry() != null) {
-
+        if (recipient.getAddress() != null || recipient.getAddressCountry() != null) {
             LocationDTO loc = new LocationDTO();
             AddressDTO addr = new AddressDTO();
             if (recipient.getAddress() != null) {
                 addr.setFullAddress(new Note(recipient.getAddress(), locale));
             }
             addr.setCountryCode(recipient.getAddressCountry());
-
-            List<LocationDTO> hasLocation = new ArrayList<>();
-            List<AddressDTO> hasAddress = new ArrayList<>();
-
-            hasAddress.add(addr);
-            loc.setHasAddress(hasAddress);
-
-            hasLocation.add(loc);
-
-            result.getCredentialSubject().setHasLocation(hasLocation);
+            loc.setHasAddress(Arrays.asList(addr));
+            result.getCredentialSubject().setHasLocation(Arrays.asList(loc));
         }
 
         if (recipient.getPlaceOfBirthCountry() != null) {
-
-            LocationDTO loc = new LocationDTO();
-            AddressDTO addr = new AddressDTO();
-            addr.setCountryCode(recipient.getPlaceOfBirthCountry());
-
-            List<AddressDTO> hasAddress = new ArrayList<>();
-            hasAddress.add(addr);
-            loc.setHasAddress(hasAddress);
-
-            result.getCredentialSubject().setPlaceOfBirth(loc);
+            LocationDTO placeOfBirth = new LocationDTO();
+            AddressDTO placeOfBirthAddr = new AddressDTO();
+            placeOfBirthAddr.setCountryCode(recipient.getPlaceOfBirthCountry());
+            List<AddressDTO> placeOfBirthHasAddress = new ArrayList<>();
+            placeOfBirthHasAddress.add(placeOfBirthAddr);
+            placeOfBirth.setHasAddress(placeOfBirthHasAddress);
+            result.getCredentialSubject().setPlaceOfBirth(placeOfBirth);
         }
 
         result.getCredentialSubject().setNationalId(recipientDataDTOToLegalIdentifier(recipient));

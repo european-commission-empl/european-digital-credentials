@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.*;
@@ -9,10 +9,10 @@ import javax.xml.bind.annotation.*;
 @XmlType(propOrder = {"content", "unit"})
 public class Amount {
     @XmlValue
-    @NotNull(message = MessageKeys.Validation.VALIDATION_AMOUNT_CONTENT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_AMOUNT_CONTENT_NOTNULL)
     private Float content; //1
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_AMOUNT_UNIT_NONTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_AMOUNT_UNIT_NONTNULL)
     private String unit; //1
 
     public Float getContent() {

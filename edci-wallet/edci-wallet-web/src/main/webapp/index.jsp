@@ -11,7 +11,7 @@
         } else {
             response.setDateHeader("Last-Modified", lastModified);
 %>
-<c:set var="baseHref" value="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}" />
+<c:set var="baseHref" value="${base_href}" />
 <c:set var="baseTag"><base href="${baseHref}/"></c:set>
 <c:import url="index.html" var="html" />
 ${fn:replace(html, '<base href="/">', baseTag)}
@@ -19,8 +19,7 @@ ${fn:replace(html, '<base href="/">', baseTag)}
         }
     } catch (Exception e) {
 %>
-    No index.html file present.<br/>
-    You may have forgotten to build the Angular application before deploying to the server...
+    EDCI - Wallet REST API is deployed in this server.
 <%
     }
 %>

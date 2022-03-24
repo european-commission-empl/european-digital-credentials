@@ -11,9 +11,11 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- BASIC AUTH FOR ADMIN ENDPOINTS -->
-    <security:http auto-config="false" pattern="${admin.pattern}" authentication-manager-ref="authenticationManager"
+    <security:http auto-config="false" pattern="${basic.auth.pattern}"
+                   authentication-manager-ref="basicAuthenticationManager"
                    use-expressions="true" request-matcher="regex">
-        <security:intercept-url pattern="${admin.pattern}" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern=".*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern=".*" access="permitAll()" method="OPTIONS"/>
         <security:http-basic/>
         <security:csrf disabled="true"/>
     </security:http>
@@ -28,6 +30,7 @@
         <security:logout logout-url="${oidc.logout.url}" invalidate-session="true"
                          success-handler-ref="logoutSuccessHandler"/>
         <!--Api Protected Area-->
+        <security:intercept-url pattern=".*" access="permitAll()" method="OPTIONS"/>
         <security:custom-filter after="SECURITY_CONTEXT_FILTER" ref="corsFilter"/>
         <security:custom-filter before="PRE_AUTH_FILTER" ref="resourceServerFilter"/>
         <security:custom-filter before="SESSION_MANAGEMENT_FILTER" ref="EDCISessionManagementFilter"/>
@@ -43,14 +46,18 @@
     <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"
                                      authentication-manager-ref="authenticationManager"/>
 
-    <security:authentication-manager alias="authenticationManager">
+    <security:authentication-manager id="authenticationManager">
         <security:authentication-provider ref="openIdConnectAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <security:authentication-manager id="basicAuthenticationManager">
         <security:authentication-provider>
-            <security:user-service>
-                <security:user name="${admin.user}" password="{noop}${admin.password}" authorities="ROLE_ADMIN"/>
+            <security:password-encoder hash="bcrypt"/>
+            <security:user-service properties="file:${CATALINA_BASE}/lib-client/classpathFILE/edci/issuer/users.properties">
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
+
 
     <!-- Authentication Provider -->
     <bean id="openIdConnectAuthenticationProvider"
@@ -111,7 +118,7 @@
           id="staticAuthRequestOptionsService"/>
 
 
-    <bean class="org.mitre.openid.connect.client.service.impl.PlainAuthRequestUrlBuilder"
+    <bean class="eu.europa.ec.empl.edci.security.oidc.EDCIPlainAuthRequestUrlBuilder"
           id="plainAuthRequestUrlBuilder"/>
 
     <!-- Spring Dependencies-->

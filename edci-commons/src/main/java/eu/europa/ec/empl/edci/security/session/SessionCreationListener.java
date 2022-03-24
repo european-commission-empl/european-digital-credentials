@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.security.session;
 
 import eu.europa.ec.empl.edci.config.service.IConfigService;
-import eu.europa.ec.empl.edci.constants.Security;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -21,7 +21,7 @@ public class SessionCreationListener implements ApplicationListener<SessionCreat
     @Override
     public void onApplicationEvent(SessionCreationEvent sessionCreationEvent) {
         HttpSession session = (HttpSession) sessionCreationEvent.getSource();
-        session.setMaxInactiveInterval(issuerConfigService.get(Security.CONFIG_PROPERTY_SESSION_TIMEOUT, Integer.class) * 60);
+        session.setMaxInactiveInterval(issuerConfigService.get(EDCIConstants.Security.CONFIG_PROPERTY_SESSION_TIMEOUT, Integer.class) * 60);
         logger.debug(String.format("SESSION - CREATING SESSION %s, WITH TIMEOUT %ds", session.getId(), session.getMaxInactiveInterval()));
     }
 }

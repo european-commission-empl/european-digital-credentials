@@ -21,6 +21,7 @@
 }
 
 .body-container {
+    align-items: flex-start;
     display: flex;
     margin-top: 1px;
     width: 100%;
@@ -31,7 +32,7 @@
     }
 
     .sidebar-container {
-        background-color: #fff;
+        background-color: #807e7e;
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
         margin-right: 1px;
 

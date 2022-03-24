@@ -9,6 +9,7 @@ import { ActivitiesComponent } from './components/activities/activities.componen
 import { SubCredentialsComponent } from './components/sub-credentials/sub-credentials.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { EntitlementsComponent } from './components/entitlements/entitlements.component';
+import { AssessmentsComponent } from './components/assessments/assessments.component';
 
 export const routes: Routes = [
     {
@@ -18,45 +19,49 @@ export const routes: Routes = [
             {
                 path: '',
                 redirectTo: 'diploma',
-                pathMatch: 'full'
+                pathMatch: 'full',
             },
             {
-                path: 'issuing-organization',
-                component: IssuingOrganizationComponent
+                path: 'organisation',
+                component: IssuingOrganizationComponent,
             },
             {
-                path: 'credential-owner',
-                component: CredentialOwnerComponent
+                path: 'subject',
+                component: CredentialOwnerComponent,
             },
             {
-                path: 'achievements',
-                component: AchievementsComponent
+                path: 'achievement',
+                component: AchievementsComponent,
             },
             {
-                path: 'activities',
-                component: ActivitiesComponent
+                path: 'activity',
+                component: ActivitiesComponent,
             },
             {
-                path: 'sub-credentials',
-                component: SubCredentialsComponent
+                path: 'assessment',
+                component: AssessmentsComponent,
             },
+            // {
+            //   path: 'sub-credentials',
+            //  component: SubCredentialsComponent
+            // },
             {
                 path: 'diploma',
-                component: VerificationComponent
+                component: VerificationComponent,
             },
             // {
             //     path: 'verification',
             //     component: VerificationComponent
             // },
             {
-                path: 'entitlements',
-                component: EntitlementsComponent
-            }
-        ]
-    }
+                path: 'entitlement',
+                component: EntitlementsComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)]
+    imports: [RouterModule.forChild(routes)],
 })
 export class DiplomaDetailsRoutingModule {}

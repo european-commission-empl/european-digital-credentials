@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Score;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Text;
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = {"label", "score", "minScore", "maxScore", "count"})
 public class ResultCategoryDTO implements Nameable {
-    @NotNull(message = MessageKeys.Validation.VALIDATION_RESULTCATEGORY_LABEL_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_RESULTCATEGORY_LABEL_NOTNULL)
     @Valid
     private Text label; //1
     @Valid
@@ -23,7 +23,7 @@ public class ResultCategoryDTO implements Nameable {
     private Score minScore; //0..1
     @Valid
     private Score maxScore; //0..1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_RESULTCATEGORY_COUNT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_RESULTCATEGORY_COUNT_NOTNULL)
     private Integer count; //1 //TODO  enter positiu
 
     @Override

@@ -17,10 +17,13 @@ public class TextDTDAO implements IGenericDAO {
     public static final String TABLE_SEQ = TABLE + "_SEQ";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     private Long pk;
+
+    @Column(name = "EXTRA_FIELD", length = 1)
+    private String extra;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinTable(
@@ -47,5 +50,13 @@ public class TextDTDAO implements IGenericDAO {
 
     public void setPk(Long pk) {
         this.pk = pk;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
+    public void setExtra(String extra) {
+        this.extra = extra;
     }
 }

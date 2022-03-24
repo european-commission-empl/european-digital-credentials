@@ -96,14 +96,25 @@ export class MoreInformationComponent implements OnInit {
                 additionalNoteValidator
             )
         );
-        this.selectedLanguages.forEach((language: UxLanguage) => {
+
+        if (this.selectedLanguages.length > 0) {
+            this.selectedLanguages.forEach((language: UxLanguage) => {
+                this.addContentControl(
+                    this.additionalNotes.controls[
+                        this.additionalNotes.controls.length - 1
+                    ]['controls'].content as FormGroup,
+                    language.code
+                );
+            });
+        } else {
             this.addContentControl(
                 this.additionalNotes.controls[
                     this.additionalNotes.controls.length - 1
                 ]['controls'].content as FormGroup,
-                language.code
+                this.activeLanguage
             );
-        });
+        }
+
         this.isFormDisabled
             ? this.formGroup.disable()
             : this.formGroup.enable();

@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.wallet.service.security;
 
 import eu.europa.ec.empl.base.AbstractUnitBaseTest;
-import eu.europa.ec.empl.edci.constants.Defaults;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.mapper.EuropassCredentialPresentationMapper;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
@@ -103,7 +103,7 @@ public class CredentialServiceTest extends AbstractUnitBaseTest {
         wallet.getCredentialDTOList().add(cred);
 
         europassCred = new EuropassCredentialDTO();
-        europassCred.setId(new URI(Defaults.XML_CRED_UUID_PREFIX.concat(UUID.randomUUID().toString())));
+        europassCred.setId(new URI(EDCIConfig.Defaults.XML_CRED_UUID_PREFIX.concat(UUID.randomUUID().toString())));
     }
 
     @Test
@@ -115,7 +115,7 @@ public class CredentialServiceTest extends AbstractUnitBaseTest {
         Mockito.doReturn(cred).when(credentialService).addCredentialEntity(ArgumentMatchers.any(CredentialDTO.class));
         Mockito.doNothing().when(credentialService).sendCreateNotificationEmail(ArgumentMatchers.any(CredentialDTO.class));
 
-        CredentialDTO aux = credentialService.createCredential(cred);
+        CredentialDTO aux = credentialService.createCredential(cred, true);
 
         Assert.assertNotNull(aux);
 
@@ -130,7 +130,7 @@ public class CredentialServiceTest extends AbstractUnitBaseTest {
         Mockito.doReturn(cred).when(credentialService).addCredentialEntity(ArgumentMatchers.any(CredentialDTO.class));
         Mockito.doNothing().when(credentialService).sendCreateNotificationEmail(ArgumentMatchers.any(CredentialDTO.class));
 
-        CredentialDTO aux = credentialService.createCredential(cred);
+        CredentialDTO aux = credentialService.createCredential(cred, true);
 
         Mockito.verify(credentialService, Mockito.times(1))
                 .sendCreateNotificationEmail(ArgumentMatchers.any(CredentialDTO.class));

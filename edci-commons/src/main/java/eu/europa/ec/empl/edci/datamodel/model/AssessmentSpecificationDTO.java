@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Identifiable;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -26,7 +26,7 @@ public class AssessmentSpecificationDTO implements Identifiable, Nameable {
     @XmlAttribute
     @XmlID
     @XmlIDExtension
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ASSESSMENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ASSESSMENT_ID_NOTNULL)
     private URI id; //1
     @XmlTransient
     private String pk;

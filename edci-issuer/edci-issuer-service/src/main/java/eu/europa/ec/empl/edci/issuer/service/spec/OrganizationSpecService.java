@@ -19,11 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -97,7 +97,8 @@ public class OrganizationSpecService implements CrudService<OrganizationSpecDAO>
 
         try {
 
-            BASE64Encoder base64Encoder = new BASE64Encoder();
+
+            Base64.Encoder base64Encoder = Base64.getMimeEncoder();
 //            String base64EncoderImg = base64Encoder.encode(file.getBytes());
 
             String extension = FilenameUtils.getExtension(file.getOriginalFilename());

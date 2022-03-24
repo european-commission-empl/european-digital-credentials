@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class QualificationAwardDTO extends LearningAchievementDTO {
-    @NotNull(message = MessageKeys.Validation.VALIDATION_QUALIFICATIONAWARD_SPECIFIEDBY_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_QUALIFICATIONAWARD_SPECIFIEDBY_NOTNULL)
     private QualificationDTO specifiedBy;
 
     @Override

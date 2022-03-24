@@ -1,65 +1,72 @@
 package eu.europa.ec.empl.edci.issuer.service;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import eu.europa.ec.empl.edci.config.service.IConfigService;
-import eu.europa.ec.empl.edci.constants.Defaults;
 import eu.europa.ec.empl.edci.constants.EDCIConfig;
 import eu.europa.ec.empl.edci.dss.config.EdciJdbcCacheCRLSource;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConfig;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerConstants;
-import eu.europa.ec.empl.edci.issuer.common.model.ConfigDTO;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerConfig;
 import eu.europa.ec.empl.edci.issuer.service.dss.config.SchedulingConfig;
 import eu.europa.ec.empl.edci.security.oidc.EDCIAuthenticationSuccessHandler;
 import eu.europa.ec.empl.edci.util.proxy.EDCIProxyConfig;
 import eu.europa.ec.empl.edci.util.proxy.EDCIProxyProperties;
+import eu.europa.esig.dss.alert.ExceptionOnStatusAlert;
 import eu.europa.esig.dss.service.crl.OnlineCRLSource;
 import eu.europa.esig.dss.service.http.commons.CommonsDataLoader;
-import eu.europa.esig.dss.service.http.commons.OCSPDataLoader;
+import eu.europa.esig.dss.service.http.commons.FileCacheDataLoader;
 import eu.europa.esig.dss.service.http.commons.TimestampDataLoader;
 import eu.europa.esig.dss.service.http.proxy.ProxyConfig;
 import eu.europa.esig.dss.service.http.proxy.ProxyProperties;
 import eu.europa.esig.dss.service.ocsp.JdbcCacheOCSPSource;
 import eu.europa.esig.dss.service.ocsp.OnlineOCSPSource;
 import eu.europa.esig.dss.service.tsp.OnlineTSPSource;
-import eu.europa.esig.dss.spi.client.http.DataLoader;
-import eu.europa.esig.dss.spi.x509.KeyStoreCertificateSource;
-import eu.europa.esig.dss.tsl.service.TSLRepository;
-import eu.europa.esig.dss.tsl.service.TSLValidationJob;
+import eu.europa.esig.dss.spi.tsl.TrustedListsCertificateSource;
+import eu.europa.esig.dss.tsl.cache.CacheCleaner;
+import eu.europa.esig.dss.tsl.job.TLValidationJob;
+import eu.europa.esig.dss.tsl.source.LOTLSource;
+import eu.europa.esig.dss.validation.CommonCertificateVerifier;
+import org.apache.http.conn.ssl.TrustAllStrategy;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.instrument.classloading.ReflectiveLoadTimeWeaver;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Properties;
 
 @Service
-@Primary
 @Configuration
+@EnableTransactionManagement(proxyTargetClass = true)
+@EnableJpaRepositories("eu.europa.ec.empl.edci.issuer.repository")
 @PropertySources({
         @PropertySource(value = "classpath:/config/security/security_${spring.profiles.active}.properties", ignoreResourceNotFound = false),
         @PropertySource(value = "classpath:/config/issuer/issuer_${spring.profiles.active}.properties", ignoreResourceNotFound = false),
-        @PropertySource(EDCIIssuerConfig.Path.ISSUER_FILE),
-        @PropertySource(EDCIIssuerConfig.Path.ISSUER_DSS_FILE),
-        @PropertySource(EDCIIssuerConfig.Path.MAIL_FILE),
-        @PropertySource(EDCIIssuerConfig.Path.PROXY_FILE),
-        @PropertySource(EDCIIssuerConfig.Path.SECURITY_FILE),
+        @PropertySource(IssuerConfig.Path.ISSUER_FILE),
+        @PropertySource(IssuerConfig.Path.PROXY_FILE),
+        @PropertySource(IssuerConfig.Path.SECURITY_FILE),
+        //Front file to be used
+        @PropertySource(IssuerConfig.Path.FRONT_FILE)
 })
 @Import({SchedulingConfig.class})
 public class IssuerConfigService implements IConfigService {
 
+    private static BasicDataSource dataSource = null;
 
     @Autowired
     private Environment env;
-
-    @Autowired
-    private ConfigDBService dbService;
 
     public <T> T get(String key, Class<T> clazz) {
         return this.env.getProperty(key, clazz);
@@ -67,6 +74,72 @@ public class IssuerConfigService implements IConfigService {
 
     public <T> T get(String key, Class<T> clazz, T defaultValue) {
         return this.env.getProperty(key, clazz, defaultValue);
+    }
+
+    /**
+     * DATABASE CONFIG
+     */
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        EclipseLinkJpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setShowSql(true);
+
+        LocalContainerEntityManagerFactoryBean factory =
+                new LocalContainerEntityManagerFactoryBean();
+        factory.setPersistenceUnitName("issuerPersistence");
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setJpaDialect(new EclipseLinkJpaDialect());
+        factory.setDataSource(dataSource());
+        factory.setLoadTimeWeaver(new ReflectiveLoadTimeWeaver());
+        factory.setPackagesToScan("eu.europa.ec.empl.edci.issuer");
+        factory.setJpaProperties(jpaProperties());
+        factory.afterPropertiesSet();
+
+        return factory;
+    }
+
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Bean
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager txManager = new JpaTransactionManager();
+        txManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return txManager;
+    }
+
+    public Properties jpaProperties() {
+        Properties properties = new Properties();
+        properties.put("eclipselink.logging.level", getString("log.level.jpa"));
+        properties.put("eclipselink.logging.level.sql", getString("log.level.jpa"));
+        properties.put("eclipselink.logging.parameters", "true");
+        properties.put("eclipselink.deploy-on-startup", "true");
+        properties.put("eclipselink.target-database", getString("datasource.db.target-database"));
+        properties.put("eclipselink.cache.shared.default", "false");
+        properties.put(PersistenceUnitProperties.WEAVING, "static");
+        properties.put(PersistenceUnitProperties.DDL_GENERATION, PersistenceUnitProperties.CREATE_OR_EXTEND);
+        properties.put(PersistenceUnitProperties.DDL_GENERATION_MODE, PersistenceUnitProperties.DDL_BOTH_GENERATION);
+        properties.put(PersistenceUnitProperties.CREATE_JDBC_DDL_FILE, "create.sql");
+        properties.put("eclipselink.ddl-generation", getString("datasource.db.ddl-generation", "create-or-extend-tables"));
+        return properties;
+    }
+
+    public DataSource dataSource() {
+
+        if (dataSource == null) {
+            dataSource = new BasicDataSource();
+            dataSource.setDriverClassName(getString("datasource.db.driverClassName"));
+            dataSource.setUrl(getString("datasource.db.url"));
+            dataSource.setUsername(getString("datasource.db.username"));
+            dataSource.setPassword(getString("datasource.db.password"));
+            dataSource.setDefaultAutoCommit(false);
+        }
+
+        return dataSource;
     }
 
     /**
@@ -88,7 +161,6 @@ public class IssuerConfigService implements IConfigService {
             httpProperties.setPort(getInteger("proxy.http.port"));
             httpProperties.setUser(getString("proxy.http.user"));
             httpProperties.setPassword(getString("proxy.http.pwd"));
-            //httpProperties.setExcludedHosts(httpExcludedHosts);
             config.setHttpProperties(httpProperties);
         }
         if (httpsEnabled) {
@@ -97,7 +169,6 @@ public class IssuerConfigService implements IConfigService {
             httpsProperties.setPort(getInteger("proxy.https.port"));
             httpsProperties.setUser(getString("proxy.https.user"));
             httpsProperties.setPassword(getString("proxy.https.pwd"));
-            //httpsProperties.setExcludedHosts(httpsExcludedHosts);
             config.setHttpsProperties(httpsProperties);
         }
         return config;
@@ -121,7 +192,6 @@ public class IssuerConfigService implements IConfigService {
             httpProperties.setPort(proxyConfig.getHttpProperties().getPort());
             httpProperties.setUser(proxyConfig.getHttpProperties().getUser());
             httpProperties.setPassword(proxyConfig.getHttpProperties().getPassword());
-            //httpProperties.setExcludedHosts(httpExcludedHosts);
             config.setHttpProperties(httpProperties);
         }
         if (httpsEnabled) {
@@ -130,7 +200,6 @@ public class IssuerConfigService implements IConfigService {
             httpsProperties.setPort(proxyConfig.getHttpsProperties().getPort());
             httpsProperties.setUser(proxyConfig.getHttpsProperties().getUser());
             httpsProperties.setPassword(proxyConfig.getHttpsProperties().getPassword());
-            //httpsProperties.setExcludedHosts(httpsExcludedHosts);
             config.setHttpsProperties(httpsProperties);
         }
         return config;
@@ -140,80 +209,62 @@ public class IssuerConfigService implements IConfigService {
     public CommonsDataLoader dataLoader() {
         CommonsDataLoader dataLoader = new CommonsDataLoader();
         dataLoader.setProxyConfig(toProxyConfig());
+        dataLoader.setTrustStrategy(TrustAllStrategy.INSTANCE);
         return dataLoader;
-    }
-
-
-    @Bean
-    public DataSource dataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setDataSourceJNDI(this.env.getProperty("jndi.datasource.name"));
-        config.setAutoCommit(false);
-        HikariDataSource hikariDataSource = new HikariDataSource(config);
-        //hikariDataSource.setPoolName("DSS-Hikari-Pool-Issuer");
-        return hikariDataSource;
     }
 
     @PostConstruct
     public void cachedCRLSourceInitialization() throws SQLException {
-        EdciJdbcCacheCRLSource jdbcCacheCRLSource = cachedCRLSource();
+        EdciJdbcCacheCRLSource jdbcCacheCRLSource = cacheCRLSource();
+        jdbcCacheCRLSource.destroyTable();
         jdbcCacheCRLSource.initTable();
-    }
-
-    @PostConstruct
-    public void cachedOCSPSourceInitialization() throws SQLException {
-        JdbcCacheOCSPSource jdbcCacheOCSPSource = cachedOCSPSource();
-        jdbcCacheOCSPSource.initTable();
     }
 
     @PreDestroy
     public void cachedCRLSourceClean() throws SQLException {
-        EdciJdbcCacheCRLSource jdbcCacheCRLSource = cachedCRLSource();
+        EdciJdbcCacheCRLSource jdbcCacheCRLSource = cacheCRLSource();
         jdbcCacheCRLSource.destroyTable();
     }
 
+    @PostConstruct
+    public void cachedOCSPSourceInitialization() throws SQLException {
+        JdbcCacheOCSPSource jdbcCacheOCSPSource = cacheOCSPSource();
+        jdbcCacheOCSPSource.destroyTable();
+        jdbcCacheOCSPSource.initTable();
+    }
+
+
     @PreDestroy
     public void cachedOCSPSourceClean() throws SQLException {
-        JdbcCacheOCSPSource jdbcCacheOCSPSource = cachedOCSPSource();
+        JdbcCacheOCSPSource jdbcCacheOCSPSource = cacheOCSPSource();
         jdbcCacheOCSPSource.destroyTable();
     }
 
-
     @Bean
-    public EdciJdbcCacheCRLSource cachedCRLSource() {
-        EdciJdbcCacheCRLSource jdbcCacheCRLSource = new EdciJdbcCacheCRLSource();
+    public EdciJdbcCacheCRLSource cacheCRLSource() {
+        EdciJdbcCacheCRLSource jdbcCacheCRLSource = new EdciJdbcCacheCRLSource(this.getString(EDCIConfig.Database.TARGET_DATABASE, "MySQL"));
+        OnlineCRLSource onlineCRLSource = new OnlineCRLSource();
+        onlineCRLSource.setDataLoader(this.dataLoader());
         jdbcCacheCRLSource.setDataSource(dataSource());
-        jdbcCacheCRLSource.setProxySource(onlineCRLSource(dataLoader()));
-        jdbcCacheCRLSource.setDefaultNextUpdateDelay((long) (60 * 3)); // 3
+        jdbcCacheCRLSource.setProxySource(onlineCRLSource);
+        jdbcCacheCRLSource.setDefaultNextUpdateDelay(EDCIConfig.Defaults.CRL_REFRESH);
+        jdbcCacheCRLSource.setMaxNextUpdateDelay(EDCIConfig.Defaults.CRL_REFRESH);
+        jdbcCacheCRLSource.setRemoveExpired(true);
         return jdbcCacheCRLSource;
     }
 
-
     @Bean
-    public JdbcCacheOCSPSource cachedOCSPSource() {
+    public JdbcCacheOCSPSource cacheOCSPSource() {
         JdbcCacheOCSPSource jdbcCacheOCSPSource = new JdbcCacheOCSPSource();
+        OnlineOCSPSource onlineOCSPSource = new OnlineOCSPSource();
+        onlineOCSPSource.setDataLoader(this.dataLoader());
         jdbcCacheOCSPSource.setDataSource(dataSource());
-        jdbcCacheOCSPSource.setProxySource(onlineOcspSource(dataLoader()));
-        jdbcCacheOCSPSource.setDefaultNextUpdateDelay((long) (1000 * 60 * 3)); // 3 minutes
+        jdbcCacheOCSPSource.setProxySource(onlineOCSPSource);
+        jdbcCacheOCSPSource.setDefaultNextUpdateDelay(EDCIConfig.Defaults.OCSP_REFRESH);
+        jdbcCacheOCSPSource.setMaxNextUpdateDelay(EDCIConfig.Defaults.OCSP_REFRESH);
         return jdbcCacheOCSPSource;
     }
 
-
-    @Bean
-    public OnlineCRLSource onlineCRLSource(DataLoader dataLoader) {
-        OnlineCRLSource onlineCRLSource = new OnlineCRLSource();
-        onlineCRLSource.setDataLoader(dataLoader);
-        return onlineCRLSource;
-    }
-
-    @Bean
-    public OnlineOCSPSource onlineOcspSource(DataLoader dataLoader) {
-        OnlineOCSPSource onlineOCSPSource = new OnlineOCSPSource();
-        OCSPDataLoader ocspDataLoader = new OCSPDataLoader();
-        ocspDataLoader.setProxyConfig(toProxyConfig());
-        onlineOCSPSource.setDataLoader(ocspDataLoader);
-        return onlineOCSPSource;
-    }
 
     @Bean
     public OnlineTSPSource onlineTSPSource() {
@@ -226,15 +277,38 @@ public class IssuerConfigService implements IConfigService {
     }
 
     @Bean
-    public TSLValidationJob tslValidationJob(DataLoader dataLoader, TSLRepository tslRepository, KeyStoreCertificateSource ojContentKeyStore) {
-        TSLValidationJob job = new TSLValidationJob();
-        job.setDataLoader(dataLoader);
-        job.setOjContentKeyStore(ojContentKeyStore);
-        job.setLotlUrl("https://ec.europa.eu/tools/lotl/eu-lotl.xml");
-        job.setOjUrl("https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.C_.2019.276.01.0001.01.ENG");
-        job.setLotlCode("EU");
-        job.setRepository(tslRepository);
-        return job;
+    public TLValidationJob tlValidationJob() {
+        LOTLSource lotlSource = new LOTLSource();
+        lotlSource.setUrl(this.getString(EDCIConfig.DSS.LOTL_SOURCE));
+        lotlSource.setPivotSupport(true);
+        FileCacheDataLoader onlineFileLoader = new FileCacheDataLoader(dataLoader());
+        CacheCleaner cacheCleaner = new CacheCleaner();
+        cacheCleaner.setCleanFileSystem(true);
+        cacheCleaner.setDSSFileLoader(onlineFileLoader);
+        TLValidationJob validationJob = new TLValidationJob();
+        validationJob.setTrustedListCertificateSource(this.trustedListsCertificateSource());
+        validationJob.setOnlineDataLoader(onlineFileLoader);
+        validationJob.setCacheCleaner(cacheCleaner);
+        validationJob.setListOfTrustedListSources(lotlSource);
+        return validationJob;
+    }
+
+    @Bean
+    public TrustedListsCertificateSource trustedListsCertificateSource() {
+        return new TrustedListsCertificateSource();
+    }
+
+    @Bean
+    public CommonCertificateVerifier commonCertificateVerifier() {
+        CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();
+        commonCertificateVerifier.setCheckRevocationForUntrustedChains(true);
+        commonCertificateVerifier.setDataLoader(this.dataLoader());
+        commonCertificateVerifier.setTrustedCertSources(trustedListsCertificateSource());
+        commonCertificateVerifier.setOcspSource(this.cacheOCSPSource());
+        commonCertificateVerifier.setCrlSource(this.cacheCRLSource());
+        commonCertificateVerifier.setAlertOnMissingRevocationData(new ExceptionOnStatusAlert());
+        return commonCertificateVerifier;
+
     }
 
     /**
@@ -244,14 +318,14 @@ public class IssuerConfigService implements IConfigService {
 
     @Bean
     public LoginUrlAuthenticationEntryPoint authenticationEntryPoint() {
-        LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint = new LoginUrlAuthenticationEntryPoint(this.getString(EDCIConfig.OIDC_LOGIN_URL));
+        LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint = new LoginUrlAuthenticationEntryPoint(this.getString(EDCIConfig.Security.LOGIN_URL));
         return loginUrlAuthenticationEntryPoint;
     }
 
     @Bean
     public EDCIAuthenticationSuccessHandler EDCIAuthenticationSuccessHandler() {
         EDCIAuthenticationSuccessHandler edciAuthenticationSuccessHandler = new EDCIAuthenticationSuccessHandler();
-        edciAuthenticationSuccessHandler.setDefaultTargetUrl(this.getString(EDCIConfig.OIDC_SUCCESS_DEFAULT_URL));
+        edciAuthenticationSuccessHandler.setDefaultTargetUrl(this.getString(EDCIConfig.Security.SUCCESS_DEFAULT_URL));
         return edciAuthenticationSuccessHandler;
     }
 
@@ -259,49 +333,17 @@ public class IssuerConfigService implements IConfigService {
      * PUBLIC METHODS
      */
 
-    public Defaults.Environment getCurrentEnvironment() {
-        return Defaults.Environment.valueOf(this.getString(EDCIIssuerConstants.CONFIG_PROPERTY_ACTIVE_PROFILE));
+    public EDCIConfig.Environment getCurrentEnvironment() {
+        return EDCIConfig.Environment.valueOf(this.getString(IssuerConfig.Issuer.ACTIVE_PROFILE));
     }
 
-    public List<ConfigDTO> getDatabaseConfiguration() {
-        return this.getDbService().getConfiguration();
+    public Map<String, Object> getFrontPropertiesFromFile() {
+        return this.getFrontPropertiesFromFile(this.env, IssuerConfig.Path.FRONT_FILE);
     }
 
-    public List<ConfigDTO> saveDatabaseConfiguration(List<ConfigDTO> configDTOS) {
-        return this.getDbService().setConfiguration(configDTOS);
+    @Override
+    public Map<String, Object> getFrontEndProperties() {
+        return this.getFrontPropertiesFromFile(this.env, IssuerConfig.Path.FRONT_FILE);
     }
 
-    public String getDatabaseConfigurationValue(String key) {
-        ConfigDTO configDAO = this.getDbService().findByKey(key);
-        return configDAO == null ? null : configDAO.getValue();
-    }
-
-    public List<ConfigDTO> populateDatabaseWithProperties(List<String> keys) {
-        return keys.stream().map(key -> this.populateDatabaseWithProperty(key)).collect(Collectors.toList());
-    }
-
-    public ConfigDTO populateDatabaseWithProperty(String key) {
-        String propertyValue = this.getString(key);
-        ConfigDTO configDTO = this.getDbService().findByKey(key);
-
-        if (propertyValue != null) {
-
-            if (configDTO == null) {
-                configDTO = new ConfigDTO();
-                configDTO.setKey(key);
-            }
-
-            configDTO.setValue(propertyValue);
-        }
-
-        return this.getDbService().save(configDTO);
-    }
-
-    public ConfigDBService getDbService() {
-        return dbService;
-    }
-
-    public void setDbService(ConfigDBService dbService) {
-        this.dbService = dbService;
-    }
 }

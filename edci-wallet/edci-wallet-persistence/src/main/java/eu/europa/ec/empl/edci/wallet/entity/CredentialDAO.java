@@ -23,7 +23,7 @@ public class CredentialDAO implements IGenericDAO {
     public static final String INDEX_NAME = "IDX_" + TABLE_SHORT;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "CRED_ID")
     private Long pk;
@@ -39,6 +39,10 @@ public class CredentialDAO implements IGenericDAO {
     @Lob()
     private byte[] credentialXML;
 
+    @Column(name = "DIPLOMA_IMG")
+    @Lob()
+    private byte[] diplomaImage;
+
     @Column(name = "CREATE_DATE")
     private Date createDate = new Date();
 
@@ -48,8 +52,8 @@ public class CredentialDAO implements IGenericDAO {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, targetEntity = CredentialLocalizableInfoDAO.class, mappedBy = "credentialDAO")
     private List<CredentialLocalizableInfoDAO> credentialLocalizableInfoDAOS;
 
-    @Column(name = "type", columnDefinition = "VARCHAR(5) default '" + EDCIWalletConstants.CREDENTIAL_STORED_TYPE_EUROPASS_CREDENTIAL + "' not null")
-    private String type;
+    @Column(name = "type", nullable = false)
+    private String type = EDCIWalletConstants.CREDENTIAL_STORED_TYPE_EUROPASS_CREDENTIAL;
 
     public CredentialDAO() {
     }
@@ -104,6 +108,14 @@ public class CredentialDAO implements IGenericDAO {
 
     public List<ShareLinkDAO> getShareLinkDAOList() {
         return shareLinkDAOList;
+    }
+
+    public byte[] getDiplomaImage() {
+        return diplomaImage;
+    }
+
+    public void setDiplomaImage(byte[] diplomaImage) {
+        this.diplomaImage = diplomaImage;
     }
 
     public void setShareLinkDAOList(List<ShareLinkDAO> shareLinkDAOList) {

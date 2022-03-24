@@ -53,12 +53,12 @@ public class EntitlementSpecService implements CrudService<EntitlementSpecDAO> {
 
         entitlementSpecCloneDAO.setDefaultTitle(generateTitleDuplicated(entitlementSpecCloneDAO.getDefaultTitle()));
 
-        save(entitlementSpecDAO);
-
         //Relations
-//        entitlementSpecCloneDAO.setEntitledTo(entitlementSpecDAO.getEntitledTo());
-//        entitlementSpecCloneDAO.setPerformed(entitlementSpecDAO.getPerformed());
-//        entitlementSpecCloneDAO.setAchieved(entitlementSpecDAO.getAchieved());
+        entitlementSpecCloneDAO.setWasDerivedFrom(entitlementSpecDAO.getWasDerivedFrom());
+        entitlementSpecCloneDAO.setHasPart(entitlementSpecDAO.getHasPart());
+        if (entitlementSpecDAO.getSpecifiedBy() != null && entitlementSpecCloneDAO.getSpecifiedBy() != null) {
+            entitlementSpecCloneDAO.getSpecifiedBy().setLimitOrganization(entitlementSpecDAO.getSpecifiedBy().getLimitOrganization());
+        }
 
         return save(entitlementSpecCloneDAO);
 

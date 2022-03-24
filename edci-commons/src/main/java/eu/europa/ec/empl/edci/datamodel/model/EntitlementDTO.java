@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.base.RootEntity;
@@ -27,11 +27,11 @@ public class EntitlementDTO implements RootEntity, Nameable {
     @XmlTransient
     private String pk;
     @XmlAttribute
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ENTITLEMENT_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ENTITLEMENT_ID_NOTNULL)
     private URI id; //1
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ENTITLEMENT_TITLE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ENTITLEMENT_TITLE_NOTNULL)
     @Valid
     private Text title; //1
     @Valid

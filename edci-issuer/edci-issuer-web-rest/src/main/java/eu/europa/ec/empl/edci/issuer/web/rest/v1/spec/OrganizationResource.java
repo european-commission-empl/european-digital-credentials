@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v1.spec;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.exception.clientErrors.EDCINotFoundException;
-import eu.europa.ec.empl.edci.issuer.common.constants.Endpoint;
+import eu.europa.ec.empl.edci.issuer.common.constants.IssuerEndpoint;
 import eu.europa.ec.empl.edci.issuer.common.constants.Parameter;
 import eu.europa.ec.empl.edci.issuer.entity.specs.OrganizationSpecDAO;
 import eu.europa.ec.empl.edci.issuer.service.spec.EntitlementSpecService;
@@ -40,7 +40,7 @@ import javax.validation.Valid;
         "V1"
 })
 @Controller(value = "v1.OrganizationSpecResource")
-@RequestMapping(value = Version.V1 + Endpoint.V1.ORGANIZATIONS_BASE)
+@RequestMapping(value = EDCIConstants.Version.V1 + IssuerEndpoint.V1.ORGANIZATIONS_BASE)
 @PreAuthorize("isAuthenticated()")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 public class OrganizationResource implements CrudResource {
@@ -64,7 +64,7 @@ public class OrganizationResource implements CrudResource {
     private EDCISecurityContextHolder edciUserHolder;
 
     @ApiOperation(value = "Create an organization spec")
-    @PostMapping(value = Endpoint.V1.SPECS,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -82,7 +82,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Duplicate a activity spec")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<OrganizationSpecView>> duplicateOrganization(
@@ -95,7 +95,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Update an organization spec")
-    @PutMapping(value = Endpoint.V1.SPECS,
+    @PutMapping(value = IssuerEndpoint.V1.SPECS,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -120,7 +120,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Upload a organization logo")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.LOGO,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.LOGO,
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -133,7 +133,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Delete an organization spec")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity deleteOrganization(
@@ -144,7 +144,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets an organization")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<OrganizationSpecView>> getOrganization(
@@ -159,7 +159,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of organizations")
-    @GetMapping(value = Endpoint.V1.SPECS,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<OrganizationSpecLiteView>> listOrganization(
@@ -178,7 +178,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of hasUnit organizations")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ORG_HAS_UNITS_REL,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ORG_HAS_UNITS_REL,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<PagedResources<OrganizationSpecLiteView>> listHasUnit(
@@ -198,7 +198,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Link an existing related organizations to a organization")
-    @PostMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ORG_UNIT_OF_REL,
+    @PostMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ORG_UNIT_OF_REL,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -222,7 +222,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Deletes an existing linked organization to a organization")
-    @DeleteMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ORG_UNIT_OF_REL,
+    @DeleteMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ORG_UNIT_OF_REL,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -244,7 +244,7 @@ public class OrganizationResource implements CrudResource {
     }
 
     @ApiOperation(value = "Gets a list of hasUnit organizations")
-    @GetMapping(value = Endpoint.V1.SPECS + Parameter.Path.OID + Endpoint.V1.ORG_UNIT_OF_REL,
+    @GetMapping(value = IssuerEndpoint.V1.SPECS + Parameter.Path.OID + IssuerEndpoint.V1.ORG_UNIT_OF_REL,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Resource<OrganizationSpecView>> getUnitOf(
@@ -264,15 +264,15 @@ public class OrganizationResource implements CrudResource {
     public Link[] generateOrganizationHateoas(OrganizationSpecDAO organizationDAO) {
 
         if (organizationDAO != null) {
-            Link hateoasSelf = ControllerLinkBuilder.linkTo(OrganizationResource.class).slash(Endpoint.V1.SPECS).slash(organizationDAO.getPk()).withSelfRel();
+            Link hateoasSelf = ControllerLinkBuilder.linkTo(OrganizationResource.class).slash(IssuerEndpoint.V1.SPECS).slash(organizationDAO.getPk()).withSelfRel();
 
             Link hateoasUnitOf = ControllerLinkBuilder.linkTo(OrganizationResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(organizationDAO.getPk())
-                    .slash(Endpoint.V1.ORG_UNIT_OF_REL).withRel("unitOf");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(organizationDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ORG_UNIT_OF_REL).withRel("unitOf");
 
             Link hateoasHasUnits = ControllerLinkBuilder.linkTo(OrganizationResource.class)
-                    .slash(Endpoint.V1.SPECS).slash(organizationDAO.getPk())
-                    .slash(Endpoint.V1.ORG_HAS_UNITS_REL).withRel("hasUnits");
+                    .slash(IssuerEndpoint.V1.SPECS).slash(organizationDAO.getPk())
+                    .slash(IssuerEndpoint.V1.ORG_HAS_UNITS_REL).withRel("hasUnits");
 
             return new Link[]{
                     hateoasSelf, hateoasUnitOf, hateoasHasUnits

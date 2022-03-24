@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.issuer.util;
 
 
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessages;
+import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessageKeys;
 import eu.europa.ec.empl.edci.issuer.common.constants.XLS;
 import eu.europa.ec.empl.edci.issuer.common.model.AssessmentsListIssueDTO;
 import eu.europa.ec.empl.edci.issuer.common.model.ColumnInfo;
@@ -77,26 +77,26 @@ public class EDCIWorkBookWriter {
     }
 
     public void replaceRecipientTemplateHeaders(Sheet recipientSheet, String lang) {
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_LABEL));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_DEFINITION));
-        this.setOrCreateCellValue(recipientSheet, XLS.LANGUAGE_DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_LANGUAGE));
-        this.setOrCreateCellValue(recipientSheet, XLS.DEFAULT_VALUE_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_DEFAULT));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.GIVENNAME_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_GIVENNAME, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.FAMILYNAME_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_FAMILYNAME, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.DATEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_DATEOFBIRTH, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.DATEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_DATEOFBIRTH_DESCRIPTION));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.GENDER_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_GENDER, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_NATIONALID, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_NATIONALID_NUMBER_DESCRIPTION, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN) + 1, edciMessageService.getMessage(EDCIIssuerMessages.HEADER_NATIONALID_COUNTRY_DESCRIPTION, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.PLACEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_PLACEOFBIRTH, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.PLACEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_PLACEOFBIRTH_DESCRIPTION, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFCITIZENSHIP_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_COUNTRYOFCITIZENSHIP, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFCITIZENSHIP_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_COUNTRYOFCITIZENSHIP_DESCRIPTION, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.EMAILADDRESS_COLMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_EMAILADDRESS, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.WALLETADDRESS_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_WALLETADDRESS, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFRESIDENCE_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_COUNTRYOFRESIDENCE, lang));
-        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFRESIDENCE_COLUMN), edciMessageService.getMessage(EDCIIssuerMessages.HEADER_COUNTRYOFRESIDENCE_DESCRIPTION, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_LABEL));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_DEFINITION));
+        this.setOrCreateCellValue(recipientSheet, XLS.LANGUAGE_DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_LANGUAGE));
+        this.setOrCreateCellValue(recipientSheet, XLS.DEFAULT_VALUE_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_DEFAULT));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.GIVENNAME_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_GIVENNAME, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.FAMILYNAME_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_FAMILYNAME, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.DATEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_DATEOFBIRTH, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.DATEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_DATEOFBIRTH_DESCRIPTION));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.GENDER_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_GENDER, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_NATIONALID, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_NATIONALID_NUMBER_DESCRIPTION, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.NATIONALID_COLUMN) + 1, edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_NATIONALID_COUNTRY_DESCRIPTION, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.PLACEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_PLACEOFBIRTH, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.PLACEOFBIRTH_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_PLACEOFBIRTH_DESCRIPTION, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFCITIZENSHIP_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_COUNTRYOFCITIZENSHIP, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFCITIZENSHIP_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_COUNTRYOFCITIZENSHIP_DESCRIPTION, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.EMAILADDRESS_COLMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_EMAILADDRESS, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.WALLETADDRESS_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_WALLETADDRESS, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.LABEL_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFRESIDENCE_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_COUNTRYOFRESIDENCE, lang));
+        this.setOrCreateCellValue(recipientSheet, XLS.DESCRIPTION_ROW, edciWorkBookReader.getColumnIndex(XLS.Recipient.COUNTRYOFRESIDENCE_COLUMN), edciMessageService.getMessage(EDCIIssuerMessageKeys.HEADER_COUNTRYOFRESIDENCE_DESCRIPTION, lang));
 
         recipientSheet.autoSizeColumn(edciWorkBookReader.getColumnIndex(XLS.Recipient.LABEL_COLUMN));
         recipientSheet.autoSizeColumn(edciWorkBookReader.getColumnIndex(XLS.Recipient.GIVENNAME_COLUMN));

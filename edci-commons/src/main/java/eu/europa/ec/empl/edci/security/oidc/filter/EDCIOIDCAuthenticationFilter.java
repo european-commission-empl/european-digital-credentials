@@ -15,8 +15,8 @@ import com.nimbusds.jose.util.Base64URL;
 import com.nimbusds.jwt.*;
 import eu.europa.ec.empl.edci.config.service.IConfigService;
 import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.constants.EDCIParameter;
-import eu.europa.ec.empl.edci.constants.Security;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -80,7 +80,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
 
     @Autowired
     public void setFilterProcessUrl() {
-        super.setFilterProcessesUrl(configService.getString(EDCIConfig.OIDC_LOGIN_URL));
+        super.setFilterProcessesUrl(configService.getString(EDCIConfig.Security.LOGIN_URL));
     }
 
     public IConfigService getConfigService() {
@@ -106,7 +106,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         //if user is mocked, do not request IDP
-        if (this.getConfigService().getBoolean(EDCIConfig.OIDC_MOCK_USER_ACTIVE)) {
+        if (this.getConfigService().getBoolean(EDCIConfig.Security.MOCK_USER_ACTIVE)) {
             return this.getAuthenticationManager().authenticate(new PreAuthenticatedAuthenticationToken(null, null, null));
         }
 
@@ -135,7 +135,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
         HttpSession session = request.getSession();
         IssuerServiceResponse issResp = super.getIssuerService().getIssuer(request);
         if (issResp == null) {
-            this.logger.error("Null issuer response returned from service.");
+            this.logger.error("Null issuer response returned from eu.europa.ec.empl.edci.dss.service.");
             throw new AuthenticationServiceException("No issuer found.");
         } else {
             if (issResp.shouldRedirect()) {
@@ -268,7 +268,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
                     }
 
                     if (signer == null) {
-                        throw new AuthenticationServiceException("Couldn't find required signer service for use with private key auth.");
+                        throw new AuthenticationServiceException("Couldn't find required signer eu.europa.ec.empl.edci.dss.service for use with private key auth.");
                     }
 
                     JWTClaimsSet.Builder claimsSet = new JWTClaimsSet.Builder();
@@ -296,7 +296,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
             String jsonString;
 
             //Modification: Add refresh token max age if session timeout is defined, otherwise eu login default is 1 min
-            Integer sessionTimeOut = this.getConfigService().getInteger(Security.CONFIG_PROPERTY_SESSION_TIMEOUT);
+            Integer sessionTimeOut = this.getConfigService().getInteger(EDCIConstants.Security.CONFIG_PROPERTY_SESSION_TIMEOUT);
             if (sessionTimeOut != null && sessionTimeOut != 0) {
                 form.add("refresh_token_max_age", String.valueOf(sessionTimeOut * 60));
             }
@@ -358,7 +358,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
                                         }
 
                                         if (jwtValidator == null) {
-                                            this.logger.error("No validation service found. Skipping signature validation");
+                                            this.logger.error("No validation eu.europa.ec.empl.edci.dss.service found. Skipping signature validation");
                                             throw new AuthenticationServiceException("Unable to find an appropriate signature validator for ID Token.");
                                         }
 
@@ -369,6 +369,7 @@ public class EDCIOIDCAuthenticationFilter extends OIDCAuthenticationFilter {
 
                                     if (idClaims.getIssuer() == null) {
                                         throw new AuthenticationServiceException("Id Token Issuer is null");
+                                        //Add request auth URL for docker environment
                                     } else if (!idClaims.getIssuer().equals(serverConfig.getIssuer())) {
                                         throw new AuthenticationServiceException("Issuers do not match, expected " + serverConfig.getIssuer() + " got " + idClaims.getIssuer());
                                     } else if (idClaims.getExpirationTime() == null) {

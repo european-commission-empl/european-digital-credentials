@@ -6,7 +6,7 @@
 
     <groupId>eu.europa.ec.empl.edci</groupId>
     <artifactId>edci-commons</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 
     <name>edci-commons</name>
 
@@ -52,7 +52,7 @@
         <xerces.version>2.12-beta-r1667115</xerces.version>
         <owasp.sanitizer.version>20191001.1</owasp.sanitizer.version>
         <spring.data-jpa.version>2.3.4.RELEASE</spring.data-jpa.version>
-        <liquibase.version>3.4.1</liquibase.version>
+        <liquibase.version>4.3.1</liquibase.version>
         <liquibase.logs.version>2.13.3</liquibase.logs.version>
         <com.google.zxing.version>3.3.0</com.google.zxing.version>
         <apache.poi.version>4.1.2</apache.poi.version>
@@ -61,6 +61,19 @@
         <apache.jena.sparql.version>3.13.1</apache.jena.sparql.version>
 
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
 
@@ -97,20 +110,7 @@
             </exclusions>
         </dependency>
 
-        <!-- <dependency>
-             <groupId>org.apache.logging.log4j</groupId>
-             <artifactId>log4j-liquibase</artifactId>
-             <version>${liquibase.logs.version}</version>
-             <exclusions>
-                 <exclusion>
-                     <groupId>org.slf4j</groupId>
-                     <artifactId>slf4j-api</artifactId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
-
         <!-- EL -->
-
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
@@ -543,7 +543,8 @@
                             <arguments>
                                 <argument>ImportLabels</argument>
                             </arguments>
-                            <mainClass>eu.europa.ec.empl.edci.service.EDCILabelImporterUtil</mainClass>
+                            <mainClass>eu.europa.ec.empl.edci.eu.europa.ec.empl.edci.dss.service.EDCILabelImporterUtil
+                            </mainClass>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -561,7 +562,8 @@
                             <arguments>
                                 <argument>NewLabels</argument>
                             </arguments>
-                            <mainClass>eu.europa.ec.empl.edci.service.EDCILabelImporterUtil</mainClass>
+                            <mainClass>eu.europa.ec.empl.edci.eu.europa.ec.empl.edci.dss.service.EDCILabelImporterUtil
+                            </mainClass>
                         </configuration>
                     </plugin>
                 </plugins>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- CONFIGURATION FILE FOR JENKINS CI BUILD -->
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -19,56 +21,74 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<!--
+ | This is the configuration file for Maven. It can be specified at two levels:
+ |
+ |  1. User Level. This settings.xml file provides configuration for a single user,
+ |                 and is normally provided in ${user.home}/.m2/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -s /path/to/user/settings.xml
+ |
+ |  2. Global Level. This settings.xml file provides configuration for all Maven
+ |                 users on a machine (assuming they're all using the same Maven
+ |                 installation). It's normally provided in
+ |                 ${maven.conf}/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -gs /path/to/global/settings.xml
+ |
+ | The sections in this sample file are intended to give you a running start at
+ | getting the most out of your Maven installation. Where appropriate, the default
+ | values (values used when the setting is not specified) are provided.
+ |
+ |-->
 <settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-
-    <localRepository>[LOCAL_REPOSITORY_PATH]</localRepository>
-
+    <!-- localRepository
+     | The path to the local repository maven will use to store artifacts.
+     |
+     | Default: ${user.home}/.m2/repository
+    <localRepository>/path/to/local/repo</localRepository>
+    -->
+    <localRepository>C:\EDCIEcosystem\.m2\repository</localRepository>
     <pluginGroups>
+        <!-- pluginGroup
+         | Specifies a further group identifier to use for plugin lookup.
+        <pluginGroup>com.your.plugins</pluginGroup>
+        -->
         <pluginGroup>org.jacoco</pluginGroup>
     </pluginGroups>
 
     <proxies>
+
     </proxies>
 
+    <!-- servers
+     | This is a list of authentication profiles, keyed by the server-id used within the system.
+     | Authentication profiles can be used whenever maven must make a connection to a remote server.
+     |-->
     <servers>
+
     </servers>
 
     <mirrors>
+
     </mirrors>
 
     <profiles>
-
         <profile>
-
-            <id>external</id>
+            <id>location-open</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>env.USERDOMAIN</name>
-                    <value>NET1</value>
-                </property>
             </activation>
-
             <repositories>
-
                 <repository>
                     <id>Red Hat</id>
                     <url>https://maven.repository.redhat.com/ga/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                </repository>
-
-                <repository>
-                    <id>cronapp</id>
-                    <url>https://artifactory.cronapp.io/public-release/</url>
-                </repository>
-
-                <repository>
-                    <id>nexus-ec</id>
-                    <url>http://central.maven.org/maven2/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -76,75 +96,40 @@ under the License.
                         <enabled>false</enabled>
                     </snapshots>
                 </repository>
-
                 <repository>
-                    <id>joinup-dss-thirdparty</id>
-                    <url>http://joinup.ec.europa.eu/site/sd-dss/maven2</url>
+                    <id>cronapp</id>
+                    <url>https://artifactory.cronapp.io/public-release/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
                 </repository>
-
                 <repository>
-                    <id>joinup</id>
-                    <name>Joinup</name>
-                    <url>https://joinup.ec.europa.eu/nexus/content/groups/public/</url>
+                    <id>Central</id>
+                    <url>https://repo1.maven.org/maven2/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
                 </repository>
-
                 <repository>
                     <id>cefdigital</id>
                     <name>cefdigital</name>
                     <url>https://ec.europa.eu/cefdigital/artifact/content/repositories/esignaturedss/</url>
                 </repository>
-
             </repositories>
-
-            <pluginRepositories>
-
-                <pluginRepository>
-                    <id>Red Hat</id>
-                    <url>https://maven.repository.redhat.com/ga/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                </pluginRepository>
-
-                <pluginRepository>
-                    <id>cronapp</id>
-                    <url>https://artifactory.cronapp.io/public-release/</url>
-                </pluginRepository>
-
-                <pluginRepository>
-                    <id>Central</id>
-                    <url>http://central.maven.org/maven2/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-
-            </pluginRepositories>
-
         </profile>
-
-        <profile>
-
-            <id>local-repo</id>
-            <repositories>
-                <repository>
-                    <id>local</id>
-                    <name>Local</name>
-                    <url>[LOCAL_REPOSITORY_PATH]</url>
-                </repository>
-            </repositories>
-
-        </profile>
-
     </profiles>
 
+    <!-- activeProfiles
+     | List of profiles that are active for all builds.
+     | -->
     <activeProfiles>
-        <activeProfile>external</activeProfile>
-        <activeProfile>local-repo</activeProfile>
+        <activeProfile>location-open</activeProfile>
     </activeProfiles>
-
 </settings>
 

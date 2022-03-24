@@ -1,7 +1,9 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Note;
+import eu.europa.ec.empl.edci.datamodel.validation.ValidContactPoint;
 
+import javax.validation.Constraint;
 import javax.validation.Valid;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,6 +13,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = {"note", "description", "postalAddress", "phone", "email", "walletAddress", "contactForm"})
+@ValidContactPoint
 public class ContactPoint {
     @Valid
     private List<Note> note;

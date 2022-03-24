@@ -41,12 +41,12 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="eu.europa.ec.empl.edci.wallet.web,eu.europa.ec.empl.edci.wallet.liquibase"/>
+    <context:component-scan
+            base-package="eu.europa.ec.empl.edci.wallet.web.rest,eu.europa.ec.empl.edci.wallet.liquibase"/>
 
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
         <mvc:path-matching suffix-pattern="false"/>
     </mvc:annotation-driven>
-
 
     <!-- content-negotiation-manager="contentNegotiationManager"configure contentNegotiationManager and add suffix-pattern= false to mvc:annotation-driven/path-matching to avoid problems with endpoint ending with .com, .pdf, etc. -->
 

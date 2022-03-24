@@ -3,7 +3,7 @@ import * as moment from 'moment';
 import { Constants } from '@shared/constants';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class DateFormatService {
     constructor() {}
@@ -16,7 +16,9 @@ export class DateFormatService {
      * @returns string "yy-MM-dd"
      */
     dateToStringDate(date: Date): string {
-        return date ? moment(date).format('YYYY-MM-DD') : null;
+        return date && moment(date).isValid()
+            ? moment(date).format('YYYY-MM-DD')
+            : null;
     }
 
     /**
@@ -27,7 +29,9 @@ export class DateFormatService {
      * @returns string "yy-MM-ddTHH:mm:ss+HH:ss"
      */
     dateToStringDateTime(date: Date): string {
-        return date ? moment(date).format(Constants.LONG_DATE) : null;
+        return date && moment(date).isValid()
+            ? moment(date).format(Constants.LONG_DATE)
+            : null;
     }
 
     /**
@@ -70,5 +74,33 @@ export class DateFormatService {
             isValid = false;
         }
         return isValid;
+    }
+
+    /**
+     * Checks that two dates are not invalid.
+     * Invalid: initialDate =< finalDate
+     *
+     * @param initialDate
+     * @param finalDate
+     */
+    validateActivityDates(initialDate: Date, finalDate: Date): boolean {
+        let isValid: boolean = true;
+        if (
+            initialDate &&
+            finalDate &&
+            !moment(initialDate).isSameOrBefore(finalDate)
+        ) {
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * Checks if value is a valid date.
+     *
+     * @param value
+     */
+    validateDate(value): boolean {
+        return moment(value).isValid();
     }
 }

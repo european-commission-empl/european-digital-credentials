@@ -28,7 +28,7 @@ public class LearningSpecificationDCDAO implements IGenericDAO, Emptiable {
      ***************/
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = TABLE_SEQ)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
     @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "PK")
     @EmptiableIgnore
@@ -93,7 +93,7 @@ public class LearningSpecificationDCDAO implements IGenericDAO, Emptiable {
             name = "FIELD_" + TABLE_SHORT + "_ISCED",
             joinColumns = @JoinColumn(name = TABLE_PK_REF),
             inverseJoinColumns = @JoinColumn(name = CodeDTDAO.TABLE_PK_REF))
-    private Set<CodeDTDAO> ISCEDFCode; //*
+    private Set<CodeDTDAO> iscedFCode; //*
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinTable(
@@ -107,7 +107,7 @@ public class LearningSpecificationDCDAO implements IGenericDAO, Emptiable {
 
     @OneToOne(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ECTS_CRED_POINTS_PK", referencedColumnName = "PK")
-    private ScoreDTDAO ECTSCreditPoints; //0..1
+    private ScoreDTDAO ectsCreditPoints; //0..1
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinTable(
@@ -375,12 +375,12 @@ public class LearningSpecificationDCDAO implements IGenericDAO, Emptiable {
         this.supplementaryDocument = supplementaryDocument;
     }
 
-    public Set<CodeDTDAO> getISCEDFCode() {
-        return ISCEDFCode;
+    public Set<CodeDTDAO> getIscedFCode() {
+        return iscedFCode;
     }
 
-    public void setISCEDFCode(Set<CodeDTDAO> ISCEDFCode) {
-        this.ISCEDFCode = ISCEDFCode;
+    public void setIscedFCode(Set<CodeDTDAO> iscedFCode) {
+        this.iscedFCode = iscedFCode;
     }
 
     public Period getVolumeOfLearning() {
@@ -391,12 +391,12 @@ public class LearningSpecificationDCDAO implements IGenericDAO, Emptiable {
         this.volumeOfLearning = volumeOfLearning;
     }
 
-    public ScoreDTDAO getECTSCreditPoints() {
-        return ECTSCreditPoints;
+    public ScoreDTDAO getEctsCreditPoints() {
+        return ectsCreditPoints;
     }
 
-    public void setECTSCreditPoints(ScoreDTDAO ECTSCreditPoints) {
-        this.ECTSCreditPoints = ECTSCreditPoints;
+    public void setEctsCreditPoints(ScoreDTDAO ectsCreditPoints) {
+        this.ectsCreditPoints = ectsCreditPoints;
     }
 
     public Set<ScoreDTDAO> getCreditPoints() {

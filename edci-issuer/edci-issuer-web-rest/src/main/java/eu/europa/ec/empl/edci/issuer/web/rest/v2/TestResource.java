@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.web.rest.v2;
 
-import eu.europa.ec.empl.edci.constants.Version;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.issuer.web.mapper.FileRestMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
-@Controller(value="model.TestResource")
-@RequestMapping(Version.V2 + "/test")
+@Controller(value = "model.TestResource")
+@RequestMapping(EDCIConstants.Version.V2 + "/test")
 @ResponseStatus(HttpStatus.OK)
 public class TestResource {
     private final Log logger = LogFactory.getLog(this.getClass());

@@ -1,6 +1,10 @@
 <ux-modal
     [id]="modalId"
-    [titleLabel]="modalTitle"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
     (onClose)="closeModal(false)"
     customWidth="75%"
 >
@@ -588,11 +592,15 @@
                         formControlName="logo"
                     /> -->
                     <div>
-                        <div *ngIf="logoPreviewURL" style="display:flex;">
+                        <div *ngIf="logoPreviewURL" style="display: flex;">
                             <img
                                 src="{{ logoPreviewURL }}"
                                 [height]="isLogoNotAvailable ? '100' : '200'"
-                                [title]="isLogoNotAvailable ? 'Preview not available' : ''"
+                                [title]="
+                                    isLogoNotAvailable
+                                        ? 'Preview not available'
+                                        : ''
+                                "
                                 class="mb-3"
                             />
                             <ux-button
@@ -667,6 +675,7 @@
                         <edci-autocomplete
                             entityType="organization"
                             [isSingleSelection]="true"
+                            [defaultLanguage]="defaultLanguage"
                             [mainItemOid]="editOrganizationOid"
                             [preSelectedItems]="selectedParentOrganization"
                             (onEntityClicked)="editEntityClicked($event)"
@@ -679,7 +688,11 @@
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
                             (click)="newEntityClicked('organization')"
                         ></ux-button>
                     </div>
@@ -734,8 +747,8 @@
 <ux-message-box
     id="messageBoxNewEntityWarning"
     titleLabel="{{ 'common.warning' | translate | uppercase }}"
-    acceptLabel="{{'Accept' | uppercase}}"
-    dismissLabel="{{'Dismiss' | uppercase}}"
+    acceptLabel="{{ 'Accept' | uppercase }}"
+    dismissLabel="{{ 'Dismiss' | uppercase }}"
     (clicked)="newEntityClicked(null, $event)"
 >
     <p>{{ 'credential-builder.formNewEntityWarning' | translate }}</p>

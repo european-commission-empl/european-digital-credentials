@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.mapper;
 
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.datamodel.model.*;
 import eu.europa.ec.empl.edci.datamodel.model.base.CredentialHolderDTO;
 import eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation.EuropassPresentationDTO;
@@ -24,8 +24,8 @@ public interface EuropassCredentialPresentationMapper {
 
     public static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(EuropassCredentialPresentationMapper.class);
 
-    static SimpleDateFormat formatterDateOnlyOwner = new SimpleDateFormat(EuropassConstants.DATE_FRONT_LOCAL_OWNER);
-    static SimpleDateFormat formatterDateFull = new SimpleDateFormat(EuropassConstants.DATE_FRONT_GMT);
+    static SimpleDateFormat formatterDateOnlyOwner = new SimpleDateFormat(EDCIConstants.DATE_FRONT_LOCAL_OWNER);
+    static SimpleDateFormat formatterDateFull = new SimpleDateFormat(EDCIConstants.DATE_FRONT_GMT);
 
 
     @Mappings({
@@ -191,6 +191,12 @@ public interface EuropassCredentialPresentationMapper {
 
     List<VerificationCheckFieldView> toVerificationCheckFieldViewList(List<VerificationCheckDTO> verificationCheckDTO);
 
+    @Mappings({
+            @Mapping(source = "description", target = "descrAvailableLangs"),
+            @Mapping(source = "longDescription", target = "longDescrAvailableLangs"),
+            @Mapping(source = "description", target = "description"),
+            @Mapping(source = "longDescription", target = "longDescription")
+    })
     VerificationCheckFieldView toVerificationCheckFieldView(VerificationCheckDTO verificationCheckDTO);
 
 

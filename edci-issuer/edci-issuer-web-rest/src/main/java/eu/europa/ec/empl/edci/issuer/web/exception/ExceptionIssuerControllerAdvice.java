@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.issuer.web.exception;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.exception.ApiErrorMessage;
 import eu.europa.ec.empl.edci.exception.FileBaseDataException;
 import eu.europa.ec.empl.edci.rest.ExceptionControllerAdvice;
@@ -23,7 +23,7 @@ public class ExceptionIssuerControllerAdvice extends ExceptionControllerAdvice {
         //ToDo-> localize/parametrize excel error messages
         String message = error.getMessage();
         if (ex.hasAllCellInfo()) {
-            message = message.concat(" - ").concat(messageSource.getMessage(MessageKeys.Exception.XLS.FILE_EXCEL_CELL_ERROR_MESSAGE, ex.getSheetName(), ex.getRow(), ex.getColumn()));
+            message = message.concat(" - ").concat(messageSource.getMessage(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_CELL_ERROR_MESSAGE, ex.getSheetName(), ex.getRow(), ex.getColumn()));
         }
         error.setMessage(message);
         logger.error(ex.getMessage(), ex);

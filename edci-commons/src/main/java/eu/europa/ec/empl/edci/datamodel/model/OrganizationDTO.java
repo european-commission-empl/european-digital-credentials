@@ -2,7 +2,7 @@ package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
 import eu.europa.ec.empl.edci.annotation.Resize;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.AgentDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Identifier;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.LegalIdentifier;
@@ -29,16 +29,16 @@ public class OrganizationDTO extends AgentDTO {
     //private URI id; //1
     @Valid
     @XmlElement(name = "prefLabel")
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ORGANIZATION_PREFERREDNAME_NOTNULL, groups = AfterSealing.class)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ORGANIZATION_PREFERREDNAME_NOTNULL, groups = AfterSealing.class)
     private Text preferredName; //1
     @XmlElement(name = "altLabel")
     @Valid
     private List<Text> alternativeName = new ArrayList<>(); //*
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ORGANIZATION_LOCATION_MIN, groups = AfterSealing.class)
-    @Size(min = 1, message = MessageKeys.Validation.VALIDATION_ORGANIZATION_LOCATION_MIN, groups = AfterSealing.class)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ORGANIZATION_LOCATION_MIN, groups = AfterSealing.class)
+    @Size(min = 1, message = EDCIMessageKeys.Validation.VALIDATION_ORGANIZATION_LOCATION_MIN, groups = AfterSealing.class)
     private List<LocationDTO> hasLocation; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ORGANIZATION_LEGALIDENTIFIER_NOTNULL, groups = AfterSealing.class)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ORGANIZATION_LEGALIDENTIFIER_NOTNULL, groups = AfterSealing.class)
     @Valid
     @XmlElements({
             @XmlElement(name = "registration", type = Identifier.class),

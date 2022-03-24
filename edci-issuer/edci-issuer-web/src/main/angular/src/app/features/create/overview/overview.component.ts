@@ -7,6 +7,7 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
+import { environment } from '@environments/environment';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { FileUploadResponseView } from '@core/models/DTO/fileUploadResponseView.model';
@@ -18,7 +19,12 @@ import { NotificationService, OKNotification } from '@services/error.service';
 import { IssuerService } from '@services/issuer.service';
 import { NexUService } from '@services/nexU.service';
 import { DocumentUpload } from '@shared/models/upload.model';
-import { CredentialView, StatusView, V1Service } from '@shared/swagger';
+import {
+    CredentialView,
+    LocalSignatureRequestView,
+    StatusView,
+    V1Service,
+} from '@shared/swagger';
 import { interval, Subject, Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
@@ -31,7 +37,6 @@ import { Constants } from '@shared/constants';
     encapsulation: ViewEncapsulation.None,
 })
 export class OverviewComponent implements OnInit, OnDestroy {
-
     /* Mat table */
     displayedColumns: string[] = [
         'select',
@@ -43,7 +48,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
         'received',
         'actions',
     ];
-    datesOfCredentialSealed: {uuid: string, date: Date} = {} as {uuid: string, date: Date};
+    datesOfCredentialSealed: { uuid: string; date: Date } = {} as {
+        uuid: string;
+        date: Date;
+    };
     dataSource: MatTableDataSource<CredentialView>;
     selection = new SelectionModel<CredentialView>(true, []);
     isLoadingResults: boolean = false;
@@ -70,9 +78,24 @@ export class OverviewComponent implements OnInit, OnDestroy {
     formRadio: FormGroup = new FormGroup({
         presentation: new FormControl(false),
     });
+
+    localSealingForm: FormGroup = new FormGroup({
+        password: new FormControl(),
+    });
+
     sealFailed: boolean = false;
     downloadCSVEnabled: boolean;
     private destroy$: Subject<boolean> = new Subject<boolean>();
+
+    get localCertPassword() {
+        return this.localSealingForm.get('password');
+    }
+
+    set localCertPassword(newPass) {
+        this.localSealingForm.setValue({
+            password: newPass,
+        });
+    }
 
     get presentation() {
         return this.formRadio.get('presentation');
@@ -80,7 +103,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
     set presentation(status: any) {
         this.formRadio.setValue({
-            presentation: status
+            presentation: status,
         });
     }
 
@@ -139,11 +162,18 @@ export class OverviewComponent implements OnInit, OnDestroy {
         const uuids = this.selection.selected.map(
             (cred: CredentialView) => cred.uuid
         );
-        this.toSeal(uuids);
+        this.uuids = uuids;
+
+        this.toSeal();
     }
 
     closePresentationModal(): void {
         this.uxService.closeModal('selectPresentationTypeModal');
+    }
+
+    closeLocalSealingPassModal(): void {
+        this.isLoadingResults = false;
+        this.uxService.closeModal('localSealingPassModal');
     }
 
     openPresentationModal() {
@@ -153,8 +183,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
     sealCredentials() {
         if (this.selection.selected.length >= 0) {
-            this.openPresentationModal();
+            environment.enabledLocalSealing
+                ? this.openLocalSealingPassModal()
+                : this.openPresentationModal();
         }
+    }
+
+    openLocalSealingPassModal(): void {
+        this.uxService.openModal('localSealingPassModal');
     }
 
     downloadCSV() {
@@ -162,22 +198,26 @@ export class OverviewComponent implements OnInit, OnDestroy {
             const JSONtoTransform: any[] = [];
             this.selection.selected.forEach((credential: CredentialView) => {
                 if (credential.sent || credential.received) {
-                    const date = this.datesOfCredentialSealed[credential.uuid] ?
-                        this.datesOfCredentialSealed[credential.uuid].date : '';
-                    JSONtoTransform.push(
-                        {
-                            'Time of Issue': date,
-                            'UUID of Credential Issued': credential.uuid,
-                            'Name of Student it is Issued to': credential.studentName,
-                            'Name of Credential': credential.course,
-                            'Sent by email': !!credential.sent,
-                            'Stored in wallet': !!credential.received,
-                        }
-                    );
+                    const date = this.datesOfCredentialSealed[credential.uuid]
+                        ? this.datesOfCredentialSealed[credential.uuid].date
+                        : '';
+                    JSONtoTransform.push({
+                        'Time of Issue': date,
+                        'UUID of Credential Issued': credential.uuid,
+                        'Name of Student it is Issued to':
+                            credential.studentName,
+                        'Name of Credential': credential.course,
+                        'Sent by email': !!credential.sent,
+                        'Stored in wallet': !!credential.received,
+                    });
                 }
             });
-            const generatedCSV = this.issuerService.generateCSVfromJSON(JSONtoTransform);
-            const dateToFileName = this.issuerService.generateUTCDate(new Date(), true);
+            const generatedCSV =
+                this.issuerService.generateCSVfromJSON(JSONtoTransform);
+            const dateToFileName = this.issuerService.generateUTCDate(
+                new Date(),
+                true
+            );
             const fileName = `report_${dateToFileName}.csv`;
             this.issuerService.downloadCSV({ fileName, text: generatedCSV });
         }
@@ -188,31 +228,103 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.setDownloadCSVButtonIfShouldBeEnabled();
     }
 
+    toLocalSeal() {
+        this.issuerService.openSpinnerDialog();
+        this.isLoadingResults = true;
+        let password = this.localCertPassword.value;
+        let localSignatureRequestView: LocalSignatureRequestView = {};
+        localSignatureRequestView.certPassword = password;
+        localSignatureRequestView.credentialViews = this.selection.selected;
+        this.api
+            .sealCredentialsLocalCertificate(
+                localSignatureRequestView,
+                this.translateService.currentLang
+            )
+            .subscribe(
+                (credentials: CredentialView[]) => {
+                    this.issuerService.setCredentials(credentials);
+                    this.sealed = true;
+                    this.loadCredentialsData();
+                    this.isLoadingResults = false;
+                    this.issuerService.closeSpinnerDialog();
+                    this.doManageSealingErrors(credentials);
+                    credentials.forEach((sealedCredential: CredentialView) => {
+                        this.datesOfCredentialSealed[sealedCredential.uuid] = {
+                            date: new Date(),
+                        };
+                    });
+                },
+                () => {
+                    this.sealFailed = true;
+                    this.issuerService.closeSpinnerDialog();
+                    this.isLoadingResults = false;
+                }
+            );
+        this.closeLocalSealingPassModal();
+    }
+
+    public doManageSealingErrors(sealedCredentials: CredentialView[]) {
+        const hasError = this.checkSealingErrors(sealedCredentials);
+
+        const message: OKNotification = {
+            severity: hasError ? 'warn' : 'success',
+            summary: hasError
+                ? this.translateService.instant(
+                      'seal-credential.message.seal-ko'
+                  )
+                : this.translateService.instant(
+                      'seal-credential.message.seal-ok'
+                  ),
+        };
+
+        this.notifService.showNotification(message);
+    }
     /**
      * Sign credentials selected
      */
-    public toSeal(uuids: string[]) {
-        this.nexU.toSeal(uuids).pipe(takeUntil(this.destroy$)).subscribe(
-            (sealedCredentials: CredentialView[]) => {
-                let credentials = this.issuerService.getCredentials();
-                for (let i = 0; i < credentials.length; i++) {
-                    let cred = sealedCredentials.find(
-                        (el) => credentials[i].uuid === el.uuid
-                    );
-                    if (cred) {
-                        credentials[i] = cred;
+    public toSeal() {
+        this.nexU
+            .toSeal(this.uuids)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
+                (sealedCredentials: CredentialView[]) => {
+                    let credentials = this.issuerService.getCredentials();
+                    for (let i = 0; i < credentials.length; i++) {
+                        let cred = sealedCredentials.find(
+                            (el) => credentials[i].uuid === el.uuid
+                        );
+                        if (cred) {
+                            credentials[i] = cred;
+                        }
                     }
-                }
 
-                sealedCredentials.forEach((sealedCredential: CredentialView) => {
-                    this.datesOfCredentialSealed[sealedCredential.uuid] = { date: new Date() };
-                });
+                    sealedCredentials.forEach(
+                        (sealedCredential: CredentialView) => {
+                            this.datesOfCredentialSealed[
+                                sealedCredential.uuid
+                            ] = { date: new Date() };
+                        }
+                    );
 
-                this.issuerService.setCredentials(credentials);
-                this.sealed = true;
-                this.loadCredentialsData();
-                this.isLoadingResults = false;
+                    this.issuerService.setCredentials(credentials);
+                    this.sealed = true;
+                    this.loadCredentialsData();
+                    this.isLoadingResults = false;
 
+                    this.dataSource.data.forEach(
+                        (credential: CredentialView) => {
+                            const sealingErrors = this.getErrorMessage(
+                                credential.uuid
+                            );
+                            if (sealingErrors) {
+                                credential.sealed = false;
+                                credential.sealingErrors = [sealingErrors];
+                            }
+                        }
+                    );
+
+                    this.doManageSealingErrors(sealedCredentials);
+                    /*
                 this.dataSource.data.forEach((credential: CredentialView) => {
                     const sealingErrors = this.getErrorMessage(credential.uuid);
                     if (sealingErrors) {
@@ -234,13 +346,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
                           ),
                 };
 
-                this.notifService.showNotification(message);
-            },
-            () => {
-                this.sealFailed = true;
-                this.isLoadingResults = false;
-            }
-        );
+                this.notifService.showNotification(message);*/
+                },
+                () => {
+                    this.sealFailed = true;
+                    this.isLoadingResults = false;
+                }
+            );
     }
 
     getErrorMessage(uuid: string): string {
@@ -276,38 +388,41 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
         this.isLoadingResults = true;
 
-        this.nexU.toSend(this.selection.selected).pipe(takeUntil(this.destroy$)).subscribe(
-            (data: CredentialView[]) => {
-                let credentials = this.issuerService.getCredentials();
-                for (let i = 0; i < credentials.length; i++) {
-                    let cred = data.find(
-                        (el) => credentials[i].uuid === el.uuid
-                    );
-                    if (cred) {
-                        credentials[i] = cred;
+        this.nexU
+            .toSend(this.selection.selected)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
+                (data: CredentialView[]) => {
+                    let credentials = this.issuerService.getCredentials();
+                    for (let i = 0; i < credentials.length; i++) {
+                        let cred = data.find(
+                            (el) => credentials[i].uuid === el.uuid
+                        );
+                        if (cred) {
+                            credentials[i] = cred;
+                        }
                     }
-                }
 
-                this.issuerService.setCredentials(credentials);
-                this.loadCredentialsData();
-                this.setDownloadCSVButtonIfShouldBeEnabled();
-                this.isLoadingResults = false;
-                this.sent = true;
-                const hasError: boolean = checkSendOrReceivedErrors(data);
-                const message: OKNotification = {
-                    severity: hasError ? 'warn' : 'success',
-                    summary: hasError
-                        ? this.translateService.instant(
-                              'seal-credential.message.send-or-seal-ko'
-                          )
-                        : this.translateService.instant(
-                              'seal-credential.message.send-ok'
-                          ),
-                };
-                this.notifService.showNotification(message);
-            },
-            () => (this.isLoadingResults = false)
-        );
+                    this.issuerService.setCredentials(credentials);
+                    this.loadCredentialsData();
+                    this.setDownloadCSVButtonIfShouldBeEnabled();
+                    this.isLoadingResults = false;
+                    this.sent = true;
+                    const hasError: boolean = checkSendOrReceivedErrors(data);
+                    const message: OKNotification = {
+                        severity: hasError ? 'warn' : 'success',
+                        summary: hasError
+                            ? this.translateService.instant(
+                                  'seal-credential.message.send-or-seal-ko'
+                              )
+                            : this.translateService.instant(
+                                  'seal-credential.message.send-ok'
+                              ),
+                    };
+                    this.notifService.showNotification(message);
+                },
+                () => (this.isLoadingResults = false)
+            );
     }
 
     /**
@@ -319,7 +434,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
         }
 
         this.issuerService
-            .deleteCredential(uuid).pipe(takeUntil(this.destroy$))
+            .deleteCredential(uuid)
+            .pipe(takeUntil(this.destroy$))
             .subscribe((status: StatusView) => {
                 if (status) {
                     this.issuerService.setCredentials(
@@ -417,7 +533,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
     setDownloadCSVButtonIfShouldBeEnabled(): any {
         if (this.selection.selected.length) {
             for (let i = 0; i < this.selection.selected.length; i++) {
-                if (!this.selection.selected[i].sent && !this.selection.selected[i].received) {
+                if (
+                    !this.selection.selected[i].sent &&
+                    !this.selection.selected[i].received
+                ) {
                     this.downloadCSVEnabled = false;
                     return;
                 }
@@ -440,7 +559,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
             .uploadCredential(
                 this.files[0].file,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$)).subscribe(
+            )
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(
                 (fileUploadResponseView: FileUploadResponseView) => {
                     if (fileUploadResponseView.valid) {
                         // To check
@@ -476,30 +597,43 @@ export class OverviewComponent implements OnInit, OnDestroy {
     /** Progress bar */
     private getProgressInfo() {
         this.progressInfoSubscription = interval(3000)
-            .switchMap(() => this.getBatchStatus()).pipe(takeUntil(this.destroy$))
+            .switchMap(() => this.getBatchStatus())
+            .pipe(takeUntil(this.destroy$))
             .subscribe((data) => {
                 this.actualExport = data;
                 /** Failed */
-                if (this.actualExport.batchStatus === Constants.BATCH_STATUS.FAILED) {
+                if (
+                    this.actualExport.batchStatus ===
+                    Constants.BATCH_STATUS.FAILED
+                ) {
                     this.progressInfoSubscription.unsubscribe();
                     this.deliveryOngoing = false;
                     return;
                 }
                 /** Stop by the user */
-                if (this.actualExport.batchStatus === Constants.BATCH_STATUS.STOPPED) {
+                if (
+                    this.actualExport.batchStatus ===
+                    Constants.BATCH_STATUS.STOPPED
+                ) {
                     this.progressInfoSubscription.unsubscribe();
                     this.deliveryOngoing = false;
                     return;
                 }
                 /** Completed */
-                if (this.actualExport.batchStatus === Constants.BATCH_STATUS.COMPLETED) {
+                if (
+                    this.actualExport.batchStatus ===
+                    Constants.BATCH_STATUS.COMPLETED
+                ) {
                     this.progressInfoSubscription.unsubscribe();
                     this.deliveryOngoing = false;
                     // this.getExportHistory();
                     return;
                 }
                 /** On going */
-                if (this.actualExport.batchStatus === Constants.BATCH_STATUS.STARTED) {
+                if (
+                    this.actualExport.batchStatus ===
+                    Constants.BATCH_STATUS.STARTED
+                ) {
                     return;
                 }
             });
@@ -516,24 +650,29 @@ export class OverviewComponent implements OnInit, OnDestroy {
         // Get first XML by uuid
         this.downloadCredentialSubscription = this.issuerService
             .downloadCredential(uuid)
-            .pipe(takeUntil(this.destroy$)).subscribe((data) => {
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((data) => {
                 const reader = new FileReader();
                 reader.readAsText(data, 'utf-8');
                 reader.onloadend = () => {
                     europassCredentialXML = reader.result as string;
-
-                    this.apiService
-                        .previewCertificate(europassCredentialXML)
-                        .pipe(takeUntil(this.destroy$)).subscribe((html) => {
-                            let win = window.open(
-                                '',
-                                `${uuid}-${new Date().getTime()}`,
-                                // tslint:disable-next-line: max-line-length
-                                `width=1080,height=650,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes`
-                            );
-                            win.document.write(html);
-                            win.document.close();
-                        });
+                    let formElement = document.createElement('form');
+                    formElement.method = 'POST';
+                    formElement.target = 'preview_popup';
+                    formElement.action = `${environment.viewerBaseUrl}/mvc/preview`;
+                    let inputElement = document.createElement('input');
+                    inputElement.type = 'text';
+                    inputElement.name = 'xml';
+                    inputElement.value = europassCredentialXML;
+                    formElement.appendChild(inputElement);
+                    document.body.appendChild(formElement);
+                    let popUp = window.open(
+                        'about:blank',
+                        'preview_popup',
+                        // tslint:disable-next-line: max-line-length
+                        'width=1080,height=650,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes'
+                    );
+                    formElement.submit();
                 };
             });
     }

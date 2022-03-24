@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.Defaults;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConfig;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.base.AgentDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -36,10 +36,10 @@ public class PersonDTO extends AgentDTO {
     private LegalIdentifier nationalId; //0..1
     @Valid
     private Text fullName; //0..1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_PERSON_GIVENNAMES_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_PERSON_GIVENNAMES_NOTNULL)
     @Valid
     private Text givenNames; //1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_PERSON_FAMILYNAME_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_PERSON_FAMILYNAME_NOTNULL)
     @Valid
     private Text familyName; //1
     @XmlJavaTypeAdapter(DateAdapter.class)
@@ -84,9 +84,9 @@ public class PersonDTO extends AgentDTO {
             PersonDTO person = (PersonDTO) personDTO;
             if (nationalId != null && nationalId.getContent() != null && person != null && person.getNationalId() != null && !nationalId.getContent().equals(person.getNationalId().getContent()))
                 return false;
-            if (fullName != null && fullName.getLocalizedStringOrAny(Defaults.DEFAULT_LOCALE) != null) {
-                if (person.getFullName() != null && person.getFullName().getLocalizedStringOrAny(Defaults.DEFAULT_LOCALE) != null) {
-                    if (!person.getFullName().getLocalizedStringOrAny(Defaults.DEFAULT_LOCALE).equals(fullName.getLocalizedStringOrAny(Defaults.DEFAULT_LOCALE))) {
+            if (fullName != null && fullName.getLocalizedStringOrAny(EDCIConfig.Defaults.DEFAULT_LOCALE) != null) {
+                if (person.getFullName() != null && person.getFullName().getLocalizedStringOrAny(EDCIConfig.Defaults.DEFAULT_LOCALE) != null) {
+                    if (!person.getFullName().getLocalizedStringOrAny(EDCIConfig.Defaults.DEFAULT_LOCALE).equals(fullName.getLocalizedStringOrAny(EDCIConfig.Defaults.DEFAULT_LOCALE))) {
                         return false;
                     }
                 }

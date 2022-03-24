@@ -4,7 +4,7 @@ import eu.europa.ec.empl.edci.annotation.EDCIConsumer;
 import eu.europa.ec.empl.edci.constants.ControlledList;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
-import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessages;
+import eu.europa.ec.empl.edci.issuer.common.constants.EDCIIssuerMessageKeys;
 import eu.europa.ec.empl.edci.issuer.mapper.ControlledListsMapper;
 import eu.europa.ec.empl.edci.issuer.service.spec.EscoBridgeService;
 import eu.europa.ec.empl.edci.issuer.utils.ecso.EscoElementPayload;
@@ -59,14 +59,18 @@ public class ControlledListConsumer implements Consumer<EuropassCredentialDTO> {
                 updatedValue = controlledListCommonsService.searchConceptByUri(controlledListValue.getTargetFrameworkURI(), controlledListValue.getUri(), primaryLanguage, availableLanguages);
                 if (ControlledList.isEuropassCl(controlledListValue.getTargetFrameworkURI()) && updatedValue == null) {
                     //If a required controlled list is null at this point, credential is not valid anymore
-                    errors.add(edciMessageService.getMessage(EDCIIssuerMessages.REQUIRED_CL_ITEM_NOTFOUND, controlledListValue.getUri(), controlledListValue.getTargetFrameworkURI()));
+                    errors.add(edciMessageService.getMessage(EDCIIssuerMessageKeys.REQUIRED_CL_ITEM_NOTFOUND, controlledListValue.getUri(), controlledListValue.getTargetFrameworkURI()));
                     europassCredentialDTO.setValid(false);
                 }
 
             } else if (escoBridgeService.isEscoList(controlledListValue.getTargetFrameworkURI())) {
                 //Esco Lists
-                EscoBridgeService.EscoList escoList = escoBridgeService.getEscoList(controlledListValue.getTargetFrameworkURI());
-                updatedValue = controlledListsMapper.toCodeDTOESCO(escoBridgeService.searchEsco(EscoElementPayload.class, escoList.getType(), primaryLanguage, controlledListValue.getUri()), availableLanguages);
+                try {
+                    EscoBridgeService.EscoList escoList = escoBridgeService.getEscoList(controlledListValue.getTargetFrameworkURI());
+                    updatedValue = controlledListsMapper.toCodeDTOESCO(escoBridgeService.searchEsco(EscoElementPayload.class, escoList.getType(), primaryLanguage, controlledListValue.getUri()), availableLanguages);
+                } catch (Exception e) {
+                    errors.add(edciMessageService.getMessage(EDCIIssuerMessageKeys.REQUIRED_CL_ITEM_NOTFOUND, controlledListValue.getUri(), controlledListValue.getTargetFrameworkURI()));
+                }
             }
 
             if (updatedValue != null) {

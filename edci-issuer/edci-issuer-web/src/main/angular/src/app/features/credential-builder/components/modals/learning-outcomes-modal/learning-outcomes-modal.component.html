@@ -1,7 +1,11 @@
 <ux-modal
     [id]="modalId"
     class="learningOutcomeModal"
-    [titleLabel]="modalTitle"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
     (onClose)="closeModal(false)"
     customWidth="75%"
 >

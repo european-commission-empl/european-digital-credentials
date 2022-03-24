@@ -25,7 +25,7 @@ public class SPARQLITest extends AbstractIntegrationBaseTest {
     @Test
     public void searchConcepts_shouldReturnValues_whenCalled() throws Exception {
 
-//        Mockito.when(issuerConfigService.getString(Constant.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
+//        Mockito.when(issuerConfigService.getString(Constant.RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
 //
 //        Page<CodeDTDAO> code = rdfSearchService.searchConcepts(ControlledList.HUMAN_SEX.getUrl(), "ma", "en", 0, 1000, Arrays.asList("en", "es", "it"));
 //
@@ -41,7 +41,7 @@ public class SPARQLITest extends AbstractIntegrationBaseTest {
     @Test
     public void searchLanguages_shouldReturnValues_whenCalled() throws Exception {
 
-//        Mockito.when(iConfigService.getString(Constant.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
+//        Mockito.when(iConfigService.getString(Constant.RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
 //
 //        Code code = controlledListCommonsService.searchLanguageByLang("es");
 
@@ -50,7 +50,7 @@ public class SPARQLITest extends AbstractIntegrationBaseTest {
     @Test
     public void searchISCEDFConcepts_shouldReturnValues_whenCalled() throws Exception {
 
-//        Mockito.when(issuerConfigService.getString(Constant.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
+//        Mockito.when(issuerConfigService.getString(Constant.RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
 //
 //        Page<CodeDTDAO> code = rdfSearchService.searchISCEDFTreeConcepts(ControlledList.ISCED_F.getUrl(), "", "en", Arrays.asList("en", "es", "it"));
 //
@@ -60,7 +60,7 @@ public class SPARQLITest extends AbstractIntegrationBaseTest {
     @Test
     public void searchBroaderConcepts_shouldReturnValues_whenCalled() throws Exception {
 
-//        Mockito.when(issuerConfigService.getString(Constant.CONFIG_PUBLICATIONS_RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
+//        Mockito.when(issuerConfigService.getString(Constant.RDF_SPARQL_ENDPOINT)).thenReturn("http://publications.europa.eu/webapi/rdf/sparql");
 //
 //        Page<CodeDTDAO> parentCodes = rdfSearchService.searchConcepts(ControlledList.NQF.getUrl(), "", "en", 0, 5, Arrays.asList("en", "es", "it"));
 //

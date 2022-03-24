@@ -8,16 +8,27 @@
     </h1>
     <div class="toolbar-min-w-22">
         <edci-viewer-diploma-toolbar
+            *ngIf="resetVariablesDone"
             [isDetailDisabled]="isLoading"
             [primaryLanguage]="primaryLanguage"
             [availableLanguages]="availableLanguages"
+            [isXMLDisabled]="type === 'VP'"
             (onLanguageChange)="onLanguageChange($event)"
             (onNewCredentialUpload)="newCredentialUpload()"
         ></edci-viewer-diploma-toolbar>
     </div>
 
     <div
-        class="shadow-sm rounded bg-white mt-2 pt-4 pb-5 w-100 diploma-container"
+        class="
+            shadow-sm
+            rounded
+            bg-white
+            mt-2
+            pt-4
+            pb-5
+            w-100
+            diploma-container
+        "
     >
         <div #cert class="wrapper">
             <div

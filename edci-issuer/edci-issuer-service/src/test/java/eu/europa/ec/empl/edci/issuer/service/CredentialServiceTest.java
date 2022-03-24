@@ -4,7 +4,6 @@ import eu.europa.ec.empl.base.AbstractUnitBaseTest;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Association;
 import eu.europa.ec.empl.edci.issuer.common.model.CredentialHashDTO;
 import eu.europa.ec.empl.edci.issuer.common.model.StatusDTO;
-import eu.europa.ec.empl.edci.issuer.service.dss.SigningService;
 import eu.europa.ec.empl.edci.issuer.util.FileUtil;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -30,9 +29,6 @@ public class CredentialServiceTest extends AbstractUnitBaseTest {
 
     @InjectMocks
     AssociationService associationService;
-
-    @InjectMocks
-    SigningService signingService;
 
     @Mock
     private CredentialHashDTO credentialHashDTO;

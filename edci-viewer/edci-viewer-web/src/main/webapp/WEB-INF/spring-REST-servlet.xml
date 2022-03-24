@@ -13,9 +13,15 @@
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="eu.europa.ec.empl.edci.viewer.web"/>
+    <context:component-scan base-package="eu.europa.ec.empl.edci.viewer.web.rest"/>
 
     <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
 
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">

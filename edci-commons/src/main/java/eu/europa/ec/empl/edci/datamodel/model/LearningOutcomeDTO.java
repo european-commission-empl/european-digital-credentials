@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.datamodel.model.base.RootEntity;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Code;
@@ -26,11 +26,11 @@ public class LearningOutcomeDTO implements RootEntity, Nameable {
     @XmlAttribute
     @XmlID
     @XmlIDExtension
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_ID_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGOPPORTUNITY_ID_NOTNULL)
     private URI id; //1
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_LEARNINGOUTCOME_NAME_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_LEARNINGOUTCOME_NAME_NOTNULL)
     @Valid
     @XmlElement(name = "prefLabel")
     private Text name; //1

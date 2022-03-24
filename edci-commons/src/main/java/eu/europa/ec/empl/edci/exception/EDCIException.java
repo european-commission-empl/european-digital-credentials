@@ -69,6 +69,11 @@ public class EDCIException extends RuntimeException implements I18NException {
     }
 
     @Override
+    public String getMessage() {
+        return this.getMessageKey();
+    }
+
+    @Override
     public String getMessageKey() {
         return messageKey;
     }

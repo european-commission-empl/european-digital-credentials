@@ -25,13 +25,13 @@
     >
         <p *ngIf="activeActivity.startDate" class="col-12">
             <strong>
-                {{ "details.activities-tab.startDate" | translate }}:&nbsp;
+                {{ 'details.activities-tab.startDate' | translate }}:&nbsp;
             </strong>
             {{ activeActivity.startDate }}
         </p>
         <p *ngIf="activeActivity.endDate" class="col-12">
             <strong>
-                {{ "details.activities-tab.endDate" | translate }}:&nbsp;
+                {{ 'details.activities-tab.endDate' | translate }}:&nbsp;
             </strong>
             {{ activeActivity.endDate }}
         </p>
@@ -39,7 +39,7 @@
             <p>
                 <strong>
                     {{
-                        "details.activities-tab.workloadInHours" | translate
+                        'details.activities-tab.workloadInHours' | translate
                     }}:&nbsp;
                 </strong>
                 {{ activeActivity.workloadInHours }}
@@ -49,9 +49,9 @@
     <div *ngIf="activeActivity.directedBy" class="col-12 border-bottom">
         <p>
             <strong>
-                {{ "details.activities-tab.directedBy" | translate }}:&nbsp;
+                {{ 'details.activities-tab.directedBy' | translate }}:&nbsp;
             </strong>
-            <a (click)="openDirectedByModal(activeActivity.directedBy)">
+            <a (click)="changeSelection(activeActivity.directedBy.id)">
                 {{ activeActivity.directedBy.preferredName }}
             </a>
         </p>
@@ -62,24 +62,32 @@
     >
         <p>
             <strong>
-                {{ "details.activities-tab.location" | translate }}:
+                {{ 'details.activities-tab.location' | translate }}:
             </strong>
         </p>
         <div *ngFor="let location of activeActivity?.location">
             <p>
                 <span *ngIf="location && location.geographicName">
                     {{ location?.geographicName }}
-                    {{ location.spatialCode && location.spatialCode.length ? ', ' : '' }}
+                    {{
+                        location.spatialCode && location.spatialCode.length
+                            ? ', '
+                            : ''
+                    }}
                 </span>
                 <span *ngIf="location && location.spatialCode">
-                    {{ location && location.spatialCode ? location.spatialCode.join(', ') :  '' }}
+                    {{
+                        location && location.spatialCode
+                            ? location.spatialCode.join(', ')
+                            : ''
+                    }}
                 </span>
             </p>
             <div *ngIf="location.address">
                 <p *ngFor="let address of location.address">
                     <strong>
                         {{
-                            "details.credential-subject-tab.address"
+                            'details.credential-subject-tab.address'
                                 | translate
                         }}:
                     </strong>
@@ -104,11 +112,11 @@
     >
         <p>
             <strong>
-                {{ "details.activities-tab.influences" | translate }}:&nbsp;
+                {{ 'details.activities-tab.influences' | translate }}:&nbsp;
             </strong>
             <ng-container *ngFor="let achievement of activeActivity.influenced">
                 <span *ngIf="achievement?.title">
-                    <a (click)="linkToAchievement(achievement)">
+                    <a (click)="changeSelection(achievement.id)">
                         {{ achievement.title }}
                     </a>
                 </span>
@@ -121,7 +129,7 @@
     >
         <p>
             <strong>
-                {{ "details.activities-tab.subActivities" | translate }}:
+                {{ 'details.activities-tab.subActivities' | translate }}:
             </strong>
             <br />
             <span
@@ -130,8 +138,10 @@
                     let isLast = last
                 "
             >
-                <a (click)="linkToActivity(activity)">{{ activity.title }}</a
-                >{{ isLast ? "" : ", " }}
+                <a (click)="changeSelection(activity.id)">{{
+                    activity.title
+                }}</a
+                >{{ isLast ? '' : ', ' }}
             </span>
         </p>
     </div>
@@ -146,7 +156,7 @@
     <!-- Specification -->
     <div *ngIf="activeActivity?.specifiedBy" class="d-inline-flex pt-3 col-12">
         <h3 class="font-weight-bold">
-            {{ "details.activities-tab.specification" | translate }}
+            {{ 'details.activities-tab.specification' | translate }}
         </h3>
         <a
             *ngIf="activeActivity?.specifiedBy?.homePage?.length > 0"
@@ -196,13 +206,13 @@
             >
                 <strong>
                     {{
-                        "details.activities-tab.learningActivityType"
+                        'details.activities-tab.learningActivityType'
                             | translate
                     }}:&nbsp;
                 </strong>
                 {{
                     activeActivity?.specifiedBy?.learningActivityType
-                        | edciJoin: ", "
+                        | edciJoin: ', '
                 }}
             </p>
             <p
@@ -211,7 +221,7 @@
             >
                 <strong>
                     {{
-                        "details.activities-tab.modeOfLearning" | translate
+                        'details.activities-tab.modeOfLearning' | translate
                     }}:&nbsp;
                 </strong>
                 {{ activeActivity?.specifiedBy?.modeOfLearning }}
@@ -230,7 +240,7 @@
             >
                 <strong>
                     {{
-                        "details.activities-tab.notionalWorkloadInHours"
+                        'details.activities-tab.notionalWorkloadInHours'
                             | translate
                     }}:&nbsp;
                 </strong>
@@ -242,13 +252,13 @@
             >
                 <strong>
                     {{
-                        "details.activities-tab.languagesOfInstruction"
+                        'details.activities-tab.languagesOfInstruction'
                             | translate
                     }}:&nbsp;
                 </strong>
                 {{
                     activeActivity?.specifiedBy?.instructionLanguage
-                        | edciJoin: ", "
+                        | edciJoin: ', '
                 }}
             </p>
         </div>

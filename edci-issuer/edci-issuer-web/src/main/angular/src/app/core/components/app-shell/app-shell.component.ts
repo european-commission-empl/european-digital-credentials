@@ -28,9 +28,10 @@ import { FooterMenuLink } from './footer/footer-link.model';
     encapsulation: ViewEncapsulation.None,
 })
 export class AppShellComponent implements OnInit, AfterViewInit, OnDestroy {
-    languages: Array<EclLanguage> = this.issuerService.addMissingLanguages(
-        UxEuLanguages.getLanguages()
-    );
+    // languages: Array<EclLanguage> = this.issuerService.addMissingLanguages(
+    //     UxEuLanguages.getLanguages()
+    // );
+    languages: Array<EclLanguage> = [{ code: 'en', label: 'English' }];
 
     @Input() showExtraInfo: boolean = false;
     logoEuropass: Node = this.renderer.createElement('img');
@@ -121,14 +122,14 @@ export class AppShellComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onLogin(): void {
-        window.location.href = `${this.basePath}${
+        window.location.href = `${environment.issuerBaseUrl}${
             environment.loginUrl
         }?redirectURI=${encodeURIComponent(window.location.href)}`;
     }
 
     onLogout(): void {
         this.apiService
-            .doPost(environment.apiBaseUrl + environment.logoutUrl, null)
+            .doPost(environment.issuerBaseUrl + environment.logoutUrl, null)
             .takeUntil(this.destroy$)
             .subscribe((res) => (window.location.href = res.redirectUrl));
     }
@@ -158,11 +159,11 @@ export class AppShellComponent implements OnInit, AfterViewInit, OnDestroy {
     private setLogoDisplay(): void {
         if (this.selectedLanguage) {
             const language = this.selectedLanguage.toUpperCase();
-            this.renderer.setAttribute(
-                this.logoEuropass,
-                'src',
-                `${environment.headerImagePath}${language}.svg`
-            );
+            let imgSrc = `${environment.headerImagePath}${language}.svg`;
+            if (!environment.hasBranding) {
+                imgSrc = environment.headerImagePath;
+            }
+            this.renderer.setAttribute(this.logoEuropass, 'src', imgSrc);
         }
     }
 

@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.util;
 
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 import eu.europa.ec.empl.edci.exception.FileBaseDataException;
 import eu.europa.ec.empl.edci.exception.ReflectiveException;
@@ -206,7 +206,7 @@ public class ReflectiveUtil {
         }
 
         if (this.getValidator().isEmpty(setter))
-            throw new ReflectiveException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_NOSETTER, fieldName,
+            throw new ReflectiveException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_NOSETTER, fieldName,
                     this.getEntityOrClassName(object.getClass()), this.getEntityOrClassName(cellValue.getClass()), cellValue.toString());
 
         setter.invoke(object, value);
@@ -272,17 +272,17 @@ public class ReflectiveUtil {
                 _class = (Class<?>) types[0];
                 logger.trace("scanning generic type " + _class.getName());
             } else {
-                throw new ReflectiveException(MessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
+                throw new ReflectiveException(EDCIMessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
             }
         } else {
-            throw new ReflectiveException(MessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
+            throw new ReflectiveException(EDCIMessageKeys.Exception.Global.GLOBAL_INTERNAL_ERROR);
         }
         return _class;
     }
 
     public Object castToChild(Class destClass, Object instance, @Nullable Object parentInstance) throws ReflectiveOperationException {
         if (!destClass.getSuperclass().equals(instance.getClass()))
-            throw new ReflectiveException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_NOTASUBCLASS, destClass.getSimpleName(), instance.getClass().getSimpleName());
+            throw new ReflectiveException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_NOTASUBCLASS, destClass.getSimpleName(), instance.getClass().getSimpleName());
         Object childInstance = destClass.newInstance();
         ReflectionUtils.shallowCopyFieldState(instance, childInstance);
         if (this.getValidator().notEmpty(parentInstance)) {
@@ -302,7 +302,7 @@ public class ReflectiveUtil {
             return getOrInstantiateField(targetField, childInstance);
         }
 
-        throw new ReflectiveException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_GETFIELD, targetField.getName(), instance.getClass().getSimpleName());
+        throw new ReflectiveException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_GETFIELD, targetField.getName(), instance.getClass().getSimpleName());
     }
 
     /**
@@ -436,7 +436,7 @@ public class ReflectiveUtil {
         //Check for  field in boolean for fields that are isXXXX
         if (this.getValidator().isEmpty(field)) field = ReflectionUtils.findField(clazz, "is".concat(fieldName.trim()));
         if (this.getValidator().isEmpty(field))
-            throw new ReflectiveException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, fieldName, clazz.getSimpleName());
+            throw new ReflectiveException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_FIELDNOTFOUND, fieldName, clazz.getSimpleName());
         return field;
     }
 
@@ -534,14 +534,14 @@ public class ReflectiveUtil {
                 List<String> args = Arrays.asList(parameter.split("[\\[\\]]"));
 
                 if (args.size() != 2)
-                    throw new FileBaseDataException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_INVALID_PROPERTYPATH, parameter);
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_INVALID_PROPERTYPATH, parameter);
 
                 Field field = findField(lastInstance.getClass(), args.get(0));
                 try {
                     List<Object> list = getOrInstanciateListField(field, lastInstance);
                     lastInstance = getOrInstanciateListItem(list, Integer.valueOf(args.get(1)), field);
                 } catch (ReflectiveOperationException e) {
-                    throw new FileBaseDataException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_PROPERTYPATH_NOTALIST, parameter);
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_PROPERTYPATH_NOTALIST, parameter);
                 }
                 //Single object parameter
             } else {
@@ -549,7 +549,7 @@ public class ReflectiveUtil {
                 try {
                     lastInstance = getOrInstantiateField(field, lastInstance);
                 } catch (ReflectiveOperationException e) {
-                    throw new FileBaseDataException(MessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_INVALID_PROPERTYPATH, parameter);
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.Reflection.EXCEPTION_REFLECTION_INVALID_PROPERTYPATH, parameter);
                 }
             }
         }
@@ -568,7 +568,7 @@ public class ReflectiveUtil {
                 List<String> aux = Arrays.asList(parameter.split("#"));
 
                 if (aux.size() != 2)
-                    throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_PARAMETERPATH_NOTVALID, parameter);
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_PARAMETERPATH_NOTVALID, parameter);
 
                 Field field = findField(lastInstance.getClass(), aux.get(0));
                 List<Object> list;
@@ -584,7 +584,7 @@ public class ReflectiveUtil {
                     lastInstance = getOrInstanciateListItem(list, index, field);
 
                 } catch (ReflectiveOperationException e) {
-                    throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_PARAMETER_NOTALIST, field.getName(), aux.get(0), getEntityOrClassName(parentInstance.getClass()));
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_PARAMETER_NOTALIST, field.getName(), aux.get(0), getEntityOrClassName(parentInstance.getClass()));
                 }
 
             } else {
@@ -592,7 +592,7 @@ public class ReflectiveUtil {
                     Field field = findField(lastInstance.getClass(), parameter);
                     lastInstance = getOrInstantiateField(field, lastInstance, holderInstance);
                 } catch (ReflectiveOperationException e) {
-                    throw new FileBaseDataException(MessageKeys.Exception.XLS.FILE_EXCEL_PARAMETER_ISLIST, parameter, parentInstance.getClass().getSimpleName());
+                    throw new FileBaseDataException(EDCIMessageKeys.Exception.XLS.FILE_EXCEL_PARAMETER_ISLIST, parameter, parentInstance.getClass().getSimpleName());
                 }
             }
             holderInstance = parentInstance;

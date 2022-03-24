@@ -10,11 +10,18 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(name = "WALLET")
-@Table(name = "WALLET_T")
+@Table(name = WalletDAO.TABLE)
 @Transactional(propagation = Propagation.REQUIRED)
 public class WalletDAO implements IGenericDAO {
+
+    public static final String TABLE = "WALLET_T";
+    public static final String TABLE_SHORT = "WALLET";
+    public static final String TABLE_PK_REF = TABLE_SHORT + "_PK";
+    public static final String TABLE_SEQ = TABLE + "_SEQ";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
+    @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "ID")
     private Long pk;
 
@@ -27,7 +34,7 @@ public class WalletDAO implements IGenericDAO {
     @Column(name = "WALLET_ADDRESS", unique = true)
     private String walletAddress;
 
-    @Column(name = "TEMP", columnDefinition = "NUMBER(1,0) default 0 not null")
+    @Column(name = "TEMP", nullable = false)
     private Boolean temporary = false;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, targetEntity = CredentialDAO.class, mappedBy = "walletDAO")

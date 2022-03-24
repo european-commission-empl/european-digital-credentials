@@ -2,8 +2,8 @@ package eu.europa.ec.empl.edci.security.session;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
 import eu.europa.ec.empl.edci.constants.ErrorCode;
-import eu.europa.ec.empl.edci.constants.Security;
 import eu.europa.ec.empl.edci.exception.EDCIException;
 import eu.europa.ec.empl.edci.exception.ExceptionResponse;
 import eu.europa.ec.empl.edci.service.EDCIMessageService;
@@ -40,14 +40,10 @@ public class EDCISimpleRedirectInvalidSessionStrategy implements InvalidSessionS
 
     @Override
     public void onInvalidSessionDetected(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getHeader(Security.HttpHeaders.X_REQUESTED_WITH) != null && request.getHeader(Security.HttpHeaders.X_REQUESTED_WITH).equals(Security.XMLHttpRequest)) {
+        if (request.getHeader(EDCIConstants.HttpHeaders.X_REQUESTED_WITH) != null && request.getHeader(EDCIConstants.HttpHeaders.X_REQUESTED_WITH).equals(EDCIConstants.Security.XMLHttpRequest)) {
             writeExceptionInResponseBody(request, response, new EDCIException(HttpStatus.FORBIDDEN, ErrorCode.SESSION_EXPIRED, "exception.session.expired"), this.redirectTo);
         } else {
-            try {
-                response.sendRedirect(request.getRequestURI());
-            } catch (IOException e) {
-                logger.error(String.format("error redirecting to URL [%s]", request.getRequestURI()));
-            }
+            request.getSession();
         }
 
     }

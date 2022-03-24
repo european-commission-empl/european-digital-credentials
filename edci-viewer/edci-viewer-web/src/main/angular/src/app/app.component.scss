@@ -134,9 +134,14 @@
         position: absolute;
         width: 100%;
 
-        > div {
-            padding-top: 1.5rem;
-            text-align: center;
+        &_wrapper {
+            align-items: center;
+            display: flex;
+            height: 100%;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            width: 100%;
 
             > a {
                 color: #003776;

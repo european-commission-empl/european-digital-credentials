@@ -34,6 +34,8 @@ import { noSpaceValidator } from '@shared/validators/no-space-validator';
 import { get as _get } from 'lodash';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { dateValidator } from '@shared/validators/date-validator';
+import { SelectedTagItemList } from '@shared/models/selected-tag-item-list.model';
 
 @Component({
     selector: 'edci-assessments-modal',
@@ -42,12 +44,15 @@ import { takeUntil } from 'rxjs/operators';
     encapsulation: ViewEncapsulation.None,
 })
 export class AssessmentsModalComponent implements OnInit, OnDestroy {
-
     @Input() modalTitle: string;
     @Input() language: string;
     @Input() modalId: string = 'assessmentModal';
     @Input() editAssessmentOid?: number;
-    @Output() onCloseModal: EventEmitter<{isEdit: boolean, oid: number, title: string}> = new EventEmitter();
+    @Output() onCloseModal: EventEmitter<{
+        isEdit: boolean;
+        oid: number;
+        title: string;
+    }> = new EventEmitter();
     @ViewChild('additionalNoteSpecification')
     additionalNoteSpecification: MoreInformationComponent;
     @ViewChild('additionalNote')
@@ -68,7 +73,9 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
     selectedSubAssessments: PagedResourcesAssessmentSpecLiteView;
     subAssessmentsOidList: number[] = [];
     indexToNextTab: number;
-    openEntityModal: { [key: string]: { modalId: string, isOpen: boolean, oid?: number } } = {};
+    openEntityModal: {
+        [key: string]: { modalId: string; isOpen: boolean; oid?: number };
+    } = {};
     entityWillBeOpened: Entities;
     isNewEntityDisabled: boolean;
 
@@ -81,7 +88,7 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
         // Assessment
         title: new FormGroup({}),
         description: new FormGroup({}),
-        assessmentDate: new FormControl(null),
+        assessmentDate: new FormControl(null, [dateValidator]),
         methodOfAssessment: new FormControl(null),
         assessedBy: new FormControl(null),
         // Assessment Specification
@@ -106,6 +113,9 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
         gradeDescription: new FormGroup({}),
         gradeOtherDocument: new FormArray([]),
     });
+    modalTitleBreadcrumb: string[];
+    assessmentDateValueInvalid: boolean;
+    unsavedSubAssessments: AssessmentSpecLiteView[] = [];
 
     get defaultTitle() {
         return this.formGroup.get('defaultTitle') as FormControl;
@@ -186,11 +196,17 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.modalTitleBreadcrumb =
+            this.credentialBuilderService.listModalTitles;
         if (this.editAssessmentOid) {
-            this.modalTitle = this.translateService.instant('credential-builder.assessment-tab.editAssessment');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.assessment-tab.editAssessment'
+            );
             this.getAssessmentDetails();
         } else {
-            this.modalTitle = this.translateService.instant('"credential-builder.assessment-tab.createAssessment');
+            this.modalTitle = this.translateService.instant(
+                'credential-builder.assessment-tab.createAssessment'
+            );
             this.language = this.language || this.translateService.currentLang;
             this.credentialBuilderService.addOtherDocumentRow(
                 this.gradeOtherDocument
@@ -213,8 +229,13 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
         this.destroy$.unsubscribe();
     }
 
+    checkValidDate() {
+        this.validateFormDatesValues();
+    }
+
     onSave(): void {
-        if (this.isFormInvalid()) {
+        this.validateFormDatesValues();
+        if (this.isFormInvalid() || this.assessmentDateValueInvalid) {
             this.uxService.markControlsTouched(this.formGroup);
             this.isLoading = false;
             this.uxService.openMessageBox('messageBoxFormError');
@@ -266,30 +287,50 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
         this.subAssessmentsOidList = oids;
     }
 
+    onSelectedSubAssessmentsChange(selectedList: SelectedTagItemList[]): void {
+        selectedList.forEach(item => {
+            this.unsavedSubAssessments.push(item.assessment);
+        });
+    }
+
     onAssessedBySelectionChange(oid: number): void {
         this.formGroup.patchValue({ assessedBy: oid });
     }
 
-    newEntityClicked(value: Entities, event = undefined): void {
-        if (event === undefined) {
+    newEntityClicked(
+        value: Entities,
+        event = undefined,
+        isMultiSelect: boolean = false
+    ): void {
+        if (event === undefined && !isMultiSelect) {
             this.entityWillBeOpened = value;
             this.uxService.openMessageBox('messageBoxNewEntityWarning');
         } else {
-            if (event) {
+            if (isMultiSelect) {
+                this.entityWillBeOpened = value;
+                this.gotoEntity();
+            } else if (event) {
                 this.gotoEntity();
             }
         }
     }
 
-    closeNewEntityModal(closeInfo: {isEdit: boolean, oid?: number, title?: string}) {
+    closeNewEntityModal(closeInfo: {
+        isEdit: boolean;
+        oid?: number;
+        title?: string;
+    }) {
         this.openEntityModal[this.entityWillBeOpened].isOpen = false;
-        this.uxService.closeModal(this.credentialBuilderService.getIdFromLastModalAndRemove());
+        this.uxService.closeModal(
+            this.credentialBuilderService.getIdFromLastModalAndRemove()
+        );
         this.uxService.openModal(this.modalId);
+        this.modalTitleBreadcrumb = this.credentialBuilderService.listModalTitles;
         if (closeInfo.oid) {
             let item: any = {
                 oid: closeInfo.oid,
                 defaultTitle: closeInfo.title,
-                defaultLanguage: this.defaultLanguage
+                defaultLanguage: this.defaultLanguage,
             };
             switch (this.entityWillBeOpened) {
             case 'organization':
@@ -297,13 +338,18 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
                 break;
             case 'assessment':
                 this.selectedSubAssessments =
-                    this.credentialBuilderService.fillMultipleInput(this.selectedSubAssessments, this.subAssessmentsOidList, item);
+                        this.credentialBuilderService.fillMultipleInput(
+                            this.selectedSubAssessments,
+                            this.subAssessmentsOidList,
+                            item,
+                            this.unsavedSubAssessments
+                        );
                 break;
             }
         }
     }
 
-    editEntityClicked(event: { oid: number, type: Entities }) {
+    editEntityClicked(event: { oid: number; type: Entities }) {
         if (event) {
             this.entityWillBeOpened = event.type;
             this.gotoEntity(event.oid);
@@ -312,11 +358,12 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
 
     private gotoEntity(oid: number = null) {
         this.uxService.closeMessageBox('messageBoxNewEntityWarning');
-        const newEntityModalId = this.credentialBuilderService.generateNewIdModal();
+        const newEntityModalId =
+            this.credentialBuilderService.generateNewIdModal(this.modalTitle);
         this.openEntityModal[this.entityWillBeOpened] = {
             isOpen: true,
             modalId: newEntityModalId,
-            oid
+            oid,
         };
         this.uxService.closeModal(this.modalId);
         this.uxService.openModal(newEntityModalId);
@@ -336,17 +383,20 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
             .getAssessment(
                 this.editAssessmentOid,
                 this.translateService.currentLang
-            ).pipe(takeUntil(this.destroy$))
+            )
+            .pipe(takeUntil(this.destroy$))
             .subscribe(
                 (assessment: AssessmentSpecView) => {
                     this.editAssessment = assessment;
-                    this.availableLanguages = this.editAssessment.additionalInfo.languages;
+                    this.availableLanguages =
+                        this.editAssessment.additionalInfo.languages;
                     this.language = this.editAssessment.defaultLanguage;
                     this.defaultLanguage = this.language;
-                    this.selectedLanguages = this.multilingualService.setUsedLanguages(
-                        this.editAssessment.additionalInfo.languages,
-                        this.defaultLanguage
-                    );
+                    this.selectedLanguages =
+                        this.multilingualService.setUsedLanguages(
+                            this.editAssessment.additionalInfo.languages,
+                            this.defaultLanguage
+                        );
                     this.setForm();
                     this.getSubAssessments();
                     this.getAssessmentBy();
@@ -481,7 +531,11 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, assessment.oid, assessment.defaultTitle);
+                    this.closeModal(
+                        true,
+                        assessment.oid,
+                        assessment.defaultTitle
+                    );
                 },
                 (err) => {
                     this.isLoading = false;
@@ -508,7 +562,11 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
                         ),
                     });
                     this.isLoading = false;
-                    this.closeModal(true, assessment.oid, assessment.defaultTitle);
+                    this.closeModal(
+                        true,
+                        assessment.oid,
+                        assessment.defaultTitle
+                    );
                 },
                 (err) => {
                     this.isLoading = false;
@@ -558,14 +616,17 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
                     ? this.assessmentLanguage
                     : null,
             mode: this.modeOfAssessment.value,
-            assessmentType: this.credentialBuilderService.getArrayFromSingleItem(
-                this.assessmentType.value
-            ),
-            additionalNote: this.additionalNoteSpecification.getAdditionalNotes(),
-            supplementaryDocument: this.credentialBuilderService.getOtherDocument(
-                this.specificationOtherDocument,
-                this.defaultLanguage
-            ),
+            assessmentType:
+                this.credentialBuilderService.getArrayFromSingleItem(
+                    this.assessmentType.value
+                ),
+            additionalNote:
+                this.additionalNoteSpecification.getAdditionalNotes(),
+            supplementaryDocument:
+                this.credentialBuilderService.getOtherDocument(
+                    this.specificationOtherDocument,
+                    this.defaultLanguage
+                ),
             gradingSchemes: this.getGradingScheme(),
         };
         return this.credentialBuilderService.getObjectIfContent(specifiedBy);
@@ -581,10 +642,11 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
             identifier: this.credentialBuilderService.getIdentifier(
                 this.gradeSchemeIdentifier
             ),
-            supplementaryDocument: this.credentialBuilderService.getOtherDocument(
-                this.gradeOtherDocument,
-                this.defaultLanguage
-            ),
+            supplementaryDocument:
+                this.credentialBuilderService.getOtherDocument(
+                    this.gradeOtherDocument,
+                    this.defaultLanguage
+                ),
         };
         return this.credentialBuilderService.getObjectIfContent(gradeScheme);
     }
@@ -702,7 +764,11 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
         let relAssessedBy: SubresourcesOids = null;
         if (this.assessedBy.value) {
             relAssessedBy = {
-                oid: [Array.isArray(this.assessedBy.value) ? this.assessedBy.value[0] : this.assessedBy.value],
+                oid: [
+                    Array.isArray(this.assessedBy.value)
+                        ? this.assessedBy.value[0]
+                        : this.assessedBy.value,
+                ],
             };
         }
         return relAssessedBy;
@@ -734,5 +800,14 @@ export class AssessmentsModalComponent implements OnInit, OnDestroy {
     private moreInformationAddLanguage(language: string): void {
         this.additionalNote.languageAdded(language);
         this.additionalNoteSpecification.languageAdded(language);
+    }
+
+    private validateFormDatesValues() {
+        if (this.assessmentDate.value && !this.dateFormatService.validateDate(this.assessmentDate.value)) {
+            this.assessmentDateValueInvalid = true;
+            this.assessmentDate.reset();
+        } else {
+            this.assessmentDateValueInvalid = false;
+        }
     }
 }

@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" import="java.io.File" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="frontEndContext" value="${frontend_context}"/>
 <%
     String xml = (String) request.getAttribute("xml");
     try {
@@ -14,16 +15,14 @@
             response.setDateHeader("Last-Modified", lastModified);
             */
 %>
-<%--<c:set var="baseHref" value="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}" />--%>
-<c:set var="baseHref" value="${pageContext.request.contextPath}" />
+<c:set var="baseHref" value="${base_href}" />
 <c:set var="baseTag">base href="${baseHref}/"</c:set>
 <c:set var="baseHrefString">base href="/"</c:set>
 <c:import url="index.html" var="html" />
 <c:set var="currentHtml" value="${fn:replace(html, baseHrefString, baseTag)}" />
-
-
-<%--${currentHtml}--%>
-${fn:replace(currentHtml, '<myXml></myXml>', xml)}
+<c:set var="frontEndContextHtml" value="${fn:replace(currentHtml,'$FRONTEND_CONTEXT',frontEndContext)}"/>
+<%--${HTML with xml injected}--%>
+${fn:replace(frontEndContextHtml, '<myXml></myXml>', xml)}
 <%
       //  }
     } catch (Exception e) {

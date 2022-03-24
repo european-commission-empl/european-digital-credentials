@@ -1,7 +1,11 @@
 <ux-modal
     [id]="modalId"
     class="activityModal"
-    [titleLabel]="modalTitle"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
     (onClose)="closeModal(false)"
     customWidth="75%"
 >
@@ -167,12 +171,15 @@
                                 }}"
                             ></ux-a-icon>
                         </label>
-                        <ux-form-group [isVertical]="true" class="form-datepicker">
+                        <ux-form-group
+                            [isVertical]="true"
+                            class="form-datepicker"
+                        >
                             <ux-datepicker
-                            formControlName="startDate"
-                            [placeholder]="'dd/mm/yyyy hh:mm'"
-                            [isDatetimepicker]="true"
-                            (onDateSelect)="checkValidDate()"
+                                formControlName="startDate"
+                                [placeholder]="'dd/mm/yyyy hh:mm'"
+                                [isDatetimepicker]="true"
+                                (onDateSelect)="checkValidDate()"
                             ></ux-datepicker>
                             <ux-control-feedback
                                 *ngIf="
@@ -194,6 +201,12 @@
                                               }
                                 }}
                             </ux-control-feedback>
+                            <ux-control-feedback
+                                *ngIf="startDateValueInvalid"
+                                typeClass="danger"
+                            >
+                                {{ 'error.invalidDate' | translate }}
+                            </ux-control-feedback>
                         </ux-form-group>
                     </div>
                     <div class="form-group col-6">
@@ -213,12 +226,15 @@
                                 }}"
                             ></ux-a-icon>
                         </label>
-                        <ux-form-group [isVertical]="true" class="form-datepicker">
+                        <ux-form-group
+                            [isVertical]="true"
+                            class="form-datepicker"
+                        >
                             <ux-datepicker
-                            formControlName="endDate"
-                            [placeholder]="'dd/mm/yyyy hh:mm'"
-                            [isDatetimepicker]="true"
-                            (onDateSelect)="checkValidDate()"
+                                formControlName="endDate"
+                                [placeholder]="'dd/mm/yyyy hh:mm'"
+                                [isDatetimepicker]="true"
+                                (onDateSelect)="checkValidDate()"
                             ></ux-datepicker>
                             <ux-control-feedback
                                 *ngIf="
@@ -239,6 +255,12 @@
                                                       | translate
                                               }
                                 }}
+                            </ux-control-feedback>
+                            <ux-control-feedback
+                                *ngIf="endDateValueInvalid"
+                                typeClass="danger"
+                            >
+                                {{ 'error.invalidDate' | translate }}
                             </ux-control-feedback>
                         </ux-form-group>
                     </div>
@@ -301,16 +323,23 @@
                         <edci-autocomplete
                             entityType="organization"
                             [isSingleSelection]="true"
+                            [defaultLanguage]="defaultLanguage"
                             [preSelectedItems]="selectedDirectedBy"
                             (onEntityClicked)="editEntityClicked($event)"
-                            (selectionChange)="onDirectedBySelectionChange($event)"
+                            (selectionChange)="
+                                onDirectedBySelectionChange($event)
+                            "
                         >
                         </edci-autocomplete>
                         <ux-button
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
                             (click)="newEntityClicked('organization')"
                         ></ux-button>
                     </div>
@@ -414,19 +443,27 @@
                         <edci-autocomplete
                             entityType="activity"
                             [mainItemOid]="editActivityOid"
-                            (onEntityClicked)="editEntityClicked($event)"
+                            [defaultLanguage]="defaultLanguage"
                             [preSelectedItems]="selectedSubActivities"
+                            (onEntityClicked)="editEntityClicked($event)"
                             (selectionChange)="
                                 onSubActivitiesSelectionChange($event)
                             "
+                            (selectedItemsChange)="onSelectedActivitiesChange($event)"
                         >
                         </edci-autocomplete>
                         <ux-button
                             styleClass="no-shadow"
                             iconClass="ux-icon ux-icon-add ux-u-font-size-h3"
                             [isFlat]="true"
-                            [ngClass]="{'disabled': this.credentialBuilderService.isNewEntityDisabled}"
-                            (click)="newEntityClicked('activity')"
+                            [ngClass]="{
+                                disabled:
+                                    this.credentialBuilderService
+                                        .isNewEntityDisabled
+                            }"
+                            (click)="
+                                newEntityClicked('activity', undefined, true)
+                            "
                         ></ux-button>
                     </div>
                 </div>
@@ -787,8 +824,8 @@
 <ux-message-box
     id="messageBoxNewEntityWarning"
     titleLabel="{{ 'common.warning' | translate | uppercase }}"
-    acceptLabel="{{'Accept' | uppercase}}"
-    dismissLabel="{{'Dismiss' | uppercase}}"
+    acceptLabel="{{ 'Accept' | uppercase }}"
+    dismissLabel="{{ 'Dismiss' | uppercase }}"
     (clicked)="newEntityClicked(null, $event)"
 >
     <p>{{ 'credential-builder.formNewEntityWarning' | translate }}</p>

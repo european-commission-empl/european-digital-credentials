@@ -1,7 +1,7 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.base.Identifiable;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
@@ -32,7 +32,7 @@ public class AccreditationDTO implements Identifiable, Nameable {
     private String pk;
     @Valid
     private List<Identifier> identifier; //*
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ACCREDITATION_ACCREDITATIONTYPE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ACCREDITATION_ACCREDITATIONTYPE_NOTNULL)
     @Valid
     @XmlElement(name = "type")
     private Code accreditationType; //1º
@@ -46,7 +46,7 @@ public class AccreditationDTO implements Identifiable, Nameable {
     private WebDocumentDTO report; //0..1
     @XmlTransient
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ACCREDITAION_ORGANISATION_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ACCREDITAION_ORGANISATION_NOTNULL)
     private OrganizationDTO organization; //1
     @Valid
     private QualificationDTO limitQualification; //*
@@ -60,7 +60,7 @@ public class AccreditationDTO implements Identifiable, Nameable {
     @XmlIDREF
     @XmlPath("accreditingAgent/@idRef")
     @Valid
-    @NotNull(message = MessageKeys.Validation.VALIDATION_ACCREDITAION_ORGANISATION_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_ACCREDITAION_ORGANISATION_NOTNULL)
     private OrganizationDTO accreditingAgent; //1
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date issueDate; //0..1

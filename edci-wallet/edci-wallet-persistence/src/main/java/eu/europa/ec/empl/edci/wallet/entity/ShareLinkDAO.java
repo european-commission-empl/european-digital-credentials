@@ -9,12 +9,18 @@ import java.util.Date;
 
 
 @Entity(name = "SHARELINK")
-@Table(name = "SHARELINK_T")
+@Table(name = ShareLinkDAO.TABLE)
 @Transactional(propagation = Propagation.REQUIRED)
 public class ShareLinkDAO implements IGenericDAO {
 
+    public static final String TABLE = "SHARELINK_T";
+    public static final String TABLE_SHORT = "SHARE";
+    public static final String TABLE_PK_REF = TABLE_SHORT + "_PK";
+    public static final String TABLE_SEQ = TABLE + "_SEQ";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = TABLE_SEQ)
+    @SequenceGenerator(sequenceName = TABLE_SEQ, allocationSize = 1, name = TABLE_SEQ)
     @Column(name = "SHARELINK_ID")
     private Long pk;
     @Column(name = "CREATIONDATE")

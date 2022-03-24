@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model.dataTypes;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.base.Nameable;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class Identifier implements Nameable {
 
     @XmlValue
-    @NotNull(message = MessageKeys.Validation.VALIDATION_IDENTIFIER_CONTENT_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_IDENTIFIER_CONTENT_NOTNULL)
     private String content; //1
     @XmlAttribute(name = "schemeID")
     private String identifierSchemeId; //0..1

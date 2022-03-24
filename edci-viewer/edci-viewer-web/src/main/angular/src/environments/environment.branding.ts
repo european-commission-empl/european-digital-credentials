@@ -3,6 +3,7 @@ export const environment = {
     serviceWorker: true,
     enableDevToolRedux: true,
     hasLabelsOnly: true,
+    viewerBaseUrl: window['EDCIContext'].viewerBaseUrl,
     apiBaseUrl: 'http://localhost:8080/europass2/edci-viewer',
     issuerBaseUrl: 'http://localhost:8080/europass2/edci-issuer',
     walletBaseUrl: 'http://localhost:8080/europass2/edci-wallet',

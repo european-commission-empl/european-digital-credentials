@@ -1,6 +1,6 @@
 package eu.europa.ec.empl.edci.datamodel.model;
 
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.model.dataTypes.Score;
 
 import javax.validation.Valid;
@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"percentageLower", "percentageEqual", "percentageHigher"})
 public class ShortenedGradingDTO {
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_SHORTENEDGRADING_LOWER_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_SHORTENEDGRADING_LOWER_NOTNULL)
     @Valid
     private Score percentageLower; //1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_SHORTENEDGRADING_EQUAL_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_SHORTENEDGRADING_EQUAL_NOTNULL)
     @Valid
     private Score percentageEqual; //1
-    @NotNull(message = MessageKeys.Validation.VALIDATION_SHORTENEDGRADING_HIGHER_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_SHORTENEDGRADING_HIGHER_NOTNULL)
     @Valid
     private Score percentageHigher; //1
 

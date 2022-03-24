@@ -1,3 +1,5 @@
+import { AssessmentTabView } from './../../shared/swagger/model/assessmentTabView';
+import { AssessmentSpecTabView } from './../../shared/swagger/model/assessmentSpecTabView';
 import { Injectable } from '@angular/core';
 import {
     AchievementTabView,
@@ -8,14 +10,27 @@ import {
     OrganizationTabView,
     VerificationCheckView,
 } from 'src/app/shared/swagger';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ShareDataService {
+    private verificationSteps$ = new BehaviorSubject<VerificationCheckView[]>(
+        null
+    );
+    private emitSelection$ = new BehaviorSubject<
+        | OrganizationTabView
+        | AchievementTabView
+        | ActivityTabView
+        | EntitlementTabView
+        | AssessmentTabView
+        | CredentialSubjectTabView
+    >(null);
+    private emitHierarchy$ = new BehaviorSubject<string[]>([]);
     private _achievements: AchievementTabView[];
     private _activities: ActivityTabView[];
+    private _assessments: AssessmentTabView[];
     private _credentialSubject: CredentialSubjectTabView;
     private _diplomaXML: string;
     private _entitlements: EntitlementTabView[];
@@ -26,10 +41,18 @@ export class ShareDataService {
     private _uploadedXML: string;
     private _verificationSteps: VerificationCheckView[];
     private _toolbarLanguage: string;
-
+    private _userId: string;
+    private _ribbonState: number;
+    private _activeEntity:
+        | OrganizationTabView
+        | AchievementTabView
+        | ActivityTabView
+        | EntitlementTabView
+        | AssessmentTabView
+        | CredentialSubjectTabView;
+    private _hierarchyTree: string[] = [];
     toolbarLanguageChange: Subject<string> = new Subject<string>();
 
-    private _userId: string;
     get userId(): string {
         return this._userId;
     }
@@ -73,6 +96,13 @@ export class ShareDataService {
         this._activities = value;
     }
 
+    get assessments(): ActivityTabView[] {
+        return this._assessments;
+    }
+    set assessments(value: ActivityTabView[]) {
+        this._assessments = value;
+    }
+
     get credentialSubject(): CredentialSubjectTabView {
         return this._credentialSubject;
     }
@@ -108,6 +138,14 @@ export class ShareDataService {
         this._issuerPresentation = value;
     }
 
+    get activeEntity() {
+        return this._activeEntity;
+    }
+    set activeEntity(value) {
+        sessionStorage.setItem('activeEntity', JSON.stringify(value));
+        this._activeEntity = value;
+    }
+
     get modalsOpen(): number {
         return this._modalsOpen;
     }
@@ -122,11 +160,11 @@ export class ShareDataService {
         this._subCredentials = value;
     }
 
-    get uploadedXML(): string {
-        return this._uploadedXML;
+    get ribbonState(): number {
+        return this._ribbonState;
     }
-    set uploadedXML(value: string) {
-        this._uploadedXML = value;
+    set ribbonState(value: number) {
+        this._ribbonState = value;
     }
 
     get verificationSteps(): VerificationCheckView[] {
@@ -136,10 +174,65 @@ export class ShareDataService {
         this._verificationSteps = value;
     }
 
+    get uploadedXML(): string {
+        return this._uploadedXML;
+    }
+    set uploadedXML(value: string) {
+        this._uploadedXML = value;
+    }
+
     get toolbarLanguage(): string {
         return this._toolbarLanguage;
     }
     set toolbarLanguage(value: string) {
         this._toolbarLanguage = value;
+    }
+
+    get hierarchyTree(): string[] {
+        return this._hierarchyTree;
+    }
+    set hierarchyTree(value: string[]) {
+        this._hierarchyTree = value;
+    }
+
+    setVerificationSteps(verificationSteps: VerificationCheckView[]): void {
+        this.verificationSteps$.next(verificationSteps);
+    }
+
+    getVerificationSteps(): Observable<VerificationCheckView[]> {
+        return this.verificationSteps$.asObservable();
+    }
+
+    emitEntitySelection(
+        entity:
+            | OrganizationTabView
+            | AchievementTabView
+            | ActivityTabView
+            | EntitlementTabView
+            | AssessmentTabView
+            | CredentialSubjectTabView
+    ): void {
+        this.activeEntity = entity;
+        this.emitSelection$.next(entity);
+    }
+
+    changeEntitySelection(): Observable<
+        | OrganizationTabView
+        | AchievementTabView
+        | ActivityTabView
+        | EntitlementTabView
+        | AssessmentTabView
+        | CredentialSubjectTabView
+    > {
+        return this.emitSelection$.asObservable();
+    }
+
+    emitHierarchyTree(hierarchy: string[]) {
+        this.hierarchyTree = hierarchy;
+        this.emitHierarchy$.next(hierarchy);
+    }
+
+    changeHierarchyTree(): Observable<string[]> {
+        return this.emitHierarchy$.asObservable();
     }
 }

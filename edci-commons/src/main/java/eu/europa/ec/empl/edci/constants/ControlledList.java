@@ -23,7 +23,7 @@ public enum ControlledList {
     NUTS("http://publications.europa.eu/resource/authority/nuts", RDFParser.class, "nuts", false), //TODO: found it by chance. Will we use it somewhere?
 
     CREDENTIAL_TYPE("http://data.europa.eu/snb/credential/25831c2", RDFParser.class, "credential", true),
-    VERIFICATION_TYPE("http://52.57.141.197/fs/0.10.0/vp/types", RDFParser.class, "verification", true),
+    VERIFICATION_TYPE("http://data.europa.eu/snb/verifiable-presentation/25831c2", RDFParser.class, "verification", true),
     LEARNING_ACT("http://data.europa.eu/snb/learning-activity/25831c2", RDFParser.class, "learning-activity", false),
     LEARNING_SETTING("http://data.europa.eu/snb/learning-setting/25831c2", RDFParser.class, "learning-setting", true),
     ASSESSMENT("http://data.europa.eu/snb/assessment/25831c2", RDFParser.class, "assessment", false),

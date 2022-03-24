@@ -63,7 +63,6 @@ public abstract class EDCIAbstractCustomTask implements CustomTaskChange, Custom
         try (Statement statement = dbConn.createStatement(); ResultSet resultSet = statement.executeQuery(this.getValidationSQL())) {
             if (resultSet.next()) {
                 long count = resultSet.getLong("COUNT");
-                System.out.println("PRECONDITION CHECK COUNT : " + count);
                 if (count != this.getValidationSQLResult()) {
                     validationErrors.addError("PRECONDITION QUERY WAS NOT 0");
                     return validationErrors;

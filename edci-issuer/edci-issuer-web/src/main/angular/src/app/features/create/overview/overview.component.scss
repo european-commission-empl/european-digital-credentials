@@ -48,8 +48,10 @@
                         color: #333;
                         font-size: 1rem;
                         font-weight: 600;
+                        padding: 1rem;
                         text-transform: uppercase;
                         vertical-align: middle;
+                        word-break: break-word;
                     }
                 }
             }
@@ -63,7 +65,9 @@
                     }
 
                     td {
+                        padding: 1rem;
                         vertical-align: middle;
+                        word-break: break-word;
 
                         .mat-icon {
                             font-size: 22px;

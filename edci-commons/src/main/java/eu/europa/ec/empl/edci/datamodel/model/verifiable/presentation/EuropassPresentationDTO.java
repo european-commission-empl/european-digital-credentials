@@ -1,8 +1,8 @@
 package eu.europa.ec.empl.edci.datamodel.model.verifiable.presentation;
 
 import eu.europa.ec.empl.edci.annotation.EDCIIdentifier;
-import eu.europa.ec.empl.edci.constants.EuropassConstants;
-import eu.europa.ec.empl.edci.constants.MessageKeys;
+import eu.europa.ec.empl.edci.constants.EDCIConstants;
+import eu.europa.ec.empl.edci.constants.EDCIMessageKeys;
 import eu.europa.ec.empl.edci.datamodel.adapter.DateTimeAdapter;
 import eu.europa.ec.empl.edci.datamodel.model.EuropassCredentialDTO;
 import eu.europa.ec.empl.edci.datamodel.model.OrganizationDTO;
@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@XmlRootElement(name = "verifiablePresentation", namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+@XmlRootElement(name = "verifiablePresentation", namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
 @XmlAccessorType(XmlAccessType.FIELD)
 @EDCIIdentifier(prefix = "urn:verifiable:")
 @XmlType(propOrder = {"type", "expirationDate", "issuer", "verifications", "verifiableCredential", "proof"})
@@ -30,23 +30,23 @@ public class EuropassPresentationDTO extends VerifiablePresentationDTO implement
     private EuropassCredentialDTO verifiableCredential;
 
     @Valid
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private OrganizationDTO issuer; //1
 
     @XmlJavaTypeAdapter(DateTimeAdapter.class)
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Date expirationDate; //0..1
 
-    @NotNull(message = MessageKeys.Validation.VALIDATION_CREDENTIAL_TYPE_NOTNULL)
+    @NotNull(message = EDCIMessageKeys.Validation.VALIDATION_CREDENTIAL_TYPE_NOTNULL)
     @Valid
-    @XmlElement(namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private Code type;
 
-    @XmlElementWrapper(name = "verificationChecks", namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
-    @XmlElement(name = "verificationCheck", namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElementWrapper(name = "verificationChecks", namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(name = "verificationCheck", namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private List<VerificationCheckDTO> verifications;
 
-    @XmlElement(name = "proof", namespace = EuropassConstants.NAMESPACE_VP_DEFAULT)
+    @XmlElement(name = "proof", namespace = EDCIConstants.NAMESPACE_VP_DEFAULT)
     private String proof = "";
 
     @XmlTransient

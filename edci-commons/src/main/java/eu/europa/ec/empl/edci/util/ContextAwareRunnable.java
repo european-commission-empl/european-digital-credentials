@@ -1,5 +1,6 @@
 package eu.europa.ec.empl.edci.util;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.i18n.LocaleContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContext;
@@ -12,6 +13,8 @@ public class ContextAwareRunnable implements Runnable {
     private RequestAttributes context;
     private LocaleContext locale;
     private SecurityContext security;
+
+    private static final Logger logger = Logger.getLogger(ContextAwareRunnable.class);
 
     public ContextAwareRunnable(Runnable task, RequestAttributes context) {
         this.task = task;
@@ -37,6 +40,8 @@ public class ContextAwareRunnable implements Runnable {
 
         try {
             task.run();
+        } catch (Exception e) {
+            logger.error("Exception in thread " + Thread.currentThread().getName(), e);
         } finally {
             RequestContextHolder.resetRequestAttributes();
         }

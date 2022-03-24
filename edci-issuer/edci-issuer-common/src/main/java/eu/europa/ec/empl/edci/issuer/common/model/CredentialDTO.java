@@ -9,6 +9,7 @@ public class CredentialDTO {
     private String walletAddress;
     private String type;
     private String course;
+    private String certPassword;
     private String uuid;
     private String primaryLanguage;
     private Boolean sealed;
@@ -144,6 +145,14 @@ public class CredentialDTO {
 
     public void setSendErrors(List<String> sendErrors) {
         this.sendErrors = sendErrors;
+    }
+
+    public String getCertPassword() {
+        return certPassword;
+    }
+
+    public void setCertPassword(String certPassword) {
+        this.certPassword = certPassword;
     }
 
     public Boolean getSealed() {
