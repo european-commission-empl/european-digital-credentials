@@ -4,9 +4,9 @@ services:
     image: kiceurope/mysqldb:latest
     container_name: mysqldb
     environment:
-      - MYSQL_ROOT_PASSWORD=1234mraf
+      - MYSQL_ROOT_PASSWORD=xxxxx
       - MYSQL_USER=edci
-      - MYSQL_PASSWORD=1234mraf
+      - MYSQL_PASSWORD=xxxxx
     volumes:
       - "C://Dev/EDCI/dockers/docker_mysql/datadir:/var/lib/mysql"
     ports:
