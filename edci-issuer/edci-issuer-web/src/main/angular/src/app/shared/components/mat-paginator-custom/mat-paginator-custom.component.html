@@ -1,0 +1,27 @@
+<div *ngIf="otherDocuments?.length > 0" class="col-12">
+    <div>
+        <p class="mt-0">
+            <strong>
+                {{ 'details.otherDocuments' | translate }}
+            </strong>
+        </p>
+        <span
+            *ngFor="let document of otherDocuments; let isLast = last"
+            class="f-16 break-word"
+        >
+            <ng-container *ngIf="document.title || document.link">
+                <a
+                    *ngIf="document?.title; else noTitle"
+                    [href]="document?.link"
+                    class="break-word"
+                    target="_blank"
+                    >{{ document.title }}</a
+                ><ng-template #noTitle>
+                    <a [href]="document?.link" target="_blank">{{
+                        document.link
+                    }}</a></ng-template
+                >{{ isLast ? '' : ', ' }}
+            </ng-container>
+        </span>
+    </div>
+</div>

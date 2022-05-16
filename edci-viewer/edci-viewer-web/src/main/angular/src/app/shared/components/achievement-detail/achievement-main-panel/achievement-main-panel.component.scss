@@ -1,0 +1,65 @@
+.achievement-main-panel {
+    .awarded-by {
+        font-weight: bold;
+
+        &_collapsed {
+            padding-bottom: 24px;
+        }
+
+        &_text {
+            font-size: 20px;
+        }
+
+        &_icon {
+            color: #004494;
+            font-size: 19px;
+
+            &-text {
+                color: #004494;
+                font-size: 16px;
+                padding-right: 8px;
+            }
+
+            &-img {
+                transition: all 0.5s ease;
+
+                &.rotate-180 {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+        &_info {
+            padding-bottom: 4px;
+            padding-top: 20px;
+
+            &-logo {
+                > img {
+                    max-height: 100px;
+                }
+            }
+        }
+    }
+
+    .awarding-information {
+        .field-title {
+            font-weight: bold;
+            padding-bottom: 8px;
+        }
+
+        padding-bottom: 18px;
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.no-info-panel {
+    --edci-panel-content-padding-bottom: 0;
+    --edci-panel-content-padding-left: 0;
+    --edci-panel-content-padding-right: 0;
+    --edci-panel-content-padding-top: 0;
+}

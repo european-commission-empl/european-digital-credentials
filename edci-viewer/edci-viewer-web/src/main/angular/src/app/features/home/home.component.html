@@ -1,0 +1,50 @@
+<div class="edci__home">
+    <div class="ecl-container">
+        <h1>
+            {{ homeMenuMainTitle | translate }}
+        </h1>
+        <div class="home-section__content row">
+            <div class="col-8">
+                <h4 class="font-weight-bold">
+                    {{ 'home.menu.title' | translate }}
+                </h4>
+                <p
+                    *ngIf="hasBranding; else noBranding"
+                    class="size__18 lh-32"
+                    [innerHTML]="
+                        homeMenuDescription
+                            | translate
+                                : {
+                                      ePortfolioUrl: ePortfolioUrl
+                                  }
+                    "
+                ></p>
+                <ng-template #noBranding>
+                    <p class="size__18 lh-32">
+                        {{ homeMenuDescription | translate }}
+                    </p>
+                </ng-template>
+            </div>
+            <div class="col-4">
+                <div>
+                    <input
+                        [hidden]="true"
+                        #inputFile
+                        id="myInput"
+                        type="file"
+                        accept="text/xml"
+                        (change)="readFile($event.target.files)"
+                    />
+                    <ux-button
+                        (click)="openDialog()"
+                        [isBlock]="true"
+                        [isLarge]="true"
+                        styleClass="ux-u-width-18 upload__file font-100"
+                    >
+                        {{ 'btn.uploadCredential' | translate }}
+                    </ux-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div
+    *ngIf="!isSingleSelection; else singleSelection"
+    class="{{ isDisabled ? 'input-disabled' : '' }}"
+    #divMultipleInput
+>
+    <ux-autocomplete-tag
+        #autocompleteTag
+        chipsPosition="bottom"
+        [items]="searchList"
+        (click)="onClick()"
+        [selectedItems]="selectedItems"
+        [outline]="true"
+        placeholder="{{ 'credential-builder.inputCharacters' | translate }}"
+        (itemAdded)="onItemAdded($event[entityType]?.oid)"
+        (itemRemoved)="onItemRemoved($event[entityType]?.oid)"
+        (inputValueChange)="onSearchItem($event)"
+        (selectionChanged)="onSelectionChange($event)"
+        *ngIf="isPrimaryLanguage"
+    ></ux-autocomplete-tag>
+    <ux-autocomplete-tag
+        #autocomplete
+        chipsPosition="bottom"
+        placeholder=""
+        *ngIf="!isPrimaryLanguage && selectedItems.length == 0"
+        style="pointer-events: none;">
+    </ux-autocomplete-tag>
+</div>
+<ng-template #singleSelection>
+    <div class="{{ isDisabled ? 'input-disabled' : '' }}">
+        <ng-container *ngIf="isSingleSelection" [formGroup]="autocompleteForm">
+            <div #divMultipleInput>
+                <ux-autocomplete-tag
+                    #autocomplete
+                    chipsPosition="bottom"
+                    [items]="searchList"
+                    (click)="onClick()"
+                    [selectedItems]="selectedItems"
+                    [outline]="true"
+                    placeholder="{{
+                        'credential-builder.inputCharacters' | translate
+                    }}"
+                    (itemAdded)="onItemAdded($event[entityType]?.oid)"
+                    (itemRemoved)="onItemRemoved($event[entityType]?.oid)"
+                    (inputValueChange)="onSearchItem($event)"
+                    (selectionChanged)="onSelectionChange($event)"
+                    *ngIf="isPrimaryLanguage"
+                >
+                </ux-autocomplete-tag>
+                <ux-autocomplete-tag
+                    #autocomplete
+                    chipsPosition="bottom"
+                    placeholder=""
+                    *ngIf="!isPrimaryLanguage && selectedItems.length == 0"
+                    style="pointer-events: none;"
+                >
+                </ux-autocomplete-tag>
+            </div>
+            <!-- <ux-autocomplete
+                #autocomplete
+                class="ocb__autocomplete"
+                (click)="onClick()"
+                [items]="searchList"
+                placeholder="{{ 'credential-builder.inputCharacters' | translate }}"
+                (inputValueChange)="onSearchItem($event)"
+                formControlName="item"
+            ></ux-autocomplete> -->
+        </ng-container>
+    </div>
+</ng-template>
+<div *ngIf="isLoading" class="form-input-spinner spinner-autocomplete">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>

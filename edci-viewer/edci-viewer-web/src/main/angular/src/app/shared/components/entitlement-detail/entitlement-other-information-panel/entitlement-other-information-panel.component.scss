@@ -1,0 +1,20 @@
+.other-information {
+    &_title {
+        font-weight: bold;
+        padding-bottom: 8px;
+    }
+
+    &_description {
+        padding-bottom: 18px;
+    }
+
+    &_section {
+        padding-bottom: 18px;
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+}

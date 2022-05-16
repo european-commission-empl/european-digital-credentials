@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.europa.ec.empl.edci</groupId>
+        <artifactId>edci</artifactId>
+        <version>1.5.2-RELEASE</version>
+    </parent>
+    <groupId>eu.europa.ec.empl.edci.wallet</groupId>
+    <artifactId>edci-wallet</artifactId>
+    <version>1.5.2-RELEASE</version>
+    <packaging>pom</packaging>
+    <name>edci-wallet</name>
+    <description>J2EE, SpringMVC, eUI application</description>
+
+
+    <modules>
+        <module>edci-wallet-common</module>
+        <module>edci-wallet-persistence</module>
+        <module>edci-wallet-service</module>
+        <module>edci-wallet-web-rest-swagger</module>
+        <module>edci-wallet-web-rest</module>
+        <module>edci-wallet-web</module>
+        <module>edci-wallet-web-swagger-ui</module>
+    </modules>
+
+
+    <scm>
+        <connection>scm:svn:https://webgate.ec.europa.eu/CITnet/svn/wallet</connection>
+        <developerConnection>scm:svn:https://webgate.ec.europa.eu/CITnet/svn/wallet
+        </developerConnection>
+        <url>https://webgate.ec.europa.eu/CITnet/svn/wallet</url>
+    </scm>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://webgate.ec.europa.eu/CITnet/jira/browse/wallet</url>
+    </issueManagement>
+
+    <organization>
+        <name>European Commission</name>
+        <url>http://ec.europa.eu/</url>
+    </organization>
+
+
+    <!--    <distributionManagement>-->
+    <!--        <repository>-->
+    <!--            <id>myRepo</id>-->
+    <!--            <name>myLocalRepo</name>-->
+    <!--            <url>${project.build.directory}/edci-wallet-dist</url>-->
+    <!--        </repository>-->
+    <!--        <snapshotRepository>-->
+    <!--            <id>myRepo</id>-->
+    <!--            <name>myLocalRepo</name>-->
+    <!--            <url>${project.build.directory}/edci-wallet-dist</url>-->
+    <!--        </snapshotRepository>-->
+    <!--    </distributionManagement>-->
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.json.version>20180813</org.json.version>
+        <org.gson.version>2.8.5</org.gson.version>
+        <angular.servlet.version>1.0.0</angular.servlet.version>
+        <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
+        <dss.utils.version>1.5.2-RELEASE</dss.utils.version>
+        <jackson.annotations>2.4.5</jackson.annotations>
+        <!-- DEPENDENCIES VERSION -->
+        <jdk.version>1.8</jdk.version>
+        <javaee-api.version>7.0</javaee-api.version>
+        <joda-time.version>2.9.1</joda-time.version>
+        <!-- COMMENTED TO AVOID COLLISSIONS WITH DSS AND MITRE LIBRARIES-->
+        <guava.version>23.0</guava.version>
+        <tika.version>1.2</tika.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <ehcache.version>2.6.10</ehcache.version>
+        <junit.version>4.12</junit.version>
+        <mockito.version>2.23.0</mockito.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <jsp-api.version>2.2</jsp-api.version>
+        <javax.inject.version>1</javax.inject.version>
+        <javax.validation.version>2.0.0.Final</javax.validation.version>
+        <commons.fileupload.version>1.3.3</commons.fileupload.version>
+        <apache.poi.version>4.1.2</apache.poi.version>
+        <maven.surefire.plugin>2.22.1</maven.surefire.plugin>
+        <!--LIQUIBASE VERSION-->
+        <liquibase.version>4.3.1</liquibase.version>
+        <liquibase.logs.version>2.13.3</liquibase.logs.version>
+        <oracle.ojdbc.version>19.3.0.0</oracle.ojdbc.version>
+
+        <!--LOG4J VERSIONS-->
+        <log4j.version>2.17.1</log4j.version>
+        <tiles2.version>2.2.2</tiles2.version>
+
+        <!--PERSISTENCE VERSIONS-->
+        <eclipselink.version>2.6.4</eclipselink.version>
+        <hsqldb.version>2.2.8</hsqldb.version>
+        <querydsl.version>4.2.1</querydsl.version>
+        <hibernate.validator.version>6.0.2.Final</hibernate.validator.version>
+        <tomcat.dbcp.version>8.0.41</tomcat.dbcp.version>
+
+        <!--SPRING VERSION-->
+        <!-- MITREID VERSIONS-->
+        <bcprov.jdk15on.version>1.68</bcprov.jdk15on.version>
+        <mitreid.version>1.3.3</mitreid.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
+        <spring.security.version>5.2.5.RELEASE</spring.security.version>
+        <spring.security.oauth2.version>2.4.0.RELEASE</spring.security.oauth2.version>
+        <spring.data.jpa.version>2.3.4.RELEASE</spring.data.jpa.version>
+
+        <!--OTHER VERSIONS-->
+        <mapstruct.version>1.3.0.Final</mapstruct.version>
+        <jackson.version>2.10.1</jackson.version>
+        <!--SWAGGER VERSIONS-->
+        <swagger.maven.version>3.1.7</swagger.maven.version>
+        <swagger.version>1.5.22</swagger.version>
+        <swagger.plugin.version>3.1.5</swagger.plugin.version>
+        <swagger-codegen.version>2.2.3</swagger-codegen.version>
+        <swagger.codegen.maven.plugin.version>2.4.4</swagger.codegen.maven.plugin.version>
+        <!--MAVEN VERSIONS-->
+        <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
+        <directory.maven.plugin.version>0.3.1</directory.maven.plugin.version>
+        <jersey.version>2.22.2</jersey.version>
+
+        <app.datasource.name>walletDS</app.datasource.name>
+        <persistence.unit.name>walletPersistence</persistence.unit.name>
+
+        <eclipselink.logging.parameters>true</eclipselink.logging.parameters>
+
+        <!-- EDCI DATA MODEL -->
+
+        <edci.commons.version>1.5.2-RELEASE</edci.commons.version>
+
+    </properties>
+
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <properties>
+                <environment.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/wallet/wallet_default.properties
+                </environment.property>
+                <environment.security.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/security/security_default.properties
+                </environment.security.property>
+                <spring.profiles.active>default</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <environment.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/wallet/wallet_docker.properties
+                </environment.property>
+                <environment.security.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/security/security_docker.properties
+                </environment.security.property>
+                <spring.profiles.active>docker</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <environment.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/wallet/wallet_dev.properties
+                </environment.property>
+                <environment.security.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/security/security_dev.properties
+                </environment.security.property>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <environment.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/wallet/wallet_prod.properties
+                </environment.property>
+                <environment.security.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/security/security_prod.properties
+                </environment.security.property>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>empl</id>
+            <properties>
+                <environment.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/wallet/wallet_prod.properties
+                </environment.property>
+                <environment.security.property>
+                    ${wallet-rootPath}/edci-wallet-web/src/main/resources/config/security/security_prod.properties
+                </environment.security.property>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>empl-snapshots</id>
+                    <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+                    <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>empl</id>
+                    <name>EMPL Maven Repository provided by CITnet Team</name>
+                    <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- GUAVA -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!--LIQUIBASE DEPENDENCIES-->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.oracle.ojdbc</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>${oracle.ojdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.europa.ec.empl.edci</groupId>
+                <artifactId>edci-commons</artifactId>
+                <version>${edci.commons.version}</version>
+            </dependency>
+
+
+            <!-- JAVA-->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax.inject.version}</version>
+            </dependency>
+            <!--PERSISTANCE-->
+
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>eclipselink</artifactId>
+                <version>${eclipselink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>${hsqldb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-dbcp</artifactId>
+                <version>${tomcat.dbcp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!--HIBERNATE -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator-annotation-processor</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+            <!--EUI-->
+            <dependency>
+                <groupId>eu.europa.ec.digit.uxatec.eui</groupId>
+                <artifactId>eui-angular2-servlet</artifactId>
+                <version>${angular.servlet.version}</version>
+            </dependency>
+
+            <!-- THYMELEAF-->
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf</artifactId>
+                <version>${thymeleaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.thymeleaf</groupId>
+                <artifactId>thymeleaf-spring4</artifactId>
+                <version>${thymeleaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.empl.edci</groupId>
+                <artifactId>edci-dss-utils</artifactId>
+                <version>${dss.utils.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.empl.edci</groupId>
+                <artifactId>edci-commons</artifactId>
+                <version>${edci.commons.version}</version>
+                <scope>test</scope>
+                <type>test-jar</type>
+            </dependency>
+            <!--DSS-->
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-service</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-spi</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-document</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-xades</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-pades</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-pades-pdfbox</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-model</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-token</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-tsl-validation</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-utils</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-utils-apache-commons</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+                <artifactId>dss-crl-parser-stream</artifactId>
+                <version>${project.sd-ssd.version}</version>
+            </dependency>
+
+            <!--OTHER-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>${ehcache.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${org.json.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${org.gson.version}</version>
+            </dependency>
+
+            <!--JODA-->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+
+            <!--COMMONS-->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <!--TESTING-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--MITRE-->
+            <dependency>
+                <groupId>org.mitre</groupId>
+                <artifactId>openid-connect-client</artifactId>
+                <version>${mitreid.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mitre</groupId>
+                <artifactId>openid-connect-common</artifactId>
+                <version>${mitreid.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.httpcomponents</groupId>
+                        <artifactId>httpclient</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--APACHE-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${apache.poi.version}</version>
+            </dependency>
+
+            <!--LOGGING-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <!--QUERYDSL-->
+            <dependency>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-core</artifactId>
+                <version>${querydsl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-apt</artifactId>
+                <version>${querydsl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.querydsl</groupId>
+                <artifactId>querydsl-jpa</artifactId>
+                <version>${querydsl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!--SPRING-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring.data.jpa.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.hateoas</groupId>
+                <artifactId>spring-hateoas</artifactId>
+                <version>0.25.1.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring.security.oauth2.version}</version>
+            </dependency>
+
+            <!--SWAGGER-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-core</artifactId>
+                <scope>compile</scope>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.ws.rs</groupId>
+                        <artifactId>jsr311-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.datatype</groupId>
+                        <artifactId>jackson-datatype-joda</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.dataformat</groupId>
+                        <artifactId>jackson-dataformat-yaml</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen</artifactId>
+                <version>${swagger-codegen.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>${bcprov.jdk15on.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>${tomcat.dbcp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources-unfiltered</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>${directory.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>directory-of</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>wallet-rootPath</property>
+                            <project>
+                                <groupId>eu.europa.ec.empl.edci.wallet</groupId>
+                                <artifactId>edci-wallet</artifactId>
+                            </project>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>${properties.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${environment.property}</file>
+                                <file>${environment.security.property}</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin}</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>unit-tests</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <includes>
+                                <include>**/*Test.java</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/integration/**/*ITest.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>integration-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <includes>
+                                <include>**/*ITest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+</project>

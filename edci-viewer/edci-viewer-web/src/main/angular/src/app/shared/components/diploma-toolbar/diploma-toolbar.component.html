@@ -1,0 +1,275 @@
+<div class="d-inline-flex size__16 shadow-sm bg-white rounded w-100 p-3">
+    <div
+        class="d-inline-flex cursor-pointer pr-3 border-right"
+        (click)="navigateHome()"
+    >
+        <div class="d-flex align-items-center home-icon">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <span class="mt-1">{{ 'common.home' | translate }}</span>
+        </div>
+    </div>
+    <div class="pl-1 pr-1 border-right">
+        <ux-dropdown-button
+            class="custom-dropdown"
+            styleClass="box-shadow-none hover-none ux-u-color-grey-darkester-2"
+            label="{{ 'btn.export' | translate }}"
+        >
+            <ux-dropdown-button-item
+                [style.display]="downloadOriginal && ((credId && userId) || sharedFromURL) ? null : 'none'"
+                [label]="'downloadOriginalXml' | translate"
+                iconClass="fa fa-file-code-o"
+                (click)="downloadOriginalXML()"
+            >
+            </ux-dropdown-button-item>
+            <ux-dropdown-button-item
+                [label]="'downloadXml' | translate"
+                iconClass="fa fa-file-code-o"
+                [isDisabled]="isPreview || isXMLDisabled"
+                (click)="downloadVP('XML')"
+            >
+            </ux-dropdown-button-item>
+            <ux-dropdown-button-item
+                [label]="'downloadPdf' | translate"
+                iconClass="fa fa-file-pdf-o"
+                [isDisabled]="isPreview"
+                (click)="downloadVP('PDF', 'full')"
+            >
+            </ux-dropdown-button-item>
+            <ux-dropdown-button-item
+                [label]="'downloadPdfSummaryCredential' | translate"
+                iconClass="fa fa-file-pdf-o"
+                [isDisabled]="isPreview"
+                (click)="downloadVP('PDF', 'diploma')"
+            >
+            </ux-dropdown-button-item>
+        </ux-dropdown-button>
+    </div>
+    <div
+        class="d-inline-flex cursor-pointer pr-3 pl-3 pt-2 {{
+            this.isPreview ? 'ux-button—host-disabled' : ''
+        }}"
+        (click)="uploadAnotherCredential()"
+    >
+        <input
+            [hidden]="true"
+            #inputFile
+            id="myInput"
+            type="file"
+            accept="text/xml"
+            (change)="readFile($event.target.files)"
+        />
+        <ux-a-icon
+            class="mr-2 mt-1"
+            iconClass="fa fa-upload"
+            typeClass="primary"
+            [isRounded]="false"
+        ></ux-a-icon>
+        <span class="mt-1 {{ this.isPreview ? 'disabled' : '' }}">{{
+            'toolbar.updateAnotherCredential' | translate
+        }}</span>
+    </div>
+    <span
+        class="index-auto ml-auto pr-3 pt-2 border-right"
+        uxTooltip="{{ !credId ? ('details.shareTooltip' | translate) : '' }}"
+    >
+        <div
+            class="cursor-pointer d-inline-flex {{
+                !credId ? 'ux-button—host-disabled' : ''
+            }}"
+            (click)="uxService.openModal('shareCredentialModal')"
+        >
+            <ux-a-icon
+                class="mr-2 mt-1"
+                iconClass="fa fa-share-alt"
+                typeClass="primary"
+                [isRounded]="false"
+            ></ux-a-icon>
+            <span class="mt-1">{{ 'btn.share' | translate }}</span>
+        </div>
+    </span>
+    <div class="d-inline-flex cursor-pointer pr-3 pl-3 pt-1">
+        <ux-dropdown-button
+            *ngIf="primaryLanguage"
+            class="language-dropdown"
+            [label]="selectedLanguage"
+            [links]="languages"
+            [isUpdateLabelFromSelectedItem]="true"
+            typeClass="primary"
+            dropdownMaxHeight="10"
+            [isOutline]="true"
+            (linkSelected)="languageChange($event)"
+        ></ux-dropdown-button>
+    </div>
+</div>
+
+<!--
+    uxTooltip="{{
+        !credId && !sharedFromURL
+        ? ('details.download' | translate)
+        : ''
+    }}"
+
+    uxTooltip="{{
+        !credId && !sharedFromURL
+        ? ('details.download' | translate)
+        : ''
+    }}"
+-->
+
+<div *ngIf="isDownloading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="pdf-spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+<ux-modal
+    id="shareCredentialModal"
+    [isAcceptActionVisible]="false"
+    [isShowCloseButton]="false"
+    [isCloseModalOnEscape]="false"
+    (onDismiss)="closeShareModal()"
+    dismissActionLabel="Close"
+    titleLabel="{{ 'share.shareCredential' | translate }}"
+>
+    <uxModalBody>
+        <div class="d-flex link-wrapper">
+            <form [formGroup]="sharedForm">
+                <label for="date">{{
+                    'share.dateOfValidity' | translate
+                }}</label>
+                <ux-form-group
+                    [feedbackTypeClass]="feedback"
+                    [isVertical]="true"
+                    class="form-datepicker"
+                >
+                    <ux-datepicker
+                        formControlName="date"
+                        [placeholder]="'dd/mm/yyyy'"
+                        [minDate]="minDate"
+                        (onDateSelect)="checkValidDate(shareDate)"
+                    >
+                    </ux-datepicker>
+                    <ux-control-feedback class="w-25">
+                        <strong>
+                            {{
+                                feedback
+                                    ? feedback === 'danger'
+                                        ? ('share.validDateDanger' | translate)
+                                        : ('share.validDateSuccess' | translate)
+                                    : ('share.chooseDate' | translate)
+                            }}
+                        </strong>
+                    </ux-control-feedback>
+                </ux-form-group>
+            </form>
+
+            <ux-button
+                class="share-link"
+                [isDisabled]="generateLinkDisabled || !dateChange"
+                (click)="generateLink(); isCopyToClipBoardClicked = false"
+            >
+                {{ 'share.generateLink' | translate }}
+            </ux-button>
+        </div>
+
+        <div class="d-flex mt-5 link-wrapper">
+            <div class="link">
+                <label for="url">{{ 'share.copyURL' | translate }}</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="shareLink"
+                    readonly
+                />
+            </div>
+            <div class="copy-button">
+                <ux-button
+                    class="copy-link"
+                    [isSecondary]="true"
+                    [isDisabled]="!shareLink"
+                    [appCopyToClipboard]="shareLink"
+                    (click)="isCopyToClipBoardClicked = true"
+                >
+                    {{ 'share.copyToClipboard' | translate }}
+                </ux-button>
+                <label
+                    [ngClass]="{ 'label-visibility': isCopyToClipBoardClicked }"
+                    >{{ 'share.copy' | translate }}</label
+                >
+            </div>
+        </div>
+        <div *ngIf="loading" class="spinner-wrapper">
+            <mat-progress-spinner
+                class="share-spinner"
+                color="primary"
+                mode="indeterminate"
+                value="50"
+            >
+            </mat-progress-spinner>
+        </div>
+    </uxModalBody>
+</ux-modal>
+
+<ux-modal
+    id="pdfDownloadModal"
+    [isAcceptActionVisible]="false"
+    [isShowCloseButton]="false"
+    [isCloseModalOnEscape]="false"
+    (onDismiss)="closeDownloadModal()"
+    titleLabel="{{ 'download.title' | translate }}"
+>
+    <uxModalBody>
+        <div class="d-flex link-wrapper">
+            <form [formGroup]="downloadForm">
+                <label for="date">{{
+                    'download.validUntil' | translate
+                }}</label>
+                <ux-form-group
+                    [feedbackTypeClass]="feedback"
+                    [isVertical]="true"
+                    class="form-datepicker"
+                >
+                    <ux-datepicker
+                        formControlName="date"
+                        [placeholder]="'dd/mm/yyyy'"
+                        [minDate]="minDate"
+                        (onDateSelect)="checkValidDate(downloadDate)"
+                    >
+                    </ux-datepicker>
+                    <ux-control-feedback class="w-25">
+                        <strong>
+                            {{
+                                feedback
+                                    ? feedback === 'danger'
+                                        ? ('share.validDateDanger' | translate)
+                                        : ''
+                                    : ('share.chooseDate' | translate)
+                            }}
+                        </strong>
+                    </ux-control-feedback>
+                </ux-form-group>
+            </form>
+
+            <ux-button
+                class="share-link"
+                [isDisabled]="generateLinkDisabled || !dateChange"
+                (click)="downloadSharePDF(); isCopyToClipBoardClicked = false"
+            >
+                {{ 'download.pdf' | translate }}
+            </ux-button>
+        </div>
+        <div *ngIf="loading">
+            <mat-progress-spinner
+                class="share-spinner"
+                color="primary"
+                mode="indeterminate"
+                value="50"
+            >
+            </mat-progress-spinner>
+        </div>
+    </uxModalBody>
+</ux-modal>

@@ -1,0 +1,103 @@
+<ng-container *ngFor="let item of arrayItems; index as i">
+    <ng-container [ngSwitch]="i">
+        <ng-container *ngSwitchCase="0">
+            <ng-container *ngIf="item">
+                <edci-menu-item
+                    [entity]="item"
+                    [label]="item.fullName"
+                    [depthLevel]="0"
+                    entityType="subject"
+                    (expanded)="onSubjectExpand($event)"
+                    [hierarchyTree]="[item.id]"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="subjectExpanded"
+                    [items]="item"
+                    [parentTree]="[item.id]"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+            <ng-container *ngIf="item">
+                <edci-menu-item
+                    [entity]="item"
+                    [label]="item.preferredName"
+                    [depthLevel]="0"
+                    entityType="organisation"
+                    (expanded)="onIssuerExpand($event)"
+                    [hierarchyTree]="[item.id]"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="issuerExpanded"
+                    [items]="item"
+                    [parentTree]="[item.id]"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+            <ng-container
+                *ngFor="
+                    let achievement of item;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="achievement"
+                    [label]="achievement.title"
+                    [depthLevel]="0"
+                    entityType="achievement"
+                    (expanded)="onAchievementExpand($event, i)"
+                    [hierarchyTree]="[achievement.id]"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="achievementExpanded[i]"
+                    [items]="achievement"
+                    [parentTree]="[achievement.id]"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+            <ng-container
+                *ngFor="let activity of item; let i = index; trackBy: identify"
+            >
+                <edci-menu-item
+                    [entity]="activity"
+                    [label]="activity.title"
+                    [depthLevel]="0"
+                    entityType="activity"
+                    (expanded)="onActivityExpand($event, i)"
+                    [hierarchyTree]="[activity.id]"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="activityExpanded[i]"
+                    [items]="activity"
+                    [parentTree]="[activity.id]"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="4">
+            <ng-container
+                *ngFor="
+                    let entitlement of item;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="entitlement"
+                    [label]="entitlement.title"
+                    [depthLevel]="0"
+                    entityType="entitlement"
+                    (expanded)="onEntitlementExpand($event, i)"
+                    [hierarchyTree]="[entitlement.id]"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="entitlementExpanded[i]"
+                    [items]="entitlement"
+                    [parentTree]="[entitlement.id]"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

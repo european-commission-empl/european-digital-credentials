@@ -1,0 +1,26 @@
+.labels-form {
+    display: flex;
+    justify-content: space-between;
+
+    &__field-keyLabel {
+        flex-grow: 1;
+        margin-right: 16px;
+    }
+
+    &__field-labelContent {
+        flex-grow: 1;
+    }
+
+    &__buttons {
+        display: flex;
+
+        &.row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        &-hidden {
+            pointer-events: none;
+            visibility: hidden;
+        }
+    }
+}

@@ -1,0 +1,184 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< eu.europa.ec.empl.edci:edci-dss-utils >----------------
+[INFO] Building edci-dss-utils 2.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-dss-utils ---
+[INFO] eu.europa.ec.empl.edci:edci-dss-utils:jar:2.0
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:jar:2.1:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] |  +- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] |  |  \- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  +- joda-time:joda-time:jar:2.10.5:compile
+[INFO] |  +- org.springframework:spring-beans:jar:5.2.9.RELEASE:compile
+[INFO] |  +- org.springframework:spring-web:jar:5.2.9.RELEASE:compile
+[INFO] |  +- org.springframework:spring-webmvc:jar:5.2.9.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  |  \- org.javassist:javassist:jar:3.20.0-GA:compile
+[INFO] |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf-spring4:jar:3.0.7.RELEASE:compile
+[INFO] |  +- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] |  |  \- org.springframework:spring-test:jar:4.3.22.RELEASE:compile
+[INFO] |  +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.9.8:compile
+[INFO] |  |  \- com.fasterxml.jackson.core:jackson-annotations:jar:2.9.8:compile
+[INFO] |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  +- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] |  |  \- org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO] |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] |  +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  +- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  +- org.springframework:spring-jdbc:jar:5.2.9.RELEASE:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- org.apache.jena:jena-core:jar:3.13.1:compile
+[INFO] |  |  +- org.apache.jena:jena-iri:jar:3.13.1:compile
+[INFO] |  |  +- commons-cli:commons-cli:jar:1.4:compile
+[INFO] |  |  \- org.apache.jena:jena-base:jar:3.13.1:compile
+[INFO] |  |     +- org.apache.commons:commons-csv:jar:1.7:compile
+[INFO] |  |     \- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] |  +- org.apache.jena:jena-arq:jar:3.13.1:compile
+[INFO] |  |  +- org.apache.jena:jena-shaded-guava:jar:3.13.1:compile
+[INFO] |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] |  |  +- org.apache.thrift:libthrift:jar:0.12.0:compile
+[INFO] |  |  \- org.slf4j:jcl-over-slf4j:jar:1.7.26:compile
+[INFO] |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  +- commons-io:commons-io:jar:2.2:compile
+[INFO] |  +- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] |  \- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |     +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |     |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |     +- org.apache.commons:commons-compress:jar:1.19:compile
+[INFO] |     \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:test-jar:tests:2.1:test
+[INFO] +- org.eclipse.persistence:eclipselink:jar:2.6.4:compile
+[INFO] |  +- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  +- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] |  \- org.glassfish:javax.json:jar:1.0.4:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.springframework:spring-core:jar:5.2.9.RELEASE:compile
+[INFO] |  \- org.springframework:spring-jcl:jar:5.2.9.RELEASE:compile
+[INFO] +- org.springframework:spring-context:jar:5.2.9.RELEASE:compile
+[INFO] |  +- org.springframework:spring-aop:jar:5.2.9.RELEASE:compile
+[INFO] |  \- org.springframework:spring-expression:jar:5.2.9.RELEASE:compile
+[INFO] +- org.springframework:spring-tx:jar:5.2.9.RELEASE:compile
+[INFO] +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  +- org.springframework:spring-orm:jar:5.2.9.RELEASE:compile
+[INFO] |  +- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.8:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.8:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.8:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.8:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.8:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.8:compile
+[INFO] |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.2:runtime
+[INFO] |  |        +- org.glassfish.jaxb:txw2:jar:2.3.2:runtime
+[INFO] |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.8:runtime
+[INFO] |  |        +- org.jvnet.staxex:stax-ex:jar:1.8.1:runtime
+[INFO] |  |        \- com.sun.xml.fastinfoset:FastInfoset:jar:1.2.16:runtime
+[INFO] |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.8:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.8:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.8:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.8:compile
+[INFO] |     |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.8:compile
+[INFO] |     \- org.apache.santuario:xmlsec:jar:2.1.6:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.8:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.8:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.8:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.8:compile
+[INFO] |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.68:compile
+[INFO] |  \- commons-codec:commons-codec:jar:1.15:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.8:compile
+[INFO] |  \- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.8:compile
+[INFO] |     \- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.8:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.8:compile
+[INFO] |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.8:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.8:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.8:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.8:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.8:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.8:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.8:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.8:compile
+[INFO] |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.12.1:compile
+[INFO] |  |  |        +- org.json:json:jar:20190722:compile
+[INFO] |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.2:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.8:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.8:compile
+[INFO] |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.8:compile
+[INFO] +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.8:compile
+[INFO] |  \- org.apache.pdfbox:pdfbox:jar:2.0.22:compile
+[INFO] |     \- org.apache.pdfbox:fontbox:jar:2.0.22:compile
+[INFO] +- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] +- org.bouncycastle:bcprov-jdk15on:jar:1.68:compile
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] \- junit:junit:jar:4.11:test
+[INFO]    \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.906 s
+[INFO] Finished at: 2022-01-19T17:32:13+01:00
+[INFO] ------------------------------------------------------------------------

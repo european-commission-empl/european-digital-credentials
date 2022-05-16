@@ -1,0 +1,36 @@
+<div *ngIf="activeEntitlement" class="entitlement-main-panel">
+    <edci-panel [title]="activeEntitlement.title" [isMainPanel]="true">
+        <div
+            *ngIf="activeEntitlement.issuedDate || activeEntitlement.expiryDate"
+            class="pb-4 w-50 d-flex justify-content-between"
+        >
+            <div *ngIf="activeEntitlement.issuedDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.entitlements-tab.issueDate' | translate }}
+                </p>
+                <p>{{ activeEntitlement.issuedDate }}</p>
+            </div>
+            <div *ngIf="activeEntitlement.expiryDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.entitlements-tab.expiryDate' | translate }}
+                </p>
+                <p>{{ activeEntitlement.expiryDate }}</p>
+            </div>
+        </div>
+        <p
+            *ngIf="activeEntitlement.description"
+            class="entitlement-main-panel_description"
+        >
+            {{ activeEntitlement.description }}
+        </p>
+        <div
+            *ngIf="activeEntitlement?.specifiedBy?.validWith?.length > 0"
+            class="pt-4"
+        >
+            <div *ngFor="let org of activeEntitlement.specifiedBy.validWith">
+                <edci-detail-organisation-section [organisation]="org">
+                </edci-detail-organisation-section>
+            </div>
+        </div>
+    </edci-panel>
+</div>

@@ -1,0 +1,30 @@
+<div
+    class="edci-information-field d-flex flex-column"
+    [ngClass]="{ 'no-icon': !icon }"
+>
+    <div class="d-flex align-items-start">
+        <img
+            *ngIf="icon"
+            class="edci-information-field_icon"
+            src="assets/icons/{{ icon }}.svg"
+        />
+        <div>
+            <p
+                [ngClass]="{ 'with-link': link }"
+                class="edci-information-field_title"
+                (click)="goToLink()"
+            >
+                {{ title }}
+            </p>
+            <div *ngIf="text" class="edci-information-field_information">
+                <p>{{ text }}</p>
+            </div>
+        </div>
+        <img
+            *ngIf="tooltip"
+            class="edci-information-field_tooltip"
+            src="assets/icons/icon-tooltip.svg"
+            [uxTooltip]="tooltip"
+        />
+    </div>
+</div>

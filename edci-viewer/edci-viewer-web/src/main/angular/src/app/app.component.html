@@ -1,0 +1,135 @@
+<ecl-layout-app-shell
+    [languages]="languages"
+    (siteHeaderLanguageChanged)="onLanguageChanged($event)"
+>
+    <div id="nav-bar" class="ux-layout-nav-bar">
+        <div class="ecl-container d-flex align-items-center flex-wrap">
+            <nav id="top-menu" class="pt-3 pb-3">
+                <ul *ngIf="hasBranding" class="d-flex align-items-center">
+                    <li>
+                        <a href="{{ europassRoot }}/{{ selectedLanguage }}">
+                            {{ 'navbar.europass' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ europassRoot }}/{{
+                                selectedLanguage
+                            }}/learn-europe"
+                        >
+                            {{ 'navbar.learnInEurope' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ europassRoot }}/{{
+                                selectedLanguage
+                            }}/work-europe"
+                        >
+                            {{ 'navbar.workInEurope' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ europassRoot }}/{{
+                                selectedLanguage
+                            }}/about-europass"
+                        >
+                            {{ 'navbar.aboutEuropass' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ europassRoot }}/{{
+                                selectedLanguage
+                            }}/contact-us"
+                        >
+                            {{ 'navbar.contactUs' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div *ngIf="hasBranding" class="ux-layout-nav-bar__right-actions">
+                <ux-button
+                    *ngIf="!userInfo?.name; else notLogged"
+                    styleClass="login-button"
+                    (click)="onLogin()"
+                    ><strong>{{
+                        'common.loginEuropass' | translate
+                    }}</strong></ux-button
+                >
+                <ng-template #notLogged>
+                    <span
+                        uxTooltip="{{ userInfo.sub }}"
+                        class="pt-2 pr-3 username ux-u-color-grey-lightester-2"
+                        >{{ userInfo.name }}</span
+                    >
+                    <ux-button
+                        styleClass="no-shadow pt-1 logout-button ux-u-color-grey-lightester-2"
+                        [isFlat]="true"
+                        (click)="onLogout()"
+                    >
+                        <strong>{{ 'common.logout' | translate }} </strong>
+                    </ux-button>
+                </ng-template>
+            </div>
+            <div *ngIf="showExtraInfo" class="ux-layout-nav-bar__extra-info">
+                <h1 class="mb-4">{{ homeMainTitle | translate }}</h1>
+                <p class="col-11 size__18 lh-32">
+                    {{ homeMainDescription | translate }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showExtraInfo && hasBranding" class="col-12 credentials__links">
+        <p>
+            <span class="link__selected">
+                {{ 'home.credentialsForCitizens' | translate }}
+            </span>
+            <span class="link__unselected" (click)="navigateToIssuer()">
+                {{ 'home.credentialsForIssuer' | translate }}
+            </span>
+        </p>
+    </div>
+
+    <div class="edci__content">
+        <router-outlet></router-outlet>
+        <p-toast position="bottom-right"></p-toast>
+    </div>
+
+    <ng-template eclSlot="footer">
+        <div *ngIf="hasBranding" class="edci-footer">
+            <div class="ecl-container edci-footer_wrapper">
+                <a
+                    href="https://europa.eu/european-union/about-eu/working_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.workForEU' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/legal_notices_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.legalNotice' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/language-policy_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.languagePolicy' | translate }}
+                </a>
+                <a
+                    href="https://europa.eu/european-union/abouteuropa/accessibility_{{
+                        selectedLanguage
+                    }}"
+                >
+                    {{ 'footer.webAccessibility' | translate }}
+                </a>
+            </div>
+        </div>
+    </ng-template>
+</ecl-layout-app-shell>

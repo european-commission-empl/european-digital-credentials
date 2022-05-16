@@ -1,0 +1,159 @@
+<div *ngIf="activeLanguage && selectedLanguages">
+    <div class="col-12">
+        <form [formGroup]="formGroup">
+            <div class="mt-2" formArrayName="customLabels">
+                <div class="form-group">
+                    <label class="d-inline-flex">
+                        {{
+                            'credential-builder.html-templates-tab.labels'
+                                | translate
+                        }}
+                        <ux-a-icon
+                            *ngIf="tooltip"
+                            iconClass="fa fa-info-circle"
+                            [isRounded]="false"
+                            [isSmall]="true"
+                            position="top-right"
+                            size="large"
+                            [uxTooltip]="tooltip"
+                        ></ux-a-icon>
+                    </label>
+                    <ng-container
+                        *ngFor="
+                            let customLabel of customLabels.controls;
+                            let i = index;
+                            let last = last;
+                            let first = first
+                        "
+                    >
+                        <div
+                            [formGroupName]="i"
+                            class="labels-form"
+                            [ngClass]="{ 'mt-3': !first }"
+                        >
+                            <!-- Single Language Input -->
+                            <div class="labels-form__field-keyLabel">
+                                <input
+                                    *ngIf="isPrimaryLanguage"
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelKey' | translate
+                                    "
+                                    formControlName="keyLabel"
+                                />
+                                <input
+                                    *ngIf="!isPrimaryLanguage"
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelKey' | translate
+                                    "
+                                    disabled
+                                    formControlName="keyLabel"
+                                />
+                                <ux-control-feedback
+                                    *ngIf="
+                                        customLabels.controls[i]['controls']
+                                            ?.keyLabel?.errors?.maxlength && isPrimaryLanguage
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.255' | translate }}
+                                </ux-control-feedback>
+                            </div>
+
+                            <!-- Multi Language Input -->
+                            <div class="labels-form__field-labelContent">
+                                <input
+                                    *ngIf="
+                                        customLabels.controls[i]['controls']
+                                            ?.content?.controls[activeLanguage]
+                                    "
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelContent' | translate
+                                    "
+                                    [formControl]="
+                                        customLabels.controls[i]['controls']
+                                            .content.controls[activeLanguage]
+                                    "
+                                />
+                                <ng-container
+                                    *ngFor="
+                                        let control of customLabels.controls[i][
+                                            'controls'
+                                        ].content.controls | keyvalue
+                                    "
+                                >
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            control.key === activeLanguage &&
+                                            control.value.errors?.maxlength && isPrimaryLanguage
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.maxLength.255' | translate }}
+                                    </ux-control-feedback>
+                                </ng-container>
+                            </div>
+                            <!-- Buttons -->
+                            <div>
+                                <div
+                                    class="labels-form__buttons"
+                                    [ngClass]="{
+                                        'row-reverse': !last
+                                    }"
+                                >
+                                    <ux-button
+                                        [ngClass]="{
+                                            'labels-form__buttons-hidden': !last
+                                        }"
+                                        styleClass="no-shadow"
+                                        [isFlat]="true"
+                                        iconClass="ux-icon ux-icon-plus-circle-thin-o ux-u-font-size-h3"
+                                        [isDisabled]="!isPrimaryLanguage"
+                                        (click)="addAdditionalRow()"
+                                    ></ux-button>
+                                    <ux-button
+                                        [ngClass]="{
+                                            'labels-form__buttons-hidden': !(
+                                                customLabels.controls?.length >
+                                                1
+                                            )
+                                        }"
+                                        styleClass="no-shadow"
+                                        [isFlat]="true"
+                                        iconClass="fa fa-trash-o"
+                                        [isDisabled]="!isPrimaryLanguage"
+                                        (click)="removeAdditionalNoteRow(i)"
+                                    ></ux-button>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container
+                            *ngFor="
+                                let control of customLabels.controls[i][
+                                    'controls'
+                                ].content.controls | keyvalue
+                            "
+                        >
+                            <ux-control-feedback
+                                *ngIf="
+                                    control.key === activeLanguage &&
+                                    customLabels.controls[i]['errors']
+                                        ?.customLabelError && isPrimaryLanguage
+                                "
+                                typeClass="danger"
+                                styleClass="mb-3"
+                            >
+                                {{ 'error.customLabels' | translate }}
+                            </ux-control-feedback>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

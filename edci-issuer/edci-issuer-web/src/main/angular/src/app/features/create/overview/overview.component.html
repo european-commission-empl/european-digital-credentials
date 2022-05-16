@@ -1,0 +1,491 @@
+<div class="overview-page pt-4 pb-4">
+    <div id="overview-page__info" class="d-flex mb-2">
+        <div class="col-7 flex-grow-1">
+            <h1 class="font-weight-bold">
+                {{
+                    !sealed
+                        ? ('common.check' | translate)
+                        : ('common.send' | translate)
+                }}
+            </h1>
+            <p
+                class="ux-u-font-size-h4 mt-0 pb-4"
+                [innerHTML]="
+                    !sealed
+                        ? ('overview.reviewDetails' | translate)
+                        : ('overview.selectCheckboxes' | translate)
+                "
+            ></p>
+        </div>
+        <div class="col-5 ml-2 align-items-end ux-u-text-align-right">
+            <ux-button
+                (click)="goToHome()"
+                [isLarge]="true"
+                iconClass="fa fa-share-square-o"
+                [isOutline]="true"
+                styleClass="mt-3 font-100"
+            >
+                {{ 'overview.issueMoreCredentials' | translate }}
+            </ux-button>
+        </div>
+    </div>
+
+    <div class="overview-progress mb-4">
+        <edci-progress-bar
+            *ngIf="showProgressbar"
+            titleProgress="Delivery"
+            [actualExport]="actualExport"
+        ></edci-progress-bar>
+    </div>
+
+    <div class="table-container mat-elevation-z8">
+        <!-- Credentials result table -->
+        <table mat-table [dataSource]="dataSource">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef width="5%">
+                    <mat-checkbox
+                        (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="
+                            selection.hasValue() && !isAllSelected()
+                        "
+                        [aria-label]="checkboxLabel()"
+                    >
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row" width="5%">
+                    <mat-checkbox
+                        (click)="$event.stopPropagation()"
+                        (change)="$event ? checkBoxCredentialClicked(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)"
+                    >
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <!-- Student name Column -->
+            <ng-container matColumnDef="studentName">
+                <th mat-header-cell *matHeaderCellDef width="30%">
+                    {{ 'common.studentName' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" width="30%">
+                    {{ element.studentName }}
+                </td>
+            </ng-container>
+
+            <!-- Course Column -->
+            <ng-container matColumnDef="course">
+                <th mat-header-cell *matHeaderCellDef width="15%">
+                    {{ 'common.course' | translate }}
+                </th>
+                <td class="course" mat-cell *matCellDef="let element" width="15%">
+                    {{ element.course }}
+                </td>
+            </ng-container>
+
+            <!-- Valid Column -->
+            <ng-container matColumnDef="valid">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    {{ 'common.valid' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let element"
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    <mat-icon
+                        *ngIf="element.valid"
+                        aria-hidden="false"
+                        aria-label="Valid"
+                        class="success"
+                    >
+                        check_circle
+                    </mat-icon>
+                    <mat-icon
+                        *ngIf="!element.valid && element.valid !== null"
+                        class="no-valid-icon"
+                        aria-hidden="false"
+                        aria-label="Valid"
+                        class="danger"
+                        (click)="
+                            openValidationErrorsModal(element.validationErrors)
+                        "
+                    >
+                        remove_circle
+                    </mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- Sealed Column -->
+            <ng-container matColumnDef="sealed">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    {{ 'common.sealed' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let element"
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    <mat-icon
+                        *ngIf="element.sealed"
+                        aria-hidden="false"
+                        aria-label="Sealed"
+                        class="success"
+                    >
+                        check_circle
+                    </mat-icon>
+                    <mat-icon
+                        *ngIf="!element.sealed && element.sealed !== null"
+                        aria-hidden="false"
+                        aria-label="Sealed"
+                        class="danger"
+                        (click)="
+                            openValidationErrorsModal(element.sealingErrors)
+                        "
+                        >remove_circle
+                    </mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- Sent Column -->
+            <ng-container matColumnDef="sent">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    {{ 'common.sent' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let element"
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    <mat-icon
+                        *ngIf="element.sent"
+                        aria-hidden="false"
+                        aria-label="Sent"
+                        class="success"
+                        >check_circle
+                    </mat-icon>
+                    <mat-icon
+                        *ngIf="!element.sent && element.sent !== null"
+                        aria-hidden="false"
+                        aria-label="Sent"
+                        class="warning"
+                        (mouseover)="sendPopover.show($event)"
+                        (mouseout)="sendPopover.hide($event)"
+                    >
+                        remove_circle
+                    </mat-icon>
+                    <ux-popover
+                        #sendPopover
+                        type="colored-solid"
+                        size="default"
+                        placement="right"
+                        [showCloseIcon]="false"
+                    >
+                        <ul *ngIf="element.sendErrors">
+                            <li *ngFor="let sendError of element.sendErrors">
+                                {{ sendError }}
+                            </li>
+                        </ul>
+                    </ux-popover>
+                </td>
+            </ng-container>
+
+            <!-- Received Column -->
+            <ng-container matColumnDef="received">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    {{ 'common.received' | translate }}
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let element"
+                    class="ux-u-text-align-center"
+                    width="10%"
+                >
+                    <mat-icon
+                        *ngIf="element.received"
+                        aria-hidden="false"
+                        aria-label="Received"
+                        class="success"
+                    >
+                        check_circle
+                    </mat-icon>
+                    <mat-icon
+                        *ngIf="!element.received && element.received !== null"
+                        aria-hidden="false"
+                        aria-label="Received"
+                        class="warning"
+                        (mouseover)="receivedPopover.show($event)"
+                        (mouseout)="receivedPopover.hide($event)"
+                    >
+                        remove_circle
+                    </mat-icon>
+                    <ux-popover
+                        #receivedPopover
+                        type="colored-solid"
+                        size="default"
+                        placement="right"
+                        [showCloseIcon]="false"
+                    >
+                        <ul *ngIf="element.receivedErrors">
+                            <li
+                                *ngFor="
+                                    let receivedError of element.receivedErrors
+                                "
+                            >
+                                {{ receivedError }}
+                            </li>
+                        </ul>
+                    </ux-popover>
+                </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    [ngStyle]="{ width: '125px' }"
+                    width="10%"
+                >
+                    {{ 'common.actions' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element" width="10%">
+                    <a
+                        (click)="previewCertificates(true, element.uuid)"
+                        class="pointer ml-2"
+                        [class.disabled]="!element.valid"
+                    >
+                        <!-- [class.disabled]="sealed ? true: null" // Disabled until it works -->
+                        <mat-icon
+                            aria-hidden="false"
+                            aria-label="Preview certificate"
+                            >remove_red_eye</mat-icon
+                        >
+                    </a>
+                    <!-- <a
+                        (click)="editCertificate()"
+                        class="pointer"
+                        [class.disabled]="true"
+                    >
+                        <mat-icon
+                            aria-hidden="false"
+                            aria-label="Edit certificate"
+                            >edit</mat-icon
+                        >
+                    </a>-->
+                    <a
+                        (click)="deleteCredential(element.uuid)"
+                        class="pointer"
+                        [class.disabled]="
+                            !element.valid || (element.sent != null && sent)
+                        "
+                    >
+                        <mat-icon
+                            aria-hidden="false"
+                            aria-label="Remove certificate"
+                            >delete</mat-icon
+                        >
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <div *ngIf="sealed" class="csv-box" (click)="downloadCSV()" [ngClass]="{'disabled' : !downloadCSVEnabled}">
+                    <ux-a-icon
+                        iconClass="ux-icon ux-icon-ecl-download"
+                        [isRounded]="false">
+                    </ux-a-icon>
+                    <span class="text">{{'overview.exportCSV' | translate}}</span>
+                </div>
+                <div *ngIf="!sealed" class="csv-box" (click)="downloadSelectedCredentials()">
+                    <ux-a-icon
+                        iconClass="ux-icon ux-icon-ecl-download"
+                        [isRounded]="false">
+                    </ux-a-icon>
+                    <span class="text">{{'common.download' | translate}}</span>
+                </div>
+                <mat-paginator
+                    [pageSizeOptions]="pageSizeOptions"
+                    showFirstLastButtons
+                ></mat-paginator>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+    </div>
+
+    <div class="mt-5 ux-u-text-align-right">
+        <!-- Previous (back to HOME) -->
+        <ux-button
+            [isLarge]="true"
+            [isOutline]="true"
+            iconClass="fa fa-chevron-left"
+            styleClass="ml-3 font-100 ux-u-width-10"
+            (click)="goToPrevious()"
+        >
+            {{ 'common.previous' | translate }}
+        </ux-button>
+        <!-- Sign certificate -->
+        <ux-button
+            [isLarge]="true"
+            [isDisabled]="!isSealAvailable"
+            styleClass="font-100 ml-3 ux-u-width-10"
+            (click)="sealCredentials()"
+        >
+            {{ 'common.seal' | translate }}
+        </ux-button>
+
+        <ux-button
+            [isLarge]="true"
+            [isDisabled]="!isSendAvailable"
+            styleClass="font-100 ml-3 ux-u-width-10"
+            (click)="toSend()"
+        >
+            {{ 'common.send' | translate }}
+        </ux-button>
+
+        <ux-button
+            [isLarge]="true"
+            *ngIf="!isSendAvailable && sent"
+            styleClass="ml-3 font-100 ux-u-width-18"
+            (click)="goToPrevious()"
+        >
+            {{ 'common.createNewCredential' | translate }}
+        </ux-button>
+    </div>
+</div>
+
+<ux-modal
+    id="validationErrors"
+    [isDismissActionVisible]="false"
+    titleLabel="{{ 'validation.errors' | translate }}"
+>
+    <uxModalBody>
+        <ul *ngIf="validationErrors">
+            <li *ngFor="let valError of validationErrors">
+                <div class="pre-wrap" [innerHtml]="valError"></div>
+            </li>
+        </ul>
+    </uxModalBody>
+</ux-modal>
+
+<ux-modal
+    id="selectPresentationTypeModal"
+    [isDismissActionVisible]="false"
+    (onClose)="closePresentationModal()"
+    titleLabel="{{ 'overview.selectPresentationTypeModal.title' | translate }}"
+>
+    <uxModalBody>
+        <form [formGroup]="formRadio">
+            <ux-form-group class="no-label">
+                <ux-form-control
+                    class="pl-5"
+                    checkboxLabel="{{
+                        'overview.selectPresentationTypeModal.label' | translate
+                    }}"
+                    [isCheckbox]="true"
+                    formControlName="presentation"
+                    formControlValue="false"
+                ></ux-form-control>
+            </ux-form-group>
+        </form>
+    </uxModalBody>
+    <uxModalFooter>
+        <button
+            class="btn btn-secondary mr-3"
+            (click)="closePresentationModal()"
+        >
+            {{ 'common.cancel' | translate | titlecase }}
+        </button>
+        <button class="btn btn-primary" (click)="presentationSelected()">
+            {{ 'common.next' | translate | titlecase }}
+        </button>
+    </uxModalFooter>
+</ux-modal>
+
+
+<ux-modal
+    id="localSealingPassModal"
+    [isDismissActionVisible]="false"
+    (onClose)="closeLocalSealingPassModal()"
+    titleLabel="{{ 'overview.localSealingPassModal.title' | translate }}"
+    >
+
+    <uxModalBody>
+        <form [formGroup]="localSealingForm">
+            <label class="d-inline-flex">
+            {{
+                'overview.localSealingPassModal.label' | translate
+            }}
+            </label>
+            <input
+                type="password"
+                class="form-control d-inline-flex"
+                formControlName="password"
+            />
+        </form>
+    </uxModalBody>
+    <uxModalFooter>
+        <button
+            class="btn btn-secondary mr-3"
+            (click)="closeLocalSealingPassModal()"
+        >
+            {{ 'common.cancel' | translate | titlecase }}
+        </button>
+        <button class="btn btn-primary" (click)="toLocalSeal()">
+            {{ 'common.next' | translate | titlecase }}
+        </button>
+    </uxModalFooter>
+</ux-modal>
+<!-- Loading indicator-->
+<div *ngIf="isLoadingResults" class="loading-shade">
+    <div class="loading-shade__wrapper">
+        <div class="pr-4">
+            <mat-spinner [strokeWidth]="4"></mat-spinner>
+        </div>
+        <div>
+            <b>{{
+                sealed
+                    ? ('overview.loading-message.title-sent' | translate)
+                    : ('overview.loading-message.title-sealed' | translate)
+            }}</b>
+            <br />
+            <span>{{
+                sealed
+                    ? ('overview.loading-message.description-sending'
+                      | translate)
+                    : ('overview.loading-message.description-sealing'
+                      | translate)
+            }}</span>
+        </div>
+    </div>
+</div>

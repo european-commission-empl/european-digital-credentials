@@ -1,0 +1,8 @@
+<div th:fragment="specified(specifiedBy, details)">
+    <strong>[[${details}]]</strong>
+    <span th:if="${specifiedBy.homePage != null and !specifiedBy.homePage.empty}">
+        <a th:href="@{${specifiedBy.homePage[0].link}}" style="text-decoration: none;">
+            <i class="fa fa-link" aria-hidden="true"></i>
+        </a>
+    </span>
+</div>

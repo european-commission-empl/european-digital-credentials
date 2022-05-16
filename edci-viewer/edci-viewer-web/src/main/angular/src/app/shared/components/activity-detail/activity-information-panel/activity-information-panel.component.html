@@ -1,0 +1,83 @@
+<div
+    class="activity-detail_panel activity-information"
+    *ngIf="
+        activeActivity?.specifiedBy?.workloadInHours ||
+        activeActivity?.specifiedBy?.learningActivityType ||
+        activeActivity?.specifiedBy?.instructionLanguage ||
+        activeActivity?.specifiedBy?.modeOfLearning
+    "
+>
+    <edci-panel
+        [title]="'details.activities-tab.activityInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="activity-information-row d-flex flex-wrap">
+            <div
+                class="activity-information-row_item"
+                *ngIf="activeActivity?.specifiedBy?.learningActivityType"
+            >
+                <edci-information-field
+                    [text]="activeActivity.specifiedBy.learningActivityType"
+                    [title]="
+                        'details.activities-tab.learningActivityType'
+                            | translate
+                    "
+                    icon="icon-learning-activity-type"
+                ></edci-information-field>
+            </div>
+            <div
+                class="activity-information-row_item"
+                *ngIf="activeActivity?.specifiedBy?.modeOfLearning"
+            >
+                <edci-information-field
+                    [text]="activeActivity.specifiedBy.modeOfLearning"
+                    [title]="
+                        'details.activities-tab.learningSettings' | translate
+                    "
+                    icon="icon-mode-of-assessment"
+                ></edci-information-field>
+            </div>
+            <div
+                class="activity-information-row_item"
+                *ngIf="activeActivity?.specifiedBy?.workloadInHours"
+            >
+                <edci-information-field
+                    [text]="activeActivity.specifiedBy.workloadInHours"
+                    [title]="
+                        'details.activities-tab.notionalWorkloadInHours'
+                            | translate
+                    "
+                    icon="icon-notional-workload-in-hours"
+                ></edci-information-field>
+            </div>
+            <div
+                class="activity-information-row_item"
+                *ngIf="activeActivity?.specifiedBy?.instructionLanguage"
+            >
+                <edci-information-field
+                    [text]="
+                        activeActivity.specifiedBy.instructionLanguage
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.activities-tab.languagesOfInstruction'
+                            | translate
+                    "
+                    icon="icon-languages-of-instruction"
+                ></edci-information-field>
+            </div>
+            <div
+                class="activity-information-row_item"
+                *ngIf="activeActivity?.workloadInHours"
+            >
+                <edci-information-field
+                    [text]="activeActivity.workloadInHours"
+                    [title]="
+                        'details.activities-tab.actualWorkload' | translate
+                    "
+                    icon="icon-notional-workload-in-hours"
+                ></edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

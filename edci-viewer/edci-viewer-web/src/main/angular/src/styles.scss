@@ -1,0 +1,189 @@
+@media (min-width: 480px) {
+    .ecl-container {
+        max-width: 100%;
+        width: 85%;
+    }
+}
+@media (min-width: 1140px) {
+    .ecl-container {
+        max-width: 100%;
+        width: 1140px;
+    }
+}
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    #nav-bar #top-menu {
+        display: block;
+    }
+}
+@media screen and (max-width: 767px) {
+    #nav-bar #top-menu {
+        display: block;
+    }
+}
+@media screen and (max-width: 767px) {
+    #nav-bar {
+        background: transparent;
+        height: auto !important;
+        position: inherit;
+        z-index: 101;
+    }
+}
+
+body {
+    background: #e3e3e3;
+    min-width: 25cm;
+    overflow: auto;
+    width: auto !important;
+    width: 25cm;
+}
+
+#loader-wrapper {
+    background-color: #424242;
+}
+
+// toast
+body .ui-toast .ui-toast-message.ui-toast-message-error {
+    background-color: #da2130;
+    border-bottom: 4px solid #cb141e;
+    color: #fff;
+
+    .ui-toast-close-icon {
+        color: #fff;
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+.overflow-auto-details {
+    overflow: auto !important;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f5f3f3;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #d0d0d0;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #d0d0d0;
+    }
+}
+
+.ui-toast-detail {
+    overflow-wrap: break-word;
+}
+
+// Language Dropdown
+.mat-menu-panel {
+    display: table;
+    max-height: 60vh !important;
+    width: 145px !important;
+}
+
+/* Line breaks and spaces preserved */
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.break-all {
+    word-break: break-all;
+}
+
+.break-word {
+    word-break: break-word;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Diploma details */
+.diploma-details {
+    .list-item {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+
+    .selected {
+        color: #214493;
+        font-weight: bold;
+    }
+
+    .main-item {
+        font-size: 18px;
+    }
+
+    .sub-item {
+        font-size: 16px;
+    }
+}
+
+.box-shadow-none {
+    box-shadow: none !important;
+}
+
+.detail__title {
+    background-color: #164194;
+    color: #fff;
+    padding: 0.5rem !important;
+
+    > strong {
+        padding: 0.5rem !important;
+    }
+}
+
+.size__16 {
+    font-size: 16px;
+}
+
+.edci__content a {
+    word-break: break-word;
+}
+
+.lh-32 {
+    line-height: 32px;
+}
+
+.size__18 {
+    font-size: 18px;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-decoration-underline {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.modal-close-focus {
+    .ux-modal__header-close {
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    }
+}
+
+.w-75 {
+    width: 75% !important;
+}

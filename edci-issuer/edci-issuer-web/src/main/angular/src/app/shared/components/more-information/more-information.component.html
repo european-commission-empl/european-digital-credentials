@@ -1,0 +1,156 @@
+<div id="moreInformationComponent">
+    <div class="more-info-header d-inline-flex col-12">
+        <label class="d-flex">
+            {{ headerLabel }}
+            <ux-a-icon
+                *ngIf="tooltip"
+                iconClass="fa fa-info-circle"
+                [isRounded]="false"
+                [isSmall]="true"
+                position="top-right"
+                size="large"
+                [uxTooltip]="tooltip"
+            ></ux-a-icon>
+        </label>
+        <ux-a-icon
+            [isRounded]="false"
+            [iconClass]="isExpanded ? 'fa fa-caret-down' : 'fa fa-caret-right'"
+            (click)="changePanelVisibility()"
+        ></ux-a-icon>
+    </div>
+    <div
+        *ngIf="formGroup?.controls && moreInformation?.controls"
+        [hidden]="!isExpanded"
+        class="col-12"
+    >
+        <form [formGroup]="formGroup">
+            <div
+                class="form-group"
+                *ngIf="moreInformation?.controls[activeLanguage]"
+                [formGroup]="moreInformation"
+            >
+                <textarea
+                    class="form-control"
+                    [formControl]="moreInformation.controls[activeLanguage]"
+                    rows="3"
+                ></textarea>
+                <ng-container
+                    *ngFor="let control of moreInformation.controls | keyvalue"
+                >
+                    <ux-control-feedback
+                        *ngIf="
+                            control.key === activeLanguage &&
+                            control.value.errors?.maxlength
+                        "
+                        typeClass="danger"
+                    >
+                        {{ 'error.maxLength.4000' | translate }}
+                    </ux-control-feedback>
+                </ng-container>
+            </div>
+            <div class="mt-2" formArrayName="additionalNotes">
+                <div class="form-group">
+                    <label class="d-inline-flex"
+                        >{{
+                            'credential-builder.more-information-additional-fields'
+                                | translate
+                        }}
+                    </label>
+                    <ng-container
+                        *ngFor="
+                            let additionalNote of additionalNotes.controls;
+                            let i = index;
+                            let last = last
+                        "
+                    >
+                        <div [formGroupName]="i" class="mb-3">
+                            <div class="col-12 pl-0">
+                                <input
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="'common.topic' | translate"
+                                    [readonly]="
+                                        activeLanguage !== defaultLanguage
+                                    "
+                                    formControlName="topic"
+                                />
+                                <ux-control-feedback
+                                    *ngIf="
+                                        additionalNotes?.controls[i]['controls']
+                                            .topic.errors?.maxlength
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.255' | translate }}
+                                </ux-control-feedback>
+                            </div>
+
+                            <div class="d-flex col-12 pl-0 mt-3">
+                                <textarea
+                                    *ngIf="
+                                        additionalNotes.controls[i]['controls']
+                                            .content.controls[activeLanguage]
+                                    "
+                                    class="form-control mr-3"
+                                    rows="4"
+                                    [placeholder]="'common.content' | translate"
+                                    [formControl]="
+                                        additionalNotes.controls[i]['controls']
+                                            .content.controls[activeLanguage]
+                                    "
+                                ></textarea>
+                                <div class="d-flex flex-column">
+                                    <ux-button
+                                        *ngIf="last"
+                                        styleClass="no-shadow"
+                                        [isFlat]="true"
+                                        [isDisabled]="isFormDisabled || !isPrimaryLanguage"
+                                        iconClass="ux-icon ux-icon-plus-circle-thin-o ux-u-font-size-h3"
+                                        (click)="addAdditionalNoteRow()"
+                                    ></ux-button>
+                                    <ux-button
+                                        *ngIf="
+                                            additionalNotes.controls?.length > 1
+                                        "
+                                        styleClass="no-shadow"
+                                        [isFlat]="true"
+                                        [isDisabled]="isFormDisabled || !isPrimaryLanguage"
+                                        iconClass="fa fa-trash-o"
+                                        (click)="removeAdditionalNoteRow(i)"
+                                    ></ux-button>
+                                </div>
+                            </div>
+                            <ng-container
+                                *ngFor="
+                                    let control of additionalNotes.controls[i][
+                                        'controls'
+                                    ].content.controls | keyvalue
+                                "
+                            >
+                                <ux-control-feedback
+                                    *ngIf="
+                                        control.key === activeLanguage &&
+                                        additionalNotes.controls[i]['errors']
+                                            ?.additionalNoteError
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.additionalNote' | translate }}
+                                </ux-control-feedback>
+                                <ux-control-feedback
+                                    *ngIf="
+                                        control.key === activeLanguage &&
+                                        control.value.errors?.maxlength
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.4000' | translate }}
+                                </ux-control-feedback>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

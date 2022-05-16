@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<europassCredential xsi:schemaLocation="http://data.europa.eu/snb http://publications.europa.eu/resource/schema/credential/genericschema_1.1.xsd" xmlns="http://data.europa.eu/snb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cred="http://data.europa.eu/europass/model/credentials/w3c#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xsdVersion="0.10.0" cred:id="urn:credential:8d67cdee-3082-4fd7-a8b7-5dc568539029">
+   <type targetFrameworkUrl="http://data.europa.eu/snb/credential/25831c2" uri="http://data.europa.eu/snb/credential/e34929035b">
+      <targetName>
+         <text lang="en" content-type="text/plain">Generic</text>
+      </targetName>
+      <targetFrameworkName>
+         <text lang="en" content-type="text/plain">Europass Standard List of Credential Types</text>
+      </targetFrameworkName>
+   </type>
+   <primaryLanguage>en</primaryLanguage>
+   <availableLanguages>
+      <language>en</language>
+   </availableLanguages>
+   <cred:validFrom>2021-07-21T22:00:00Z</cred:validFrom>
+   <cred:issued>2021-07-15T07:02:24Z</cred:issued>
+   <cred:issuer idref="urn:epass:org:1"/>
+   <title>
+      <text lang="en" content-type="text/plain">Cred 1</text>
+   </title>
+   <credentialSubject id="urn:epass:person:1">
+      <contactPoint>
+         <mailBox uri="mailto:somemail@someorg.com"/>
+      </contactPoint>
+      <fullName>
+         <text lang="en" content-type="text/plain">e s</text>
+      </fullName>
+      <givenNames>
+         <text lang="en" content-type="text/plain">e</text>
+      </givenNames>
+      <familyName>
+         <text lang="en" content-type="text/plain">s</text>
+      </familyName>
+   </credentialSubject>
+   <agentReferences>
+      <organization id="urn:epass:org:1">
+         <registration>Org1ID</registration>
+         <prefLabel>
+            <text lang="en" content-type="text/plain">Org1</text>
+         </prefLabel>
+         <altLabel>
+            <text lang="en" content-type="text/plain">esall</text>
+         </altLabel>
+         <hasLocation>
+            <id>urn:epass:location:1</id>
+            <hasAddress>
+               <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country" targetNotation="country" uri="http://publications.europa.eu/resource/authority/country/AND">
+                  <targetName>
+                     <text lang="en" content-type="text/plain">Andorra</text>
+                  </targetName>
+                  <targetFrameworkName>
+                     <text lang="en" content-type="text/plain">Country</text>
+                  </targetFrameworkName>
+               </country>
+            </hasAddress>
+         </hasLocation>
+      </organization>
+   </agentReferences>
+   <proof></proof>
+</europassCredential>

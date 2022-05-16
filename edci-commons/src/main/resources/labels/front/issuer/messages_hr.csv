@@ -1,0 +1,425 @@
+menu.loginEuropass,Prijava u Europass
+footer.workForEU,Rad za Europsku uniju
+footer.languagePolicy,Jezična politika
+footer.legalNotice,Pravna obavijest
+footer.webAccessibility,Dostupnost na internetu
+navbar.europass,Europass
+navbar.learnInEurope,Učenje u Europi
+navbar.workInEurope,Rad u Europi
+navbar.aboutEuropass,O Europassu
+navbar.contactUs,Kontakt
+common.create-credentials,Kreiraj vjerodajnice
+common.credential-builder,Kreator vjerodajnica
+common.prepare-your-data,Kako pripremiti svoje podatke
+common.test-seal-device,Testirajte svoj uređaj za kreiranje pečata
+common.download-xls,Preuzmi dokument u formatu XLS
+common.onlineCredentialBuilder,Internetski kreator vjerodajnica
+common.upload-spreadsheet,Učitaj proračunsku tablicu u formatu XLS
+common.upload-xml,Učitaj dokument u formatu XML
+common.upload-xls,Učitaj dokument u formatu XLS
+common.upload-file,Učitaj datoteku
+common.upload-concent-message,Klikom na učitavanje potvrđujem da mi je politikom o zaštiti podataka moje organizacije dopušteno podijeliti ove podatke s Europassom za vrijeme sesije u svrhu kreiranja i izdavanja vjerodajnica.
+common.cancel,Odustani
+common.upload,Učitaj
+common.save,spremi
+common.previous,prethodno
+common.date,Datum
+common.no,ne
+common.yes,da
+common.next,sljedeće
+common.name,Ime
+common.edit,Uredi
+common.create,Kreiraj
+common.delete,Izbriši
+common.preview,pretpregled
+common.actions,radnje
+common.select,odaberi
+common.studentName,Primatelj
+common.course,Naslov vjerodajnice
+common.valid,valjano
+common.sealed,zapečaćeno
+common.seal,Pečat
+common.sent,poslano
+common.send,Pošalji
+common.topic,Tema
+common.createNewCredential,kreiraj novu vjerodajnicu
+common.received,primljeno
+common.title,Naslov
+common.information,informacije
+common.content,Sadržaj
+common.issuer,Izdavatelj
+common.issue,izdaj
+common.description,Opis
+common.appearance,Izgled
+common.identifier,Identifikator
+common.spatialId,Prostorni ID
+common.language,Jezik
+common.organization,organizacije
+common.error,Pogreška
+common.warning,upozorenje
+common.ok,U redu
+common.loginEuropass,Prijava u Europass
+common.logout,Odjava
+common.login.intro,Prijavite se
+common.login.link.text,ovdje
+common.session.refresh,osvježi sesiju
+common.check,Pregled
+common.identifiers,identifikatori
+common.proceed,Nastavi
+common.europassCredential,Vjerodajnica Europassa
+home.credentialsForCitizens,Vjerodajnice za građane
+home.credentialsForIssuer,Vjerodajnice za izdavatelje
+home.main-info.title,Digitalne vjerodajnice Europassa
+home.testE-seal,Testirajte svoj e-pečat
+home.main-info.description,"Digitalne vjerodajnice Europassa su elektronski zapečaćena digitalna evidencija koja se daje kako bi osoba mogla certificirati svoje učenje. Mogu se dodijeliti za formalno obrazovanje, osposobljavanje, internetske tečajeve, volontiranje i slično."
+home.menu-links.credentials-for-citizens.title,Vjerodajnice za građane
+home.menu-links.credentials-for-issuers.title,Vjerodajnice za izdavatelje
+home.menu-links.credentials-for-issuers.content.title,Izdaj digitalno potpisane vjerodajnice
+home.menu-links.credentials-for-issuers.content.description-1,Dokažite svoje aktivnosti učenja i postignuća sigurnom digitalnom evidencijom koju je izdala vaša obrazovna ustanova i koja je potpuno integrirana u vaš profil Europass.
+home.menu-links.credentials-for-issuers.content.description-2,"Izdajte svjedodžbe, diplome, potvrde o sudjelovanju ili druge vjerodajnice svojim učenicima. Svaka škola, koledž, sveučilište ili pružatelj osposobljavanja u Europi smije koristiti ovaj alat kako bi besplatno izdao vjerodajnice i osigurao ih e-pečatom. Vjerodajnice se mogu e-poštom poslati učenicima ili izravno položiti u njihove profile Europass."
+home.menu-links.credentials-for-issuers.content.description-3,"<b>Ovaj se alat može javno pretpregledati, a njegov razvoj je u tijeku.</b> Uskoro će sadržavati i dodatne značajke, uključujući potporu za sve jezike EU-a. Ovdje potražite vremenski raspored razvoja <a href=\""https://ec.europa.eu/futurium/en/europass/digitally-signed-credentials\""></a>."
+home.menu-links.credentials-for-developers.title,Vjerodajnice za razvojne inženjere
+prepare.section.prepare.title,Pripremi
+prepare.section.build,Kreiraj
+prepare.section.prepare.first-line-before,Za izdavanje vjerodajnica trebate imati kvalificirani elektronički pečat. Naš alat za testiranje osigurava da su sve postavke ispravne. Zatim slijedite naš vodič kako biste naučili kako pripremiti svoje podatke.
+prepare.section.select,odaberi
+prepare.section.upload,Učitaj
+prepare.section.emailTemplate,Obrazac u Excelu
+prepare.selectDescription,"Uz pomoć internetskog kreatora vjerodajnica možete unijeti sve podatke koristeći samo preglednik. Korištenjem pripremljenog obrasca možete pripremiti i veće skupove podataka u Excelu (za Windowse). Isto tako, u formatu XML možete izvesti paket iz svojeg informacijskog sustava o polaznicima."
+prepare.uploadDescription,"Ako ste pripremili podatke o vjerodajnicama, učitajte datoteku i počnite pregledavati i digitalno pečatiti svoje vjerodajnice."
+overview.loading-message.title-sent,Vaše vjerodajnice se šalju
+overview.loading-message.title-sealed,Vaše vjerodajnice su zapečaćene
+overview.loading-message.description-sending,"Ako šaljete mnogo vjerodajnica, ovaj bi postupak mogao dulje potrajati. Ne zatvarajte i ne napuštajte ovu karticu dok je slanje u tijeku."
+overview.loading-message.description-sealing,"Ako pečatite mnogo vjerodajnica, ovaj bi postupak mogao dulje potrajati. Ne zatvarajte i ne napuštajte ovu karticu dok je pečaćenje u tijeku."
+overview.previewAllCertificates,Pretpregledaj sve certifikate
+overview.uploadAgain,Učitaj ponovno
+overview.uploadNew,Učitaj novo
+overview.reviewDetails,Prije upotrebe <b>pečata</b> provjerite točnost svojih vjerodajnica pretpregledom. Kliknite na ikonu oka pod aktivnostima. Nakon pečaćenja vjerodajnice će biti izdane i neće se moći mijenjati.
+overview.selectCheckboxes,Pošaljite vjerodajnice u poštanski sandučić ili u novčanik za vjerodajnice primatelja.
+template-types.label,Odaberite svoj obrazac u formatu XLS
+download.template-types.label,Preuzmite svoj obrazac u formatu XLS
+template-types.AC,Akademija
+template-types.EC,Osnovna škola
+template-types.SS,Srednja škola
+template-types.EDC,Obrazac EDCI-ja
+template-types.HS,Diploma visokog učilišta
+template-types.DHS,Dinamična diploma visokog učilišta
+template-types.LAN,Jezik
+template-types.Activities,Aktivnosti
+template-types.Achievements,postignuća
+template-types.Credentials,Vjerodajnice
+template-types.Organisations,organizacije
+seal-credential.title,Zapečati vjerodajnicu
+seal-credential.nexuEnsure,Pobrinite se da NexU radi...
+seal-credential.nexuDownload,Preuzmite verziju NexU-a otvorenog koda
+seal-credential.steps.check-connection,Provjera veze...
+seal-credential.steps.connection-ready,Veza je spremna!
+seal-credential.steps.read-certificates,Čitanje certifikata...
+seal-credential.steps.validating-certificate,Pribavljanje podataka za potpis i validacija certifikata
+seal-credential.steps.signed,POTPISANO!
+seal-credential.error.connection-error,Uspostava veze s uređajem za pečaćenje vjerodajnice nije uspjela.
+seal-credential.error.certificates-error,Nije moguće dobiti certifikate.
+seal-credential.error.sign-error,Potpisivanje certifikata je uspjelo.
+seal-credential.message.seal-ok,Vjerodajnice su ispravno zapečaćene
+seal-credential.message.send-ok,Vjerodajnice su ispravno poslane
+seal-credential.message.send-or-seal-ko,Došlo je do pogreške pri slanju vjerodajnica
+file-upload.no-more-than,Najveća dopuštena veličina datoteke:
+file-upload.wrongExtension,Datoteka proširenja nije dopuštena
+file-upload.accepted-formats,Valjani formati datoteke:
+file-upload.accepted-format,Valjani format datoteke:
+ecl.footer.GO-TO-TOP,Na vrh
+error.required,Ovo polje je obvezno
+error.autocompleteRequired,Ovo polje je obvezno Odaberite stavku iz birača za samozavršetak.
+error.maxLength.4000,Ovo polje može sadržavati najviše 4 000 znakova
+error.number,Ovo bi polje trebalo sadržavati samo numeričke znakove (0–9)
+error.maxLength.255,Ovo polje može sadržavati najviše 255 znakova
+error.maxLength.9,Ovo polje može sadržavati najviše 9 znakova
+error.webDocument,Sadržaj je obvezan ako postoji naslov
+error.floatPointNumber,Ovo polje može sadržavati samo cijele ili decimalne brojeve
+error.urlPattern,Taj bi obrazac trebao slijediti obrazac http(s)://XXXXX
+error.emailPattern,To bi polje trebalo slijediti obrazac xxx@yyy.zz
+error.emailPatternWithComma,"To bi polje trebalo slijediti obrazac xxx@yyy.zz, xxx@yyy.zz"
+error.legalIdentifierError,Trebala bi biti ispunjena oba polja ili nijedno od njih
+error.additionalNote,Trebala bi biti ispunjena oba polja ili nijedno od njih
+error.identifierError,Identifikator mora imati sadržaj
+error.minDate,Unesite „{{selfParam}}” koji nije veći od „{{dateParam}}”
+error.maxDate,Unesite „{{selfParam}}” koji je veći od unesenog „{{dateParam}}”.
+error.noBlankSpaceOnly,"Ovo polje je obvezno. Unesite sadržaj, a ne samo razmake"
+error.concentError,Za nastavak prihvatite izjavu o zaštiti podataka
+credential-builder.formError,Polje u obrascu nije ispunjeno ili je ispunjeno pogrešno.\nProvjerite sva polja i jezike.
+credential-builder.description,"Koristite kartice u nastavku kako biste kreirali višejezične višestruko upotrebljive obrasce za vjerodajnice, aktivnosti, procjene itd. Kad vaš obrazac bude spreman, kliknite na ikonu <b>Izdajte</b> kako biste unijeli podatke o polazniku i ocjene ako je to primjenjivo. Ako vam je potrebno objašnjenje o tome što unijeti u određeno polje, pomaknite miš preko crne  ikone pored oznake.\nOvaj alat zasad se može tek pretpregledavati pa se neki od padajućih popisa možda ne mogu odabrati."
+credential-builder.operationSuccessful,Operacija uspješno završena
+credential-builder.credentialTemplates,obrasci vjerodajnica
+credential-builder.credentials,Vjerodajnice
+credential-builder.achievements,postignuća
+credential-builder.learningOutcomes,Ishodi učenja
+credential-builder.activities,Aktivnosti
+credential-builder.assessments,Procjene
+credential-builder.organizations,organizacije
+credential-builder.entitlements,Prava
+credential-builder.credential,Vjerodajnica
+credential-builder.achievement,postignuće
+credential-builder.learningOutcome,Ishod učenja
+credential-builder.activity,Aktivnost
+credential-builder.assessment,Procjena
+credential-builder.organization,Organizacija
+credential-builder.entitlement,Pravo
+credential-builder.issuer,Izdavatelj
+credential-builder.qualification,Kvalifikacija
+credential-builder.specification,Specifikacija
+credential-builder.gradingScheme,Sustav ocjena
+credential-builder.assessmentSpecification,Specifikacija procjene
+credential-builder.deleteWarning,Jeste li sigurni da želite izbrisati ovu stavku?
+credential-builder.inputCharacters,Za pokretanje pretraživanja potrebno je unijeti minimalno tri znaka
+credential-builder.concent,Potvrđujem da mi je politikom o zaštiti podataka moje organizacije dopušteno podijeliti ove podatke s Europassom za vrijeme sesije u svrhu kreiranja i izdavanja vjerodajnica.
+credential-builder.more-information-additional-fields,Dodatna polja
+credential-builder.credentials-tab.title,"Na ovoj kartici dodajete i izdajete svoje vjerodajnice. Prije nego što počnete kreirati svoj prvi obrazac, morate unijeti pojedinosti o organizaciji izdavateljici u <b>karticu Organizacije</b>. Ako želite opisati postignuća, aktivnosti ili druge relevantne aspekte koje se odnose na polaznika, unesite ih u odgovarajuće kartice. Pri kreiranju vjerodajnice morat ćete uputiti na te unose."
+credential-builder.credentials-tab.newCredential,Novi obrazac za vjerodajnicu
+credential-builder.credentials-tab.noCredentials,Još nema vjerodajnica
+credential-builder.credentials-tab.createCredential,Novi obrazac za vjerodajnicu
+credential-builder.credentials-tab.credentialType,Vrsta vjerodajnice
+credential-builder.credentials-tab.editCredential,Uredi obrazac za vjerodajnicu
+credential-builder.credentials-tab.generalSettings,Opće postavke
+credential-builder.credentials-tab.credentialTitle,Naslov vjerodajnice
+credential-builder.credentials-tab.displayName,Ime prikaza
+credential-builder.credentials-tab.identifier,Identifikator
+credential-builder.credentials-tab.website,Internetska stranica
+credential-builder.credentials-tab.expirationPeriod,Razdoblje isteka
+credential-builder.credentials-tab.selectContent,Odaberi SADRŽAJ
+credential-builder.credentials-tab.addRecipient,Dodajte sve primatelje koji bi vam mogli trebati za izdavanje
+credential-builder.credentials-tab.uploadFile,Učitaj sliku
+credential-builder.credentials-tab.issueDate,Datum izdavanja
+credential-builder.credentials-tab.validFrom,Vrijedi od
+credential-builder.credentials-tab.expiryDate,Datum isteka
+credential-builder.credentials-tab.searchFromList,Pretraži popis
+credential-builder.credentials-tab.tooltips.title,Puni službeni naslov izdane vjerodajnice.
+credential-builder.credentials-tab.tooltips.issuer,Odaberite organizaciju koja je izdala vjerodajnicu. Podaci o organizaciji moraju se unijeti u karticu „Organizacije” kako bi se ona pojavila na ovom popisu.
+credential-builder.credentials-tab.tooltips.description,"Sažetak izjava ili skupine izjava koje se daju za osobu. Obično bi trebalo započinjati glagolom, npr. \„postigao/postigla je”,\ \„ima pravo na”,\ \„pohađao/pohađala je”,\ \„zna”\."
+credential-builder.credentials-tab.tooltips.learningActivities,Odaberite sve primjenjive vrijednosti. Podaci o aktivnostima učenja moraju se unijeti u karticu „Aktivnosti” kako bi se one pojavile na ovom popisu.
+credential-builder.credentials-tab.tooltips.learningAchievements,Odaberite sve primjenjive vrijednosti. Podaci o obrazovnim postignućima moraju se unijeti u karticu „Postignuća” kako bi se obrazovna postignuća pojavila na ovom popisu.
+credential-builder.credentials-tab.tooltips.learningEntitlements,Odaberite sve primjenjive vrijednosti. Podaci o pravima povezanima s učenjem moraju se unijeti u karticu „Prava” kako bi se prava pojavila na ovom popisu.
+credential-builder.achievements-tab.title,"Obrazovno postignuće opisuje stjecanje jednog ili više ishoda učenja. Ova, kao i povezana postignuća, aktivnosti ili prava možete opisati u odgovarajućim karticama. U obrascu koji se odnosi na postignuća od vas će se tražiti da uputite na te elemente."
+credential-builder.achievements-tab.newAchievement,Kreiraj novo postignuće
+credential-builder.achievements-tab.delete,Izbriši
+credential-builder.achievements-tab.duplicate,Udvostruči
+credential-builder.achievements-tab.awardedBy,Dodijelio/dodijelila
+credential-builder.achievements-tab.achievementTitle,Naslov postignuća
+credential-builder.achievements-tab.on,dana
+credential-builder.achievements-tab.grade,Ocjena
+credential-builder.achievements-tab.createAchievement,Kreiraj postignuće
+credential-builder.achievements-tab.editAchievement,Uredi postignuće
+credential-builder.achievements-tab.awardingDate,Datum dodjele
+credential-builder.achievements-tab.awardingBody,Tijelo za dodjelu
+credential-builder.achievements-tab.learningOutcomes,Ishodi učenja
+credential-builder.achievements-tab.workload,Opseg učenja
+credential-builder.achievements-tab.workloadLabel,Radno opterećenje
+credential-builder.achievements-tab.ectsCredits,Bodovi ECTS
+credential-builder.achievements-tab.thematicArea,Tematsko područje
+credential-builder.achievements-tab.modeOfLearning,Modalitet učenja
+credential-builder.achievements-tab.learningSetting,Obrazovno okruženje
+credential-builder.achievements-tab.languagesOfInstruction,Jezik/jezici školovanja
+credential-builder.achievements-tab.eqfLevel,Razina prema Europskom kvalifikacijskom okviru
+credential-builder.achievements-tab.nqfLevel,Razina prema nacionalnom kvalifikacijskom okviru
+credential-builder.achievements-tab.accreditation,Akreditacija
+credential-builder.achievements-tab.assessedVia,Pristup putem
+credential-builder.achievements-tab.isPartialQualification,Je li riječ o modulu strukovne kvalifikacije?
+credential-builder.achievements-tab.subAchievements,Podpostignuća
+credential-builder.achievements-tab.homePage,Početna stranica
+credential-builder.achievements-tab.otherWebDocuments,Drugi dokumenti
+credential-builder.achievements-tab.provenBy,Dokazano s pomoću
+credential-builder.achievements-tab.entitlesTo,Daje pravo na
+credential-builder.achievements-tab.influencedBy,Aktivnosti koje su na njega utjecale
+credential-builder.achievements-tab.entitledTo,Vlasnik dobiva pravo na
+credential-builder.achievements-tab.maxDuration,Najdulje trajanje
+credential-builder.achievements-tab.moreInformation,Više informacija
+credential-builder.achievements-tab.entryRequirements,Uvjeti za upis
+credential-builder.achievements-tab.learningOpportunityType,Vrsta mogućnosti učenja
+credential-builder.achievements-tab.partialQualification,Modul strukovne kvalifikacije
+credential-builder.achievements-tab.tooltips.awardingBody,Tijelo koje je pojedincu dodijelilo postignuće.
+credential-builder.achievements-tab.tooltips.workload,"Procijenjeni broj sati za koji se od učenika očekuje da ih će ih provesti u učenju kako bi zavrijedio dodjelu. To bi uključivalo zamišljeni broj sati provedenih na nastavi, u radu u skupini, u praktičnom radu te u samostalnom učenju."
+credential-builder.achievements-tab.tooltips.learningOutcomes,"Ako je primjenjivo, prvo ispunite karticu „Ishodi učenja” pa ovdje odaberite očekivane ishode učenja ove specifikacije učenja."
+credential-builder.achievements-tab.tooltips.eqfLevel,"Ako je postignuće dodjela kvalifikacije, njezina se razina označava prema Europskom kvalifikacijskom okviru."
+credential-builder.achievements-tab.tooltips.nqfLevel,"Razina prema nacionalnom kvalifikacijskom okviru tijela za dodjelu.\nAko je mogućnost kvalifikacija, njezina se razina označava prema nacionalnom kvalifikacijskom okviru ustanove ponuditeljice."
+credential-builder.achievements-tab.tooltips.accreditation,"Ako je kvalifikacija akreditirana, unesite poveznicu na dokaz te akreditacije (za institucijsku ili programsku akreditaciju). Ovdje je dostupno više informacija o bazi podataka o akreditacijama."
+credential-builder.achievements-tab.tooltips.assessedVia,Procjena koja se koristi za utvrđivanje razine postignuća. Procjena se prvo mora kreirati u kartici „Procjene” kako bi se pojavila na ovom popisu.
+credential-builder.achievements-tab.tooltips.subAchievements,"Manje jedinice postignuća koje zajedno tvore ovo postignuće.\nAko je primjenjivo, unesite sva relevantna postignuća u ovu karticu pa odaberite ona koja tvore ovo postignuće."
+credential-builder.achievements-tab.tooltips.awardingDate,Datum na koji je specifikacija učenja dodijeljena.
+credential-builder.achievements-tab.tooltips.provenBy,"Procjene koje dokazuju stjecanje ishoda učenja koja tvore postignuće.\nAko je primjenjivo, prvo unesite pojedinosti u karticu „Procjene” pa odaberite procjene koje dokazuju ovo postignuće."
+credential-builder.achievements-tab.tooltips.influencedBy,"Aktivnosti koje su pridonijele stjecanju ishoda učenja koji tvore postignuće.\nAko je primjenjivo, prvo unesite pojedinosti u karticu „Aktivnosti” pa odaberite aktivnosti koje su povezane s ovim postignućem."
+credential-builder.achievements-tab.tooltips.entitledTo,"Prava koja je vlasnik stekao kao rezultat tog postignuća.\nAko je primjenjivo, prvo navedite pojedinosti u kartici „Prava” pa odaberite prava koja su povezana s ovim postignućem."
+credential-builder.achievements-tab.tooltips.moreInformation,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.achievements-tab.tooltips.description,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.achievements-tab.tooltips.partialQualification,Je li mogućnost modul strukovne kvalifikacije?
+credential-builder.achievements-tab.tooltips.entryRequirements,Kriteriji koje bi osoba trebala ispuniti kako bi započela s ovom aktivnosti.\nOvo se polje ne bi trebalo upotrebljavati za opis prijemnog postupka.
+credential-builder.achievements-tab.tooltips.maxDuration,Najdulje razdoblje (u mjesecima) u kojem osoba može završiti mogućnost učenja.
+credential-builder.achievements-tab.tooltips.homePage,Internetska stranica na kojoj je opisana specifikacija učenja.
+credential-builder.achievements-tab.tooltips.thematicArea,Tematsko područje prema klasifikaciji ISCED-F.
+credential-builder.achievements-tab.tooltips.otherWebDocuments,Drugi mrežni dokumenti s opisom specifikacije učenja.
+credential-builder.achievements-tab.supplementaryDocuments,Dodatni dokumenti
+credential-builder.learning-outcomes-tab.newLearningOutcome,Kreiraj novi ishod učenja
+credential-builder.learning-outcomes-tab.title,"Ishod učenja je izjava o tome što učenik zna, razumije i može učiniti nakon završetka postupka učenja, a to se definira kao znanje, vještine te odgovornost i autonomija. Ishodi učenja mogu se odnositi i na znanje i vještine opisane u standardiziranim klasifikacijama, npr. <a href=\""https://ec.europa.eu/esco/portal/home\"">ESCO</a>."
+credential-builder.learning-outcomes-tab.reusabilityLevel,Razina ponovne upotrebljivosti
+credential-builder.learning-outcomes-tab.learningOutcomeType,Vrsta ishoda učenja
+credential-builder.learning-outcomes-tab.ESCO,Povezane vještine prema ESCO-u
+credential-builder.learning-outcomes-tab.createLearningOutcome,Kreiraj ishod učenja
+credential-builder.learning-outcomes-tab.editLearningOutcome,Uredi ishod učenja
+credential-builder.learning-outcomes-tab.learningOutcomeTitle,Naslov ishoda učenja
+credential-builder.learning-outcomes-tab.tooltips.title,Ishod učenja
+credential-builder.learning-outcomes-tab.tooltips.description,Detaljan ishod učenja može uključivati opis onoga što učenik može učiniti kao rezultat učenja uz naznaku razine postignuća i uvjeta ili konteksta u kojem se to može ostvariti (ako je primjenjivo).
+credential-builder.activities-tab.createActivity,Kreiraj aktivnost
+credential-builder.activities-tab.editActivity,Uredi aktivnost
+credential-builder.activities-tab.title,"Aktivnost učenja je postupak koji dovodi do stjecanja znanja, vještina ili odgovornosti i autonomije. Može se opisati s obzirom na određeni datum početka i završetka, određenu lokaciju i radno opterećenje."
+credential-builder.activities-tab.newActivity,Kreiraj novu aktivnost
+credential-builder.activities-tab.learningActivityType,Vrsta aktivnosti učenja
+credential-builder.activities-tab.activityTitle,Naslov aktivnosti
+credential-builder.activities-tab.modeOfLearning,Modalitet učenja
+credential-builder.activities-tab.startDate,Datum početka
+credential-builder.activities-tab.endDate,Datum završetka
+credential-builder.activities-tab.activitySpecifications,Specifikacije aktivnosti
+credential-builder.activities-tab.moreInformation,Više informacija
+credential-builder.activities-tab.workload,Radno opterećenje u satima
+credential-builder.activities-tab.notionalWorkload,Nominalno radno opterećenje u satima
+credential-builder.activities-tab.volumeOfLearning,Opseg učenja
+credential-builder.activities-tab.languagesOfInstruction,Jezik/jezici školovanja
+credential-builder.activities-tab.directedBy,Voditelj aktivnosti
+credential-builder.activities-tab.learningOpportunities,Povezana s mogućnosti učenja
+credential-builder.activities-tab.subActivities,Podaktivnosti
+credential-builder.activities-tab.webPage,Internetska stranica na kojoj je opisana aktivnost
+credential-builder.activities-tab.homePage,Početna stranica
+credential-builder.activities-tab.otherDocuments,Drugi dokumenti
+credential-builder.activities-tab.location,Lokacija
+credential-builder.activities-tab.otherWebDocuments,Drugi mrežni dokumenti s opisom aktivnosti
+credential-builder.activities-tab.additionalInformation,dodatne informacije
+credential-builder.activities-tab.tooltips.startDate,Datum na koji je učenik započeo aktivnost
+credential-builder.activities-tab.tooltips.endDate,Datum na koji je učenik završio aktivnost
+credential-builder.activities-tab.tooltips.description,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.activities-tab.tooltips.moreInformation,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.activities-tab.tooltips.location,Lokacija na kojoj se odvijala aktivnost
+credential-builder.activities-tab.tooltips.homePage,Internetska stranica na kojoj je opisana specifikacija aktivnosti
+credential-builder.activities-tab.tooltips.otherDocuments,Drugi internetski dokumenti s opisom specifikacije aktivnosti
+credential-builder.activities-tab.tooltips.workload,"Stvarni broj sati koje je učenik proveo sudjelujući u aktivnosti. To bi uključivalo broj sati na nastavi, u radu u skupini, u praktičnom radu te u samostalnom učenju."
+credential-builder.activities-tab.tooltips.directedBy,Organizacija ili dio organizacije kao što je odjel ili fakultet koji je provodio aktivnost učenja. Organizacija se prvo mora kreirati u kartici „Organizacije” kako bi se pojavila na ovom popisu.
+credential-builder.activities-tab.tooltips.subActivities,Manje jedinice aktivnosti koje zajedno tvore ovu aktivnost. Postignuće se prvo mora kreirati u kartici „Postignuća” kako bi se pojavilo na ovom popisu.
+credential-builder.activities-tab.tooltips.notionalWorkload,"Procijenjeni broj sati za koji se od učenika očekuje da ih će ih provesti sudjelujući u aktivnosti. To bi uključivalo zamišljeni broj sati provedenih na nastavi, u radu u skupini, u praktičnom radu te u samostalnom učenju."
+credential-builder.assessment-tab.subActivities,Manje jedinice aktivnosti koje zajedno tvore ovu aktivnost. Postignuće se prvo mora kreirati u kartici „Postignuća” kako bi se pojavilo na ovom popisu.
+credential-builder.assessment-tab.createAssessment,Kreiraj procjenu
+credential-builder.assessment-tab.methodOfAssessment,"Metoda procjene, nadzora i provjere identiteta"
+credential-builder.assessment-tab.editAssessment,Uredi procjenu
+credential-builder.assessment-tab.title,"Procjena je rezultat postupka kojim se određuje u kojoj je mjeri učenik usvojio određeno znanje, vještine i kompetencije. Procjene mogu biti povezane s određenim sustavom ocjena kojim se ocjenjuje ono što je učenik pokazao pri procjeni."
+credential-builder.assessment-tab.additionalNote,Dodatna napomena
+credential-builder.assessment-tab.newAssessment,Kreiraj novu procjenu
+credential-builder.assessment-tab.homePage,Početna stranica
+credential-builder.assessment-tab.specifiedBy,Specificirano pomoću
+credential-builder.assessment-tab.gradeTitle,Naslov ocjene
+credential-builder.assessment-tab.assessmentTitle,Naslov procjene
+credential-builder.assessment-tab.landingPage,Odredišna stranica
+credential-builder.assessment-tab.assessmentDate,Datum procjene
+credential-builder.assessment-tab.supplementaryDocument,Dodatni dokument
+credential-builder.assessment-tab.moreInformation,Više informacija
+credential-builder.assessment-tab.subAssessments,Podprocjene
+credential-builder.assessment-tab.assessmentBy,Provoditelj procjene
+credential-builder.assessment-tab.conductedBy,Proveo/provela
+credential-builder.assessment-tab.assessmentLanguage,Jezik procjene
+credential-builder.assessment-tab.assessmentType,Vrsta procjene
+credential-builder.assessment-tab.modeOfAssessment,Modalitet procjene
+credential-builder.assessment-tab.otherDocuments,Drugi dokumenti
+credential-builder.assessment-tab.gradeSchemeIdentifier,Identifikator sustava ocjena
+credential-builder.assessment-tab.assessmentSpecificationIdentifier,Identifikator specifikacije procjene
+credential-builder.assessment-tab.tooltips.assessmentSpecificationIdentifier,Identifikator koji je procjeni dodijelila organizacija koja provodi procjenu.
+credential-builder.assessment-tab.tooltips.homePage,Internetska stranica s opisom pojedinosti o specifikaciji procjene.
+credential-builder.assessment-tab.tooltips.otherDocuments,Drugi mrežni dokumenti s opisom specifikacije procjene
+credential-builder.assessment-tab.tooltips.gradeSchemeIdentifier,Identifikator sustava ocjena koji mu je dodijelila organizacija koja upravlja sustavom.
+credential-builder.assessment-tab.tooltips.assessmentBy,Odaberite organizaciju koja je provela procjenu. Podaci o organizaciji moraju se unijeti u karticu „Organizacije” kako bi se ona pojavila na ovom popisu.
+credential-builder.assessment-tab.tooltips.description,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.assessment-tab.tooltips.subAssessments,"Manje procjene koje zajedno tvore ovu procjenu. Ako je primjenjivo, prvo dodajte nove stavke u ovu karticu pa odaberite povezanu procjenu koja je utjecala na rezultat ove procjene."
+credential-builder.assessment-tab.tooltips.language,Jezik procjene
+credential-builder.assessment-tab.tooltips.assessmentDate,Datum dodjele ocjene.
+credential-builder.assessment-tab.tooltips.moreInformation,Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.organizations-tab.nameOfIdScheme,Identifikacija programa identifikacije.
+credential-builder.organizations-tab.newOrganization,Kreiraj novu organizaciju
+credential-builder.organizations-tab.createOrganization,Kreiraj organizaciju
+credential-builder.organizations-tab.editOrganization,Uredi organizaciju
+credential-builder.organizations-tab.title,"Organizacija je pravna osoba / registrirani subjekt koji može izdati vjerodajnicu, provoditi aktivnosti učenja ili procjene ili priznati prava nositelja vjerodajnice."
+credential-builder.organizations-tab.preferredName,Pravno ime
+credential-builder.organizations-tab.legalIdentifier,Pravni identifikator
+credential-builder.organizations-tab.alternativeName,Uobičajeno ime
+credential-builder.organizations-tab.vatIdentifier,PDV broj
+credential-builder.organizations-tab.taxIdentifier,Porezni identifikator
+credential-builder.organizations-tab.vatIdentifierDetail,PDV identifikacijski broj
+credential-builder.organizations-tab.taxIdentifierDetail,Identifikacijski porezni broj (IPB)
+credential-builder.organizations-tab.identifier,Drugi identifikatori
+credential-builder.organizations-tab.location,Lokacija
+credential-builder.organizations-tab.locationName,Naziv lokacije
+credential-builder.organizations-tab.legalAddress,Adresa sjedišta
+credential-builder.organizations-tab.country,Zemlja
+credential-builder.organizations-tab.email,E-adresa
+credential-builder.organizations-tab.logo,Znak
+credential-builder.organizations-tab.homePage,Početna stranica
+credential-builder.organizations-tab.parentOrganization,Matična organizacija
+credential-builder.organizations-tab.accreditation,Akreditacija
+credential-builder.organizations-tab.identifierScheme,Program identifikacije
+credential-builder.organizations-tab.spatialId,Prostorni ID
+credential-builder.organizations-tab.tooltips.accreditation,Dokazi o akreditaciji povezani s organizacijom.
+credential-builder.organizations-tab.tooltips.legalIdentifier,Službeni identifikacijski broj organizacije koji joj je dodijelilo relevantno nacionalno tijelo. (To bi trebao biti isti broj kao broj naveden u e-pečatu.)
+credential-builder.organizations-tab.tooltips.preferredName,"Puno pravno ime organizacije, kako je upisano u nacionalni registar. Pravno ime trebalo bi se prevesti samo na jezike na kojima postoje službeni prijevodi (dostavljeni nacionalnim tijelima)."
+credential-builder.organizations-tab.tooltips.vatIdentifier,"Oznaka zemlje iz službenog PDV broja.
+ Identifikator (obično 8 – 12 znamenki) koji slijedi nakon oznake zemlje."
+credential-builder.organizations-tab.tooltips.taxIdentifier,"Oznaka zemlje iz službenog PDV broja.
+ Identifikator (obično 8 – 12 znamenki) koji slijedi nakon oznake zemlje."
+credential-builder.organizations-tab.tooltips.logo,Navedite javni URL na kojem je logo organizacije u formatu png ili jpg.
+credential-builder.organizations-tab.tooltips.parentOrganization,Veća organizacija čiji je dio ova jedinica/podorganizacija \nPodaci o organizacijama moraju se unijeti u ovaj list kako bi se one pojavile na ovom popisu.
+credential-builder.entitlements-tab.createEntitlement,Kreiraj pravo
+credential-builder.entitlements-tab.editEntitlement,Uredi pravo
+credential-builder.entitlements-tab.title,"Pravo opisuje primjerice pravo na rad u svojoj struci, korištenje mogućnosti učenja ili pridruživanje organizaciji. Prava mogu biti ograničena na određenu nadležnost."
+credential-builder.entitlements-tab.identifier,Identifikator prava
+credential-builder.entitlements-tab.newEntitlement,Kreiraj novo pravo
+credential-builder.entitlements-tab.tooltips.description,Posebna prava koja je stekao nositelj vjerodajnice. Ovo se polje ne bi trebalo upotrebljavati za unos informacija koje sadržavaju drugi dijelovi modela.
+credential-builder.entitlements-tab.tooltips.subEntitlement,Manja prava koja zajedno tvore ovo pravo. Pravo se prvo mora kreirati u kartici „Prava” kako bi se pojavilo na ovom popisu.
+credential-builder.entitlements-tab.tooltips.entitlementType,Nositelj vjerodajnice može imati pravo na članstvo u organizaciji ili stručnom udruženju; na pristup mogućnosti učenja; ili na obavljanje određenog posla
+credential-builder.entitlements-tab.tooltips.status,"Pravo se može ostvariti u budućnosti (moguće pravo), tj. može podrazumijevati mogućnost prijave za pravo; ili u sadašnjosti (stvarno pravo), tj. može biti zajamčeno"
+credential-builder.entitlements-tab.tooltips.entitlementsValidWith,"Organizacija koja priznaje pravo (tj. organizacija koja nudi mogućnost učenja, članstvo ili mogućnost za zapošljavanje)"
+credential-builder.entitlements-tab.tooltips.entitlementsValidWithin,Regija ili zemlja u kojoj je pravo valjano.
+credential-builder.entitlements-tab.tooltips.relatedOccupation,Zanimanje ili razred zanimanja kojem pojedinac može pristupiti s pomoću prava.
+credential-builder.entitlements-tab.entitlementType,Vrsta prava
+credential-builder.entitlements-tab.status,Status
+credential-builder.entitlements-tab.moreInformation,Više informacija
+credential-builder.entitlements-tab.issueDate,Datum izdavanja
+credential-builder.entitlements-tab.expiryDate,Datum isteka
+credential-builder.entitlements-tab.entitlementTitle,Naslov prava
+credential-builder.entitlements-tab.entitlementsValidWith,Pravo valjano s
+credential-builder.entitlements-tab.entitlementsValidWithin,Pravo valjano unutar
+credential-builder.entitlements-tab.entitlementsToWorkAs,Pravo na rad kao
+credential-builder.entitlements-tab.subEntitlement,Podprava
+credential-builder.entitlements-tab.homePage,Internetska stranica na kojoj je opisano pravo
+credential-builder.entitlements-tab.specification,Specifikacija
+credential-builder.entitlements-tab.otherDocuments,Drugi mrežni dokumenti
+credential-builder.entitlements-tab.otherWebDocuments,Drugi mrežni dokumenti s opisom prava
+credential-builder.entitlements-tab.additionalInformation,dodatne informacije
+credential-builder.achievements-tab.noAchievements,Još nema postignuća
+credential-builder.assessment-tab.noAssessments,Još nema procjena
+credential-builder.activities-tab.noActivities,Još nema aktivnosti
+credential-builder.learning-outcomes-tab.noLearningOutcomes,Još nema ishoda učenja
+credential-builder.organizations-tab.noOrganizations,Još nema organizacija
+credential-builder.entitlements-tab.noEntitlements,Još nema prava
+credential-builder.issue.issueCredentials,Izdaj vjerodajnice
+credential-builder.issue.addAsMany,Dodajte sve primatelje koji su potrebni za izdavanje vjerodajnice Podaci uneseni na ovom zaslonu neće biti pohranjeni nakon izdavanja vjerodajnica.
+credential-builder.issue.addAnotherRecipient,Dodaj drugog primatelja
+credential-builder.issue.recipient,Primatelj
+credential-builder.issue.removeRecipient,Ukloni primatelja
+credential-builder.issue.personalData,Osobni podaci
+credential-builder.issue.firstName,Ime
+credential-builder.issue.lastName,Prezime
+credential-builder.issue.dateOfBirth,Datum rođenja
+credential-builder.issue.idNumber,Identifikacijski broj 1
+credential-builder.issue.idNumber2,Identifikacijski broj 2
+credential-builder.issue.address,Adresa
+credential-builder.issue.moreInformation,Više informacija
+credential-builder.issue.deliveryAddress,Adresa za dostavu
+credential-builder.issue.emailAddress,E-adresa
+credential-builder.issue.walletAddress,Adresa novčanika
+credential-builder.issue.grades,Ocjene
+credential-builder.issue.issueError,"Neko polje nije valjano, provjerite sve primatelje i označite okvir za potvrdu"
+breadcrumb.digitallySealedCredentials,Digitalne vjerodajnice Europassa
+breadcrumb.prepare,Pripremi
+breadcrumb.check,Pregled
+breadcrumb.credentialBuilder,Kreator vjerodajnica

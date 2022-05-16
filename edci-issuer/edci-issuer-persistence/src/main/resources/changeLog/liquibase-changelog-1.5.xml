@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.5" global="false"/>
+
+    <changeSet id="add_diploma_template_column" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="SPEC_DIPLOMA" columnName="FORMAT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="SPEC_DIPLOMA">
+            <column name="FORMAT" type="varchar(10)" defaultValue="HTML" >
+                <constraints nullable="false"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="remove_learn_spec_accr_table" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <tableExists tableName="FIELD_DC_LEA_SPE_HAS_ACCRED"/>
+        </preConditions>
+        <dropTable tableName="FIELD_DC_LEA_SPE_HAS_ACCRED"/>
+    </changeSet>
+
+    <changeSet id="remove_organ_accr_table" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <tableExists tableName="FIELD_SPEC_ORGAN_HAS_ACCRED"/>
+        </preConditions>
+        <dropTable tableName="FIELD_SPEC_ORGAN_HAS_ACCRED"/>
+    </changeSet>
+
+    <changeSet id="remove_accreditation_table" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <tableExists tableName="DC_ACCREDITATION"/>
+        </preConditions>
+        <comment>DC_ACCREDITATION Table has been deprecated, since it's not used anymore</comment>
+        <dropTable tableName="DC_ACCREDITATION" cascadeConstraints="true"/>
+    </changeSet>
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

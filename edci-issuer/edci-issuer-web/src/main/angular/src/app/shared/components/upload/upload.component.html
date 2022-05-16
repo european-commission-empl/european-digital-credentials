@@ -1,0 +1,70 @@
+<div class="upload-component {{ wrapperClass }}">
+    <div>
+        <input
+            *ngIf="!isMultiple"
+            [hidden]="true"
+            #inputFile
+            id="myInput"
+            type="file"
+            [accept]="allowedFiles.join(',')"
+            (change)="readFile($event.target.files)"
+        />
+        <input
+            *ngIf="isMultiple"
+            [hidden]="true"
+            #inputFile
+            id="myInput"
+            type="file"
+            [accept]="allowedFiles.join(',')"
+            multiple
+            (change)="readMultiFile($event.target.files)"
+        />
+        <ng-container *ngIf="!isIconOnly; else iconOnly">
+            <ux-button
+                (click)="onUploadFile()"
+                [isLarge]="true"
+                [isSecondary]="isSecondary"
+                iconClass="fa fa-share-square-o"
+                [isOutline]="true"
+                [styleClass]="styleClass"
+            >
+                {{ label }}
+            </ux-button>
+
+            <ux-control-feedback>
+                {{ 'file-upload.no-more-than' | translate }} {{ maxUploadSizeMB }} MB
+            </ux-control-feedback>
+            <ux-control-feedback
+                >{{ formatMessage | translate }} {{ extensionList }}
+            </ux-control-feedback>
+            <span *ngIf="error" class="mt-2 ux-u-color-danger">
+                <strong>{{ errorMessage | translate }}</strong>
+            </span>
+        </ng-container>
+
+        <ng-template #iconOnly>
+            <div class="icon-navigation" (click)="openDynamicModal()">
+                <img src="assets/images/upload.svg" alt="{{ label }}" />
+                <span class="icon-navigation-label">
+                    {{ label }}
+                </span>
+                <ux-control-feedback>
+                    {{ 'file-upload.no-more-than' | translate }} {{ maxUploadSizeMB }} MB
+                </ux-control-feedback>
+                <ux-control-feedback
+                    >{{ formatMessage | translate }} {{ extensionList }}
+                </ux-control-feedback>
+                <span *ngIf="error" class="mt-2 ux-u-color-danger">
+                    <strong>{{ errorMessage | translate }}</strong>
+                </span>
+            </div>
+        </ng-template>
+    </div>
+
+    <!-- <div class="mt-3">
+      <ecl-file *ngFor="let item of documents; let i = index; let isLast=last"
+        [title]="item?.fileName"
+        meta="({{ item.file.size | appFileSize }} - XLS)">
+      </ecl-file>
+    </div> -->
+</div>

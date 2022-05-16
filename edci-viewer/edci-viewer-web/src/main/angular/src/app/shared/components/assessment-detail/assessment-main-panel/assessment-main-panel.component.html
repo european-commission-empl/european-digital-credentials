@@ -1,0 +1,38 @@
+<div *ngIf="activeAssessment" class="assessment-main-panel">
+    <edci-panel [title]="activeAssessment.title" [isMainPanel]="true">
+        <div *ngIf="activeAssessment?.conductedBy">
+            <edci-detail-organisation-section
+                [organisation]="activeAssessment.conductedBy"
+            >
+            </edci-detail-organisation-section>
+        </div>
+
+        <ng-container>
+            <div
+                *ngIf="activeAssessment.issuedDate || activeAssessment.grade"
+                class="awarding-information d-flex"
+            >
+                <div
+                    *ngIf="activeAssessment.issuedDate"
+                    class="d-flex mr-4 flex-column"
+                >
+                    <p class="field-title">
+                        {{
+                            'details.assessments-tab.assessmentDate' | translate
+                        }}
+                    </p>
+                    <p>{{ activeAssessment.issuedDate }}</p>
+                </div>
+                <div *ngIf="activeAssessment.grade" class="d-flex flex-column">
+                    <p class="field-title">
+                        {{ 'details.assessments-tab.grade' | translate }}
+                    </p>
+                    <p>{{ activeAssessment.grade }}</p>
+                </div>
+            </div>
+            <div *ngIf="activeAssessment?.specifiedBy?.description">
+                <p>{{ activeAssessment.specifiedBy.description }}</p>
+            </div>
+        </ng-container>
+    </edci-panel>
+</div>

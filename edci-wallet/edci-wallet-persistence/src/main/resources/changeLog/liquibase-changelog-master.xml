@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <!-- Creates the bd version table-->
+    <include file="changeLog/liquibase-changelog-create-version-table.xml" />
+
+    <!-- SQL scripts -->
+    <include file="changeLog/liquibase-changelog-1.3.xml" />
+
+    <!-- SQL scripts -->
+    <include file="changeLog/liquibase-changelog-1.4.xml" />
+
+    <!-- SQL scripts -->
+    <include file="changeLog/liquibase-changelog-1.5.xml" />
+</databaseChangeLog>

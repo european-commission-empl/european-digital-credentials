@@ -1,0 +1,6 @@
+<div th:fragment="resultDistribution(resultDistribution)">
+    <p th:if="${resultDistribution.description}">
+        <strong>[[#{details.assessments-tab.distribution}]]: </strong>
+        <span th:text="${resultDistribution.description}"></span>
+    </p>
+</div>

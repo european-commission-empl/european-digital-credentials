@@ -1,0 +1,139 @@
+<div class="mr-auto ml-auto mt-3 mb-4 h-100">
+    <div
+        *ngIf="diplomaImg?.length > 0; else waitingForImage"
+        class="d-flex flex-column"
+    >
+        <img
+            class="img-resp cursor-pointer"
+            (click)="openDiplomaModal()"
+            [src]="diplomaImg[page] | edciSanitize: 'resourceUrl'"
+        />
+        <nav class="align-self-center mt-2">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" (click)="toFirstPage()">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a
+                        class="page-link"
+                        [ngClass]="{
+                            'nav-disabled': page <= 0
+                        }"
+                        (click)="previousPage()"
+                    >
+                        <span aria-hidden="true">&lt;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <select [(ngModel)]="page">
+                        <!-- +i to force the casting to number instead of string -->
+                        <option
+                            *ngFor="let page of diplomaImg; let i = index"
+                            [value]="+i"
+                        >
+                            {{ i + 1 }} / {{ diplomaImg?.length }}
+                        </option>
+                    </select>
+                </li>
+                <li class="page-item">
+                    <a
+                        class="page-link"
+                        [ngClass]="{
+                            'nav-disabled': page >= diplomaImg.length - 1
+                        }"
+                        (click)="nextPage()"
+                    >
+                        <span aria-hidden="true">&gt;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" (click)="toLastPage()">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <ng-template #waitingForImage>
+        <mat-progress-spinner
+            class="verify-spinner"
+            color="primary"
+            mode="indeterminate"
+            value="50"
+        >
+        </mat-progress-spinner>
+    </ng-template>
+</div>
+
+<ux-modal id="pdfModal" footerStyleClass="img-footer">
+    <uxModalBody>
+        <div
+            *ngIf="diplomaImg?.length > 0; else waitingForImage"
+            class="d-flex flex-column"
+        >
+            <img
+                (click)="openDiplomaModal()"
+                [src]="diplomaImg[page] | edciSanitize: 'resourceUrl'"
+            />
+        </div>
+    </uxModalBody>
+    <uxModalFooter>
+        <div
+            *ngIf="diplomaImg?.length > 0"
+            class="d-flex align-items-center justify-content-between"
+        >
+            <nav class="center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" (click)="toFirstPage()">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            [ngClass]="{
+                                'nav-disabled': page <= 0
+                            }"
+                            (click)="previousPage()"
+                        >
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <select [(ngModel)]="page">
+                            <!-- +i to force the casting to number instead of string -->
+                            <option
+                                *ngFor="let page of diplomaImg; let i = index"
+                                [value]="+i"
+                            >
+                                {{ i + 1 }} / {{ diplomaImg?.length }}
+                            </option>
+                        </select>
+                    </li>
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            [ngClass]="{
+                                'nav-disabled': page >= diplomaImg.length - 1
+                            }"
+                            (click)="nextPage()"
+                        >
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" (click)="toLastPage()">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <ux-button [isSecondary]="true" (click)="closeModalPDF()">
+                {{ 'ecl.common.CLOSE' | translate }}
+            </ux-button>
+        </div>
+    </uxModalFooter>
+</ux-modal>
