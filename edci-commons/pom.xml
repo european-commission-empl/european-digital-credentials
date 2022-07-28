@@ -6,7 +6,7 @@
 
     <groupId>eu.europa.ec.empl.edci</groupId>
     <artifactId>edci-commons</artifactId>
-    <version>1.6.2-RELEASE</version>
+    <version>1.6.3-RELEASE</version>
 
     <name>edci-commons</name>
 

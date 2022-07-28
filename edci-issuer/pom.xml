@@ -6,11 +6,11 @@
     <parent>
         <groupId>eu.europa.ec.empl.edci</groupId>
         <artifactId>edci</artifactId>
-        <version>1.6.2-RELEASE</version>
+        <version>1.6.3-RELEASE</version>
     </parent>
     <groupId>eu.europa.ec.empl.edci.issuer</groupId>
     <artifactId>edci-issuer</artifactId>
-    <version>1.6.2-RELEASE</version>
+    <version>1.6.3-RELEASE</version>
     <packaging>pom</packaging>
     <name>edci-issuer</name>
     <description>J2EE, SpringMVC, eUI application</description>
@@ -88,8 +88,8 @@
         <http.client.version>4.5.6</http.client.version>
         <http.mime.version>4.5.3</http.mime.version>
         <!--INTERNAL VERSIONS-->
-        <dss.utils.version>1.6.2-RELEASE</dss.utils.version>
-        <edci.commons.version>1.6.2-RELEASE</edci.commons.version>
+        <dss.utils.version>1.6.3-RELEASE</dss.utils.version>
+        <edci.commons.version>1.6.3-RELEASE</edci.commons.version>
         <!-- MITREID VERSIONS-->
         <mitreid.version>1.3.3</mitreid.version>
         <nimbus.jwt.version>7.1</nimbus.jwt.version>

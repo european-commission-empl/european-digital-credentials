@@ -6,11 +6,11 @@
     <parent>
         <groupId>eu.europa.ec.empl.edci</groupId>
         <artifactId>edci</artifactId>
-        <version>1.6.2-RELEASE</version>
+        <version>1.6.3-RELEASE</version>
     </parent>
     <groupId>eu.europa.ec.empl.edci.viewer</groupId>
     <artifactId>edci-viewer</artifactId>
-    <version>1.6.2-RELEASE</version>
+    <version>1.6.3-RELEASE</version>
     <packaging>pom</packaging>
     <name>edci-viewer</name>
     <description>J2EE, SpringMVC, eUI application</description>
@@ -126,7 +126,7 @@
 
         <!-- EDCI DATA MODEL -->
 
-        <edci.commons.version>1.6.2-RELEASE</edci.commons.version>
+        <edci.commons.version>1.6.3-RELEASE</edci.commons.version>
 
     </properties>
 

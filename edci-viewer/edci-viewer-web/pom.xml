@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.viewer</groupId>
-        <version>1.6.2-RELEASE</version>
+        <version>1.6.3-RELEASE</version>
         <artifactId>edci-viewer</artifactId>
     </parent>
 
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-viewer-web-rest</artifactId>
-            <version>1.6.2-RELEASE</version>
+            <version>1.6.3-RELEASE</version>
         </dependency>
 
     </dependencies>
@@ -74,7 +74,7 @@
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>edci-viewer-web-rest-swagger</artifactId>
-                        <version>1.6.2-RELEASE</version>
+                        <version>1.6.3-RELEASE</version>
                     </dependency>
                 </dependencies>
             </plugin>

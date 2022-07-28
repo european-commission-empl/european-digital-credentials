@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.wallet</groupId>
-        <version>1.6.2-RELEASE</version>
+        <version>1.6.3-RELEASE</version>
         <artifactId>edci-wallet</artifactId>
     </parent>
 

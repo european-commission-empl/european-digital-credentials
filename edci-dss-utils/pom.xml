@@ -6,7 +6,7 @@
 
     <groupId>eu.europa.ec.empl.edci</groupId>
     <artifactId>edci-dss-utils</artifactId>
-    <version>1.6.2-RELEASE</version>
+    <version>1.6.3-RELEASE</version>
 
     <name>edci-dss-utils</name>
 
@@ -28,7 +28,7 @@
         <maven.surefire.plugin>2.14.1</maven.surefire.plugin>
         <log4j.version>2.17.1</log4j.version>
         <!-- EDCI DATA MODEL -->
-        <edci.commons.version>1.6.2-RELEASE</edci.commons.version>
+        <edci.commons.version>1.6.3-RELEASE</edci.commons.version>
     </properties>
 
     <distributionManagement>
