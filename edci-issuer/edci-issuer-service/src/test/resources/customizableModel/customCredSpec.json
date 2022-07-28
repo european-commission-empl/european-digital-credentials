@@ -1,0 +1,622 @@
+{
+  "pk": 2,
+  "OCBID": "2f186992-59d1-48e0-bf44-24a6011f06e3",
+  "languages": [
+    "en",
+    "es"
+  ],
+  "defaultTitle": "Customizable Credential 1",
+  "defaultLanguage": "en",
+  "title": {
+    "pk": 78,
+    "contents": [
+      {
+        "pk": 133,
+        "content": "Credencial Personalizable 1 ",
+        "language": "es",
+        "format": "text/plain"
+      },
+      {
+        "pk": 137,
+        "content": "Customizable Credential 1",
+        "language": "en",
+        "format": "text/plain"
+      }
+    ]
+  },
+  "description": {
+    "pk": 33,
+    "contents": [
+      {
+        "pk": 132,
+        "content": "Customizable Credential 1 description, English",
+        "language": "en",
+        "format": "text/plain"
+      },
+      {
+        "pk": 134,
+        "content": "Descripción Credencial 1, Castellano",
+        "language": "es",
+        "format": "text/plain"
+      }
+    ]
+  },
+  "type": {
+    "pk": 17,
+    "uri": "http://data.europa.eu/snb/credential/e34929035b",
+    "targetName": {
+      "pk": 79,
+      "contents": [
+        {
+          "pk": 135,
+          "content": "Generic",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    },
+    "targetFrameworkURI": "http://data.europa.eu/snb/credential/25831c2",
+    "targetFramework": {
+      "pk": 77,
+      "contents": [
+        {
+          "pk": 136,
+          "content": "Europass Standard List of Credential Types",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    }
+  },
+  "issuanceDate": "May 1, 2022 10:00:00 PM",
+  "identifier": [],
+  "issuer": {
+    "pk": 1,
+    "languages": [
+      "en"
+    ],
+    "defaultTitle": "Org 1",
+    "defaultLanguage": "en",
+    "identifier": [],
+    "type": [],
+    "preferredName": {
+      "pk": 3,
+      "contents": [
+        {
+          "pk": 1,
+          "content": "org 1 legal name",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    },
+    "alternativeName": [],
+    "note": [],
+    "hasLocation": [
+      {
+        "pk": 1,
+        "identifier": [],
+        "spatialCode": [],
+        "hasAddress": [
+          {
+            "pk": 1,
+            "identifier": [],
+            "countryCode": {
+              "pk": 1,
+              "uri": "http://publications.europa.eu/resource/authority/country/AND",
+              "targetName": {
+                "pk": 2,
+                "contents": [
+                  {
+                    "pk": 2,
+                    "content": "Andorra",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              },
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "country",
+              "targetFramework": {
+                "pk": 1,
+                "contents": [
+                  {
+                    "pk": 3,
+                    "content": "Country",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "contactPoint": [],
+    "legalIdentifier": {
+      "pk": 1,
+      "content": "org1id"
+    },
+    "vatIdentifier": [],
+    "taxIdentifier": [],
+    "homePage": [],
+    "hasUnit": [],
+    "auditDAO": {
+      "pk": 1,
+      "createDate": "Apr 20, 2022 10:30:28 AM",
+      "updateDate": "Apr 20, 2022 10:30:28 AM",
+      "createUserId": "mockuser",
+      "updateUserId": "mockuser"
+    }
+  },
+  "achieved": [
+    {
+      "pk": 2,
+      "OCBID": "d7fc6e2c-27ab-4ea2-88d4-913ad158f8d3",
+      "languages": [
+        "en",
+        "es"
+      ],
+      "defaultTitle": "Achievement 01",
+      "defaultLanguage": "en",
+      "identifier": [],
+      "title": {
+        "pk": 61,
+        "contents": [
+          {
+            "pk": 98,
+            "content": "Achievement 01",
+            "language": "en",
+            "format": "text/plain"
+          },
+          {
+            "pk": 101,
+            "content": "Logro 01",
+            "language": "es",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "description": {
+        "pk": 26,
+        "contents": [
+          {
+            "pk": 97,
+            "content": "Logro 01 Descripción, Castellano",
+            "language": "es",
+            "format": "text/plain"
+          },
+          {
+            "pk": 99,
+            "content": "Achievement 01 Description, English",
+            "language": "en",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "additionalNote": [],
+      "wasAwardedBy": {
+        "pk": 10,
+        "identifier": [],
+        "additionalNote": [],
+        "used": [],
+        "awardingBody": []
+      },
+      "specifiedBy": {
+        "pk": 11,
+        "identifier": [],
+        "learningOpportunityType": [],
+        "title": {
+          "pk": 60,
+          "contents": [
+            {
+              "pk": 96,
+              "content": "Logro 01",
+              "language": "es",
+              "format": "text/plain"
+            },
+            {
+              "pk": 100,
+              "content": "Achievement 01",
+              "language": "en",
+              "format": "text/plain"
+            }
+          ]
+        },
+        "alternativeLabel": [],
+        "additionalNote": [],
+        "homePage": [],
+        "supplementaryDocument": [],
+        "iscedFCode": [],
+        "educationSubject": [],
+        "creditPoints": [],
+        "educationLevel": [],
+        "language": [],
+        "mode": [],
+        "targetGroup": [],
+        "awardingOpportunity": [],
+        "nqfLevel": [],
+        "isPartialQualification": false,
+        "qualificationCode": [],
+        "learningOutcome": [],
+        "entitlementSpecification": [],
+        "hasPart": [],
+        "specialisationOf": []
+      },
+      "hasPart": [
+        {
+          "pk": 4,
+          "OCBID": "f6c5ab04-62c4-4829-a259-f7ddde5439ba",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "defaultTitle": "Achievement 011",
+          "defaultLanguage": "en",
+          "identifier": [],
+          "title": {
+            "pk": 57,
+            "contents": [
+              {
+                "pk": 84,
+                "content": "Logro 011",
+                "language": "es",
+                "format": "text/plain"
+              },
+              {
+                "pk": 88,
+                "content": "Achievement 011",
+                "language": "en",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "description": {
+            "pk": 24,
+            "contents": [
+              {
+                "pk": 80,
+                "content": "Logro 011 descripción, Español",
+                "language": "es",
+                "format": "text/plain"
+              },
+              {
+                "pk": 83,
+                "content": "Achievement 011 description, English",
+                "language": "en",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "additionalNote": [
+            {
+              "pk": 22,
+              "contents": [
+                {
+                  "pk": 87,
+                  "content": "Topic 02 contenido, Castellano",
+                  "language": "es",
+                  "format": "text/plain"
+                },
+                {
+                  "pk": 89,
+                  "content": "Topic 02 content, English",
+                  "language": "en",
+                  "format": "text/plain"
+                }
+              ],
+              "topic": "Topic 02"
+            },
+            {
+              "pk": 23,
+              "contents": [
+                {
+                  "pk": 85,
+                  "content": "Topic 01 contenido, Castellano",
+                  "language": "es",
+                  "format": "text/plain"
+                },
+                {
+                  "pk": 86,
+                  "content": "Topic 01 content, English",
+                  "language": "en",
+                  "format": "text/plain"
+                }
+              ],
+              "topic": "Topic 01"
+            }
+          ],
+          "wasAwardedBy": {
+            "pk": 9,
+            "identifier": [],
+            "additionalNote": [],
+            "used": [],
+            "awardingBody": []
+          },
+          "specifiedBy": {
+            "pk": 9,
+            "identifier": [],
+            "learningOpportunityType": [],
+            "title": {
+              "pk": 56,
+              "contents": [
+                {
+                  "pk": 81,
+                  "content": "Achievement 011",
+                  "language": "en",
+                  "format": "text/plain"
+                },
+                {
+                  "pk": 82,
+                  "content": "Logro 011",
+                  "language": "es",
+                  "format": "text/plain"
+                }
+              ]
+            },
+            "alternativeLabel": [],
+            "additionalNote": [],
+            "homePage": [],
+            "supplementaryDocument": [],
+            "iscedFCode": [],
+            "educationSubject": [],
+            "creditPoints": [],
+            "educationLevel": [],
+            "language": [],
+            "mode": [],
+            "targetGroup": [],
+            "awardingOpportunity": [],
+            "nqfLevel": [],
+            "isPartialQualification": false,
+            "qualificationCode": [],
+            "learningOutcome": [],
+            "entitlementSpecification": [],
+            "hasPart": [],
+            "specialisationOf": []
+          },
+          "hasPart": [],
+          "wasInfluencedBy": [],
+          "wasDerivedFrom": [],
+          "entitlesTo": [],
+          "auditDAO": {
+            "pk": 7,
+            "createDate": "May 5, 2022 1:37:44 PM",
+            "updateDate": "May 5, 2022 1:37:44 PM",
+            "createUserId": "mockuser",
+            "updateUserId": "mockuser"
+          }
+        }
+      ],
+      "wasInfluencedBy": [],
+      "wasDerivedFrom": [],
+      "entitlesTo": [],
+      "auditDAO": {
+        "pk": 4,
+        "createDate": "May 5, 2022 1:34:37 PM",
+        "updateDate": "May 5, 2022 1:39:59 PM",
+        "createUserId": "mockuser",
+        "updateUserId": "mockuser"
+      }
+    },
+    {
+      "pk": 3,
+      "OCBID": "495fd96e-8bbf-46cd-b0b3-8abf43f022a4",
+      "languages": [
+        "en",
+        "es"
+      ],
+      "defaultTitle": "Achievement 02",
+      "defaultLanguage": "en",
+      "identifier": [],
+      "title": {
+        "pk": 83,
+        "contents": [
+          {
+            "pk": 144,
+            "content": "Achievement 02",
+            "language": "en",
+            "format": "text/plain"
+          },
+          {
+            "pk": 147,
+            "content": "Logro 02 ",
+            "language": "es",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "description": {
+        "pk": 35,
+        "contents": [
+          {
+            "pk": 146,
+            "content": "Logro 02 Descripción, Castellano",
+            "language": "es",
+            "format": "text/plain"
+          },
+          {
+            "pk": 149,
+            "content": "Achievement 02 description , English",
+            "language": "en",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "additionalNote": [],
+      "wasAwardedBy": {
+        "pk": 13,
+        "identifier": [],
+        "additionalNote": [],
+        "used": [],
+        "awardingBody": []
+      },
+      "specifiedBy": {
+        "pk": 16,
+        "identifier": [],
+        "learningOpportunityType": [],
+        "title": {
+          "pk": 82,
+          "contents": [
+            {
+              "pk": 145,
+              "content": "Logro 02 ",
+              "language": "es",
+              "format": "text/plain"
+            },
+            {
+              "pk": 148,
+              "content": "Achievement 02",
+              "language": "en",
+              "format": "text/plain"
+            }
+          ]
+        },
+        "alternativeLabel": [],
+        "additionalNote": [],
+        "homePage": [],
+        "supplementaryDocument": [],
+        "iscedFCode": [],
+        "educationSubject": [],
+        "creditPoints": [],
+        "educationLevel": [],
+        "language": [],
+        "mode": [],
+        "targetGroup": [],
+        "awardingOpportunity": [],
+        "nqfLevel": [],
+        "isPartialQualification": false,
+        "qualificationCode": [],
+        "learningOutcome": [],
+        "entitlementSpecification": [],
+        "hasPart": [],
+        "specialisationOf": []
+      },
+      "hasPart": [
+        {
+          "pk": 5,
+          "OCBID": "20cc8397-3c71-41c0-9ccd-0cce897d14bd",
+          "languages": [
+            "en",
+            "es"
+          ],
+          "defaultTitle": "Achievement 021",
+          "defaultLanguage": "en",
+          "identifier": [],
+          "title": {
+            "pk": 63,
+            "contents": [
+              {
+                "pk": 103,
+                "content": "Achievement 021",
+                "language": "en",
+                "format": "text/plain"
+              },
+              {
+                "pk": 107,
+                "content": "Logro 021",
+                "language": "es",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "description": {
+            "pk": 27,
+            "contents": [
+              {
+                "pk": 102,
+                "content": "Logro 021, Castellano",
+                "language": "es",
+                "format": "text/plain"
+              },
+              {
+                "pk": 105,
+                "content": "Achievement 021 Description, English",
+                "language": "en",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "additionalNote": [],
+          "wasAwardedBy": {
+            "pk": 11,
+            "identifier": [],
+            "additionalNote": [],
+            "used": [],
+            "awardingBody": []
+          },
+          "specifiedBy": {
+            "pk": 12,
+            "identifier": [],
+            "learningOpportunityType": [],
+            "title": {
+              "pk": 62,
+              "contents": [
+                {
+                  "pk": 104,
+                  "content": "Achievement 021",
+                  "language": "en",
+                  "format": "text/plain"
+                },
+                {
+                  "pk": 106,
+                  "content": "Logro 021",
+                  "language": "es",
+                  "format": "text/plain"
+                }
+              ]
+            },
+            "alternativeLabel": [],
+            "additionalNote": [],
+            "homePage": [],
+            "supplementaryDocument": [],
+            "iscedFCode": [],
+            "educationSubject": [],
+            "creditPoints": [],
+            "educationLevel": [],
+            "language": [],
+            "mode": [],
+            "targetGroup": [],
+            "awardingOpportunity": [],
+            "nqfLevel": [],
+            "qualificationCode": [],
+            "learningOutcome": [],
+            "entitlementSpecification": [],
+            "hasPart": [],
+            "specialisationOf": []
+          },
+          "hasPart": [],
+          "wasInfluencedBy": [],
+          "wasDerivedFrom": [],
+          "entitlesTo": [],
+          "auditDAO": {
+            "pk": 8,
+            "createDate": "May 5, 2022 1:40:59 PM",
+            "updateDate": "May 5, 2022 1:40:59 PM",
+            "createUserId": "mockuser",
+            "updateUserId": "mockuser"
+          }
+        }
+      ],
+      "wasInfluencedBy": [],
+      "wasDerivedFrom": [],
+      "entitlesTo": [],
+      "auditDAO": {
+        "pk": 6,
+        "createDate": "May 5, 2022 1:35:41 PM",
+        "updateDate": "May 5, 2022 2:28:31 PM",
+        "createUserId": "mockuser",
+        "updateUserId": "mockuser"
+      }
+    }
+  ],
+  "performed": [],
+  "entitledTo": [],
+  "auditDAO": {
+    "pk": 5,
+    "createDate": "May 5, 2022 1:34:40 PM",
+    "updateDate": "May 5, 2022 1:42:37 PM",
+    "createUserId": "mockuser",
+    "updateUserId": "mockuser"
+  }
+}

@@ -1,0 +1,160 @@
+<eui-app>
+    <eui-app-header class="edci-container">
+        <eui-header>
+            <eui-header-logo></eui-header-logo>
+        </eui-header>
+    </eui-app-header>
+
+    <eui-app-toolbar>
+        <div class="info-header">
+            <div class="edci-container d-flex align-items-center flex-wrap">
+                <nav class="pt-3 pb-3" id="top-menu">
+                    <ul class="d-flex align-items-center">
+                        <li>
+                            <a href="{{ europassRoot }}/{{ selectedLanguage }}">
+                                {{ 'navbar.europass' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ europassRoot }}/{{
+                                    selectedLanguage
+                                }}/learn-europe"
+                            >
+                                {{ 'navbar.learnInEurope' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ europassRoot }}/{{
+                                    selectedLanguage
+                                }}/work-europe"
+                            >
+                                {{ 'navbar.workInEurope' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ europassRoot }}/{{
+                                    selectedLanguage
+                                }}/about-europass"
+                            >
+                                {{ 'navbar.aboutEuropass' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ europassRoot }}/{{
+                                    selectedLanguage
+                                }}/contact-us"
+                            >
+                                {{ 'navbar.contactUs' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div *ngIf="hasBranding" class="right-actions">
+                    <button
+                        euiButton
+                        [euiBasicButton]="true"
+                        *ngIf="!userInfo?.name; else notLogged"
+                        class="login-button"
+                        (click)="onLogin()"
+                    >
+                        <strong>{{
+                            'common.loginEuropass' | translate
+                        }}</strong>
+                    </button>
+                    <ng-template #notLogged>
+                        <span
+                            uxTooltip="{{ userInfo.sub }}"
+                            class="pt-2 pr-3 username ux-u-color-grey-lightester-2"
+                            >{{ userInfo.name }}
+                        </span>
+                        <button
+                            euiButton
+                            [euiBasicButton]="true"
+                            class="no-shadow logout-button pt-1 ux-u-color-grey-lightester-2"
+                            (click)="onLogout()"
+                        >
+                            <strong>{{ 'common.logout' | translate }} </strong>
+                        </button>
+                    </ng-template>
+                </div>
+
+                <div class="extra-info" *ngIf="showExtraInfo">
+                    <h1 *ngIf="showExtraInfo" class="header mb-4">
+                        {{ homeMainTitle | translate }}
+                    </h1>
+                    <p *ngIf="showExtraInfo" class="description size__18 lh-32">
+                        {{ homeMainDescription | translate }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showExtraInfo" class="col-12 extra-info-credentials-links">
+            <p>
+                <span class="link__unselected" (click)="navigateToViewer()">
+                    {{ 'home.credentialsForCitizens' | translate }}
+                </span>
+                <span class="link__selected">
+                    {{ 'home.credentialsForIssuer' | translate }}
+                </span>
+            </p>
+        </div>
+    </eui-app-toolbar>
+
+    <div class="edci-container">
+        <router-outlet></router-outlet>
+    </div>
+
+    <eui-app-footer>
+        <eui-footer>
+            <div *ngIf="hasBranding" class="edci-footer">
+                <div class="container-footer edci-container">
+                    <div class="row">
+                        <a
+                            class="col-3 eui-u-color-primary-100"
+                            href="https://europa.eu/european-union/about-eu/working_{{
+                                selectedLanguage
+                            }}"
+                            style="text-decoration-line: none"
+                        >
+                            {{ 'footer.workForEU' | translate }}
+                        </a>
+                        <a
+                            class="col-3 eui-u-color-primary-100"
+                            href="https://europa.eu/european-union/abouteuropa/legal_notices_{{
+                                selectedLanguage
+                            }}"
+                            style="text-decoration-line: none"
+                        >
+                            {{ 'footer.legalNotice' | translate }}
+                        </a>
+                        <a
+                            class="col-3 eui-u-color-primary-100"
+                            href="https://europa.eu/european-union/abouteuropa/language-policy_{{
+                                selectedLanguage
+                            }}"
+                            style="text-decoration-line: none"
+                        >
+                            {{ 'footer.languagePolicy' | translate }}
+                        </a>
+                        <a
+                            class="col-3 eui-u-color-primary-100"
+                            href="https://europa.eu/european-union/abouteuropa/accessibility_{{
+                                selectedLanguage
+                            }}"
+                            style="text-decoration-line: none"
+                        >
+                            {{ 'footer.webAccessibility' | translate }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </eui-footer>
+    </eui-app-footer>
+</eui-app>
+<p-toast position="bottom-right"></p-toast>

@@ -1,0 +1,56 @@
+.edci-panel {
+    border: solid 1px #f4f4f4;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+
+    &_title {
+        background-color: #164194;
+        border-radius: 3px;
+        color: #fff;
+        font-weight: bold;
+        padding: 20px 18px;
+
+        &-only {
+            background-color: #f6f7fa;
+            color: #004494;
+
+            > p.edci-panel_title-text {
+                border-right: 1px solid #fff;
+                flex-grow: 1;
+                margin-right: 16px;
+            }
+        }
+
+        &-text {
+            font-size: 25px;
+        }
+    }
+
+    &_icon {
+        color: #004494;
+        font-size: 19px;
+
+        &-img {
+            transition: all 0.5s ease;
+
+            &.rotate-180 {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &_content {
+        border-radius: 3px;
+        margin-bottom: var(--edci-panel-content-margin-bottom, 0);
+        margin-left: var(--edci-panel-content-margin-left, 0);
+        margin-right: var(--edci-panel-content-margin-right, 0);
+        margin-top: var(--edci-panel-content-margin-top, 0);
+        padding-bottom: var(--edci-panel-content-padding-bottom, 20px);
+        padding-left: var(--edci-panel-content-padding-left, 24px);
+        padding-right: var(--edci-panel-content-padding-right, 20px);
+        padding-top: var(--edci-panel-content-padding-top, 20px);
+    }
+
+    p {
+        margin: 0;
+    }
+}

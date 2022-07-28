@@ -1,0 +1,262 @@
+<div *ngIf="modalState === 'showCustomizableData'">
+    <p
+        class="description-text mb-5"
+        [innerHTML]="
+            'credential-builder.customise-data.description' | translate
+        "
+    ></p>
+
+    <div class="col-12 d-inline-flex flex-column flex-lg-row">
+        <div class="col-12 col-lg-5">
+            <eui-card [euiNoShadow]="true" class="no-border">
+                <eui-card-content>
+                    <eui-card [euiCollapsible]="true" [euiCollapsed]="true" [euiNoShadow]="true" *ngFor="
+                        let entity of customizableDataArchitect.customizableEntityViews;
+                        let j = index
+                    " class="">
+                        <eui-card-header class="cursor-pointer header">
+                            <eui-card-header-title>{{ entity.label }}</eui-card-header-title>
+                        </eui-card-header>
+                        <eui-card-content>
+                            <div euiInputGroup>
+                                <div
+                                    *ngFor="
+                                        let field of entity.fields;
+                                        let i = index
+                                    "
+                                    class="input-checkbox"
+                                >
+                                    <input
+                                        euiInputCheckBox
+                                        id="checkbox-field-{{ j }}-{{ i }}"
+                                        name="dyn-checkbox"
+                                        (click)="addCheck(j, i)"
+                                        [checked]="field.mandatory"
+                                        [readonly]="field.mandatory"
+                                    />
+                                    <label
+                                        for="checkbox-field-{{ j }}-{{ i }}"
+                                        >{{ field.label }}</label
+                                    >
+                                </div>
+                                <div
+                                    *ngFor="
+                                        let relation of entity.relations;
+                                        let i = index
+                                    "
+                                    class="input-checkbox"
+                                >
+                                    <input
+                                        euiInputCheckBox
+                                        id="checkbox-relation-{{ j }}-{{
+                                            i
+                                        }}"
+                                        name="dyn-checkbox"
+                                        (click)="addCheck(j, i, true)"
+                                    />
+                                    <label
+                                        for="checkbox-relation-{{ j }}-{{
+                                            i
+                                        }}"
+                                        >{{ relation.label }}</label
+                                    >
+                                </div>
+                            </div>
+                        </eui-card-content>
+                    </eui-card>
+                </eui-card-content>
+            </eui-card>
+        </div>
+        <div class="col-12 col-lg-7">
+            <p
+                class="description-text mb-3"
+                [innerHTML]="
+                    'credential-builder.customise-data.description-buttons'
+                        | translate
+                "
+            ></p>
+            <div class="row buttons-row w-100">
+                <div class="buttons col-12 col-md-6 col-lg-6 mb-2">
+                    <button
+                        euiButton
+                        [euiPrimary]="true"
+                        [euiSizeL]="true"
+                        (click)="dataBrowser()"
+                        class="w-100"
+                    >
+                        {{
+                            'credential-builder.customise-data.button-browse'
+                                | translate
+                        }}
+                        <span class="eui-icon eui-icon-chevron-right"></span>
+                    </button>
+                </div>
+                <div class="buttons col-12 col-md-6 col-lg-6 right mb-2">
+                    <button
+                        euiButton
+                        [euiPrimary]="true"
+                        [euiSizeL]="true"
+                        (click)="downloadExcel()"
+                        class="w-100"
+                    >
+                        {{
+                            'credential-builder.customise-data.button-download-excel'
+                                | translate
+                        }}
+                        <span class="eui-icon eui-icon-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+            <p
+                class="description-text"
+                [innerHTML]="
+                    'credential-builder.customise-data.download-info'
+                        | translate
+                "
+            ></p>
+            <div class="col-12 text-center upload-button my-3 d-flex flex-column">
+                <img
+                    (click)="openDynamicModal()"
+                    src="assets/images/upload.svg"
+                />
+                <span
+                    *ngIf="error"
+                    class="error-message | mt-2 eui-u-color-danger-100"
+                >
+                    <strong>{{ errorMessage | translate }}</strong>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="modalState === 'showForm'" class="input-form-wrapper">
+
+    <h4 class="mt-3 mb-5">{{'credential-builder.customise-data.input-form.subtitle' | translate}}</h4>
+    <form [formGroup]="recipientsGroup">
+        <div formArrayName="recipients">
+            <eui-card [euiCollapsible]="true" [euiCollapsed]="true" *ngFor="let recipient of recipients.controls; let x = index" uxCollapsible class="mb-4">
+                <eui-card-header class="open-card">
+                    <eui-card-header-title>
+                        {{ x + 1 }}. {{'credential-builder.issue.recipient' | translate}}
+                    </eui-card-header-title>
+                </eui-card-header>
+                <eui-card-content>
+                    <div class="col-12 input-form-container my-4" [formGroupName]="x">
+                        <div *ngFor="let block of customizedView.customizableInstanceViews; let i = index;" class="input-form-row">
+                            <div *ngIf="block.fields.length > 0 || block.relations.length > 0" class="mb-4 col-12">
+                                <h1 class="ml-2 mb-3">{{block.label}}</h1>
+                                <div class="col-12 input-form-row-container p-0" formGroupName="entry-{{block.frontId}}">
+                                    <div *ngFor="let showField of block.fields; let j = index;" class="col-6 p-0" [ngClass]="{'col-12': showField.fieldType === 'TEXT_AREA'}">
+                                        <div euiInputGroup class="col-12 px-2">
+                                            <!--<ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.emailWalletError" typeClass="danger" >
+                                                {{ 'error.selectEmailOrWallet' | translate }}
+                                            </ux-control-feedback>-->
+                                            <label euiLabel for="entry-{{block.frontId}}" *ngIf="!showField.label.includes('>')" [euiRequired]="showField.validation.includes('Mandatory') && showField.mandatory && !showField.validation.includes('MandatoryIfNot')">{{showField.label}}</label>
+                                            <label euiLabel for="entry-{{block.frontId}}" *ngIf="showField.label.includes('>')" [euiRequired]="showField.validation.includes('Mandatory') && showField.mandatory && !showField.validation.includes('MandatoryIfNot')">{{showField.label.split('>')[1]}}</label>
+                                            <input class="col-12" euiInputText id="entry-{{block.frontId}}" formControlName="{{block.frontId}}-{{showField.frontId}}" *ngIf="showField.fieldType === 'TEXT'"/>
+                                            <eui-datepicker formControlName="{{block.frontId}}-{{showField.frontId}}" id="entry-{{block.frontId}}" *ngIf="showField.fieldType === 'DATE'"></eui-datepicker>
+                                            <textarea class="col-12" euiTextArea id="entry-{{block.frontId}}" formControlName="{{block.frontId}}-{{showField.frontId}}" rows="5" cols="33" [euiMaxlength]="255" *ngIf="showField.fieldType === 'TEXT_AREA'"></textarea>
+                                            <edci-controlled-list
+                                                class="col-12 p-0"
+                                                id="entry-{{block.frontId}}"
+                                                [entityType]="showField.controlledListType"
+                                                [selectedLanguages]="languages"
+                                                [itemsSelected]="recipients.controls[i]?.value?.citizenshipCountry"
+                                                [activeLanguage]="selectedLanguage"
+                                                [isSingleSelection]="true"
+                                                (onItemSelectionChange)="controlledListSelected(block, showField, x, $event)"
+                                                *ngIf="showField.fieldType === 'CONTROLLED_LIST'"
+                                            ></edci-controlled-list>
+
+                                            <!--<edci-controlled-list-select
+                                                id="entry-{{block.frontId}}"
+                                                formControlName="{{block.frontId}}-{{showField.frontId}}"
+                                                [entityType]="showField.entityType"
+                                                [selectedLanguages]="languages"
+                                                [activeLanguage]="defaultLanguage"
+                                                *ngIf="showField.fieldType === 'CONTROLLED_LIST_SELECT'"
+                                            ></edci-controlled-list-select>-->
+                                            <ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.maxlength" typeClass="danger" >
+                                                {{ 'error.maxLength.255' | translate }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.email" typeClass="danger" >
+                                                {{ 'error.emailPattern' | translate }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.pattern" typeClass="danger" >
+                                                {{ 'error.number' | translate }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.required
+                                                && recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].touched"
+                                                typeClass="danger"
+                                            >
+                                                {{ 'error.required' | translate }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.emailWalletError" typeClass="danger" >
+                                                {{ 'error.selectEmailOrWallet' | translate }}
+                                            </ux-control-feedback>
+                                            <!--<ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.position]['controls'][block.position + '-' + (j+1)].errors?.invalidDateError" typeClass="danger">
+                                                {{ 'error.minDate' | translate : {
+                                                    selfParam: 'credential-builder.issue.dateOfBirth' | translate,
+                                                    dateParam: maxDateOfBirth | date : 'dd/MM/yyyy' }
+                                                }}
+                                            </ux-control-feedback>-->
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let relationGroup of relationsGroups['entry-' + block.frontId]" class="col-12">
+                                        <h2 class="my-3">{{relationGroup.groupLabel}}</h2>
+                                        <div *ngFor="let relation of relationGroup.relations">
+                                            <div euiInputGroup>
+                                                <input class="col-12" euiInputCheckBox id="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}" (click)="addRelation(x, block, relation)"/>
+                                                <label euiLabel for="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}" *ngIf="relation.label.includes('>>')">{{relation.label.split('>>')[1]}}</label>
+                                                <label euiLabel for="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}" *ngIf="!relation.label.includes('>>')">{{ relation.label }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button euiButton [euiIconButton]="true" [euiBasicButton]="true" [euiPrimary]="true" [euiSizeM]="true" (click)="removeRecipient(x)" *ngIf="recipients.controls?.length >1">
+                        {{ 'credential-builder.issue.removeRecipient' | translate}}
+                        <span euiIcon iconClass="eui-icon eui-icon-trash-o"></span>
+                    </button>
+                </eui-card-content>
+            </eui-card>
+        </div>
+    </form>
+
+    <div class="col-12 my-4">
+        <button euiButton [euiIconButton]="true" [euiBasicButton]="true" [euiPrimary]="true" [euiSizeM]="true" (click)="addRecipient()">
+            <span euiIcon iconClass="eui-icon eui-icon-plus-circle-thin-o"></span>
+            {{ 'credential-builder.issue.addAnotherRecipient' | translate}}
+        </button>
+    </div>
+
+    <div euiInputGroup [formGroup]="consentForm">
+        <ng-container>
+            <input euiInputCheckBox id="consent-box-2" name="dyn-checkbox" class="__hide-input" formControlName="consentCheckBox">
+            <label for="consent-box-2">{{ concentText | translate }}</label>
+        </ng-container>
+    </div>
+
+</div>
+
+<eui-message-box
+    #messageBoxFormError
+    typeClass="warning"
+    title="{{ 'common.warning' | translate | uppercase }}"
+    messageBoxType="ok"
+>
+    <p>{{ 'credential-builder.issue.issueError' | translate }}</p>
+</eui-message-box>
+
+<div *ngIf="loading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>

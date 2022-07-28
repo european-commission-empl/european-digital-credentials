@@ -1,0 +1,48 @@
+<div *ngIf="activeActivity" class="activity-main-panel">
+    <edci-panel
+        [title]="
+            activeActivity?.specifiedBy?.title === activeActivity.title
+                ? activeActivity?.specifiedBy?.title
+                : ([activeActivity?.specifiedBy?.title, activeActivity.title]
+                  | edciJoin: ' - ')
+        "
+        [isMainPanel]="true"
+    >
+        <div *ngIf="activeActivity?.directedBy">
+            <edci-detail-organisation-section
+                [organisation]="activeActivity.directedBy"
+            >
+            </edci-detail-organisation-section>
+        </div>
+        <div
+            *ngIf="activeActivity.startDate || activeActivity.endDate"
+            class="activity-main-panel_dates w-50 d-flex justify-content-between"
+        >
+            <div *ngIf="activeActivity.startDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.activities-tab.startDate' | translate }}
+                </p>
+                <p>{{ activeActivity.startDate }}</p>
+            </div>
+            <div *ngIf="activeActivity.endDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.activities-tab.endDate' | translate }}
+                </p>
+                <p>{{ activeActivity.endDate }}</p>
+            </div>
+        </div>
+        <p
+            *ngIf="activeActivity?.description"
+            class="activity-main-panel_description"
+        >
+            {{ activeActivity?.description }}
+        </p>
+        <br>
+        <p
+            *ngIf="activeActivity?.specifiedBy?.description"
+            class="activity-main-panel_description"
+        >
+            {{ activeActivity?.specifiedBy?.description }}
+        </p>
+    </edci-panel>
+</div>

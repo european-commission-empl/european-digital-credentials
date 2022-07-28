@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{ 'seal-credential.title' | translate }}</h1>
+<div mat-dialog-content>
+    <p class="p-16">
+        {{ 'seal-credential.nexuEnsure' | translate }}
+        <a
+            class="darkblue"
+            href="https://github.com/nowina-solutions/nexu/releases/download/nexu-1.22/nexu-bundle-1.22.zip"
+            >{{ 'seal-credential.nexuDownload' | translate }}</a
+        >
+    </p>
+    <ol *ngIf="data">
+        <li *ngFor="let step of data" class="nexu-step">
+            <div class="step-status">
+                <mat-progress-spinner
+                    *ngIf="step.status === 'loading'"
+                    [mode]="'indeterminate'"
+                    [diameter]="21"
+                >
+                </mat-progress-spinner>
+                <mat-icon
+                    *ngIf="step.status === 'completed'"
+                    aria-hidden="false"
+                    aria-label="Step completed"
+                    >check_circle</mat-icon
+                >
+                <mat-icon
+                    *ngIf="step.status === 'failed'"
+                    aria-hidden="false"
+                    aria-label="Error"
+                    >error</mat-icon
+                >
+            </div>
+            <div class="step-message">
+                {{ step.message }}
+            </div>
+        </li>
+    </ol>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CLOSE</button>
+</div>

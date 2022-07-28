@@ -1,0 +1,111 @@
+<div id="home-page">
+    <section class="home-section d-flex flex-column">
+        <div class="edci-container">
+            <h1>
+                {{ homeCredentialsForIssuersTitle | translate }}
+            </h1>
+            <div class="home-section__content row">
+                <div class="col-12">
+                    <p class="lh-32 size-18">
+                        {{ homeCredentialsForIssuersDescription | translate }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="prepare-section edci-container">
+        <div class="prepare-box">
+            <h1>
+                {{ 'prepare.section.prepare.title' | translate }}
+            </h1>
+            <div class="box-container row">
+                <span class="col-1 num-selection">1</span>
+                <div class="col-6 description">
+                    <p class="m-0 lh-32 size-18">
+                        {{
+                            'prepare.section.prepare.first-line-before'
+                                | translate
+                        }}
+                    </p>
+                </div>
+                <div class="col-5 d-flex">
+                    <div class="icon-navigation" (click)="testYourDevice()">
+                        <img
+                            src="assets/images/test.svg"
+                            alt="{{ 'home.testE-seal' | translate }}"
+                        />
+                        <span>
+                            {{ 'home.testE-seal' | translate }}
+                        </span>
+                    </div>
+                    <div
+                        class="icon-navigation"
+                        (click)="navigateHowToPrepareYourData()"
+                    >
+                        <img
+                            src="assets/images/new-window.svg"
+                            alt="{{ 'common.prepare-your-data' | translate }}"
+                        />
+                        <span>
+                            {{ 'common.prepare-your-data' | translate }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prepare-box">
+            <h1>
+                {{ 'prepare.section.build' | translate }}
+            </h1>
+            <div class="box-container row">
+                <span class="col-1 num-selection">2</span>
+                <div class="col-6 description">
+                    <p class="m-0 lh-32 size-18">
+                        {{ 'prepare.selectDescription' | translate }}
+                    </p>
+                </div>
+                <div class="col-5 d-flex">
+                    <div
+                        class="icon-navigation"
+                        (click)="goToCredentialBuilder()"
+                    >
+                        <img
+                            src="assets/images/new-window.svg"
+                            alt="{{
+                                'common.onlineCredentialBuilder' | translate
+                            }}"
+                        />
+                        <span>
+                            {{ 'common.onlineCredentialBuilder' | translate }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prepare-box">
+            <h1>
+                {{ 'prepare.section.upload' | translate }}
+            </h1>
+            <div class="box-container row">
+                <span class="col-1 num-selection">3</span>
+                <div class="col-6 description">
+                    <p class="m-0 lh-32 size-18">
+                        {{ 'prepare.uploadDescription' | translate }}
+                    </p>
+                </div>
+                <div class="col-5 d-flex">
+                    <edci-upload
+                        label="{{ 'common.upload-xml' | translate }}"
+                        [isIconOnly]="true"
+                        [isMultiple]="true"
+                        [isXML]="true"
+                        [allowedFiles]="xmlExtension"
+                        formatMessage="file-upload.accepted-format"
+                        [documents]="files"
+                        (newDocuments)="onNewDocument($event, true)"
+                    ></edci-upload>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

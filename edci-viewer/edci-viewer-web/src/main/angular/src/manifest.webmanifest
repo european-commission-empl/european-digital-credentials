@@ -1,0 +1,27 @@
+{
+    "name": "viewer",
+    "short_name": "viewer",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#1976d2",
+    "scope": "/europass2/edci-viewer/",
+    "start_url": "/europass2/edci-viewer/",
+    "icons": [
+        {
+            "src": "assets/icons/apple-touch-icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

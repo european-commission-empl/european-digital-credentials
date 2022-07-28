@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.6" global="false"/>
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

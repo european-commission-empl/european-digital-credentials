@@ -1,0 +1,26 @@
+{
+  "customizableInstanceDTOS": [
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "relations": [
+        {
+          "position": 7,
+          "relPathIdentifier": "{#2}.ACH{3}.hasPart{5}",
+          "labelKey": "custom.relation.achievements.hasPart"
+        }
+      ]
+    },
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "relations": [
+        {
+          "position": 7,
+          "relPathIdentifier": "{#2}.ACH{2}.hasPart{4}",
+          "labelKey": "custom.relation.achievements.hasPart"
+        }
+      ]
+    }
+  ]
+}

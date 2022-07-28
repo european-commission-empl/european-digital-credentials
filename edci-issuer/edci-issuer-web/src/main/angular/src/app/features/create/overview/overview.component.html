@@ -1,0 +1,440 @@
+<div class="overview-page pt-4 pb-4">
+    <div id="overview-page__info" class="d-flex mb-2">
+        <div class="col-7 flex-grow-1">
+            <h1 class="font-weight-bold">
+                {{
+                    !sealed
+                        ? ('common.check' | translate)
+                        : ('common.send' | translate)
+                }}
+            </h1>
+            <p
+                class="ux-u-font-size-h4 mt-0 pb-4"
+                [innerHTML]="
+                    !sealed
+                        ? ('overview.reviewDetails' | translate)
+                        : ('overview.selectCheckboxes' | translate)
+                "
+            ></p>
+        </div>
+        <div class="col-5 ml-2 issue-other-button">
+            <button
+                euiButton
+                [euiPrimary]="true"
+                [euiSizeL]="true"
+                [euiOutline]="true"
+                (click)="goToHome()"
+            >
+                <span class="eui-icon eui-icon-ecl-external"></span>
+                <span> {{ 'overview.issueMoreCredentials' | translate }} </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="overview-progress mb-4">
+        <edci-progress-bar
+            *ngIf="showProgressbar"
+            titleProgress="Delivery"
+            [actualExport]="actualExport"
+        ></edci-progress-bar>
+    </div>
+
+    <eui-card [euiNoContentPadding]='true'>
+        <eui-card-content>
+            <table
+                euiTable
+                [euiTableBordered]="false"
+                [euiTableResponsive]="true"
+                [rows]="dataCredentialsTable"
+                *ngIf="dataCredentialsTable?.length > 0"
+                [paginator]="paginator"
+            >
+                <ng-template euiTemplate="header">
+                    <tr>
+                        <th class="checkbox-cell" width="5%">
+                            <input
+                                (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="
+                                    selection.hasValue() && !isAllSelected()
+                                "
+                                [attr.aria-label]="checkboxLabel()"
+                                euiInputCheckBox
+                            />
+                        </th>
+                        <th width="30%">
+                            {{ 'common.studentName' | translate | uppercase }}
+                        </th>
+                        <th width="15%">
+                            {{ 'common.course' | translate | uppercase }}
+                        </th>
+                        <th width="10%" class="align-center">
+                            {{ 'common.valid' | translate | uppercase }}
+                        </th>
+                        <th width="10%" class="align-center">
+                            {{ 'common.sealed' | translate | uppercase }}
+                        </th>
+                        <th width="10%" class="align-center">
+                            {{ 'common.sent' | translate | uppercase }}
+                        </th>
+                        <th width="10%" class="align-center">
+                            {{ 'common.received' | translate | uppercase }}
+                        </th>
+                        <th width="10%">
+                            {{ 'common.actions' | translate | uppercase }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template let-row euiTemplate="body">
+                    <tr>
+                        <td class="checkbox-cell" width="5%">
+                            <input
+                                (click)="$event.stopPropagation()"
+                                (change)="
+                                    $event ? checkBoxCredentialClicked(row) : null
+                                "
+                                [checked]="selection.isSelected(row)"
+                                [attr.aria-label]="checkboxLabel(row)"
+                                euiInputCheckBox
+                            />
+                        </td>
+                        <td width="30%">
+                            {{ row.studentName }}
+                        </td>
+                        <td width="15%">
+                            {{ row.course }}
+                        </td>
+                        <td width="10%" class="align-center">
+                            <span
+                                class="eui-icon eui-icon-check-circle success"
+                                *ngIf="row.valid"
+                            ></span>
+                            <span
+                                class="eui-icon eui-icon-remove-circle danger"
+                                *ngIf="!row.valid && row.valid !== null"
+                                (click)="
+                                    openValidationErrorsModal(row.validationErrors)
+                                "
+                            ></span>
+                        </td>
+                        <td width="10%" class="align-center">
+                            <span
+                                class="eui-icon eui-icon-check-circle success"
+                                *ngIf="row.sealed"
+                            ></span>
+                            <span
+                                class="eui-icon eui-icon-remove-circle danger"
+                                *ngIf="!row.sealed && row.sealed !== null"
+                                (click)="openValidationErrorsModal(row.sealingErrors)"
+                            ></span>
+                        </td>
+                        <td width="10%" class="align-center">
+                            <span
+                                class="eui-icon eui-icon-check-circle success"
+                                *ngIf="row.sent"
+                            ></span>
+                            <span
+                                class="eui-icon eui-icon-remove-circle danger"
+                                *ngIf="!row.sent && row.sent !== null"
+                                (mouseover)="sendPopover.show($event)"
+                                (mouseout)="sendPopover.hide($event)"
+                            ></span>
+                            <ux-popover
+                                #sendPopover
+                                type="colored-solid"
+                                size="default"
+                                placement="right"
+                                [showCloseIcon]="false"
+                            >
+                                <ul *ngIf="row.sendErrors">
+                                    <li *ngFor="let sendError of row.sendErrors">
+                                        {{ sendError }}
+                                    </li>
+                                </ul>
+                            </ux-popover>
+                        </td>
+                        <td width="10%" class="align-center">
+                            <span
+                                class="eui-icon eui-icon-check-circle success"
+                                *ngIf="row.received"
+                            ></span>
+                            <span
+                                class="eui-icon eui-icon-remove-circle danger"
+                                *ngIf="!row.received && row.received !== null"
+                                (mouseover)="receivedPopover.show($event)"
+                                (mouseout)="receivedPopover.hide($event)"
+                            ></span>
+                            <ux-popover
+                                #receivedPopover
+                                type="colored-solid"
+                                size="default"
+                                placement="right"
+                                [showCloseIcon]="false"
+                            >
+                                <ul *ngIf="row.receivedErrors">
+                                    <li
+                                        *ngFor="let receivedError of row.receivedErrors"
+                                    >
+                                        {{ receivedError }}
+                                    </li>
+                                </ul>
+                            </ux-popover>
+                        </td>
+                        <td width="10%" class="actions_column">
+                            <a
+                                (click)="previewCertificates(true, row.uuid)"
+                                class="pointer ml-2"
+                                [class.disabled]="!row.valid"
+                            >
+                                <span
+                                    class="eui-icon eui-icon-visibility"
+                                    aria-label="Preview certificate"
+                                ></span>
+                            </a>
+                            <a
+                                (click)="deleteCredential(row.uuid)"
+                                class="pointer"
+                                [class.disabled]="
+                                    !row.valid || (row.sent !== null && sent)
+                                "
+                            >
+                                <span
+                                    class="eui-icon eui-icon-delete"
+                                    aria-label="Remove certificate"
+                                ></span>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </table>
+            <div class="table_footer">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button
+                            euiButton
+                            [euiIconButton]="true"
+                            [euiOutline]="false"
+                            [euiBasicButton]="true"
+                            [euiSizeS]="true"
+                            (click)="downloadCSV()"
+                            *ngIf="sealed"
+                            class="button-footer csv-box left-button"
+                            [ngClass]="{ disabled: !downloadCSVEnabled }">
+                                <span euiIcon iconClass="eui-icon eui-icon-ecl-download">
+                                </span>
+                                <span>
+                                    {{ 'overview.exportCSV' | translate }}
+                                </span>
+                        </button>
+                        <button
+                            euiButton
+                            [euiIconButton]="true"
+                            [euiBasicButton]="true"
+                            [euiOutline]="false"
+                            [euiSizeS]="true"
+                            (click)="downloadSelectedCredentials()"
+                            class="button-footer csv-box left-button"
+                            *ngIf="!sealed">
+                                <span class="eui-icon eui-icon-ecl-download">
+
+                                </span>
+                                <span>
+                                    {{ 'common.download' | translate }}
+                                </span>
+                    </button>
+                    </div>
+                    <div class="col-md-6 offset-md-4">
+                        <eui-table-paginator
+                            #paginator
+                            [hasPageNumberNavigation]="true"
+                            [nbPageNumberNavigation]="5"
+                            [pageSizeOptions]="[5, 10, 25, 50]"
+                            [pageSize]="5"
+                            (pageChange)="onPageChange($event)">
+                        </eui-table-paginator>
+                    </div>
+                </div>
+            </div>
+        </eui-card-content>
+    </eui-card>
+
+
+
+    <div class="mt-5 buttons-footer" style="display: flex">
+        <div>
+
+        </div>
+        <div style="margin-left: auto">
+            <!-- Previous (back to HOME) -->
+            <button
+                euiButton
+                [euiIconButton]="true"
+                [euiOutline]="true"
+                [euiPrimary]="true"
+                [euiSizeL]="true"
+                (click)="goToPrevious()"
+                class="button-footer"
+            >
+                <span euiIcon iconClass="eui-icon eui-icon-chevron-left"></span>
+                <span euiLabel>{{ 'common.previous' | translate }}</span>
+            </button>
+            <!-- Sign certificate -->
+            <button
+                euiButton
+                [euiSizeL]="true"
+                [euiPrimary]="true"
+                (click)="sealCredentials()"
+                *ngIf="isSealAvailable"
+                class="button-footer"
+            >
+                <span euiLabel>{{ 'common.seal' | translate }}</span>
+            </button>
+            <button
+                euiButton
+                [euiSizeL]="true"
+                [euiSecondary]="true"
+                (click)="sealCredentials()"
+                [euiDisabled]="true"
+                *ngIf="!isSealAvailable"
+                class="button-footer"
+            >
+                <span euiLabel>{{ 'common.seal' | translate }}</span>
+            </button>
+            <button
+                euiButton
+                [euiSizeL]="true"
+                [euiPrimary]="true"
+                (click)="toSend()"
+                *ngIf="isSendAvailable"
+                class="button-footer"
+            >
+                <span euiLabel>{{ 'common.send' | translate }}</span>
+            </button>
+            <button
+                euiButton
+                [euiSizeL]="true"
+                [euiSecondary]="true"
+                (click)="toSend()"
+                [euiDisabled]="true"
+                *ngIf="!isSendAvailable"
+                class="button-footer"
+            >
+                <span euiLabel>{{ 'common.send' | translate }}</span>
+            </button>
+            <button
+                euiButton
+                [euiSizeL]="true"
+                [euiPrimary]="true"
+                (click)="goToPrevious()"
+                *ngIf="!isSendAvailable && sent"
+                class="button-footer"
+            >
+                <span euiLabel>{{
+                    'common.createNewCredential' | translate
+                }}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ux-modal
+    id="validationErrors"
+    [isDismissActionVisible]="false"
+    titleLabel="{{ 'validation.errors' | translate }}"
+>
+    <uxModalBody>
+        <ul *ngIf="validationErrors">
+            <li *ngFor="let valError of validationErrors">
+                <div class="pre-wrap" [innerHtml]="valError"></div>
+            </li>
+        </ul>
+    </uxModalBody>
+</ux-modal>
+
+<ux-modal
+    id="selectPresentationTypeModal"
+    [isDismissActionVisible]="false"
+    (onClose)="closePresentationModal()"
+    titleLabel="{{ 'overview.selectPresentationTypeModal.title' | translate }}"
+>
+    <uxModalBody>
+        <div euiInputGroup [formGroup]="formRadio">
+            <ng-container>
+                <input euiInputCheckBox id="consent-box" name="dyn-checkbox" class="__hide-input" formControlName="presentation">
+                <label for="consent-box">{{ 'overview.selectPresentationTypeModal.label' | translate}}</label>
+            </ng-container>
+        </div>
+    </uxModalBody>
+    <uxModalFooter>
+        <button
+            euiButton
+            [euiSecondary]="true"
+            (click)="closePresentationModal()"
+        >
+            {{ 'common.cancel' | translate | titlecase }}
+        </button>
+        <button euiButton [euiPrimary]="true" (click)="presentationSelected()">
+            {{ 'common.next' | translate | titlecase }}
+        </button>
+    </uxModalFooter>
+</ux-modal>
+
+<ux-modal
+    id="localSealingPassModal"
+    [isDismissActionVisible]="false"
+    (onClose)="closeLocalSealingPassModal()"
+    titleLabel="{{ 'overview.localSealingPassModal.title' | translate }}"
+>
+    <uxModalBody>
+        <form [formGroup]="localSealingForm">
+            <label class="d-inline-flex">
+                {{ 'overview.localSealingPassModal.label' | translate }}
+            </label>
+            <input
+                euiInputText
+                type="password"
+                class="form-control d-inline-flex"
+                formControlName="password"
+            />
+        </form>
+    </uxModalBody>
+    <uxModalFooter>
+        <button
+            euiButton
+            [euiSecondary]="true"
+            (click)="closeLocalSealingPassModal()"
+        >
+            {{ 'common.cancel' | translate | titlecase }}
+        </button>
+        <button euiButton [euiPrimary]="true" (click)="toLocalSeal()">
+            {{ 'common.next' | translate | titlecase }}
+        </button>
+    </uxModalFooter>
+</ux-modal>
+<!-- Loading indicator-->
+<div *ngIf="isLoadingResults" class="loading-shade">
+    <div class="loading-shade__wrapper">
+        <div class="pr-4">
+            <mat-spinner [strokeWidth]="4"></mat-spinner>
+        </div>
+        <div>
+            <b>
+                {{
+                    sealed
+                        ? ('overview.loading-message.title-sent' | translate)
+                        : ('overview.loading-message.title-sealed' | translate)
+                }}</b
+            >
+            <br />
+            <span>
+                {{
+                    sealed
+                        ? ('overview.loading-message.description-sending'
+                          | translate)
+                        : ('overview.loading-message.description-sealing'
+                          | translate)
+                }}</span
+            >
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="organization(orgCred, orgVerif, iter)">
+
+    <div th:if="${europassCredentialDetailView.issuerCredential != null}">
+        <h2>[[#{details.issuing-organization}]]</h2>
+        <p>[[#{details.issuing-organization.subtitle}]]</p>
+        <div th:insert="tabs/organization_tab :: organization(org=${europassCredentialDetailView.issuerCredential}, iter='1. ')"></div>
+    </div>
+
+    <div th:if="${europassCredentialDetailView.issuerPresentation != null}">
+        <h2>[[#{details.sealing-organization}]]</h2>
+        <p>[[#{details.sealing-organization.subtitle}]]</p>
+        <div th:insert="tabs/organization_tab :: organization(org=${europassCredentialDetailView.issuerPresentation}, iter='2. ')"></div>
+    </div>
+
+</div>
+</body>
+</html>

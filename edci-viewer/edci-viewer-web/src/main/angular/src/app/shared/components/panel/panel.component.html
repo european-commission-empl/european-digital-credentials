@@ -1,0 +1,24 @@
+<div class="edci-panel">
+    <div
+        class="
+            edci-panel_title
+            d-flex
+            justify-content-between
+            align-items-center
+        "
+        [ngClass]="{ 'edci-panel_title-only': !isMainPanel }"
+    >
+        <p class="edci-panel_title-text">{{ title }}</p>
+        <div *ngIf="!isMainPanel" class="edci-panel_icon">
+            <i
+                class="{{
+                    isExpanded ? 'fa fa-chevron-up' : 'fa fa-chevron-down'
+                }} cursor-pointer edci-panel_icon-img"
+                (click)="toggleExpanded()"
+            ></i>
+        </div>
+    </div>
+    <div *ngIf="isExpanded" class="edci-panel_content">
+        <ng-content *ngIf="isExpanded"></ng-content>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div
+    class="achievement-main-panel"
+    *ngIf="activeAchievement"
+    [ngClass]="{
+        'no-info-panel': !(
+            activeAchievement?.awardingBody ||
+            activeAchievement?.awardingDate ||
+            activeAchievement?.description
+        )
+    }"
+>
+    <edci-panel
+        [title]="
+            activeAchievement?.specifiedBy?.title === activeAchievement.title
+                ? activeAchievement?.specifiedBy?.title
+                : ([
+                      activeAchievement?.specifiedBy?.title,
+                      activeAchievement.title
+                  ] | edciJoin: ' - ')
+        "
+        [isMainPanel]="true"
+    >
+        <div *ngIf="activeAchievement.awardingBody">
+            <edci-detail-organisation-section
+                [organisation]="activeAchievement.awardingBody"
+            >
+            </edci-detail-organisation-section>
+        </div>
+        <ng-container>
+            <div
+                *ngIf="activeAchievement.awardingDate"
+                class="awarding-information d-flex"
+            >
+                <div
+                    *ngIf="activeAchievement.awardingDate"
+                    class="d-flex flex-column"
+                >
+                    <p class="field-title">
+                        {{
+                            'details.achievements-tab.awardingDate' | translate
+                        }}
+                    </p>
+                    <p>{{ activeAchievement.awardingDate }}</p>
+                </div>
+            </div>
+            <div *ngIf="activeAchievement?.description">
+                <p>{{ activeAchievement.description }}</p>
+            </div>
+        </ng-container>
+    </edci-panel>
+</div>

@@ -1,0 +1,40 @@
+<footer class="ux-app-shell__footer">
+    <!-- Main menu links -->
+    <div *ngIf="mainLinks" class="footer-main-menu">
+        <div class="footer-main-menu__wrapper edci-container d-flex align-items-center">
+            <div class="footer-main-menu__item" *ngFor="let mainMenu of mainLinks">
+                <h1 class="footer-main-menu__label">{{ mainMenu.title }}</h1>
+                <ul class="footer-main-menu__links">
+                    <li *ngFor="let link of mainMenu.links">
+                        <a *ngIf="link.url" [routerLink]="link.url">{{link.label}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+     <!-- Secondary menu links -->
+     <div *ngIf="secondaryLinks" class="footer-secondary-menu">
+        <div class="footer-secondary-menu__wrapper edci-container d-flex">
+            <div class="footer-secondary-menu__item" *ngFor="let secMenu of secondaryLinks">
+                <h5 class="footer-secondary-menu__label">{{ secMenu.title }}</h5>
+                <ul class="footer-secondary-menu__links">
+                    <li *ngFor="let link of secMenu.links">
+                        <a *ngIf="link.url" [routerLink]="link.url">{{link.label}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other menu links -->
+    <div *ngIf="otherLinks" class="footer-other-menu">
+        <div class="footer-other-menu__wrapper edci-container">
+            <ul class="footer-other-menu__links d-flex">
+                <li *ngFor="let link of otherLinks">
+                    <a *ngIf="link.url" [routerLink]="link.url">{{link.label}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>

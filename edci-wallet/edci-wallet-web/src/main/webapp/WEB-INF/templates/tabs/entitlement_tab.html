@@ -1,0 +1,108 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="entitlement(entitlement, iter, sub)">
+
+    <h2 th:if="${!sub}" th:id=" ${entitlement.id}"
+        class="entitlement-title"
+        th:text="${iter + entitlement.title}"></h2>
+    <h3 th:if="${sub}" th:id=" ${entitlement.id}"
+        class="entitlement-rel-title"
+        th:text="${iter + entitlement.title}"></h3>
+
+    <div class="summary">
+        <div th:if="${entitlement.identifier != null and !entitlement.identifier.empty}">
+            <ul style="list-style-type:none;padding-left: 0px;">
+                <li th:each="iden : ${entitlement.identifier}">
+                    <div th:insert="tabs/fields/identifier_field :: identifier(${iden}, #{details.entitlements-tab.identifier})"></div>
+                </li>
+            </ul>
+        </div>
+        <p th:if="${entitlement.issuedDate}">
+            <strong>[[#{details.entitlements-tab.issueDate}]]: </strong><span
+                th:text="${entitlement.issuedDate}"></span>
+        </p>
+        <p th:if="${entitlement.expiryDate}">
+            <strong>[[#{details.entitlements-tab.expiryDate}]]: </strong><span
+                th:text="${entitlement.expiryDate}"></span>
+        </p>
+    </div>
+    <div th:if="${entitlement.description}">
+        <p><span th:text="${entitlement.description}"></span></p>
+    </div>
+    <div th:if="${entitlement.subEntitlements != null and !entitlement.subEntitlements.empty}">
+        <p><strong>[[#{details.entitlements-tab.subEntitlements}]]</strong></p>
+        <ul style="list-style-type:none;padding-left:0px;">
+            <li th:each="subentitlement : ${entitlement.subEntitlements}">
+                <span th:text="${subentitlement.title}"></span>
+            </li>
+        </ul>
+    </div>
+    <div th:insert="tabs/fields/more_information_field :: moreInformation(${entitlement.moreInformation})"></div>
+    <div th:if="${entitlement.specifiedBy != null}">
+        <p th:insert="tabs/fields/specifiedBy_field.html :: specified(${entitlement.specifiedBy}, #{details.entitlements-tab.specification})"></p>
+        </p>
+
+        <p th:if="${entitlement.specifiedBy.title}">
+            <strong><span th:text="${entitlement.specifiedBy.title}"></span></strong>
+        </p>
+        <div th:if="${entitlement.specifiedBy.identifier != null and !entitlement.specifiedBy.identifier.empty}">
+            <ul style="list-style-type:none;padding-left:0px;">
+                <li th:each="iden : ${entitlement.specifiedBy.identifier}">
+                            <span th:if="${iden.identifierSchemeId != null && iden.content != null}">
+                            <strong><span
+                                    th:text="${iden.identifierSchemeId}"></span> [[#{details.identifier}]]: </strong><span
+                                    th:text="${iden.content}"></span>
+                            </span>
+                    <span th:if="${iden.identifierSchemeId == null && iden.content != null}">
+                            <strong>[[#{details.entitlements-tab.identifier}]]: </strong><span
+                            th:text="${iden.content}"></span>
+                            </span>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${entitlement.specifiedBy.description}">
+            <p th:text="${entitlement.specifiedBy.description}"></p>
+        </div>
+        <p th:if="${entitlement.specifiedBy.entitlementType}">
+            <strong>[[#{details.entitlements-tab.entitlementType}]]: </strong><span
+                th:text="${entitlement.specifiedBy.entitlementType}"></span>
+        </p>
+        <p th:if="${entitlement.specifiedBy.status}">
+            <strong>[[#{details.entitlements-tab.status}]]: </strong><span
+                th:text="${entitlement.specifiedBy.status}"></span>
+        </p>
+        <!--<p TODO: Reference to other Org. th:if="${entitlement.specifiedBy.validWith != null && entitlement.specifiedBy.validWith.preferredName != null}">-->
+        <!--<strong>Entitlement valid with: </strong><span-->
+        <!--th:text="${entitlement.specifiedBy.validWith.preferredName}"></span>-->
+        <!--</p>-->
+        <p th:if="${entitlement.specifiedBy.validWithin}">
+            <strong>[[#{details.entitlements-tab.validWithin}]]: </strong>
+            <span th:each="item, iter : ${entitlement.specifiedBy.validWithin}"
+                  th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+        </p>
+        <div th:if="${entitlement.specifiedBy.toWorkAs != null and !entitlement.specifiedBy.toWorkAs.empty}">
+            <strong>[[#{details.entitlements-tab.entitlementToWorkAs}]]: </strong>
+            <span th:each="item, iter : ${entitlement.specifiedBy.toWorkAs}"
+                  th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+        </div>
+        <div th:if="${entitlement.specifiedBy.otherDocs != null and !entitlement.specifiedBy.otherDocs.empty}">
+            <strong>[[#{details.entitlements-tab.other.docs}]]</strong>
+            <ul style="list-style-type:none;padding-left:0px;"
+                th:each="document : ${entitlement.specifiedBy.otherDocs}">
+                <li><a th:href="@{${document.link}}">
+                    <span th:text="${document.title != null} ? ${document.title} : ${document.link}"></span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div th:insert="tabs/fields/more_information_field :: moreInformation(${entitlement.specifiedBy.moreInformation})"></div>
+
+    </div>
+    <div style="page-break-after:always"></div>
+
+</div>
+</body>
+</html>

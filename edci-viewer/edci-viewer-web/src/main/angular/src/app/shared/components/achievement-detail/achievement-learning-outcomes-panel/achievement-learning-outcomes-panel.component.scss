@@ -1,0 +1,70 @@
+.learning-outcomes {
+    edci-panel {
+        --edci-panel-content-padding-bottom: 0;
+        --edci-panel-content-margin-bottom: -20px;
+    }
+
+    .learning-outcome-card {
+        border: solid 1px #dedfe4;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+        height: fit-content;
+        margin-bottom: 40px;
+        padding: 20px;
+        width: 47.43%;
+
+        &:nth-child(2n-1) {
+            margin-right: 40px;
+        }
+
+        &_title {
+            font-size: 18px !important;
+            font-weight: bold;
+            padding-bottom: 8px;
+        }
+
+        &_description {
+            padding-bottom: 18px;
+        }
+
+        &_content {
+            &-item {
+                padding-bottom: 18px;
+
+                &_title {
+                    font-weight: bold;
+                    padding-bottom: 8px;
+                }
+
+                a.skill-link {
+                    padding-bottom: 8px;
+                    width: fit-content;
+                }
+            }
+        }
+
+        &_show-more {
+            width: fit-content;
+
+            &-text {
+                color: #004494 !important;
+                padding-right: 8px;
+            }
+
+            &-img {
+                color: #004494;
+                font-size: 20px;
+                transition: all 0.5s ease;
+
+                &.rotate-180 {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+}

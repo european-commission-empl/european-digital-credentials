@@ -1,0 +1,2442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<europassCredential
+        xmlns="http://data.europa.eu/snb"
+        xmlns:cred="http://data.europa.eu/europass/model/credentials/w3c#"
+        xsdVersion="0.8.0" cred:id="urn:credential:65c9ae40-02e6-47b4-b43f-c7b522bd6d61">
+    <type targetFrameworkUrl="http://data.europa.eu/europass/credentialType/"
+          uri="http://data.europa.eu/europass/credentialType/generic">
+        <targetName>
+            <text lang="en" content-type="text/plain">Generic</text>
+        </targetName>
+        <targetFrameworkName>
+            <text lang="en" content-type="text/plain">Europass Standard List of Credential Types</text>
+        </targetFrameworkName>
+    </type>
+    <cred:validFrom>2019-12-20T00:00:00+01:00</cred:validFrom>
+    <cred:issued>2020-06-17T16:31:28+02:00</cred:issued>
+    <cred:validUntil>2030-12-20T00:00:00+01:00</cred:validUntil>
+    <cred:issuer idref="urn:epass:org:1"/>
+    <title>
+        <text lang="en" content-type="text/plain">Witcher Supreme</text>
+    </title>
+    <description>
+        <text lang="en" content-type="text/plain">has completed the dangerous and intensive Witcher training.</text>
+    </description>
+    <credentialSubject id="urn:epass:person:1">
+        <nationalId schemeAgencyName="Åland Islands"
+                    spatialID="http://publications.europa.eu/resource/authority/country/ALA">Hex-1001
+        </nationalId>
+        <identifier schemeID="Hexen_ID_1">Hex-PimPam_01</identifier>
+        <identifier schemeID="Hexen_ID_2">Hex_PimPam_Pum_01</identifier>
+        <fullName>
+            <text lang="en" content-type="text/plain">Geralt of Rivia</text>
+        </fullName>
+        <givenNames>
+            <text lang="en" content-type="text/plain">Geralt</text>
+        </givenNames>
+        <familyName>
+            <text lang="en" content-type="text/plain">of Rivia</text>
+        </familyName>
+        <dateOfBirth>1299-01-01</dateOfBirth>
+        <placeOfBirth>
+            <id>urn:epass:location:4</id>
+            <spatialCode targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                         targetNotation="ALA" uri="http://publications.europa.eu/resource/authority/country/ALA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Åland Islands</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                </targetFrameworkName>
+            </spatialCode>
+        </placeOfBirth>
+        <gender targetFrameworkUrl="http://publications.europa.eu/resource/authority/human-sex" targetNotation="male"
+                uri="http://publications.europa.eu/resource/authority/human-sex/MALE">
+            <targetName>
+                <text lang="en" content-type="text/plain">male</text>
+            </targetName>
+            <targetFrameworkName>
+                <text lang="en" content-type="text/plain">Human Sex Named Authority List</text>
+            </targetFrameworkName>
+        </gender>
+        <contactPoint>
+            <address>
+                <fullAddress>
+                    <text lang="en" content-type="text/plain">Nobody knows where he lives.</text>
+                </fullAddress>
+                <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                         targetNotation="FRA" uri="http://publications.europa.eu/resource/authority/country/FRA">
+                    <targetName>
+                        <text lang="en" content-type="text/plain">France</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                    </targetFrameworkName>
+                </country>
+            </address>
+            <mailBox uri="mailto:jcastilq@everis.com"/>
+        </contactPoint>
+        <achievements>
+            <learningAchievement id="urn:epass:learningAchievement:1">
+                <identifier schemeID="Alternative Title">Hex-010101</identifier>
+                <title>
+                    <text lang="en" content-type="text/plain">Witcher FULL Achievement</text>
+                </title>
+                <description>
+                    <text lang="en" content-type="text/plain">This achievement covers story plot creation and how to
+                        make choices in storytelling in a fictional world.
+                    </text>
+                </description>
+                <wasDerivedFrom id="urn:epass:assessment:1">
+                    <identifier schemeID="Witchcraft_Canon_ID">10001-TOP-01</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Trial of the Grasses</text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Trial of the grasses or herbs was an incredibly
+                            painful trial to which young witcher apprentices were subjected. It required the consumption
+                            of special alchemical ingredients known as &quot;the grasses&quot; and affected the
+                            physiology of the subject.
+                        </text>
+                    </description>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">More_info_content</text>
+                        <subject>More_Info_title</subject>
+                    </additionalNote>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">More_info_content</text>
+                        <subject>Additional title</subject>
+                    </additionalNote>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">Even more info because we love details</text>
+                    </additionalNote>
+                    <grade>
+                        <textScore>99</textScore>
+                    </grade>
+                    <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                    <idVerificationMethod
+                            targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                            targetNotation="nosupid"
+                            uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                        <targetName>
+                            <text lang="en" content-type="text/plain">Unsupervised with ID Verification</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text lang="en" content-type="text/plain">Europass Standard List of Methods Of Supervision
+                                And ID Verification
+                            </text>
+                        </targetFrameworkName>
+                    </idVerificationMethod>
+                    <specifiedBy idref="urn:epass:asssessmentspec:1"/>
+                    <hasPart id="urn:epass:assessment:2">
+                        <identifier schemeID="Witchcraft_Canon_ID">10001-TOP-123-A</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Scavenger Hunt</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">Scavenger Hunt: Wolf School Gear is a treasure
+                                hunt in The Witcher 3: Wild Hunt and pertains to finding the diagrams for Wolf School
+                                Gear,
+                            </text>
+                        </description>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">More_info_content</text>
+                            <subject>More_Info_title</subject>
+                        </additionalNote>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">More_info_content</text>
+                            <subject>Additional title</subject>
+                        </additionalNote>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">Even more info because we love details</text>
+                        </additionalNote>
+                        <grade>
+                            <textScore>100%</textScore>
+                        </grade>
+                        <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                        <idVerificationMethod
+                                targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                targetNotation="supnoid"
+                                uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                            <targetName>
+                                <text lang="en" content-type="text/plain">Supervised without ID Verification</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text lang="en" content-type="text/plain">Europass Standard List of Methods Of
+                                    Supervision And ID Verification
+                                </text>
+                            </targetFrameworkName>
+                        </idVerificationMethod>
+                        <assessedBy idref="urn:epass:org:2"/>
+                        <specifiedBy idref="urn:epass:asssessmentspec:2"/>
+                        <hasPart id="urn:epass:assessment:3">
+                            <identifier schemeID="Witchcraft_Canon_ID">10001-SUB-123-A</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">The Eternal Battle</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">This battle can be rather annoying and
+                                    difficult: try not to be hasty, especially on Hard and Dark Mode. Limit yourself to
+                                    parrying all the coming blows and avoiding the Draugir's charges. Focus on one enemy
+                                    at a time. You can press Tw2 control alt to lock onto a target. Kill them one by one
+                                    and leave the Draugir until the end. Fortunately, they have relatively few hit
+                                    points each, so it only takes a few blows for them to go down. Another way of
+                                    killing the soldier wraiths is forcing them into the ring of fire that surrounds the
+                                    battle area, once the soldier wraiths flail about when set on fire they will
+                                    probably burn to death without further interference. Use the riposte ability against
+                                    the Draugir to kill it, it can also be set on fire but is more resistant and will
+                                    continue to attack regardless.
+                                </text>
+                            </description>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                <subject>More_Info_title</subject>
+                            </additionalNote>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                <subject>Additional title</subject>
+                            </additionalNote>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">Even more info because we love details</text>
+                            </additionalNote>
+                            <grade>
+                                <textScore>75 pt</textScore>
+                            </grade>
+                            <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                            <idVerificationMethod
+                                    targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                    targetNotation="nosupid"
+                                    uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                <targetName>
+                                    <text lang="en" content-type="text/plain">Unsupervised with ID Verification</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text lang="en" content-type="text/plain">Europass Standard List of Methods Of
+                                        Supervision And ID Verification
+                                    </text>
+                                </targetFrameworkName>
+                            </idVerificationMethod>
+                            <assessedBy idref="urn:epass:org:2"/>
+                            <assessedBy idref="urn:epass:org:2"/>
+                            <specifiedBy idref="urn:epass:asssessmentspec:3"/>
+                        </hasPart>
+                    </hasPart>
+
+                </wasDerivedFrom>
+                <wasInfluencedBy id="urn:epass:activity:2">
+                    <identifier schemeID="Witch_Act_Syllabus">5550/03</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Combat</text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Attacking is one of the main things Witcher does A
+                            LOT. Whether he or she defends the honour of a damsel in distress, or just defends
+                            himself/herself from monsters, it is a good thing his/her swords are on his/her back at all
+                            times. He/Sheis usually called upon with no notice to draw steel, or silver, on the daily
+                            Path.
+                        </text>
+                    </description>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                    </additionalNote>
+                    <workload>PT25H</workload>
+                    <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                    <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                    <directedBy idref="urn:epass:org:1"/>
+                    <location>
+                        <id>urn:epass:location:6</id>
+                        <name>
+                            <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                        </name>
+                        <hasAddress>
+                            <fullAddress>
+                                <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer a'Muirehen,
+                                    meaning Keep of the Elder Sea) is an old keep where witchers used to be trained.
+                                </text>
+                            </fullAddress>
+                            <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                     targetNotation="ALA"
+                                     uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                <targetName>
+                                    <text lang="en" content-type="text/plain">Åland Islands</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                </targetFrameworkName>
+                            </country>
+                        </hasAddress>
+                    </location>
+                    <specifiedBy idref="urn:epass:learningactivityspec:2"/>
+                    <hasPart id="urn:epass:activity:3">
+                        <identifier schemeID="Witch_Act_Syllabus">5550/01</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Swordsmanship</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">Swordsmanship or sword fighting refers to the
+                                skills of a swordsman, a person versed in the art of the sword. The term is modern, and
+                                as such was mainly used to refer to smallsword fencing, but by extension it can also be
+                                applied to any martial art involving the use of a sword.
+                            </text>
+                        </description>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                        </additionalNote>
+                        <workload>PT25H</workload>
+                        <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                        <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                        <directedBy idref="urn:epass:org:1"/>
+                        <location>
+                            <id>urn:epass:location:7</id>
+                            <name>
+                                <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                            </name>
+                            <hasAddress>
+                                <fullAddress>
+                                    <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer
+                                        a'Muirehen, meaning Keep of the Elder Sea) is an old keep where witchers used to
+                                        be trained.
+                                    </text>
+                                </fullAddress>
+                                <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                         targetNotation="ALA"
+                                         uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                    <targetName>
+                                        <text lang="en" content-type="text/plain">Åland Islands</text>
+                                    </targetName>
+                                    <targetFrameworkName>
+                                        <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                    </targetFrameworkName>
+                                </country>
+                            </hasAddress>
+                        </location>
+                        <specifiedBy idref="urn:epass:learningactivityspec:3"/>
+                        <hasPart id="urn:epass:activity:4">
+                            <identifier schemeID="Witch_Act_Syllabus">5550/04</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">Raven's armor forgery</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">The highest quality iron ores and state of the
+                                    art technologies were used in the making of Raven's armor, a legendary suit of armor
+                                    worn by an even more legendary warrior. It was forged in the gnomes' workshops
+                                    beneath Mount Carbon, but finished by elves. The songmaster Tyen'sail took an
+                                    interest in the armor and worked for twelve days straight, each movement of his
+                                    chisel accompanied by a song of power. It is said that the armor sang a song of
+                                    victory for its wearer providing him with confidence and calm during battle.
+                                </text>
+                            </description>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                            </additionalNote>
+                            <workload>PT35H</workload>
+                            <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                            <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                            <directedBy idref="urn:epass:org:1"/>
+                            <location>
+                                <id>urn:epass:location:8</id>
+                                <name>
+                                    <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                                </name>
+                                <hasAddress>
+                                    <fullAddress>
+                                        <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer
+                                            a'Muirehen, meaning Keep of the Elder Sea) is an old keep where witchers
+                                            used to be trained.
+                                        </text>
+                                    </fullAddress>
+                                    <country
+                                            targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                            targetNotation="ALA"
+                                            uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                        <targetName>
+                                            <text lang="en" content-type="text/plain">Åland Islands</text>
+                                        </targetName>
+                                        <targetFrameworkName>
+                                            <text lang="en" content-type="text/plain">Countries Named Authority List
+                                            </text>
+                                        </targetFrameworkName>
+                                    </country>
+                                </hasAddress>
+                            </location>
+                            <specifiedBy idref="urn:epass:learningactivityspec:4"/>
+                        </hasPart>
+                    </hasPart>
+                    <hasPart id="urn:epass:activity:5">
+                        <identifier schemeID="Witch_Act_Syllabus">5550/05</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Sign Workshops</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">Though they are not warrior mages who employ
+                                powerful magic, witchers can cast simple magic spells that can prove effective when used
+                                properly. Witchers call these spells Signs and usually use them against monsters, though
+                                they also have non-combat applications. Because of the Signs, witchers prefer
+                                single-handed weaponry since it leaves their other hand free to cast. Some of the Signs
+                                are casted by arranging the fingers in specific way, while the other have to be drawn on
+                                a solid surface.
+                                It is possible to make the Sign more powerful by enforcing it with the spell
+                            </text>
+                        </description>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                        </additionalNote>
+                        <workload>PT11H</workload>
+                        <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                        <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                        <directedBy idref="urn:epass:org:1"/>
+                        <location>
+                            <id>urn:epass:location:9</id>
+                            <name>
+                                <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                            </name>
+                            <hasAddress>
+                                <fullAddress>
+                                    <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer
+                                        a'Muirehen, meaning Keep of the Elder Sea) is an old keep where witchers used to
+                                        be trained.
+                                    </text>
+                                </fullAddress>
+                                <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                         targetNotation="ALA"
+                                         uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                    <targetName>
+                                        <text lang="en" content-type="text/plain">Åland Islands</text>
+                                    </targetName>
+                                    <targetFrameworkName>
+                                        <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                    </targetFrameworkName>
+                                </country>
+                            </hasAddress>
+                        </location>
+                        <specifiedBy idref="urn:epass:learningactivityspec:5"/>
+                    </hasPart>
+                </wasInfluencedBy>
+                <wasAwardedBy idref="urn:epass:awardingProcess:1"/>
+                <hasPart>
+                    <learningAchievement id="urn:epass:learningAchievement:2">
+                        <identifier schemeID="Alternative Title">Wild Hunter</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">The Path Wanderer + more</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">The Path is a term witchers use to describe
+                                traveling the various parts of the world hunting down monsters. Witchers travel the
+                                Continent looking for contracts to fulfill, there is no stated limit to what constitutes
+                                a contract; a witcher could be tasked with killing a werewolf, eliminating a nest of
+                                drowners, or investigating the mysterious deaths of people at the hand of a potential
+                                monster. Towards the onset of winter, witchers reconvene at their respective keeps to
+                                wait out the cold season. Vesemir from the School of the Wolf states that wintering at
+                                the witchers' keeps is usually done by witchers who have been unable to integrate into
+                                society.
+                            </text>
+                        </description>
+                        <wasDerivedFrom id="urn:epass:assessment:2">
+                            <identifier schemeID="Witchcraft_Canon_ID">10001-TOP-123-A</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">Scavenger Hunt</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">Scavenger Hunt: Wolf School Gear is a treasure
+                                    hunt in The Witcher 3: Wild Hunt and pertains to finding the diagrams for Wolf
+                                    School Gear,
+                                </text>
+                            </description>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                <subject>More_Info_title</subject>
+                            </additionalNote>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                <subject>Additional title</subject>
+                            </additionalNote>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">Even more info because we love details</text>
+                            </additionalNote>
+                            <grade>
+                                <textScore>100%</textScore>
+                            </grade>
+                            <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                            <idVerificationMethod
+                                    targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                    targetNotation="supnoid"
+                                    uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                <targetName>
+                                    <text lang="en" content-type="text/plain">Supervised without ID Verification</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text lang="en" content-type="text/plain">Europass Standard List of Methods Of
+                                        Supervision And ID Verification
+                                    </text>
+                                </targetFrameworkName>
+                            </idVerificationMethod>
+                            <assessedBy idref="urn:epass:org:2"/>
+                            <specifiedBy idref="urn:epass:asssessmentspec:2"/>
+                            <hasPart id="urn:epass:assessment:3">
+                                <identifier schemeID="Witchcraft_Canon_ID">10001-SUB-123-A</identifier>
+                                <title>
+                                    <text lang="en" content-type="text/plain">The Eternal Battle</text>
+                                </title>
+                                <description>
+                                    <text lang="en" content-type="text/plain">This battle can be rather annoying and
+                                        difficult: try not to be hasty, especially on Hard and Dark Mode. Limit yourself
+                                        to parrying all the coming blows and avoiding the Draugir's charges. Focus on
+                                        one enemy at a time. You can press Tw2 control alt to lock onto a target. Kill
+                                        them one by one and leave the Draugir until the end. Fortunately, they have
+                                        relatively few hit points each, so it only takes a few blows for them to go
+                                        down. Another way of killing the soldier wraiths is forcing them into the ring
+                                        of fire that surrounds the battle area, once the soldier wraiths flail about
+                                        when set on fire they will probably burn to death without further interference.
+                                        Use the riposte ability against the Draugir to kill it, it can also be set on
+                                        fire but is more resistant and will continue to attack regardless.
+                                    </text>
+                                </description>
+                                <additionalNote>
+                                    <text lang="en" content-type="text/plain">More_info_content</text>
+                                    <subject>More_Info_title</subject>
+                                </additionalNote>
+                                <additionalNote>
+                                    <text lang="en" content-type="text/plain">More_info_content</text>
+                                    <subject>Additional title</subject>
+                                </additionalNote>
+                                <additionalNote>
+                                    <text lang="en" content-type="text/plain">Even more info because we love details
+                                    </text>
+                                </additionalNote>
+                                <grade>
+                                    <textScore>75 pt</textScore>
+                                </grade>
+                                <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                                <idVerificationMethod
+                                        targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                        targetNotation="nosupid"
+                                        uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                    <targetName>
+                                        <text lang="en" content-type="text/plain">Unsupervised with ID Verification
+                                        </text>
+                                    </targetName>
+                                    <targetFrameworkName>
+                                        <text lang="en" content-type="text/plain">Europass Standard List of Methods Of
+                                            Supervision And ID Verification
+                                        </text>
+                                    </targetFrameworkName>
+                                </idVerificationMethod>
+                                <assessedBy idref="urn:epass:org:2"/>
+                                <specifiedBy idref="urn:epass:asssessmentspec:3"/>
+                            </hasPart>
+                        </wasDerivedFrom>
+                        <wasInfluencedBy id="urn:epass:activity:1">
+                            <identifier schemeID="Witch_Act_Syllabus">5550/02</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">Alchemy Labs</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">Mixtures (potions, oils and bombs) are created
+                                    by combining selected ingredients, which include herbs, monster parts and minerals,
+                                    with a medium, referred to as a base. The base determines the type of mixture to be
+                                    created. Alcohol is the base for potions, grease is used for oils, and black powder
+                                    serves as the base for making bombs.
+                                </text>
+                            </description>
+                            <additionalNote>
+                                <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                            </additionalNote>
+                            <workload>PT35H</workload>
+                            <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                            <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                            <directedBy idref="urn:epass:org:1"/>
+                            <location>
+                                <id>urn:epass:location:5</id>
+                                <name>
+                                    <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                                </name>
+                                <hasAddress>
+                                    <fullAddress>
+                                        <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer
+                                            a'Muirehen, meaning Keep of the Elder Sea) is an old keep where witchers
+                                            used to be trained.
+                                        </text>
+                                    </fullAddress>
+                                    <country
+                                            targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                            targetNotation="ALA"
+                                            uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                        <targetName>
+                                            <text lang="en" content-type="text/plain">Åland Islands</text>
+                                        </targetName>
+                                        <targetFrameworkName>
+                                            <text lang="en" content-type="text/plain">Countries Named Authority List
+                                            </text>
+                                        </targetFrameworkName>
+                                    </country>
+                                </hasAddress>
+                            </location>
+                            <specifiedBy idref="urn:epass:learningactivityspec:1"/>
+                        </wasInfluencedBy>
+                        <wasAwardedBy idref="urn:epass:awardingProcess:2"/>
+                        <hasPart>
+                            <learningAchievement id="urn:epass:learningAchievement:3">
+                                <identifier schemeID="Alternative Title">Chrzest ognia</identifier>
+                                <title>
+                                    <text lang="en" content-type="text/plain">Baptism of fire</text>
+                                </title>
+                                <description>
+                                    <text lang="en" content-type="text/plain">Through these fields of destruction
+                                        Baptisms of fire
+                                        I've witnessed your suffering
+                                        As the battle raged higher
+                                        And though they did hurt me so bad
+                                        In the fear and alarm
+                                        You did not desert me
+                                        My brothers in arms
+                                    </text>
+                                </description>
+                                <wasDerivedFrom id="urn:epass:assessment:1">
+                                    <identifier schemeID="Witchcraft_Canon_ID">10001-TOP-01</identifier>
+                                    <title>
+                                        <text lang="en" content-type="text/plain">Trial of the Grasses</text>
+                                    </title>
+                                    <description>
+                                        <text lang="en" content-type="text/plain">Trial of the grasses or herbs was an
+                                            incredibly painful trial to which young witcher apprentices were subjected.
+                                            It required the consumption of special alchemical ingredients known as
+                                            &quot;the grasses&quot; and affected the physiology of the subject.
+                                        </text>
+                                    </description>
+                                    <additionalNote>
+                                        <text lang="en" content-type="text/plain">More_info_content</text>
+                                        <subject>More_Info_title</subject>
+                                    </additionalNote>
+                                    <additionalNote>
+                                        <text lang="en" content-type="text/plain">More_info_content</text>
+                                        <subject>Additional title</subject>
+                                    </additionalNote>
+                                    <additionalNote>
+                                        <text lang="en" content-type="text/plain">Even more info because we love
+                                            details
+                                        </text>
+                                    </additionalNote>
+                                    <grade>
+                                        <textScore>99</textScore>
+                                    </grade>
+                                    <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                                    <idVerificationMethod
+                                            targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                            targetNotation="nosupid"
+                                            uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                        <targetName>
+                                            <text lang="en" content-type="text/plain">Unsupervised with ID
+                                                Verification
+                                            </text>
+                                        </targetName>
+                                        <targetFrameworkName>
+                                            <text lang="en" content-type="text/plain">Europass Standard List of Methods
+                                                Of Supervision And ID Verification
+                                            </text>
+                                        </targetFrameworkName>
+                                    </idVerificationMethod>
+                                    <specifiedBy idref="urn:epass:asssessmentspec:1"/>
+                                    <hasPart id="urn:epass:assessment:2">
+                                        <identifier schemeID="Witchcraft_Canon_ID">10001-TOP-123-A</identifier>
+                                        <title>
+                                            <text lang="en" content-type="text/plain">Scavenger Hunt</text>
+                                        </title>
+                                        <description>
+                                            <text lang="en" content-type="text/plain">Scavenger Hunt: Wolf School Gear
+                                                is a treasure hunt in The Witcher 3: Wild Hunt and pertains to finding
+                                                the diagrams for Wolf School Gear,
+                                            </text>
+                                        </description>
+                                        <additionalNote>
+                                            <text lang="en" content-type="text/plain">More_info_content</text>
+                                            <subject>More_Info_title</subject>
+                                        </additionalNote>
+                                        <additionalNote>
+                                            <text lang="en" content-type="text/plain">More_info_content</text>
+                                            <subject>Additional title</subject>
+                                        </additionalNote>
+                                        <additionalNote>
+                                            <text lang="en" content-type="text/plain">Even more info because we love
+                                                details
+                                            </text>
+                                        </additionalNote>
+                                        <grade>
+                                            <textScore>100%</textScore>
+                                        </grade>
+                                        <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                                        <idVerificationMethod
+                                                targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                                targetNotation="supnoid"
+                                                uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                            <targetName>
+                                                <text lang="en" content-type="text/plain">Supervised without ID
+                                                    Verification
+                                                </text>
+                                            </targetName>
+                                            <targetFrameworkName>
+                                                <text lang="en" content-type="text/plain">Europass Standard List of
+                                                    Methods Of Supervision And ID Verification
+                                                </text>
+                                            </targetFrameworkName>
+                                        </idVerificationMethod>
+                                        <assessedBy idref="urn:epass:org:2"/>
+                                        <specifiedBy idref="urn:epass:asssessmentspec:2"/>
+                                        <hasPart id="urn:epass:assessment:3">
+                                            <identifier schemeID="Witchcraft_Canon_ID">10001-SUB-123-A</identifier>
+                                            <title>
+                                                <text lang="en" content-type="text/plain">The Eternal Battle</text>
+                                            </title>
+                                            <description>
+                                                <text lang="en" content-type="text/plain">This battle can be rather
+                                                    annoying and difficult: try not to be hasty, especially on Hard and
+                                                    Dark Mode. Limit yourself to parrying all the coming blows and
+                                                    avoiding the Draugir's charges. Focus on one enemy at a time. You
+                                                    can press Tw2 control alt to lock onto a target. Kill them one by
+                                                    one and leave the Draugir until the end. Fortunately, they have
+                                                    relatively few hit points each, so it only takes a few blows for
+                                                    them to go down. Another way of killing the soldier wraiths is
+                                                    forcing them into the ring of fire that surrounds the battle area,
+                                                    once the soldier wraiths flail about when set on fire they will
+                                                    probably burn to death without further interference. Use the riposte
+                                                    ability against the Draugir to kill it, it can also be set on fire
+                                                    but is more resistant and will continue to attack regardless.
+                                                </text>
+                                            </description>
+                                            <additionalNote>
+                                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                                <subject>More_Info_title</subject>
+                                            </additionalNote>
+                                            <additionalNote>
+                                                <text lang="en" content-type="text/plain">More_info_content</text>
+                                                <subject>Additional title</subject>
+                                            </additionalNote>
+                                            <additionalNote>
+                                                <text lang="en" content-type="text/plain">Even more info because we love
+                                                    details
+                                                </text>
+                                            </additionalNote>
+                                            <grade>
+                                                <textScore>75 pt</textScore>
+                                            </grade>
+                                            <issuedDate>2019-11-11T00:00:00+01:00</issuedDate>
+                                            <idVerificationMethod
+                                                    targetFrameworkUrl="http://data.europa.eu/europass/methodOfSupervisionAndVerification"
+                                                    targetNotation="nosupid"
+                                                    uri="http://data.europa.eu/europass/methodOfSupervisionAndVerification/idVerification">
+                                                <targetName>
+                                                    <text lang="en" content-type="text/plain">Unsupervised with ID
+                                                        Verification
+                                                    </text>
+                                                </targetName>
+                                                <targetFrameworkName>
+                                                    <text lang="en" content-type="text/plain">Europass Standard List of
+                                                        Methods Of Supervision And ID Verification
+                                                    </text>
+                                                </targetFrameworkName>
+                                            </idVerificationMethod>
+                                            <assessedBy idref="urn:epass:org:2"/>
+                                            <specifiedBy idref="urn:epass:asssessmentspec:3"/>
+                                        </hasPart>
+                                    </hasPart>
+                                </wasDerivedFrom>
+                                <wasInfluencedBy id="urn:epass:activity:5">
+                                    <identifier schemeID="Witch_Act_Syllabus">5550/05</identifier>
+                                    <title>
+                                        <text lang="en" content-type="text/plain">Sign Workshops</text>
+                                    </title>
+                                    <description>
+                                        <text lang="en" content-type="text/plain">Though they are not warrior mages who
+                                            employ powerful magic, witchers can cast simple magic spells that can prove
+                                            effective when used properly. Witchers call these spells Signs and usually
+                                            use them against monsters, though they also have non-combat applications.
+                                            Because of the Signs, witchers prefer single-handed weaponry since it leaves
+                                            their other hand free to cast. Some of the Signs are casted by arranging the
+                                            fingers in specific way, while the other have to be drawn on a solid
+                                            surface.
+                                            It is possible to make the Sign more powerful by enforcing it with the spell
+                                        </text>
+                                    </description>
+                                    <additionalNote>
+                                        <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                                    </additionalNote>
+                                    <workload>PT11H</workload>
+                                    <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                                    <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                                    <directedBy idref="urn:epass:org:1"/>
+                                    <location>
+                                        <id>urn:epass:location:9</id>
+                                        <name>
+                                            <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                                        </name>
+                                        <hasAddress>
+                                            <fullAddress>
+                                                <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech:
+                                                    Caer a'Muirehen, meaning Keep of the Elder Sea) is an old keep where
+                                                    witchers used to be trained.
+                                                </text>
+                                            </fullAddress>
+                                            <country
+                                                    targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                                    targetNotation="ALA"
+                                                    uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                                <targetName>
+                                                    <text lang="en" content-type="text/plain">Åland Islands</text>
+                                                </targetName>
+                                                <targetFrameworkName>
+                                                    <text lang="en" content-type="text/plain">Countries Named Authority
+                                                        List
+                                                    </text>
+                                                </targetFrameworkName>
+                                            </country>
+                                        </hasAddress>
+                                    </location>
+                                    <specifiedBy idref="urn:epass:learningactivityspec:5"/>
+                                </wasInfluencedBy>
+                                <wasAwardedBy idref="urn:epass:awardingProcess:3"/>
+                                <entitlesTo id="urn:epass:entitlement:4">
+                                    <identifier schemeID="WITCH_CANON_REG">ID4</identifier>
+                                    <title>
+                                        <text lang="en" content-type="text/plain">Sorcery</text>
+                                    </title>
+                                    <description>
+                                        <text lang="en" content-type="text/plain">A mage, also sometimes called wizard,
+                                            sorcerer, or sorceress, is a person skilled and educated in the use of
+                                            magic. Only rare individuals have the potential to become mages and many of
+                                            those with this potential are doomed to madness. Unless the individual in
+                                            question - known as a source - learns to control their power quickly, he or
+                                            she may end up a half-insane, slobbering oracle. That is why schools of
+                                            sorcery were created, where talented children study for many years,
+                                            acquiring knowledge and mastering magical skills. Because of their powers,
+                                            mages age more slowly than ordinary people.
+                                        </text>
+                                    </description>
+                                    <issuedDate>2019-10-20</issuedDate>
+                                    <expiryDate>2032-10-20</expiryDate>
+                                    <specifiedBy idref="urn:epass:entitlementspec:4"/>
+                                </entitlesTo>
+                                <specifiedBy idref="urn:epass:qualification:1"/>
+                            </learningAchievement>
+                        </hasPart>
+
+                        <entitlesTo id="urn:epass:entitlement:2">
+                            <identifier schemeID="WITCH_CANON_REG">ID3</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">Dragon Hunt</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">Few truly know what a dragon looks like, for
+                                    those who have seen one up-close rarely have a chance to share their impressions.
+                                    That is why people are forever mistaking other monsters for dragons. This was the
+                                    case in Fyresdal, where the so-called dragon wreaking havoc turned out to be a
+                                    forktail.
+                                </text>
+                            </description>
+                            <issuedDate>2019-10-20</issuedDate>
+                            <expiryDate>2032-10-20</expiryDate>
+                            <specifiedBy idref="urn:epass:entitlementspec:2"/>
+                            <hasPart id="urn:epass:entitlement:3">
+                                <identifier schemeID="WITCH_CANON_REG">ID2</identifier>
+                                <title>
+                                    <text lang="en" content-type="text/plain">Potion Creation and Manipulation</text>
+                                </title>
+                                <description>
+                                    <text lang="en" content-type="text/plain">Potions are used throughout the game.
+                                        There are the so-called &quot;normal&quot; potions, mutagenic potions and a few
+                                        others. They can be used to increase the regeneration rate of character
+                                        statistics like vitality and endurance, or they can be used to temporarily
+                                        increase the base amount of those same statistics. They can also be used to
+                                        nullify effects like toxicity or drunkenness, or to see in the dark.
+                                    </text>
+                                </description>
+                                <issuedDate>2019-10-20</issuedDate>
+                                <expiryDate>2032-10-20</expiryDate>
+                                <specifiedBy idref="urn:epass:entitlementspec:3"/>
+                            </hasPart>
+                        </entitlesTo>
+                        <specifiedBy idref="urn:epass:qualification:2"/>
+                    </learningAchievement>
+                </hasPart>
+                <entitlesTo id="urn:epass:entitlement:1">
+                    <identifier schemeID="WITCH_CANON_REG">ID1</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Monster Slaying
+                        </text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Killing all kind of monsters: trolls, ghouls,
+                            bersekers, golems, friffins, bears, basilisks, succubus and many more.
+                        </text>
+                    </description>
+                    <issuedDate>2019-10-20</issuedDate>
+                    <expiryDate>2032-10-20</expiryDate>
+                    <specifiedBy idref="urn:epass:entitlementspec:1"/>
+                    <hasPart id="urn:epass:entitlement:2">
+                        <identifier schemeID="WITCH_CANON_REG">ID3</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Dragon Hunt</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">Few truly know what a dragon looks like, for those
+                                who have seen one up-close rarely have a chance to share their impressions. That is why
+                                people are forever mistaking other monsters for dragons. This was the case in Fyresdal,
+                                where the so-called dragon wreaking havoc turned out to be a forktail.
+                            </text>
+                        </description>
+                        <issuedDate>2019-10-20</issuedDate>
+                        <expiryDate>2032-10-20</expiryDate>
+                        <specifiedBy idref="urn:epass:entitlementspec:2"/>
+                        <hasPart id="urn:epass:entitlement:3">
+                            <identifier schemeID="WITCH_CANON_REG">ID2</identifier>
+                            <title>
+                                <text lang="en" content-type="text/plain">Potion Creation and Manipulation</text>
+                            </title>
+                            <description>
+                                <text lang="en" content-type="text/plain">Potions are used throughout the game. There
+                                    are the so-called &quot;normal&quot; potions, mutagenic potions and a few others.
+                                    They can be used to increase the regeneration rate of character statistics like
+                                    vitality and endurance, or they can be used to temporarily increase the base amount
+                                    of those same statistics. They can also be used to nullify effects like toxicity or
+                                    drunkenness, or to see in the dark.
+                                </text>
+                            </description>
+                            <issuedDate>2019-10-20</issuedDate>
+                            <expiryDate>2032-10-20</expiryDate>
+                            <specifiedBy idref="urn:epass:entitlementspec:3"/>
+                        </hasPart>
+                    </hasPart>
+                </entitlesTo>
+
+                <specifiedBy idref="urn:epass:qualification:3"/>
+            </learningAchievement>
+        </achievements>
+        <activities>
+            <activity id="urn:epass:activity:1">
+                <identifier schemeID="Witch_Act_Syllabus">5550/02</identifier>
+                <title>
+                    <text lang="en" content-type="text/plain">Alchemy Labs</text>
+                </title>
+                <description>
+                    <text lang="en" content-type="text/plain">Mixtures (potions, oils and bombs) are created by
+                        combining selected ingredients, which include herbs, monster parts and minerals, with a medium,
+                        referred to as a base. The base determines the type of mixture to be created. Alcohol is the
+                        base for potions, grease is used for oils, and black powder serves as the base for making bombs.
+                    </text>
+                </description>
+                <additionalNote>
+                    <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                </additionalNote>
+                <workload>PT35H</workload>
+                <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                <directedBy idref="urn:epass:org:1"/>
+                <location>
+                    <id>urn:epass:location:5</id>
+                    <name>
+                        <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                    </name>
+                    <hasAddress>
+                        <fullAddress>
+                            <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer a'Muirehen,
+                                meaning Keep of the Elder Sea) is an old keep where witchers used to be trained.
+                            </text>
+                        </fullAddress>
+                        <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                 targetNotation="ALA"
+                                 uri="http://publications.europa.eu/resource/authority/country/ALA">
+                            <targetName>
+                                <text lang="en" content-type="text/plain">Åland Islands</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                            </targetFrameworkName>
+                        </country>
+                    </hasAddress>
+                </location>
+                <specifiedBy idref="urn:epass:learningactivityspec:1"/>
+            </activity>
+            <activity id="urn:epass:activity:2">
+                <identifier schemeID="Witch_Act_Syllabus">5550/03</identifier>
+                <title>
+                    <text lang="en" content-type="text/plain">Combat</text>
+                </title>
+                <description>
+                    <text lang="en" content-type="text/plain">Attacking is one of the main things Witcher does A LOT.
+                        Whether he or she defends the honour of a damsel in distress, or just defends himself/herself
+                        from monsters, it is a good thing his/her swords are on his/her back at all times. He/Sheis
+                        usually called upon with no notice to draw steel, or silver, on the daily Path.
+                    </text>
+                </description>
+                <additionalNote>
+                    <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                </additionalNote>
+                <workload>PT25H</workload>
+                <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                <directedBy idref="urn:epass:org:1"/>
+                <location>
+                    <id>urn:epass:location:6</id>
+                    <name>
+                        <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                    </name>
+                    <hasAddress>
+                        <fullAddress>
+                            <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer a'Muirehen,
+                                meaning Keep of the Elder Sea) is an old keep where witchers used to be trained.
+                            </text>
+                        </fullAddress>
+                        <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                 targetNotation="ALA"
+                                 uri="http://publications.europa.eu/resource/authority/country/ALA">
+                            <targetName>
+                                <text lang="en" content-type="text/plain">Åland Islands</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                            </targetFrameworkName>
+                        </country>
+                    </hasAddress>
+                </location>
+                <specifiedBy idref="urn:epass:learningactivityspec:2"/>
+                <hasPart id="urn:epass:activity:3">
+                    <identifier schemeID="Witch_Act_Syllabus">5550/01</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Swordsmanship</text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Swordsmanship or sword fighting refers to the skills
+                            of a swordsman, a person versed in the art of the sword. The term is modern, and as such was
+                            mainly used to refer to smallsword fencing, but by extension it can also be applied to any
+                            martial art involving the use of a sword.
+                        </text>
+                    </description>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                    </additionalNote>
+                    <workload>PT25H</workload>
+                    <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                    <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                    <directedBy idref="urn:epass:org:1"/>
+                    <location>
+                        <id>urn:epass:location:7</id>
+                        <name>
+                            <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                        </name>
+                        <hasAddress>
+                            <fullAddress>
+                                <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer a'Muirehen,
+                                    meaning Keep of the Elder Sea) is an old keep where witchers used to be trained.
+                                </text>
+                            </fullAddress>
+                            <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                     targetNotation="ALA"
+                                     uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                <targetName>
+                                    <text lang="en" content-type="text/plain">Åland Islands</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                </targetFrameworkName>
+                            </country>
+                        </hasAddress>
+                    </location>
+                    <specifiedBy idref="urn:epass:learningactivityspec:3"/>
+                    <hasPart id="urn:epass:activity:4">
+                        <identifier schemeID="Witch_Act_Syllabus">5550/04</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Raven's armor forgery</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">The highest quality iron ores and state of the art
+                                technologies were used in the making of Raven's armor, a legendary suit of armor worn by
+                                an even more legendary warrior. It was forged in the gnomes' workshops beneath Mount
+                                Carbon, but finished by elves. The songmaster Tyen'sail took an interest in the armor
+                                and worked for twelve days straight, each movement of his chisel accompanied by a song
+                                of power. It is said that the armor sang a song of victory for its wearer providing him
+                                with confidence and calm during battle.
+                            </text>
+                        </description>
+                        <additionalNote>
+                            <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                        </additionalNote>
+                        <workload>PT35H</workload>
+                        <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                        <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                        <directedBy idref="urn:epass:org:1"/>
+                        <location>
+                            <id>urn:epass:location:8</id>
+                            <name>
+                                <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                            </name>
+                            <hasAddress>
+                                <fullAddress>
+                                    <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer
+                                        a'Muirehen, meaning Keep of the Elder Sea) is an old keep where witchers used to
+                                        be trained.
+                                    </text>
+                                </fullAddress>
+                                <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                         targetNotation="ALA"
+                                         uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                    <targetName>
+                                        <text lang="en" content-type="text/plain">Åland Islands</text>
+                                    </targetName>
+                                    <targetFrameworkName>
+                                        <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                    </targetFrameworkName>
+                                </country>
+                            </hasAddress>
+                        </location>
+                        <specifiedBy idref="urn:epass:learningactivityspec:4"/>
+                    </hasPart>
+                </hasPart>
+                <hasPart id="urn:epass:activity:5">
+                    <identifier schemeID="Witch_Act_Syllabus">5550/05</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Sign Workshops</text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Though they are not warrior mages who employ powerful
+                            magic, witchers can cast simple magic spells that can prove effective when used properly.
+                            Witchers call these spells Signs and usually use them against monsters, though they also
+                            have non-combat applications. Because of the Signs, witchers prefer single-handed weaponry
+                            since it leaves their other hand free to cast. Some of the Signs are casted by arranging the
+                            fingers in specific way, while the other have to be drawn on a solid surface.
+                            It is possible to make the Sign more powerful by enforcing it with the spell
+                        </text>
+                    </description>
+                    <additionalNote>
+                        <text lang="en" content-type="text/plain">Witch_club_approved</text>
+                    </additionalNote>
+                    <workload>PT11H</workload>
+                    <startedAtTime>2019-01-01T00:00:00+01:00</startedAtTime>
+                    <endedAtTime>2019-12-20T00:00:00+01:00</endedAtTime>
+                    <directedBy idref="urn:epass:org:1"/>
+                    <location>
+                        <id>urn:epass:location:9</id>
+                        <name>
+                            <text lang="en" content-type="text/plain">Kaer Morhen</text>
+                        </name>
+                        <hasAddress>
+                            <fullAddress>
+                                <text lang="en" content-type="text/plain">Kaer Morhen (Elder Speech: Caer a'Muirehen,
+                                    meaning Keep of the Elder Sea) is an old keep where witchers used to be trained.
+                                </text>
+                            </fullAddress>
+                            <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                                     targetNotation="ALA"
+                                     uri="http://publications.europa.eu/resource/authority/country/ALA">
+                                <targetName>
+                                    <text lang="en" content-type="text/plain">Åland Islands</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                                </targetFrameworkName>
+                            </country>
+                        </hasAddress>
+                    </location>
+                    <specifiedBy idref="urn:epass:learningactivityspec:5"/>
+                </hasPart>
+            </activity>
+        </activities>
+        <entitlements>
+            <entitlement id="urn:epass:entitlement:1">
+                <identifier schemeID="WITCH_CANON_REG">ID1</identifier>
+                <title>
+                    <text lang="en" content-type="text/plain">Monster Slaying
+                    </text>
+                </title>
+                <description>
+                    <text lang="en" content-type="text/plain">Killing all kind of monsters: trolls, ghouls, bersekers,
+                        golems, friffins, bears, basilisks, succubus and many more.
+                    </text>
+                </description>
+                <issuedDate>2019-10-20</issuedDate>
+                <expiryDate>2032-10-20</expiryDate>
+                <specifiedBy idref="urn:epass:entitlementspec:1"/>
+                <hasPart id="urn:epass:entitlement:2">
+                    <identifier schemeID="WITCH_CANON_REG">ID3</identifier>
+                    <title>
+                        <text lang="en" content-type="text/plain">Dragon Hunt</text>
+                    </title>
+                    <description>
+                        <text lang="en" content-type="text/plain">Few truly know what a dragon looks like, for those who
+                            have seen one up-close rarely have a chance to share their impressions. That is why people
+                            are forever mistaking other monsters for dragons. This was the case in Fyresdal, where the
+                            so-called dragon wreaking havoc turned out to be a forktail.
+                        </text>
+                    </description>
+                    <issuedDate>2019-10-20</issuedDate>
+                    <expiryDate>2032-10-20</expiryDate>
+                    <specifiedBy idref="urn:epass:entitlementspec:2"/>
+                    <hasPart id="urn:epass:entitlement:3">
+                        <identifier schemeID="WITCH_CANON_REG">ID2</identifier>
+                        <title>
+                            <text lang="en" content-type="text/plain">Potion Creation and Manipulation</text>
+                        </title>
+                        <description>
+                            <text lang="en" content-type="text/plain">Potions are used throughout the game. There are
+                                the so-called &quot;normal&quot; potions, mutagenic potions and a few others. They can
+                                be used to increase the regeneration rate of character statistics like vitality and
+                                endurance, or they can be used to temporarily increase the base amount of those same
+                                statistics. They can also be used to nullify effects like toxicity or drunkenness, or to
+                                see in the dark.
+                            </text>
+                        </description>
+                        <issuedDate>2019-10-20</issuedDate>
+                        <expiryDate>2032-10-20</expiryDate>
+                        <specifiedBy idref="urn:epass:entitlementspec:3"/>
+                    </hasPart>
+                </hasPart>
+            </entitlement>
+            <entitlement id="urn:epass:entitlement:4">
+                <identifier schemeID="WITCH_CANON_REG">ID4</identifier>
+                <title>
+                    <text lang="en" content-type="text/plain">Sorcery</text>
+                </title>
+                <description>
+                    <text lang="en" content-type="text/plain">A mage, also sometimes called wizard, sorcerer, or
+                        sorceress, is a person skilled and educated in the use of magic. Only rare individuals have the
+                        potential to become mages and many of those with this potential are doomed to madness. Unless
+                        the individual in question - known as a source - learns to control their power quickly, he or
+                        she may end up a half-insane, slobbering oracle. That is why schools of sorcery were created,
+                        where talented children study for many years, acquiring knowledge and mastering magical skills.
+                        Because of their powers, mages age more slowly than ordinary people.
+                    </text>
+                </description>
+                <issuedDate>2019-10-20</issuedDate>
+                <expiryDate>2032-10-20</expiryDate>
+                <specifiedBy idref="urn:epass:entitlementspec:4"/>
+            </entitlement>
+        </entitlements>
+
+    </credentialSubject>
+    <learningSpecificationReferences>
+        <qualification id="urn:epass:qualification:1">
+            <identifier schemeID="Alternative_name_id">Chrzest</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">Baptism of fire</text>
+            </title>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Dangerous and extreme training, not for the faint of heart.
+                </text>
+                <subject>Further specifications</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Dangerous and extreme training, not for the faint of heart.
+                </text>
+                <subject>Additional title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Held on the Path.</text>
+            </additionalNote>
+            <homepage
+                    uri="https://vignette.wikia.nocookie.net/witcher/images/7/79/Uk_baptism_of_fire_new.jpg/revision/latest/scale-to-width-down/323?cb=20160617184946"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/Monstrum,_or_Description_of_the_Witcher"/>
+            <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/" targetNotation="00"
+                            uri="http://data.europa.eu/snb/isced-f/00">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Generic programmes and qualifications</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ISCED-F Named Authority List</text>
+                </targetFrameworkName>
+            </hasISCED-FCode>
+            <volumeOfLearning>PT135H</volumeOfLearning>
+            <hasECTSCreditPoints>20</hasECTSCreditPoints>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="sg" uri="http://publications.europa.eu/resource/authority/language/FRA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Faroese</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/blended">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/presential">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Presential</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <learningSettingType targetFrameworkUrl="http://data.europa.eu/europass/learningSettingType/"
+                                 targetNotation="non-formal"
+                                 uri="http://data.europa.eu/europass/learningSettingType/nonFormal">
+                <targetName>
+                    <text lang="en" content-type="text/plain">non-formal learning</text>
+                </targetName>
+                <targetDescription>
+                    <text lang="en" content-type="text/plain">Learning which takes place through planned activities (in
+                        terms of learning objectives, learning time) where some form of learning support is present
+                        (e.g. student-teacher relationships); it may cover programmes to impart work skills, adult
+                        literacy and basic education for early school leavers; very common cases of non-formal learning
+                        include in-company training, through which companies update and improve the skills of their
+                        workers such as ICT skills, structured on-line learning (e.g. by making use of open educational
+                        resources), and courses
+                        organised by civil society organisations for their members, their target group or the general
+                        public.
+                    </text>
+                </targetDescription>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Setting Types</text>
+                </targetFrameworkName>
+            </learningSettingType>
+            <duration>P2M</duration>
+            <entryRequirementsNote>
+                <text lang="en" content-type="text/plain">No special entry req.</text>
+            </entryRequirementsNote>
+            <learningOutcomes>
+                <learningOutcome idref="urn:epass:learningOutcome:1"/>
+                <learningOutcome idref="urn:epass:learningOutcome:2"/>
+            </learningOutcomes>
+            <isPartialQualification>true</isPartialQualification>
+            <eqfLevel targetFrameworkUrl="http://data.europa.eu/snb/eqf/" targetNotation="5"
+                      uri="http://data.europa.eu/snb/eqf/5">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Level 5</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of EQF Levels</text>
+                </targetFrameworkName>
+            </eqfLevel>
+            <nqfLevel targetFrameworkUrl="http://data.europa.eu/esco/qdr/QF/"
+                      uri="http://data.europa.eu/esco/qdr/QF/CY">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Cypriot Qualifications Framework</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">QDR Standard List of Qualification Frameworks</text>
+                </targetFrameworkName>
+            </nqfLevel>
+        </qualification>
+        <qualification id="urn:epass:qualification:3">
+            <identifier schemeID="Alternative_name_id">Gwynbleidd_001</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">Witcher FULL Achievement</text>
+            </title>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Dangerous and extreme training, not for the faint of heart.
+                </text>
+                <subject>Further specifications</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Dangerous and extreme training, not for the faint of heart.
+                </text>
+                <subject>Additional title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Held on the Murky Waters</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/Witcher"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/Monstrum,_or_Description_of_the_Witcher"/>
+            <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/" targetNotation="00"
+                            uri="http://data.europa.eu/snb/isced-f/00">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Generic programmes and qualifications</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ISCED-F Named Authority List</text>
+                </targetFrameworkName>
+            </hasISCED-FCode>
+            <volumeOfLearning>PT200H</volumeOfLearning>
+            <hasECTSCreditPoints>50</hasECTSCreditPoints>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="sg" uri="http://publications.europa.eu/resource/authority/language/FAO">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Faroese</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/projectBased">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/presential">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Presential</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <learningSettingType targetFrameworkUrl="http://data.europa.eu/europass/learningSettingType/"
+                                 targetNotation="non-formal"
+                                 uri="http://data.europa.eu/europass/learningSettingType/nonFormal">
+                <targetName>
+                    <text lang="en" content-type="text/plain">non-formal learning</text>
+                </targetName>
+                <targetDescription>
+                    <text lang="en" content-type="text/plain">Learning which takes place through planned activities (in
+                        terms of learning objectives, learning time) where some form of learning support is present
+                        (e.g. student-teacher relationships); it may cover programmes to impart work skills, adult
+                        literacy and basic education for early school leavers; very common cases of non-formal learning
+                        include in-company training, through which companies update and improve the skills of their
+                        workers such as ICT skills, structured on-line learning (e.g. by making use of open educational
+                        resources), and courses
+                        organised by civil society organisations for their members, their target group or the general
+                        public.
+                    </text>
+                </targetDescription>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Setting Types</text>
+                </targetFrameworkName>
+            </learningSettingType>
+            <duration>P12M</duration>
+            <entryRequirementsNote>
+                <text lang="en" content-type="text/plain">Taken in as children, witchers-to-be are subjected to intense
+                    alchemical processes, consumption of mutagenic compounds, and relentless physical and magical
+                    training to
+                </text>
+            </entryRequirementsNote>
+            <learningOutcomes>
+                <learningOutcome idref="urn:epass:learningOutcome:5"/>
+                <learningOutcome idref="urn:epass:learningOutcome:6"/>
+            </learningOutcomes>
+            <isPartialQualification>false</isPartialQualification>
+            <eqfLevel targetFrameworkUrl="http://data.europa.eu/esco/eqf/" targetNotation="8"
+                      uri="http://data.europa.eu/esco/eqf/8">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Level 8</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of EQF Levels</text>
+                </targetFrameworkName>
+            </eqfLevel>
+            <nqfLevel targetFrameworkUrl="http://data.europa.eu/esco/qdr/QF/"
+                      uri="http://data.europa.eu/esco/qdr/QF/AT">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Austrian Qualifications Framework</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">QDR Standard List of Qualification Frameworks</text>
+                </targetFrameworkName>
+            </nqfLevel>
+        </qualification>
+        <qualification id="urn:epass:qualification:2">
+            <identifier schemeID="Alternative_name_id">N/A</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">The Path Wanderer + more</text>
+            </title>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Dangerous and extreme training, not for the faint of heart.
+                </text>
+                <subject>Further specifications</subject>
+            </additionalNote>
+            <additionalNote>
+                <subject>Additional title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Towards the Lodge of Sorceresses</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Path"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/Monstrum,_or_Description_of_the_Witcher"/>
+            <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/esco/isced-f/" targetNotation="00"
+                            uri="http://data.europa.eu/esco/isced-f/00">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Generic programmes and qualifications</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ISCED-F Named Authority List</text>
+                </targetFrameworkName>
+            </hasISCED-FCode>
+            <volumeOfLearning>PT150H</volumeOfLearning>
+            <hasECTSCreditPoints>30</hasECTSCreditPoints>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="sg" uri="http://publications.europa.eu/resource/authority/language/FAO">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Faroese</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/projectBased">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/presential">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Presential</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <learningSettingType targetFrameworkUrl="http://data.europa.eu/europass/learningSettingType/"
+                                 targetNotation="non-formal"
+                                 uri="http://data.europa.eu/europass/learningSettingType/nonFormal">
+                <targetName>
+                    <text lang="en" content-type="text/plain">non-formal learning</text>
+                </targetName>
+                <targetDescription>
+                    <text lang="en" content-type="text/plain">Learning which takes place through planned activities (in
+                        terms of learning objectives, learning time) where some form of learning support is present
+                        (e.g. student-teacher relationships); it may cover programmes to impart work skills, adult
+                        literacy and basic education for early school leavers; very common cases of non-formal learning
+                        include in-company training, through which companies update and improve the skills of their
+                        workers such as ICT skills, structured on-line learning (e.g. by making use of open educational
+                        resources), and courses
+                        organised by civil society organisations for their members, their target group or the general
+                        public.
+                    </text>
+                </targetDescription>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Setting Types</text>
+                </targetFrameworkName>
+            </learningSettingType>
+            <duration>P3M</duration>
+            <entryRequirementsNote>
+                <text lang="en" content-type="text/plain">Sterility, cat-like eyes, speed, reflexes, accelerated healing
+                    and SEXY VOICE!
+                </text>
+            </entryRequirementsNote>
+            <learningOutcomes>
+                <learningOutcome idref="urn:epass:learningOutcome:3"/>
+                <learningOutcome idref="urn:epass:learningOutcome:4"/>
+            </learningOutcomes>
+            <isPartialQualification>true</isPartialQualification>
+            <eqfLevel targetFrameworkUrl="http://data.europa.eu/esco/eqf/" targetNotation="6"
+                      uri="http://data.europa.eu/esco/eqf/6">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Level 6</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of EQF Levels</text>
+                </targetFrameworkName>
+            </eqfLevel>
+            <nqfLevel targetFrameworkUrl="http://data.europa.eu/esco/qdr/QF/"
+                      uri="http://data.europa.eu/esco/qdr/QF/BG">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Bulgarian Qualifications Framework</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">QDR Standard List of Qualification Frameworks</text>
+                </targetFrameworkName>
+            </nqfLevel>
+        </qualification>
+    </learningSpecificationReferences>
+    <learningOutcomeReferences>
+        <learningOutcome id="urn:epass:learningOutcome:4">
+            <identifier schemeID="Witchcraft_Canon_ID">1000</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Superhuman abilities</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">“People”—Geralt turned his head—“like to invent monsters and
+                    monstrosities. Then they seem less monstrous themselves.”
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/skill">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Skill</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/cross-sector">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Cross-Sector</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+        <learningOutcome id="urn:epass:learningOutcome:5">
+            <identifier schemeID="Witchcraft_Canon_ID">1001</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Great strength</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">“Only death can finish the fight, everything else only
+                    interrupts the fighting.”
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/skill">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Skill</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/transversal">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Transversal</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+        <learningOutcome id="urn:epass:learningOutcome:3">
+            <identifier schemeID="Witchcraft_Canon_ID">1003</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Endurance</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">“When you know about something it stops being a nightmare.
+                    When you know how to fight something, it stops being so threatening.”
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/knowledge">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Knowledge</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/cross-sector">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Cross-Sector</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+        <learningOutcome id="urn:epass:learningOutcome:1">
+            <identifier schemeID="Witchcraft_Canon_ID">1004</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Immunity to diseases and poisons</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">Evil is evil. Lesser, greater, middling, it’s all the same.
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/skill">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Skill</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/transversal">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Transversal</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+        <learningOutcome id="urn:epass:learningOutcome:2">
+            <identifier schemeID="Witchcraft_Canon_ID">1005</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Extreme resistance to pain</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">“There's a grain of truth in every fairy tale.. Love and
+                    blood. They both posses a mighty power. &quot;
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/skill">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Skill</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/sector-specific">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Sector-Specific</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+        <learningOutcome id="urn:epass:learningOutcome:6">
+            <identifier schemeID="Witchcraft_Canon_ID">1002</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Healing</text>
+            </prefLabel>
+            <description>
+                <text lang="en" content-type="text/plain">If I have to choose between one evil and another, then I
+                    prefer not to choose at all.
+                </text>
+            </description>
+            <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/esco/skill-type/"
+                                 uri="http://data.europa.eu/esco/skill-type/skill">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Skill</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Learning Outcome Types</text>
+                </targetFrameworkName>
+            </learningOutcomeType>
+            <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/esco/skill-reuse-level/"
+                              uri="http://data.europa.eu/esco/skill-reuse-level/sector-specific">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Sector-Specific</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">ESCO Standard List of Skill Reusability Levels</text>
+                </targetFrameworkName>
+            </reusabilityLevel>
+        </learningOutcome>
+    </learningOutcomeReferences>
+    <learningActivitySpecificationReferences>
+        <learningActivitySpecification id="urn:epass:learningactivityspec:4">
+            <identifier schemeID="SPEC_ACTIVITY_INDEX">2004</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/learningActivityType/"
+                  uri="http://data.europa.eu/europass/learningActivityType/workshop">
+                <targetName>
+                    <text lang="en" content-type="text/plain">workshop, seminar or conference</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Activity Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Raven's armor forgery</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">All weaponry that Witcher uses is extremely deadly.</text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Why would you need more information</text>
+            </additionalNote>
+            <additionalNote>
+                <subject>Specification_additional_text</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">We love additional content.</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <workload>PT69H</workload>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="ro" uri="http://publications.europa.eu/resource/authority/language/GLA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Scottish Gaelic</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/online">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Online</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+        </learningActivitySpecification>
+        <learningActivitySpecification id="urn:epass:learningactivityspec:1">
+            <identifier schemeID="SPEC_ACTIVITY_INDEX">2002</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/learningActivityType/"
+                  uri="http://data.europa.eu/europass/learningActivityType/internship">
+                <targetName>
+                    <text lang="en" content-type="text/plain">internship</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Activity Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Alchemy Labs</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">Magic is oftentimes referred to as &quot;the Art&quot; This is
+                    no coincidence. Magic is perceived by many as an elite discipline requiring artistry and talent, and
+                    indeed very few possess the immense creative abilities needed to wield it. Those with magical talent
+                    can use it to create things of awe and beauty- wonders without which the world would certainly be a
+                    much more miserable place. Therefore, those who name magic a beautiful blessing, brought forth into
+                    this world by the Conjunction of the Spheres, are in a sense correct.
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Why would you need more information</text>
+            </additionalNote>
+            <additionalNote>
+                <subject>Specification_additional_text</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">We love additional content.</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Witcher_alchemy"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <workload>PT20H</workload>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="ro" uri="http://publications.europa.eu/resource/authority/language/GLA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Scottish Gaelic</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/projectBased">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+        </learningActivitySpecification>
+        <learningActivitySpecification id="urn:epass:learningactivityspec:2">
+            <identifier schemeID="SPEC_ACTIVITY_INDEX">2003</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/learningActivityType/"
+                  uri="http://data.europa.eu/europass/learningActivityType/volunteering">
+                <targetName>
+                    <text lang="en" content-type="text/plain">volunteering</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Activity Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Combat</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">Combat is an inseparable part of a Witcher's profession, so
+                    you will have many chances to perfect your fighting abilities.
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Why would you need more information</text>
+            </additionalNote>
+            <additionalNote>
+                <subject>Specification_additional_text</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">We love additional content.</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <workload>PT25H</workload>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="ro" uri="http://publications.europa.eu/resource/authority/language/GLA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Scottish Gaelic</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="qu" uri="http://publications.europa.eu/resource/authority/language/GLV">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Manx</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/online">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Online</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+        </learningActivitySpecification>
+        <learningActivitySpecification id="urn:epass:learningactivityspec:3">
+            <identifier schemeID="SPEC_ACTIVITY_INDEX">2011</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/learningActivityType/"
+                  uri="http://data.europa.eu/europass/learningActivityType/workshop">
+                <targetName>
+                    <text lang="en" content-type="text/plain">workshop, seminar or conference</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Activity Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Swordsmanship</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">First, draw your sword, unless it is a fistfight. If you have
+                    a choice and are dealing with humans or non-monstrous, natural beings (e.g. wolves and dogs), use
+                    your steel sword. Otherwise, use your silver sword. Both are deadly.
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Why would you need more information</text>
+            </additionalNote>
+            <additionalNote>
+                <subject>Specification_additional_text</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">We love additional content.</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <workload>PT30H</workload>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="ro" uri="http://publications.europa.eu/resource/authority/language/GLA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Scottish Gaelic</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/projectBased">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+        </learningActivitySpecification>
+        <learningActivitySpecification id="urn:epass:learningactivityspec:5">
+            <identifier schemeID="SPEC_ACTIVITY_INDEX">N/A</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/learningActivityType/"
+                  uri="http://data.europa.eu/europass/learningActivityType/selfMotivatedStudy">
+                <targetName>
+                    <text lang="en" content-type="text/plain">self-motivated study</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Learning Activity Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Sign Workshops</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">The witchers adapted the spell, making use of the fact that it
+                    does not require knowledge of a magical formula—concentration and the gesture are enough. That's why
+                    they call it a Sign.
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Why would you need more information</text>
+            </additionalNote>
+            <additionalNote>
+                <subject>Specification_additional_text</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">We love additional content.</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/Sign"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Witcher_combat"/>
+            <workload>PT22H</workload>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="ro" uri="http://publications.europa.eu/resource/authority/language/GLA">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Scottish Gaelic</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/projectBased">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Project based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+        </learningActivitySpecification>
+    </learningActivitySpecificationReferences>
+    <assessmentSpecificationReferences>
+        <assessmentSpecification id="urn:epass:asssessmentspec:2">
+            <identifier schemeID="Assess_Reg">1111</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/assessmentType"
+                  uri="http://data.europa.eu/europass/assessmentType/continuousEvaluation">
+                <targetName>
+                    <text lang="en" content-type="text/plain">continuous evaluation</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List Of Assessment Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Partial Secondary Assessment</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">Bad*ss Assessment 2</text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Witcher_more_info_spec_content</text>
+                <subject>Witcher_more_info_spec_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <subject>Witcher_Additional_field_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">So much information…</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/Scavenger_Hunt:_Wolf_School_Gear"/>
+            <supplementaryDoc
+                    uri="https://nook.barnesandnoble.com/products/9780316055086/sample?sourceEan=9780316497541"/>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="vo" uri="http://publications.europa.eu/resource/authority/language/ARG">
+                <targetName>
+                    <text lang="en" content-type="text/plain">aragonese [an]</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/laboratoryPractice">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Research-Lab based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <gradingScheme idref="urn:epass:scoringschemespec:2"/>
+        </assessmentSpecification>
+        <assessmentSpecification id="urn:epass:asssessmentspec:1">
+            <identifier schemeID="Assess_Reg">112</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/assessmentType"
+                  uri="http://data.europa.eu/europass/assessmentType/continuousEvaluation">
+                <targetName>
+                    <text lang="en" content-type="text/plain">continuous evaluation</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List Of Assessment Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Main Assessment</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">On the third day all the children died save one, a male barely
+                    ten. Hitherto agitated by a sudden madness, he fell at once into deep stupor. His eyes took on a
+                    glassy gaze, incessantly with his hands did he clutch at clothing, or brandish them in the air as if
+                    desirous of catching a quill. His breathing grew loud and hoarse; sweat cold, clammy and malodorous
+                    appeared on his skin. Then he was once more given elixir through the vein and the seizure it did
+                    return. This time a nose-bleed did ensue, coughing turned to vomiting, after which the male weakened
+                    entirely and became inert.
+                    For two days more did symptoms not subside. The child's skin, hitherto drenched in sweat, grew dry
+                    and hot, the pulse ceased to be full and firm — albeit remaining of average strength, slow rather
+                    than fast. No more did he wake, nor did he scream.
+                    Finally, came the seventh day. The male awoke and opened his eyes, and his eyes were those of a
+                    viper...
+                    pg. 77, Blood of Elves (UK edition)
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Witcher_more_info_spec_content</text>
+                <subject>Witcher_more_info_spec_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <subject>Witcher_Additional_field_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">So much information…</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/Trial_of_the_Grasses"/>
+            <supplementaryDoc
+                    uri="https://nook.barnesandnoble.com/products/9780316055086/sample?sourceEan=9780316497541"/>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="yo" uri="http://publications.europa.eu/resource/authority/language/ABK">
+                <targetName>
+                    <text lang="en" content-type="text/plain">abkhazian [ab]</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/laboratoryPractice">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Research-Lab based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <gradingScheme idref="urn:epass:scoringschemespec:1"/>
+        </assessmentSpecification>
+        <assessmentSpecification id="urn:epass:asssessmentspec:3">
+            <identifier schemeID="Assess_Reg">1111-01</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/assessmentType"
+                  uri="http://data.europa.eu/europass/assessmentType/continuousEvaluation">
+                <targetName>
+                    <text lang="en" content-type="text/plain">continuous evaluation</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List Of Assessment Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Partial Secondary Assessment</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">In the world of wraiths, only those relics the ghosts had a
+                    connection to in life have any meaning. After conferring with Philippa Eilhart, Geralt ascertained
+                    that he would need items symbolizing ideas linked to war, specifically, objects representing hatred,
+                    courage, faith and death. The witcher thus embarked on a search for the Dun Banner's standard,
+                    believed to be the symbol of death, and for a sword that had belonged to the infamous commander
+                    named Vandergrift, purported to symbolize hatred. The sorceress promised to find a medallion
+                    symbolizing faith and a fragment of a suit of armor that had belonged to the brave Seltkirk.
+                </text>
+            </description>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">Witcher_more_info_spec_content</text>
+                <subject>Witcher_more_info_spec_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <subject>Witcher_Additional_field_title</subject>
+            </additionalNote>
+            <additionalNote>
+                <text lang="en" content-type="text/plain">So much information…</text>
+            </additionalNote>
+            <homepage uri="https://witcher.fandom.com/wiki/The_Eternal_Battle"/>
+            <supplementaryDoc uri="https://witcher.fandom.com/wiki/The_Eternal_Battle"/>
+            <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language/"
+                      targetNotation="id" uri="http://publications.europa.eu/resource/authority/language/NNO">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Norwegian Nynorsk</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Languages Named Authority List</text>
+                </targetFrameworkName>
+            </language>
+            <mode targetFrameworkUrl="http://data.europa.eu/europass/modeOfLearningAndAssessment/"
+                  uri="http://data.europa.eu/europass/modeOfLearningAndAssessment/laboratoryPractice">
+                <targetName>
+                    <text lang="en" content-type="text/plain">Research-Lab based</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Modes of Learning and
+                        Assessment
+                    </text>
+                </targetFrameworkName>
+            </mode>
+            <gradingScheme idref="urn:epass:scoringschemespec:3"/>
+        </assessmentSpecification>
+    </assessmentSpecificationReferences>
+    <entitlementSpecificationReferences>
+        <entitlementSpecification id="urn:epass:entitlementspec:1">
+            <identifier schemeID="SPEC_Entitlement_Reg&#xa;">2111</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementTypes"
+                  targetNotation="occupation" uri="http://data.europa.eu/europass/entitlementType/occupation">
+                <targetName>
+                    <text lang="en" content-type="text/plain">occupation</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Monster Slaying
+                </text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">A skilled warrior spends his time slaying a variety of deadly
+                    supernatural monsters
+                </text>
+            </description>
+            <status targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementStatuses"
+                    targetNotation="actual" uri="http://data.europa.eu/europass/entitlementStatus/actual">
+                <targetName>
+                    <text lang="en" content-type="text/plain">actual</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Statuses</text>
+                </targetFrameworkName>
+            </status>
+            <limitOrganization idref="urn:epass:org:1"/>
+        </entitlementSpecification>
+        <entitlementSpecification id="urn:epass:entitlementspec:2">
+            <identifier schemeID="SPEC_Entitlement_Reg&#xa;">2001/01/B</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementTypes"
+                  targetNotation="learningOpportunity"
+                  uri="http://data.europa.eu/europass/entitlementType/learningOpportunity">
+                <targetName>
+                    <text lang="en" content-type="text/plain">learning Opportunity</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Dragon Hunt</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">A hero hunting a dragon, who does not love this story!</text>
+            </description>
+            <status targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementStatuses"
+                    targetNotation="prospective" uri="http://data.europa.eu/europass/entitlementStatus/prospective">
+                <targetName>
+                    <text lang="en" content-type="text/plain">prospective</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Statuses</text>
+                </targetFrameworkName>
+            </status>
+            <limitOrganization idref="urn:epass:org:1"/>
+        </entitlementSpecification>
+        <entitlementSpecification id="urn:epass:entitlementspec:3">
+            <identifier schemeID="SPEC_Entitlement_Reg&#xa;">2002</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementTypes"
+                  targetNotation="membership" uri="http://data.europa.eu/europass/entitlementType/membership">
+                <targetName>
+                    <text lang="en" content-type="text/plain">membership</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Potion Creation and Manipulation</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">Potions and Decoctions are items made in Alchemy that can be
+                    purchased or crafted for use during the Wild Hunt. They can be used to varying effect to enhance
+                    disciple's abilities in combat. Potions also have a negative effect on their user.
+                </text>
+            </description>
+            <status targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementStatuses"
+                    targetNotation="prospective" uri="http://data.europa.eu/europass/entitlementStatus/prospective">
+                <targetName>
+                    <text lang="en" content-type="text/plain">prospective</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Statuses</text>
+                </targetFrameworkName>
+            </status>
+            <limitOrganization idref="urn:epass:org:2"/>
+        </entitlementSpecification>
+        <entitlementSpecification id="urn:epass:entitlementspec:4">
+            <identifier schemeID="SPEC_Entitlement_Reg&#xa;">2009</identifier>
+            <type targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementTypes"
+                  targetNotation="membership" uri="http://data.europa.eu/europass/entitlementType/membership">
+                <targetName>
+                    <text lang="en" content-type="text/plain">membership</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Types</text>
+                </targetFrameworkName>
+            </type>
+            <title>
+                <text lang="en" content-type="text/plain">Sorcery</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">Only rare individuals have the potential to become mages and
+                    many of those with this potential are doomed to madness. Unless the individual in question - known
+                    as a source - learns to control their power quickly, he or she may end up a half-insane, slobbering
+                    oracle. That is why schools of sorcery were created, where talented children study for many years,
+                    acquiring knowledge and mastering magical skills. Because of their powers, mages age more slowly
+                    than ordinary people. They can extract magical energy from the four elements, transport themselves
+                    long distances and heal, as well as kill, in the blink of an eye. They have extensive scientific and
+                    political knowledge; in the latter respect, many mages are the equals of rulers.
+                </text>
+            </description>
+            <status targetFrameworkUrl="http://data.europa.eu/europass/codeList/entitlementStatuses"
+                    targetNotation="actual" uri="http://data.europa.eu/europass/entitlementStatus/actual">
+                <targetName>
+                    <text lang="en" content-type="text/plain">actual</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Entitlement Statuses</text>
+                </targetFrameworkName>
+            </status>
+            <limitOrganization idref="urn:epass:org:3"/>
+        </entitlementSpecification>
+    </entitlementSpecificationReferences>
+    <agentReferences>
+        <organization id="urn:epass:org:3">
+            <identifier schemeID="Kaer_Morhen_Reg">10001Z</identifier>
+            <identifier schemeID="Salamandra_Order_No">66121</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Higher Guild of Witchcraft</text>
+            </prefLabel>
+            <altLabel>
+                <text lang="en" content-type="text/plain">Higher Guild of Witchcraft</text>
+            </altLabel>
+            <hasLocation>
+                <id>urn:epass:location:1</id>
+                <name>
+                    <text lang="en" content-type="text/plain">Kaedwen</text>
+                </name>
+                <hasAddress>
+                    <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                             targetNotation="ALA" uri="http://publications.europa.eu/resource/authority/country/ALA">
+                        <targetName>
+                            <text lang="en" content-type="text/plain">Åland Islands</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                        </targetFrameworkName>
+                    </country>
+                    <fullAddress>
+                        <text lang="en" content-type="text/plain">Caves of Morhen Valley</text>
+                    </fullAddress>
+                </hasAddress>
+            </hasLocation>
+            <registration spatialID="WTC">W001</registration>
+            <vatIdentifier spatialID="WTC">23456-Y-11</vatIdentifier>
+            <taxIdentifier spatialID="WTC">123090000</taxIdentifier>
+            <homepage uri="https://witcher.fandom.com/es/wiki/The_Witcher"/>
+        </organization>
+        <organization id="urn:epass:org:2">
+            <identifier schemeID="Kaer_Morhen_Reg">10001W</identifier>
+            <identifier schemeID="Salamandra_Order_No">31121</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">Order of Witches</text>
+            </prefLabel>
+            <altLabel>
+                <text lang="en" content-type="text/plain">Order of Witches Faction</text>
+            </altLabel>
+            <hasLocation>
+                <id>urn:epass:location:2</id>
+                <name>
+                    <text lang="en" content-type="text/plain">Kaedwen</text>
+                </name>
+                <hasAddress>
+                    <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country/"
+                             targetNotation="ALA" uri="http://publications.europa.eu/resource/authority/country/ALA">
+                        <targetName>
+                            <text lang="en" content-type="text/plain">Åland Islands</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text lang="en" content-type="text/plain">Countries Named Authority List</text>
+                        </targetFrameworkName>
+                    </country>
+                    <fullAddress>
+                        <text lang="en" content-type="text/plain">Caves of Morhen Valley</text>
+                    </fullAddress>
+                </hasAddress>
+            </hasLocation>
+            <registration spatialID="WTC">W0001</registration>
+            <vatIdentifier spatialID="WTC">23456-Y-01</vatIdentifier>
+            <taxIdentifier spatialID="WTC">909090000</taxIdentifier>
+            <homepage uri="https://witcher.fandom.com/wiki/Order_of_Witchers"/>
+            <unitOf idref="urn:epass:org:3"/>
+        </organization>
+        <organization id="urn:epass:org:1">
+            <identifier schemeID="Kaer_Morhen_Reg">100011</identifier>
+            <identifier schemeID="Salamandra_Order_No">21121</identifier>
+            <prefLabel>
+                <text lang="en" content-type="text/plain">ANTHONY FISHER CAMILLERI S.P.</text>
+            </prefLabel>
+            <altLabel>
+                <text lang="en" content-type="text/plain">Anthony Fisher Camilleri S.p. E Seal</text>
+            </altLabel>
+            <hasLocation/>
+            <registration>VATSI-61038750</registration>
+            <vatIdentifier spatialID="WTC">23456-Y-56</vatIdentifier>
+            <taxIdentifier spatialID="WTC">90909001</taxIdentifier>
+            <homepage uri="https://witcher.fandom.com/wiki/School_of_the_Wolf"/>
+            <unitOf idref="urn:epass:org:2"/>
+        </organization>
+    </agentReferences>
+    <awardingProcessReferences>
+        <awardingProcess id="urn:epass:awardingProcess:3">
+            <awardingBody idref="urn:epass:org:1"/>
+            <date>2020-01-20T00:00:00+01:00</date>
+        </awardingProcess>
+        <awardingProcess id="urn:epass:awardingProcess:2">
+            <awardingBody idref="urn:epass:org:1"/>
+            <date>2020-01-20T00:00:00+01:00</date>
+        </awardingProcess>
+        <awardingProcess id="urn:epass:awardingProcess:1">
+            <awardingBody idref="urn:epass:org:1"/>
+            <date>2020-01-20T00:00:00+01:00</date>
+        </awardingProcess>
+    </awardingProcessReferences>
+    <scoringSchemeReferences>
+        <scoringScheme id="urn:epass:scoringschemespec:2">
+            <identifier schemeID="WAC_HACK_MAX">2356</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">Unique Witchcraft Arcana Scheme</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">The only correct way of assessing super pa pa powers.</text>
+            </description>
+        </scoringScheme>
+        <scoringScheme id="urn:epass:scoringschemespec:1">
+            <identifier schemeID="WAC_HACK_MAX">2356</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">Unique Witchcraft Arcana Scheme</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">The only correct way of assessing super pa pa powers.</text>
+            </description>
+        </scoringScheme>
+        <scoringScheme id="urn:epass:scoringschemespec:3">
+            <identifier schemeID="WAC_HACK_MAX">2356</identifier>
+            <title>
+                <text lang="en" content-type="text/plain">Unique Witchcraft Arcana Scheme</text>
+            </title>
+            <description>
+                <text lang="en" content-type="text/plain">The only correct way of assessing super pa pa powers.</text>
+            </description>
+        </scoringScheme>
+    </scoringSchemeReferences>
+    <proof></proof>
+</europassCredential>

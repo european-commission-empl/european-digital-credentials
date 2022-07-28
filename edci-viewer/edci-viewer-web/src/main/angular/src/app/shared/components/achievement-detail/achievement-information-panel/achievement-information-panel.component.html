@@ -1,0 +1,194 @@
+<div
+    class="achievement-detail_panel achievement-information"
+    *ngIf="
+        activeAchievement?.specifiedBy?.workloadInHours ||
+        activeAchievement?.specifiedBy?.qualification?.eqfLevel ||
+        activeAchievement?.specifiedBy?.ectsCreditPoints ||
+        activeAchievement?.specifiedBy?.creditPoints ||
+        activeAchievement?.specifiedBy?.qualification?.nqfLevel ||
+        activeAchievement?.specifiedBy?.learningSetting ||
+        activeAchievement?.specifiedBy?.learningMode ||
+        activeAchievement?.specifiedBy?.qualification
+    "
+>
+    <edci-panel
+        [title]="'details.achievements-tab.achievementInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="achievement-information-row d-flex flex-wrap">
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.workloadInHours"
+            >
+                <edci-information-field
+                    text="{{
+                        activeAchievement.specifiedBy.workloadInHours
+                    }}&nbsp;{{
+                        activeAchievement.specifiedBy.workloadInHours === '1'
+                            ? ('hour' | translate)
+                            : ('hours' | translate)
+                    }}"
+                    [title]="
+                        'details.achievements-tab.volumeOfLearning' | translate
+                    "
+                    icon="icon-duration"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.qualification?.eqfLevel"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.qualification.eqfLevel
+                    "
+                    [title]="'details.achievements-tab.EQFLevel' | translate"
+                    icon="icon-diploma"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.qualification?.nqfLevel"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.qualification.nqfLevel
+                    "
+                    [title]="'details.achievements-tab.NQFLevel' | translate"
+                    icon="icon-diploma"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.ectsCreditPoints"
+            >
+                <edci-information-field
+                    [text]="activeAchievement.specifiedBy.ectsCreditPoints"
+                    [title]="
+                        'details.achievements-tab.ECTSCreditPoints' | translate
+                    "
+                    icon="icon-credit-points"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.creditPoints"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement?.specifiedBy?.creditPoints
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.achievements-tab.creditPoints' | translate
+                    "
+                    icon="icon-credit-points"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.targetGroup?.length > 0"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.targetGroup
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.achievements-tab.targetGroups' | translate
+                    "
+                    icon="icon-target-group"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.learningSetting"
+            >
+                <edci-information-field
+                    [text]="activeAchievement.specifiedBy.learningSetting"
+                    [title]="
+                        'details.achievements-tab.learningSettings' | translate
+                    "
+                    icon="icon-learning-settings"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.learningMode"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.learningMode
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.achievements-tab.deliveryMethod' | translate
+                    "
+                    icon="icon-university"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="
+                    activeAchievement?.specifiedBy?.qualification
+                        ?.isPartialQualification
+                "
+            >
+                <edci-information-field
+                    [text]="'yes' | translate"
+                    [title]="
+                        'details.achievements-tab.partialQualification'
+                            | translate
+                    "
+                    icon="icon-chart"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.thematicArea"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.thematicArea
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.achievements-tab.thematicArea' | translate
+                    "
+                    icon="icon-university"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.instructionLanguage"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.instructionLanguage
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.achievements-tab.languagesOfInstruction'
+                            | translate
+                    "
+                    icon="icon-languages-of-instruction"
+                ></edci-information-field>
+            </div>
+            <div
+                class="achievement-information-row_item"
+                *ngIf="activeAchievement?.specifiedBy?.educationLevel"
+            >
+                <edci-information-field
+                    [text]="
+                        activeAchievement.specifiedBy.educationLevel
+                            | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.assessments-tab.educationLevel' | translate
+                    "
+                    icon="icon-university"
+                ></edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

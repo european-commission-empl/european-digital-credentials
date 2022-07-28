@@ -1,0 +1,20 @@
+.eui-autocomplete {
+    > .mat-input-element {
+        padding: 0.5rem 0.75rem !important;
+    }
+}
+
+.eui-autocomplete {
+    > .mat-input-element {
+        margin: 0 !important;
+    }
+}
+
+.single-autocomplete-event-div {
+    color: transparent;
+    height: 38px;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 2;
+}

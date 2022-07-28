@@ -1,0 +1,58 @@
+{
+  "customizableEntityDTOS": [
+    {
+      "label": "Credential Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.entity.specs.EuropassCredentialSpecDAO",
+      "position": 2,
+      "fields": [
+        {
+          "position": 2,
+          "label": "Description",
+          "fieldPath": "description($lang)",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        }
+      ],
+      "relations": [
+        {
+          "position": 5,
+          "relPath": "REC.achievements{$id}",
+          "label": "Achieved",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "label": "Achievement Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.entity.specs.LearningAchievementSpecDAO",
+      "position": 3,
+      "fields": [
+        {
+          "position": 1,
+          "label": "Title",
+          "fieldPath": "ACH{$entityId}.title($lang)",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 4,
+          "label": "Additional notes",
+          "fieldPath": "ACH{$entityId}.additionalNote{$id}($lang)",
+          "mandatory": false,
+          "relationDependant": true,
+          "additionalInfo": null
+        }
+      ],
+      "relations": [
+        {
+          "position": 7,
+          "relPath": "ACH{$entityId}.hasPart{$id}",
+          "label": "Sub Achievemenets",
+          "hidden": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+<div *ngIf="activeLanguage && selectedLanguages">
+    <div class="col-12">
+        <form [formGroup]="formGroup">
+            <div class="mt-2" formArrayName="customLabels">
+                <div class="form-group">
+                    <label class="d-inline-flex">
+                        {{
+                            'credential-builder.html-templates-tab.labels'
+                                | translate
+                        }}
+                        <span
+                            [uxTooltip]="tooltip"
+                            position="top-right"
+                            size="large"
+                        >
+                            <eui-icon
+                                iconClass="eui-icon-info-circle"
+                            ></eui-icon>
+                        </span>
+                    </label>
+                    <ng-container
+                        *ngFor="
+                            let customLabel of customLabels.controls;
+                            let i = index;
+                            let last = last;
+                            let first = first
+                        "
+                    >
+                        <div
+                            [formGroupName]="i"
+                            class="d-flex mb-2"
+                            [ngClass]="{ 'mt-3': !first }"
+                        >
+                            <!-- Single Language Input -->
+                            <!-- <div class="d-flex mb-2"> -->
+                            <div class="d-block col-6 pl-0">
+                                <input
+                                    euiInputText
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelKey' | translate
+                                    "
+                                    formControlName="keyLabel"
+                                    [disabled]="defaultLanguage !== activeLanguage"
+                                />
+                                <!-- </div> -->
+                                <!-- <input
+                                    *ngIf="!isPrimaryLanguage"
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelKey' | translate
+                                    "
+                                    [disabled]="true"
+                                    formControlName="keyLabel"
+                                /> -->
+                                <ux-control-feedback
+                                    *ngIf="
+                                        customLabels.controls[i]['controls']
+                                            ?.keyLabel?.errors?.maxlength &&
+                                        isPrimaryLanguage
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.255' | translate }}
+                                </ux-control-feedback>
+                                <!-- </div> -->
+                            </div>
+
+                            <!-- Multi Language Input -->
+                            <!-- <div class=""> -->
+                            <div class="d-block col-5">
+                                <input
+                                    euiInputText
+                                    *ngIf="
+                                        customLabels.controls[i]['controls']
+                                            ?.content?.controls[activeLanguage]
+                                    "
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="
+                                        'common.labelContent' | translate
+                                    "
+                                    [formControl]="
+                                        customLabels.controls[i]['controls']
+                                            .content.controls[activeLanguage]
+                                    "
+                                />
+                                <ng-container
+                                    *ngFor="
+                                        let control of customLabels.controls[i][
+                                            'controls'
+                                        ].content.controls | keyvalue
+                                    "
+                                >
+                                    <ux-control-feedback
+                                        *ngIf="
+                                            control.key === activeLanguage &&
+                                            control.value['errors']
+                                                ?.maxlength &&
+                                            isPrimaryLanguage
+                                        "
+                                        typeClass="danger"
+                                    >
+                                        {{ 'error.maxLength.255' | translate }}
+                                    </ux-control-feedback>
+                                </ng-container>
+                            </div>
+                            <!-- </div> -->
+                            <!-- Buttons -->
+                            <div>
+                                <div
+                                    class=""
+                                    [ngClass]="{ 'row-reverse': !last }"
+                                >
+                                    <button
+                                        euiButton
+                                        [euiIconButton]="true"
+                                        [euiBasicButton]="true"
+                                        [euiSizeM]="true"
+                                        (click)="addAdditionalRow()"
+                                        [ngClass]="{
+                                            'labels-form__buttons-hidden': !last
+                                        }"
+                                        *ngIf="last"
+                                        [euiDisabled]="!isPrimaryLanguage"
+                                    >
+                                        <span
+                                            euiIcon
+                                            iconClass="eui-icon eui-icon-plus-circle-thin-o"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        euiButton
+                                        [euiIconButton]="true"
+                                        [euiBasicButton]="true"
+                                        [euiSizeM]="true"
+                                        (click)="removeAdditionalNoteRow(i)"
+                                        [ngClass]="{
+                                            'labels-form__buttons-hidden': !(
+                                                customLabels.controls?.length >
+                                                1
+                                            )
+                                        }"
+                                        *ngIf="
+                                            customLabels.controls?.length > 1
+                                        "
+                                        [euiDisabled]="!isPrimaryLanguage"
+                                    >
+                                        <span
+                                            euiIcon
+                                            iconClass="eui-icon eui-icon-trash-o"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container
+                            *ngFor="
+                                let control of customLabels.controls[i][
+                                    'controls'
+                                ].content.controls | keyvalue
+                            "
+                        >
+                            <ux-control-feedback
+                                *ngIf="
+                                    control.key === activeLanguage &&
+                                    customLabels.controls[i]['errors']
+                                        ?.customLabelError &&
+                                    isPrimaryLanguage
+                                "
+                                typeClass="danger"
+                                styleClass="mb-3"
+                            >
+                                {{ 'error.customLabels' | translate }}
+                            </ux-control-feedback>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

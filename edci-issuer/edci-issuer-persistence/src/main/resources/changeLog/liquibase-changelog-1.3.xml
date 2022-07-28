@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.3" global="false"/>
+
+    <!-- Example of the execution of an Oracle script, only if the application has been migrated from 1.2 -->
+<!--    <changeSet id="sample-oracle" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN" dbms="oracle">-->
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <sqlCheck expectedResult="1">select 1 from LIQUIBASE_VERSION where NUM_VERSION = '1.2'</sqlCheck>-->
+<!--        </preConditions>-->
+<!--        <sqlFile path="sampleA.sql" relativeToChangelogFile="true" endDelimiter=";" />-->
+<!--    </changeSet>-->
+
+    <!-- Example of the execution of a MySQL script if version 1.3 has been executed before-->
+<!--    <changeSet id="sampleA-mysql" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN" dbms="mysql">-->
+<!--        <preConditions onFail="MARK_RAN" onFailMessage="Not executed">-->
+<!--            <sqlCheck expectedResult="1">select 1 from LIQUIBASE_VERSION where NUM_VERSION = '1.3'</sqlCheck>-->
+<!--        </preConditions>-->
+<!--        <sqlFile path="v1_3/sampleA.sql" relativeToChangelogFile="true" endDelimiter=";" />-->
+<!--    </changeSet>-->
+
+    <!-- Example of the execution of a MySQL script if version 1.2 has been executed before -->
+<!--    <changeSet id="sampleB-mysql" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN" dbms="mysql">-->
+<!--        <preConditions onFail="MARK_RAN" onFailMessage="Not executed">-->
+<!--            <sqlCheck expectedResult="1">select 1 from LIQUIBASE_VERSION where NUM_VERSION = '1.2'</sqlCheck>-->
+<!--        </preConditions>-->
+<!--        <sqlFile path="v1_3/sampleB.sql" relativeToChangelogFile="true" endDelimiter=";" />-->
+<!--    </changeSet>-->
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

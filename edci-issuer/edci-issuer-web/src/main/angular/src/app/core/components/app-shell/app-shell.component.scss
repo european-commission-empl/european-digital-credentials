@@ -1,0 +1,240 @@
+.ecl-site-header-core__logo-image {
+    cursor: pointer;
+    width: 300px;
+}
+
+body > app-root > edci-app-shell > eui-app > div{
+    background-color: white !important;
+}
+
+eui-app{
+
+    eui-app-header{
+        position:unset !important;
+        margin: auto;
+        eui-header{
+            eui-header-logo{
+
+            }
+        }
+    }
+
+    eui-app-toolbar{
+        position:unset !important;
+        flex-wrap: wrap !important;
+        background-color: transparent !important;
+        border-bottom: unset !important;
+        box-shadow: unset !important;
+        height: unset !important;
+
+        .info-header{
+            width: 100%;
+            background-color: transparent !important;
+            background-image: url('../../../../assets/images/my-future-section.png') !important;
+            background-repeat: round !important;
+            background-size: cover !important;
+
+            .edci-container{
+                position:unset !important;
+                border: none !important;
+                box-shadow: none !important;
+                height: auto !important;
+                margin: auto;
+                &.extra-info {
+                    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 75%, 0% 100%);
+                    clip-path: polygon(0 0, 100% 0%, 100% 75%, 0% 100%);
+                }
+
+                #top-menu > ul > li{
+                    & + li {
+                        margin-left: 10px;
+                    }
+                
+                    &:first-child {
+                        a {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    }
+                
+                    &.selected,
+                    &:hover {
+                        a {
+                            background-color: rgba(255, 255, 255, 0.09);
+                            border-bottom: inherit;
+                        }
+                    }
+                
+                    a {
+                        border-bottom: none;
+                        border-radius: 2px;
+                        line-height: normal;
+                        padding: 12px;
+                        text-transform: inherit;
+                        text-decoration: none !important;
+                        color: white !important;
+                    }
+                }
+
+                .right-actions{
+                    margin-left: auto; 
+                    display: flex;
+                    position: relative;
+                    .username {
+                        z-index: auto !important;
+                    }
+                    .logout-button{
+                        box-shadow: 0 2px 4px -2px black;
+                        color: white;
+                        padding: 8px 22px;
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.09) !important;
+                        }
+                    }
+                    .login-button {
+                        background: linear-gradient(to right, #0b94ae, #510de3);
+                        border: none;
+                        border-radius: 20px;
+                        box-shadow: 0 2px 4px -2px black;
+                        color: white;
+                        font-size: 0.9rem;
+                        letter-spacing: 0.05rem;
+                        padding: 8px 22px;
+                    }
+                    
+                }
+
+                .extra-info{
+                    color: #fff;
+                    padding: 50px 0 130px;
+                    width: 100%;
+                    .header{
+                        font-size: 60px;
+                        font-weight: 700;
+                    }
+                    .description{
+                        font-size: 1.3rem;
+                        line-height: 2.5rem;
+                    }
+                }
+
+            }
+
+        }
+
+        .extra-info-credentials-links{
+            font-size: 1.3rem;
+            margin: 0;
+            padding-bottom: 2rem;
+            text-align: center;
+            color: black;
+        
+            .link__selected {
+                border-bottom: 1px solid black;
+                margin-left: 15rem;
+            }
+        
+            .link__unselected {
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    eui-app-footer{
+        eui-footer{
+            padding: 0 !important;
+            .edci-footer{
+                background-color: #d9d9d9;
+                border-top: 6px solid #004494;
+                bottom: 0;
+                height: 4rem;
+                width: 100%;
+                
+                > div {
+                    padding-top: 1.25rem;
+                    text-align: center;
+        
+                    > a {
+                        color: #003776;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+body > app-root > edci-app-shell > eui-app > div > div{
+    position: unset !important;
+    //margin-top: 480px !important;
+    margin-top: 0 !important;
+    //display: flex;
+    //justify-content: center;
+}
+
+
+body > app-root > edci-app-shell > eui-app > div > eui-app-header > eui-header{
+
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    display: flex;
+
+}
+
+
+
+.edci-container{
+    min-width: 996px;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    margin: auto !important;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+
+@media screen and (min-width: 480px){
+    .edci-container{
+        max-width:100%;
+        width:480px !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .edci-container{
+        max-width:100%;
+        width:768px !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media screen and (min-width: 996px){
+    .edci-container{
+        max-width:100%;
+        width:996px !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media screen and (min-width: 1140px){
+    .edci-container{
+        max-width:100%;
+        width:1140px !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+#top-menu > ul{
+    padding-left: 0px !important;
+}

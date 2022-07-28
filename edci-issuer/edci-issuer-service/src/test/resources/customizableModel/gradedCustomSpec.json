@@ -1,0 +1,313 @@
+{
+  "pk": 3,
+  "OCBID": "c44a699a-3768-40e8-be9e-f4ff753eceed",
+  "languages": [
+    "en"
+  ],
+  "defaultTitle": "Graded cred",
+  "defaultLanguage": "en",
+  "title": {
+    "pk": 112,
+    "contents": [
+      {
+        "pk": 179,
+        "content": "Graded cred",
+        "language": "en",
+        "format": "text/plain"
+      }
+    ]
+  },
+  "type": {
+    "pk": 24,
+    "uri": "http://data.europa.eu/snb/credential/e34929035b",
+    "targetName": {
+      "pk": 111,
+      "contents": [
+        {
+          "pk": 178,
+          "content": "Generic",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    },
+    "targetFrameworkURI": "http://data.europa.eu/snb/credential/25831c2",
+    "targetFramework": {
+      "pk": 110,
+      "contents": [
+        {
+          "pk": 177,
+          "content": "Europass Standard List of Credential Types",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    }
+  },
+  "issuanceDate": "Jun 8, 2022 10:00:00 PM",
+  "identifier": [],
+  "issuer": {
+    "pk": 1,
+    "languages": [
+      "en"
+    ],
+    "defaultTitle": "Org 1",
+    "defaultLanguage": "en",
+    "identifier": [],
+    "type": [],
+    "preferredName": {
+      "pk": 3,
+      "contents": [
+        {
+          "pk": 1,
+          "content": "org 1 legal name",
+          "language": "en",
+          "format": "text/plain"
+        }
+      ]
+    },
+    "alternativeName": [],
+    "note": [],
+    "hasLocation": [
+      {
+        "pk": 1,
+        "identifier": [],
+        "spatialCode": [],
+        "hasAddress": [
+          {
+            "pk": 1,
+            "identifier": [],
+            "countryCode": {
+              "pk": 1,
+              "uri": "http://publications.europa.eu/resource/authority/country/AND",
+              "targetName": {
+                "pk": 2,
+                "contents": [
+                  {
+                    "pk": 2,
+                    "content": "Andorra",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              },
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "country",
+              "targetFramework": {
+                "pk": 1,
+                "contents": [
+                  {
+                    "pk": 3,
+                    "content": "Country",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "contactPoint": [],
+    "legalIdentifier": {
+      "pk": 1,
+      "content": "org1id"
+    },
+    "vatIdentifier": [],
+    "taxIdentifier": [],
+    "homePage": [],
+    "hasUnit": [],
+    "auditDAO": {
+      "pk": 1,
+      "createDate": "Apr 20, 2022 10:30:28 AM",
+      "updateDate": "Apr 20, 2022 10:30:28 AM",
+      "createUserId": "mockuser",
+      "updateUserId": "mockuser"
+    }
+  },
+  "achieved": [
+    {
+      "pk": 7,
+      "OCBID": "2f089284-e8d6-4eac-abb3-1e564d436fa6",
+      "languages": [
+        "en"
+      ],
+      "defaultTitle": "Graded Achievement",
+      "defaultLanguage": "en",
+      "identifier": [],
+      "title": {
+        "pk": 106,
+        "contents": [
+          {
+            "pk": 173,
+            "content": "Graded Achievement title",
+            "language": "en",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "description": {
+        "pk": 37,
+        "contents": [
+          {
+            "pk": 172,
+            "content": "Graded Achievement Description",
+            "language": "en",
+            "format": "text/plain"
+          }
+        ]
+      },
+      "additionalNote": [],
+      "wasAwardedBy": {
+        "pk": 15,
+        "identifier": [],
+        "additionalNote": [],
+        "used": [],
+        "awardingBody": []
+      },
+      "specifiedBy": {
+        "pk": 18,
+        "identifier": [],
+        "learningOpportunityType": [],
+        "title": {
+          "pk": 105,
+          "contents": [
+            {
+              "pk": 171,
+              "content": "Graded Achievement title",
+              "language": "en",
+              "format": "text/plain"
+            }
+          ]
+        },
+        "alternativeLabel": [],
+        "additionalNote": [],
+        "homePage": [],
+        "supplementaryDocument": [],
+        "iscedFCode": [],
+        "educationSubject": [],
+        "creditPoints": [],
+        "educationLevel": [],
+        "language": [],
+        "mode": [],
+        "targetGroup": [],
+        "awardingOpportunity": [],
+        "nqfLevel": [],
+        "qualificationCode": [],
+        "learningOutcome": [],
+        "entitlementSpecification": [],
+        "hasPart": [],
+        "specialisationOf": []
+      },
+      "hasPart": [],
+      "wasInfluencedBy": [],
+      "wasDerivedFrom": [
+        {
+          "pk": 1,
+          "OCBID": "f94774c7-6e14-46e0-9e2f-a1a4dd6b32be",
+          "languages": [
+            "en"
+          ],
+          "defaultTitle": "Graded Aassessment",
+          "defaultLanguage": "en",
+          "identifier": [],
+          "title": {
+            "pk": 86,
+            "contents": [
+              {
+                "pk": 152,
+                "content": "Graded assessment title 1",
+                "language": "en",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "description": {
+            "pk": 84,
+            "contents": [
+              {
+                "pk": 150,
+                "content": "Graded assessment description 1",
+                "language": "en",
+                "format": "text/plain"
+              }
+            ]
+          },
+          "additionalNote": [],
+          "specifiedBy": {
+            "pk": 1,
+            "identifier": [],
+            "assessmentType": [],
+            "alternativeLabel": [],
+            "additionalNote": [],
+            "homePage": [],
+            "supplementaryDocument": [],
+            "language": [],
+            "gradingSchemes": {
+              "pk": 1,
+              "identifier": [
+                {
+                  "pk": 2,
+                  "content": "Default grade identifier"
+                }
+              ],
+              "title": {
+                "pk": 85,
+                "contents": [
+                  {
+                    "pk": 151,
+                    "content": "Default grade title",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              },
+              "description": {
+                "pk": 36,
+                "contents": [
+                  {
+                    "pk": 153,
+                    "content": "Default grade description",
+                    "language": "en",
+                    "format": "text/plain"
+                  }
+                ]
+              },
+              "supplementaryDocument": []
+            },
+            "proves": [],
+            "hasPart": [],
+            "specializationOf": []
+          },
+          "hasPart": [],
+          "assessedBy": [],
+          "auditDAO": {
+            "pk": 9,
+            "createDate": "Jun 16, 2022 2:42:53 PM",
+            "updateDate": "Jun 16, 2022 2:42:53 PM",
+            "createUserId": "mockuser",
+            "updateUserId": "mockuser"
+          }
+        }
+      ],
+      "entitlesTo": [],
+      "auditDAO": {
+        "pk": 16,
+        "createDate": "Jun 17, 2022 9:03:33 AM",
+        "updateDate": "Jun 17, 2022 9:03:33 AM",
+        "createUserId": "mockuser",
+        "updateUserId": "mockuser"
+      }
+    }
+  ],
+  "performed": [],
+  "entitledTo": [],
+  "auditDAO": {
+    "pk": 12,
+    "createDate": "Jun 16, 2022 3:02:12 PM",
+    "updateDate": "Jun 17, 2022 9:03:50 AM",
+    "createUserId": "mockuser",
+    "updateUserId": "mockuser"
+  }
+}

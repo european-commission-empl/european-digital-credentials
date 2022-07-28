@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.5" global="false"/>
+
+    <changeSet id="remove_old_thumbnail_column" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="CREDENTIAL_T" columnName="DIPLOMA_IMG"/>
+        </preConditions>
+        <comment>CREDENTIAL_T.DIPLOMA_IMG column has been deprecated, since it's not used anymore</comment>
+        <dropColumn tableName="CREDENTIAL_T" columnName="DIPLOMA_IMG"/>
+    </changeSet>
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

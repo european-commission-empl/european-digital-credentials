@@ -1,0 +1,79 @@
+<div class="upload-component {{ wrapperClass }}">
+    <div>
+        <input
+            *ngIf="!isMultiple"
+            [hidden]="true"
+            #inputFile
+            id="myInput"
+            type="file"
+            [accept]="allowedFiles.join(',')"
+            (change)="readFile($event.target['files'])"
+        />
+        <input
+            *ngIf="isMultiple"
+            [hidden]="true"
+            #inputFile
+            id="myInput"
+            type="file"
+            [accept]="allowedFiles.join(',')"
+            multiple
+            (change)="readMultiFile($event.target['files'])"
+        />
+        <ng-container *ngIf="!isIconOnly; else iconOnly">
+            <button
+                euiButton
+                [euiIconButton]="true"
+                [euiOutline]="true"
+                class="eui-u-mr-s eui-u-mb-s modal-button-accept"
+                (click)="onUploadFile()"
+            >
+                <span
+                    euiIcon
+                    iconClass="eui-icon eui-icon eui-icon-upload"
+                    aria-label="Upload"
+                ></span>
+                {{ label }}
+            </button>
+
+            <ux-control-feedback>
+                {{ 'file-upload.no-more-than' | translate }}
+                {{ maxUploadSizeMB }} MB
+            </ux-control-feedback>
+            <ux-control-feedback
+                >{{ formatMessage | translate }} {{ extensionList }}
+            </ux-control-feedback>
+            <span *ngIf="error" class="mt-2 ux-u-color-danger">
+                <strong>{{ errorMessage | translate }}</strong>
+            </span>
+        </ng-container>
+
+        <ng-template #iconOnly>
+            <div class="icon-navigation" (click)="openDynamicModal()">
+                <img src="assets/images/upload.svg" alt="{{ label }}" />
+                <span class="icon-navigation-label">
+                    {{ label }}
+                </span>
+                <ux-control-feedback>
+                    {{ 'file-upload.no-more-than' | translate }}
+                    {{ maxUploadSizeMB }} MB
+                </ux-control-feedback>
+                <ux-control-feedback
+                    >{{ formatMessage | translate }} {{ extensionList }}
+                </ux-control-feedback>
+                <span *ngIf="error" class="mt-2 ux-u-color-danger">
+                    <strong>{{ errorMessage | translate }}</strong>
+                </span>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<eui-dialog
+    #uploadDialog
+    [title]='this.label'
+    (accept)="onAccept()"
+    (dismiss)="onDismiss()"
+>
+    <p>{{ 'common.upload-concent-message' | translate }}</p>
+    <p></p
+></eui-dialog>

@@ -1,0 +1,16 @@
+{
+  "customizableEntityDTOS": [
+    {
+      "label": "Achievement Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.entity.specs.LearningAchievementSpecDAO",
+      "position": 3,
+      "relations": [
+        {
+          "position": 7,
+          "relPath": "ACH{$entityId}.hasPart{$id}",
+          "label": "Sub Achievemenets"
+        }
+      ]
+    }
+  ]
+}

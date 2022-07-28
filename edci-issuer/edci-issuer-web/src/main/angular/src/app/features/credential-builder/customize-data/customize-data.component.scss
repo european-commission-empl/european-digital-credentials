@@ -1,0 +1,119 @@
+@import '/src/assets/styles/global/variables.scss';
+
+edci-customize-data {
+
+    .cursor-pointer{
+        cursor: pointer;
+    }
+
+    .no-border{
+        border: unset !important;
+    }
+    
+    .height-48{
+        height: 48px !important;
+    }
+
+    div{
+
+        .row{
+            display: inline-flex;
+            .col-5{
+                eui-card{
+                    eui-card-content{
+                        display: inline-flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+    
+            .col-7{
+                padding: 0 2rem;
+                .row{
+                    display: flex;
+                    margin-bottom: 1rem;
+                    .col-6.right{
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    
+        .button-back-container{
+            display: flex;
+            justify-content: end;
+            button{
+                border: unset !important;   
+            }
+        }
+    }
+
+    .upload-button{
+        text-align: center;
+        padding: 1rem;
+        cursor: pointer;
+        align-items: center;
+        img{
+            width: 100px !important;
+        }
+    }
+    
+    .input-checkbox{
+        margin-bottom: 8px !important;
+    }
+
+    label{
+        font-family: eui-default, Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+        font-weight: 400 !important;
+    }
+
+    .__hide-input{
+        visibility: hidden !important;
+    }
+    
+    .input-form-wrapper{
+        .input-form-container{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    
+    .input-form-row-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .open-card{
+        cursor: pointer;
+        background-color: rgb(238, 238, 238) !important;
+    }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .buttons-row{
+        .buttons{
+            width: 100%;
+    
+            button{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .buttons-row{
+        width: 100%;
+        margin: unset !important;
+        .buttons{
+            button{
+                width: 100%;
+            }
+        }
+    }
+}
+
+eui-card .eui-card-header__container{
+    padding: 0 1em;
+}
