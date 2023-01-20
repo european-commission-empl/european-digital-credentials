@@ -1,0 +1,186 @@
+<edci-panel [title]="titleSection" [(isExpanded)]="isTabExpanded">
+    <div class="organisation-detail_panel">
+        <div class="detail-organisation-section">
+            <div
+                class="
+                    d-flex
+                    align-items-start
+                    awarded-by
+                    justify-content-between
+                    flex-column
+                "
+            >
+                <div>
+                    <p
+                        *ngFor="let name of organisation?.alternativeName"
+                        class="awarded-by_text"
+                    >
+                        {{ name }}
+                    </p>
+                    <p class="awarded-by_text">
+                        {{ organisation.preferredName }}
+                    </p>
+                </div>
+                <div *ngIf="sealLongDescription && showVP" class="col-12">
+                    <p class="verified f-14 mt-3">
+                        {{ sealLongDescription | edciTranslate: language }}
+                    </p>
+                </div>
+                <div
+                    class="awarded-by_info d-flex justify-content-between w-100"
+                >
+                    <div class="awarded-by_info-data flex-grow-1 mr-3">
+                        <div class="d-flex mb-4">
+                            <ng-container
+                                *ngIf="organisation?.location?.length > 0 &&
+                                organisation?.location[0].geographicName !== null ||
+                                organisation?.location[0].spatialCode !== null ||
+                                organisation?.location[0].address !== null "
+                            >
+                                <img
+                                    class="mr-2 align-self-start"
+                                    src="assets/icons/icon-building.svg"
+                                />
+                                <div class="d-flex flex-column mr-2">
+                                    <p
+                                        *ngFor="
+                                            let location of organisation.location
+                                        "
+                                        class="d-flex"
+                                    >
+                                        {{
+                                            [
+                                                location.geographicName,
+                                                location.address[0].fullAddress,
+                                                location.address[0].countryCode
+                                            ] | edciJoin: ', '
+                                        }}
+                                    </p>
+                                </div>
+                            </ng-container>
+                            <div
+                                *ngIf="organisation?.homepage?.length > 0"
+                                class="d-flex flex-column mr-2"
+                            >
+                                <p *ngFor="let web of organisation.homepage">
+                                    <a [href]="web.link" target="_blank">{{
+                                        web.link
+                                    }}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="d-flex flex-wrap gap-3">
+                                <div
+                                    class="mr-3"
+                                    *ngIf="organisation?.legalIdentifier"
+                                >
+                                    <span class="item">
+                                        <span class="item-title">{{
+                                            'details.organization-tab.legalIdentifier'
+                                                | translate
+                                        }}</span>
+                                        <span>
+                                            {{
+                                                organisation.legalIdentifier
+                                                    .content
+                                            }}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div
+                                    class="mr-3"
+                                    *ngIf="organisation?.vatIdentifier"
+                                >
+                                    <span class="item">
+                                        <span class="item-title">{{
+                                            'details.organization-tab.vatIdentifier'
+                                                | translate
+                                        }}</span>
+                                        <span
+                                            *ngFor="
+                                                let vat of organisation.vatIdentifier;
+                                                let isLast = last
+                                            "
+                                        >
+                                            {{ vat.content
+                                            }}<span *ngIf="!isLast">, </span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div
+                                    class="mr-3"
+                                    *ngIf="organisation?.taxIdentifier"
+                                >
+                                    <span class="item">
+                                        <span class="item-title">{{
+                                            'details.organization-tab.taxIdentifier'
+                                                | translate
+                                        }}</span>
+                                        <span
+                                            *ngFor="
+                                                let tax of organisation.taxIdentifier;
+                                                let isLast = last
+                                            "
+                                            >&nbsp;{{ tax.content
+                                            }}<span *ngIf="!isLast">, </span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <!-- <div *ngIf="organisation?.legalIdentifier">
+                                    <div
+                                        [ngClass]="{
+                                            rectangle:
+                                                organisation?.legalIdentifier ||
+                                                organisation?.vatIdentifier ||
+                                                organisation?.taxIdentifier
+                                        }"
+                                    ></div>
+                                    <span class="item">
+                                        <span class="item-title"
+                                            >Type of institution</span
+                                        >
+                                        {{
+                                            organisation.legalIdentifier.content
+                                        }}
+                                    </span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!--
+                    <div *ngIf="organisation?.legalIdentifier">
+                        <span>
+                            <span class="item-title">Research alliance</span>
+                            {{ organisation.legalIdentifier.content }}
+                        </span>
+                    </div>
+                    --></div>
+                    <div
+                        *ngIf="organisation?.logo"
+                        class="awarded-by_info-logo ml-auto"
+                    >
+                        <img
+                            [src]="
+                                'data:' +
+                                    this.organisation.logo.mimeType +
+                                    ';base64,' +
+                                    this.organisation.logo.base64Content
+                                    | edciSanitize: 'resourceUrl'
+                            "
+                        />
+                    </div>
+                </div>
+                <div *ngIf="organisation?.contactPoint?.length > 0">
+                    <div *ngIf="organisation?.contactPoint[0]?.email">
+                        <p class="awarded-by_text mb-2">
+                            {{'details.credential-subject-tab.email' | translate}}
+                        </p>
+                        <p>
+                            {{organisation.contactPoint[0].email}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</edci-panel>

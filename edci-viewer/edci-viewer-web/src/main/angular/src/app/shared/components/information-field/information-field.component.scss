@@ -1,0 +1,41 @@
+.edci-information-field {
+    width: fit-content;
+
+    &_title {
+        color: #353535;
+        font-size: 16px;
+        font-weight: bold;
+        padding-top: 2px;
+
+        &.with-link {
+            color: #004494;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &_information {
+        color: #353535;
+        padding-top: 12px;
+    }
+
+    &_icon {
+        padding-right: 14px;
+    }
+
+    &_tooltip {
+        padding-left: 8px;
+    }
+
+    p {
+        margin: 0;
+        word-break: break-word;
+    }
+
+    &.no-icon {
+        margin-left: 34px;
+    }
+}

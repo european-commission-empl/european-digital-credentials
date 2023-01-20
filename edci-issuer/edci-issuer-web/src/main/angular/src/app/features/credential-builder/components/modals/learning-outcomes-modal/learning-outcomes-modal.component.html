@@ -1,0 +1,33 @@
+<ux-modal
+    [id]="modalId"
+    class="learningOutcomeModal"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
+    (onClose)="closeModal(false)"
+    customWidth="75%"
+>
+    <uxModalBody>
+        <edci-learning-outcomes-form [isModal]="true" [eventSave]="eventSave.asObservable()" [editLearningOutcomeOid]="editLearningOutcomeOid" (onSaveEvent)="saveForm($event)"></edci-learning-outcomes-form>
+    </uxModalBody>
+
+    <uxModalFooter>
+        <edci-cb-modal-footer
+            (onClose)="closeModal(false)"
+            (onSave)="onSave()"
+            [isDisabled]="isSaveDisabled"
+        ></edci-cb-modal-footer>
+    </uxModalFooter>
+</ux-modal>
+
+<div *ngIf="isLoading || isSaveDisabled" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>

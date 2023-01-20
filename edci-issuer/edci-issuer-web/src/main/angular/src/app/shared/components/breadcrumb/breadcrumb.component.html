@@ -1,0 +1,30 @@
+<nav
+    class="edci-breadcrumb"
+    aria-label="You are here:"
+    data-edci-breadcrumb="true"
+>
+    <ol class="edci-breadcrumb__container">
+        <li
+            *ngFor="let item of parts; let i = index; let last = last"
+            data-edci-breadcrumb-item="static"
+            aria-hidden="false"
+            class="edci-breadcrumb__segment"
+        >
+            <a
+                [routerLink]="item.url"
+                routerLinkActive="active-link"
+                class="edci-breadcrumb__link edci-link edci-link--standalone"
+                >{{ item.label }}</a
+            >
+            <svg
+                *ngIf="!last"
+                focusable="false"
+                aria-hidden="true"
+                role="presentation"
+                class="edci-breadcrumb__icon edci-icon edci-icon--xs edci-icon--rotate-90"
+            >
+                <use xlink:href="assets/icons.svg#ui--corner-arrow"></use>
+            </svg>
+        </li>
+    </ol>
+</nav>

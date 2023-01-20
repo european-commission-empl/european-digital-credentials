@@ -1,0 +1,87 @@
+<div
+    class="assessment-detail_panel other-information"
+    *ngIf="
+        activeAssessment?.specifiedBy?.otherDocuments?.length > 0 ||
+        activeAssessment?.moreInformation?.length > 0 ||
+        activeAssessment?.specifiedBy?.moreInformation?.length > 0 ||
+        activeAssessment?.specifiedBy?.homePage?.length > 0
+    "
+>
+    <edci-panel
+        [title]="'details.assessments-tab.otherInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="d-flex flex-column">
+            <div
+                *ngIf="activeAssessment?.specifiedBy?.otherDocuments?.length > 0"
+                class="other-information_section"
+            >
+                <p class="other-information_title">
+                    {{ 'details.assessments-tab.relatedDocuments' | translate }}
+                </p>
+                <div class="d-flex flex-wrap">
+                    <ng-container
+                        *ngFor="
+                            let document of activeAssessment.specifiedBy
+                                .otherDocuments
+                        "
+                    >
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    activeAssessment?.moreInformation?.length > 0 ||
+                    activeAssessment?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="other-information_section"
+            >
+                <ng-container
+                    *ngFor="let content of activeAssessment?.moreInformation"
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+                <ng-container
+                    *ngFor="
+                        let content of activeAssessment?.specifiedBy
+                            ?.moreInformation
+                    "
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+            </div>
+            <div
+                class="other-information_section"
+                *ngIf="activeAssessment?.specifiedBy?.homePage?.length > 0"
+            >
+                <p class="other-information_title">
+                    {{ 'details.assessments-tab.homePage' | translate }}
+                </p>
+                <div class="d-flex flex-column">
+                    <a
+                        *ngFor="let page of activeAssessment.specifiedBy.homePage"
+                        [href]="page.link"
+                        >{{ page.title ? page.title : page.link }}</a
+                    >
+                </div>
+            </div>
+        </div>
+    </edci-panel>
+</div>

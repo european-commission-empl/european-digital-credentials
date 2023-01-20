@@ -1,0 +1,37 @@
+<ehcache
+        xsi:noNamespaceSchemaLocation="ehcache.xsd"
+        updateCheck="true"
+        monitoring="autodetect"
+        dynamicConfig="true"
+>
+    <diskStore path="java.io.tmpdir"/>
+
+    <cache name="CL_sparQL"
+           maxEntriesLocalDisk="10000"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_esco"
+           maxEntriesLocalDisk="10000"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_FileType"
+           maxEntriesLocalDisk="20"
+           maxEntriesLocalHeap="10"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="AC_Accreditation"
+           maxEntriesLocalDisk="5000"
+           maxEntriesLocalHeap="200"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+</ehcache>

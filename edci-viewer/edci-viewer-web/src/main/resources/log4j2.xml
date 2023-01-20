@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${log.pattern}"/>
+        </Console>
+        <Rollingfile name="FILE_APPENDER" fileName="${log.base.path}${log.file}.log"
+                     filePattern="${log.base.path}${log.file}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+            <DefaultRolloverStategy max="10">
+                <Delete basePath="${log.base.path}" maxDepth="10">
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStategy>
+        </Rollingfile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache" level="error" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Root level="${log.level}">
+            <AppenderRef ref="FILE_APPENDER"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</configuration>

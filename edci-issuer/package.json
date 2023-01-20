@@ -1,0 +1,17 @@
+{
+    "name": "angular-app",
+    "version": "0.1.0",
+    "license": "EUPL-1.1",
+    "description": "eUI JEE Spring Maven multi-module starter app scripts",
+    "scripts": {
+        "angular-install": "cd *-web/src/main/angular && yarn install",
+        "angular-build": "cd *-web/src/main/angular && npm run build",
+        "angular-build-prod": "cd *-web/src/main/angular && npm run build-prod",
+        "build": "npm run angular-build && mvn clean package",
+        "build-prod": "npm run angular-build-prod && mvn clean package",
+        "start": "cd *-web/src/main/angular && npm run start",
+        "start-proxy": "cd *-web/src/main/angular && npm run start-proxy"
+    },
+    "private": true,
+    "repository": {}
+}

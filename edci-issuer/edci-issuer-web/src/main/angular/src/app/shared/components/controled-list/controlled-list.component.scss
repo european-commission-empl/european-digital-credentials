@@ -1,0 +1,10 @@
+.controlled-list__component {
+    .mat-input-element {
+        margin: 0px 0 0 0  !important;
+        padding: calc(var(--eui-base-spacing-s) - 1px);
+    }
+
+    > eui-autocomplete input {
+        height: 38.5px !important;
+    }
+}

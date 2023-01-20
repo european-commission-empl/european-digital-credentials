@@ -1,0 +1,126 @@
+.organisation-detail {
+    &_panel {
+        padding-bottom: 18px;
+    }
+
+    .entity-link-section {
+        edci-panel {
+            --edci-panel-content-padding-bottom: 8px;
+        }
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+.fit-image {
+    max-height: 15rem;
+    max-width: 80%;
+}
+
+.verified {
+    display: flex;
+
+    &::before {
+        background: white;
+        border-radius: 50%;
+        color: #479f4b;
+        content: '\f058';
+        /* stylelint-disable */
+        font-family: FontAwesome;
+        /* stylelint-enable */
+        font-size: 26px;
+        margin-right: 10px;
+    }
+}
+
+.f-14 {
+    font-size: 14px !important;
+}
+
+.detail-organisation-section {
+    .awarded-by {
+        &_collapsed {
+            padding-bottom: 24px;
+        }
+
+        &_text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        &_icon {
+            color: #004494;
+            font-size: 19px;
+
+            &-text {
+                color: #004494;
+                font-size: 16px;
+                padding-right: 8px;
+            }
+
+            &-img {
+                transition: all 0.5s ease;
+
+                &.rotate-180 {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+        &_info {
+            padding-bottom: 4px;
+            padding-top: 20px;
+
+            &-logo {
+                > img {
+                    max-height: 100px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .awarding-information {
+        .field-title {
+            font-weight: bold;
+            padding-bottom: 8px;
+        }
+
+        padding-bottom: 18px;
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .row {
+        &_item {
+            flex-basis: calc(100% / 4);
+            padding: 0 4px 22px;
+        }
+    }
+
+    .item {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .rectangle {
+        background-color: #dedfe4;
+        display: inline-block;
+        height: 16px;
+        margin: 0 10px;
+        vertical-align: middle;
+        width: 1px;
+    }
+
+    .item-title {
+        font-weight: bold;
+    }
+}

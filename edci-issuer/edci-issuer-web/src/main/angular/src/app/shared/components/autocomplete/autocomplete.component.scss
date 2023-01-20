@@ -1,0 +1,24 @@
+
+.input-disabled .eui-chip--primary:not(.eui-chip--outline).eui-chip{
+    background: var(--eui-base-color-grey-15);
+    color:var(--eui-base-color-black);
+}
+
+.eui-input-text--clearable-icon:before{
+    z-index: 7;
+}
+
+.single-autocomplete-event-div {
+    background: var(--eui-base-color-primary-100);
+    opacity: 0.10;
+    height: 38px;
+    width:100%;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+.eui-chip--removable .eui-chip__content-container {
+    cursor: pointer;
+}

@@ -1,0 +1,67 @@
+<div
+    class="entitlement-detail_panel entitlement-information"
+    *ngIf="
+        activeEntitlement?.specifiedBy?.entitlementType ||
+        activeEntitlement?.specifiedBy?.status ||
+        activeEntitlement?.specifiedBy?.validWithin ||
+        activeEntitlement?.specifiedBy?.toWorkAs
+    "
+>
+    <edci-panel
+        [title]="'details.entitlements-tab.entitlementInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="entitlement-information-row d-flex flex-wrap">
+            <div
+                class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.entitlementType"
+            >
+                <edci-information-field
+                    text="{{ activeEntitlement.specifiedBy.entitlementType }}"
+                    [title]="
+                        'details.entitlements-tab.entitlementType' | translate
+                    "
+                    icon="icon-type"
+                ></edci-information-field>
+            </div>
+            <div
+                class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.status"
+            >
+                <edci-information-field
+                    text="{{ activeEntitlement.specifiedBy.status }}"
+                    [title]="'details.entitlements-tab.status' | translate"
+                    icon="icon-status"
+                ></edci-information-field>
+            </div>
+            <div
+                class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.validWithin"
+            >
+                <edci-information-field
+                    [text]="
+                        activeEntitlement.specifiedBy.validWithin
+                            | edciJoin: ', '
+                    "
+                    [title]="'details.entitlements-tab.validWithin' | translate"
+                    icon="icon-valid-within"
+                >
+                </edci-information-field>
+            </div>
+            <div
+                class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.toWorkAs?.length > 0"
+            >
+                <edci-information-field
+                    [text]="
+                        activeEntitlement.specifiedBy.toWorkAs | edciJoin: ', '
+                    "
+                    [title]="
+                        'details.entitlements-tab.relatedOccupation' | translate
+                    "
+                >
+                </edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

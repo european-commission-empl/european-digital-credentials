@@ -1,0 +1,184 @@
+<div *ngIf="!loading" class="container">
+    <div class="breadcrumb__wrapper m-4">
+        <edci-breadcrumb [parts]="parts"></edci-breadcrumb>
+    </div>
+    <edci-status-bar></edci-status-bar>
+    <h1 class="ml-4"> {{ 'credential-builder.customise-data.title' | translate }} </h1>
+    <p
+        class="description-text mb-5 ml-4"
+        [innerHTML]="
+            'credential-builder.customise-data.description' | translate
+        "
+    ></p>
+
+    <div class="col-12 d-inline-flex flex-column flex-lg-row">
+        <div class="col-12 col-lg-5">
+            <eui-card [euiNoShadow]="true" class="no-border">
+                <eui-card-content>
+                    <eui-card [euiCollapsible]="true" [euiCollapsed]="true" [euiNoShadow]="true" *ngFor="
+                        let entity of customizableDataArchitect.customizableEntityViews;
+                        let j = index
+                    " class="">
+                        <eui-card-header class="cursor-pointer header">
+                            <eui-card-header-title>{{ entity.label }}</eui-card-header-title>
+                        </eui-card-header>
+                        <eui-card-content>
+                            <div euiInputGroup>
+                                <div
+                                    *ngFor="
+                                        let field of entity.fields;
+                                        let i = index
+                                    "
+                                    class="input-checkbox"
+                                >
+                                    <input
+                                        euiInputCheckBox
+                                        id="checkbox-field-{{ j }}-{{ i }}"
+                                        name="dyn-checkbox"
+                                        (click)="addCheck(j, i)"
+                                        [checked]="field.mandatory"
+                                        [readonly]="field.mandatory"
+                                    />
+                                    <label
+                                        for="checkbox-field-{{ j }}-{{ i }}"
+                                        >{{ field.label }}</label
+                                    >
+                                </div>
+                                <div
+                                    *ngFor="
+                                        let relation of entity.relations;
+                                        let i = index
+                                    "
+                                    class="input-checkbox"
+                                >
+                                    <input
+                                        euiInputCheckBox
+                                        id="checkbox-relation-{{ j }}-{{
+                                            i
+                                        }}"
+                                        name="dyn-checkbox"
+                                        (click)="addCheck(j, i, true)"
+                                    />
+                                    <label
+                                        for="checkbox-relation-{{ j }}-{{
+                                            i
+                                        }}"
+                                        >{{ relation.label }}</label
+                                    >
+                                </div>
+                            </div>
+                        </eui-card-content>
+                    </eui-card>
+                </eui-card-content>
+            </eui-card>
+        </div>
+        <div class="col-12 col-lg-7">
+            <p
+                class="description-text mb-3"
+                [innerHTML]="
+                    'credential-builder.customise-data.description-buttons'
+                        | translate
+                "
+            ></p>
+            <div class="row buttons-row w-100">
+                <div class="buttons col-12 col-md-6 col-lg-6 mb-2">
+                    <button
+                        euiButton
+                        [euiPrimary]="true"
+                        [euiSizeL]="true"
+                        (click)="fillForm()"
+                        class="w-100"
+                    >
+                        {{
+                            'credential-builder.customise-data.button-browse'
+                                | translate
+                        }}
+                        <span class="eui-icon eui-icon-chevron-right"></span>
+                    </button>
+                </div>
+                <div class="buttons col-12 col-md-6 col-lg-6 right mb-2">
+                    <button
+                        euiButton
+                        [euiPrimary]="true"
+                        [euiSizeL]="true"
+                        (click)="downloadExcel()"
+                        class="w-100"
+                    >
+                        {{
+                            'credential-builder.customise-data.button-download-excel'
+                                | translate
+                        }}
+                        <span class="eui-icon eui-icon-chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+            <p
+                class="description-text"
+                [innerHTML]="
+                    'credential-builder.customise-data.download-info'
+                        | translate
+                "
+            ></p>
+            <div class="col-12 text-center upload-button my-3 d-flex flex-column">
+                <img
+                    (click)="openDynamicModal()"
+                    src="assets/images/upload.svg"
+                />
+                <span
+                    *ngIf="error"
+                    class="error-message | mt-2 eui-u-color-danger-100"
+                >
+                    <strong>{{ errorMessage | translate }}</strong>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end row mt-5">
+        <div class="col-3">
+            <button
+                euiButton
+                [euiOutline]="true"
+                [euiSecondary]="true"
+                [euiSizeL]="true"
+                (click)="back()"
+                class="w-100"
+            >
+                <span class="eui-icon eui-icon-chevron-left"></span>
+                {{
+                    'credential-builder.customise-data.back-button'
+                        | translate
+                }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+<eui-dialog
+        #uploadDialog
+        title="{{ 'common.upload-xls' | translate }}"
+        (accept)="onAccept('uploadDialog')"
+        (dismiss)="onDismiss('uploadDialog')"
+    >
+        <p>{{ 'common.upload-concent-message' | translate }}</p>
+        <p></p
+></eui-dialog>
+
+<input
+        *ngIf="inputFileIsEnabled"
+        [hidden]="true"
+        #inputFile
+        id="myInput"
+        type="file"
+        (input)="readFile($event.target['files'])"
+    />

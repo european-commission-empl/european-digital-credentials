@@ -1,0 +1,19 @@
+<button
+    euiButton
+    [euiOutline]="true"
+    class="eui-u-mr-s modal-button"
+    [euiPrimary]="true"
+    (click)="onClose.emit('cancel')"
+>
+    {{ 'common.cancel' | translate }}
+</button>
+
+<button
+    euiButton
+    [euiPrimary]="true"
+    (click)="onSave.emit('save')"
+    class="eui-u-mr-s modal-button"
+    [disabled]="isDisabled"
+>
+    {{ 'common.save' | translate }}
+</button>

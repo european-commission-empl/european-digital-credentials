@@ -1,0 +1,98 @@
+{
+  "customizableEntityDTOS": [
+    {
+      "label": "Personal Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.common.model.RecipientDataDTO",
+      "position": 1,
+      "fields": [
+        {
+          "position": 2,
+          "label": "Last Name",
+          "fieldPath": "REC.familyName",
+          "mandatory": true,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 1,
+          "label": "First name",
+          "fieldPath": "REC.givenNames",
+          "mandatory": true,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 4,
+          "label": "Citizenship Country",
+          "fieldPath": "REC.citizenshipCountry",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 10,
+          "label": "Gender",
+          "fieldPath": "REC.gender",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        }
+      ],
+      "relations": [
+      ]
+    },
+    {
+      "label": "Credential Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.entity.specs.EuropassCredentialSpecDAO",
+      "position": 2,
+      "fields": [
+        {
+          "position": 2,
+          "label": "Description",
+          "fieldPath": "description($lang)",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        }
+      ],
+      "relations": [
+        {
+          "position": 5,
+          "relPath": "REC.achievements{$id}",
+          "label": "Achieved",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "label": "Achievement Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.entity.specs.LearningAchievementSpecDAO",
+      "position": 3,
+      "fields": [
+        {
+          "position": 1,
+          "label": "Title",
+          "fieldPath": "ACH{$entityId}.title($lang)",
+          "mandatory": false,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 4,
+          "label": "Additional notes",
+          "fieldPath": "ACH{$entityId}.additionalNote{$id}($lang)",
+          "mandatory": false,
+          "additionalInfo": null
+        }
+      ],
+      "relations": [
+        {
+          "position": 7,
+          "relPath": "ACH{$entityId}.hasPart{$id}",
+          "label": "Sub Achievemenets",
+          "hidden": false
+        }
+      ]
+    }
+  ]
+}

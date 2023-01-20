@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.europa.ec.empl.edci.wallet</groupId>
+        <version>1.7.3-RELEASE</version>
+        <artifactId>edci-wallet</artifactId>
+    </parent>
+
+    <artifactId>edci-wallet-web</artifactId>
+    <packaging>war</packaging>
+    <name>edci-wallet web module</name>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>empl-snapshots</id>
+            <name>EMPL Maven Snapshots Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>empl</id>
+            <name>EMPL Maven Repository provided by CITnet Team</name>
+            <url>https://webgate.ec.europa.eu/CITnet/nexus/content/repositories/empl/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>eu.europa.ec.digit.uxatec.eui</groupId>
+            <artifactId>eui-angular2-servlet</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>edci-wallet-web-rest</artifactId>
+            <version>1.7.3-RELEASE</version>
+        </dependency>
+
+
+        <!--  <dependency>
+              <groupId>org.springframework.security.oauth</groupId>
+              <artifactId>spring-security-oauth2</artifactId>
+          </dependency>-->
+
+    </dependencies>
+
+
+    <build>
+        <finalName>europass2#edci-wallet</finalName>
+        <plugins>
+            <!-- <plugin>
+                 <groupId>io.swagger</groupId>
+                 <artifactId>swagger-codegen-maven-plugin</artifactId>
+                 <version>${swagger.codegen.maven.plugin.version}</version>
+                 <executions>
+                     <execution>
+                         <phase>generate-sources</phase>
+                         <goals>
+                             <goal>generate</goal>
+                         </goals>
+                         <configuration>
+                             <inputSpec>
+                                 ${basedir}/../edci-wallet-web-rest/target/generated-sources/swagger/swagger.json
+                             </inputSpec>
+                             <apiPackage>api</apiPackage>
+                             <modelPackage>model</modelPackage>
+                             <language>typescript-angular</language>
+                             <output>${basedir}/src/main/angular/src/app/shared/swagger</output>
+                             <templateDirectory>${basedir}/src/main/resources/custom-swagger-templates
+                             </templateDirectory>
+                         </configuration>
+                     </execution>
+                 </executions>
+                 <dependencies>
+                     <dependency>
+                         <groupId>${project.groupId}</groupId>
+                         <artifactId>edci-wallet-web-rest-swagger</artifactId>
+                         <version>1.7.3-RELEASE</version>
+                     </dependency>
+                 </dependencies>
+             </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/angular/dist</directory>
+                        </resource>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>**/applicationContext.xml</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <!--<outputDirectory>C:\Dev\EDCI\servers\apache-tomcat-8.0.41\webapps</outputDirectory>-->
+                </configuration>
+            </plugin>
+            <!-- <plugin>
+                 <groupId>org.codehaus.mojo</groupId>
+                 <artifactId>exec-maven-plugin</artifactId>
+                 <version>1.4.0</version>
+                 <executions>
+                     <execution>
+                         <id>docker-build</id>
+                         <phase>install</phase>
+                         <goals>
+                             <goal>exec</goal>
+                         </goals>
+                         <configuration>
+                             <executable>docker</executable>
+                             <workingDirectory>C:\Dev\EDCI\gitSrc\edci\edci-wallet</workingDirectory>
+                             <arguments>
+                                 <argument>build</argument>
+                                 <argument>-t</argument>
+                                 <argument>kiceurope/wallet_dev:QA</argument>
+                                 <argument>.</argument>
+                             </arguments>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>-->
+        </plugins>
+    </build>
+</project>

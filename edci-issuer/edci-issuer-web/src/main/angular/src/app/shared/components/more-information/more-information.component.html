@@ -1,0 +1,164 @@
+<div id="moreInformationComponent">
+    <div class="more-info-header d-inline-flex col-12">
+        <label class="d-flex">
+            {{ headerLabel }}
+            <span [uxTooltip]="tooltip" position="top-right" size="large">
+                <eui-icon iconClass="eui-icon-info-circle-thin"></eui-icon>
+            </span>
+        </label>
+        <span>
+            <eui-icon
+                [iconClass]="
+                    isExpanded ? 'fa fa-caret-down' : 'fa fa-caret-right'
+                "
+                (click)="changePanelVisibility()"
+            ></eui-icon>
+        </span>
+    </div>
+    <div
+        *ngIf="formGroup?.controls && moreInformation?.controls"
+        [hidden]="!isExpanded"
+        class="col-12"
+    >
+        <form [formGroup]="formGroup">
+            <div
+                class="form-group"
+                *ngIf="moreInformation?.controls[activeLanguage]"
+                [formGroup]="moreInformation"
+            >
+                <div class="eui-textarea__wrapper">
+                    <textarea
+                        class="form-control"
+                        [formControl]="moreInformationControls"
+                        class="eui-textarea"
+                        rows="3"
+                    ></textarea>
+                    <ng-container
+                        *ngFor="let control of moreInformation.controls | keyvalue"
+                    >
+                        <ux-control-feedback
+                            *ngIf="
+                                control.key === activeLanguage &&
+                                control.value.errors?.maxlength
+                            "
+                            typeClass="danger"
+                        >
+                            {{ 'error.maxLength.4000' | translate }}
+                        </ux-control-feedback>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="mt-2" formArrayName="additionalNotes">
+                <div class="form-group">
+                    <label class="d-inline-flex">
+                        {{
+                            'credential-builder.more-information-additional-fields'
+                                | translate
+                        }}
+                    </label>
+                    <ng-container
+                        *ngFor="
+                            let additionalNote of additionalNotes.controls;
+                            let i = index;
+                            let last = last
+                        "
+                    >
+                        <div [formGroupName]="i" class="mb-3">
+                            <div class="col-12 px-0">
+                                <input
+                                    euiInputText
+                                    type="text"
+                                    class="form-control mr-3"
+                                    [placeholder]="'common.topic' | translate"
+                                    [attr.disabled]="
+                                        activeLanguage !== defaultLanguage ? '' : null
+                                    "
+                                    formControlName="topic"
+                                />
+                                <ux-control-feedback
+                                    *ngIf="
+                                        additionalNotes?.controls[i]['controls']
+                                            .topic.errors?.maxlength
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.255' | translate }}
+                                </ux-control-feedback>
+                            </div>
+
+                            <div class="d-flex col-12 px-0 mt-3 eui-textarea__wrapper">
+                                <textarea
+                                    *ngIf="additionalNotes.controls[i]['controls'].content.controls[activeLanguage]"
+                                    class="form-control mr-3 eui-textarea"
+                                    rows="3"
+                                    [placeholder]="'common.content' | translate"
+                                    [formControl]="additionalNotes.controls[i]['controls'].content.controls[activeLanguage]"
+                                ></textarea>
+                                <div class="d-flex flex-column">
+                                    <button
+                                        euiButton
+                                        [euiIconButton]="true"
+                                        [euiBasicButton]="true"
+                                        [euiSizeM]="true"
+                                        (click)="addAdditionalNoteRow()"
+                                        *ngIf="last"
+                                        [euiDisabled]="activeLanguage !== defaultLanguage"
+                                    >
+                                        <span
+                                            euiIcon
+                                            iconClass="eui-icon eui-icon-plus-circle-thin-o"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        euiButton
+                                        [euiIconButton]="true"
+                                        [euiBasicButton]="true"
+                                        [euiSizeM]="true"
+                                        (click)="removeAdditionalNoteRow(i)"
+                                        *ngIf="
+                                            additionalNotes.controls?.length > 1
+                                        "
+                                        [euiDisabled]="activeLanguage !== defaultLanguage"
+                                    >
+                                        <span
+                                            euiIcon
+                                            iconClass="eui-icon eui-icon-trash-o"
+                                        ></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <ng-container
+                                *ngFor="
+                                    let control of additionalNotes.controls[i][
+                                        'controls'
+                                    ].content.controls | keyvalue
+                                "
+                            >
+                                <ux-control-feedback
+                                    *ngIf="
+                                        control.key === activeLanguage &&
+                                        additionalNotes.controls[i]['errors']
+                                            ?.additionalNoteError
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.additionalNote' | translate }}
+                                </ux-control-feedback>
+                                <ux-control-feedback
+                                    *ngIf="
+                                        control.key === activeLanguage &&
+                                        control.value['errors']?.maxlength
+                                    "
+                                    typeClass="danger"
+                                >
+                                    {{ 'error.maxLength.4000' | translate }}
+                                </ux-control-feedback>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

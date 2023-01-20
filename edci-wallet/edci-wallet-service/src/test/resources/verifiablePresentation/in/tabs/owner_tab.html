@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="owner(person)">
+    <div class="content">
+
+        <p th:text="${person.fullName}"></p>
+
+        <p th:if="${person.gender}">
+            <strong>[[#{details.credential-subject-tab.gender}]]: </strong>
+            <span th:text="${person.gender}"></span>
+        </p>
+
+        <p th:if="${person.dateOfBirth}">
+            <strong>[[#{details.credential-subject-tab.born}]]: </strong>
+            <span th:text="${person.dateOfBirth}"></span>
+        </p>
+
+        <span th:if="${person.placeOfBirth}">
+            <span th:if="${!person.placeOfBirth.address.empty}">
+            <strong>[[#{details.credential-subject-tab.place.birth}]]: </strong>
+                <div th:each="address, iter : ${person.placeOfBirth.address}">
+                    <p th:text="${address.fullAddress}"></p>
+                    <p th:text="${address.countryCode}"></p>
+                </div>
+            </span>
+        </span>
+
+        <p th:if="${person.citizenshipCountry}">
+            <strong>[[#{details.credential-subject-tab.citizenshipCountry}]]: </strong>
+            <span th:each="item, iter : ${person.citizenshipCountry}"
+                  th:text="!${iter.last} ? ${item} + ', ': ${item}"></span>
+        </p>
+
+        <span th:each="item, iter : ${person.hasLocation}">
+            <div th:each="address, iter : ${item.address}">
+                <p th:if="${address.fullAddress}">
+                    <strong>[[#{details.credential-subject-tab.fullAddress}]]: </strong>
+                    <span th:text="${address.fullAddress}"></span>
+                </p>
+                <p th:if="${address.countryCode}">
+                    <strong>[[#{details.credential-subject-tab.countryCode}]]: </strong>
+                    <span th:text="${address.countryCode}"></span>
+                </p>
+            </div>
+        </span>
+
+        <hr/>
+
+        <p th:if="${person.nationalId}">
+            <strong>[[#{details.credential-subject-tab.nationalId}]]: </strong>
+            <span th:text="${person.nationalId}"></span>
+        </p>
+
+        <hr/>
+
+        <div th:insert="tabs/fields/contact_point_field :: contactPoint(${person})"></div>
+
+    </div>
+
+</div>
+<div style="page-break-after:always"></div>
+
+</div>
+</body>
+</html>

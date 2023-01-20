@@ -1,0 +1,42 @@
+{
+  "name": "eui-angular-app",
+  "version": "13.1.2",
+  "license": "EUPL-1.1",
+  "scripts": {
+    "ng": "ng",
+    "start-mock-server": "nodemon --watch ./mock ./mock/server.js",
+    "start-serve": "eui-scripts serve-app --configuration=proxy-mock --configEnvTarget=mock",
+    "start": "npm-run-all --parallel start-mock-server start-serve",
+    "start-proxy": "eui-scripts serve-app --configuration=proxy --configEnvTarget=proxy",
+    "start-local": "eui-scripts serve-app --configEnvTarget=local",
+    "build": "eui-scripts build-app",
+    "build-dev": "eui-scripts build-app --skipTest --configuration=back",
+    "build-docker": "eui-scripts build-app --skipTest --configuration=back",
+    "build-prod": "eui-scripts build-app --skipTest --configuration=back",
+    "no-branding": "eui-scripts build-app --skipTest --configuration=no-branding",
+    "build-prod-ci": "ncp tsconfig-ci.json tsconfig.json && npm run build-prod",
+    "build-prod-stats": "eui-scripts build-app --configuration=production-optimized --configEnvTarget=ENV --statsJson",
+    "app:build": "eui-scripts build-app",
+    "app:inject-config": "eui-scripts inject-config-app",
+    "generate-changelog": "eui-scripts generate-changelog",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@eui/deps-base": "13.1.2",
+    "bootstrap": "4.6.1",
+    "font-awesome": "4.7.0"
+  },
+  "devDependencies": {
+    "@angular-eslint/builder": "13.2.0",
+    "@angular-eslint/eslint-plugin": "13.2.0",
+    "@angular-eslint/eslint-plugin-template": "13.2.0",
+    "@angular-eslint/schematics": "13.2.0",
+    "@angular-eslint/template-parser": "13.2.0",
+    "@eui/ecl-core": "^13.4.1",
+    "@typescript-eslint/eslint-plugin": "5.17.0",
+    "@typescript-eslint/parser": "5.17.0",
+    "eslint": "^8.12.0",
+    "primeng": "^13.3.2"
+  }
+}

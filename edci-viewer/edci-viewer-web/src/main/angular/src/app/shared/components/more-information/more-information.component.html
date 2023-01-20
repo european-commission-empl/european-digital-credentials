@@ -1,0 +1,15 @@
+<div *ngIf="moreInformation?.length > 0" class="col-12">
+    <div>
+        <p class="mt-0">
+            <strong> {{ 'details.moreInformation' | translate }}</strong>
+        </p>
+        <ng-container *ngFor="let additionalNote of moreInformation">
+            <p>
+                <strong *ngIf="additionalNote?.topic">
+                    {{ additionalNote.topic }}:&nbsp;
+                </strong>
+                {{ additionalNote.content }}
+            </p>
+        </ng-container>
+    </div>
+</div>
