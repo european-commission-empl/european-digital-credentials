@@ -1,8 +1,8 @@
-# EDCI - Europass Digital Credential Interoperability
+# EDCI - European Digital Credential Interoperability
 [![license: EUPL](licence-EUPL%201.2-brightgreen.svg)](https://github.com/teamdigitale/licenses/blob/master/EUPL-1.2)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
-The Europass Digital Credential Infrastructure is a set of standards, services and software which allows institutions to issue digital, tamper-proof qualifications and other learning credentials within the European Education Area. With it learners, employers, education and training providers and other authorised bodies have a simple and trustworthy way of verifying the validly and authenticity of digital credentials.
+The European Digital Credential Infrastructure is a set of standards, services and software which allows institutions to issue digital, tamper-proof qualifications and other learning credentials within the European Education Area. With it learners, employers, education and training providers and other authorised bodies have a simple and trustworthy way of verifying the validly and authenticity of digital credentials.
 
 ## Components
 
@@ -20,6 +20,6 @@ More information: [Issuer](edci-issuer/README.md)
 
 ### Viewer
 
-The EDCI Viewer is used to view a Europass Digital Credential received by e-mai or uploaded to a wallet. The credential contains rich data about your accomplishments. The tool will allow you to check the authenticity and validity of the credential, as well as print or download it as pdf.
+The EDCI Viewer is used to view a European Digital Credential received by e-mai or uploaded to a wallet. The credential contains rich data about your accomplishments. The tool will allow you to check the authenticity and validity of the credential, as well as print or download it as pdf.
 
 More information: [Viewer](edci-viewer/README.md)
