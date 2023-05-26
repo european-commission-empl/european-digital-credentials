@@ -1,0 +1,272 @@
+@media (min-width: 480px) {
+    .edci-container {
+        max-width: 100%;
+        width: 996px;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+    #nav-bar #top-menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #nav-bar #top-menu {
+        display: block;
+    }
+}
+
+@media (min-width: 1140px) {
+    .edci-container {
+        max-width: 100%;
+        width: 1140px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #nav-bar {
+        background: transparent;
+        height: auto !important;
+        position: inherit;
+        z-index: 101;
+    }
+}
+
+.edci-container {
+    min-width: 996px;
+}
+
+.details-spinner {
+    left: 45%;
+    margin-top: 15%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: white !important;
+    min-width: 25cm;
+    overflow: auto;
+    height: auto;
+    width: auto !important;
+}
+
+#loader-wrapper {
+    background-color: #424242;
+}
+
+body:has(.blueBackdrop) {
+    overflow: hidden;
+}
+
+.blueBackdrop {
+    background: linear-gradient(to right bottom, #2956bd, #5d5bd0);
+
+    &+.cdk-global-overlay-wrapper {
+        .mat-dialog-container {
+            align-items: center;
+            background: transparent;
+            box-shadow: none;
+            color: var(--eui-base-color-white);
+            display: flex;
+            flex: 1;
+            font-size: 1.8rem;
+            justify-content: center;
+            margin: 0 auto;
+            text-align: center;
+            text-shadow: 0 2px 6px #0000004a;
+            width: 60vw;
+
+            .mat-progress-spinner circle,
+            .mat-spinner circle {
+                stroke: #fafafa;
+            }
+
+            .mat-dialog-content {
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+.overflow-auto-details {
+    overflow: auto !important;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f5f3f3;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #d0d0d0;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #d0d0d0;
+    }
+}
+
+.ui-toast-detail {
+    overflow-wrap: break-word;
+}
+
+// Language Dropdown
+.mat-menu-panel {
+    display: table;
+    max-height: 60vh !important;
+    width: 145px !important;
+}
+
+/* Line breaks and spaces preserved */
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.break-all {
+    word-break: break-all;
+}
+
+.break-word {
+    word-break: break-word;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Diploma details */
+.diploma-details {
+    .list-item {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
+
+    .selected {
+        color: #214493;
+        font-weight: bold;
+    }
+
+    .main-item {
+        font-size: 18px;
+    }
+
+    .sub-item {
+        font-size: 16px;
+    }
+}
+
+.box-shadow-none {
+    box-shadow: none !important;
+}
+
+.detail__title {
+    background-color: #164194;
+    color: #fff;
+    padding: 0.5rem !important;
+
+    >strong {
+        padding: 0.5rem !important;
+    }
+}
+
+.size__16 {
+    font-size: 16px;
+}
+
+.edci__content a {
+    word-break: break-word;
+}
+
+.lh-32 {
+    line-height: 32px;
+}
+
+.size__18 {
+    font-size: 18px;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-decoration-underline {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.modal-close-focus {
+    .ux-modal__header-close {
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    }
+}
+
+.w-75 {
+    width: 75% !important;
+}
+
+/** New Styles **/
+
+edci-section,
+edci-panel,
+section {
+    display: block;
+
+    h6 {
+        font-weight: bold;
+        margin-bottom: var(--eui-base-spacing-xs);
+    }
+
+}
+
+edci-panel {
+
+    edci-panel {
+        margin-top: var(--eui-base-spacing-m);
+    }
+
+    section,
+    edci-section {
+        margin-bottom: var(--eui-base-spacing-l);
+        /*padding-left: var(--eui-base-spacing-xs);
+        padding-right: var(--eui-base-spacing-xs);*/
+        /* &:last-of-type{
+            margin-bottom: var(--eui-base-spacing-s);
+        }*/
+    }
+
+}
+
+edci-section {
+    section {
+        margin-left: 0;
+    }
+
+    .row p+p {
+        margin-top: var(--eui-base-spacing-m);
+    }
+
+}

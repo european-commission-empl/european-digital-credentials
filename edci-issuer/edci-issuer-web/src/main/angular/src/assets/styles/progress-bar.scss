@@ -1,0 +1,26 @@
+/* Progress bar */
+.ui-widget-content {
+    background: #d2edfe;
+    border: 0 !important;
+}
+
+.ui-progressbar.ui-progressbar-determinate .ui-progressbar-value {
+    background: $ongoing;
+}
+
+.ui-progressbar {
+    height: 0.6em;
+}
+
+.edci-progressbar-completed {
+    .ui-progressbar.ui-progressbar-determinate .ui-progressbar-value {
+        background: $completed;
+    }
+}
+
+.edci-progressbar-stopped {
+    .ui-widget-content {
+        background: $failed;
+        opacity: 0.4;
+    }
+}

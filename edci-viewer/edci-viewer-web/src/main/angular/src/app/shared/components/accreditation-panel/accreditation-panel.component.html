@@ -1,0 +1,262 @@
+<div class="accreditation">
+    <edci-panel
+        [title]="'details.achievements-tab.accreditation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div *ngFor="let accreditation of accreditations; let i = index">
+            <div class="accreditation_main d-flex justify-content-between">
+                <p class="accreditation_main-title">
+                    {{ accreditation.title }}
+                </p>
+                <div
+                    class="d-flex float-right cursor-pointer align-items-center"
+                    (click)="toggleAccreditation(i)"
+                >
+                    <p class="accreditation_show-more-text">
+                        {{
+                            isAccreditationExpanded[i]
+                                ? ('common.showLess' | translate)
+                                : ('common.showMore' | translate)
+                        }}
+                    </p>
+                    <i
+                        class="accreditation_show-more-img fa fa-chevron-down"
+                        [ngClass]="{
+                            'rotate-180': isAccreditationExpanded[i]
+                        }"
+                    ></i>
+                </div>
+            </div>
+            <div *ngIf="isAccreditationExpanded[i]" class="mt-4">
+                <div *ngIf="accreditation?.organization">
+                    <edci-detail-organisation-section
+                        [organisation]="accreditation.organization"
+                    ></edci-detail-organisation-section>
+                </div>
+                <div *ngIf="accreditation?.accreditingAgent">
+                    <edci-detail-organisation-section
+                        [organisation]="accreditation.accreditingAgent"
+                    ></edci-detail-organisation-section>
+                </div>
+                <div
+                    class="d-flex flex-column mt-4"
+                    *ngIf="
+                        accreditation?.accreditationType ||
+                        accreditation?.decision ||
+                        accreditation?.issueDate ||
+                        accreditation?.expiryDate ||
+                        accreditation?.reviewDate ||
+                        accreditation?.limitEqfLevel?.length > 0 ||
+                        accreditation?.limitJurisdiction?.length > 0
+                    "
+                >
+                    <div class="accreditation_section">
+                        <p class="accreditation_title py-3">
+                            {{
+                                'details.achievements-tab.accreditationInformation'
+                                    | translate
+                            }}
+                        </p>
+                    </div>
+                    <div class="accreditation_f-14">
+                        <div
+                            *ngIf="accreditation?.accreditationType"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.type' | translate
+                                }}
+                            </p>
+                            <p>
+                                {{ accreditation.accreditationType.title }}
+                            </p>
+                        </div>
+                        <div
+                            *ngIf="accreditation?.decision"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.decision'
+                                        | translate
+                                }}
+                            </p>
+                            <p>
+                                {{ accreditation.decision }}
+                            </p>
+                        </div>
+                        <div
+                            *ngIf="
+                                accreditation?.issueDate ||
+                                accreditation?.expiryDate ||
+                                accreditation?.reviewDate
+                            "
+                            class="accreditation_section d-flex w-75"
+                        >
+                            <div
+                                *ngIf="accreditation?.issueDate"
+                                class="d-flex pr-60"
+                            >
+                                <p class="accreditation_title">
+                                    {{
+                                        'details.achievements-tab.issue'
+                                            | translate
+                                    }}
+                                </p>
+                                <p>
+                                    {{ accreditation.issueDate }}
+                                </p>
+                            </div>
+                            <div
+                                *ngIf="accreditation?.expiryDate"
+                                class="d-flex pr-60"
+                            >
+                                <p class="accreditation_title">
+                                    {{
+                                        'details.achievements-tab.expiry'
+                                            | translate
+                                    }}
+                                </p>
+                                <p>
+                                    {{ accreditation.expiryDate }}
+                                </p>
+                            </div>
+                            <div
+                                *ngIf="accreditation?.reviewDate"
+                                class="d-flex"
+                            >
+                                <p class="accreditation_title">
+                                    {{
+                                        'details.achievements-tab.review'
+                                            | translate
+                                    }}
+                                </p>
+                                <p>
+                                    {{ accreditation.reviewDate }}
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="accreditation?.limitField?.length > 0"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.thematicArea'
+                                        | translate
+                                }}
+                            </p>
+                            <p>
+                                {{ accreditation.limitField | edciJoin: ', ' }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="accreditation_title py-3">
+                        {{
+                            'details.achievements-tab.accreditationLimitedTo'
+                                | translate
+                        }}
+                    </p>
+                    <div class="accreditation_f-14">
+                        <div
+                            *ngIf="accreditation?.limitEqfLevel?.length > 0"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.EQFLevel'
+                                        | translate
+                                }}
+                            </p>
+                            <p>
+                                {{
+                                    accreditation.limitEqfLevel | edciJoin: ', '
+                                }}
+                            </p>
+                        </div>
+                        <div
+                            *ngIf="accreditation?.limitJurisdiction?.length > 0"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.limitJurisdiction'
+                                        | translate
+                                }}
+                            </p>
+                            <p>
+                                {{
+                                    accreditation.limitJurisdiction
+                                        | edciJoin: ', '
+                                }}
+                            </p>
+                        </div>
+                        <div
+                            *ngIf="accreditation?.limitQualification"
+                            class="accreditation_section d-flex"
+                        >
+                            <p class="accreditation_title">
+                                {{
+                                    'details.achievements-tab.qualification'
+                                        | translate
+                                }}
+                            </p>
+                            <p>
+                                {{ accreditation.limitQualification }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="accreditation_section d-flex"
+                    *ngIf="accreditation?.supplementaryDocument?.length > 0"
+                >
+                    <p class="accreditation_title">
+                        {{ 'details.achievements-tab.report' | translate }}
+                    </p>
+                    <ng-container *ngFor="let document of accreditation.report">
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+                <div
+                    *ngIf="accreditation?.additionalNote?.length > 0"
+                    class="other-information_section"
+                >
+                    <ng-container
+                        *ngFor="let content of accreditation?.additionalNote"
+                    >
+                        <p class="other-information_title">
+                            {{ content.subject }}
+                        </p>
+                        <p class="other-information_description">
+                            {{ content.content }}
+                        </p>
+                    </ng-container>
+                </div>
+                <div
+                    *ngIf="accreditation?.homePage?.length > 0"
+                    class="other-information_section"
+                >
+                    <p class="other-information_title">
+                        {{ 'details.activities-tab.homePage' | translate }}
+                    </p>
+                    <div class="d-flex flex-column">
+                        <a
+                            *ngFor="let page of accreditation.homePage"
+                            [href]="page.link"
+                            >{{ page.title ? page.title : page.link }}</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </edci-panel>
+</div>

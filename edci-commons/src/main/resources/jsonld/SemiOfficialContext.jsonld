@@ -1,0 +1,262 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+
+    "id": "@id",
+    "type": "@type",
+
+    "edc": "https://data.europa.eu/snb/model/edc-constraints#",
+    "vc": "http://data.europa.eu/snb/model/w3c/vc#",
+    "vp": "http://data.europa.eu/snb/model/w3c/vp#",
+    "elm": "https://data.europa.eu/snb/model#",
+    "sec": "https://w3id.org/security#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dc": "http://purl.org/dc/terms/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rov": "http://www.w3.org/ns/regorg#",
+    "foaf":   "http://xmlns.com/foaf/0.1/",
+
+    "VerifiableCredential": {
+      "@id": "http://data.europa.eu/snb/model/w3c/vc#VerifiableCredential",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "id": "@id",
+        "type": "@type",
+
+        "shaclValidator2017": {
+          "@id": "edc:shaclValidator2017",
+          "@type": "@id",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "edc": "https://data.europa.eu/snb/model/edc-constraints#",
+
+            "JsonSchemaValidator2018": "edc:JsonSchemaValidator2018"
+          }
+        },
+        "dcType": {"@id": "dc:type", "@type": "skos:Concept"},
+        "credentialStatus": {"@id": "vc:credentialStatus", "@type": "@id"},
+        "owner": {"@id": "vc:credentialSubject", "@type": "elm:Person"},
+        "evidence": {"@id": "vc:evidence", "@type": "@id"},
+        "expirationDate": {"@id": "vc:expirationDate", "@type": "xsd:dateTime"},
+        "holder": {"@id": "vc:holder", "@type": "@id"},
+        "issued": {"@id": "dc:issued", "@type": "xsd:dateTime"},
+        "issuer": {"@id": "vc:issuer", "@type": "elm:Organisation"},
+        "issuanceDate": {"@id": "vc:issuanceDate", "@type": "xsd:dateTime"},
+        "proof": {"@id": "vc:proof", "@type": "vc:Proof"},
+        "refreshService": {
+          "@id": "edc:refreshService",
+          "@type": "@id",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "edc": "https://data.europa.eu/snb/model/edc-constraints#",
+
+            "ManualRefreshService2018": "edc:ManualRefreshService2018"
+          }
+        },
+        "termsOfUse": {"@id": "vc:termsOfUse", "@type": "@id"},
+        "validFrom": {"@id": "vc:validFrom", "@type": "xsd:dateTime"},
+        "validUntil": {"@id": "vc:validUntil", "@type": "xsd:dateTime"}
+      }
+    },
+    "VerifiablePresentation": {
+      "@id": "https://data.europa.eu/snb/model/edc-constraints#VerifiablePresentation",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "id": "@id",
+        "type": "@type",
+
+        "edc": "https://data.europa.eu/snb/model/edc-constraints#",
+        "sec": "https://w3id.org/security#",
+
+        "holder": {"@id": "edc:holder", "@type": "@id"},
+        "proof": {"@id": "sec:proof", "@type": "@id", "@container": "@graph"},
+        "verifiableCredential": {"@id": "edc:verifiableCredential", "@type": "@id", "@container": "@graph"}
+      }
+    },
+
+    "EcdsaSecp256k1Signature2019": {
+      "@id": "https://w3id.org/security#EcdsaSecp256k1Signature2019",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "id": "@id",
+        "type": "@type",
+
+        "sec": "https://w3id.org/security#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        "challenge": "sec:challenge",
+        "created": {"@id": "http://purl.org/dc/terms/created", "@type": "xsd:dateTime"},
+        "domain": "sec:domain",
+        "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+        "jws": "sec:jws",
+        "nonce": "sec:nonce",
+        "proofPurpose": {
+          "@id": "sec:proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "sec": "https://w3id.org/security#",
+
+            "assertionMethod": {"@id": "sec:assertionMethod", "@type": "@id", "@container": "@set"},
+            "authentication": {"@id": "sec:authenticationMethod", "@type": "@id", "@container": "@set"}
+          }
+        },
+        "proofValue": "sec:proofValue",
+        "verificationMethod": {"@id": "sec:verificationMethod", "@type": "@id"}
+      }
+    },
+
+    "EcdsaSecp256r1Signature2019": {
+      "@id": "https://w3id.org/security#EcdsaSecp256r1Signature2019",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "id": "@id",
+        "type": "@type",
+
+        "sec": "https://w3id.org/security#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        "challenge": "sec:challenge",
+        "created": {"@id": "http://purl.org/dc/terms/created", "@type": "xsd:dateTime"},
+        "domain": "sec:domain",
+        "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+        "jws": "sec:jws",
+        "nonce": "sec:nonce",
+        "proofPurpose": {
+          "@id": "sec:proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "sec": "https://w3id.org/security#",
+
+            "assertionMethod": {"@id": "sec:assertionMethod", "@type": "@id", "@container": "@set"},
+            "authentication": {"@id": "sec:authenticationMethod", "@type": "@id", "@container": "@set"}
+          }
+        },
+        "proofValue": "sec:proofValue",
+        "verificationMethod": {"@id": "sec:verificationMethod", "@type": "@id"}
+      }
+    },
+
+    "Ed25519Signature2018": {
+      "@id": "https://w3id.org/security#Ed25519Signature2018",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "id": "@id",
+        "type": "@type",
+
+        "sec": "https://w3id.org/security#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+        "challenge": "sec:challenge",
+        "created": {"@id": "http://purl.org/dc/terms/created", "@type": "xsd:dateTime"},
+        "domain": "sec:domain",
+        "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+        "jws": "sec:jws",
+        "nonce": "sec:nonce",
+        "proofPurpose": {
+          "@id": "sec:proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "sec": "https://w3id.org/security#",
+
+            "assertionMethod": {"@id": "sec:assertionMethod", "@type": "@id", "@container": "@set"},
+            "authentication": {"@id": "sec:authenticationMethod", "@type": "@id", "@container": "@set"}
+          }
+        },
+        "proofValue": "sec:proofValue",
+        "verificationMethod": {"@id": "sec:verificationMethod", "@type": "@id"}
+      }
+    },
+
+    "RsaSignature2018": {
+      "@id": "https://w3id.org/security#RsaSignature2018",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+
+        "challenge": "sec:challenge",
+        "created": {"@id": "http://purl.org/dc/terms/created", "@type": "xsd:dateTime"},
+        "domain": "sec:domain",
+        "expires": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+        "jws": "sec:jws",
+        "nonce": "sec:nonce",
+        "proofPurpose": {
+          "@id": "sec:proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "sec": "https://w3id.org/security#",
+
+            "assertionMethod": {"@id": "sec:assertionMethod", "@type": "@id", "@container": "@set"},
+            "authentication": {"@id": "sec:authenticationMethod", "@type": "@id", "@container": "@set"}
+          }
+        },
+        "proofValue": "sec:proofValue",
+        "verificationMethod": {"@id": "sec:verificationMethod", "@type": "@id"}
+      }
+    },
+
+    "Proof": {
+        "@id": "http://data.europa.eu/snb/model/w3c/vc#Proof",
+        "@type": "@id",
+        "@context": {
+            "@version": 1.1,
+            "@protected": true,
+
+            "id": "@id",
+            "type": "@type",
+
+            "dateCreated": {"@id": "dc:created", "@type": "xsd:dateTime"},
+            "jws": {"@id": "vc:jws", "@type": "xsd:string"},
+            "proofPurpose": {"@id": "vc:proofPuprose"},
+            "dcType": {"@id": "dc:type", "@type": "skos:Concept"},
+            "verificationMethod": {"@id": "vc:verificationMethod", "@type": "xsd:anyURI"}
+        }
+    }
+  }
+}

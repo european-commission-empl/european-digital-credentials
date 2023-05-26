@@ -1,0 +1,1766 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-persistence:jar:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-service:jar:1.7.0-RELEASE
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework:spring-context-support:jar -> version (?) vs ${spring.version} @ line 326, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest-swagger:jar:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest:jar:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-web:war:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer-web-swagger-ui:war:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ eu.europa.ec.empl.edci.issuer:edci-issuer:1.7.0-RELEASE, C:\Dev\EDCI\gitSrc\edci\edci-issuer\pom.xml, line 296, column 21
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for eu.europa.ec.empl.edci.issuer:edci-issuer:pom:1.7.0-RELEASE
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 296, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] edci-issuer                                                        [pom]
+[INFO] EDCI issuer common module                                          [jar]
+[INFO] EDCI issuer persistence module                                     [jar]
+[INFO] EDCI issuer service module                                         [jar]
+[INFO] EDCI issuer web REST swagger generator module                      [jar]
+[INFO] EDCI issuer REST module                                            [jar]
+[INFO] EDCI issuer web module                                             [war]
+[INFO] EDCI issuer web SwaggerUI module                                   [war]
+[INFO] 
+[INFO] -------------< eu.europa.ec.empl.edci.issuer:edci-issuer >--------------
+[INFO] Building edci-issuer 1.7.0-RELEASE                                 [1/8]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer:pom:1.7.0-RELEASE
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] |  \- com.sun.mail:javax.mail:jar:1.5.0:provided
+[INFO] |     \- javax.activation:activation:jar:1.1:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] ----------< eu.europa.ec.empl.edci.issuer:edci-issuer-common >----------
+[INFO] Building EDCI issuer common module 1.7.0-RELEASE                   [2/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-common ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE
+[INFO] +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework:spring-aop:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-beans:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-core:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-jcl:jar:5.2.20.RELEASE:compile
+[INFO] |  \- org.springframework:spring-expression:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-web:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-webmvc:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-test:jar:5.2.20.RELEASE:test
+[INFO] +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:jar:1.7.0-RELEASE:compile
+[INFO] |  +- eu.europa.ec.empl.edci:edci-data-model:jar:1.7.0-RELEASE:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] |  +- com.apicatalog:titanium-json-ld-jre8:jar:1.3.1:compile
+[INFO] |  |  \- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |     +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |     |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.31:compile
+[INFO] |  |     |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.31:compile
+[INFO] |  |     |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.31:compile
+[INFO] |  |     \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.6.20:compile
+[INFO] |  |        \- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  +- org.glassfish:jakarta.json:jar:2.0.1:compile
+[INFO] |  +- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-impl:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-core:jar:2.3.0:compile
+[INFO] |  +- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  +- org.springframework:spring-tx:jar:5.2.20.RELEASE:compile
+[INFO] |  +- joda-time:joda-time:jar:2.9.1:compile
+[INFO] |  +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  |  \- org.javassist:javassist:jar:3.20.0-GA:compile
+[INFO] |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf-spring5:jar:3.0.7.RC1:compile
+[INFO] |  +- org.thymeleaf.extras:thymeleaf-extras-java8time:jar:3.0.4.RELEASE:compile
+[INFO] |  +- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  +- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] |  |  \- org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] |  +- org.eclipse.persistence:eclipselink:jar:2.7.5:compile
+[INFO] |  |  +- org.eclipse.persistence:jakarta.persistence:jar:2.2.3:compile
+[INFO] |  |  \- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] |  +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  +- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-orm:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  +- org.springframework:spring-jdbc:jar:5.2.20.RELEASE:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- org.apache.jena:jena-core:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-base:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-shaded-guava:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] |  |  |  \- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] |  |  +- org.apache.jena:jena-iri:jar:4.5.0:compile
+[INFO] |  |  \- commons-cli:commons-cli:jar:1.4:compile
+[INFO] |  +- org.apache.jena:jena-arq:jar:4.5.0:compile
+[INFO] |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.30:compile
+[INFO] |  |  +- com.apicatalog:titanium-json-ld:jar:1.2.0:compile
+[INFO] |  |  +- com.google.protobuf:protobuf-java:jar:3.19.3:compile
+[INFO] |  |  \- org.apache.thrift:libthrift:jar:0.13.0:compile
+[INFO] |  +- org.apache.jena:apache-jena-libs:pom:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shacl:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shex:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb2:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-dboe-storage:jar:4.5.0:compile
+[INFO] |  |  |     \- org.apache.jena:jena-dboe-trans-data:jar:4.5.0:compile
+[INFO] |  |  |        +- org.apache.jena:jena-dboe-transaction:jar:4.5.0:compile
+[INFO] |  |  |        |  \- org.apache.jena:jena-dboe-base:jar:4.5.0:compile
+[INFO] |  |  |        \- org.apache.jena:jena-dboe-index:jar:4.5.0:compile
+[INFO] |  |  \- org.apache.jena:jena-rdfconnection:jar:4.5.0:compile
+[INFO] |  +- org.topbraid:shacl:jar:1.4.2:compile
+[INFO] |  +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] |  +- com.sun.mail:javax.mail:jar:1.5.0:compile
+[INFO] |  |  \- javax.activation:activation:jar:1.1:compile
+[INFO] |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  +- commons-io:commons-io:jar:2.2:compile
+[INFO] |  +- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] |  \- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |     +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |     |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |     +- org.apache.commons:commons-compress:jar:1.20:compile
+[INFO] |     \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  +- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] |  \- org.bouncycastle:bcprov-jdk15on:jar:1.70:compile (version selected from constraint [1.52,))
+[INFO] +- commons-lang:commons-lang:jar:2.6:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-eseal-core:jar:1.7.0-RELEASE:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-common:jar:5.10.1:compile
+[INFO] |  |  |  |     \- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.10.1:compile
+[INFO] |  |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.5:runtime
+[INFO] |  |  |        +- org.glassfish.jaxb:txw2:jar:2.3.5:runtime
+[INFO] |  |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.12:runtime
+[INFO] |  |  |        \- com.sun.activation:jakarta.activation:jar:1.2.2:runtime
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.10.1:compile
+[INFO] |  |     \- org.apache.santuario:xmlsec:jar:2.3.0:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.10.1:compile
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.70:compile
+[INFO] |  |  |     \- org.bouncycastle:bcutil-jdk15on:jar:1.70:compile
+[INFO] |  |  \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.2:compile
+[INFO] |  |     +- org.apache.httpcomponents.core5:httpcore5:jar:5.1.2:compile
+[INFO] |  |     \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.1.2:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.10.1:compile
+[INFO] |  |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.14.0:compile
+[INFO] |  |  |  |        +- org.json:json:jar:20201115:compile
+[INFO] |  |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |  |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |  |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |  |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |  |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.9:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.10.1:compile
+[INFO] |  |  \- org.apache.pdfbox:pdfbox:jar:2.0.25:compile
+[INFO] |  |     \- org.apache.pdfbox:fontbox:jar:2.0.25:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.10.1:compile
+[INFO] |  |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-utils-apache-commons:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-cookbook:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-test:test-jar:tests:5.10.1:compile
+[INFO] |  |  |  +- com.h2database:h2:jar:2.1.210:compile
+[INFO] |  |  |  +- org.junit.platform:junit-platform-launcher:jar:1.8.2:compile
+[INFO] |  |  |  |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:compile
+[INFO] |  |  |  |  |  +- org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO] |  |  |  |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:compile
+[INFO] |  |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[INFO] |  |  |  +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:compile
+[INFO] |  |  |  |  \- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:compile
+[INFO] |  |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.8.2:compile
+[INFO] |  |  |  +- org.awaitility:awaitility:jar:4.1.1:compile
+[INFO] |  |  |  |  \- org.hamcrest:hamcrest:jar:2.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser-stream:jar:5.10.1:compile
+[INFO] |  |  |  \- org.apache.xmlgraphics:fop-core:jar:2.7:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-anim:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-css:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-dom:jar:1.14:compile
+[INFO] |  |  |     |  |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-shared-resources:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-svg-dom:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-util:jar:1.14:compile
+[INFO] |  |  |     |  |  +- org.apache.xmlgraphics:batik-constants:jar:1.14:compile
+[INFO] |  |  |     |  |  \- org.apache.xmlgraphics:batik-i18n:jar:1.14:compile
+[INFO] |  |  |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-bridge:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-script:jar:1.14:compile
+[INFO] |  |  |     |  \- org.apache.xmlgraphics:batik-xml:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-extension:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-gvt:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-transcoder:jar:1.14:compile
+[INFO] |  |  |     |  \- org.apache.xmlgraphics:batik-svggen:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:fop-events:jar:2.7:compile
+[INFO] |  |  |     |  \- com.thoughtworks.qdox:qdox:jar:1.12:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:fop-util:jar:2.7:compile
+[INFO] |  |  |     \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.7:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-rest:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-rest-client:jar:5.10.1:compile
+[INFO] |  |  |     \- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-soap-client:jar:5.10.1:compile
+[INFO] |  |  |     \- jakarta.xml.ws:jakarta.xml.ws-api:jar:2.3.2:compile
+[INFO] |  |  |        +- jakarta.xml.soap:jakarta.xml.soap-api:jar:1.4.1:compile
+[INFO] |  |  |        +- jakarta.annotation:jakarta.annotation-api:jar:1.3.4:compile
+[INFO] |  |  |        \- jakarta.jws:jakarta.jws-api:jar:1.1.1:runtime
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-common:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-server-common:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-common:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest-client:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap:jar:5.10.1:compile
+[INFO] |  |     \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap-client:jar:5.10.1:compile
+[INFO] |  \- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] -------< eu.europa.ec.empl.edci.issuer:edci-issuer-persistence >--------
+[INFO] Building EDCI issuer persistence module 1.7.0-RELEASE              [3/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-persistence ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-persistence:jar:1.7.0-RELEASE
+[INFO] +- org.eclipse.persistence:eclipselink:jar:2.7.5:compile
+[INFO] |  +- org.eclipse.persistence:jakarta.persistence:jar:2.2.3:compile
+[INFO] |  \- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] +- org.hsqldb:hsqldb:jar:2.2.8:compile
+[INFO] +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  +- org.springframework:spring-orm:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-expression:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-aop:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-tx:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-beans:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-core:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-jcl:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.26:compile
+[INFO] +- org.springframework:spring-jdbc:jar:5.2.20.RELEASE:compile
+[INFO] +- com.querydsl:querydsl-core:jar:4.2.1:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:1.3.9:compile
+[INFO] |  +- com.mysema.commons:mysema-commons-lang:jar:0.2.4:compile
+[INFO] |  \- com.infradna.tool:bridge-method-annotation:jar:1.13:compile
+[INFO] +- com.querydsl:querydsl-apt:jar:4.2.1:compile
+[INFO] |  \- com.querydsl:querydsl-codegen:jar:4.2.1:compile
+[INFO] |     +- com.mysema.codegen:codegen:jar:0.6.8:compile
+[INFO] |     |  \- org.eclipse.jdt.core.compiler:ecj:jar:4.3.1:compile
+[INFO] |     \- org.reflections:reflections:jar:0.9.9:compile
+[INFO] |        +- org.javassist:javassist:jar:3.18.2-GA:compile
+[INFO] |        \- com.google.code.findbugs:annotations:jar:2.0.1:compile
+[INFO] +- com.querydsl:querydsl-jpa:jar:4.2.1:compile
+[INFO] |  \- javax.inject:javax.inject:jar:1:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework:spring-web:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-webmvc:jar:5.2.20.RELEASE:compile
+[INFO] |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] |  +- eu.europa.ec.empl.edci:edci-commons:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- eu.europa.ec.empl.edci:edci-data-model:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] |  |  +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] |  |  +- com.apicatalog:titanium-json-ld-jre8:jar:1.3.1:compile
+[INFO] |  |  |  \- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |  |     +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |  |     |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.31:compile
+[INFO] |  |  |     |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.31:compile
+[INFO] |  |  |     |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.31:compile
+[INFO] |  |  |     \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.6.20:compile
+[INFO] |  |  |        \- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  |  +- org.glassfish:jakarta.json:jar:2.0.1:compile
+[INFO] |  |  +- com.sun.xml.bind:jaxb-impl:jar:2.3.0:compile
+[INFO] |  |  +- com.sun.xml.bind:jaxb-core:jar:2.3.0:compile
+[INFO] |  |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  |  +- joda-time:joda-time:jar:2.9.1:compile
+[INFO] |  |  +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] |  |  +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] |  |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  |  +- org.thymeleaf:thymeleaf-spring5:jar:3.0.7.RC1:compile
+[INFO] |  |  +- org.thymeleaf.extras:thymeleaf-extras-java8time:jar:3.0.4.RELEASE:compile
+[INFO] |  |  +- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] |  |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  |  +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] |  |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  |  +- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] |  |  |  \- org.apache.commons:commons-lang3:jar:3.8.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] |  |  +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  |  +- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  |  +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] |  |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  |  +- org.apache.jena:jena-core:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-base:jar:4.5.0:compile
+[INFO] |  |  |  |  +- org.apache.jena:jena-shaded-guava:jar:4.5.0:compile
+[INFO] |  |  |  |  +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] |  |  |  |  \- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] |  |  |  +- org.apache.jena:jena-iri:jar:4.5.0:compile
+[INFO] |  |  |  \- commons-cli:commons-cli:jar:1.4:compile
+[INFO] |  |  +- org.apache.jena:jena-arq:jar:4.5.0:compile
+[INFO] |  |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  |  +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] |  |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.30:compile
+[INFO] |  |  |  +- com.apicatalog:titanium-json-ld:jar:1.2.0:compile
+[INFO] |  |  |  +- com.google.protobuf:protobuf-java:jar:3.19.3:compile
+[INFO] |  |  |  \- org.apache.thrift:libthrift:jar:0.13.0:compile
+[INFO] |  |  +- org.apache.jena:apache-jena-libs:pom:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-shacl:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-shex:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-tdb:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-tdb2:jar:4.5.0:compile
+[INFO] |  |  |  |  \- org.apache.jena:jena-dboe-storage:jar:4.5.0:compile
+[INFO] |  |  |  |     \- org.apache.jena:jena-dboe-trans-data:jar:4.5.0:compile
+[INFO] |  |  |  |        +- org.apache.jena:jena-dboe-transaction:jar:4.5.0:compile
+[INFO] |  |  |  |        |  \- org.apache.jena:jena-dboe-base:jar:4.5.0:compile
+[INFO] |  |  |  |        \- org.apache.jena:jena-dboe-index:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-rdfconnection:jar:4.5.0:compile
+[INFO] |  |  +- org.topbraid:shacl:jar:1.4.2:compile
+[INFO] |  |  +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] |  |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  |  +- commons-io:commons-io:jar:2.2:compile
+[INFO] |  |  +- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  |  +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  |  |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  |  |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  |  |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] |  |  \- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |  |     +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |  |     |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |  |     +- org.apache.commons:commons-compress:jar:1.20:compile
+[INFO] |  |     \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] |  +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  |  +- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  |  +- org.bouncycastle:bcprov-jdk15on:jar:1.70:compile (version selected from constraint [1.52,))
+[INFO] |  |  \- org.springframework:spring-test:jar:5.2.20.RELEASE:compile
+[INFO] |  +- commons-lang:commons-lang:jar:2.6:compile
+[INFO] |  \- eu.europa.ec.empl.edci:edci-eseal-core:jar:1.7.0-RELEASE:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-common:jar:5.10.1:compile
+[INFO] |     |  |  |     \- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.10.1:compile
+[INFO] |     |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.5:runtime
+[INFO] |     |  |        +- org.glassfish.jaxb:txw2:jar:2.3.5:runtime
+[INFO] |     |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.12:runtime
+[INFO] |     |  |        \- com.sun.activation:jakarta.activation:jar:1.2.2:runtime
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.10.1:compile
+[INFO] |     |     \- org.apache.santuario:xmlsec:jar:2.3.0:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.10.1:compile
+[INFO] |     |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.70:compile
+[INFO] |     |  |     \- org.bouncycastle:bcutil-jdk15on:jar:1.70:compile
+[INFO] |     |  \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.2:compile
+[INFO] |     |     +- org.apache.httpcomponents.core5:httpcore5:jar:5.1.2:compile
+[INFO] |     |     \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.1.2:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.10.1:compile
+[INFO] |     |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.14.0:compile
+[INFO] |     |  |  |        +- org.json:json:jar:20201115:compile
+[INFO] |     |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |     |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |     |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |     |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |     |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |     |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.9:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.10.1:compile
+[INFO] |     |  \- org.apache.pdfbox:pdfbox:jar:2.0.25:compile
+[INFO] |     |     \- org.apache.pdfbox:fontbox:jar:2.0.25:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.10.1:compile
+[INFO] |     |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-utils-apache-commons:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-cookbook:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-test:test-jar:tests:5.10.1:compile
+[INFO] |     |  |  +- com.h2database:h2:jar:2.1.210:compile
+[INFO] |     |  |  +- org.junit.platform:junit-platform-launcher:jar:1.8.2:compile
+[INFO] |     |  |  |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:compile
+[INFO] |     |  |  |  |  +- org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO] |     |  |  |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:compile
+[INFO] |     |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[INFO] |     |  |  +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:compile
+[INFO] |     |  |  |  \- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:compile
+[INFO] |     |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.8.2:compile
+[INFO] |     |  |  +- org.awaitility:awaitility:jar:4.1.1:compile
+[INFO] |     |  |  |  \- org.hamcrest:hamcrest:jar:2.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser-stream:jar:5.10.1:compile
+[INFO] |     |  |  \- org.apache.xmlgraphics:fop-core:jar:2.7:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-anim:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-css:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-dom:jar:1.14:compile
+[INFO] |     |  |     |  |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-shared-resources:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-svg-dom:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-util:jar:1.14:compile
+[INFO] |     |  |     |  |  +- org.apache.xmlgraphics:batik-constants:jar:1.14:compile
+[INFO] |     |  |     |  |  \- org.apache.xmlgraphics:batik-i18n:jar:1.14:compile
+[INFO] |     |  |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-bridge:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-script:jar:1.14:compile
+[INFO] |     |  |     |  \- org.apache.xmlgraphics:batik-xml:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-extension:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-gvt:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-transcoder:jar:1.14:compile
+[INFO] |     |  |     |  \- org.apache.xmlgraphics:batik-svggen:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:fop-events:jar:2.7:compile
+[INFO] |     |  |     |  \- com.thoughtworks.qdox:qdox:jar:1.12:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:fop-util:jar:2.7:compile
+[INFO] |     |  |     \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.7:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-rest:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-rest-client:jar:5.10.1:compile
+[INFO] |     |  |     \- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-soap-client:jar:5.10.1:compile
+[INFO] |     |  |     \- jakarta.xml.ws:jakarta.xml.ws-api:jar:2.3.2:compile
+[INFO] |     |  |        +- jakarta.xml.soap:jakarta.xml.soap-api:jar:1.4.1:compile
+[INFO] |     |  |        +- jakarta.annotation:jakarta.annotation-api:jar:1.3.4:compile
+[INFO] |     |  |        \- jakarta.jws:jakarta.jws-api:jar:1.1.1:runtime
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-common:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest-client:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-server-common:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-common:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest-client:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap:jar:5.10.1:compile
+[INFO] |     |     \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap-client:jar:5.10.1:compile
+[INFO] |     \- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:compile
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:compile
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:compile
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:compile
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:compile
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:compile
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:compile
+[INFO] +- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] |  \- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] |  \- com.sun.mail:javax.mail:jar:1.5.0:compile
+[INFO] |     \- javax.activation:activation:jar:1.1:compile
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] ---------< eu.europa.ec.empl.edci.issuer:edci-issuer-service >----------
+[INFO] Building EDCI issuer service module 1.7.0-RELEASE                  [4/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-service ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-service:jar:1.7.0-RELEASE
+[INFO] +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] +- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |  +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |  |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |  \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] +- org.apache.httpcomponents:httpmime:jar:4.5.3:compile
+[INFO] +- commons-fileupload:commons-fileupload:jar:1.3.3:compile
+[INFO] |  \- commons-io:commons-io:jar:2.2:compile
+[INFO] +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] +- commons-cli:commons-cli:jar:1.4:compile
+[INFO] +- org.apache.commons:commons-compress:jar:1.20:compile
+[INFO] +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] +- org.apache.thrift:libthrift:jar:0.13.0:compile
+[INFO] |  +- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] |  \- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] +- org.slf4j:jcl-over-slf4j:jar:1.7.30:compile
+[INFO] +- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-eseal-core:jar:1.7.0-RELEASE:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-common:jar:5.10.1:compile
+[INFO] |  |  |  |     \- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.10.1:compile
+[INFO] |  |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.5:runtime
+[INFO] |  |  |        +- org.glassfish.jaxb:txw2:jar:2.3.5:runtime
+[INFO] |  |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.12:runtime
+[INFO] |  |  |        \- com.sun.activation:jakarta.activation:jar:1.2.2:runtime
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.10.1:compile
+[INFO] |  |     \- org.apache.santuario:xmlsec:jar:2.3.0:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.10.1:compile
+[INFO] |  |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.70:compile
+[INFO] |  |  |     \- org.bouncycastle:bcutil-jdk15on:jar:1.70:compile
+[INFO] |  |  \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.2:compile
+[INFO] |  |     +- org.apache.httpcomponents.core5:httpcore5:jar:5.1.2:compile
+[INFO] |  |     \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.1.2:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.10.1:compile
+[INFO] |  |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.14.0:compile
+[INFO] |  |  |  |        +- org.json:json:jar:20201115:compile
+[INFO] |  |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |  |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |  |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |  |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |  |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.9:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.10.1:compile
+[INFO] |  |  \- org.apache.pdfbox:pdfbox:jar:2.0.25:compile
+[INFO] |  |     \- org.apache.pdfbox:fontbox:jar:2.0.25:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.10.1:compile
+[INFO] |  |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.10.1:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-utils-apache-commons:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.10.1:compile
+[INFO] |  |  \- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[INFO] |  +- eu.europa.ec.joinup.sd-dss:dss-cookbook:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-test:test-jar:tests:5.10.1:compile
+[INFO] |  |  |  +- com.h2database:h2:jar:2.1.210:compile
+[INFO] |  |  |  +- org.junit.platform:junit-platform-launcher:jar:1.8.2:compile
+[INFO] |  |  |  |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:compile
+[INFO] |  |  |  |  |  +- org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO] |  |  |  |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:compile
+[INFO] |  |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[INFO] |  |  |  +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:compile
+[INFO] |  |  |  |  \- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:compile
+[INFO] |  |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.8.2:compile
+[INFO] |  |  |  +- org.awaitility:awaitility:jar:4.1.1:compile
+[INFO] |  |  |  |  \- org.hamcrest:hamcrest:jar:2.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser-stream:jar:5.10.1:compile
+[INFO] |  |  |  \- org.apache.xmlgraphics:fop-core:jar:2.7:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-anim:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-css:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-dom:jar:1.14:compile
+[INFO] |  |  |     |  |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-shared-resources:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-svg-dom:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-util:jar:1.14:compile
+[INFO] |  |  |     |  |  +- org.apache.xmlgraphics:batik-constants:jar:1.14:compile
+[INFO] |  |  |     |  |  \- org.apache.xmlgraphics:batik-i18n:jar:1.14:compile
+[INFO] |  |  |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-bridge:jar:1.14:compile
+[INFO] |  |  |     |  +- org.apache.xmlgraphics:batik-script:jar:1.14:compile
+[INFO] |  |  |     |  \- org.apache.xmlgraphics:batik-xml:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-extension:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-gvt:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:batik-transcoder:jar:1.14:compile
+[INFO] |  |  |     |  \- org.apache.xmlgraphics:batik-svggen:jar:1.14:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:fop-events:jar:2.7:compile
+[INFO] |  |  |     |  \- com.thoughtworks.qdox:qdox:jar:1.12:compile
+[INFO] |  |  |     +- org.apache.xmlgraphics:fop-util:jar:2.7:compile
+[INFO] |  |  |     \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.7:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-rest:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-rest-client:jar:5.10.1:compile
+[INFO] |  |  |     \- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-signature-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-soap-client:jar:5.10.1:compile
+[INFO] |  |  |     \- jakarta.xml.ws:jakarta.xml.ws-api:jar:2.3.2:compile
+[INFO] |  |  |        +- jakarta.xml.soap:jakarta.xml.soap-api:jar:1.4.1:compile
+[INFO] |  |  |        +- jakarta.annotation:jakarta.annotation-api:jar:1.3.4:compile
+[INFO] |  |  |        \- jakarta.jws:jakarta.jws-api:jar:1.1.1:runtime
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-common:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-server-common:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-common:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest:jar:5.10.1:compile
+[INFO] |  |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote:jar:5.10.1:compile
+[INFO] |  |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-dto:jar:5.10.1:compile
+[INFO] |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest-client:jar:5.10.1:compile
+[INFO] |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap:jar:5.10.1:compile
+[INFO] |  |     \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap-client:jar:5.10.1:compile
+[INFO] |  +- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] |  +- org.bouncycastle:bcprov-jdk15on:jar:1.70:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  \- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE:compile
+[INFO] |  +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  |  \- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  \- commons-lang:commons-lang:jar:2.6:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-persistence:jar:1.7.0-RELEASE:compile
+[INFO] |  +- org.eclipse.persistence:eclipselink:jar:2.7.5:compile
+[INFO] |  |  +- org.eclipse.persistence:jakarta.persistence:jar:2.2.3:compile
+[INFO] |  |  \- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] |  +- org.hsqldb:hsqldb:jar:2.2.8:compile
+[INFO] |  +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-orm:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  +- com.querydsl:querydsl-core:jar:4.2.1:compile
+[INFO] |  |  +- com.mysema.commons:mysema-commons-lang:jar:0.2.4:compile
+[INFO] |  |  \- com.infradna.tool:bridge-method-annotation:jar:1.13:compile
+[INFO] |  +- com.querydsl:querydsl-apt:jar:4.2.1:compile
+[INFO] |  |  \- com.querydsl:querydsl-codegen:jar:4.2.1:compile
+[INFO] |  |     +- com.mysema.codegen:codegen:jar:0.6.8:compile
+[INFO] |  |     |  \- org.eclipse.jdt.core.compiler:ecj:jar:4.3.1:compile
+[INFO] |  |     \- org.reflections:reflections:jar:0.9.9:compile
+[INFO] |  |        \- com.google.code.findbugs:annotations:jar:2.0.1:compile
+[INFO] |  +- com.querydsl:querydsl-jpa:jar:4.2.1:compile
+[INFO] |  |  \- javax.inject:javax.inject:jar:1:compile
+[INFO] |  \- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:jar:1.7.0-RELEASE:compile
+[INFO] |  +- eu.europa.ec.empl.edci:edci-data-model:jar:1.7.0-RELEASE:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] |  +- com.apicatalog:titanium-json-ld-jre8:jar:1.3.1:compile
+[INFO] |  |  \- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |     +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |     |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.31:compile
+[INFO] |  |     |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.31:compile
+[INFO] |  |     |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.31:compile
+[INFO] |  |     \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.6.20:compile
+[INFO] |  |        \- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  +- org.glassfish:jakarta.json:jar:2.0.1:compile
+[INFO] |  +- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-impl:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-core:jar:2.3.0:compile
+[INFO] |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  +- joda-time:joda-time:jar:2.9.1:compile
+[INFO] |  +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  |  \- org.javassist:javassist:jar:3.20.0-GA:compile
+[INFO] |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf-spring5:jar:3.0.7.RC1:compile
+[INFO] |  +- org.thymeleaf.extras:thymeleaf-extras-java8time:jar:3.0.4.RELEASE:compile
+[INFO] |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  \- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  +- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- org.apache.jena:jena-core:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-base:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-shaded-guava:jar:4.5.0:compile
+[INFO] |  |  \- org.apache.jena:jena-iri:jar:4.5.0:compile
+[INFO] |  +- org.apache.jena:jena-arq:jar:4.5.0:compile
+[INFO] |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  +- com.apicatalog:titanium-json-ld:jar:1.2.0:compile
+[INFO] |  |  \- com.google.protobuf:protobuf-java:jar:3.19.3:compile
+[INFO] |  +- org.apache.jena:apache-jena-libs:pom:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shacl:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shex:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb2:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-dboe-storage:jar:4.5.0:compile
+[INFO] |  |  |     \- org.apache.jena:jena-dboe-trans-data:jar:4.5.0:compile
+[INFO] |  |  |        +- org.apache.jena:jena-dboe-transaction:jar:4.5.0:compile
+[INFO] |  |  |        |  \- org.apache.jena:jena-dboe-base:jar:4.5.0:compile
+[INFO] |  |  |        \- org.apache.jena:jena-dboe-index:jar:4.5.0:compile
+[INFO] |  |  \- org.apache.jena:jena-rdfconnection:jar:4.5.0:compile
+[INFO] |  +- org.topbraid:shacl:jar:1.4.2:compile
+[INFO] |  +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] |  +- com.sun.mail:javax.mail:jar:1.5.0:compile
+[INFO] |  |  \- javax.activation:activation:jar:1.1:compile
+[INFO] |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  \- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:test-jar:tests:1.7.0-RELEASE:test
+[INFO] +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] +- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] +- org.springframework:spring-beans:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-expression:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-aop:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-core:jar:5.2.20.RELEASE:compile
+[INFO] |  \- org.springframework:spring-jcl:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-jdbc:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-tx:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-context-support:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-context:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-web:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-webmvc:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] +- org.springframework:spring-test:jar:5.2.20.RELEASE:test
+[INFO] +- net.sf.ehcache:ehcache-core:jar:2.6.10:compile
+[INFO] +- com.jayway.jsonpath:json-path:jar:2.7.0:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] -----< eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest-swagger >-----
+[INFO] Building EDCI issuer web REST swagger generator module 1.7.0-RELEASE [5/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-web-rest-swagger ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest-swagger:jar:1.7.0-RELEASE
+[INFO] +- io.swagger:swagger-codegen:jar:2.2.3:provided
+[INFO] |  +- io.swagger:swagger-parser:jar:1.0.32:provided
+[INFO] |  +- io.swagger:swagger-compat-spec-parser:jar:1.0.32:provided
+[INFO] |  |  +- com.github.java-json-tools:json-schema-validator:jar:2.2.8:provided
+[INFO] |  |  |  +- com.github.java-json-tools:json-schema-core:jar:1.2.8:provided
+[INFO] |  |  |  |  +- org.mozilla:rhino:jar:1.7R4:provided
+[INFO] |  |  |  |  \- com.github.fge:uri-template:jar:0.9:provided
+[INFO] |  |  |  +- javax.mail:mailapi:jar:1.4.3:provided
+[INFO] |  |  |  +- joda-time:joda-time:jar:2.9.1:provided
+[INFO] |  |  |  +- com.googlecode.libphonenumber:libphonenumber:jar:8.0.0:provided
+[INFO] |  |  |  +- com.google.code.findbugs:jsr305:jar:3.0.1:compile
+[INFO] |  |  |  \- net.sf.jopt-simple:jopt-simple:jar:5.0.3:provided
+[INFO] |  |  +- com.github.fge:json-patch:jar:1.6:provided
+[INFO] |  |  |  \- com.github.fge:jackson-coreutils:jar:1.6:provided
+[INFO] |  |  |     \- com.github.fge:msg-simple:jar:1.1:provided
+[INFO] |  |  |        \- com.github.fge:btf:jar:1.2:provided
+[INFO] |  |  \- org.apache.httpcomponents:httpclient:jar:4.5.6:provided
+[INFO] |  |     +- org.apache.httpcomponents:httpcore:jar:4.4.10:provided
+[INFO] |  |     \- commons-logging:commons-logging:jar:1.2:provided
+[INFO] |  +- io.swagger:swagger-core:jar:1.5.22:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  |  +- io.swagger:swagger-models:jar:1.5.22:compile
+[INFO] |  |  |  \- io.swagger:swagger-annotations:jar:1.5.22:compile
+[INFO] |  |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  |  \- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  +- com.samskivert:jmustache:jar:1.12:provided
+[INFO] |  +- commons-io:commons-io:jar:2.2:provided
+[INFO] |  +- org.slf4j:slf4j-ext:jar:1.7.12:provided
+[INFO] |  |  \- ch.qos.cal10n:cal10n-api:jar:0.8.1:provided
+[INFO] |  +- org.slf4j:slf4j-api:jar:1.7.12:compile
+[INFO] |  +- org.slf4j:slf4j-simple:jar:1.7.12:provided
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.4:compile
+[INFO] |  +- commons-cli:commons-cli:jar:1.4:provided
+[INFO] |  \- com.atlassian.commonmark:commonmark:jar:0.9.0:provided
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] |  \- com.sun.mail:javax.mail:jar:1.5.0:provided
+[INFO] |     \- javax.activation:activation:jar:1.1:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] ---------< eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest >---------
+[INFO] Building EDCI issuer REST module 1.7.0-RELEASE                     [6/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-web-rest ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest:jar:1.7.0-RELEASE
+[INFO] +- org.springframework:spring-beans:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-expression:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-aop:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-core:jar:5.2.20.RELEASE:compile
+[INFO] |  \- org.springframework:spring-jcl:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-jdbc:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-tx:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-context-support:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-context:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-web:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework:spring-webmvc:jar:5.2.20.RELEASE:compile
+[INFO] +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE:compile
+[INFO] +- javax.servlet:servlet-api:jar:2.5:compile
+[INFO] +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  \- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] +- javax.inject:javax.inject:jar:1:compile
+[INFO] +- commons-fileupload:commons-fileupload:jar:1.3.3:compile
+[INFO] |  \- commons-io:commons-io:jar:2.2:compile
+[INFO] +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] +- io.swagger:swagger-core:jar:1.5.22:compile
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.2.1:compile
+[INFO] |  +- io.swagger:swagger-models:jar:1.5.22:compile
+[INFO] |  |  \- io.swagger:swagger-annotations:jar:1.5.22:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  \- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] +- org.glassfish.jersey.core:jersey-common:jar:2.22.2:compile
+[INFO] |  +- javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO] |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] |  +- org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.22.2:compile
+[INFO] |  +- org.glassfish.hk2:hk2-api:jar:2.4.0-b34:compile
+[INFO] |  |  +- org.glassfish.hk2:hk2-utils:jar:2.4.0-b34:compile
+[INFO] |  |  \- org.glassfish.hk2.external:aopalliance-repackaged:jar:2.4.0-b34:compile
+[INFO] |  +- org.glassfish.hk2.external:javax.inject:jar:2.4.0-b34:compile
+[INFO] |  +- org.glassfish.hk2:hk2-locator:jar:2.4.0-b34:compile
+[INFO] |  |  \- org.javassist:javassist:jar:3.18.1-GA:compile
+[INFO] |  \- org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE:compile
+[INFO] |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] |  +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  |  +- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  |  \- org.bouncycastle:bcprov-jdk15on:jar:1.70:compile (version selected from constraint [1.52,))
+[INFO] |  +- commons-lang:commons-lang:jar:2.6:compile
+[INFO] |  \- eu.europa.ec.empl.edci:edci-eseal-core:jar:1.7.0-RELEASE:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-common:jar:5.10.1:compile
+[INFO] |     |  |  |     \- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.10.1:compile
+[INFO] |     |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.5:runtime
+[INFO] |     |  |        +- org.glassfish.jaxb:txw2:jar:2.3.5:runtime
+[INFO] |     |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.12:runtime
+[INFO] |     |  |        \- com.sun.activation:jakarta.activation:jar:1.2.2:runtime
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.10.1:compile
+[INFO] |     |     \- org.apache.santuario:xmlsec:jar:2.3.0:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.10.1:compile
+[INFO] |     |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.70:compile
+[INFO] |     |  |     \- org.bouncycastle:bcutil-jdk15on:jar:1.70:compile
+[INFO] |     |  \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.2:compile
+[INFO] |     |     +- org.apache.httpcomponents.core5:httpcore5:jar:5.1.2:compile
+[INFO] |     |     \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.1.2:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.10.1:compile
+[INFO] |     |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.14.0:compile
+[INFO] |     |  |  |        +- org.json:json:jar:20201115:compile
+[INFO] |     |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |     |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |     |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |     |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |     |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |     |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.9:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.10.1:compile
+[INFO] |     |  \- org.apache.pdfbox:pdfbox:jar:2.0.25:compile
+[INFO] |     |     \- org.apache.pdfbox:fontbox:jar:2.0.25:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.10.1:compile
+[INFO] |     |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.10.1:compile
+[INFO] |     |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-utils-apache-commons:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.10.1:compile
+[INFO] |     +- eu.europa.ec.joinup.sd-dss:dss-cookbook:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-test:test-jar:tests:5.10.1:compile
+[INFO] |     |  |  +- com.h2database:h2:jar:2.1.210:compile
+[INFO] |     |  |  +- org.junit.platform:junit-platform-launcher:jar:1.8.2:compile
+[INFO] |     |  |  |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:compile
+[INFO] |     |  |  |  |  +- org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO] |     |  |  |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:compile
+[INFO] |     |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[INFO] |     |  |  +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:compile
+[INFO] |     |  |  |  \- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:compile
+[INFO] |     |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.8.2:compile
+[INFO] |     |  |  +- org.awaitility:awaitility:jar:4.1.1:compile
+[INFO] |     |  |  |  \- org.hamcrest:hamcrest:jar:2.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser-stream:jar:5.10.1:compile
+[INFO] |     |  |  \- org.apache.xmlgraphics:fop-core:jar:2.7:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-anim:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-css:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-dom:jar:1.14:compile
+[INFO] |     |  |     |  |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-shared-resources:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-svg-dom:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-util:jar:1.14:compile
+[INFO] |     |  |     |  |  +- org.apache.xmlgraphics:batik-constants:jar:1.14:compile
+[INFO] |     |  |     |  |  \- org.apache.xmlgraphics:batik-i18n:jar:1.14:compile
+[INFO] |     |  |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-bridge:jar:1.14:compile
+[INFO] |     |  |     |  +- org.apache.xmlgraphics:batik-script:jar:1.14:compile
+[INFO] |     |  |     |  \- org.apache.xmlgraphics:batik-xml:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-extension:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-gvt:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:batik-transcoder:jar:1.14:compile
+[INFO] |     |  |     |  \- org.apache.xmlgraphics:batik-svggen:jar:1.14:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:fop-events:jar:2.7:compile
+[INFO] |     |  |     |  \- com.thoughtworks.qdox:qdox:jar:1.12:compile
+[INFO] |     |  |     +- org.apache.xmlgraphics:fop-util:jar:2.7:compile
+[INFO] |     |  |     \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.7:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-rest:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-rest-client:jar:5.10.1:compile
+[INFO] |     |  |     \- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-soap-client:jar:5.10.1:compile
+[INFO] |     |  |     \- jakarta.xml.ws:jakarta.xml.ws-api:jar:2.3.2:compile
+[INFO] |     |  |        +- jakarta.xml.soap:jakarta.xml.soap-api:jar:1.4.1:compile
+[INFO] |     |  |        +- jakarta.annotation:jakarta.annotation-api:jar:1.3.4:compile
+[INFO] |     |  |        \- jakarta.jws:jakarta.jws-api:jar:1.1.1:runtime
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-common:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest-client:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-server-common:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-common:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap-client:jar:5.10.1:compile
+[INFO] |     |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest:jar:5.10.1:compile
+[INFO] |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote:jar:5.10.1:compile
+[INFO] |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-dto:jar:5.10.1:compile
+[INFO] |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest-client:jar:5.10.1:compile
+[INFO] |     |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap:jar:5.10.1:compile
+[INFO] |     |     \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap-client:jar:5.10.1:compile
+[INFO] |     \- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-service:jar:1.7.0-RELEASE:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |  |  +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |  |  \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] |  +- org.apache.httpcomponents:httpmime:jar:4.5.3:compile
+[INFO] |  +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] |  +- commons-cli:commons-cli:jar:1.4:compile
+[INFO] |  +- org.apache.commons:commons-compress:jar:1.20:compile
+[INFO] |  +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] |  +- org.apache.thrift:libthrift:jar:0.13.0:compile
+[INFO] |  +- org.slf4j:jcl-over-slf4j:jar:1.7.30:compile
+[INFO] |  +- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] |  +- eu.europa.ec.empl.edci.issuer:edci-issuer-persistence:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- org.hsqldb:hsqldb:jar:2.2.8:compile
+[INFO] |  |  +- com.querydsl:querydsl-core:jar:4.2.1:compile
+[INFO] |  |  |  +- com.mysema.commons:mysema-commons-lang:jar:0.2.4:compile
+[INFO] |  |  |  \- com.infradna.tool:bridge-method-annotation:jar:1.13:compile
+[INFO] |  |  +- com.querydsl:querydsl-apt:jar:4.2.1:compile
+[INFO] |  |  |  \- com.querydsl:querydsl-codegen:jar:4.2.1:compile
+[INFO] |  |  |     +- com.mysema.codegen:codegen:jar:0.6.8:compile
+[INFO] |  |  |     |  \- org.eclipse.jdt.core.compiler:ecj:jar:4.3.1:compile
+[INFO] |  |  |     \- org.reflections:reflections:jar:0.9.9:compile
+[INFO] |  |  |        \- com.google.code.findbugs:annotations:jar:2.0.1:compile
+[INFO] |  |  \- com.querydsl:querydsl-jpa:jar:4.2.1:compile
+[INFO] |  +- net.sf.ehcache:ehcache-core:jar:2.6.10:compile
+[INFO] |  \- com.jayway.jsonpath:json-path:jar:2.7.0:compile
+[INFO] +- eu.europa.ec.empl.edci:edci-commons:jar:1.7.0-RELEASE:compile
+[INFO] |  +- eu.europa.ec.empl.edci:edci-data-model:jar:1.7.0-RELEASE:compile
+[INFO] |  +- com.apicatalog:titanium-json-ld-jre8:jar:1.3.1:compile
+[INFO] |  |  \- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |     +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |     |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.31:compile
+[INFO] |  |     |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.31:compile
+[INFO] |  |     |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.31:compile
+[INFO] |  |     \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.6.20:compile
+[INFO] |  |        \- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  +- org.glassfish:jakarta.json:jar:2.0.1:compile
+[INFO] |  +- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-impl:jar:2.3.0:compile
+[INFO] |  +- com.sun.xml.bind:jaxb-core:jar:2.3.0:compile
+[INFO] |  +- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  +- joda-time:joda-time:jar:2.9.1:compile
+[INFO] |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  +- org.thymeleaf:thymeleaf-spring5:jar:3.0.7.RC1:compile
+[INFO] |  +- org.thymeleaf.extras:thymeleaf-extras-java8time:jar:3.0.4.RELEASE:compile
+[INFO] |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  \- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] |  +- org.eclipse.persistence:eclipselink:jar:2.7.5:compile
+[INFO] |  |  +- org.eclipse.persistence:jakarta.persistence:jar:2.2.3:compile
+[INFO] |  |  \- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-orm:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  +- org.apache.jena:jena-core:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-base:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-shaded-guava:jar:4.5.0:compile
+[INFO] |  |  \- org.apache.jena:jena-iri:jar:4.5.0:compile
+[INFO] |  +- org.apache.jena:jena-arq:jar:4.5.0:compile
+[INFO] |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  +- com.apicatalog:titanium-json-ld:jar:1.2.0:compile
+[INFO] |  |  \- com.google.protobuf:protobuf-java:jar:3.19.3:compile
+[INFO] |  +- org.apache.jena:apache-jena-libs:pom:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shacl:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-shex:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-tdb2:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-dboe-storage:jar:4.5.0:compile
+[INFO] |  |  |     \- org.apache.jena:jena-dboe-trans-data:jar:4.5.0:compile
+[INFO] |  |  |        +- org.apache.jena:jena-dboe-transaction:jar:4.5.0:compile
+[INFO] |  |  |        |  \- org.apache.jena:jena-dboe-base:jar:4.5.0:compile
+[INFO] |  |  |        \- org.apache.jena:jena-dboe-index:jar:4.5.0:compile
+[INFO] |  |  \- org.apache.jena:jena-rdfconnection:jar:4.5.0:compile
+[INFO] |  +- org.topbraid:shacl:jar:1.4.2:compile
+[INFO] |  +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] |  +- com.sun.mail:javax.mail:jar:1.5.0:compile
+[INFO] |  |  \- javax.activation:activation:jar:1.1:compile
+[INFO] |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  \- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] +- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] |  \- org.springframework:spring-test:jar:5.2.20.RELEASE:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] -----------< eu.europa.ec.empl.edci.issuer:edci-issuer-web >------------
+[INFO] Building EDCI issuer web module 1.7.0-RELEASE                      [7/8]
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-web ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-web:war:1.7.0-RELEASE
+[INFO] +- eu.europa.ec.digit.uxatec.eui:eui-angular2-servlet:jar:1.0.0:compile
+[INFO] +- eu.europa.ec.empl.edci.issuer:edci-issuer-web-rest:jar:1.7.0-RELEASE:compile
+[INFO] |  +- org.springframework:spring-beans:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-expression:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-aop:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-core:jar:5.2.20.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-jcl:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-jdbc:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-tx:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context-support:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-context:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-web:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework:spring-webmvc:jar:5.2.20.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-core:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-web:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.security:spring-security-config:jar:5.2.5.RELEASE:compile
+[INFO] |  +- org.springframework.hateoas:spring-hateoas:jar:0.25.1.RELEASE:compile
+[INFO] |  +- org.springframework.plugin:spring-plugin-core:jar:1.2.0.RELEASE:compile
+[INFO] |  +- javax.servlet:servlet-api:jar:2.5:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  +- javax.inject:javax.inject:jar:1:compile
+[INFO] |  +- commons-fileupload:commons-fileupload:jar:1.3.3:compile
+[INFO] |  |  \- commons-io:commons-io:jar:2.2:compile
+[INFO] |  +- org.apache.poi:poi:jar:4.1.2:compile
+[INFO] |  |  +- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  |  \- com.zaxxer:SparseBitSet:jar:1.2:compile
+[INFO] |  +- io.swagger:swagger-core:jar:1.5.22:compile
+[INFO] |  |  +- org.apache.commons:commons-lang3:jar:3.2.1:compile
+[INFO] |  |  +- io.swagger:swagger-models:jar:1.5.22:compile
+[INFO] |  |  |  \- io.swagger:swagger-annotations:jar:1.5.22:compile
+[INFO] |  |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  |  \- javax.validation:validation-api:jar:2.0.0.Final:compile
+[INFO] |  +- org.glassfish.jersey.core:jersey-common:jar:2.22.2:compile
+[INFO] |  |  +- javax.ws.rs:javax.ws.rs-api:jar:2.0.1:compile
+[INFO] |  |  +- javax.annotation:javax.annotation-api:jar:1.3.2:compile
+[INFO] |  |  +- org.glassfish.jersey.bundles.repackaged:jersey-guava:jar:2.22.2:compile
+[INFO] |  |  +- org.glassfish.hk2:hk2-api:jar:2.4.0-b34:compile
+[INFO] |  |  |  +- org.glassfish.hk2:hk2-utils:jar:2.4.0-b34:compile
+[INFO] |  |  |  \- org.glassfish.hk2.external:aopalliance-repackaged:jar:2.4.0-b34:compile
+[INFO] |  |  +- org.glassfish.hk2.external:javax.inject:jar:2.4.0-b34:compile
+[INFO] |  |  +- org.glassfish.hk2:hk2-locator:jar:2.4.0-b34:compile
+[INFO] |  |  |  \- org.javassist:javassist:jar:3.18.1-GA:compile
+[INFO] |  |  \- org.glassfish.hk2:osgi-resource-locator:jar:1.0.1:compile
+[INFO] |  +- eu.europa.ec.empl.edci.issuer:edci-issuer-common:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.10.1:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.10.1:compile
+[INFO] |  |  |  |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.2:compile
+[INFO] |  |  |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.1:compile
+[INFO] |  |  |  +- org.codehaus.woodstox:stax2-api:jar:4.2:compile
+[INFO] |  |  |  \- com.fasterxml.woodstox:woodstox-core:jar:6.0.2:compile
+[INFO] |  |  +- org.mitre:openid-connect-common:jar:1.3.3:compile
+[INFO] |  |  |  +- org.eclipse.persistence:javax.persistence:jar:2.1.1:compile
+[INFO] |  |  |  \- org.bouncycastle:bcprov-jdk15on:jar:1.70:compile (version selected from constraint [1.52,))
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.6:compile
+[INFO] |  |  \- eu.europa.ec.empl.edci:edci-eseal-core:jar:1.7.0-RELEASE:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-tsl-validation:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:specs-trusted-list:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xmldsig:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-common:jar:5.10.1:compile
+[INFO] |  |     |  |  |     \- eu.europa.ec.joinup.sd-dss:dss-alert:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-xades:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-jaxb-parsers:jar:5.10.1:compile
+[INFO] |  |     |  |     \- org.glassfish.jaxb:jaxb-runtime:jar:2.3.5:runtime
+[INFO] |  |     |  |        +- org.glassfish.jaxb:txw2:jar:2.3.5:runtime
+[INFO] |  |     |  |        +- com.sun.istack:istack-commons-runtime:jar:3.0.12:runtime
+[INFO] |  |     |  |        \- com.sun.activation:jakarta.activation:jar:1.2.2:runtime
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:dss-xades:jar:5.10.1:compile
+[INFO] |  |     |     \- org.apache.santuario:xmlsec:jar:2.3.0:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-service:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-spi:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser:jar:5.10.1:compile
+[INFO] |  |     |  |  \- org.bouncycastle:bcpkix-jdk15on:jar:1.70:compile
+[INFO] |  |     |  |     \- org.bouncycastle:bcutil-jdk15on:jar:1.70:compile
+[INFO] |  |     |  \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.2:compile
+[INFO] |  |     |     +- org.apache.httpcomponents.core5:httpcore5:jar:5.1.2:compile
+[INFO] |  |     |     \- org.apache.httpcomponents.core5:httpcore5-h2:jar:5.1.2:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-token:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-pades:jar:5.10.1:compile
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:dss-cades:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-signature-remote:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-dto:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-common-remote-dto:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-common-remote-converter:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-jades:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:specs-jades:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:specs-jws:jar:5.10.1:compile
+[INFO] |  |     |  |  |     \- com.github.everit-org.json-schema:org.everit.json.schema:jar:1.14.0:compile
+[INFO] |  |     |  |  |        +- org.json:json:jar:20201115:compile
+[INFO] |  |     |  |  |        +- commons-validator:commons-validator:jar:1.6:compile
+[INFO] |  |     |  |  |        |  +- commons-digester:commons-digester:jar:1.8.1:compile
+[INFO] |  |     |  |  |        |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  |     |  |  |        +- com.damnhandy:handy-uri-templates:jar:2.1.8:compile
+[INFO] |  |     |  |  |        \- com.google.re2j:re2j:jar:1.3:compile
+[INFO] |  |     |  |  \- org.bitbucket.b_c:jose4j:jar:0.7.9:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-asic-cades:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-asic-common:jar:5.10.1:compile
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:dss-asic-xades:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-pades-pdfbox:jar:5.10.1:compile
+[INFO] |  |     |  \- org.apache.pdfbox:pdfbox:jar:2.0.25:compile
+[INFO] |  |     |     \- org.apache.pdfbox:fontbox:jar:2.0.25:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-enumerations:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-model:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-document:jar:5.10.1:compile
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:validation-policy:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:dss-policy-jaxb:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:dss-diagnostic-jaxb:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:dss-simple-certificate-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:dss-detailed-report-jaxb:jar:5.10.1:compile
+[INFO] |  |     |     +- eu.europa.ec.joinup.sd-dss:specs-validation-report:jar:5.10.1:compile
+[INFO] |  |     |     \- eu.europa.ec.joinup.sd-dss:dss-i18n:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-utils-apache-commons:jar:5.10.1:compile
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:dss-utils:jar:5.10.1:compile
+[INFO] |  |     +- eu.europa.ec.joinup.sd-dss:dss-cookbook:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-test:test-jar:tests:5.10.1:compile
+[INFO] |  |     |  |  +- com.h2database:h2:jar:2.1.210:compile
+[INFO] |  |     |  |  +- org.junit.platform:junit-platform-launcher:jar:1.8.2:compile
+[INFO] |  |     |  |  |  +- org.junit.platform:junit-platform-engine:jar:1.8.2:compile
+[INFO] |  |     |  |  |  |  +- org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO] |  |     |  |  |  |  \- org.junit.platform:junit-platform-commons:jar:1.8.2:compile
+[INFO] |  |     |  |  |  \- org.apiguardian:apiguardian-api:jar:1.1.2:compile
+[INFO] |  |     |  |  +- org.junit.jupiter:junit-jupiter-engine:jar:5.8.2:compile
+[INFO] |  |     |  |  |  \- org.junit.jupiter:junit-jupiter-api:jar:5.8.2:compile
+[INFO] |  |     |  |  +- org.junit.jupiter:junit-jupiter-params:jar:5.8.2:compile
+[INFO] |  |     |  |  +- org.awaitility:awaitility:jar:4.1.1:compile
+[INFO] |  |     |  |  |  \- org.hamcrest:hamcrest:jar:2.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-crl-parser-stream:jar:5.10.1:compile
+[INFO] |  |     |  |  \- org.apache.xmlgraphics:fop-core:jar:2.7:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-anim:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-css:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-dom:jar:1.14:compile
+[INFO] |  |     |  |     |  |  \- xml-apis:xml-apis:jar:1.4.01:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-ext:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-parser:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-shared-resources:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-svg-dom:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-util:jar:1.14:compile
+[INFO] |  |     |  |     |  |  +- org.apache.xmlgraphics:batik-constants:jar:1.14:compile
+[INFO] |  |     |  |     |  |  \- org.apache.xmlgraphics:batik-i18n:jar:1.14:compile
+[INFO] |  |     |  |     |  \- xml-apis:xml-apis-ext:jar:1.3.04:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-awt-util:jar:1.14:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-bridge:jar:1.14:compile
+[INFO] |  |     |  |     |  +- org.apache.xmlgraphics:batik-script:jar:1.14:compile
+[INFO] |  |     |  |     |  \- org.apache.xmlgraphics:batik-xml:jar:1.14:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-extension:jar:1.14:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-gvt:jar:1.14:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:batik-transcoder:jar:1.14:compile
+[INFO] |  |     |  |     |  \- org.apache.xmlgraphics:batik-svggen:jar:1.14:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:fop-events:jar:2.7:compile
+[INFO] |  |     |  |     |  \- com.thoughtworks.qdox:qdox:jar:1.12:compile
+[INFO] |  |     |  |     +- org.apache.xmlgraphics:fop-util:jar:2.7:compile
+[INFO] |  |     |  |     \- org.apache.xmlgraphics:xmlgraphics-commons:jar:2.7:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-rest:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-rest-client:jar:5.10.1:compile
+[INFO] |  |     |  |     \- jakarta.ws.rs:jakarta.ws.rs-api:jar:2.1.6:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-signature-soap:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-signature-soap-client:jar:5.10.1:compile
+[INFO] |  |     |  |     \- jakarta.xml.ws:jakarta.xml.ws-api:jar:2.3.2:compile
+[INFO] |  |     |  |        +- jakarta.xml.soap:jakarta.xml.soap-api:jar:1.4.1:compile
+[INFO] |  |     |  |        +- jakarta.annotation:jakarta.annotation-api:jar:1.3.4:compile
+[INFO] |  |     |  |        \- jakarta.jws:jakarta.jws-api:jar:1.1.1:runtime
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-common:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-dto:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-rest-client:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-server-signing-soap-client:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-dto:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-server-common:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-validation-soap:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-common:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-dto:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-rest-client:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-certificate-validation-soap-client:jar:5.10.1:compile
+[INFO] |  |     |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest:jar:5.10.1:compile
+[INFO] |  |     |  |  +- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote:jar:5.10.1:compile
+[INFO] |  |     |  |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-dto:jar:5.10.1:compile
+[INFO] |  |     |  |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-rest-client:jar:5.10.1:compile
+[INFO] |  |     |  \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap:jar:5.10.1:compile
+[INFO] |  |     |     \- eu.europa.ec.joinup.sd-dss:dss-timestamp-remote-soap-client:jar:5.10.1:compile
+[INFO] |  |     \- com.zaxxer:HikariCP:jar:3.3.1:compile
+[INFO] |  +- eu.europa.ec.empl.edci.issuer:edci-issuer-service:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient:jar:4.5.6:compile
+[INFO] |  |  |  +- org.apache.httpcomponents:httpcore:jar:4.4.10:compile
+[INFO] |  |  |  \- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  |  +- com.google.code.gson:gson:jar:2.8.5:compile
+[INFO] |  |  +- org.apache.poi:poi-ooxml:jar:4.1.2:compile
+[INFO] |  |  |  +- org.apache.poi:poi-ooxml-schemas:jar:4.1.2:compile
+[INFO] |  |  |  |  \- org.apache.xmlbeans:xmlbeans:jar:3.1.0:compile
+[INFO] |  |  |  \- com.github.virtuald:curvesapi:jar:1.06:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpmime:jar:4.5.3:compile
+[INFO] |  |  +- org.mapstruct:mapstruct:jar:1.2.0.Final:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient-cache:jar:4.5.10:compile
+[INFO] |  |  +- commons-cli:commons-cli:jar:1.4:compile
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.20:compile
+[INFO] |  |  +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] |  |  +- org.apache.thrift:libthrift:jar:0.13.0:compile
+[INFO] |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.30:compile
+[INFO] |  |  +- com.github.andrewoma.dexx:collection:jar:0.7:compile
+[INFO] |  |  +- eu.europa.ec.empl.edci.issuer:edci-issuer-persistence:jar:1.7.0-RELEASE:compile
+[INFO] |  |  |  +- org.hsqldb:hsqldb:jar:2.2.8:compile
+[INFO] |  |  |  +- com.querydsl:querydsl-core:jar:4.2.1:compile
+[INFO] |  |  |  |  +- com.mysema.commons:mysema-commons-lang:jar:0.2.4:compile
+[INFO] |  |  |  |  \- com.infradna.tool:bridge-method-annotation:jar:1.13:compile
+[INFO] |  |  |  +- com.querydsl:querydsl-apt:jar:4.2.1:compile
+[INFO] |  |  |  |  \- com.querydsl:querydsl-codegen:jar:4.2.1:compile
+[INFO] |  |  |  |     +- com.mysema.codegen:codegen:jar:0.6.8:compile
+[INFO] |  |  |  |     |  \- org.eclipse.jdt.core.compiler:ecj:jar:4.3.1:compile
+[INFO] |  |  |  |     \- org.reflections:reflections:jar:0.9.9:compile
+[INFO] |  |  |  |        \- com.google.code.findbugs:annotations:jar:2.0.1:compile
+[INFO] |  |  |  \- com.querydsl:querydsl-jpa:jar:4.2.1:compile
+[INFO] |  |  +- net.sf.ehcache:ehcache-core:jar:2.6.10:compile
+[INFO] |  |  \- com.jayway.jsonpath:json-path:jar:2.7.0:compile
+[INFO] |  +- eu.europa.ec.empl.edci:edci-commons:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- eu.europa.ec.empl.edci:edci-data-model:jar:1.7.0-RELEASE:compile
+[INFO] |  |  +- com.apicatalog:titanium-json-ld-jre8:jar:1.3.1:compile
+[INFO] |  |  |  \- com.squareup.okhttp3:okhttp:jar:4.10.0:compile
+[INFO] |  |  |     +- com.squareup.okio:okio-jvm:jar:3.0.0:compile
+[INFO] |  |  |     |  +- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.31:compile
+[INFO] |  |  |     |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.31:compile
+[INFO] |  |  |     |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.31:compile
+[INFO] |  |  |     \- org.jetbrains.kotlin:kotlin-stdlib:jar:1.6.20:compile
+[INFO] |  |  |        \- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  |  +- org.glassfish:jakarta.json:jar:2.0.1:compile
+[INFO] |  |  +- javax.xml.bind:jaxb-api:jar:2.3.0:compile
+[INFO] |  |  +- com.sun.xml.bind:jaxb-impl:jar:2.3.0:compile
+[INFO] |  |  +- com.sun.xml.bind:jaxb-core:jar:2.3.0:compile
+[INFO] |  |  +- org.liquibase:liquibase-core:jar:4.3.1:compile
+[INFO] |  |  +- javax.el:javax.el-api:jar:3.0.0:compile
+[INFO] |  |  +- org.glassfish.web:javax.el:jar:2.2.6:compile
+[INFO] |  |  +- joda-time:joda-time:jar:2.9.1:compile
+[INFO] |  |  +- org.springframework.security.oauth:spring-security-oauth2:jar:2.4.0.RELEASE:compile
+[INFO] |  |  +- org.thymeleaf:thymeleaf:jar:3.0.7.RELEASE:compile
+[INFO] |  |  |  +- ognl:ognl:jar:3.1.12:compile
+[INFO] |  |  |  +- org.attoparser:attoparser:jar:2.0.4.RELEASE:compile
+[INFO] |  |  |  \- org.unbescape:unbescape:jar:1.1.5.RELEASE:compile
+[INFO] |  |  +- org.thymeleaf:thymeleaf-spring5:jar:3.0.7.RC1:compile
+[INFO] |  |  +- org.thymeleaf.extras:thymeleaf-extras-java8time:jar:3.0.4.RELEASE:compile
+[INFO] |  |  +- com.nimbusds:nimbus-jose-jwt:jar:7.1:compile
+[INFO] |  |  |  +- com.github.stephenc.jcip:jcip-annotations:jar:1.0-1:compile
+[INFO] |  |  |  \- net.minidev:json-smart:jar:2.3:compile (version selected from constraint [1.3.1,2.3])
+[INFO] |  |  |     \- net.minidev:accessors-smart:jar:1.2:compile
+[INFO] |  |  |        \- org.ow2.asm:asm:jar:5.0.4:compile
+[INFO] |  |  +- uk.co.jemos.podam:podam:jar:7.2.3.RELEASE:compile
+[INFO] |  |  |  \- net.jcip:jcip-annotations:jar:1.0:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.10.1:compile
+[INFO] |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.10.1:compile
+[INFO] |  |  +- org.eclipse.persistence:eclipselink:jar:2.7.5:compile
+[INFO] |  |  |  +- org.eclipse.persistence:jakarta.persistence:jar:2.2.3:compile
+[INFO] |  |  |  \- org.eclipse.persistence:commonj.sdo:jar:2.1.1:compile
+[INFO] |  |  +- com.google.code.gson:gson-extras:jar:2.8.5:compile
+[INFO] |  |  |  \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] |  |  +- com.google.zxing:core:jar:3.3.0:compile
+[INFO] |  |  +- com.google.zxing:javase:jar:3.3.0:compile
+[INFO] |  |  |  +- com.beust:jcommander:jar:1.48:compile
+[INFO] |  |  |  \- com.github.jai-imageio:jai-imageio-core:jar:1.3.1:compile
+[INFO] |  |  +- org.springframework.data:spring-data-jpa:jar:2.3.4.RELEASE:compile
+[INFO] |  |  |  +- org.springframework.data:spring-data-commons:jar:2.3.4.RELEASE:compile
+[INFO] |  |  |  +- org.springframework:spring-orm:jar:5.2.20.RELEASE:compile
+[INFO] |  |  |  \- org.aspectj:aspectjrt:jar:1.9.6:compile
+[INFO] |  |  +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |  |  +- org.apache.jena:jena-core:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-base:jar:4.5.0:compile
+[INFO] |  |  |  |  \- org.apache.jena:jena-shaded-guava:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-iri:jar:4.5.0:compile
+[INFO] |  |  +- org.apache.jena:jena-arq:jar:4.5.0:compile
+[INFO] |  |  |  +- com.github.jsonld-java:jsonld-java:jar:0.12.5:compile
+[INFO] |  |  |  +- com.apicatalog:titanium-json-ld:jar:1.2.0:compile
+[INFO] |  |  |  \- com.google.protobuf:protobuf-java:jar:3.19.3:compile
+[INFO] |  |  +- org.apache.jena:apache-jena-libs:pom:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-shacl:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-shex:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-tdb:jar:4.5.0:compile
+[INFO] |  |  |  +- org.apache.jena:jena-tdb2:jar:4.5.0:compile
+[INFO] |  |  |  |  \- org.apache.jena:jena-dboe-storage:jar:4.5.0:compile
+[INFO] |  |  |  |     \- org.apache.jena:jena-dboe-trans-data:jar:4.5.0:compile
+[INFO] |  |  |  |        +- org.apache.jena:jena-dboe-transaction:jar:4.5.0:compile
+[INFO] |  |  |  |        |  \- org.apache.jena:jena-dboe-base:jar:4.5.0:compile
+[INFO] |  |  |  |        \- org.apache.jena:jena-dboe-index:jar:4.5.0:compile
+[INFO] |  |  |  \- org.apache.jena:jena-rdfconnection:jar:4.5.0:compile
+[INFO] |  |  +- org.topbraid:shacl:jar:1.4.2:compile
+[INFO] |  |  +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] |  |  +- org.jsoup:jsoup:jar:1.10.2:compile
+[INFO] |  |  \- com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:jar:20191001.1:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator:jar:6.0.2.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.1:compile
+[INFO] |  +- org.hibernate.validator:hibernate-validator-annotation-processor:jar:6.0.2.Final:compile
+[INFO] |  \- org.mitre:openid-connect-client:jar:1.3.3:compile
+[INFO] |     \- org.springframework:spring-test:jar:5.2.20.RELEASE:compile
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] |  \- com.sun.mail:javax.mail:jar:1.5.0:compile
+[INFO] |     \- javax.activation:activation:jar:1.1:compile
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] 
+[INFO] ------< eu.europa.ec.empl.edci.issuer:edci-issuer-web-swagger-ui >------
+[INFO] Building EDCI issuer web SwaggerUI module 1.7.0-RELEASE            [8/8]
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ edci-issuer-web-swagger-ui ---
+[INFO] eu.europa.ec.empl.edci.issuer:edci-issuer-web-swagger-ui:war:1.7.0-RELEASE
+[INFO] +- org.apache.logging.log4j:log4j-slf4j-impl:jar:2.17.1:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:2.17.1:compile
+[INFO] +- org.apache.logging.log4j:log4j-core:jar:2.17.1:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- org.mockito:mockito-core:jar:2.23.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.9.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.0:test
+[INFO] |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] +- javax:javaee-api:jar:7.0:provided
+[INFO] |  \- com.sun.mail:javax.mail:jar:1.5.0:provided
+[INFO] |     \- javax.activation:activation:jar:1.1:provided
+[INFO] +- com.oracle.ojdbc:ojdbc8:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:ucp:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:oraclepki:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_cert:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:osdt_core:jar:19.3.0.0:provided
+[INFO] |  +- com.oracle.ojdbc:simplefan:jar:19.3.0.0:provided
+[INFO] |  \- com.oracle.ojdbc:ons:jar:19.3.0.0:provided
+[INFO] \- org.apache.tomcat:tomcat-dbcp:jar:8.0.41:provided
+[INFO]    \- org.apache.tomcat:tomcat-juli:jar:8.0.41:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for edci-issuer 1.7.0-RELEASE:
+[INFO] 
+[INFO] edci-issuer ........................................ SUCCESS [  0.895 s]
+[INFO] EDCI issuer common module .......................... SUCCESS [  1.869 s]
+[INFO] EDCI issuer persistence module ..................... SUCCESS [  0.757 s]
+[INFO] EDCI issuer service module ......................... SUCCESS [  0.680 s]
+[INFO] EDCI issuer web REST swagger generator module ...... SUCCESS [  0.138 s]
+[INFO] EDCI issuer REST module ............................ SUCCESS [  0.794 s]
+[INFO] EDCI issuer web module ............................. SUCCESS [  0.788 s]
+[INFO] EDCI issuer web SwaggerUI module ................... SUCCESS [  0.032 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.401 s
+[INFO] Finished at: 2022-10-11T16:32:37+02:00
+[INFO] ------------------------------------------------------------------------

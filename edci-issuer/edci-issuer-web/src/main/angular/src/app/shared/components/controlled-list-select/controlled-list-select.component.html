@@ -1,0 +1,46 @@
+<label
+    *ngIf="label"
+    class="{{ required ? 'control-label required' : '' }} {{
+        tooltip ? 'd-inline-flex' : ''
+    }} w-100"
+>
+    {{ label }}
+    <span
+        *ngIf="tooltip"
+        uxTooltip="{{tooltip}}"
+        position="top-right"
+        size="large"
+    >
+        <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+    </span>
+</label>
+
+<div class="controlled-list-select">
+    <select
+        euiSelect
+        type="form-control"
+        class="w-100"
+        (blur)="onTouched($event)"
+        [(ngModel)]="selectedEntity"
+        [compareWith]="checkEntity"
+        [disabled]="isDisabled || selectedLanguages[0]?.code !== language"
+    >
+        <option [ngValue]="undefined">
+            {{ 'selector.placeholder.selectOption' | translate }}
+        </option>
+        <option *ngFor="let entity of entityList" [ngValue]="entity" [disabled]="entity.uri ===  CREDENTIAL_DIPLOMA">
+            {{ entity.targetName.contents | extractLabel: language:true }}
+        </option>
+    </select>
+    <ng-container *ngIf="loading">
+        <div class="form-input-spinner">
+            <mat-progress-spinner
+                class="spinner"
+                color="primary"
+                mode="indeterminate"
+                value="50"
+            >
+            </mat-progress-spinner>
+        </div>
+    </ng-container>
+</div>

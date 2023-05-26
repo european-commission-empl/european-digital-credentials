@@ -1,0 +1,36 @@
+.edci-information-field {
+    width: fit-content;
+
+    &_title {
+        color: var(--eui-base-color-black);
+        font-weight: bold;
+
+        &.with-link {
+            color: var(--eui-base-color-primary-100);
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &_information {
+        color: var(--eui-base-color-black);
+        padding-top: var(--eui-base-spacing-xs);
+    }
+
+    &_tooltip {
+        padding-left: var(--eui-base-spacing-xs);
+    }
+
+    p {
+        margin: 0;
+        word-break: break-word;
+    }
+}
+
+eui-icon-svg {
+    margin-right: var(--eui-base-spacing-xs);
+    color: var(--eui-base-color-primary-100);
+}

@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "outDir": "../out-tsc/app",
+      "types": []
+    },
+    "exclude": [
+      "test.ts",
+      "**/*.spec.ts",
+      "app/shared/testing/router.mock.ts",
+      "environments/environment.prod.ts",
+      "environments/environment.dev.ts"
+    ]
+  }

@@ -1,0 +1,116 @@
+<div *ngIf="!loading" class="container">
+  <div class="row">
+    <div class="col-12">
+      <edci-breadcrumb [parts]="parts"></edci-breadcrumb>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <edci-status-bar></edci-status-bar>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ "credential-builder.customise-data.title" | translate }}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <p [innerHTML]="'credential-builder.customise-data.description' | translate"></p>
+    </div>
+  </div>
+
+  <div class="row justify-content-between mt-4 mb-5">
+    <div class="col-4">
+      <eui-card [euiNoShadow]="true" class="no-border">
+        <eui-card-content>
+          <eui-card
+            role="button"
+            [euiCollapsible]="true"
+            [euiCollapsed]="true"
+            [euiNoShadow]="true"
+            *ngFor="let entity of customizableDataArchitect.customizableEntityViews; let j = index"
+            class="">
+            <eui-card-header class="cursor-pointer header">
+              <eui-card-header-title>{{ entity.label }}</eui-card-header-title>
+            </eui-card-header>
+            <eui-card-content>
+              <div euiInputGroup>
+                <div *ngFor="let field of entity.fields; let i = index" class="input-checkbox">
+                  <input
+                    euiInputCheckBox
+                    id="checkbox-field-{{ j }}-{{ i }}"
+                    name="dyn-checkbox"
+                    (click)="addCheck(j, i)"
+                    [checked]="field.mandatory"
+                    [readonly]="field.mandatory" />
+                  <label for="checkbox-field-{{ j }}-{{ i }}">{{ field.label }}</label>
+                </div>
+                <div *ngFor="let relation of entity.relations; let i = index" class="input-checkbox">
+                  <input euiInputCheckBox id="checkbox-relation-{{ j }}-{{ i }}" name="dyn-checkbox" (click)="addCheck(j, i, true)" />
+                  <label for="checkbox-relation-{{ j }}-{{ i }}">{{ relation.label }}</label>
+                </div>
+              </div>
+            </eui-card-content>
+          </eui-card>
+        </eui-card-content>
+      </eui-card>
+    </div>
+    <div class="col-7">
+      <div class="row">
+        <div class="col-12">
+          <p [innerHTML]="'credential-builder.customise-data.description-buttons' | translate"></p>
+        </div>
+      </div>
+      <div class="row justify-content-between p-3">
+        <button euiButton [euiPrimary]="true" [euiSizeL]="true" (click)="fillForm()" class="col-auto mt-3">
+          {{ "credential-builder.customise-data.button-browse" | translate }}
+          <span class="eui-icon eui-icon-chevron-right"></span>
+        </button>
+        <button euiButton [euiPrimary]="true" [euiSizeL]="true" (click)="downloadExcel()" class="col-auto mt-3">
+          {{ "credential-builder.customise-data.button-download-excel" | translate }}
+          <span class="eui-icon eui-icon-chevron-right"></span>
+        </button>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <p [innerHTML]="'credential-builder.customise-data.download-info' | translate"></p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-4 text-center">
+          <img role="button" (click)="openDynamicModal()" src="assets/images/upload.svg" />
+          <p *ngIf="error" class="error-message | mt-2 eui-u-color-danger-100">
+            <strong>{{ errorMessage | translate }}</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="row justify-content-end">
+        <div class="col-auto">
+            <button euiButton [euiOutline]="true" [euiSecondary]="true" [euiSizeL]="true" (click)="back()" class="w-100">
+              <span class="eui-icon eui-icon-chevron-left"></span>
+              {{ "credential-builder.customise-data.back-button" | translate }}
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="loading" class="spinner-wrapper-full-screen">
+  <mat-progress-spinner class="spinner" color="primary" mode="indeterminate" value="50"> </mat-progress-spinner>
+</div>
+
+<eui-dialog #uploadDialog title="{{ 'common.upload-xls' | translate }}" (accept)="onAccept('uploadDialog')" (dismiss)="onDismiss('uploadDialog')">
+  <p>{{ "common.upload-concent-message" | translate }}</p>
+  <p></p
+></eui-dialog>
+
+<input *ngIf="inputFileIsEnabled" [hidden]="true" #inputFile id="myInput" type="file" (input)="readFile($event.target['files'])" />

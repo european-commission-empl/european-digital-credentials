@@ -1,0 +1,76 @@
+.detail-organisation-section {
+    .awarded-by {
+        &_collapsed {
+            padding-bottom: 24px;
+        }
+
+        &_text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        &_icon {
+            color: #004494;
+            font-size: 19px;
+
+            &-text {
+                color: #004494;
+                font-size: 16px;
+                padding-right: 8px;
+            }
+
+            &-img {
+                transition: all 0.5s ease;
+
+                &.rotate-180 {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+        &_info {
+            padding-bottom: 4px;
+            padding-top: 20px;
+
+            &-logo {
+                > img {
+                    max-height: 100px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .awarding-information {
+        .field-title {
+            font-weight: bold;
+            padding-bottom: 8px;
+        }
+
+        padding-bottom: 18px;
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .row {
+        &_item {
+            flex-basis: calc(100% / 4);
+            padding: 0 4px 22px;
+        }
+    }
+
+    .item-title {
+        font-weight: bold;
+        margin-right: 6px;
+    }
+
+    .f-14 {
+        p {
+            font-size: 14px !important;
+        }
+    }
+}

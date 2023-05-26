@@ -1,0 +1,10 @@
+tr.mat-footer-row,
+tr.mat-row {
+    height: 48px !important;
+}
+
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+    padding-left: 24px !important;
+}

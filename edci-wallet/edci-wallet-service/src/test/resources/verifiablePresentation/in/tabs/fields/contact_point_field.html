@@ -1,0 +1,22 @@
+<body th:fragment="contactPoint(element)">
+    <span th:each="item, iter : ${element.contactPoint}">
+                <div th:each="address, iter : ${item.address}">
+                        <p th:if="${address.fullAddress}">
+                            <strong>[[#{details.credential-subject-tab.fullAddress}]]: </strong>
+                            <span th:text="${address.fullAddress}"></span>
+                        </p>
+                        <p th:if="${address.countryCode}">
+                            <strong>[[#{details.credential-subject-tab.countryCode}]]: </strong>
+                            <span th:text="${address.countryCode}"></span>
+                        </p>
+                </div>
+                 <div th:each="phone, iter : ${item.phone}">
+                    <strong>[[#{details.credential-subject-tab.phone}]]: </strong>
+                    <span th:text="${phone}"></span>
+                 </div>
+                 <div th:each="email, iter : ${item.email}">
+                    <strong>[[#{details.credential-subject-tab.email}]]: </strong>
+                     <span th:text="${email}"></span>
+                 </div>
+    </span>
+</body>

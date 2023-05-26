@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-auto">
+    <button euiButton [euiOutline]="true" class="eui-u-mr-s modal-button" [euiPrimary]="true" (click)="onClose.emit('cancel')">
+      <eui-icon iconClass="eui-icon-close-m eui-u-color-primary-110"></eui-icon>
+      <span class="ml-1">
+        {{ "common.cancel" | translate }}
+      </span>
+    </button>
+  </div>
+  <div class="col-auto">
+    <button euiButton [euiPrimary]="true" (click)="onSave.emit('save')" class="modal-button" [disabled]="isDisabled">
+      {{ "common.save" | translate }}
+    </button>
+  </div>
+</div>

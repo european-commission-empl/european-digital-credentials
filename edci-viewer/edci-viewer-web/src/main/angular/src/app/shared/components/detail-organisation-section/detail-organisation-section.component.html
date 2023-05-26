@@ -1,0 +1,177 @@
+<div class="detail-organisation-section">
+    <div
+        [ngClass]="{
+            'flex-column': isAwardedByExpanded,
+            'awarded-by_collapsed': !isAwardedByExpanded
+        }"
+        class="d-flex align-items-start awarded-by justify-content-between"
+    >
+        <div>
+            <p
+                *ngFor="let name of organisation?.altLabel"
+                class="awarded-by_text"
+            >
+                {{ name }}
+            </p>
+            <p class="awarded-by_text">
+                {{ organisation.prefLabel }}
+            </p>
+        </div>
+        <div
+            *ngIf="isAwardedByExpanded"
+            class="awarded-by_info d-flex justify-content-between w-100"
+        >
+            <div class="awarded-by_info-data flex-grow-1 mr-3">
+                <div class="d-flex align-items-center mb-4">
+                    <ng-container *ngIf="organisation?.location?.length > 0">
+                        <img
+                            class="mr-2 align-self-start"
+                            src="assets/icons/icon-building.svg"
+                        />
+                        <div class="d-flex flex-column mr-2">
+                            <p
+                                *ngFor="let location of organisation.location"
+                                class="d-flex"
+                            >
+                                {{
+                                    [
+                                        location.geographicName,
+                                        location.address[0].fullAddress,
+                                        location.address[0].countryCode
+                                    ] | edciJoin: ', '
+                                }}
+                            </p>
+                        </div>
+                    </ng-container>
+                    <div
+                        *ngIf="organisation?.homepage?.length > 0"
+                        class="d-flex flex-column mr-2"
+                    >
+                        <p *ngFor="let web of organisation.homepage">
+                            <a [href]="web.link" target="_blank">{{
+                                web.title
+                            }}</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="d-flex f-14 mb-3">
+                    <div class="d-flex flex-wrap gap-3">
+                        <div *ngIf="organisation?.legalIdentifier" class="mr-4">
+                            <div class="d-flex">
+                                <p class="item-title">
+                                    {{
+                                        'details.organization-tab.legalIdentifier'
+                                            | translate
+                                    }}
+                                </p>
+                                {{ organisation.legalIdentifier.content }}
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="organisation?.vatIdentifier?.length > 0"
+                            class="mr-4"
+                        >
+                            <div class="d-flex">
+                                <p class="item-title">
+                                    {{
+                                        'details.organization-tab.vatIdentifier'
+                                            | translate
+                                    }}
+                                </p>
+                                <div class="d-flex">
+                                    <ng-container
+                                        *ngFor="
+                                            let vat of organisation.vatIdentifier;
+                                            let isLast = last
+                                        "
+                                    >
+                                        <p>
+                                            {{ vat.content
+                                            }}{{ isLast ? '' : ', ' }}
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="organisation?.taxIdentifier?.length > 0"
+                            class="mr-4"
+                        >
+                            <div class="d-flex">
+                                <p class="item-title">
+                                    {{
+                                        'details.organization-tab.taxIdentifier'
+                                            | translate
+                                    }}
+                                </p>
+                                <div class="d-flex">
+                                    <ng-container
+                                        *ngFor="
+                                            let tax of organisation.taxIdentifier;
+                                            let isLast = last
+                                        "
+                                    >
+                                        <p>
+                                            {{ tax.content
+                                            }}{{ isLast ? '' : ', ' }}
+                                        </p>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="organisation?.identifier?.length > 0"
+                            class="mr-4"
+                        >
+                            <div class="d-flex">
+                                <ng-container
+                                    *ngFor="
+                                        let otherIdentifier of organisation.identifier;
+                                        let isLast = last
+                                    "
+                                >
+                                    <p class="item-title">
+                                        {{ otherIdentifier.identifierSchemeId }}
+                                    </p>
+                                    <p class="mr-4">
+                                        {{ otherIdentifier.content }}
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="organisation.logo" class="awarded-by_info-logo ml-auto">
+                <img
+                    [src]="
+                        'data:' +
+                            this.organisation.logo.mimeType +
+                            ';base64,' +
+                            this.organisation.logo.base64Content
+                            | edciSanitize: 'resourceUrl'
+                    "
+                />
+            </div>
+        </div>
+        <div
+            class="awarded-by_icon d-flex align-items-center align-self-end"
+            (click)="toggleAwardedBy()"
+        >
+            <p class="awarded-by_icon-text cursor-pointer">
+                {{
+                    isAwardedByExpanded
+                        ? ('common.showLess' | translate)
+                        : ('common.showMore' | translate)
+                }}
+            </p>
+            <i
+                class="awarded-by_icon-img cursor-pointer {{
+                    isAwardedByExpanded
+                        ? 'fa fa-chevron-up'
+                        : 'fa fa-chevron-down'
+                }}"
+            ></i>
+        </div>
+    </div>
+</div>

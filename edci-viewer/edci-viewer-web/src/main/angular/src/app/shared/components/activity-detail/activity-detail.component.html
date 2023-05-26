@@ -1,0 +1,42 @@
+<edci-panel *ngIf="activeActivity" [title]="activeActivity?.title" [isMainPanel]="true" [isExpanded]="true">
+
+<div *ngIf="activeActivity" class="activity-detail">
+    <div class="activity-detail_panel">
+        <edci-activity-main-panel [activeActivity]="activeActivity">
+        </edci-activity-main-panel>
+    </div>
+    <div class="activity-detail_panel">
+        <edci-activity-information-panel
+            [activeActivity]="activeActivity"
+        ></edci-activity-information-panel>
+    </div>
+    <div
+        class="activity-detail_panel entitles-to entity-link-section"
+        *ngIf="activeActivity?.subActivities?.length > 0"
+    >
+        <edci-panel
+            [title]="'details.activities-tab.subActivities' | translate"
+            [(isExpanded)]="isSubActivitiesExpanded"
+        >
+            <div class="entity-container d-flex flex-wrap">
+                <ng-container
+                    *ngFor="let activity of activeActivity.subActivities"
+                >
+                    <a
+                        class="entity-container_item-badge"
+                        (click)="changeSelection(activity.id)"
+                    >
+                        {{ activity.title }}
+                    </a>
+                </ng-container>
+            </div>
+        </edci-panel>
+    </div>
+    <div class="activity-detail_panel">
+        <edci-activity-other-information-panel
+            [activeActivity]="activeActivity"
+        ></edci-activity-other-information-panel>
+    </div>
+</div>
+
+</edci-panel>

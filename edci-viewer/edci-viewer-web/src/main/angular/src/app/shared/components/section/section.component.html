@@ -1,0 +1,15 @@
+<div *ngIf="hasContent" class="row">
+    <div class="col-9">
+        <h6 *ngIf="!isMainTitle">{{title}}</h6>
+        <h3 *ngIf="isMainTitle">{{title}}</h3>
+    </div>
+    <div class="col-3 cursor-pointer edci-section_clickable {{ isMainTitle ? 'margin' : '' }}" (click)="toggleExpanded()">
+        <span class="edci-section_clickable_text_only">{{ isExpanded ? ('common.showLess' | translate) : ('common.showMore' | translate) }}</span>
+        <i class="{{ isExpanded ? 'fa fa-chevron-up' : 'fa fa-chevron-down' }}
+                    edci-section_icon edci-section_icon-img">
+        </i>
+    </div>
+</div>
+<div #content [@openClose]="isExpanded? 'open': 'close'"  class="{{ isMainTitle ? 'content' : '' }}" class="row">
+    <ng-content></ng-content>
+</div>

@@ -1,0 +1,213 @@
+{
+  "id": "d5f03bcc-2599-42f8-bb3d-587995707cc0",
+  "identifiers": null,
+  "type": "http://data.europa.eu/europass/accreditationType/institutionalQualityAssurance",
+  "titles": [
+    {
+      "language": "en",
+      "value": "Institutional evaluation"
+    }
+  ],
+  "descriptions": [],
+  "decision": null,
+  "report": {
+    "url": "https://backend.deqar.eu/reports/IEP/20180924_1056_iep%20report%20fam.pdf",
+    "titles": [
+      {
+        "language": "en",
+        "value": "Evaluation report"
+      }
+    ],
+    "languages": [
+      "http://publications.europa.eu/resource/authority/language/ENG"
+    ],
+    "subjects": [
+      "http://data.europa.eu/esco/qualification-topics#accreditation-and-quality-assurance"
+    ]
+  },
+  "accreditedOrganization": {
+    "registration": "https://data.deqar.eu/institution/2360",
+    "vatIdentifiers": null,
+    "taxIdentifiers": null,
+    "identifiers": [
+      {
+        "value": "https://data.deqar.eu/institution/2360",
+        "schemeID": null,
+        "schemeAgencyName": null,
+        "schemeAgencyID": null,
+        "issuedDate": null
+      }
+    ],
+    "types": [],
+    "prefLabels": [
+      {
+        "language": "en",
+        "value": "Faculty of Media - FaM"
+      }
+    ],
+    "alternativeNames": [
+      {
+        "language": "sl",
+        "value": "Fakulteta za medije"
+      }
+    ],
+    "homepages": [
+      {
+        "url": "http://www.fame.si/about-the-faculty",
+        "titles": null,
+        "languages": null,
+        "subjects": null
+      }
+    ],
+    "additionalNotes": [],
+    "locations": [
+      {
+        "identifiers": null,
+        "names": null,
+        "descriptions": null,
+        "addresses": null,
+        "locations": [
+          {
+            "nutsCode": "SI",
+            "isoAlpha3Code": "SVN",
+            "value": null
+          }
+        ],
+        "fullAddress": []
+      }
+    ],
+    "contactPoints": null,
+    "hasAccreditations": null,
+    "unitOf": null,
+    "hasUnits": [],
+    "logo": null,
+    "lastModificationDate": null
+  },
+  "limitQualification": null,
+  "limitFields": [],
+  "limitEQFLevels": [],
+  "limitJurisdictions": [],
+  "accreditingAgent": {
+    "registration": "https://data.deqar.eu/agency/31",
+    "vatIdentifiers": null,
+    "taxIdentifiers": null,
+    "identifiers": [
+      {
+        "value": "https://data.deqar.eu/agency/31",
+        "schemeID": null,
+        "schemeAgencyName": null,
+        "schemeAgencyID": null,
+        "issuedDate": null
+      }
+    ],
+    "types": [],
+    "prefLabels": [
+      {
+        "language": "en",
+        "value": "IEP - Institutional Evaluation Programme"
+      }
+    ],
+    "alternativeNames": [],
+    "homepages": [
+      {
+        "url": "http://www.iep-qaa.org/",
+        "titles": null,
+        "languages": null,
+        "subjects": null
+      }
+    ],
+    "additionalNotes": [],
+    "locations": [
+      {
+        "identifiers": null,
+        "names": null,
+        "descriptions": null,
+        "addresses": null,
+        "locations": [
+          {
+            "nutsCode": "CH",
+            "isoAlpha3Code": "CHE",
+            "value": null
+          }
+        ],
+        "fullAddress": []
+      }
+    ],
+    "contactPoints": [
+      {
+        "notes": null,
+        "descriptions": null,
+        "contactMethods": [
+          {
+            "id": "http://data.europa.eu/qdr-test/europassResource/09ef630e-4499-4ab0-8092-120cdec56612",
+            "identifier": null,
+            "fullAddresses": [
+              {
+                "language": "en",
+                "value": "<p>IEP c/o EUA<br />\n114 rue du Rh&ocirc;ne<br />\nCase postale 3174<br />\n1211 Geneva 3<br />\nSwitzerland</p>",
+                "subjects": []
+              }
+            ],
+            "country": "http://publications.europa.eu/resource/authority/country/CHE",
+            "phoneNumber": null,
+            "countryDialing": null,
+            "areaDialing": null,
+            "dialNumber": null
+          },
+          {
+            "id": "http://data.europa.eu/qdr-test/europassResource/5301564b-f5ba-4323-9a29-d30ed575548e",
+            "identifier": null,
+            "fullAddresses": null,
+            "country": null,
+            "phoneNumber": "+ 41 22 552 02 94",
+            "countryDialing": null,
+            "areaDialing": null,
+            "dialNumber": null
+          },
+          {
+            "id": "mailto:info@iep-qaa.org",
+            "identifier": null,
+            "fullAddresses": null,
+            "country": null,
+            "phoneNumber": null,
+            "countryDialing": null,
+            "areaDialing": null,
+            "dialNumber": null
+          }
+        ]
+      }
+    ],
+    "hasAccreditations": null,
+    "unitOf": null,
+    "hasUnits": [],
+    "logo": null,
+    "lastModificationDate": null
+  },
+  "issuedDate": 1427839200000,
+  "reviewDate": 1617228000000,
+  "expiryDate": null,
+  "additionalNotes": [],
+  "homepages": [],
+  "landingpages": [
+    {
+      "url": "https://data.deqar.eu/report/3916",
+      "titles": [
+        {
+          "language": "en",
+          "value": "Report on DEQAR website"
+        }
+      ],
+      "languages": [
+        "en"
+      ],
+      "subjects": [
+        "http://data.europa.eu/esco/qualification-topics#accreditation-and-quality-assurance"
+      ]
+    }
+  ],
+  "supplementaryDocs": [],
+  "status": [
+    "released"
+  ],
+  "lastModificationDate": null
+}

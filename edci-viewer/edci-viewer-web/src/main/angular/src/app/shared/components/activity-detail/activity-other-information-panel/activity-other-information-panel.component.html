@@ -1,0 +1,121 @@
+<div
+    class="activities-detail_panel other-information"
+    *ngIf="
+        activeActivity?.specifiedBy?.title?.length > 0 ||
+        activeActivity?.specifiedBy?.description?.length > 0 ||
+        activeActivity?.specifiedBy?.supplementaryDocument?.length > 0 ||
+        activeActivity?.specifiedBy?.additionalNote?.length > 0
+    "
+>
+    <edci-panel
+        [title]="'details.activities-tab.otherInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+
+    <section *ngIf="activeActivity?.specifiedBy?.title?.length > 0" class="row">
+        <h6 class="col-12">{{'details.activities-tab.altName' | translate}}</h6>
+        <p class="col-12">{{ activeActivity.specifiedBy.title }}</p>
+    </section>
+
+    <section *ngIf="activeActivity?.specifiedBy?.description?.length > 0" class="row">
+        <h6 class="col-12">{{'details.activities-tab.description' | translate}}</h6>
+        <p *ngFor="let description of activeActivity.specifiedBy.description" class="col-12">{{ description }}</p>
+    </section>
+
+    <section *ngIf="activeActivity?.specifiedBy?.supplementaryDocument?.length > 0" class="row">
+        <h6 class="col-12">{{'details.activities-tab.otherDocuments' | translate}}</h6>
+        <p *ngFor="let document of activeActivity.specifiedBy.supplementaryDocument" class="col-12">
+            <a href="{{document.link}}">{{ document.link }}</a>
+        </p>
+    </section>
+
+    <section *ngIf="activeActivity?.specifiedBy?.additionalNote?.length > 0" class="row">
+        <h6 class="col-12">{{'details.activities-tab.moreInformation' | translate}}</h6>
+        <ng-container *ngFor="let note of activeActivity.specifiedBy.additionalNote">
+            <p *ngFor="let literal of note.noteLiteral" class="col-12">
+                {{ literal }}
+            </p>
+        </ng-container>
+    </section>
+
+    <section *ngIf="activeActivity?.specifiedBy.homepage?.length > 0" class="row">
+        <h6 class="col-12">{{'details.activities-tab.homePage' | translate}}</h6>
+        <P *ngFor="let homepage of activeActivity.specifiedBy.homepage" class="col-12">
+            <a href="{{homepage.link}}">{{ homepage.link }}</a>
+        </P>
+    </section>
+    <!--
+        <div class="d-flex flex-column">
+            <div
+                *ngIf="activeActivity?.specifiedBy?.otherDocuments?.length > 0"
+                class="other-information_section"
+            >
+                <p class="other-information_title">
+                    {{ 'details.activities-tab.relatedDocuments' | translate }}
+                </p>
+                <div class="d-flex flex-wrap">
+                    <ng-container
+                        *ngFor="
+                            let document of activeActivity.specifiedBy
+                                .otherDocuments
+                        "
+                    >
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    activeActivity?.moreInformation?.length > 0 ||
+                    activeActivity?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="other-information_section"
+            >
+                <ng-container
+                    *ngFor="let content of activeActivity?.moreInformation"
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+                <ng-container
+                    *ngFor="
+                        let content of activeActivity?.specifiedBy
+                            ?.moreInformation
+                    "
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+            </div>
+            <div
+                class="other-information_section"
+                *ngIf="activeActivity?.specifiedBy?.homePage?.length > 0"
+            >
+                <p class="other-information_title">
+                    {{ 'details.activities-tab.homePage' | translate }}
+                </p>
+                <div class="d-flex flex-column">
+                    <a
+                        *ngFor="let page of activeActivity.specifiedBy.homePage"
+                        [href]="page.link"
+                        >{{ page.title ? page.title : page.link }}</a
+                    >
+                </div>
+            </div>
+        </div>-->
+    </edci-panel>
+</div>

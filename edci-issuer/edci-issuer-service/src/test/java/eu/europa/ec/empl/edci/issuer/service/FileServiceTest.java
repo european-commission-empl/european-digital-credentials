@@ -1,0 +1,34 @@
+package eu.europa.ec.empl.edci.issuer.service;
+
+
+import eu.europa.ec.empl.base.AbstractUnitBaseTest;
+import eu.europa.ec.empl.edci.issuer.util.FileUtil;
+import eu.europa.ec.empl.edci.service.ControlledListCommonsService;
+import org.junit.Assert;
+import org.junit.Before;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+
+public class FileServiceTest extends AbstractUnitBaseTest {
+
+    @InjectMocks
+    IssuerFileService fileService;
+
+    @Spy
+    FileUtil fileUtil;
+
+    @Mock
+    private ControlledListCommonsService controlledListCommonsService;
+
+    @Before
+    public void injectMockObjects() throws Exception {
+        /*List<RDFConcept> elementCLDAOS = Arrays.asList(testUtilities.createMockObject(RDFConcept.class), testUtilities.createMockObject(RDFConcept.class));
+        Mockito.lenient().when(controlledListCommonsService.searchRDFConcepts(ArgumentMatchers.anyString(), ArgumentMatchers.anyString(),
+                ArgumentMatchers.anyString(), ArgumentMatchers.anyInt(), ArgumentMatchers.anyInt(), ArgumentMatchers.anyList())).thenReturn(elementCLDAOS);*/
+        Assert.assertTrue(true);
+    }
+
+}
+
+

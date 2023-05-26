@@ -1,0 +1,49 @@
+<section class="row contact-row" *ngIf="contact?.address?.length > 0">
+        <div class="col-1">
+            <eui-icon-svg icon="location" set="outline" size="l"></eui-icon-svg>
+        </div>
+        <div class="col-11 pl-0">
+            <p *ngFor="let address of contact.address">
+                {{[address.fullAddress?.noteLiteral, address.countryCode] | edciJoin : ', '}}
+            </p>
+        </div>
+</section>
+
+<!-- ToDo: Check for empty phoneNumbers before painting icon-->
+<section class="row contact-row" *ngIf="contact?.phone?.length > 0">
+    <div class="col-1">
+        <eui-icon-svg icon="call" set="outline" size="l"></eui-icon-svg>
+    </div>
+    <div class="col-11 pl-0">
+        <p *ngFor="let phone of contact.phone">
+            {{ phone.phoneNumber }}
+        </p>
+    </div>
+</section>
+
+<section class="row contact-row" *ngIf="contact?.emailAddress?.length > 0">
+    <div class="col-1">
+        <eui-icon-svg icon="mail" set="outline" size="l"></eui-icon-svg>
+    </div>
+    <div class="col-11 pl-0">
+        <p *ngFor="let mail of contact.emailAddress">
+            <a href="mailto:{{ mail.id }}">
+                {{ mail.id }}
+            </a>
+        </p>
+    </div>
+</section>
+
+<section class="row contact-row" *ngIf="contact?.contactForm?.length > 0">
+    <div class="col-1">
+        <eui-icon-svg icon="link" set="outline" size="l"></eui-icon-svg>
+    </div>
+    <div class="col-11 pl-0">
+        <p *ngFor="let form of contact.contactForm">
+            <a href="{{form.link}}">
+                {{ form.link}}
+            </a>
+        </p>
+    </div>
+</section>
+

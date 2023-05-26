@@ -1,0 +1,190 @@
+<div class="d-inline-flex size__16 shadow-sm bg-white rounded w-100 p-3 align-middle" style="height: 68.5px">
+    <div class="d-inline-flex cursor-pointer pr-3 pt-2 border-right" (click)="navigateHome()">
+        <div *ngIf="!isDiplomaPage()" class="d-flex align-items-center home-icon">
+            <eui-icon euiPrimary iconClass="eui-icon-visibility"></eui-icon>
+            <span style="margin-left: 0.25rem !important">{{ 'btn.summary' | translate }}</span>
+        </div>
+        <div *ngIf="isDiplomaPage()" class="d-flex align-items-center home-icon">
+            <eui-icon euiPrimary iconClass="eui-icon-home"></eui-icon>
+            <span style="margin-left: 0.25rem !important">{{ 'common.home' | translate }}</span>
+        </div>
+    </div>
+    <div class="pl-1 pr-1 border-right">
+        <div class="eui-dropdown-button mb-3">
+            <eui-dropdown>
+                <button euiButton euiSizeM style="border:none">
+                    <eui-icon euiSizeS euiPrimary iconClass="eui-icon-ecl-download"
+                        style="margin-bottom:1px; font-size:20px"></eui-icon>
+                    <span euiLabel style="margin-bottom:2px; font-size:16px">{{ 'btn.export' | translate }}</span>
+                </button>
+                <eui-dropdown-content>
+                    <ul euiList>
+                        <!--<li euiListItem
+                            [style.display]="downloadOriginal && ((credId && userId) || sharedFromURL) ? null : 'none'">
+                            <button euiListItem (click)="downloadOriginalXML()">
+                                <span class="eui-icon eui-icon-filetype-xml mr-3 icon-size-26px" euiIconColored></span>
+                                {{ 'downloadOriginalXml' | translate }}
+                            </button>
+                        </li>
+                        <li euiListItem>
+                            <button euiListItem (click)="downloadVP('XML')">
+                                <span class="eui-icon eui-icon-filetype-xml mr-3 icon-size-26px" euiIconColored></span>
+                                {{ 'downloadXml' | translate }}
+                            </button>
+                        </li>
+                        <li euiListItem>
+                            <button euiListItem (click)="downloadVP('PDF', 'full')">
+                                <span class="eui-icon eui-icon-filetype-pdf mr-3 icon-size-26px" euiIconColored></span>
+                                {{ 'downloadPdf' | translate }}
+                            </button>
+                        </li>-->
+                        <li euiListItem>
+                            <button euiListItem (click)="downloadVP('PDF', 'diploma')">
+                                <span class="eui-icon eui-icon-filetype-pdf mr-3 icon-size-26px" euiIconColored></span>
+                                {{ 'downloadPdfSummaryCredential' | translate }}
+                            </button>
+                        </li>
+                    </ul>
+                </eui-dropdown-content>
+            </eui-dropdown>
+        </div>
+    </div>
+    <div style="margin-top:0.25rem"
+        class="d-inline-flex cursor-pointer pr-3 pl-3 pt-2 {{ this.isPreview ? 'ux-button—host-disabled' : '' }} item-upload"
+        (click)="uploadAnotherCredential($event)">
+        <input [hidden]="true" #inputFile id="myInput" type="file" accept=".jsonld, .xml"
+            (change)="readFile($event.target.files)" />
+        <eui-icon euiPrimary iconClass="eui-icon-upload"></eui-icon>
+        <span class=" {{ this.isPreview ? 'disabled' : '' }}" style="margin-left: 0.25rem !important">
+            {{ 'toolbar.updateAnotherCredential' | translate }}
+        </span>
+    </div>
+    <span class="index-auto ml-auto pr-3 pt-2 border-right item-share"
+        uxTooltip="{{ !credId ? ('details.shareTooltip' | translate) : '' }}">
+        <div class="cursor-pointer d-inline-flex {{ !credId ? 'ux-button—host-disabled' : '' }} mt-1"
+            (click)="uxService.openModal('shareCredentialModal')">
+            <eui-icon class="mr-2" euiPrimary iconClass="eui-icon-share"></eui-icon>
+            <span style="margin-left: 0.25rem !important">{{ 'btn.share' | translate }}</span>
+        </div>
+    </span>
+
+    <div class="d-inline-flex cursor-pointer pr-3 pl-3 item-language">
+        <eui-dropdown *ngIf="primaryLanguage">
+            <button euiButton>
+                <span euiLabel style="margin-right: 3rem !important;">{{selectedLanguage | titlecase}}</span>
+                <span euiIcon euiPrimary iconClass="eui-icon eui-icon-chevron-down"></span>
+            </button>
+            <eui-dropdown-content>
+                <ul euiList>
+                    <li euiListItem *ngFor="let item of languages" (click)="languageChange(item)">
+                        <span euiIcon iconClass="{{item.icon}}" class="eui-u-color-grey-dark"></span>
+                        <button euiListItem>{{item.label | titlecase}}</button>
+                    </li>
+                </ul>
+            </eui-dropdown-content>
+        </eui-dropdown>
+    </div>
+</div>
+
+<div *ngIf="isDownloading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner class="pdf-spinner" color="primary" mode="indeterminate" value="50">
+    </mat-progress-spinner>
+</div>
+
+<ux-modal id="shareCredentialModal" [isAcceptActionVisible]="false" [isShowCloseButton]="false"
+    [isCloseModalOnEscape]="false" (onDismiss)="closeShareModal()"
+    dismissActionLabel="{{ 'ecl.common.CLOSE' | translate}}" titleLabel="{{ 'share.shareCredential' | translate }}">
+    <uxModalBody>
+        <div class="d-flex link-wrapper align-items-center">
+            <form [formGroup]="sharedForm" class="col-md-8 p-0">
+                <label for="date">{{
+                    'share.dateOfValidity' | translate
+                    }}</label>
+                <ux-form-group [feedbackTypeClass]="feedback" [isVertical]="true" class="form-datepicker">
+                    <ux-datepicker formControlName="date" [placeholder]="'dd/mm/yyyy'" [minDate]="minDate"
+                        (onDateSelect)="checkValidDate(shareDate)">
+                    </ux-datepicker>
+                    <ux-control-feedback class="w-25">
+                        <strong>
+                            {{
+                            feedback
+                            ? feedback === 'danger'
+                            ? ('share.validDateDanger' | translate)
+                            : ('share.validDateSuccess' | translate)
+                            : ('share.chooseDate' | translate)
+                            }}
+                        </strong>
+                    </ux-control-feedback>
+                </ux-form-group>
+            </form>
+
+            <button euiButton euiPrimary euiSizeM (click)="generateLink(); isCopyToClipBoardClicked = false"
+                [euiDisabled]="generateLinkDisabled || !dateChange">
+                {{ 'share.generateLink' | translate }}
+            </button>
+        </div>
+
+        <div class="d-flex mt-3 link-wrapper">
+            <div class="link flex-grow-1 col-md-8 pl-0">
+                <label for="url">{{ 'share.copyURL' | translate }}</label>
+                <input class="form-control copy-height" type="text" [(ngModel)]="shareLink" readonly />
+            </div>
+            <div class="copy-button d-flex align-items-end">
+                <button euiButton euiSecondary euiSizeM (click)="isCopyToClipBoardClicked = true"
+                    [euiDisabled]="!shareLink" [appCopyToClipboard]="shareLink">
+                    {{ 'share.copyToClipboard' | translate }}
+                </button>
+                <label [ngClass]="{ 'label-visibility': isCopyToClipBoardClicked }">{{ 'share.copy' | translate
+                    }}</label>
+            </div>
+        </div>
+        <div *ngIf="loading" class="spinner-wrapper">
+            <mat-progress-spinner class="share-spinner" color="primary" mode="indeterminate" value="50">
+            </mat-progress-spinner>
+        </div>
+    </uxModalBody>
+</ux-modal>
+
+<ux-modal id="pdfDownloadModal" [isAcceptActionVisible]="false" [isShowCloseButton]="false"
+    [isCloseModalOnEscape]="false" (onDismiss)="closeDownloadModal()" titleLabel="{{ 'download.title' | translate }}">
+    <uxModalBody>
+        <div class="d-flex link-wrapper">
+            <form [formGroup]="downloadForm">
+                <label for="date">{{
+                    'download.validUntil' | translate
+                    }}</label>
+                <ux-form-group [feedbackTypeClass]="feedback" [isVertical]="true" class="form-datepicker">
+                    <ux-datepicker formControlName="date" [placeholder]="'dd/mm/yyyy'" [minDate]="minDate"
+                        (onDateSelect)="checkValidDate(downloadDate)">
+                    </ux-datepicker>
+                    <ux-control-feedback class="w-25">
+                        <strong>
+                            {{
+                            feedback
+                            ? feedback === 'danger'
+                            ? ('share.validDateDanger' | translate)
+                            : ''
+                            : ('share.chooseDate' | translate)
+                            }}
+                        </strong>
+                    </ux-control-feedback>
+                </ux-form-group>
+            </form>
+
+            <button euiButton euiSecondary euiSizeL class="share-link"
+                [euiDisabled]="generateLinkDisabled || !dateChange"
+                (click)="downloadSharePDF(); isCopyToClipBoardClicked = false">
+                {{ 'download.pdf' | translate }}
+            </button>
+        </div>
+        <div *ngIf="loading">
+            <mat-progress-spinner class="share-spinner" color="primary" mode="indeterminate" value="50">
+            </mat-progress-spinner>
+        </div>
+    </uxModalBody>
+</ux-modal>
+
+<eui-dialog #confirmDialog [title]="'upload.confirm.title' | translate" (close)="closeConfirmModal()"
+    (accept)="saveConfirmModal()">
+    <p>{{'upload.confirm.xml' | translate}}</p>
+</eui-dialog>

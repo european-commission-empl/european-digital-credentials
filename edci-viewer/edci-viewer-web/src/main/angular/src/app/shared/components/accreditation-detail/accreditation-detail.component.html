@@ -1,0 +1,116 @@
+<edci-panel [title]="'details.organization-tab.accreditation.title' | translate" [(isExpanded)]="isTabExpanded"
+    [isMainPanel]="isMainPanel">
+
+    <section class="row" *ngIf="accreditation?.title">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.name' | translate }}</h6>
+        <a class="col-12" href="{{accreditation?.id}}">
+            {{ accreditation?.title }}
+        </a>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.dcType">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.type' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.dcType?.title }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.dateIssued">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.date' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.dateIssued }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.status">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.status' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.status }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.decision">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.decision' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.decision }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.accreditingAgent?.legalName">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.accrediting' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.accreditingAgent?.legalName }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.report?.link">
+        <a class="col-12" href="{{accreditation?.report?.link}}">
+            {{ 'details.organization-tab.accreditation.report' | translate }}
+        </a>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.limitJurisdiction?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.jurisdiction' | translate }}</h6>
+        <p class="col-12" *ngFor="let jurisdiction of accreditation?.limitJurisdiction">
+            {{ jurisdiction }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.limitEQFLevel?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.eqf' | translate }}</h6>
+        <p class="col-12" *ngFor="let eqf of accreditation?.limitEQFLevel">
+            {{ eqf }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.limitField?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.thematic' | translate }}</h6>
+        <p class="col-12" *ngFor="let field of accreditation?.limitField">
+            {{ field }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.homepage?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.link' | translate }}</h6>
+        <a class="col-12" *ngFor="let homepage of accreditation?.homepage" href="{{homepage.link}}">
+            {{ homepage.link }}
+        </a>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.description">
+        <p class="col-12">
+            {{ accreditation?.description }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.additionalNote?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.moreInfo' | translate }}</h6>
+        <div class="col-12" *ngFor="let additionalNote of accreditation?.additionalNote">
+            <p class="col-12 pl-0" *ngFor="let note of additionalNote?.noteLiteral">
+                {{ note }}
+            </p>
+        </div>
+    </section>
+    
+    <section class="row" *ngIf="accreditation?.expiryDate">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.expiry' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.expiryDate }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.reviewDate">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.review' | translate }}</h6>
+        <p class="col-12">
+            {{ accreditation?.reviewDate }}
+        </p>
+    </section>
+
+    <section class="row" *ngIf="accreditation?.supplementaryDocument?.length > 0">
+        <h6 class="col-12">{{ 'details.organization-tab.accreditation.supplementary' | translate }}</h6>
+        <a class="col-12" *ngFor="let supplementaryDocument of accreditation?.supplementaryDocument" href="{{supplementaryDocument.link}}">
+            {{ supplementaryDocument.link }}
+        </a>
+    </section>
+
+</edci-panel>

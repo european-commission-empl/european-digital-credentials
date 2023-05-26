@@ -1,0 +1,52 @@
+.learning-outcome-card {
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    margin-bottom: var(--eui-base-spacing-xs);
+    padding: var(--eui-base-spacing-m) var(--eui-base-spacing-m) var(--eui-base-spacing-l);
+    background-color: var(--eui-base-color-white);
+
+    &_title {
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: var(--eui-base-spacing-m);
+    }
+
+    &_description {
+        padding-bottom: var(--eui-base-spacing-m);
+    }
+
+    &_content {
+        &-item {
+            padding-bottom: var(--eui-base-spacing-m);
+
+            &_title {
+                font-weight: bold;
+                padding-bottom: var(--eui-base-spacing-xs);
+            }
+
+            a.skill-link {
+                padding-bottom: var(--eui-base-spacing-xs);
+                width: fit-content;
+            }
+        }
+    }
+
+    &_show-more {
+        width: fit-content;
+
+        &-text {
+            color: var(--eui-base-color-primary-100);
+            padding-right: var(--eui-base-spacing-xs);
+        }
+
+        &-img {
+            color: var(--eui-base-color-primary-100);
+            font-size: 20px;
+            transition: all 0.5s ease;
+
+            &.rotate-180 {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}

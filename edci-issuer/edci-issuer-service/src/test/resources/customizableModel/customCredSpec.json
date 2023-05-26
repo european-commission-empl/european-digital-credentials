@@ -1,0 +1,969 @@
+{
+  "pk":2777,
+  "OCBID":"04ad3020-cd5c-4910-b23d-bb581064a26d",
+  "languages":[
+    "en"
+  ],
+  "label":"ds",
+  "defaultLanguage":"en",
+  "title":{
+    "pk":28850,
+    "extra":null,
+    "contents":[
+      {
+        "pk":68423,
+        "content":"ds",
+        "language":"en",
+        "format":"text/plain"
+      }
+    ]
+  },
+  "description":null,
+  "credentialLabel":{
+    "pk":12346,
+    "uri":"http://data.europa.eu/snb/credential/6dff8a0f87",
+    "targetName":{
+      "pk":28852,
+      "extra":null,
+      "contents":[
+        {
+          "pk":68425,
+          "content":"Diploma Supplement",
+          "language":"en",
+          "format":"text/plain"
+        }
+      ]
+    },
+    "targetDescription":null,
+    "targetFrameworkURI":"http://data.europa.eu/snb/credential/25831c2",
+    "targetNotation":null,
+    "targetFramework":{
+      "pk":28851,
+      "extra":null,
+      "contents":[
+        {
+          "pk":68424,
+          "content":"Europass Standard List of Credential Types",
+          "language":"en",
+          "format":"text/plain"
+        }
+      ]
+    }
+  },
+  "validFrom":1636416000000,
+  "validUntil":null,
+  "identifier":[
+
+  ],
+  "attachment":[
+
+  ],
+  "issuer":{
+    "pk":1364,
+    "languages":[
+      "en"
+    ],
+    "label":"Organization 01",
+    "defaultLanguage":"en",
+    "identifier":[
+      {
+        "pk":5998,
+        "identifierContent":"content",
+        "creator":null,
+        "schemeAgency":null,
+        "dateIssued":null,
+        "dcType":[
+
+        ]
+      }
+    ],
+    "dcType":[
+
+    ],
+    "prefLabel":{
+      "pk":35418,
+      "extra":null,
+      "contents":[
+        {
+          "pk":79884,
+          "content":"Organization 01",
+          "language":"en",
+          "format":"text/plain"
+        }
+      ]
+    },
+    "altLabel":null,
+    "additionalNote":[
+
+    ],
+    "location":[
+      {
+        "pk":4860,
+        "identifier":[
+
+        ],
+        "geographicName":null,
+        "spatialCode":[
+
+        ],
+        "description":null,
+        "address":[
+          {
+            "pk":4507,
+            "identifier":[
+
+            ],
+            "fullAddress":null,
+            "countryCode":{
+              "pk":15291,
+              "uri":"http://publications.europa.eu/resource/authority/country/BEN",
+              "targetName":{
+                "pk":35420,
+                "extra":null,
+                "contents":[
+                  {
+                    "pk":79886,
+                    "content":"Benin",
+                    "language":"en",
+                    "format":"text/plain"
+                  }
+                ]
+              },
+              "targetDescription":null,
+              "targetFrameworkURI":"http://publications.europa.eu/resource/authority/country",
+              "targetNotation":"country",
+              "targetFramework":{
+                "pk":35419,
+                "extra":null,
+                "contents":[
+                  {
+                    "pk":79885,
+                    "content":"Country",
+                    "language":"en",
+                    "format":"text/plain"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "contactPoint":[
+
+    ],
+    "legalIdentifier":{
+      "pk":5997,
+      "identifierContent":"ORG-000001",
+      "creator":null,
+      "schemeAgency":null,
+      "dateIssued":null,
+      "dcType":[
+
+      ]
+    },
+    "vatIdentifier":[
+      {
+        "pk":6000,
+        "identifierContent":"p`ç",
+        "creator":null,
+        "schemeAgency":null,
+        "dateIssued":null,
+        "dcType":[
+
+        ],
+        "spatial":null
+      }
+    ],
+    "taxIdentifier":[
+      {
+        "pk":5999,
+        "identifierContent":"p`p",
+        "creator":null,
+        "schemeAgency":null,
+        "dateIssued":null,
+        "dcType":[
+
+        ],
+        "spatial":null
+      }
+    ],
+    "homePage":[
+
+    ],
+    "logo":null,
+    "accreditation":[
+
+    ],
+    "subOrganizationOf":null,
+    "childOrganisation":[
+
+    ],
+    "auditDAO":{
+      "pk":1835,
+      "createDate":1613403692730,
+      "updateDate":1662734934344,
+      "createUserId":"n00011x7",
+      "updateUserId":"n00011x7"
+    }
+  },
+  "achieved":[
+    {
+      "pk":32,
+      "OCBID":"a441b9aa-b5fb-4797-9594-49502a7c01e2",
+      "languages":[
+        "en"
+      ],
+      "label":"Achievement 01",
+      "defaultLanguage":"en",
+      "identifier":[
+
+      ],
+      "title":{
+        "pk":30407,
+        "extra":null,
+        "contents":[
+          {
+            "pk":70299,
+            "content":"Achievement 01",
+            "language":"en",
+            "format":"text/plain"
+          }
+        ]
+      },
+      "description":null,
+      "additionalNote":[
+        {
+          "pk":7449,
+          "contents":[
+            {
+              "pk":70300,
+              "content":"topic 01 content",
+              "language":"en",
+              "format":"text/plain"
+            }
+          ],
+          "subject":{
+            "pk":15987,
+            "uri":"_blank",
+            "targetName":{
+              "pk":36356,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":81222,
+                  "content":"Topic 01",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            },
+            "targetDescription":null,
+            "targetFrameworkURI":null,
+            "targetNotation":null,
+            "targetFramework":null
+          }
+        },
+        {
+          "pk":7450,
+          "contents":[
+            {
+              "pk":70301,
+              "content":"topic 02 content",
+              "language":"en",
+              "format":"text/plain"
+            }
+          ],
+          "subject":{
+            "pk":15986,
+            "uri":"_blank",
+            "targetName":{
+              "pk":36355,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":81221,
+                  "content":"Topic 02",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            },
+            "targetDescription":null,
+            "targetFrameworkURI":null,
+            "targetNotation":null,
+            "targetFramework":null
+          }
+        }
+      ],
+      "supplementaryDocument":[
+
+      ],
+      "awardedBy":{
+        "pk":4022,
+        "identifier":[
+
+        ],
+        "description":null,
+        "additionalNote":[
+
+        ],
+        "awardingDate":null,
+        "location":null,
+        "used":[
+
+        ],
+        "awardingBody":[
+
+        ],
+        "empty":true
+      },
+      "learningOpportunity":null,
+      "specifiedBy":{
+        "pk":4152,
+        "learningOpportunityType":[
+
+        ],
+        "type":[
+
+        ],
+        "title":{
+          "pk":30402,
+          "extra":null,
+          "contents":[
+            {
+              "pk":70293,
+              "content":"ewfwef",
+              "language":"en",
+              "format":"text/plain"
+            }
+          ]
+        },
+        "altLabel":null,
+        "category":null,
+        "definition":null,
+        "learningOutcomeSummary":null,
+        "additionalNote":[
+          {
+            "pk":7448,
+            "contents":[
+              {
+                "pk":70294,
+                "content":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssk",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ],
+            "subject":{
+              "pk":15988,
+              "uri":"_blank",
+              "targetName":{
+                "pk":36357,
+                "extra":null,
+                "contents":[
+                  {
+                    "pk":81223,
+                    "content":"More information",
+                    "language":"en",
+                    "format":"text/plain"
+                  }
+                ]
+              },
+              "targetDescription":null,
+              "targetFrameworkURI":null,
+              "targetNotation":null,
+              "targetFramework":null
+            }
+          }
+        ],
+        "description":null,
+        "homePage":[
+
+        ],
+        "supplementaryDocument":[
+
+        ],
+        "thematicArea":[
+
+        ],
+        "educationSubject":[
+
+        ],
+        "volumeOfLearning":null,
+        "educationLevel":[
+
+        ],
+        "language":[
+          {
+            "pk":13081,
+            "uri":"http://publications.europa.eu/resource/authority/language/POL",
+            "targetName":{
+              "pk":30404,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":70296,
+                  "content":"Polish",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            },
+            "targetDescription":null,
+            "targetFrameworkURI":"http://publications.europa.eu/resource/authority/language",
+            "targetNotation":"language",
+            "targetFramework":{
+              "pk":30403,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":70295,
+                  "content":"Language",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            }
+          }
+        ],
+        "mode":[
+          {
+            "pk":13082,
+            "uri":"http://data.europa.eu/snb/learning-assessment/e92d221e4d",
+            "targetName":{
+              "pk":30406,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":70298,
+                  "content":"Blended",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            },
+            "targetDescription":null,
+            "targetFrameworkURI":"http://data.europa.eu/snb/learning-assessment/25831c2",
+            "targetNotation":null,
+            "targetFramework":{
+              "pk":30405,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":70297,
+                  "content":"Europass Standard List of Modes Of Learning and Assessment",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            }
+          }
+        ],
+        "creditPoints":[
+
+        ],
+        "learningSetting":null,
+        "maximumDuration":null,
+        "targetGroup":[
+
+        ],
+        "entryRequirement":null,
+        "awardingOpportunity":[
+
+        ],
+        "eqfLevel":{
+          "pk":13080,
+          "uri":"http://data.europa.eu/snb/eqf/2",
+          "targetName":{
+            "pk":30401,
+            "extra":null,
+            "contents":[
+              {
+                "pk":70292,
+                "content":"Level 2",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "targetDescription":null,
+          "targetFrameworkURI":"http://data.europa.eu/snb/eqf/25831c2",
+          "targetNotation":null,
+          "targetFramework":{
+            "pk":30400,
+            "extra":null,
+            "contents":[
+              {
+                "pk":70291,
+                "content":"European Qualifications Framework for lifelong learning - (2008/C 111/01)",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          }
+        },
+        "nqfLevel":[
+
+        ],
+        "nqfLevelParent":null,
+        "partialQualification":false,
+        "qualificationCode":[
+
+        ],
+        "learningOutcome":[
+          {
+            "pk":29,
+            "languages":[
+              "en"
+            ],
+            "label":"Learning outcome X",
+            "defaultLanguage":"en",
+            "identifier":[
+
+            ],
+            "title":{
+              "pk":28817,
+              "extra":null,
+              "contents":[
+                {
+                  "pk":68386,
+                  "content":"Learning outcome X",
+                  "language":"en",
+                  "format":"text/plain"
+                }
+              ]
+            },
+            "description":null,
+            "dcType":null,
+            "reusabilityLevel":null,
+            "relatedESCOSkill":[
+              {
+                "pk":12336,
+                "uri":"http://data.europa.eu/esco/skill/bc5a6591-a572-4340-b029-24124f6039ab",
+                "targetName":{
+                  "pk":28818,
+                  "extra":null,
+                  "contents":[
+                    {
+                      "pk":68387,
+                      "content":"provide protective escort",
+                      "language":"en",
+                      "format":"text/plain"
+                    }
+                  ]
+                },
+                "targetDescription":null,
+                "targetFrameworkURI":"http://data.europa.eu/esco/model#Skill",
+                "targetNotation":"Skill",
+                "targetFramework":null
+              }
+            ],
+            "relatedSkill":[
+
+            ],
+            "auditDAO":{
+              "pk":109,
+              "createDate":1589450039160,
+              "updateDate":1589450039160,
+              "createUserId":"n00011x7",
+              "updateUserId":"n00011x7"
+            }
+          }
+        ],
+        "learningActivitySpecification":null,
+        "assessmentSpecification":null,
+        "entitlementSpecification":[
+
+        ],
+        "hasPart":[
+
+        ],
+        "accreditation":[
+
+        ],
+        "specialisationOf":[
+
+        ],
+        "empty":false
+      },
+      "hasPart":[
+
+      ],
+      "provenBy":[
+
+      ],
+      "influencedBy":[
+        {
+          "pk":1875,
+          "OCBID":"f81209f3-874d-4735-b56a-c485c74b1149",
+          "languages":[
+            "en"
+          ],
+          "label":"Activity 01",
+          "defaultLanguage":"en",
+          "levelOfCompletion":null,
+          "identifier":[
+
+          ],
+          "title":{
+            "pk":34187,
+            "extra":null,
+            "contents":[
+              {
+                "pk":77026,
+                "content":"Activity 01",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "temporal":[
+
+          ],
+          "description":{
+            "pk":36545,
+            "extra":null,
+            "contents":[
+              {
+                "pk":77027,
+                "content":"kktua",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "additionalNote":[
+
+          ],
+          "workload":"PT1209H",
+          "location":[
+
+          ],
+          "startedAtTime":null,
+          "awardedBy":null,
+          "supplementaryDocument":[
+
+          ],
+          "endedAtTime":null,
+          "usedLearningOpportunity":null,
+          "learningOpportunity":null,
+          "specifiedBy":null,
+          "directedBy":[
+
+          ],
+          "hasPart":[
+
+          ],
+          "influenced":[
+
+          ],
+          "auditDAO":{
+            "pk":2818,
+            "createDate":1623155684194,
+            "updateDate":1623155684194,
+            "createUserId":"n00011x7",
+            "updateUserId":"n00011x7"
+          }
+        }
+      ],
+      "entitlesTo":[
+
+      ],
+      "auditDAO":{
+        "pk":110,
+        "createDate":1589450094907,
+        "updateDate":1652350250482,
+        "createUserId":"n00011x7",
+        "updateUserId":"n00011x7"
+      }
+    }
+  ],
+  "performed":[
+    {
+      "pk":1875,
+      "OCBID":"f81209f3-874d-4735-b56a-c485c74b1149",
+      "languages":[
+        "en"
+      ],
+      "label":"Activity 01",
+      "defaultLanguage":"en",
+      "levelOfCompletion":null,
+      "identifier":[
+
+      ],
+      "title":{
+        "pk":34187,
+        "extra":null,
+        "contents":[
+          {
+            "pk":77026,
+            "content":"Activity 01",
+            "language":"en",
+            "format":"text/plain"
+          }
+        ]
+      },
+      "temporal":[
+
+      ],
+      "description":{
+        "pk":36545,
+        "extra":null,
+        "contents":[
+          {
+            "pk":77027,
+            "content":"kktua",
+            "language":"en",
+            "format":"text/plain"
+          }
+        ]
+      },
+      "additionalNote":[
+
+      ],
+      "workload":"PT1209H",
+      "location":[
+
+      ],
+      "startedAtTime":null,
+      "awardedBy":null,
+      "supplementaryDocument":[
+
+      ],
+      "endedAtTime":null,
+      "usedLearningOpportunity":null,
+      "learningOpportunity":null,
+      "specifiedBy":null,
+      "directedBy":[
+
+      ],
+      "hasPart":[
+
+      ],
+      "influenced":[
+
+      ],
+      "auditDAO":{
+        "pk":2818,
+        "createDate":1623155684194,
+        "updateDate":1623155684194,
+        "createUserId":"n00011x7",
+        "updateUserId":"n00011x7"
+      }
+    }
+  ],
+  "entitledTo":[
+    {
+      "pk":229,
+      "OCBID":"29fa32a5-5f2d-4f52-9572-bdd9be2d48b0",
+      "languages":[
+        "en"
+      ],
+      "label":"Entitlement 01",
+      "defaultLanguage":"en",
+      "identifier":[
+
+      ],
+      "title":{
+        "pk":22389,
+        "extra":null,
+        "contents":[
+          {
+            "pk":60426,
+            "content":"Entitlement 01",
+            "language":"en",
+            "format":"text/plain"
+          }
+        ]
+      },
+      "description":{
+        "pk":5396,
+        "contents":[
+          {
+            "pk":60425,
+            "content":"descx",
+            "language":"en",
+            "format":"text/plain"
+          }
+        ],
+        "subject":null
+      },
+      "dateIssued":1593561600000,
+      "expiryDate":1593648000000,
+      "additionalNote":[
+
+      ],
+      "supplementaryDocument":[
+
+      ],
+      "specifiedBy":{
+        "pk":2180,
+        "identifier":[
+
+        ],
+        "dcType":{
+          "pk":9206,
+          "uri":"http://data.europa.eu/snb/entitlement/bebd32e8e6",
+          "targetName":{
+            "pk":22392,
+            "extra":null,
+            "contents":[
+              {
+                "pk":60421,
+                "content":"membership",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "targetDescription":null,
+          "targetFrameworkURI":"http://data.europa.eu/snb/entitlement/25831c2",
+          "targetNotation":"entitlement",
+          "targetFramework":{
+            "pk":22391,
+            "extra":null,
+            "contents":[
+              {
+                "pk":60423,
+                "content":"Europass Standard List of Entitlement Types",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          }
+        },
+        "title":{
+          "pk":22390,
+          "extra":null,
+          "contents":[
+            {
+              "pk":60424,
+              "content":"spec title Xx",
+              "language":"en",
+              "format":"text/plain"
+            }
+          ]
+        },
+        "altLabel":null,
+        "status":{
+          "pk":9205,
+          "uri":"http://data.europa.eu/snb/entitlement-status/b7015a8a8c",
+          "targetName":{
+            "pk":22394,
+            "extra":null,
+            "contents":[
+              {
+                "pk":60419,
+                "content":"actual",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "targetDescription":{
+            "pk":22395,
+            "extra":null,
+            "contents":[
+              {
+                "pk":60422,
+                "content":"An actual entitlement grants the right to pursue a learning opportunity, employment or membership automatically.",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          },
+          "targetFrameworkURI":"http://data.europa.eu/snb/entitlement-status/25831c2",
+          "targetNotation":"entitlement-status",
+          "targetFramework":{
+            "pk":22393,
+            "extra":null,
+            "contents":[
+              {
+                "pk":60420,
+                "content":"Europass Standard List of Entitlement Statuses",
+                "language":"en",
+                "format":"text/plain"
+              }
+            ]
+          }
+        },
+        "description":null,
+        "additionalNote":[
+
+        ],
+        "homePage":[
+
+        ],
+        "supplementaryDocument":[
+
+        ],
+        "validWithin":[
+
+        ],
+        "limitOccupation":[
+
+        ],
+        "limitNationalOccupation":[
+
+        ],
+        "mayResultFrom":[
+
+        ],
+        "hasPart":[
+
+        ],
+        "specialisationOf":[
+
+        ],
+        "limitOrganisation":[
+
+        ],
+        "empty":false
+      },
+      "hasPart":[
+
+      ],
+      "wasDerivedFrom":[
+
+      ],
+      "auditDAO":{
+        "pk":471,
+        "createDate":1594817753161,
+        "updateDate":1594817753161,
+        "createUserId":"n00011x7",
+        "updateUserId":"n00011x7"
+      }
+    }
+  ],
+  "assessedBy":[
+
+  ],
+  "display":{
+    "pk":789,
+    "languages":[
+      "en"
+    ],
+    "label":"thymeleaf template",
+    "defaultLanguage":"en",
+    "html":"<!-- Title  [PAGE 1]-->\n<div\n  style=\"\n    height: 29.7cm;\n    width: 21cm;\n    padding: 1.25cm 1.25cm;\n    background: rgb(246, 246, 246);\n    border: double;\n  \"\n>\n  <div style=\"display: inline-block; width: 100%; table-layout: fixed\">\n    <!-- <div style=\"float: left\">\n           <img\n             style=\"align-self: center\"\n             th:src=\"${'data:image/png;base64,' + credential.issuer.logo}\"\n           />\n           </div> -->\n    <div style=\"text-align: center\">\n      <p\n        style=\"\n          font-size: 24px;\n          font-weight: bold;\n          padding-bottom: 16px;\n          margin: 0;\n          color: black;\n          font-weight: bold;\n        \"\n        th:text=\"${credential.issuer.prefLabel}\"\n      ></p>\n      <p\n        style=\"\n          font-size: 32px;\n          font-weight: bold;\n          margin: 0;\n          color: black;\n          font-weight: bold;\n        \"\n      >\n        EUROPASS DIPLOMA SUPPLEMENT\n      </p>\n    </div>\n  </div>\n  <div style=\"padding-top: 24px\">\n    <p style=\"margin: 0; color: black\">\n      This Diploma Supplement model was developed by the European Commission,\n      Council of Europe and Unesco/CEPES. The purpose of the supplement is to\n      provide sufficient independent data to improve the international\n      ‘transparency’ and fair academic and professional recognition of\n      qualifications (diplomas, degrees, certificates etc.).\n    </p>\n  </div>\n  <!-- INFOMRATION -->\n  <div style=\"padding-top: 12px\">\n    <p\n      style=\"\n        font-size: 24px;\n        font-weight: bold;\n        text-align: center;\n        padding: 8px 0;\n        margin: 0;\n        color: black;\n        font-weight: bold;\n      \"\n    >\n      1.&nbsp;HOLDER OF THE QUALIFICATION\n    </p>\n    <div style=\"border: double\">\n      <!-- Credential Subject -->\n      <div style=\"margin: 8px 0; padding: 0 8px\">\n        <table style=\"width: 100%; table-layout: fixed\">\n          <tr>\n            <td>\n              <div>\n                <p\n                  style=\"\n                    font-size: 14px;\n                    padding-bottom: 4px;\n                    margin: 0;\n                    color: black;\n                    font-weight: bold;\n                  \"\n                >\n                  1.1&nbsp;&nbsp;&nbsp;Family name\n                </p>\n                <div\n                  style=\"\n                    border: 1px solid black;\n                    margin-left: 28px;\n                    background: white;\n                    height: 27px;\n                  \"\n                >\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                    th:text=\"${credential.credentialSubject.familyName}\"\n                  ></p>\n                </div>\n              </div>\n            </td>\n            <td>\n              <div>\n                <p\n                  style=\"\n                    font-size: 14px;\n                    padding-bottom: 4px;\n                    margin: 0;\n                    color: black;\n                    font-weight: bold;\n                  \"\n                >\n                  1.2&nbsp;&nbsp;&nbsp;First name\n                </p>\n                <div\n                  style=\"\n                    border: 1px solid black;\n                    margin-left: 28px;\n                    background: white;\n                    height: 27px;\n                  \"\n                >\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                    th:text=\"${credential.credentialSubject.givenNames}\"\n                  ></p>\n                </div>\n              </div>\n            </td>\n          </tr>\n          <tr>\n            <td>\n              <div style=\"padding-top: 8px\">\n                <p\n                  style=\"\n                    font-size: 14px;\n                    padding-bottom: 4px;\n                    margin: 0;\n                    color: black;\n                    font-weight: bold;\n                  \"\n                >\n                  1.3&nbsp;&nbsp;&nbsp;Date of birth (DD/MM/YYYY)\n                </p>\n                <div\n                  style=\"\n                    border: 1px solid black;\n                    margin-left: 28px;\n                    background: white;\n                    height: 27px;\n                  \"\n                >\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                    th:text=\"${credential.credentialSubject.dateOfBirth}\"\n                  ></p>\n                </div>\n              </div>\n            </td>\n            <td>\n              <div style=\"padding-top: 8px\">\n                <p\n                  style=\"\n                    font-size: 14px;\n                    padding-bottom: 4px;\n                    margin: 0;\n                    color: black;\n                    font-weight: bold;\n                  \"\n                >\n                  1.4&nbsp;&nbsp;&nbsp;Student ID number or code\n                </p>\n                <div\n                  style=\"\n                    border: 1px solid black;\n                    margin-left: 28px;\n                    background: white;\n                    height: 27px;\n                  \"\n                >\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                  >\n                    <span\n                      th:each=\"identifier,iterStat : ${credential.credentialSubject.identifier}\"\n                      th:text=\"${iterStat.last} ? ${identifier.content} : ${identifier.content} + ', '\"\n                    ></span>\n                  </p>\n                </div>\n              </div>\n            </td>\n          </tr>\n        </table>\n      </div>\n    </div>\n    <p\n      style=\"\n        font-size: 24px;\n        font-weight: bold;\n        text-align: center;\n        padding: 8px 0;\n        margin: 0;\n        color: black;\n        font-weight: bold;\n      \"\n    >\n      2.&nbsp;ISSUING ORGANISATION\n    </p>\n    <div style=\"border: double\">\n      <!-- Issuing Organization -->\n      <div style=\"padding: 0 8px\">\n        <div style=\"margin: 8px 0; padding: 0 8px\">\n          <table style=\"width: 100%; table-layout: fixed\">\n            <tr>\n              <td>\n                <div>\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding-bottom: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                  >\n                    2.1&nbsp;&nbsp;&nbsp;Name of institution\n                  </p>\n                  <div\n                    style=\"\n                      border: 1px solid black;\n                      margin-left: 28px;\n                      background: white;\n                      height: 27px;\n                    \"\n                  >\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${credential.issuer.prefLabel}\"\n                    ></p>\n                  </div>\n                </div>\n              </td>\n              <td>\n                <div>\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding-bottom: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                  >\n                    2.2&nbsp;&nbsp;&nbsp;Country\n                  </p>\n                  <div\n                    style=\"\n                      border: 1px solid black;\n                      margin-left: 28px;\n                      background: white;\n                      height: 27px;\n                    \"\n                  >\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:if=\"${\n                        credential.issuer.hasLocation != null && \n                        credential.issuer.hasLocation.size > 0 &&\n                        credential.issuer.hasLocation[0].hasAddress != null &&\n                        credential.issuer.hasLocation[0].hasAddress.size > 0 && \n                        credential.issuer.hasLocation[0].hasAddress[0].country\n                      }\"\n                      th:text=\"${credential.issuer.hasLocation[0].hasAddress[0].country}\"\n                    ></p>\n                  </div>\n                </div>\n              </td>\n            </tr>\n          </table>\n          <table style=\"width: 100%; table-layout: fixed\">\n            <tr>\n              <td>\n                <div style=\"padding-top: 8px\">\n                  <p\n                    style=\"\n                      font-size: 14px;\n                      padding-bottom: 4px;\n                      margin: 0;\n                      color: black;\n                      font-weight: bold;\n                    \"\n                  >\n                    2.3&nbsp;&nbsp;&nbsp;Address\n                  </p>\n                  <div\n                    style=\"\n                      border: 1px solid black;\n                      margin-left: 28px;\n                      background: white;\n                      height: 67px;\n                    \"\n                  >\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:if=\"${(credential.issuer.hasLocation != null &&\n                        credential.issuer.hasLocation.size > 0) && \n                        (credential.issuer.hasLocation[0].geographicName != null ||\n                        ((credential.issuer.hasLocation[0].hasAddress != null &&\n                        credential.issuer.hasLocation[0].hasAddress.size > 0) &&\n                        (credential.issuer.hasLocation[0].hasAddress[0].fullAddress != null ||\n                        credential.issuer.hasLocation[0].hasAddress[0].country)))}\"\n                      th:text=\"${credential.issuer.hasLocation[0].geographicName ? credential.issuer.hasLocation[0].geographicName : ''} + ' ' + ${credential.issuer.hasLocation[0].hasAddress[0].fullAddress ? credential.issuer.hasLocation[0].hasAddress[0].fullAddress : ''} + ' ' + ${credential.issuer.hasLocation[0].hasAddress[0].country ? credential.issuer.hasLocation[0].hasAddress[0].country : ''}\"\n                    ></p>\n                  </div>\n                </div>\n              </td>\n            </tr>\n          </table>\n        </div>\n      </div>\n    </div>\n    <page-break-beacon />\n    <!-- ACHIEVEMENTS [PAGE 2]-->\n    <div\n      th:each=\"achievement,iterStat : ${credential.credentialSubject.achievements}\"\n    >\n      <div\n        style=\"\n          height: 29.7cm;\n          width: 21cm;\n          padding: 1.25cm 1.25cm;\n          background: rgb(246, 246, 246);\n          border: double;\n        \"\n      >\n        <p\n          style=\"\n            font-size: 24px;\n            font-size: 24px;\n            font-weight: bold;\n            text-align: center;\n            padding: 8px 0;\n            margin: 0;\n            color: black;\n            font-weight: bold;\n          \"\n          th:text=\"${'#' + '. ' + achievement.specifiedBy.title}\"\n        ></p>\n        <!-- Qualification -->\n        <div style=\"border: double\">\n          <div style=\"margin: 8px 0; padding: 0 8px\">\n            <p\n              style=\"\n                font-size: 14px;\n                font-weight: bold;\n                text-align: center;\n                padding: 8px 0;\n                margin: 0;\n                color: black;\n                font-weight: bold;\n              \"\n              th:text=\"${'3.' + '#' + ' QUALIFICATION'}\"\n            ></p>\n            <table style=\"width: 100%; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'3.' + '#' + '.1   Name of qualification'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                    >\n                      <p\n                        style=\"font-size: 14px; padding: 4px; margin: 0\"\n                        th:if=\"${achievement.specifiedBy != null}\"\n                        th:text=\"${achievement.specifiedBy.title}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                    >\n                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title\n                      conferred\n                    </p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy.additionalNote != null && \n                          achievement.specifiedBy.additionalNote.size > 0\n                        }\"\n                        th:text=\"${#strings.arrayJoin(achievement.specifiedBy.additionalNote, ', ')}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n            <table style=\"width: 100%; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div style=\"padding-top: 8px\">\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'3.' + '#' + '.2   Main field(s) of study'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy != null && \n                          achievement.specifiedBy.hasISCEDFCode != null && \n                          achievement.specifiedBy.hasISCEDFCode.size > 0\n                        }\"\n                        th:text=\"${#strings.arrayJoin(achievement.specifiedBy.hasISCEDFCode, ', ')}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n            <table style=\"width: 100%; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div style=\"padding: 8px 0\">\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'3.' + '#' + '.3   Institution awarding the qualification'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${achievement.wasAwardedBy != null && achievement.wasAwardedBy.awardingBody != null}\"\n                        th:text=\"${achievement.wasAwardedBy.awardingBody.prefLabel}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                    >\n                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status\n                    </p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                            achievement.wasAwardedBy != null && \n                            achievement.wasAwardedBy.additionalNote != null && \n                            achievement.wasAwardedBy.additionalNote.size > 0\n                          }\"\n                      >\n                        <span\n                          th:each=\"note,iterStat : ${achievement.wasAwardedBy.additionalNote}\"\n                          th:if=\"${\n                            note.subject != null && \n                            #strings.toLowerCase(note.subject) == 'status'\n                          }\"\n                          th:text=\"${iterStat.last ? note : note + ', '}\"\n                        ></span>\n                      </p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n              <tr>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'3.' + '#' + '.4   Institution administering studies'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.associatedLearningOpportunity != null && \n                          achievement.associatedLearningOpportunity.providedBy != null\n                        }\"\n                        th:text=\"${achievement.associatedLearningOpportunity.providedBy.prefLabel}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                    >\n                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status\n                    </p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.associatedLearningOpportunity != null && \n                          achievement.associatedLearningOpportunity.additionalNote != null && \n                          achievement.associatedLearningOpportunity.additionalNote.size > 0\n                        }\"\n                      >\n                        <span\n                          th:each=\"note,iterStat : ${achievement.associatedLearningOpportunity.additionalNote}\"\n                          th:if=\"${\n                            note.subject != null && \n                            #strings.toLowerCase(note.subject) == 'status'\n                          }\"\n                          th:text=\"${iterStat.last ? note : note + ', '}\"\n                        ></span>\n                      </p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n            <table style=\"width: 100%; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div style=\"padding-top: 8px\">\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'3.' + '#' + '.5   Language(s) of instruction/examination'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 27px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy != null &&\n                          achievement.specifiedBy.language != null &&\n                          achievement.specifiedBy.language.size > 0\n                        }\"\n                        th:text=\"${#strings.arrayJoin(achievement.specifiedBy.language, ', ')}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n          </div>\n          <!-- Level of the Qualification -->\n          <div\n            style=\"border-top: 4px solid black; margin: 8px 0; padding: 0 8px\"\n          >\n            <p\n              style=\"\n                font-size: 14px;\n                font-weight: bold;\n                text-align: center;\n                padding: 8px 0;\n                margin: 0;\n                color: black;\n                font-weight: bold;\n              \"\n              th:text=\"${'4.' + '#' + ' LEVEL OF THE QUALIFICATION'}\"\n            ></p>\n            <table style=\"width: 100%; padding: 0 8px; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'4.' + '#' + '.1   National Framework of Qualifications level'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"achievement.specifiedBy != null\"\n                      >\n                        <span\n                          th:if=\"${\n                            achievement.specifiedBy.qualificationCode != null\n                          }\"\n                          th:text=\"achievement.specifiedBy.qualificationCode + ' '\"\n                        ></span>\n                        <span\n                          th:with=\"hasNqf=${\n                              (achievement.specifiedBy.nqfLevel !=null &&\n                              achievement.specifiedBy.nqfLevel.size > 0)\n                            },\n                            hasEqf=${achievement.specifiedBy.eqfLevel != null}\"\n                          th:if=\"${hasNqf || hasEqf}\"\n                          th:text=\"${\n                            '(' + hasNqf ? \n                            (#strings.arrayJoin(achievement.specifiedBy.nqfLevel, ', ') : '' +\n                            + hasNqf && hasEqf = ' / ' : '' +\n                            hasEqf ? achievement.specifiedBy.eqfLevel : '' + ')'\n                          }\"\n                        ></span>\n                      </p>\n                    </div>\n                  </div>\n                </td>\n                <td>\n                  <div>\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'4.' + '#' + '.2   Official size of programme'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy != null && \n                          achievement.specifiedBy.maximumDuration != null\n                        }\"\n                        th:text=\"${achievement.specifiedBy.maximumDuration}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n            <table style=\"width: 100%; padding: 0 8px; table-layout: fixed\">\n              <tr>\n                <td>\n                  <div style=\"padding-top: 8px\">\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'4.' + '#' + '.3   Access requirement(s)'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 27px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy != null &&\n                          achievement.specifiedBy.entryRequirementNote != null\n                        }\"\n                        th:text=\"${achievement.specifiedBy.entryRequirementNote}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n          </div>\n          <!-- Contents & Results -->\n          <div\n            style=\"border-top: 4px solid black; margin: 8px 0; padding: 0 8px\"\n          >\n            <p\n              style=\"\n                font-weight: bold;\n                text-align: center;\n                padding: 8px 0;\n                margin: 0;\n                font-size: 14px;\n                color: black;\n                font-weight: bold;\n              \"\n              th:text=\"${'5.' + '#'  + ' CONTENTS AND RESULTS GAINED'}\"\n            ></p>\n            <table style=\"width: 100%\">\n              <tr>\n                <td>\n                  <div style=\"padding-top: 8px\">\n                    <p\n                      style=\"\n                        word-break: break-word;\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'5.' + '#' + '.1   Mode of study'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 27px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          font-size: 14px;\n                          padding: 4px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${achievement.associatedLearningOpportunity != null}\"\n                        th:text=\"${achievement.associatedLearningOpportunity.learningSchedule}\"\n                      ></p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n              <tr>\n                <td>\n                  <div style=\"padding-top: 8px\">\n                    <p\n                      style=\"\n                        font-size: 14px;\n                        padding-bottom: 4px;\n                        margin: 0;\n                        color: black;\n                        font-weight: bold;\n                      \"\n                      th:text=\"${'5.' + '#' + '.2   Programme requirements'}\"\n                    ></p>\n                    <div\n                      style=\"\n                        border: 1px solid black;\n                        margin-left: 28px;\n                        background: white;\n                        height: 67px;\n                      \"\n                    >\n                      <p\n                        style=\"\n                          padding: 4px;\n                          font-size: 14px;\n                          margin: 0;\n                          color: black;\n                          font-weight: bold;\n                        \"\n                        th:if=\"${\n                          achievement.specifiedBy != null && \n                          achievement.specifiedBy.additionalNote != null && \n                          achievement.specifiedBy.additionalNote.size > 0\n                        }\"\n                      >\n                        <span\n                          th:each=\"note,iterStat : ${achievement.specifiedBy.additionalNote}\"\n                          th:if=\"${\n                            note.subject != null && \n                            #strings.toLowerCase(note.subject) == 'requirements'\n                          }\"\n                          th:text=\"${iterStat.last ? note : note + ', '}\"\n                        ></span>\n                      </p>\n                    </div>\n                  </div>\n                </td>\n              </tr>\n            </table>\n          </div>\n        </div>\n      </div>\n      <page-break-beacon th:if=\"${achievement.hasPart != null}\" />\n      <!-- SUB-ACHIEVEMENTS [PAGE 3]-->\n      <div\n        style=\"\n          height: 29.7cm;\n          width: 21cm;\n          padding: 1.25cm 1.25cm;\n          background: rgb(246, 246, 246);\n          border: double;\n        \"\n        th:if=\"${achievement.hasPart != null}\"\n      >\n        <div style=\"border: double\">\n          <div>\n            <div>\n              <div style=\"padding: 8px 8px 8px 28px\">\n                <table style=\"width: 100%; border-spacing: 0\">\n                  <thead>\n                    <tr>\n                      <th\n                        style=\"\n                          width: 15%;\n                          text-align: left;\n                          font-weight: bold;\n                          color: black;\n                        \"\n                      >\n                        Code\n                      </th>\n                      <th\n                        style=\"\n                          width: 55%;\n                          text-align: left;\n                          font-weight: bold;\n                          color: black;\n                        \"\n                      >\n                        Subject\n                      </th>\n                      <th\n                        style=\"\n                          width: 15%;\n                          text-align: left;\n                          font-weight: bold;\n                          color: black;\n                        \"\n                      >\n                        Marks\n                      </th>\n                      <th\n                        style=\"\n                          width: 15%;\n                          text-align: left;\n                          font-weight: bold;\n                          color: black;\n                        \"\n                      >\n                        ECTS credits\n                      </th>\n                    </tr>\n                  </thead>\n                  <tbody th:each=\"subAchievement : ${achievement.hasPart}\">\n                    <tr style=\"background-color: white\">\n                      <td\n                        style=\"\n                          border: 1px solid black;\n                          color: black;\n                          height: 27px;\n                        \"\n                        th:text=\"${\n                          (subAchievement.identifier != null &&\n                          subAchievement.identifier.size > 0)\n                          ? subAchievement.identifier[0] : ' ' \n                        }\"\n                      >\n                        &nbsp;\n                      </td>\n                      <td\n                        style=\"\n                          border: 1px solid black;\n                          color: black;\n                          height: 27px;\n                        \"\n                        th:text=\"${subAchievement.specifiedBy.title}\"\n                      >\n                        &nbsp;\n                      </td>\n                      <td\n                        style=\"\n                          border: 1px solid black;\n                          color: black;\n                          height: 27px;\n                        \"\n                        th:text=\"${subAchievement.wasDerivedFrom != null ? subAchievement.wasDerivedFrom[0].grade : ' ' }\"\n                      >\n                        &nbsp;\n                      </td>\n                      <td\n                        style=\"\n                          border: 1px solid black;\n                          color: black;\n                          height: 27px;\n                        \"\n                        th:text=\"${subAchievement.specifiedBy.hasECTSCreditPoints}\"\n                      ></td>\n                    </tr>\n                  </tbody>\n                </table>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- FUNCTION OF THE QUALIFICATION -->\n      <page-break-beacon />\n      <div\n        style=\"\n          height: 29.7cm;\n          width: 21cm;\n          padding: 1.25cm 1.25cm;\n          background: rgb(246, 246, 246);\n          border: double;\n        \"\n      >\n        <div style=\"border: double\">\n          <div style=\"margin: 8px 0\">\n            <div style=\"padding: 0 8px\">\n              <p\n                style=\"\n                  font-weight: bold;\n                  text-align: center;\n                  padding: 8px 0;\n                  margin: 0;\n                \"\n                th:text=\"${'6.' + '#' + ' FUNCTION OF THE QUALIFICATION'}\"\n              ></p>\n              <table style=\"width: 100%; padding: 0 8px; table-layout: fixed\">\n                <tr>\n                  <td>\n                    <div>\n                      <p\n                        style=\"\n                          word-break: break-word;\n                          font-size: 14px;\n                          padding-bottom: 4px;\n                          margin: 0;\n                          font-weight: bold;\n                        \"\n                        th:text=\"${'6.' + '#' + '.1 Access to further study'}\"\n                      ></p>\n                      <div\n                        style=\"\n                          border: 1px solid black;\n                          margin-left: 28px;\n                          background: white;\n                          height: 67px;\n                        \"\n                      >\n                        <p\n                          style=\"\n                            word-break: break-word;\n                            padding: 4px;\n                            margin: 0;\n                          \"\n                          th:if=\"${\n                            achievement.entitlesTo != null && \n                            achievement.entitlesTo.size > 0\n                          }\"\n                        >\n                          <span\n                            th:each=\"entitlement,iterStat : ${achievement.entitlesTo}\"\n                            th:if=\"${\n                              (entitlement.specifiedBy &&\n                              entitlement.specifiedBy.type != null) && \n                              #strings.toLowerCase(entitlement.specifiedBy.type) == 'learning opportunity'\n                            }\"\n                            th:text=\"${iterStat.last ? entitlement.specifiedBy.title : entitlement.specifiedBy.title + ', '}\"\n                          ></span>\n                        </p>\n                      </div>\n                    </div>\n                  </td>\n                  <td>\n                    <div>\n                      <p\n                        style=\"\n                          word-break: break-word;\n                          font-size: 14px;\n                          padding-bottom: 4px;\n                          margin: 0;\n                          font-weight: bold;\n                        \"\n                        th:text=\"${'6.' + '#' + '.2 Professional status (if applicable)'}\"\n                      ></p>\n                      <div\n                        style=\"\n                          border: 1px solid black;\n                          margin-left: 28px;\n                          background: white;\n                          height: 67px;\n                        \"\n                      >\n                        <p\n                          style=\"\n                            word-break: break-word;\n                            padding: 4px;\n                            margin: 0;\n                          \"\n                          th:if=\"${\n                            achievement.entitlesTo != null && \n                            achievement.entitlesTo.size > 0\n                          }\"\n                        >\n                          <span\n                            th:each=\"entitlement,iterStat : ${achievement.entitlesTo}\"\n                            th:if=\"${\n                              entitlement.specifiedBy.type != null && \n                              (#strings.toLowerCase(entitlement.specifiedBy.type) == 'membership' || \n                              #strings.toLowerCase(entitlement.specifiedBy.type) == 'occupation')\n                            }\"\n                            th:text=\"${iterStat.last ? entitlement.specifiedBy.title : entitlement.specifiedBy.title + ', '}\"\n                          ></span>\n                        </p>\n                      </div>\n                    </div>\n                  </td>\n                </tr>\n              </table>\n            </div>\n            <!-- ADDITIONAL INFORMATION -->\n            <div\n              style=\"border-top: 4px solid black; margin: 8px 0; padding: 0 8px\"\n            >\n              <p\n                style=\"\n                  font-weight: bold;\n                  text-align: center;\n                  padding: 8px 0;\n                  margin: 0;\n                \"\n                th:text=\"${'7.' + '#' + '.1 ADDITIONAL INFORMATION'}\"\n              ></p>\n              <table style=\"width: 100%; padding: 0 8px; table-layout: fixed\">\n                <tr>\n                  <td>\n                    <div>\n                      <p\n                        style=\"\n                          word-break: break-word;\n                          font-size: 14px;\n                          padding-bottom: 4px;\n                          font-weight: bold;\n                          margin: 0;\n                        \"\n                        th:text=\"${'7.' + '#' + '.1 Additional information'}\"\n                      ></p>\n                      <div\n                        style=\"\n                          border: 1px solid black;\n                          margin-left: 28px;\n                          background: white;\n                          height: 67px;\n                        \"\n                      >\n                        <p\n                          style=\"\n                            word-break: break-word;\n                            padding: 4px;\n                            margin: 0;\n                          \"\n                          th:if=\"${\n                            achievement.specifiedBy != null && \n                            achievement.specifiedBy.additionalNote != null && \n                            achievement.specifiedBy.additionalNote.size > 0\n                          }\"\n                        >\n                          <span\n                            th:each=\"note,iterStat : ${achievement.specifiedBy.additionalNote}\"\n                            th:if=\"${ note }\"\n                            th:text=\"${iterStat.last ? note : note + ', '}\"\n                          ></span>\n                        </p>\n                      </div>\n                    </div>\n                  </td>\n\n                  <td>\n                    <div>\n                      <p\n                        style=\"\n                          word-break: break-word;\n                          font-size: 14px;\n                          padding-bottom: 4px;\n                          font-weight: bold;\n                          margin: 0;\n                        \"\n                        th:text=\"${'7.' + '#' + '.2 Further information sources'}\"\n                      ></p>\n                      <div\n                        style=\"\n                          border: 1px solid black;\n                          margin-left: 28px;\n                          background: white;\n                          height: 67px;\n                        \"\n                      >\n                        <p\n                          style=\"\n                            word-break: break-word;\n                            padding: 4px;\n                            margin: 0;\n                          \"\n                          th:if=\"${\n                            achievement.specifiedBy != null &&\n                            achievement.specifiedBy.supplementaryDoc != null &&\n                            achievement.specifiedBy.supplementaryDoc.size > 0\n                          }\"\n                        >\n                          <a\n                            th:each=\"webDocument,iterStat : ${achievement.specifiedBy.supplementaryDoc}\"\n                            th:href=\"${webDocument}\"\n                            th:text=\"${webDocument}\"\n                          ></a\n                          ><span th:if=\"${!iterStat.last}\">, </span>\n                        </p>\n                      </div>\n                    </div>\n                  </td>\n                </tr>\n              </table>\n            </div>\n          </div>\n        </div>\n      </div>\n      <page-break-beacon th:if=\"${!iterStat.last}\" />\n    </div>\n  </div>\n</div>\n",
+    "format":"THYMELEAF",
+    "background":null,
+    "labels":[
+
+    ],
+    "auditDAO":{
+      "pk":3634,
+      "createDate":1637661352890,
+      "updateDate":1637661352890,
+      "createUserId":"n00011x7",
+      "updateUserId":"n00011x7"
+    }
+  },
+  "auditDAO":{
+    "pk":3636,
+    "createDate":1637684628230,
+    "updateDate":1648659859992,
+    "createUserId":"n00011x7",
+    "updateUserId":"n00011x7"
+  }
+}

@@ -1,0 +1,16 @@
+<div th:fragment="moreInformation(moreInformation)">
+    <div th:if="${moreInformation != null and !moreInformation.empty}">
+        <strong>[[#{details.moreInformation}]] </strong>
+        <ul style="list-style-type:none;padding-left:0px;">
+            <li th:each="info : ${moreInformation}">
+                            <span th:if="${info.subject != null && info.content != null}">
+                            <strong><span th:text="${info.subject}"></span>: </strong><span
+                                    th:text="${info.content}"></span>
+                            </span>
+                <span th:if="${info.subject == null && info.content != null}">
+                            <span th:text="${info.content}"></span>
+                            </span>
+            </li>
+        </ul>
+    </div>
+</div>

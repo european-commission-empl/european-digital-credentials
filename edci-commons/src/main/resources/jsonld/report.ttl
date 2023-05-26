@@ -1,0 +1,43 @@
+@prefix adms:   <http://www.w3.org/ns/adms#> .
+@prefix cc:     <http://creativecommons.org/ns#> .
+@prefix cred:   <https://www.w3.org/2018/credentials#> .
+@prefix dc:     <http://purl.org/dc/terms/> .
+@prefix dcat:   <http://www.w3.org/ns/dcat#> .
+@prefix edc:    <https://example.org/edc-constraints#> .
+@prefix elm:    <http://data.europa.eu/snb/model#> .
+@prefix esco:   <http://data.europa.eu/esco/model#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix gr:     <http://purl.org/goodrelations/v1#> .
+@prefix org:    <http://www.w3.org/ns/org#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix person: <http://www.w3.org/ns/person#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rov:    <http://www.w3.org/ns/regorg#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix vc:     <https://example.org/w3c/vc#> .
+@prefix vp:     <https://example.org/w3c/vp#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+[ rdf:type     sh:ValidationReport ;
+  sh:conforms  false ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:credential:0bd26efe-6605-468b-845b-5acf00fabb20> ;
+                 sh:resultMessage              "minCount[1]: Invalid cardinality: expected min 1: Got count = 0" ;
+                 sh:resultPath                 cred:validFrom ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent ;
+                 sh:sourceShape                edc:EuropeanDigitalCredential-cred_validFrom
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:person:1> ;
+                 sh:resultMessage              "minCount[1]: Invalid cardinality: expected min 1: Got count = 0" ;
+                 sh:resultPath                 schema:familyName ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent ;
+                 sh:sourceShape                edc:Person-schema_familyName
+               ]
+] .

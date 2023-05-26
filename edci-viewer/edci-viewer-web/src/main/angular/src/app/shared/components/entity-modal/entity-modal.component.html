@@ -1,0 +1,22 @@
+<div class="py-3 px-5" [ngSwitch]="modalInformation.entityName">
+    <edci-viewer-achievement-detail
+        *ngSwitchCase="'achievement'"
+        [activeAchievement]="modalInformation.entity"
+    ></edci-viewer-achievement-detail>
+    <edci-viewer-activity-detail
+        *ngSwitchCase="'activity'"
+        [activeActivity]="modalInformation.entity"
+    ></edci-viewer-activity-detail>
+    <edci-viewer-assessment-detail
+        *ngSwitchCase="'assessment'"
+        [activeAssessment]="modalInformation.entity"
+    ></edci-viewer-assessment-detail>
+    <edci-viewer-entitlement-detail
+        *ngSwitchCase="'entitlement'"
+        [activeEntitlement]="modalInformation.entity"
+    ></edci-viewer-entitlement-detail>
+    <edci-viewer-organization-detail
+        *ngSwitchCase="'organization'"
+        [organisation]="modalInformation.entity"
+    ></edci-viewer-organization-detail>
+</div>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.7" global="false"/>
+
+    <changeSet id="set_nullable_to_defaultTitle" author="edci" runAlways="false" failOnError="false"
+               onValidationFail="MARK_RAN" dbms="oracle">
+        <dropNotNullConstraint tableName="SPEC_EUROPASS_CREDENTIAL" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_ASSESSMENT" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_LEARNING_ACHIEVEMENT" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_DIPLOMA" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_ENTITLEMENT" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_ACTIVITY" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_LEARNING_OUTCOME" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+        <dropNotNullConstraint tableName="SPEC_ORGANIZATION" columnName="DEFAULT_TITLE"
+                               columnDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="set_nullable_to_defaultTitle" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN"
+               dbms="mysql">
+        <modifyDataType tableName="SPEC_EUROPASS_CREDENTIAL" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_LEARNING_ACHIEVEMENT" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_ASSESSMENT" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_DIPLOMA" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_ENTITLEMENT" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_ACTIVITY" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_LEARNING_OUTCOME" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+        <modifyDataType tableName="SPEC_ORGANIZATION" columnName="DEFAULT_TITLE"
+                        newDataType="varchar(255)"/>
+    </changeSet>
+
+    <changeSet id="set_nullable_to_diploma_label" author="edci" runAlways="false" failOnError="false"
+               onValidationFail="MARK_RAN" dbms="oracle">
+        <dropNotNullConstraint tableName="SPEC_DIPLOMA" columnName="LABEL"
+                               columnDataType="varchar"/>
+    </changeSet>
+
+    <changeSet id="set_nullable_to_diploma_label" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN"
+               dbms="mysql">
+        <modifyDataType tableName="SPEC_DIPLOMA" columnName="LABEL"
+                        newDataType="varchar(255)"/>
+    </changeSet>
+
+    <changeSet id="copy_defaultTitle_to_Label" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <update tableName="SPEC_EUROPASS_CREDENTIAL">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_LEARNING_ACHIEVEMENT">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_ASSESSMENT">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_DIPLOMA">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_ENTITLEMENT">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_ACTIVITY">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_LEARNING_OUTCOME">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+        <update tableName="SPEC_ORGANIZATION">
+            <column name="LABEL" valueComputed="DEFAULT_TITLE" />
+            <where>LABEL is null</where>
+        </update>
+    </changeSet>
+    <include file="changeLog/liquibase-changelog-update-version.xml"/>
+</databaseChangeLog>

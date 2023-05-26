@@ -1,0 +1,473 @@
+//Create a package, using custom maven settings
+void mavenPackage(path, mavenSettingsId,profile){
+    configFileProvider([configFile(fileId: mavenSettingsId, variable: 'MAVEN_SETTINGS')]){
+        dir (path){
+            sh "mvn -s $MAVEN_SETTINGS package -P "+profile
+        }
+    }
+}
+
+
+// Install the selected maven dependencies into repository, using custom maven settings
+void mavenInstall(path, mavenSettingsId,profile){
+    configFileProvider([configFile(fileId: mavenSettingsId, variable: 'MAVEN_SETTINGS')]){
+        dir (path){
+            sh "mvn -s $MAVEN_SETTINGS clean install -P "+profile
+        }
+    }
+}
+
+// Install selected maven projects into repository, with non Recursive option. Used for parent pom install
+void mavenInstallNonRecursive(path, mavenSettingsId,profile){
+configFileProvider([configFile(fileId: mavenSettingsId, variable: 'MAVEN_SETTINGS')]){
+        dir (path){
+            sh "mvn -s $MAVEN_SETTINGS clean install -N -P "+profile
+        }
+    }
+}
+
+// Executes the swagger codeRead on a project (usually on "edci-{project}-web-rest"
+void executeCodeRead(path, mavenSettingsId, profile){
+    configFileProvider([configFile(fileId: mavenSettingsId, variable: 'MAVEN_SETTINGS')]){
+        dir(path) {
+            sh "mvn -s $MAVEN_SETTINGS com.github.kongchen:swagger-maven-plugin:generate@swagger-coderead -P"+profile
+        }
+    }
+}
+
+// Executes the swagger CodeGen on a project (usually on "edci-{project}-web"
+void executeCodeGen(path, mavenSettingsId, profile){
+    configFileProvider([configFile(fileId: mavenSettingsId, variable: 'MAVEN_SETTINGS')]){
+        dir(path) {
+           sh "mvn -s $MAVEN_SETTINGS io.swagger:swagger-codegen-maven-plugin:generate@swagger-codegen -P"+profile
+        }
+    }
+}
+
+//Generate dist folder if it does not exists
+void doGenerateDistFolder(project){
+    dir("edci-"+project+"/edci-"+project+"-web/src/main/angular") {
+        if (!(fileExists('dist'))) {
+            sh "mkdir -p dist"
+        }
+    }
+}
+
+// Generates swagger for a project, common, persistence and service modules of the project will be installed in the maven repo
+void doGenerateSwagger(project, mavenSettingId, profile){
+      doGenerateDistFolder(project)
+      mavenInstall("edci-"+project,mavenSettingId,profile)
+      mavenInstall("edci-"+project+"/edci-"+project+"-common",mavenSettingId,profile)
+      if (project != "viewer"){
+           mavenInstall("edci-"+project+"/edci-"+project+"-persistence",mavenSettingId,profile)
+      }
+      mavenInstall("edci-"+project+"/edci-"+project+"-service",mavenSettingId,profile)
+      executeCodeRead("edci-"+project+"/edci-"+project+"-web-rest",mavenSettingId,profile)
+      executeCodeGen("edci-"+project+"/edci-"+project+"-web",mavenSettingId,profile)
+}
+
+//Installs NPM and compiles FrontEnd
+void npmInstallBuild(project,profile){
+    dir("edci-"+project+"/edci-"+project+"-web/src/main/angular") {
+        sh "yarn"
+        sh "npm run lint"
+        sh "yarn run build-"+profile
+    }
+    zip zipFile: project+"_dist.zip", dir:"edci-"+project+"/edci-"+project+"-web/src/main/angular/dist", archive : true
+}
+
+void stopTomcatServiceQA(){
+
+    sh "systemctl stop tomcat-edci-qa"
+    sh "rm -Rf /home/edci/tomcat_QA/apache-tomcat-9.0.46/temp/dss-cache-tsl"
+
+}
+
+void startTomcatServiceQA(){
+
+    sh "sleep 20"
+    sh "systemctl start tomcat-edci-qa"
+
+}
+
+void deployWarToQA(warFile){
+    sh "cp "+warFile+" /home/edci/tomcat_QA/apache-tomcat-9.0.46/webapps"
+}
+
+//Build and publish(optional) docker image
+void buildAndPublishDockerImage(project,suffix,version,latest,registryCredentials,dockerHubNamespace,branchName,tagName){
+    def tag = branchName.replaceAll("/","-");
+    if (tagName != ''){
+        tag = tagName;
+    }
+    def dockerImage
+    dir ("edci-"+project){
+        dockerImage = docker.build(dockerHubNamespace+"/"+project+suffix+":"+tag)
+    }
+    withDockerRegistry(registry: [credentialsId: registryCredentials]) {
+        dockerImage.push(tag)
+        if (latest){
+            dockerImage.push("latest")
+        }
+    }
+}
+
+
+/**
+*
+* THIS PIPELINE WILL ONLY WORK WITH A JENKINS INSTALLED IN A LINUX, NON-DOCKER HOST WITH DOCKER PLUGINS
+*  There is no need to install any compilation environment such as JDK or NodeJS, as those are executed inside docker containers.
+*  All dockers in the pipeline should be reused (resueNode true in agent delcaration)
+*  All maven dockers will mount maven folder (/root/.m2 in docker) to /home/jenkins/.m2 in host.
+*
+**/
+def version
+pipeline{
+    agent any
+    stages {
+        stage('Setup parameters') {
+               steps{
+                    sh "echo Reading version from pom.xml and pipeline params......"
+                    script{
+                        pom = readMavenPom file: 'pom.xml'
+                        version = pom.version
+                        properties([
+                            parameters([
+                               /* booleanParam(
+                                    defaultValue: false,
+                                    description: 'Check build with sonar',
+                                    name: 'inspectSonar'
+                                ),*/
+                                string(
+                                    defaultValue: 'dev',
+                                    description: 'maven profile (do not type "-P value", just "value".',
+                                    name: 'profile',
+                                    trim: true
+                                ),
+                                booleanParam(
+                                    defaultValue: true,
+                                    description: 'Build EDCI Issuer - Front and Back end',
+                                    name: 'buildIssuer'
+                                ),
+                                booleanParam(
+                                    defaultValue: true,
+                                    description: 'Build EDCI Viewer - Front and Back end',
+                                    name: 'buildViewer'
+                                ),
+                                booleanParam(
+                                    defaultValue: true,
+                                    description: 'Build EDCI Wallet - Back end',
+                                    name: 'buildWallet'
+                                ),
+                                booleanParam(
+                                    defaultValue: false,
+                                    description: 'Deploy EDCI Issuer war package to QA tomcat',
+                                    name: 'deployIssuerWar'
+                                ),
+                                booleanParam(
+                                    defaultValue: false,
+                                    description: 'Deploy EDCI Viewer war package to QA tomcat',
+                                    name: 'deployViewerWar'
+                                ),
+                                booleanParam(
+                                    defaultValue: false,
+                                    description: 'Deploy EDCI Wallet war package to QA tomcat',
+                                    name: 'deployWalletWar'
+                                ),
+                                string(
+                                    defaultValue: '',
+                                    description: 'TagName of the Published docker, leave blank to use the branch name',
+                                    name: 'tagName'
+                                ),
+                                string(
+                                    defaultValue: '_dev',
+                                    description: 'Suffix for docker repository, will be appended to issuer/viewer/wallet [issuerXXXX,viewerXXXX,walletXXXX], leave blank for public repo',
+                                    name: 'dockerSuffix',
+                                    trim: true
+                                ),
+                                booleanParam(
+                                    defaultValue: false,
+                                    description: 'Build and Publish EDCI Issuer dockers',
+                                    name: 'buildPublishDockers'
+                                ),
+                                booleanParam(
+                                    defaultValue: false,
+                                    description: 'Publish Docker images with latest tag',
+                                    name: 'publishDockerLatest'
+                                ),
+                                string(
+                                    defaultValue: 'maven-settings',
+                                    description: 'Custom maven settings ID, do not change for default',
+                                    name: 'mavenSettingsId',
+                                    trim: true
+                                ),
+                                string(
+                                    defaultValue: 'edci-docker-hub',
+                                    description: 'Docker registry credentials for pushing images',
+                                    name: 'dockerRegistryCredential',
+                                    trim: true
+                                ),
+                                string(
+                                    defaultValue: 'kiceurope',
+                                    description: 'Docker namespace to be used when pushing images',
+                                    name: 'dockerHubNamespace',
+                                    trim: true
+                                ),
+                            ])
+                        ])
+                    }
+               }
+        }
+        stage ('GIT checkout') {
+            steps{
+                sh "echo Checking out git......"
+                checkout scm
+            }
+        }
+        stage ('Clean EDCI Parent Project and Build EDCI Commons/DSS Utils'){
+            agent{
+                docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh "echo Cleaning EDCI project and builing EDCI Commons/DSS Utils......"
+                sh "mvn clean"
+                mavenInstall("edci-data-model",params.mavenSettingsId,params.profile)
+                mavenInstall("edci-commons",params.mavenSettingsId,params.profile)
+                mavenInstall("edci-eseal-core",params.mavenSettingsId,params.profile)
+            }
+        }
+        stage ("Install Parent pom") {
+            agent{
+                 docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                 }
+            }
+            steps{
+                sh "echo Installing Parent pom......"
+                mavenInstallNonRecursive(".",params.mavenSettingsId,params.profile)
+            }
+        }
+
+        stage ('Issuer Swagger generation') {
+            agent{
+                docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            when {
+                expression {
+                    params.buildIssuer
+                }
+            }
+            steps {
+                sh "echo Generating Issuer Swagger......"
+                doGenerateSwagger("issuer",params.mavenSettingsId,params.profile)
+            }
+        }
+        stage ('Viewer Swagger generation') {
+            agent{
+                 docker {
+                        image 'maven:3.8.1-jdk-11'
+                        args '-v /home/jenkins/.m2:/root/.m2'
+                        reuseNode true
+                  }
+            }
+            when {
+                 expression {
+                      params.buildViewer
+                 }
+            }
+            steps {
+                  sh "echo Generating Viewer Swagger......"
+                  doGenerateSwagger("viewer",params.mavenSettingsId,params.profile)
+            }
+        }
+        stage('Issuer FrontEnd Lint and Build') {
+            agent {
+                docker {
+                    image 'node:12'
+                    reuseNode true
+                }
+
+            }
+            when {
+                expression {
+                    params.buildIssuer
+                }
+            }
+            steps {
+                sh "echo Building Issuer frontend......"
+                npmInstallBuild("issuer",params.profile)
+            }
+        }
+        stage('Viewer FrontEnd Lint and Build') {
+            agent {
+                docker {
+                    image 'node:12'
+                    reuseNode true
+                }
+            }
+            when {
+                expression {
+                    params.buildViewer
+                }
+            }
+            steps {
+                sh "echo Building Viewer frontend......"
+                npmInstallBuild("viewer",params.profile)
+            }
+        }
+        stage ('Issuer BackEnd build and packaging') {
+            agent{
+                docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            when{
+              expression{
+                  params.buildIssuer
+             }
+           }
+           steps{
+                sh "echo Packaging Issuer......"
+                mavenPackage("edci-issuer",params.mavenSettingsId,profile)
+           }
+        }
+        stage ('Viewer BackEnd packaging') {
+            agent{
+                docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            when{
+                expression{
+                    params.buildViewer
+                }
+            }
+            steps{
+                sh "echo Packaging Viewer......"
+                mavenPackage("edci-viewer",params.mavenSettingsId,profile)
+            }
+        }
+        stage ('Wallet BackEnd packaging') {
+            agent{
+                docker {
+                    image 'maven:3.8.1-jdk-11'
+                    args '-v /home/jenkins/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
+            when{
+                expression{
+                    params.buildWallet
+                }
+            }
+            steps{
+                sh "echo Packaging Wallet......"
+                mavenPackage("edci-wallet",params.mavenSettingsId,profile)
+            }
+        }
+        stage ('Create and Publish Issuer Docker Image'){
+            when {
+                expression{
+                    params.buildIssuer && params.buildPublishDockers
+                }
+            }
+            steps{
+                buildAndPublishDockerImage("issuer",params.dockerSuffix,version,params.publishDockerLatest,dockerRegistryCredential,params.dockerHubNamespace,env.BRANCH_NAME,params.tagName)
+            }
+        }
+        stage ('Create and Publish Viewer Docker Image'){
+            when {
+                expression{
+                    params.buildViewer && params.buildPublishDockers
+                }
+            }
+            steps{
+                buildAndPublishDockerImage("viewer",params.dockerSuffix,version,params.publishDockerLatest,dockerRegistryCredential,params.dockerHubNamespace,env.BRANCH_NAME,params.tagName)
+            }
+        }
+        stage ('Create and Publish Wallet Docker Image'){
+            when {
+                expression{
+                    params.buildWallet && params.buildPublishDockers
+                }
+            }
+            steps{
+                buildAndPublishDockerImage("wallet",params.dockerSuffix,version,params.publishDockerLatest,dockerRegistryCredential,params.dockerHubNamespace,env.BRANCH_NAME,params.tagName)
+            }
+        }
+        stage ('Stopping tomcat QA service') {
+           when {
+                expression{
+                    (params.buildIssuer && params.deployIssuerWar) || (params.buildViewer && params.deployViewerWar) || (params.buildWallet && params.deployWalletWar)
+                }
+           }
+           steps{
+                stopTomcatServiceQA()
+           }
+        }
+        stage ('Publish Issuer war to QA tomcat') {
+           when {
+                expression{
+                    params.buildIssuer && params.deployIssuerWar
+                }
+           }
+           steps{
+                deployWarToQA("edci-issuer/edci-issuer-web/target/europass2#edci-issuer.war")
+                deployWarToQA("edci-issuer/edci-issuer-web-swagger-ui/target/europass2#edci-issuer-swaggerUI.war")
+           }
+        }
+        stage ('Publish Viewer war to QA tomcat') {
+           when {
+                expression{
+                    params.buildViewer && params.deployViewerWar
+                }
+           }
+           steps{
+                deployWarToQA("edci-viewer/edci-viewer-web/target/europass2#edci-viewer.war")
+           }
+        }
+        stage ('Publish Wallet war to QA tomcat') {
+           when {
+                expression{
+                    params.buildWallet && params.deployWalletWar
+                }
+           }
+           steps{
+                deployWarToQA("edci-wallet/edci-wallet-web/target/europass2#edci-wallet.war")
+                deployWarToQA("edci-wallet/edci-wallet-web-swagger-ui/target/europass2#edci-wallet-swaggerUI.war")
+           }
+        }
+        stage ('Starting tomcat QA service') {
+           when {
+                expression{
+                    (params.buildIssuer && params.deployIssuerWar) || (params.buildViewer && params.deployViewerWar) || (params.buildWallet && params.deployWalletWar)
+                }
+           }
+           steps{
+                startTomcatServiceQA()
+           }
+        }
+    }
+    post('Archive Artifacts') {
+        always {
+            archiveArtifacts artifacts: '**/target/*.war', fingerprint: true, onlyIfSuccessful: true
+            sh "podman system prune -f"
+            cleanWs();
+        }
+   }
+}
+

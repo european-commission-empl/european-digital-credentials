@@ -1,0 +1,327 @@
+{
+	"id": "2525224f-5edd-45e9-92a7-f06c87688c54",
+	"identifiers": [
+		{
+			"value": "https://data.deqar.eu/report/48198",
+			"schemeID": "https://data.deqar.eu/report/",
+			"schemeAgencyName": null,
+			"schemeAgencyID": null,
+			"issuedDate": null
+		}
+	],
+	"type": "http://data.europa.eu/snb/accreditation/bb4618238e",
+	"titles": [
+		{
+			"language": "en",
+			"value": "Institutional audit"
+		}
+	],
+	"decision": {
+		"content": "positive",
+		"scoringSchemeID": "http://data.europa.eu/qdr-test/europassResource/99c27894-c067-471b-9805-47e1c7731473"
+	},
+	"accreditedOrganization": {
+		"registration": "https://data.deqar.eu/institution/879",
+		"vatIdentifiers": [
+			{
+				"value": "FI10065502",
+				"schemeID": "https://data.deqar.eu/vatIdentifier/2360/schemeID",
+				"schemeAgencyName": "https://data.deqar.eu/vatIdentifier/2360/schemeAgencyName",
+				"schemeAgencyID": "https://data.deqar.eu/vatIdentifier/2360/schemeAgencyID",
+				"issuedDate": 1320847379,
+				"spatialId": "https://data.deqar.eu/vatIdentifier/2360/spatialID"
+			}
+		],
+		"taxIdentifiers": null,
+		"identifiers": [
+			{
+				"value": "FI0504",
+				"schemeID": "https://www.eter-project.com/",
+				"schemeAgencyName": "ETER",
+				"schemeAgencyID": null,
+				"issuedDate": null
+			},
+			{
+				"value": "https://data.deqar.eu/institution/879",
+				"schemeID": null,
+				"schemeAgencyName": null,
+				"schemeAgencyID": null,
+				"issuedDate": null
+			},
+			{
+				"value": "DEQARINST0879",
+				"schemeID": "https://www.deqar.eu/",
+				"schemeAgencyName": null,
+				"schemeAgencyID": null,
+				"issuedDate": null
+			},
+			{
+				"value": "FI10065502",
+				"schemeID": null,
+				"schemeAgencyName": null,
+				"schemeAgencyID": null,
+				"issuedDate": null
+			},
+			{
+				"value": "https://data.deqar.eu/institution/879",
+				"schemeID": "https://data.deqar.eu/institution/",
+				"schemeAgencyName": "DEQAR",
+				"schemeAgencyID": null,
+				"issuedDate": null
+			}
+		],
+		"types": [],
+		"prefLabels": [
+			{
+				"language": "en",
+				"value": "JAMK University of Applied Sciences - JAMK"
+			}
+		],
+		"alternativeNames": [
+			{
+				"language": "fi",
+				"value": "Jyväskylän ammattikorkeakoulu"
+			}
+		],
+		"localizedHomepageshomepages": [
+			{
+				"url": "http://www.jamk.fi/en/Home/",
+				"titles": null,
+				"languages": null,
+				"subjects": null
+			}
+		],
+		"locations": [
+			{
+				"identifiers": null,
+				"names": null,
+				"descriptions": null,
+				"addresses": null,
+				"locations": [
+					{
+						"nutsCode": "FI",
+						"isoAlpha3Code": "FIN",
+						"value": null
+					}
+				],
+				"fullAddress": []
+			}
+		],
+		"contactPoints": null,
+		"unitOf": null,
+		"hasUnits": [],
+		"logo": null
+	},
+	"limitQualification": null,
+	"limitFields": [],
+	"limitJurisdictions": [],
+	"accreditingAgent": {
+		"registration": "https://data.deqar.eu/institution/3334",
+		"vatIdentifiers": [],
+		"taxIdentifiers": [],
+		"identifiers": [
+			{
+				"value": "https://data.deqar.eu/agency/27",
+				"schemeID": null,
+				"schemeAgencyName": null,
+				"schemeAgencyID": null,
+				"issuedDate": null
+			},
+			{
+				"value": "https://data.deqar.eu/agency/27",
+				"schemeID": "https://data.deqar.eu/agency/",
+				"schemeAgencyName": null,
+				"schemeAgencyID": null,
+				"issuedDate": null
+			}
+		],
+		"types": [],
+		"prefLabels": [
+			{
+				"language": "fi",
+				"value": "FINEEC - Finnish Education Evaluation Centre"
+			},
+			{
+				"language": "fi",
+				"value": "FINEEC - KARVI - Kansallinen koulutuksen arviointikeskus"
+			}
+		],
+		"alternativeNames": [
+			{
+				"language": "fi",
+				"value": "FINHEEC - Finnish Higher  Education Evaluation Council"
+			}
+		],
+		"localizedHomepages": [
+			{
+				"url": "http://karvi.fi/en/",
+				"titles": null,
+				"languages": null,
+				"subjects": null
+			}
+		],
+		"locations": [
+			{
+				"identifiers": null,
+				"names": null,
+				"descriptions": null,
+				"addresses": null,
+				"locations": [
+					{
+						"nutsCode": "FI",
+						"isoAlpha3Code": "FIN",
+						"value": null
+					}
+				],
+				"fullAddress": []
+			}
+		],
+		"contactPoints": [
+			{
+				"notes": [
+					{
+						"language": "en",
+						"value": "note 3"
+					},
+					{
+						"language": "es",
+						"value": "nota 3"
+					}
+				],
+				"descriptions": [
+					{
+						"language": "en",
+						"value": "description 3"
+					},
+					{
+						"language": "es",
+						"value": "descripción 3"
+					}
+				],
+				"addresses": [
+					{
+						"id": "http://some.address.com",
+						"identifiers": [
+							{
+								"value": "https://data.deqar.eu/locationIdentifier/3",
+								"schemeID": "https://data.deqar.eu/locationIdentifier/",
+								"schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+								"schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+								"issuedDate": 1320847379
+							},
+							{
+								"value": "https://data.deqar.eu/locationIdentifier/2",
+								"schemeID": "https://data.deqar.eu/locationIdentifier/",
+								"schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+								"schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+								"issuedDate": 1320847379
+							}
+						],
+						"countryCode": {
+							"uri": "http://publications.europa.eu/resource/authority/country/ESP",
+							"targetName": [
+								{
+									"language": "en",
+									"value": "EQF 1"
+								},
+								{
+									"language": "es",
+									"value": "eqf 1"
+								}
+							],
+							"targetDescription": [
+								{
+									"language": "en",
+									"value": "some target description"
+								}
+							],
+							"targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+							"targetNotation": "EQF",
+							"targetFramework": [
+								{
+									"language": "en",
+									"value": "EQF"
+								}
+							]
+						},
+						"fullAddress": [
+							{
+								"language": "en",
+								"value": "FullAddressEN"
+							}
+						]
+					}
+				],
+				"phones": [
+					{
+						"phoneNumber": "+34 22 552 02 94",
+						"countryDialing": "+34",
+						"areaDialing": "+34",
+						"dialNumber": "22 552 02 94"
+					}
+				],
+				"mailBoxes": [
+					{
+						"uri": "abc@gmail.com"
+					},
+					{
+						"uri": "def@gmail.com"
+					}
+				],
+				"webResources": [
+					{
+						"url": "http://interactive.form.com",
+						"titles": null,
+						"languages": null,
+						"subjects": []
+					},
+					{
+						"url": "http://interactive.form2.com",
+						"titles": null,
+						"languages": null,
+						"subjects": []
+					}
+				]
+			}
+		],
+		"unitOf": null,
+		"hasUnits": [],
+		"logo": {
+			"id": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png",
+			"contentType": {
+				"uri": "https://publications.europa.eu/resource/authority/file-type/PNG",
+				"targetName": [
+					{
+						"language": "en",
+						"value": "target name type 3"
+					},
+					{
+						"language": "es",
+						"value": "target name del tipo 3"
+					}
+				],
+				"targetDescription": [
+					{
+						"language": "en",
+						"value": "target Description type 3"
+					},
+					{
+						"language": "en",
+						"value": "target Description del tipo 3"
+					}
+				],
+				"targetFrameworkURI": "https://publications.europa.eu/resource/authority/file-type",
+				"targetNotation": "File type",
+				"targetFramework": [
+					{
+						"language": "en",
+						"value": "File type"
+					}
+				]
+			},
+			"contentUrl": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png"
+		}
+	},
+	"issuedDate": 1558303200000,
+	"expiryDate": 1747692000000
+}

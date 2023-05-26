@@ -1,0 +1,132 @@
+{
+  "id": "urn:acc:1",
+  "type": "Accreditation",
+  "accreditingAgent": {
+    "id": "urn:org:2",
+    "type": "Organisation",
+    "location": [
+      {
+        "id": "urn:loc:2",
+        "type": "Location",
+        "address": {
+          "id": "urn:add:2",
+          "type": "Address",
+          "countryCode": {
+            "id": "urn:con:1",
+            "type": "Concept",
+            "notation": "notation",
+            "prefLabel": {
+            }
+          }
+        }
+      },
+      {
+        "id": "urn:loc:3",
+        "type": "Location",
+        "address": {
+          "id": "urn:add:3",
+          "type": "Address",
+          "countryCode": {
+            "id": "urn:con:1",
+            "type": "Concept",
+            "notation": "notation",
+            "prefLabel": {
+            }
+          }
+        }
+      }
+    ],
+    "dateModified": "2022-10-18T16:43:46+02:00",
+    "altLabel": {
+      "en": "Alternative Name S.L"
+    },
+    "prefLabel": {
+    },
+    "registration": {
+      "id": "urn:leg:2",
+      "type": "LegalIdentifier",
+      "schemeName": "Scheme Name",
+      "schemeVersion": "3.0",
+      "creator": "https://example.org/creator",
+      "dateIssued": "2022-10-18T16:43:46+02:00",
+      "spatial": {
+        "id": "urn:con:1",
+        "type": "Concept",
+        "notation": "notation",
+        "prefLabel": {
+        }
+      },
+      "notation": "Notation1",
+      "schemeAgency": {
+        "en": "Scheme Agency"
+      }
+    }
+  },
+  "expiryDate": "2022-10-18T16:43:46+02:00",
+  "organisation": {
+    "id": "urn:org:2",
+    "type": "Organisation",
+    "location": [
+      {
+        "id": "urn:loc:2",
+        "type": "Location",
+        "address": {
+          "id": "urn:add:2",
+          "type": "Address",
+          "countryCode": {
+            "id": "urn:con:1",
+            "type": "Concept",
+            "notation": "notation",
+            "prefLabel": {
+            }
+          }
+        }
+      },
+      {
+        "id": "urn:loc:3",
+        "type": "Location",
+        "address": {
+          "id": "urn:add:3",
+          "type": "Address",
+          "countryCode": {
+            "id": "urn:con:1",
+            "type": "Concept",
+            "notation": "notation",
+            "prefLabel": {
+            }
+          }
+        }
+      }
+    ],
+    "dateModified": "2022-10-18T16:43:46+02:00",
+    "altLabel": {
+      "en": "Alternative Name S.L"
+    },
+    "prefLabel": {
+    },
+    "registration": {
+      "id": "urn:leg:2",
+      "type": "LegalIdentifier",
+      "schemeName": "Scheme Name",
+      "schemeVersion": "3.0",
+      "creator": "https://example.org/creator",
+      "dateIssued": "2022-10-18T16:43:46+02:00",
+      "spatial": {
+        "id": "urn:con:1",
+        "type": "Concept",
+        "notation": "notation",
+        "prefLabel": {
+        }
+      },
+      "notation": "Notation1",
+      "schemeAgency": {
+        "en": "Scheme Agency"
+      }
+    }
+  },
+  "reviewDate": "2022-10-18T16:43:46+02:00",
+  "dateModified": "2022-10-18T16:43:46+02:00",
+  "title": {
+    "en": "Accreditation Title"
+  }
+}

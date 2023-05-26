@@ -1,0 +1,33 @@
+<label euiLabel for="id">
+  {{ labelText }}
+  <span uxTooltip="{{ tooltipText }}" position="top-right" size="large" [ngClass]="{ invisible: !tooltipText || tooltipText === '' }">
+    <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+  </span>
+</label>
+
+<div class="row">
+  <div class="col-10 pr-0">
+    <input placeholder="{{'common.start.typing' |translate}}" euiInputText id="id" (focusout)="addElement($event)" [(ngModel)]="currentText" (keydown.enter)="addElement($event)" [attr.disabled]="isDisabled ? true : null" />
+  </div>
+  <div class="col-2 pl-0">
+    <button euiButton [euiIconButton]="true" [euiBasicButton]="true" (click)="addElement($event)" [euiDisabled]="isDisabled">
+      <span euiIcon iconClass="eui-icon eui-icon-add-circle eui-u-color-primary-110"> </span>
+      <span class="add-label"> {{ "common.add" | translate }} </span>
+    </button>
+  </div>
+</div>
+
+<div class="row" [ngClass]="{ elementDisabled: isDisabled }">
+  <div class="col-12">
+    <eui-chip-list (chipRemove)="onChipRemove($event)" [isChipsRemovable]="!isDisabled">
+      <eui-chip
+        *ngFor="let item of selection.getRawValue()"
+        [euiPrimary]="true"
+        [data]="{
+          id: item.targetName.contents[0].content
+        }">
+        {{ item.targetName.contents[0].content }}
+      </eui-chip>
+    </eui-chip-list>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+
+
+        <section *ngIf="activeEntitlement?.dateIssued || activeEntitlement?.expiryDate" class="row mb-0">
+            <section *ngIf="activeEntitlement?.dateIssued" class="col-3">
+                <div class="row">
+                    <h6 class="col-12">{{ 'details.entitlements-tab.issueDate' | translate }}</h6>
+                    <p class="col-12">{{ activeEntitlement.dateIssued }}</p>
+                </div>
+            </section>
+            <section *ngIf="activeEntitlement?.expiryDate" class="col-3">
+                <div class="row">
+                    <h6 class="col-12">{{ 'details.entitlements-tab.expiryDate' | translate }}</h6>
+                    <p class="col-12">{{ activeEntitlement.expiryDate }}</p>
+                </div>
+            </section>
+        </section>
+
+        <edci-section *ngIf="activeEntitlement?.description?.length > 0"
+            [title]="'details.entitlements-tab.description' | translate" class="row mb-0">
+            <p *ngFor="let description of activeEntitlement.description" class="col-12"> {{ description }}</p>
+        </edci-section>
+
+
+       <!-- <div
+            *ngIf="activeEntitlement.issuedDate || activeEntitlement.expiryDate"
+            class="pb-4 w-50 d-flex justify-content-between"
+        >
+            <div *ngIf="activeEntitlement.issuedDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.entitlements-tab.issueDate' | translate }}
+                </p>
+                <p>{{ activeEntitlement.issuedDate }}</p>
+            </div>
+            <div *ngIf="activeEntitlement.expiryDate">
+                <p class="font-weight-bold mb-2">
+                    {{ 'details.entitlements-tab.expiryDate' | translate }}
+                </p>
+                <p>{{ activeEntitlement.expiryDate }}</p>
+            </div>
+        </div>
+        <p
+            *ngIf="activeEntitlement.description"
+            class="entitlement-main-panel_description"
+        >
+            {{ activeEntitlement.description }}
+        </p>
+        <br>
+        <p
+            *ngIf="activeEntitlement?.specifiedBy?.description"
+            class="entitlement-main-panel_description"
+        >
+            {{ activeEntitlement.specifiedBy.description }}
+        </p>
+        <div
+            *ngIf="activeEntitlement?.specifiedBy?.validWith?.length > 0"
+            class="pt-4"
+        >
+            <div *ngFor="let org of activeEntitlement.specifiedBy.validWith">
+                <edci-detail-organisation-section [organisation]="org">
+                </edci-detail-organisation-section>
+            </div>
+        </div>-->

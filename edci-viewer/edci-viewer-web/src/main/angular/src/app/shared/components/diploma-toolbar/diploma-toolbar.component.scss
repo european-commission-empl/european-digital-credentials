@@ -1,0 +1,251 @@
+.img-resp {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.no-label {
+    label {
+        display: none;
+    }
+}
+
+.home-icon {
+    .fa-home::before {
+        color: #004494;
+        font-size: 22px;
+        margin-right: 6px;
+    }
+}
+
+.index-auto {
+    z-index: auto !important;
+}
+
+.link-wrapper {
+    position: relative;
+
+    > .link {
+        width: 50%;
+    }
+
+    > .copy-link {
+        bottom: 3%;
+        left: 50%;
+        position: absolute;
+    }
+
+    > .share-link {
+        left: 35%;
+        position: absolute;
+        top: 30px;
+    }
+
+    .w-25 {
+        > div.ux-c-control-feedback {
+            width: 20vw !important;
+        }
+    }
+}
+
+
+.disabled {
+    span {
+        color: rgba(0, 0, 0, 0.38);
+    }
+}
+
+.form-datepicker .col-12{
+    padding: 0;
+}
+
+.form-datepicker .ux-datepicker {
+    margin: 10px 0;
+}
+
+.copy-button {
+    /* stylelint-disable */
+    label {
+        color: #467a39;
+        margin-left: 0.8vw;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.2s linear;
+        visibility: hidden;
+    }
+    /* stylelint-enable */
+
+    .label-visibility {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.spinner-wrapper {
+    background: rgba(189, 189, 189, 0.5);
+    bottom: 0%;
+    height: 100%;
+    left: 0%;
+    position: absolute;
+    width: 100%;
+    z-index: 9999 !important;
+
+    .share-spinner {
+        left: 40%;
+        position: absolute;
+        top: 25%;
+    }
+}
+
+#shareCredentialModal .disabled span {
+    color: var(--eui-base-color-white);
+}
+
+.spinner-wrapper-full-screen {
+    background: rgba(189, 189, 189, 0.5);
+    bottom: 0%;
+    height: 100%;
+    left: 0%;
+    position: fixed;
+    width: 100%;
+    z-index: 9999 !important;
+
+    .pdf-spinner {
+        left: 50%;
+        position: absolute;
+        top: 45%;
+    }
+}
+
+.language-dropdown {
+    .btn-outline-primary {
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:focus {
+            background-color: transparent;
+        }
+
+        &:active {
+            background-color: transparent !important;
+        }
+
+        border: solid 0.5px #757575;
+        box-shadow: none;
+        color: #3c3c3c;
+    }
+
+    .ux-button__content {
+        margin-right: 3rem;
+    }
+
+    .dropdown-toggle::after {
+        color: #004494 !important;
+    }
+}
+
+.custom-dropdown {
+    .btn,
+    .ux-button {
+        border: 1px solid transparent !important;
+        padding-top: 0.95rem;
+    }
+
+    span {
+        font-size: 1.14286rem;
+    }
+
+    .hover-none {
+        &:hover {
+            background: transparent !important;
+            border: 1px solid transparent !important;
+        }
+
+        &:focus {
+            border: 1px solid transparent !important;
+            outline: none;
+        }
+    }
+
+    .dropdown-toggle {
+        &::after {
+            display: none;
+        }
+
+        &::before {
+            color: #004494 !important;
+            content: '\f019';
+            display: inline-block;
+            font-family: FontAwesome;
+            font-size: 18px;
+        }
+    }
+}
+
+.toolbar-container {
+    align-items: center !important;
+    .item-home{
+        padding-right: 1rem !important;
+        border-right: 1px solid #bdbdbd !important;
+    }
+
+    .item-export{
+        border-right: 1px solid #bdbdbd !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .item-upload{
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        align-items: flex-end;
+        padding-top: unset !important;
+    }
+
+    .item-share{
+        margin-left: auto;
+        border-right: 1px solid #bdbdbd !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: unset !important;
+    }
+
+    .item-language{
+        padding-left: 1rem !important;
+        padding-top: unset !important;
+    }
+
+}
+
+#mat-menu-panel-5 > div > div > eui-dropdown-content > div > ul{
+    margin: unset !important;
+    padding: unset !important;
+}
+
+#mat-menu-panel-1 > div > div > eui-dropdown-content > div > ul{
+    padding: unset !important;
+    margin: unset !important;
+}
+
+eui-dropdown button>span {
+    padding-top: 0.15rem;
+}
+
+eui-dropdown-content button {
+    padding: 1px 5px 1px 5px !important;
+}
+
+.icon-size-26px {
+    font-size: 26px !important;
+}
+
+.mat-menu-panel {
+    min-height: 32px !important;
+}
+
+eui-icon-svg {
+    color: var(--eui-base-color-primary-100)
+}
+
+.copy-height {
+    height: 2.75em;
+}

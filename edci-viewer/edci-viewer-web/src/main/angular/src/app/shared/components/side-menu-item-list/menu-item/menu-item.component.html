@@ -1,0 +1,40 @@
+<div
+    class="menu-item-wrapper {{ styleClass }}"
+    [ngClass]="{
+        'item-selected': isSelectedElement,
+        'main-element': isMainElement,
+        'tree-element': isTreeElement
+    }"
+    [style.padding-left]="
+        isMainElement
+            ? 12 + 12 * depthLevel - 8 + 'px'
+            : 12 + 12 * depthLevel + 'px'
+    "
+    style.background-color="rgb({{ 255 - depthLevel * 10 }},{{
+        255 - depthLevel * 10
+    }},{{ 255 - depthLevel * 10 }})"
+    (click)="selectionChange()"
+>
+    <div class="menu-item-text-first">
+        <img
+            class="menu-item-icon"
+            src="assets/icons/menu-item-{{ entityType }}.svg"
+        />
+        <span
+            class="menu-item-text"
+            [style.font-size]="14 - depthLevel / 2 + 'px'"
+            >{{ label }}</span
+        >
+    </div>
+
+    <!--[iconClass]="isExpanded ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"-->
+    <!--[styleClass]="isExpanded ? 'rotate-180' : ''"-->
+    <ux-a-icon
+        *ngIf="entity | edciHasChildren: entityType"
+        [isRounded]="false"
+        typeClass="primary"
+        iconClass="fa fa-chevron-down"
+        [styleClass]="isExpanded ? 'rotate-180' : ''"
+        (click)="changeExpanded($event)"
+    ></ux-a-icon>
+</div>

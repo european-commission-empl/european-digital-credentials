@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.8" global="false"/>
+
+    <changeSet id="01_OCB_code_nullable_fields" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+                <preConditions onFail="MARK_RAN">
+                    <sqlCheck expectedResult="NN">SELECT LISTAGG(Nullable, '') WITHIN GROUP (ORDER BY Nullable) as nullable
+                        FROM user_tab_columns
+                        WHERE table_name = 'DT_CODE'
+                        AND column_name in ('TARGET_NAME_PK','TARGET_FRAMEWORK_URI')</sqlCheck>
+                </preConditions>
+        <sqlFile path="v1_8/01_code_nullable_fields.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="02_OCB_note_topic_string_to_code" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="DT_NOTE" columnName="TOPIC"/>
+        </preConditions>
+        <sqlFile path="v1_8/00_delete_safe_temp_table.sql" relativeToChangelogFile="true" endDelimiter="/" splitStatements="false"/>
+        <sqlFile path="v1_8/02_note_topic_string_to_code.sql" relativeToChangelogFile="true" endDelimiter=";"/>
+    </changeSet>
+    <changeSet id="03_OCB_learn_act_specif_code_listCode" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="DC_LEARNING_ACT_SPEC" columnName="MODE_PK"/>
+        </preConditions>
+        <sqlFile path="v1_8/03_learn_act_specif_code_listCode.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="04_OCB_learn_asm_specif_code_listCode" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="DC_ASSESS_SPEC" columnName="MODE_PK"/>
+        </preConditions>
+        <sqlFile path="v1_8/04_learn_asm_specif_code_listCode.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="05_OCB_european_credential_note_to_text" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="SPEC_EUROPASS_CREDENTIAL" columnName="DESCRIPTION_PK"/>
+        </preConditions>
+        <sqlFile path="v1_8/00_delete_safe_temp_table.sql" relativeToChangelogFile="true" endDelimiter="/" splitStatements="false"/>
+        <sqlFile path="v1_8/05_european_credential_note_to_text.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="06_OCB_learning_activity_note_to_text" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="SPEC_ACTIVITY" columnName="DECRIPTION_PK"/>
+        </preConditions>
+        <sqlFile path="v1_8/00_delete_safe_temp_table.sql" relativeToChangelogFile="true" endDelimiter="/" splitStatements="false"/>
+        <sqlFile path="v1_8/06_learning_activity_note_to_text.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="07_OCB_organization_listText_to_text" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <tableExists tableName="FIELD_SPEC_ORGAN_ALTER_NAME"/>
+        </preConditions>
+        <sqlFile path="v1_8/07_organization_listText_to_text.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="08_OCB_legal_identifier_spatial_string_to_code" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="DT_IDENTIFIER" columnName="SPATIAL_ID"/>
+        </preConditions>
+        <sqlFile path="v1_8/00_delete_safe_temp_table.sql" relativeToChangelogFile="true" endDelimiter="/" splitStatements="false"/>
+        <sqlFile path="v1_8/00_delete_safe_country_table.sql" relativeToChangelogFile="true" endDelimiter="/" splitStatements="false"/>
+        <sqlFile path="v1_8/08_legal_identifier_spatial_string_to_code.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="09_OCB_clean_up_unused_fields" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN" dbms="oracle">
+        <preConditions onFail="MARK_RAN" >
+            <tableExists tableName="FIELD_DC_LEA_SPE_IDENTIFIER"/>
+            <tableExists tableName="DT_STANDARD"/>
+        </preConditions>
+        <sqlFile path="v1_8/09_clean_up_unused_fields.sql" relativeToChangelogFile="true" endDelimiter=";" />
+    </changeSet>
+    <changeSet id="10_OCB_code_uri_nullable" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="DT_CODE" columnName="URI"/>
+        </preConditions>
+        <update tableName="DT_CODE">
+            <column name="CL_URI" valueComputed="URI" />
+        </update>
+        <dropColumn tableName="DT_CODE" columnName="URI"/>
+    </changeSet>
+    <changeSet id="11_OCB_code_update_framework_uri" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <update tableName="DT_CODE">
+            <column name="TARGET_FRAMEWORK_URI" value="http://data.europa.eu/esco/concept-scheme/occupations" />
+            <where>TARGET_FRAMEWORK_URI = 'http://data.europa.eu/esco/model#Occupation'</where>
+        </update>
+        <update tableName="DT_CODE">
+            <column name="TARGET_FRAMEWORK_URI" value="http://data.europa.eu/esco/concept-scheme/skills" />
+            <where>TARGET_FRAMEWORK_URI = 'http://data.europa.eu/esco/model#Skill'</where>
+        </update>
+    </changeSet>
+
+    <include file="changeLog/liquibase-changelog-update-version.xml"/>
+</databaseChangeLog>

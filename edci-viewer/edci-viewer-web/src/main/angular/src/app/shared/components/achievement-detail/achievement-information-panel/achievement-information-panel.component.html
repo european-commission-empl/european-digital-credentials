@@ -1,0 +1,100 @@
+<edci-panel *ngIf="
+            activeAchievement?.specifiedBy?.workloadInHours?.length > 0 ||
+            activeAchievement?.specifiedBy?.qualification?.eqfLevel?.length > 0 ||
+            activeAchievement?.specifiedBy?.ectsCreditPoints?.length > 0 ||
+            activeAchievement?.specifiedBy?.creditPoint?.length > 0 ||
+            activeAchievement?.specifiedBy?.qualification?.nqfLevel?.length > 0 ||
+            activeAchievement?.specifiedBy?.learningSetting?.length > 0 ||
+            activeAchievement?.specifiedBy?.learningMode?.length > 0 ||
+            activeAchievement?.specifiedBy?.qualification?.length > 0"
+    [title]="'details.achievements-tab.achievementInformation' | translate">
+    <div class="row">
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.volumeOfLearning?.length > 0">
+            <edci-information-field [text]="[getVolumeOfLearning()]"
+                [title]="'details.achievements-tab.volumeOfLearning' | translate" icon="hourglass">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.qualification?.eqflevel?.length > 0">
+            <edci-information-field [text]="[activeAchievement.specifiedBy.qualification.eqflevel]"
+                [title]="'details.achievements-tab.EQFLevel' | translate" icon="analytics">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.qualification?.nqflevel?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.qualification.nqflevel"
+                [title]="'details.achievements-tab.NQFLevel' | translate" icon="analytics">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.educationLevel?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.educationLevel"
+                [title]="'details.assessments-tab.educationLevel' | translate" icon="pie-chart">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.creditPoint?.length > 0">
+            <edci-information-field [text]="activeAchievement?.specifiedBy?.creditPoint"
+                [title]="'details.achievements-tab.creditPoints' | translate" icon="sparkles">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.category?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.category" [title]="'Category'" icon="grid">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.learningSetting?.length > 0">
+            <edci-information-field [text]="[activeAchievement.specifiedBy.learningSetting]"
+                [title]="'details.achievements-tab.learningSettings' | translate" icon="toggle">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.mode?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.mode"
+                [title]="'details.achievements-tab.deliveryMethod' | translate" icon="easel">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.thematicArea?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.thematicArea"
+                [title]="'details.achievements-tab.thematicArea' | translate" icon="library">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.language?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.language"
+                [title]="'details.achievements-tab.languagesOfInstruction' | translate" icon="chatbubble-ellipses">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.maximumDuration?.length > 0">
+            <edci-information-field [text]="[getMaximumDuration()]" [title]="'maximum duration'" icon="hourglass">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.dcType?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.dcType" [title]="'Type'" icon="pie-chart">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.educationSubject?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.educationSubject"
+                [title]="'education subject'" icon="sparkles">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.ectsCreditPoints?.length > 0">
+            <edci-information-field [text]="activeAchievement.specifiedBy.ectsCreditPoints"
+                [title]="'details.achievements-tab.ECTSCreditPoints' | translate" icon="icon-credit-points">
+            </edci-information-field>
+        </div>
+
+        <div class="col-4" *ngIf="activeAchievement?.specifiedBy?.targetGroup?.length > 0">
+            <edci-information-field [text]=" activeAchievement.specifiedBy.targetGroup"
+                [title]="'details.achievements-tab.targetGroups' | translate" icon="people">
+            </edci-information-field>
+        </div>
+    </div>
+</edci-panel>

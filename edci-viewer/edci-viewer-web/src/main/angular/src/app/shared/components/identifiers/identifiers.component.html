@@ -1,0 +1,38 @@
+<div class="row">
+    <section class="col-md-3" *ngIf="registration">
+        <h6>{{'details.identifiers.legalId' | translate}}</h6>
+        <p> {{ registration.notation }} </p>
+    </section>
+
+    <section class="col-md-3" *ngIf="vatIdentifiers?.length > 0">
+        <h6>{{'details.identifiers.vatNumber' | translate}}</h6>
+        <p *ngFor="let vatIdentifier of vatIdentifiers">
+            {{ vatIdentifier.notation }}
+        </p>
+    </section>
+
+    <section class="col-md-3" *ngIf="eidasIdentifier">
+        <h6>{{'details.identifiers.eidasId' | translate}}</h6>
+        <p> {{ eidasIdentifier.notation }} </p>
+    </section>
+
+    <section class="col-md-3" *ngIf="taxIdentifiers?.length > 0">
+        <h6>{{'details.identifiers.taxId' | translate}}</h6>
+        <p *ngFor="let taxIdentifier of taxIdentifiers">
+            {{ taxIdentifier.notation }}
+        </p>
+    </section>
+
+    <section class="col-md-3" *ngIf="nationalID">
+        <h6>{{'details.identifiers.nationalIdentifier' | translate}}</h6>
+        <p> {{ nationalID.notation }}</p>
+    </section>
+
+    <section class="col-md-3" *ngFor="let identifier of identifiers">
+        <h6> {{ getIdentifierTitleLabel(identifier) }} </h6>
+        <p>
+            {{ identifier.notation }}
+        </p>
+    </section>
+
+</div>

@@ -1,0 +1,45 @@
+#loader-wrapper {
+    background-color: #424242;
+}
+
+.spinner-wrapper-full-screen {
+    background: rgba(189, 189, 189, 0.5);
+    bottom: 0%;
+    height: 100%;
+    left: 0%;
+    position: fixed;
+    width: 100%;
+    z-index: 9999 !important;
+
+    .spinner {
+        left: 45%;
+        position: absolute;
+        top: 40%;
+    }
+}
+
+.form-input-spinner {
+    margin-left: 25px;
+    margin-top: 7px;
+
+    > mat-progress-spinner {
+        height: 20px !important;
+        width: 20px !important;
+
+        > svg {
+            height: 20px !important;
+            width: 20px !important;
+        }
+    }
+}
+
+.spinner-autocomplete {
+    position: absolute;
+    right: 15px;
+    top: 22px;
+}
+
+.ocb-details-spinner {
+    margin-top: 10%;
+    width: 100%;
+}
