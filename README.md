@@ -2,6 +2,8 @@
 [![license: EUPL](licence-EUPL%201.2-brightgreen.svg)](https://github.com/teamdigitale/licenses/blob/master/EUPL-1.2)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
+###<span style="color:red">This is a pre-release branch, not meant for production</span>
+
 The Europass Digital Credential Infrastructure is a set of standards, services and software which allows institutions to issue digital, tamper-proof qualifications and other learning credentials within the European Education Area. With it learners, employers, education and training providers and other authorised bodies have a simple and trustworthy way of verifying the validly and authenticity of digital credentials.
 
 ## Components
