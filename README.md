@@ -1,6 +1,7 @@
-# EDCI - European Digital Credential Interoperability
+# !!! The information on these pages reflects the previous version of the EDCI - European Digital Credential Interoperability
 [![license: EUPL](licence-EUPL%201.2-brightgreen.svg)](https://github.com/teamdigitale/licenses/blob/master/EUPL-1.2)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
+A new major release of the European Digital Credential Infrastructure was deployed on the 1st of June 2023. The information on Github currently reflects the previous version and we would recommend to limit its use. The documentation will be updated pending a security screening. In the meantime, you can explore the new version of the EDC issuer. Should you wish to have early access to the documentation, please contact us directly at EMPL-ELM-SUPPORT@ec.europa.eu . 
 
 The European Digital Credential Infrastructure is a set of standards, services and software which allows institutions to issue digital, tamper-proof qualifications and other learning credentials within the European Education Area. With it learners, employers, education and training providers and other authorised bodies have a simple and trustworthy way of verifying the validly and authenticity of digital credentials.
 
