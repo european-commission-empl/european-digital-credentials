@@ -1,0 +1,27 @@
+.activity-form {
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    .entity-input {
+        align-items: baseline;
+        display: flex !important;
+
+        .disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        edci-autocomplete {
+            flex-grow: 1;
+        }
+    }
+
+    .form-datepicker {
+        input,
+        button {
+
+            position: relative;
+        }
+    }
+}

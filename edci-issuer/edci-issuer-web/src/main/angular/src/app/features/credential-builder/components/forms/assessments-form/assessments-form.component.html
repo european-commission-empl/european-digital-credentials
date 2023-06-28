@@ -1,0 +1,688 @@
+<div class="assessment-form container">
+  <div class="breadcrumb__wrapper my-4" *ngIf="!isModal">
+    <edci-breadcrumb [parts]="parts"></edci-breadcrumb>
+  </div>
+
+  <div class="gray-line"></div>
+
+  <h1 class="my-3 page-title">
+    {{ modalTitle }}
+  </h1>
+
+  <div class="eui-u-mb-3xl page-subtitle">
+    <p class="page-subtitle">
+      {{ "credential-builder.assessments-tab.orgSubtitle" | translate }}
+    </p>
+    <span>{{ "credential-builder.html-templates-tab.subtitle-help" | translate }}</span>
+    <span class="mr-1 ml-1">
+      <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+    </span>
+    <span>{{ "credential-builder.html-templates-tab.subtitle-help-2" | translate }}</span>
+  </div>
+
+  <edci-cb-language-tabs
+    *ngIf="selectedLanguages?.length > 0"
+    [(selectedLanguages)]="selectedLanguages"
+    [language]="language"
+    (onLanguageChange)="languageTabSelected($event)"
+    (onLanguageRemoved)="languageRemoved($event)"
+    (onLanguageAdded)="languageAdded($event)"></edci-cb-language-tabs>
+
+  <div class="cb-modal-form-wrapper">
+    <div class="form-content-wrapper">
+      <form class="cb-modal-form" [formGroup]="formGroup">
+        <div class="form-title mb-1">
+          {{ "credential-builder.assessment-tab.assessmentInformation" | translate }}
+        </div>
+
+        <div class="gray-line mb-4"></div>
+
+        <!-- Assessment -->
+        <!-- Title -->
+        <div *ngIf="title.controls[language]" class="form-group required" [formGroup]="title">
+          <label class="d-inline-flex control-label">
+            {{ "credential-builder.assessment-tab.assessmentTitle" | translate }}
+            <!-- <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.title' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span> -->
+          </label>
+          <input euiInputText type="text" class="form-control" [formControl]="titleControl" />
+          <ng-container *ngFor="let control of title.controls | keyvalue">
+            <ux-control-feedback *ngIf="control.key === language && control.value.errors?.maxlength" typeClass="danger">
+              {{ "error.maxLength.4000" | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+              *ngIf="control.key === language && control.value.invalid && control.value.errors?.required && control.value.touched"
+              typeClass="danger">
+              {{ "error.required" | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+              *ngIf="control.key === language && control.value.invalid && control.value.errors?.onlySpaceError && control.value.touched"
+              typeClass="danger">
+              {{ "error.noBlankSpaceOnly" | translate }}
+            </ux-control-feedback>
+          </ng-container>
+        </div>
+
+        <!-- AssessedBy -->
+        <div class="form-group">
+          <label class="d-inline-flex">
+            {{ "credential-builder.assessment-tab.assessmentBy" | translate }}
+            <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.assessmentBy' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span>
+          </label>
+
+          <div class="entity-input">
+            <edci-autocomplete
+              [placeholder]="'credential-builder.common.placeholder.linkedOrganisation' | translate"
+              entityType="organization"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [isSingleSelection]="true"
+              [defaultLanguage]="defaultLanguage"
+              [preSelectedItems]="selectedAssessedBy"
+              (onEntityClicked)="editEntityClicked($event)"
+              (selectionChange)="onAssessedBySelectionChange($event)"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }">
+            </edci-autocomplete>
+            <button
+              class="ml-2"
+              euiButton
+              [euiPrimary]="true"
+              (click)="newEntityClicked('organization')"
+              *ngIf="isPrimaryLanguage"
+              [ngClass]="{
+                disabled: this.credentialBuilderService.isNewEntityDisabled
+              }">
+              {{ "common.createNew" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <!-- AwardedBy -->
+        <div class="row">
+          <label class="d-inline-flex required">
+            {{ "credential-builder.activities-tab.awardedBy" | translate }}
+            <span uxTooltip="{{ 'credential-builder.activities-tab.tooltips.awardedBy' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span>
+          </label>
+          <div class="entity-input">
+            <edci-autocomplete
+              [placeholder]="'credential-builder.common.placeholder.linkedOrganisation' | translate"
+              entityType="organization"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [defaultLanguage]="defaultLanguage"
+              [preSelectedItems]="selectedAwardedBy"
+              (onEntityClicked)="editEntityClicked($event)"
+              (selectionChange)="onAwardedBySelectionChange($event)"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }">
+            </edci-autocomplete>
+            <button
+              class="ml-2"
+              euiButton
+              [euiPrimary]="true"
+              (click)="newEntityClicked('organization')"
+              *ngIf="isPrimaryLanguage"
+              [ngClass]="{
+                disabled: this.credentialBuilderService.isNewEntityDisabled
+              }">
+              {{ "common.createNew" | translate }}
+            </button>
+          </div>
+          <ux-control-feedback
+            *ngIf="awardingBody?.errors?.requiredList && awardedByOidList.length === 0 && awardingBody?.touched"
+            typeClass="danger">
+            {{ "error.required" | translate }}
+          </ux-control-feedback>
+        </div>
+
+        <!-- Description -->
+        <div *ngIf="description.controls[language]" class="form-group" [formGroup]="description">
+          <label class="d-inline-flex">
+            {{ "common.description" | translate }}
+            <!-- <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.description' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span> -->
+          </label>
+          <div class="eui-textarea__wrapper">
+            <textarea class="form-control" [formControl]="descriptionControl" class="eui-textarea" rows="3"></textarea>
+            <ng-container *ngFor="let control of description.controls | keyvalue">
+              <ux-control-feedback *ngIf="control.key === language && control.value.errors?.maxlength" typeClass="danger">
+                {{ "error.maxLength.4000" | translate }}
+              </ux-control-feedback>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Further Details -->
+        <div class="form-title form-group mt-4">
+          {{ "common.furtherDetails" | translate }}
+        </div>
+
+        <div class="gray-line mb-4"></div>
+
+        <!-- Assessment date -->
+        <div class="form-group">
+          <label class="d-inline-flex">
+            {{ "credential-builder.assessment-tab.assessmentDate" | translate }}
+            <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.assessmentDate' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span>
+          </label>
+          <eui-datepicker
+            [formControl]="assessmentDate"
+            [placeholder]="'dd/mm/yyyy hh:mm'"
+            dateOutputFormat="DD/MM/YYYY HH:mm"
+            [isDatetimepicker]="true"
+            (onDateSelect)="checkValidDate()"
+            [isDisabled]="language !== defaultLanguage"></eui-datepicker>
+        </div>
+
+        <div class="row">
+          <!-- Assessment reliability -->
+          <div class="col-6">
+            <edci-controlled-list-select
+              label="{{ 'credential-builder.assessment-tab.methodOfAssessment' | translate }}"
+              tooltip="{{ 'credential-builder.assessment-tab.tooltips.assessmentReliability' | translate }}"
+              entityType="supervision-verification"
+              [activeLanguage]="language"
+              [selectedLanguages]="selectedLanguages"
+              formControlName="methodOfAssessment"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }"></edci-controlled-list-select>
+          </div>
+
+          <!-- Assessment type -->
+          <div class="col-6">
+            <edci-controlled-list-free
+              *ngIf="editAssessment || !editAssessmentOid"
+              [isDisabled]="!isPrimaryLanguage"
+              labelText="{{ 'credential-builder.assessment-tab.assessmentType' | translate }}"
+              [preSelectedValues]="editAssessment?.specifiedBy?.dcType?.length > 0 ? editAssessment.specifiedBy.dcType : []"
+              [selectedLanguage]="language"
+              (selectionChanged)="onControlledListChange($event, 'dcType')">
+            </edci-controlled-list-free>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Assessment mode -->
+          <div class="col-6">
+            <label class="d-inline-flex"
+              >{{ "credential-builder.assessment-tab.modeOfAssessment" | translate }}
+              <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.modeOfAssessment' | translate }}" position="top-right" size="large">
+                <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+              </span>
+            </label>
+            <edci-controlled-list
+              *ngIf="editAssessment || !editAssessmentOid"
+              entityType="learning-assessment"
+              [itemsSelected]="editAssessment?.specifiedBy?.mode ? editAssessment.specifiedBy.mode : []"
+              [selectedLanguages]="selectedLanguages"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [activeLanguage]="language"
+              (onError)="closeForm()"
+              (onItemsSelectionChange)="onControlledListChange($event, 'mode')"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }"></edci-controlled-list>
+          </div>
+          <!-- Assessment language -->
+          <div class="col-6">
+            <label class="d-inline-flex"
+              >{{ "credential-builder.assessment-tab.assessmentLanguage" | translate }}
+              <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.assessmentLanguage' | translate }}" position="top-right" size="large">
+                <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+              </span>
+            </label>
+            <edci-controlled-list
+              entityType="language"
+              [itemsSelected]="assessmentLanguage"
+              [selectedLanguages]="selectedLanguages"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [activeLanguage]="language"
+              (onError)="closeForm()"
+              (onItemsSelectionChange)="assessmentLanguageSelectionChange($event)"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }"></edci-controlled-list>
+          </div>
+        </div>
+
+        <!-- Links to other elements -->
+        <div class="form-title form-group">
+          {{ "common.linksOtherElements" | translate }}
+        </div>
+
+        <div class="gray-line mb-4"></div>
+
+        <!-- Sub assessment -->
+        <div class="row">
+          <label class="d-inline-flex">
+            {{ "credential-builder.assessment-tab.subAssessments" | translate }}
+            <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.subAssessments' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span>
+          </label>
+
+          <div class="entity-input">
+            <edci-autocomplete
+              entityType="assessment"
+              [placeholder]="'credential-builder.common.placeholder.linkedAssessment' | translate"
+              (onEntityClicked)="editEntityClicked($event)"
+              (selectionChange)="onSubAssessmentSelectionChange($event)"
+              [defaultLanguage]="defaultLanguage"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [mainItemOid]="editAssessmentOid"
+              [preSelectedItems]="selectedSubAssessments"
+              [ngClass]="{
+                elementDisabled: !isPrimaryLanguage
+              }">
+            </edci-autocomplete>
+            <button
+              class="ml-2"
+              euiButton
+              [euiPrimary]="true"
+              (click)="newEntityClicked('assessment', undefined, true)"
+              *ngIf="isPrimaryLanguage"
+              [ngClass]="{
+                disabled: this.credentialBuilderService.isNewEntityDisabled
+              }">
+              {{ "common.createNew" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Grading Scheme -->
+        <div class="form-title form-group mt-4">
+          {{ "credential-builder.gradingScheme" | translate }}
+        </div>
+
+        <div class="gray-line mb-4"></div>
+
+        <div class="row form-group">
+          <div class="col-6">
+            <!-- Grade title -->
+            <div *ngIf="gradeTitle.controls[language]" class="" [formGroup]="gradeTitle">
+              <label class="d-inline-flex control-label"
+                >{{ "credential-builder.assessment-tab.gradeTitle" | translate }}
+                <span
+                  uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.gradeTitle' | translate }}"
+                  position="top-right"
+                  size="large"
+                  style="visibility: hidden">
+                  <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+                </span>
+              </label>
+              <input euiInputText type="text" class="form-control" [formControl]="gradeTitleControl" />
+              <ng-container *ngFor="let control of gradeTitle.controls | keyvalue">
+                <ux-control-feedback *ngIf="control.key === language && control.value.errors?.maxlength" typeClass="danger">
+                  {{ "error.maxLength.4000" | translate }}
+                </ux-control-feedback>
+                <ux-control-feedback
+                  *ngIf="control.key === language && control.value.invalid && control.value.errors?.required && control.value.touched"
+                  typeClass="danger">
+                  {{ "error.required" | translate }}
+                </ux-control-feedback>
+                <ux-control-feedback
+                  *ngIf="control.key === language && control.value.invalid && control.value.errors?.onlySpaceError && control.value.touched"
+                  typeClass="danger">
+                  {{ "error.noBlankSpaceOnly" | translate }}
+                </ux-control-feedback>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-6">
+            <!-- Grade ID -->
+            <div class="">
+              <label class="d-inline-flex">
+                {{ "credential-builder.assessment-tab.gradeSchemeIdentifier" | translate }}
+                <span
+                  uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.gradeSchemeIdentifier' | translate }}"
+                  position="top-right"
+                  size="large">
+                  <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+                </span>
+              </label>
+              <input
+                euiInputText
+                class="form-control"
+                [formControl]="gradeSchemeIdentifier"
+                [attr.disabled]="language !== defaultLanguage ? '' : null" />
+              <ux-control-feedback *ngIf="gradeSchemeIdentifier.errors?.maxlength" typeClass="danger">
+                {{ "error.maxLength.255" | translate }}
+              </ux-control-feedback>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grade description -->
+        <div *ngIf="gradeDescription.controls[language]" class="form-group" [formGroup]="gradeDescription">
+          <label class="d-inline-flex">
+            {{ "common.description" | translate }}
+            <!-- <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.description' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span> -->
+          </label>
+          <div class="eui-textarea__wrapper">
+            <textarea class="form-control" [formControl]="gradeDescriptionControl" class="eui-textarea" rows="3"></textarea>
+            <ng-container *ngFor="let control of gradeDescription.controls | keyvalue">
+              <ux-control-feedback *ngIf="control.key === language && control.value.errors?.maxlength" typeClass="danger">
+                {{ "error.maxLength.4000" | translate }}
+              </ux-control-feedback>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Other documents -->
+        <div formArrayName="gradeOtherDocument">
+          <div class="form-group">
+            <label class="d-inline-flex">
+              {{ "credential-builder.assessment-tab.otherDocuments" | translate }}
+              <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.otherDocuments' | translate }}" position="top-right" size="large">
+                <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+              </span>
+            </label>
+            <ng-container *ngFor="let otherDocuments of gradeOtherDocument.controls; let i = index; let last = last">
+              <div [formGroupName]="i" class="d-flex mb-2">
+                <div class="d-block col-6 pl-0">
+                  <input
+                    euiInputText
+                    type="text"
+                    class="form-control mr-3"
+                    placeholder="{{ 'common.title' | translate }}"
+                    formControlName="webDocumentTitle"
+                    [attr.disabled]="language !== defaultLanguage ? '' : null" />
+
+                  <ux-control-feedback *ngIf="gradeOtherDocument.controls[i]['controls'].webDocumentTitle.errors?.maxlength" typeClass="danger">
+                    {{ "error.maxLength.255" | translate }}
+                  </ux-control-feedback>
+                </div>
+
+                <div class="d-block col-5">
+                  <input
+                    euiInputText
+                    type="text"
+                    class="form-control mr-3"
+                    placeholder="{{ 'common.content' | translate }}"
+                    formControlName="webDocumentContent"
+                    [attr.disabled]="language !== defaultLanguage ? '' : null" />
+                  <ux-control-feedback *ngIf="gradeOtherDocument.controls[i].errors?.webDocumentError" typeClass="danger">
+                    {{ "error.webDocument" | translate }}
+                  </ux-control-feedback>
+                  <ux-control-feedback
+                    *ngIf="
+                      gradeOtherDocument.controls[i]['controls'].webDocumentContent.invalid &&
+                      gradeOtherDocument.controls[i]['controls'].webDocumentContent.errors?.pattern &&
+                      gradeOtherDocument.controls[i]['controls'].webDocumentContent.touched
+                    "
+                    typeClass="danger">
+                    {{ "error.urlPattern" | translate }}
+                  </ux-control-feedback>
+                  <ux-control-feedback *ngIf="gradeOtherDocument.controls[i]['controls'].webDocumentContent.errors?.maxLength" typeClass="danger">
+                    {{ "error.maxLength.255" | translate }}
+                  </ux-control-feedback>
+                </div>
+                <button
+                  euiButton
+                  [euiIconButton]="true"
+                  [euiBasicButton]="true"
+                  [euiSizeM]="true"
+                  (click)="credentialBuilderService.addOtherDocumentRow(gradeOtherDocument)"
+                  *ngIf="last"
+                  [euiDisabled]="language !== defaultLanguage">
+                  <span euiIcon iconClass="eui-icon eui-icon-add-circle eui-u-color-primary-110"> </span>
+                  <span class="add-label"> {{ "common.add" | translate }} </span>
+                </button>
+                <button
+                  euiButton
+                  [euiIconButton]="true"
+                  [euiBasicButton]="true"
+                  [euiSizeM]="true"
+                  (click)="credentialBuilderService.removeOtherDocumentRow(gradeOtherDocument, i)"
+                  *ngIf="gradeOtherDocument.controls?.length > 1"
+                  [euiDisabled]="language !== defaultLanguage">
+                  <span euiIcon iconClass="eui-icon eui-icon-delete eui-u-color-primary-110"></span>
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- More information -->
+        <div class="form-title form-group mt-4">
+          {{ "common.moreInformation" | translate }}
+        </div>
+
+        <div class="gray-line mb-4"></div>
+
+        <!-- Alternative name -->
+        <div *ngIf="specificationTitle.controls[language]" class="form-group required" [formGroup]="specificationTitle">
+          <label class="d-inline-flex control-label"
+            >{{ "common.title" | translate }}
+            <!-- <span uxTooltip="{{ 'credential-builder.activities-tab.tooltips.altName' | translate }}"
+              position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span> -->
+          </label>
+          <input euiInputText type="text" class="form-control" [formControl]="specificationTitleControl" />
+          <ng-container *ngFor="let control of specificationTitle.controls | keyvalue">
+            <ux-control-feedback *ngIf="control.key === language && control.value.errors?.maxlength" typeClass="danger">
+              {{ "error.maxLength.4000" | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+              *ngIf="control.key === language && control.value.invalid && control.value.errors?.required && control.value.touched"
+              typeClass="danger">
+              {{ "error.required" | translate }}
+            </ux-control-feedback>
+            <ux-control-feedback
+              *ngIf="control.key === language && control.value.invalid && control.value.errors?.onlySpaceError && control.value.touched"
+              typeClass="danger">
+              {{ "error.noBlankSpaceOnly" | translate }}
+            </ux-control-feedback>
+          </ng-container>
+        </div>
+
+        <!-- More information -->
+        <div class="form-group">
+          <edci-more-information
+            *ngIf="language"
+            headerLabel="{{ 'credential-builder.assessment-tab.moreInformation' | translate }}"
+            [additionalFieldsTooltip]="'credential-builder.assessment-tab.tooltips.additionalFields'| translate"
+            [activeLanguage]="language"
+            [selectedLanguages]="selectedLanguages"
+            [removedLanguage]="removedLanguage"
+            [addedLanguage]="addedLanguage"
+            [defaultLanguage]="defaultLanguage"
+            [additionalNoteToEdit]="additionalNoteView"
+            [activeLanguage]="language"
+            (onValueChange)="additionalNoteValueChange($event)"
+            (isValid)="additionalNoteValidityChange($event)">
+          </edci-more-information>
+        </div>
+
+        <!-- Homepage -->
+        <div class="form-group">
+          <label class="d-inline-flex">
+            {{ "credential-builder.assessment-tab.homePage" | translate }}
+            <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.homePage' | translate }}" position="top-right" size="large">
+              <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+            </span>
+          </label>
+          <input euiInputText placeholder="{{'common.public.access.URL' | translate}}" type="text" class="form-control" [formControl]="homePage" [attr.disabled]="language !== defaultLanguage ? '' : null" />
+          <ux-control-feedback *ngIf="homePage.errors?.maxlength" typeClass="danger">
+            {{ "error.maxLength.255" | translate }}
+          </ux-control-feedback>
+          <ux-control-feedback *ngIf="homePage.invalid && homePage.errors?.pattern && homePage.touched" typeClass="danger">
+            {{ "error.urlPattern" | translate }}
+          </ux-control-feedback>
+        </div>
+
+        <div class="form-group" formArrayName="location">
+          <div class="row form-group">
+            <div class="col-12">
+              <label class="">
+                {{ "credential-builder.assessment-tab.assessmentLocation" | translate }}
+                <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.assessmentLocation' | translate }}" position="top-right" size="large">
+                  <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div *ngFor="let addressCtrl of location.controls; let i = index; let first = first; trackByFn" [formGroupName]="i" class="block-container">
+            <edci-address-form
+              [formGroup]="getLocationById(i)"
+              [language]="language"
+              [isPrimaryLanguage]="isPrimaryLanguage"
+              [selectedLanguages]="selectedLanguages"
+              [isFirstGroupMember]="first"
+              [itemIndex]="i"
+              (deleteRow)="onDeleteLocationRow($event)"
+              (addRow)="onAddLocationRow()"
+              (onClose)="closeForm()"
+              [showAddBtn]="false"></edci-address-form>
+          </div>
+        </div>
+        <!-- other docs -->
+        <div formArrayName="specificationOtherDocument">
+          <div class="form-group">
+            <label class="d-inline-flex">
+              {{ "credential-builder.assessment-tab.otherDocuments" | translate }}
+              <span uxTooltip="{{ 'credential-builder.assessment-tab.tooltips.otherDocuments' | translate }}" position="top-right" size="large">
+                <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+              </span>
+            </label>
+            <ng-container *ngFor="let otherDocuments of specificationOtherDocument.controls; let i = index; let last = last">
+              <div [formGroupName]="i" class="row mb-2">
+                <div class="d-block col-5">
+                  <input
+                    euiInputText
+                    type="text"
+                    class="form-control mr-3"
+                    placeholder="{{ 'common.title' | translate }}"
+                    formControlName="webDocumentTitle"
+                    [attr.disabled]="language !== defaultLanguage ? '' : null" />
+                  <ux-control-feedback
+                    *ngIf="specificationOtherDocument.controls[i]['controls'].webDocumentTitle.errors?.maxlength"
+                    typeClass="danger">
+                    {{ "error.maxLength.255" | translate }}
+                  </ux-control-feedback>
+                </div>
+
+                <div class="d-block col-5">
+                  <input
+                    euiInputText
+                    type="text"
+                    class="form-control mr-3"
+                    placeholder="{{ 'common.public.access.URL' | translate }}"
+                    formControlName="webDocumentContent"
+                    [attr.disabled]="language !== defaultLanguage ? '' : null" />
+                  <ux-control-feedback *ngIf="specificationOtherDocument.controls[i].errors?.webDocumentError" typeClass="danger">
+                    {{ "error.webDocument" | translate }}
+                  </ux-control-feedback>
+                  <ux-control-feedback
+                    *ngIf="specificationOtherDocument.controls[i]['controls'].webDocumentContent.errors?.pattern"
+                    typeClass="danger">
+                    {{ "error.urlPattern" | translate }}
+                  </ux-control-feedback>
+                  <ux-control-feedback
+                    *ngIf="specificationOtherDocument.controls[i]['controls'].webDocumentContent.errors?.maxlength"
+                    typeClass="danger">
+                    {{ "error.maxLength.255" | translate }}
+                  </ux-control-feedback>
+                </div>
+
+                <div class="col-2">
+                  <button
+                    euiButton
+                    [euiIconButton]="true"
+                    [euiBasicButton]="true"
+                    [euiSizeM]="true"
+                    (click)="credentialBuilderService.addOtherDocumentRow(specificationOtherDocument)"
+                    *ngIf="last"
+                    [euiDisabled]="language !== defaultLanguage">
+                    <span euiIcon iconClass="eui-icon eui-icon-add-circle eui-u-color-primary-110"> </span>
+                    <span class="add-label"> {{ "common.add" | translate }} </span>
+                  </button>
+                  <button
+                    euiButton
+                    [euiIconButton]="true"
+                    [euiBasicButton]="true"
+                    [euiSizeM]="true"
+                    (click)="credentialBuilderService.removeOtherDocumentRow(specificationOtherDocument, i)"
+                    *ngIf="specificationOtherDocument.controls?.length > 1"
+                    [euiDisabled]="language !== defaultLanguage">
+                    <span euiIcon iconClass="eui-icon eui-icon-delete eui-u-color-primary-110"></span>
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="blue-line mt-5 mb-4"></div>
+
+        <div class="row">
+          <div class="col-6">
+            <!-- Tags -->
+            <div class="tags-wrapper">
+              <label class="d-inline-flex control-label ml-3 tags-label">
+                {{ "common.tag" | translate }}
+                <span uxTooltip="{{ 'common.tooltip.tag' | translate }}" position="top-right" size="large">
+                  <eui-icon iconClass="eui-icon-info-circle-thin eui-u-color-primary-110"></eui-icon>
+                </span>
+              </label>
+              <input placeholder="{{'credential-builder.assessment-tab.placeholder.tag' |translate}}" euiInputText type="text" class="form-control" [formControl]="label" [attr.disabled]="language !== defaultLanguage ? '' : null" />
+              <ux-control-feedback *ngIf="label.errors?.maxlength" typeClass="danger">
+                {{ "error.maxLength.30" | translate }}
+              </ux-control-feedback>
+
+              <ux-control-feedback *ngIf="label.invalid && label.errors?.onlySpaceError && label.touched" typeClass="danger">
+                {{ "error.noBlankSpaceOnly" | translate }}
+              </ux-control-feedback>
+            </div>
+          </div>
+
+          <div class="col-6 justify-content-end d-flex">
+            <edci-cb-modal-footer *ngIf="!isModal" (onClose)="closeForm()" (onSave)="onSave()" [isDisabled]="isLoading"></edci-cb-modal-footer>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner class="spinner" color="primary" mode="indeterminate" value="50"> </mat-progress-spinner>
+  </div>
+
+  <eui-message-box
+    #messageBoxNewEntityWarning
+    typeClass="warning"
+    title="{{ 'common.warning' | translate | uppercase }}"
+    acceptLabel="{{ 'Accept' | uppercase }}"
+    dismissLabel="{{ 'Dismiss' | uppercase }}"
+    (accept)="newEntityClicked(entityWillBeOpened, 'accept')">
+    <p>{{ "credential-builder.formNewEntityWarning" | translate }}</p>
+  </eui-message-box>
+
+  <eui-message-box #messageBoxFormError typeClass="warning" title="{{ 'common.warning' | translate | uppercase }}" messageBoxType="ok">
+    <p>{{ "credential-builder.formError" | translate }}</p>
+  </eui-message-box>
+
+  <edci-organizations-modal
+    *ngIf="openEntityModal['organization']?.isOpen"
+    [modalId]="openEntityModal['organization'].modalId"
+    [editOrganizationOid]="openEntityModal['organization'].oid"
+    (onCloseModal)="closeNewEntityModal($event)"></edci-organizations-modal>
+
+  <edci-assessments-modal
+    *ngIf="openEntityModal['assessment']?.isOpen"
+    [modalId]="openEntityModal['assessment'].modalId"
+    [editAssessmentOid]="openEntityModal['assessment'].oid"
+    (onCloseModal)="closeNewEntityModal($event)"></edci-assessments-modal>
+</div>

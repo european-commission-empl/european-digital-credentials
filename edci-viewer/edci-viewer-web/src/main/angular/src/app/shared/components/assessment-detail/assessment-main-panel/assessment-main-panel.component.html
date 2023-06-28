@@ -1,0 +1,89 @@
+
+        <section *ngIf="activeAssessment?.specifiedBy?.altLabel?.length > 0" class="row">
+            <h6 class="col-12"> {{ 'details.organization-tab.aka' | translate }}</h6>
+            <p *ngFor="let label of activeAssessment.specifiedBy.altLabel" class="col-12">
+                {{ label }}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.awardedBy?.awardingBody?.length > 0" class="row mb-0">
+            <h6 class="col-12">{{ 'details.assessments-tab.conductedBy' | translate }}</h6>
+            <edci-section *ngFor="let awBody of activeAssessment.awardedBy.awardingBody" [isExpanded]="true" [isMainTitle]="true"
+            [title]="getAwardingBodyName(awBody)" class="row mb-0">
+                <edci-contact-detail *ngFor="let cPoint of awBody.contactPoint"
+                    [contact]="cPoint">
+                </edci-contact-detail>
+                <edci-viewer-identifiers
+                    [eidasIdentifier]="awBody?.geteIDASIdentifier"
+                    [vatIdentifiers]="awBody?.vatIdentifier"
+                    [taxIdentifiers]="awBody?.taxIdentifier"
+                    [registration]="awBody?.registration"
+                    [identifiers]="awBody?.identifier"
+                    [nationalID]="awBody?.nationalID"
+                >
+                </edci-viewer-identifiers>
+            </edci-section>
+        </section>
+
+        <section *ngIf="activeAssessment?.dateIssued" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.assessmentDate' | translate}}</h6>
+            <p class="col-12">{{ activeAssessment.dateIssued }}</p>
+        </section>
+
+        <section *ngIf="activeAssessment.grade || activeAssessment.gradeStatus" class="row mb-0">
+            <section *ngIf="activeAssessment.grade" class="col-3">
+                <div class="row">
+                    <h6 class="col-12">{{ 'details.assessments-tab.grade' | translate }}</h6>
+                    <p *ngFor="let grade of activeAssessment?.grade?.noteLiteral" class="col-12"> {{ grade }}</p>
+                </div>
+            </section>
+            <section *ngIf="activeAssessment.gradeStatus" class="col-3">
+                <div class="row">
+                    <h6 class="col-12">{{ 'details.assessments-tab.gradeStatus' | translate }}</h6>
+                    <p class="col-12">{{ activeAssessment.gradeStatus }}</p>
+                </div>
+            </section>
+        </section>
+
+        <edci-section *ngIf="activeAssessment?.description?.length > 0" class="row" [title]="'details.assessments-tab.description' | translate">
+            <p *ngFor="let description of activeAssessment.description" class="col-12">{{ description }}</p>
+        </edci-section>
+
+        <!--<div *ngIf="activeAssessment?.conductedBy">
+            <edci-detail-organisation-section
+                [organisation]="activeAssessment.conductedBy"
+            >
+            </edci-detail-organisation-section>
+        </div>
+
+        <ng-container>
+            <div
+                *ngIf="activeAssessment.issuedDate || activeAssessment.grade"
+                class="awarding-information d-flex"
+            >
+                <div
+                    *ngIf="activeAssessment.issuedDate"
+                    class="d-flex mr-4 flex-column"
+                >
+                    <p class="field-title">
+                        {{
+                            'details.assessments-tab.assessmentDate' | translate
+                        }}
+                    </p>
+                    <p>{{ activeAssessment.issuedDate }}</p>
+                </div>
+                <div *ngIf="activeAssessment.grade" class="d-flex flex-column">
+                    <p class="field-title">
+                        {{ 'details.assessments-tab.grade' | translate }}
+                    </p>
+                    <p>{{ activeAssessment.grade }}</p>
+                </div>
+            </div>
+            <div *ngIf="activeAssessment?.description">
+                <p>{{ activeAssessment.description }}</p>
+            </div>
+            <br>
+            <div *ngIf="activeAssessment?.specifiedBy?.description">
+                <p>{{ activeAssessment.specifiedBy.description }}</p>
+            </div>
+        </ng-container>-->

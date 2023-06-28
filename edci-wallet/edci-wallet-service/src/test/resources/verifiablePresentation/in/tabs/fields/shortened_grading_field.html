@@ -1,0 +1,16 @@
+<div th:fragment="shortened(shortenedGrading)">
+    <strong>[[#{details.assessments-tab.gradeDetails}]]</strong>
+    <!--TODO: Anthony doubts pending-->
+    <p th:if="${shortenedGrading.percentageLower}">
+        <strong>[[#{details.assessments-tab.percentageLower}]]: </strong><span
+            th:text="${shortenedGrading.percentageLower}"></span>
+    </p>
+    <p th:if="${shortenedGrading.percentageEqual}">
+        <strong>[[#{details.assessments-tab.percentageEqual}]]: </strong><span
+            th:text="${shortenedGrading.percentageEqual}"></span>
+    </p>
+    <p th:if="${shortenedGrading.percentageHigher}">
+        <strong>[[#{details.assessments-tab.percentageHigher}]]: </strong><span
+            th:text="${shortenedGrading.percentageHigher}"></span>
+    </p>
+</div>

@@ -1,0 +1,5 @@
+{
+  "@context":["https://www.w3.org/2018/credentials/v1","http://dev.everisdx.io/datamodel/edc-ap-context.jsonld"],
+  "@type": ["VerifiableCredential", "EuropeanDigitalCredential"],
+  "@embed": "@always"
+}

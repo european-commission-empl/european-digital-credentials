@@ -1,0 +1,32 @@
+ux-tabs.modal-tabs {
+    .ux-tab-content {
+        display: none;
+    }
+
+    div.ux-tabs {
+        background-color: transparent;
+        border: solid 1px #e0e0e0;
+        border-radius: 3px;
+        padding: 0.5rem;
+
+        .ux-tab-item {
+            border-bottom: solid 3px #6b6b6b;
+            margin-right: 3px;
+            padding: 0.5rem 1rem 0.5rem 0.75rem;
+
+            &:hover {
+                border-top: 3px solid transparent;
+            }
+
+            .ux-a-label__content {
+                padding-right: 1.25rem;
+            }
+        }
+
+        .ux-tab-item--active {
+            background-color: rgba(48, 150, 166, 0.11);
+            border-bottom: solid 3px #004791;
+            border-top: 3px solid transparent;
+        }
+    }
+}

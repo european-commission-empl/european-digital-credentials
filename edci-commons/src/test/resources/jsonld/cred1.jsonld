@@ -1,0 +1,27 @@
+{
+   "id":"urn:credential:0bd26efe-6605-468b-845b-5acf00fabb20",
+   "type":[
+      "VerifiableCredential",
+      "EuropeanDigitalCredential"
+   ],
+   "credentialSubject":{
+      "id":"urn:person:1",
+      "type":"Person",
+      "familyName":"Power",
+      "givenName":"Max"
+   },
+   "expirationDate":"2022-09-15T14:12:39.238+02:00",
+   "issuanceDate":"2022-09-15T14:12:39.137+02:00",
+   "issued":"2022-09-15T14:12:39.137+02:00",
+   "issuer":{
+      "id":"urn:org:1",
+      "type":"Organisation",
+      "name":"name"
+   },
+   "validFrom":"2022-09-15T14:12:39.137+02:00",
+   "validUntil":"2022-09-15T14:12:39.238+02:00",
+   "@context":[
+      "https://www.w3.org/2018/credentials/v1",
+      "http://dev.everisdx.io/datamodel/context/minExtendedContext.jsonld"
+   ]
+}

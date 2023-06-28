@@ -1,0 +1,37 @@
+@import '/src/assets/styles/textarea/textarea.scss';
+
+.learningOutcomeModal {
+    .cb-modal-form-wrapper {
+        font-size: 14px;
+        .form-group-container{
+            .controlled-lists{
+                .col-6{
+                    position: relative;
+                    width: 100%;
+                    min-height: 1px;
+                    padding-right: 1rem;
+                    padding-left: 1rem;
+                    flex-basis: 50%;
+                }
+            }
+        }
+    }
+
+    .modal-button-accept {
+        padding: 0.8rem 4rem;
+    }
+
+    .modal-button-dismiss {
+        padding: 0.7rem 3.9rem;
+    }
+
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+}
+
+edci-learning-outcomes {
+    input {
+        height: 38.5px !important;
+    }
+}

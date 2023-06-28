@@ -1,0 +1,77 @@
+<edci-panel *ngIf="activeAchievement?.specifiedBy?.learningOutcome?.length > 0"
+    [title]="'details.achievements-tab.learningOutcomes' | translate">
+    <div class="row justify-content-evenly">
+        <ng-container *ngFor="let outcome of activeAchievement.specifiedBy.learningOutcome; index as i">
+            <div class="col-6">
+                <section class="learning-outcome-card">
+                    <div class="d-flex flex-column">
+                        <p class="learning-outcome-card_title">
+                            {{ outcome.title }}
+                        </p>
+                    </div>
+                    <div *ngIf="isLearningOutcomeExpanded[i]" class="learning-outcome-card_content">
+                        <div *ngIf="outcome.dcType" class="learning-outcome-card_content-item">
+                            <p class="learning-outcome-card_content-item_title">
+                                {{ 'details.achievements-tab.type' | translate }}
+                            </p>
+                            <p class="learning-outcome-card_content-item_content">
+                                {{ outcome.dcType }}
+                            </p>
+                        </div>
+                        <div *ngIf="outcome.reusabilityLevel" class="learning-outcome-card_content-item">
+                            <p class="learning-outcome-card_content-item_title">
+                                {{ 'details.achievements-tab.reusabilityLevel' | translate }}
+                            </p>
+                            <p class="learning-outcome-card_content-item_content">
+                                {{ outcome.reusabilityLevel }}
+                            </p>
+                        </div>
+                        <div *ngIf="outcome.relatedESCOSkill" class="learning-outcome-card_content-item">
+                            <p class="learning-outcome-card_content-item_title">
+                                {{ 'details.achievements-tab.relatedESCOSkills' | translate }}
+                            </p>
+                            <div>
+                                <ng-container *ngFor="let skill of outcome.relatedESCOSkill;
+                                                let isLast = last                                        ">
+                                    <a class="skill-link" [href]="skill.link" target="_blank">
+                                        {{ skill.title }}
+                                    </a>
+                                    {{ isLast ? '' : ', ' }}
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div *ngIf="outcome.relatedSkill" class="learning-outcome-card_content-item">
+                            <p class="learning-outcome-card_content-item_title">
+                                {{ 'details.achievement-tab.relatedSkill' | translate }}
+                            </p>
+                            <div *ngFor="let skill of outcome.relatedSkill;
+                                            let isLast = last" [ngClass]="{ 'mb-3': !lastSkillGroup }">
+                                <a class="skill-link" [href]="skill.link" target="_blank">
+                                    {{ skill.title ? skill.title : skill.link }}
+                                </a>
+                                {{ isLast ? '' : ', ' }}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="
+                                    d-flex
+                                    float-right
+                                    cursor-pointer
+                                    align-items-center
+                                    learning-outcome-card_show-more
+                                " (click)="toggleLearningOutcome(i)">
+                        <p class="learning-outcome-card_show-more-text">
+                            {{ isLearningOutcomeExpanded[i] ?
+                            ('common.showLess' | translate) : ('common.showMore' | translate)
+                            }}
+                        </p>
+                        <i class="learning-outcome-card_show-more-img fa fa-chevron-down"
+                            [ngClass]="{'rotate-180': isLearningOutcomeExpanded[i]}">
+                        </i>
+                    </div>
+                </section>
+            </div>
+        </ng-container>
+    </div>
+</edci-panel>

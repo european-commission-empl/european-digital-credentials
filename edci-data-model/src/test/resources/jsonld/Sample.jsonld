@@ -1,0 +1,984 @@
+{
+	"@graph": [{
+		"@id": "http://data.europa.eu/esco/qdr/organizations/1",
+		"@type": ["foaf:Agent", "elm:Organisation"],
+		"location": "http://data.europa.eu/snb/data-dev/europassResource/851ef320-ce32-443d-b9e4-c75462ff3877",
+		"status": "released",
+		"vatIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/c7adf265-a940-4e3c-999f-0e27a80c6601",
+		"modified": "2023-05-08T08:07:52Z",
+		"altLabel": {
+			"@language": "en",
+			"@value": "Organization one"
+		},
+		"legalName": {
+			"@language": "en",
+			"@value": "First organization"
+		},
+		"homepage": "http://data.europa.eu/snb/data-dev/europassResource/58183208-1fbd-40a9-af3f-327cc6a579fe"
+	}, {
+		"@id": "http://data.europa.eu/snb/accreditation/003293d2ce",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/accreditation/7ee86686-87ec-4752-8100-021715065ec1",
+		"@type": "elm:Accreditation",
+		"accreditingAgent": "http://data.europa.eu/snb/data-dev/europassResource/463829f9-51a8-4c6f-a3e2-e928e1679aca",
+		"additionalNote": "http://data.europa.eu/snb/data-dev/europassResource/144e4c90-5f4e-4cd4-9dd2-4952b3e39017",
+		"expiryDate": "2025-05-20T00:00:00Z",
+		"landingPage": ["http://data.europa.eu/snb/data-dev/europassResource/0fb83d5c-323f-4090-b267-f1ff6324c676", "http://data.europa.eu/snb/data-dev/europassResource/8c0d0e1f-51f6-4afa-9888-8c19f4c84932"],
+		"limitEQFLevel": ["http://data.europa.eu/snb/eqf/7", "http://data.europa.eu/snb/eqf/6"],
+		"limitField": "http://data.europa.eu/snb/isced-f/00",
+		"limitJurisdiction": "http://publications.europa.eu/resource/authority/atu/FIN",
+		"organisation": "http://data.europa.eu/snb/data-dev/europassResource/eca334c4-677c-4d7d-a5f8-6855805b94d5",
+		"report": "http://data.europa.eu/snb/data-dev/europassResource/f10fbad6-486f-4846-8d16-10f548ddea1b",
+		"reviewDate": "2025-05-20T00:00:00Z",
+		"status": "released",
+		"supplementaryDocument": ["http://data.europa.eu/snb/data-dev/europassResource/eac4fba9-39d9-4ec8-b33e-6a4da204a137", "http://data.europa.eu/snb/data-dev/europassResource/ba6f33b0-7b66-4ad0-9a0d-c2a6562a81b5"],
+		"description": [{
+			"@language": "fi",
+			"@value": ""
+		}, {
+			"@language": "en",
+			"@value": "Accreditation is carried out according to globally uniform policies and requirements. International evaluations have revealed that FINAS’s operations are on an equal footing with accreditation activities in other countries.\n        This enables the worldwide acceptability of certificates and results issued by bodies accredited in Finland.; The European Quality Assurance Register for Higher Education (EQAR) is the official register of such agencies, listing those that work in line with an agreed common framework to ensure the quality of higher education institutions and study programmes.\n        EQAR launched the Database of External Quality Assurance Results (DEQAR) in 2018 to ensure direct access to the reports and decisions of EQAR-registered agencies."
+		}],
+		"issued": "2019-05-20T00:00:00Z",
+		"modified": "2023-05-08T08:07:52Z",
+		"publisher": "http://data.europa.eu/esco/qdr/organizations/1",
+		"title": [{
+			"@language": "en",
+			"@value": "FINEEC: Institutional audit\n        Audit of Jyväskylä University of Applied Sciences"
+		}, {
+			"@language": "fi",
+			"@value": "FINEEC: Institutional audit Audit of Jyväskylä University of Applied Sciences"
+		}],
+		"type": "http://data.europa.eu/snb/accreditation/003293d2ce",
+		"valid": "2019-05-20T00:00:00Z",
+		"identifier": ["http://data.europa.eu/snb/data-dev/europassResource/cb84217c-6fcf-4df0-98b9-8db691661a1c", "http://data.europa.eu/snb/data-dev/europassResource/f262c24a-5045-444c-ad63-a08f90a67575"],
+		"homepage": ["http://data.europa.eu/snb/data-dev/europassResource/923ec564-0152-4a4f-8995-e9fc076dc4b7", "http://data.europa.eu/snb/data-dev/europassResource/462e187d-c600-4eaf-9669-a04bf39b72a4"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/0379823f-5980-4ae8-92e8-417179114430",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "notaLiteral0"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/052976b5-f6cb-4e8f-b28c-c9a23713d99e",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"schemeName": "schemeName43",
+		"schemeVersion": "schemeVersion43",
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"type": "http://www.oxygenxml.com/",
+		"notation": "10065502",
+		"schemeAgency": {
+			"@language": "en",
+			"@value": "schemeAgency1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/094823ef-637f-43e2-8eed-076c510c2673",
+		"@type": "elm:Address",
+		"countryCode": "http://publications.europa.eu/resource/authority/country/BEL",
+		"fullAddress": "http://data.europa.eu/snb/data-dev/europassResource/c6f67261-21e7-4abe-b3b6-53776716bd24"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/0d93399b-d4e6-4254-88cc-5011aeb30931",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://unix.edu",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/0fb83d5c-323f-4090-b267-f1ff6324c676",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://auditoinnit.karvi.fi/luvut/tiivistelma-3/",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/1014fd9c-64f6-4f79-8244-bc23b23455bd",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/144e4c90-5f4e-4cd4-9dd2-4952b3e39017",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "FINEEC's audit reports are meant to be read on FINEEC's digital audit platform https://auditoinnit.karvi.fi/auditoinnit/en/. This PDF is a printout of the website.; You can access the full accreditation report from the DEQAR portal."
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/209baf85-6a35-49fc-8a4c-e3ff4b844a36",
+		"@type": "elm:Address",
+		"countryCode": "http://publications.europa.eu/resource/authority/country/ESP"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/222658f6-149c-47a1-9077-08989081a690",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "12345678"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/33fd5667-2244-4020-b8e5-90f4518869a4",
+		"@type": "dct:Location",
+		"address": ["http://data.europa.eu/snb/data-dev/europassResource/094823ef-637f-43e2-8eed-076c510c2673", "http://data.europa.eu/snb/data-dev/europassResource/bd3a6619-b63f-4e7c-a342-a19d1d71049b"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/398eaa64-e44c-4c5d-9204-a520318987ca",
+		"@type": "elm:Address",
+		"countryCode": "http://publications.europa.eu/resource/authority/country/FIN",
+		"fullAddress": "http://data.europa.eu/snb/data-dev/europassResource/dbaf5ed2-981f-40c6-a62a-cee4514ef652"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/39eff4e7-3bf9-42bf-827f-a4d6312201e3",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "2489854"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/3c4c4de5-dfe9-48d5-8c55-a3eda58dc835",
+		"@type": "elm:Phone",
+		"areaDialing": "46",
+		"countryDialing": "32",
+		"dialNumber": "dialNumber8",
+		"phoneNumber": "+32464111111"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/41d8fa7d-8c6e-4ab6-9799-a33173db714e",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://www.jamk.fi/en",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/42f8cb3e-6aec-487d-b0a2-9fca9a04238e",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"schemeName": "schemeName43",
+		"schemeVersion": "schemeVersion43",
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"type": "http://www.oxygenxml.com/",
+		"notation": "notation1",
+		"schemeAgency": {
+			"@language": "en",
+			"@value": "schemeAgency1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/437f9cd1-5fd4-4829-829e-394e83c0965b",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/462e187d-c600-4eaf-9669-a04bf39b72a4",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://auditoinnit.karvi.fi/",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/463829f9-51a8-4c6f-a3e2-e928e1679aca",
+		"@type": ["foaf:Agent", "elm:Organisation"],
+		"additionalNote": "http://data.europa.eu/snb/data-dev/europassResource/6c877b7d-75dc-4439-ac22-161245e27383",
+		"eidasLegalIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/cf916cda-3250-4b59-8b30-dc8c41493555",
+		"location": "http://data.europa.eu/snb/data-dev/europassResource/33fd5667-2244-4020-b8e5-90f4518869a4",
+		"status": "released",
+		"taxIdentifier": ["http://data.europa.eu/snb/data-dev/europassResource/5de414fa-4d46-4a40-87f5-637af4132fc7", "http://data.europa.eu/snb/data-dev/europassResource/73749f6d-3bfa-4693-acb2-57220024700c"],
+		"vatIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/cbce31d5-c1b6-40dc-a2fa-eb71d1f7e963",
+		"modified": "2023-05-08T08:07:52Z",
+		"identifier": "http://data.europa.eu/snb/data-dev/europassResource/843dfa67-5f0e-4584-b497-5a5d1c795682",
+		"legalName": [{
+			"@language": "fi",
+			"@value": "Finnish Education Evaluation Centre (FINEEC)"
+		}, {
+			"@language": "en",
+			"@value": "Finnish Education Evaluation Centre (FINEEC)"
+		}],
+		"homepage": ["http://data.europa.eu/snb/data-dev/europassResource/626b236a-8fe0-4d46-8daf-46c71c7b9879", "http://data.europa.eu/snb/data-dev/europassResource/ba41dd9d-23ef-48bd-81a5-06b5f39c3fed"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/4e39db9c-96ec-4f88-a252-37db7113fd8f",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/56bf4621-b304-46ab-9caa-1f103dbb6300",
+		"@type": "elm:Phone",
+		"phoneNumber": "326795857"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/58183208-1fbd-40a9-af3f-327cc6a579fe",
+		"@type": "elm:WebResource",
+		"contentUrl": "http://university-of-hasselt/"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/583fb305-fd88-4600-834c-904a36f27fdf",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://unix.eu/contact/en/contact-form/"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/597fcd26-79c0-48e4-8384-770c85c2edf3",
+		"@type": "elm:Group",
+		"prefLabel": {
+			"@language": "en",
+			"@value": "European University Association"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/5c988050-4fd0-494e-adb5-f5ebb8a9502b",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "Jyväskylä, Rajakatu 35, 40200 Jyväskylä, Finland"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/5de414fa-4d46-4a40-87f5-637af4132fc7",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/626b236a-8fe0-4d46-8daf-46c71c7b9879",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://www.jamk.fi/en",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/6564e4d9-cfaf-424c-968c-a4b251029d8a",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"schemeName": "schemeName0",
+		"issued": "2006-05-04T18:13:51",
+		"notation": "notation0-ORG-05"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/67916d5f-9a13-4443-a9d0-5c0af2d04c73",
+		"@type": ["foaf:Agent", "elm:Organisation"],
+		"additionalNote": "http://data.europa.eu/snb/data-dev/europassResource/b72db1d2-f687-4a63-9a67-7e5445cfb218",
+		"eidasLegalIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/b0ba4f53-0361-43b2-a639-11a833b4663f",
+		"location": "http://data.europa.eu/snb/data-dev/europassResource/33fd5667-2244-4020-b8e5-90f4518869a4",
+		"status": "released",
+		"taxIdentifier": ["http://data.europa.eu/snb/data-dev/europassResource/4e39db9c-96ec-4f88-a252-37db7113fd8f", "http://data.europa.eu/snb/data-dev/europassResource/1014fd9c-64f6-4f79-8244-bc23b23455bd"],
+		"vatIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/42f8cb3e-6aec-487d-b0a2-9fca9a04238e",
+		"modified": "2023-05-08T08:07:52Z",
+		"identifier": "http://data.europa.eu/snb/data-dev/europassResource/6564e4d9-cfaf-424c-968c-a4b251029d8a",
+		"hasSubOrganization": "http://data.europa.eu/snb/data-dev/europassResource/eca334c4-677c-4d7d-a5f8-6855805b94d5",
+		"legalName": [{
+			"@language": "fi",
+			"@value": "Faculty of Engineering"
+		}, {
+			"@language": "en",
+			"@value": "Faculty of Engineering"
+		}],
+		"homepage": ["http://data.europa.eu/snb/data-dev/europassResource/0d93399b-d4e6-4254-88cc-5011aeb30931", "http://data.europa.eu/snb/data-dev/europassResource/41d8fa7d-8c6e-4ab6-9799-a33173db714e"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/6c877b7d-75dc-4439-ac22-161245e27383",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "notaLiteral0"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/6ec8b638-b085-445a-8711-0fdf84dbecfb",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"schemeName": "UniAssociation ID",
+		"issued": "2006-05-04T18:13:51",
+		"notation": "42424242"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/71b57763-c964-4554-a4e9-14a419edaf9c",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"schemeName": "schemeName0",
+		"issued": "2006-05-04T18:13:51",
+		"notation": "notation0-ORG-03"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/73749f6d-3bfa-4693-acb2-57220024700c",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/79e949a0-d22e-4c11-8565-24078e919236",
+		"@type": "elm:ContactPoint",
+		"address": ["http://data.europa.eu/snb/data-dev/europassResource/398eaa64-e44c-4c5d-9204-a520318987ca", "http://data.europa.eu/snb/data-dev/europassResource/209baf85-6a35-49fc-8a4c-e3ff4b844a36"],
+		"contactForm": ["http://data.europa.eu/snb/data-dev/europassResource/583fb305-fd88-4600-834c-904a36f27fdf", "http://data.europa.eu/snb/data-dev/europassResource/96317c0a-92da-4dd1-8c87-27656cf192d1"],
+		"mailbox": ["mailto:another-contact@jamk.edu", "mailto:contact@unix.edu"],
+		"phone": ["http://data.europa.eu/snb/data-dev/europassResource/56bf4621-b304-46ab-9caa-1f103dbb6300", "http://data.europa.eu/snb/data-dev/europassResource/3c4c4de5-dfe9-48d5-8c55-a3eda58dc835"],
+		"description": {
+			"@language": "en",
+			"@value": "You will usually receive an answer within 3 working days (more complex enquiries may take longer)"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/843dfa67-5f0e-4584-b497-5a5d1c795682",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"schemeName": "schemeName0",
+		"issued": "2006-05-04T18:13:51",
+		"notation": "notation0-ORG-02"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/851ef320-ce32-443d-b9e4-c75462ff3877",
+		"@type": "dct:Location",
+		"address": "http://data.europa.eu/snb/data-dev/europassResource/9515f2ed-f112-4125-9a87-9c391b773715"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/8c0d0e1f-51f6-4afa-9888-8c19f4c84932",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://karvi.fi/publication/accreditation-degree-programme-information-communications-technology-jamk-university-applied-sciences/",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/9205827f-aafb-4eec-a1b8-6351aafc25d1",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "eIDAS-12345"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/923ec564-0152-4a4f-8995-e9fc076dc4b7",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://karvi.fi/",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/92dbcc59-88f3-4966-91d5-3366907763cc",
+		"@type": ["foaf:Agent", "elm:Organisation"],
+		"additionalNote": "http://data.europa.eu/snb/data-dev/europassResource/0379823f-5980-4ae8-92e8-417179114430",
+		"eidasLegalIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/b1fce6f4-a073-4282-a4e5-84fcdc2a1267",
+		"location": "http://data.europa.eu/snb/data-dev/europassResource/33fd5667-2244-4020-b8e5-90f4518869a4",
+		"status": "released",
+		"taxIdentifier": ["http://data.europa.eu/snb/data-dev/europassResource/437f9cd1-5fd4-4829-829e-394e83c0965b", "http://data.europa.eu/snb/data-dev/europassResource/f3014754-ca31-4332-b28e-0593c702cf2c"],
+		"vatIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/cda0b0cf-6522-4c73-9e09-15ae815eb768",
+		"modified": "2023-05-08T08:07:52Z",
+		"identifier": "http://data.europa.eu/snb/data-dev/europassResource/71b57763-c964-4554-a4e9-14a419edaf9c",
+		"subOrganizationOf": "http://data.europa.eu/snb/data-dev/europassResource/eca334c4-677c-4d7d-a5f8-6855805b94d5",
+		"legalName": [{
+			"@language": "fi",
+			"@value": "Faculty of Civil Engineering, Architecture and Geodesy"
+		}, {
+			"@language": "en",
+			"@value": "Faculty of Civil Engineering, Architecture and Geodesy"
+		}],
+		"homepage": ["http://data.europa.eu/snb/data-dev/europassResource/98eaeea6-68a1-4eed-89c1-968a641798e7", "http://data.europa.eu/snb/data-dev/europassResource/b67ce5f2-3a1f-4aa5-ae34-4be58bd92b3f"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/9515f2ed-f112-4125-9a87-9c391b773715",
+		"@type": "elm:Address",
+		"countryCode": "http://publications.europa.eu/resource/authority/country/BEL",
+		"fullAddress": "http://data.europa.eu/snb/data-dev/europassResource/dc84bb2f-1360-45b6-8310-d15917f02f68"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/956fe786-180f-4961-a7b6-6a8a81e9eadf",
+		"@type": "elm:MediaObject",
+		"content": "content2",
+		"contentEncoding": "http://data.europa.eu/snb/encoding/6146cde7dd",
+		"contentSize": "0",
+		"contentType": "http://publications.europa.eu/resource/authority/file-type/7Z",
+		"description": {
+			"@language": "en",
+			"@value": "a logo"
+		},
+		"title": {
+			"@language": "en",
+			"@value": "logo"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/96317c0a-92da-4dd1-8c87-27656cf192d1",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://europa.eu/europass/en/contact-us/submit-query",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": {
+			"@language": "en",
+			"@value": "title1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/98eaeea6-68a1-4eed-89c1-968a641798e7",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://www.jamk.fi/en",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/a74068b2-6066-466f-8962-3fbc542f2e4e",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "FI0504"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/b0ba4f53-0361-43b2-a639-11a833b4663f",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation1"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/b1fce6f4-a073-4282-a4e5-84fcdc2a1267",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation1"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/b67ce5f2-3a1f-4aa5-ae34-4be58bd92b3f",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://unix.edu",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/b72db1d2-f687-4a63-9a67-7e5445cfb218",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "notaLiteral0"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/ba41dd9d-23ef-48bd-81a5-06b5f39c3fed",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://unix.edu",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/ba6f33b0-7b66-4ad0-9a0d-c2a6562a81b5",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://data.deqar.eu/report/48198",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/bd3a6619-b63f-4e7c-a342-a19d1d71049b",
+		"@type": "elm:Address",
+		"countryCode": "http://publications.europa.eu/resource/authority/country/FIN",
+		"fullAddress": "http://data.europa.eu/snb/data-dev/europassResource/5c988050-4fd0-494e-adb5-f5ebb8a9502b"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/c116cce5-148e-4d88-a37e-acbb19c66568",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"schemeName": "schemeName44",
+		"schemeVersion": "schemeVersion44",
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"type": "http://www.oxygenxml.com/",
+		"notation": "4548764",
+		"schemeAgency": {
+			"@language": "en",
+			"@value": "schemeAgency1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/c18288d8-a17e-44fb-89c1-8049484a925f",
+		"@type": "elm:ContactPoint",
+		"mailbox": "mailto:research.alliance@eu.edu.com"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/c6f67261-21e7-4abe-b3b6-53776716bd24",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "Blue Glass Street 50, 1090, Forest, Brussels"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/c7adf265-a940-4e3c-999f-0e27a80c6601",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"spatial": "http://publications.europa.eu/resource/authority/country/BEL",
+		"notation": "BE0123432123"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/cb84217c-6fcf-4df0-98b9-8db691661a1c",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"issued": "2006-05-04T18:13:51",
+		"notation": "48198"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/cbce31d5-c1b6-40dc-a2fa-eb71d1f7e963",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"schemeName": "schemeName43",
+		"schemeVersion": "schemeVersion43",
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"type": "http://www.oxygenxml.com/",
+		"notation": "notation1",
+		"schemeAgency": {
+			"@language": "en",
+			"@value": "schemeAgency1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/cda0b0cf-6522-4c73-9e09-15ae815eb768",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"schemeName": "schemeName43",
+		"schemeVersion": "schemeVersion43",
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"type": "http://www.oxygenxml.com/",
+		"notation": "notation1",
+		"schemeAgency": {
+			"@language": "en",
+			"@value": "schemeAgency1"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/cf916cda-3250-4b59-8b30-dc8c41493555",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation1"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/d30b385b-fb53-4897-a4d0-a512741f5de2",
+		"@type": "elm:Group",
+		"contactPoint": "http://data.europa.eu/snb/data-dev/europassResource/c18288d8-a17e-44fb-89c1-8049484a925f",
+		"prefLabel": {
+			"@language": "en",
+			"@value": "Research Alliance"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/dbaf5ed2-981f-40c6-a62a-cee4514ef652",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "Jyväskylä, Rajakatu 35, 40200 Jyväskylä, Finland"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/dc84bb2f-1360-45b6-8310-d15917f02f68",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "Kerkstraat 1, 3500 Hasselt"
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/e30b6116-3cef-4f3d-ac5a-aba99058c0b1",
+		"@type": "elm:Note",
+		"noteLiteral": {
+			"@language": "en",
+			"@value": "JAMK is a higher education institution that deliver university study programmes in two scientific areas in a greater number of fields. The University has constitutent higher education institutions which are legal entities and are called faculties.; JAMK is a creative reinvented institute of higher education. They develop and strengthen learning, competence and competitiveness together with partners and cooperation networks, both in Finland and internationally. They have over 8 500 students and 900 employees."
+		}
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/e44265fc-d3e3-4105-8945-df02dee4407c",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://www.jamk.fi/en",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/eac4fba9-39d9-4ec8-b33e-6a4da204a137",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://data.deqar.eu/report/190",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/eca334c4-677c-4d7d-a5f8-6855805b94d5",
+		"@type": ["elm:Organisation", "foaf:Agent"],
+		"additionalNote": "http://data.europa.eu/snb/data-dev/europassResource/e30b6116-3cef-4f3d-ac5a-aba99058c0b1",
+		"contactPoint": "http://data.europa.eu/snb/data-dev/europassResource/79e949a0-d22e-4c11-8565-24078e919236",
+		"eidasLegalIdentifier": "http://data.europa.eu/snb/data-dev/europassResource/9205827f-aafb-4eec-a1b8-6351aafc25d1",
+		"groupMemberOf": ["http://data.europa.eu/snb/data-dev/europassResource/597fcd26-79c0-48e4-8384-770c85c2edf3", "http://data.europa.eu/snb/data-dev/europassResource/d30b385b-fb53-4897-a4d0-a512741f5de2"],
+		"location": "http://data.europa.eu/snb/data-dev/europassResource/33fd5667-2244-4020-b8e5-90f4518869a4",
+		"logo": "http://data.europa.eu/snb/data-dev/europassResource/956fe786-180f-4961-a7b6-6a8a81e9eadf",
+		"status": "released",
+		"taxIdentifier": ["http://data.europa.eu/snb/data-dev/europassResource/39eff4e7-3bf9-42bf-827f-a4d6312201e3", "http://data.europa.eu/snb/data-dev/europassResource/222658f6-149c-47a1-9077-08989081a690"],
+		"vatIdentifier": ["http://data.europa.eu/snb/data-dev/europassResource/c116cce5-148e-4d88-a37e-acbb19c66568", "http://data.europa.eu/snb/data-dev/europassResource/052976b5-f6cb-4e8f-b28c-c9a23713d99e"],
+		"modified": "2023-05-08T08:07:52Z",
+		"altLabel": [{
+			"@language": "fi",
+			"@value": "Jamk University"
+		}, {
+			"@language": "en",
+			"@value": "Jamk University"
+		}, {
+			"@language": "en",
+			"@value": "JAMK"
+		}, {
+			"@language": "fi",
+			"@value": "JAMK"
+		}, {
+			"@language": "fi",
+			"@value": "University of Applied Sciences"
+		}, {
+			"@language": "en",
+			"@value": "University of Applied Sciences"
+		}],
+		"identifier": "http://data.europa.eu/snb/data-dev/europassResource/6ec8b638-b085-445a-8711-0fdf84dbecfb",
+		"hasSubOrganization": "http://data.europa.eu/snb/data-dev/europassResource/92dbcc59-88f3-4966-91d5-3366907763cc",
+		"subOrganizationOf": "http://data.europa.eu/snb/data-dev/europassResource/67916d5f-9a13-4443-a9d0-5c0af2d04c73",
+		"legalName": [{
+			"@language": "fi",
+			"@value": "JAMK University of Applied Sciences"
+		}, {
+			"@language": "en",
+			"@value": "JAMK University of Applied Sciences"
+		}],
+		"registration": "http://data.europa.eu/snb/data-dev/europassResource/a74068b2-6066-466f-8962-3fbc542f2e4e",
+		"homepage": ["http://data.europa.eu/snb/data-dev/europassResource/fc844501-0a2e-492c-83ad-6ed493566e82", "http://data.europa.eu/snb/data-dev/europassResource/e44265fc-d3e3-4105-8945-df02dee4407c"]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/f10fbad6-486f-4846-8d16-10f548ddea1b",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://backend.deqar.eu/reports/FINEEC/20200303_1404_JAMK_auditointi.pdf",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "Accreditation report"
+		}, {
+			"@language": "en",
+			"@value": "Accreditation report"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/f262c24a-5045-444c-ad63-a08f90a67575",
+		"@type": ["elm:Identifier", "adms:Identifier"],
+		"issued": "2006-05-04T18:13:51",
+		"notation": "190"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/f3014754-ca31-4332-b28e-0593c702cf2c",
+		"@type": ["adms:Identifier", "elm:LegalIdentifier"],
+		"issued": "2006-05-04T18:13:51",
+		"spatial": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"notation": "notation0"
+	}, {
+		"@id": "http://data.europa.eu/snb/data-dev/europassResource/fc844501-0a2e-492c-83ad-6ed493566e82",
+		"@type": "elm:WebResource",
+		"contentUrl": "https://unix.edu",
+		"language": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"title": [{
+			"@language": "fi",
+			"@value": "title1"
+		}, {
+			"@language": "en",
+			"@value": "title1"
+		}]
+	}, {
+		"@id": "http://data.europa.eu/snb/encoding/6146cde7dd",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://data.europa.eu/snb/eqf/6",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://data.europa.eu/snb/eqf/7",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://data.europa.eu/snb/isced-f/00",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/atu/FIN",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/country/BEL",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/country/ESP",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/country/FIN",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/file-type/7Z",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+		"@type": "skos:Concept"
+	}, {
+		"@id": "http://www.oxygenxml.com/",
+		"@type": ["skos:ConceptScheme", "skos:Concept"],
+		"altLabel": [{
+			"@language": "fi",
+			"@value": "altLabel1"
+		}, {
+			"@language": "en",
+			"@value": "altLabel0"
+		}],
+		"inScheme": "http://www.oxygenxml.com/",
+		"skos:notation": "notation0",
+		"prefLabel": {
+			"@language": "en",
+			"@value": "prefLabel0"
+		}
+	}, {
+		"@id": "mailto:another-contact@jamk.edu",
+		"@type": "elm:Mailbox"
+	}, {
+		"@id": "mailto:contact@unix.edu",
+		"@type": "elm:Mailbox"
+	}, {
+		"@id": "mailto:research.alliance@eu.edu.com",
+		"@type": "elm:Mailbox"
+	}],
+	"@context": {
+		"adms": "http://www.w3.org/ns/adms#",
+		"owl": "http://www.w3.org/2002/07/owl#",
+		"skosXl": "http://www.w3.org/2008/05/skos-xl#",
+		"org": "http://www.w3.org/ns/org#",
+		"elm": "http://data.europa.eu/snb/model/",
+		"iso-thes": "http://purl.org/iso25964/skos-thes#",
+		"xsd": "http://www.w3.org/2001/XMLSchema#",
+		"skos": "http://www.w3.org/2004/02/skos/core#",
+		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+		"gr": "http://purl.org/goodrelations/v1#",
+		"dct": "http://purl.org/dc/terms/",
+		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+		"esco": "http://data.europa.eu/esco/model#",
+		"rov": "http://www.w3.org/ns/regorg#",
+		"sem": "http://semanticweb.cs.vu.nl/2009/11/sem/",
+		"locn": "http://www.w3.org/ns/locn#",
+		"dcat": "http://www.w3.org/ns/dcat#",
+		"prov": "http://www.w3.org/ns/prov#",
+		"qdr": "http://data.europa.eu/esco/qdr#",
+		"foaf": "http://xmlns.com/foaf/0.1/",
+		"language": {
+			"@id": "http://purl.org/dc/terms/language",
+			"@type": "@id"
+		},
+		"contentUrl": {
+			"@id": "http://data.europa.eu/snb/model/contentUrl",
+			"@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+		},
+		"title": {
+			"@id": "http://purl.org/dc/terms/title"
+		},
+		"notation": {
+			"@id": "http://www.w3.org/2004/02/skos/core#notation",
+			"@type": "http://example.com/elm/loq"
+		},
+		"spatial": {
+			"@id": "http://purl.org/dc/terms/spatial",
+			"@type": "@id"
+		},
+		"issued": {
+			"@id": "http://purl.org/dc/terms/issued",
+			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"address": {
+			"@id": "http://data.europa.eu/snb/model/address",
+			"@type": "@id"
+		},
+		"schemeName": {
+			"@id": "http://data.europa.eu/snb/model/schemeName"
+		},
+		"fullAddress": {
+			"@id": "http://data.europa.eu/snb/model/fullAddress",
+			"@type": "@id"
+		},
+		"countryCode": {
+			"@id": "http://data.europa.eu/snb/model/countryCode",
+			"@type": "@id"
+		},
+		"noteLiteral": {
+			"@id": "http://data.europa.eu/snb/model/noteLiteral"
+		},
+		"schemeAgency": {
+			"@id": "http://www.w3.org/ns/adms#schemeAgency"
+		},
+		"schemeVersion": {
+			"@id": "http://data.europa.eu/snb/model/schemeVersion"
+		},
+		"type": {
+			"@id": "http://purl.org/dc/terms/type",
+			"@type": "@id"
+		},
+		"phoneNumber": {
+			"@id": "http://data.europa.eu/snb/model/phoneNumber"
+		},
+		"vatIdentifier": {
+			"@id": "http://data.europa.eu/snb/model/vatIdentifier",
+			"@type": "@id"
+		},
+		"modified": {
+			"@id": "http://purl.org/dc/terms/modified",
+			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"taxIdentifier": {
+			"@id": "http://data.europa.eu/snb/model/taxIdentifier",
+			"@type": "@id"
+		},
+		"eidasLegalIdentifier": {
+			"@id": "http://data.europa.eu/snb/model/eidasLegalIdentifier",
+			"@type": "@id"
+		},
+		"subOrganizationOf": {
+			"@id": "http://www.w3.org/ns/org#subOrganizationOf",
+			"@type": "@id"
+		},
+		"identifier": {
+			"@id": "http://www.w3.org/ns/adms#identifier",
+			"@type": "@id"
+		},
+		"legalName": {
+			"@id": "http://www.w3.org/ns/regorg#legalName"
+		},
+		"location": {
+			"@id": "http://data.europa.eu/snb/model/location",
+			"@type": "@id"
+		},
+		"homepage": {
+			"@id": "http://xmlns.com/foaf/0.1/homepage",
+			"@type": "@id"
+		},
+		"status": {
+			"@id": "http://data.europa.eu/snb/model/status"
+		},
+		"additionalNote": {
+			"@id": "http://data.europa.eu/snb/model/additionalNote",
+			"@type": "@id"
+		},
+		"hasSubOrganization": {
+			"@id": "http://www.w3.org/ns/org#hasSubOrganization",
+			"@type": "@id"
+		},
+		"contentType": {
+			"@id": "http://data.europa.eu/snb/model/contentType",
+			"@type": "@id"
+		},
+		"contentSize": {
+			"@id": "http://data.europa.eu/snb/model/contentSize",
+			"@type": "http://www.w3.org/2001/XMLSchema#integer"
+		},
+		"contentEncoding": {
+			"@id": "http://data.europa.eu/snb/model/contentEncoding",
+			"@type": "@id"
+		},
+		"content": {
+			"@id": "http://data.europa.eu/snb/model/content"
+		},
+		"description": {
+			"@id": "http://purl.org/dc/terms/description"
+		},
+		"dialNumber": {
+			"@id": "http://data.europa.eu/snb/model/dialNumber"
+		},
+		"countryDialing": {
+			"@id": "http://data.europa.eu/snb/model/countryDialing"
+		},
+		"areaDialing": {
+			"@id": "http://data.europa.eu/snb/model/areaDialing"
+		},
+		"prefLabel": {
+			"@id": "http://www.w3.org/2004/02/skos/core#prefLabel"
+		},
+		"phone": {
+			"@id": "http://data.europa.eu/snb/model/phone",
+			"@type": "@id"
+		},
+		"mailbox": {
+			"@id": "http://data.europa.eu/snb/model/mailbox",
+			"@type": "@id"
+		},
+		"contactForm": {
+			"@id": "http://data.europa.eu/snb/model/contactForm",
+			"@type": "@id"
+		},
+		"registration": {
+			"@id": "http://www.w3.org/ns/regorg#registration",
+			"@type": "@id"
+		},
+		"contactPoint": {
+			"@id": "http://data.europa.eu/snb/model/contactPoint",
+			"@type": "@id"
+		},
+		"altLabel": {
+			"@id": "http://www.w3.org/2004/02/skos/core#altLabel"
+		},
+		"groupMemberOf": {
+			"@id": "http://data.europa.eu/snb/model/groupMemberOf",
+			"@type": "@id"
+		},
+		"logo": {
+			"@id": "http://data.europa.eu/snb/model/logo",
+			"@type": "@id"
+		},
+		"landingPage": {
+			"@id": "http://data.europa.eu/snb/model/landingPage",
+			"@type": "@id"
+		},
+		"organisation": {
+			"@id": "http://data.europa.eu/snb/model/organisation",
+			"@type": "@id"
+		},
+		"reviewDate": {
+			"@id": "http://data.europa.eu/snb/model/reviewDate",
+			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"valid": {
+			"@id": "http://purl.org/dc/terms/valid",
+			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"supplementaryDocument": {
+			"@id": "http://data.europa.eu/snb/model/supplementaryDocument",
+			"@type": "@id"
+		},
+		"expiryDate": {
+			"@id": "http://data.europa.eu/snb/model/expiryDate",
+			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"accreditingAgent": {
+			"@id": "http://data.europa.eu/snb/model/accreditingAgent",
+			"@type": "@id"
+		},
+		"limitJurisdiction": {
+			"@id": "http://data.europa.eu/snb/model/limitJurisdiction",
+			"@type": "@id"
+		},
+		"limitEQFLevel": {
+			"@id": "http://data.europa.eu/snb/model/limitEQFLevel",
+			"@type": "@id"
+		},
+		"report": {
+			"@id": "http://data.europa.eu/snb/model/report",
+			"@type": "@id"
+		},
+		"limitField": {
+			"@id": "http://data.europa.eu/snb/model/limitField",
+			"@type": "@id"
+		},
+		"publisher": {
+			"@id": "http://purl.org/dc/terms/publisher",
+			"@type": "@id"
+		},
+		"inScheme": {
+			"@id": "http://www.w3.org/2004/02/skos/core#inScheme",
+			"@type": "@id"
+		}
+	}
+}

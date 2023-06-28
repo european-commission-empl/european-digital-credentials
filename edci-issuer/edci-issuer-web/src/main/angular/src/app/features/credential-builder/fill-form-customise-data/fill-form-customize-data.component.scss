@@ -1,0 +1,95 @@
+@import '/src/assets/styles/global/variables.scss';
+.recipient{
+
+    h6 {
+        font-weight: bold;
+    }
+
+    .recipient_card{
+        background-color: var(--gray-50);
+        padding-bottom: var(--eui-base-spacing-2xl);
+        +.recipient_card {
+            margin-top: var(--eui-base-spacing-2xl);
+        }
+        .recipient_header{
+            padding:var(--eui-base-spacing-2xl) 0;
+            cursor:pointer;
+            h3{
+                color:var(--eui-base-color-primary-100);
+                font-weight:bold;
+            }
+        }
+        .recipient_body{
+            h4{
+                color:var(--eui-base-color-grey-75);
+                font-size:var(--eui-base-font-size-xl);
+                padding-bottom: var(--eui-base-spacing-xs);
+                border-bottom: 0.075em solid var(--eui-base-color-grey-50);
+                margin-bottom: var(--eui-base-spacing-xl);
+            }
+
+            .recipient_field_wrapper{
+                margin-bottom:var(--eui-base-spacing-m);
+            }
+        }
+
+        .removeRecipients{
+            display:flex;
+            align-items:center;
+            cursor:pointer;
+
+            span{
+                color:var(--eui-base-color-primary-100);
+                font-weight:bold;
+                margin-left:var(--eui-base-spacing-xs);
+            }
+        }
+    }
+}
+
+h1{
+    font-size: var(--eui-base-font-size-4xl);
+    font-weight: bold;
+}
+
+.footerForms{
+    margin-bottom:var(--eui-base-spacing-4xl);
+    .addRecipient{
+        padding-top:var(--eui-base-spacing-xl);
+        padding-bottom:var(--eui-base-spacing-xl);
+
+        .addRecipient_wrapper{
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            span {
+                color: var(--eui-base-color-primary-100);
+                font-weight:bold;
+                margin-left:var(--eui-base-spacing-xs);
+            }
+
+        }
+    }
+
+    .consentForm{
+
+        //override default size eui checkbox, no option available for 13.x
+        label:before {
+            height: var(--eui-base-spacing-l)!important;
+            width: var(--eui-base-spacing-l)!important;
+        }
+
+        label:after{
+            font-size:var(--eui-base-font-size-xl)!important;
+        }
+    }
+
+    .eui-button--outline.eui-button--secondary{
+        color:var(--eui-base-color-primary-100);
+        border-color:var(--eui-base-color-primary-100);
+
+        &:hover{
+            background-color:var(--eui-base-color-primary-10);
+        }
+    }
+}

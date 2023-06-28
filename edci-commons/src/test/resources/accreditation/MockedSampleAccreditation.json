@@ -1,0 +1,1649 @@
+{
+  "id": "be844fe0-6e3a-11ec-90d6-0242ac120003",
+  "identifiers": [
+    {
+      "value": "https://data.deqar.eu/accreditationIdentifier/1",
+      "schemeID": "https://data.deqar.eu/accreditationIdentifier/",
+      "schemeAgencyName": "https://data.deqar.eu/accreditationIdentifier/schemeAgencyName",
+      "schemeAgencyID": "https://data.deqar.eu/accreditationIdentifier//schemeAgencyID",
+      "issuedDate": 1320847379
+    },
+    {
+      "value": "https://data.deqar.eu/accreditationIdentifier/2",
+      "schemeID": "https://data.deqar.eu/accreditationIdentifier/",
+      "schemeAgencyName": "https://data.deqar.eu/accreditationIdentifier/schemeAgencyName",
+      "schemeAgencyID": "https://data.deqar.eu/accreditationIdentifier//schemeAgencyID",
+      "issuedDate": 1320847379
+    },
+    {
+      "value": "VATES-B00000000",
+      "schemeID": "TestCertSchemeID",
+      "schemeAgencyName": "TestCertSchemeAgencyName",
+      "schemeAgencyID": "TestCertSchemeAgencyID",
+      "issuedDate": 1320847379
+    }
+  ],
+  "type": "http://data.europa.eu/snb/accreditation/003293d2ce",
+  "titles": [
+    {
+      "language": "en",
+      "value": "Institutional evaluation"
+    }
+  ],
+  "decision": {
+    "content": "10",
+    "scoringSchemeID": "scoreSchemeID"
+  },
+  "accreditedOrganization": {
+    "registration": "https://data.deqar.eu/institution/2360",
+    "vatIdentifiers": [
+      {
+        "value": "https://data.deqar.eu/vatIdentifier/2360",
+        "schemeID": "https://data.deqar.eu/vatIdentifier/2360/schemeID",
+        "schemeAgencyName": "https://data.deqar.eu/vatIdentifier/2360/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/vatIdentifier/2360/schemeAgencyID",
+        "issuedDate": 1320847379,
+        "spatialId": "https://data.deqar.eu/vatIdentifier/2360/spatialID"
+      }
+    ],
+    "taxIdentifiers": [
+      {
+        "value": "https://data.deqar.eu/taxIdentifier/2360",
+        "schemeID": "https://data.deqar.eu/taxIdentifier/schemeID",
+        "schemeAgencyName": "https://data.deqar.eu/taxIdentifier/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/taxIdentifier/schemeAgencyID",
+        "issuedDate": 1320847379,
+        "spatialId": "https://data.deqar.eu/vatIdentifier/2360/spatialID"
+      }
+    ],
+    "identifiers": [
+      {
+        "value": "https://data.deqar.eu/institution/2360",
+        "schemeID": "https://data.deqar.eu/institution/",
+        "schemeAgencyName": "https://data.deqar.eu/institution/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/institution/schemeAgencyID",
+        "issuedDate": 1320847379
+      }
+    ],
+    "types": [
+      {
+        "uri": "https://data.deqar.eu/orgType/1/",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 1"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 1"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 1"
+          }
+        ],
+        "targetFrameworkURI": "https://data.deqar.eu/orgType/targetFrameworkURI",
+        "targetNotation": "https://data.deqar.eu/orgType/targetNotation",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "target Framework type 1"
+          },
+          {
+            "language": "es",
+            "value": "target framework del tipo 1"
+          }
+        ]
+      },
+      {
+        "uri": "https://data.deqar.eu/orgType/2/",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 2"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 2"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 2"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 2"
+          }
+        ],
+        "targetFrameworkURI": "https://data.deqar.eu/orgType/targetFrameworkURI",
+        "targetNotation": "https://data.deqar.eu/orgType/targetNotation",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "target Framework type 2"
+          },
+          {
+            "language": "es",
+            "value": "target framework del tipo 2"
+          }
+        ]
+      }
+    ],
+    "prefLabels": [
+      {
+        "language": "en",
+        "value": "Faculty of Media - FaM"
+      }
+    ],
+    "alternativeNames": [
+      {
+        "language": "sl",
+        "value": "Fakulteta za medije"
+      }
+    ],
+    "localizedHomepages": [
+      {
+        "url": "http://www.fame.si/about-the-faculty",
+        "titles": [
+          {
+            "language": "en",
+            "value": "page title"
+          }
+        ],
+        "languages": [
+          {
+            "uri": "http://publications.europa.eu/resource/authority/language/ENG",
+            "targetName": [
+              {
+                "language": "en",
+                "value": "English"
+              },
+              {
+                "language": "es",
+                "value": "inglês"
+              }
+            ],
+            "targetDescription": [
+              {
+                "language": "en",
+                "value": "English is a member of the West Germanic group of the Germanic languages. It is an official language of almost 60 sovereign states and is now a global lingua franca.It is the third-most-common native language in the world and it is widely learned as a second language"
+              }
+            ],
+            "targetFrameworkURI": "http://publications.europa.eu/resource/authority/language/",
+            "targetNotation": "language",
+            "targetFramework": [
+              {
+                "language": "en",
+                "value": "Language"
+              }
+            ]
+          }
+        ],
+        "subjects": [
+          {
+            "uri": "http://publications.europa.eu/resource/authority/subject/1",
+            "targetName": [
+              {
+                "language": "en",
+                "value": "Subject 1"
+              },
+              {
+                "language": "es",
+                "value": "Sujeto 1"
+              }
+            ],
+            "targetDescription": [
+              {
+                "language": "en",
+                "value": "some target description"
+              }
+            ],
+            "targetFrameworkURI": "http://publications.europa.eu/resource/authority/subject/",
+            "targetNotation": "subject",
+            "targetFramework": [
+              {
+                "language": "en",
+                "value": "Subject"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "identifiers": [
+          {
+            "value": "https://data.deqar.eu/locationIdentifier/1",
+            "schemeID": "https://data.deqar.eu/locationIdentifier/",
+            "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+            "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+            "issuedDate": 1320847379
+          },
+          {
+            "value": "https://data.deqar.eu/locationIdentifier/2",
+            "schemeID": "https://data.deqar.eu/locationIdentifier/",
+            "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+            "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+            "issuedDate": 1320847379
+          }
+        ],
+        "names": [
+          {
+            "language": "en",
+            "value": "location 1"
+          },
+          {
+            "language": "es",
+            "value": "localicación 1"
+          }
+        ],
+        "descriptions": [
+          {
+            "language": "en",
+            "value": "description 1"
+          },
+          {
+            "language": "es",
+            "value": "descripción 1"
+          }
+        ],
+        "addresses": [
+          {
+            "id": "http://address.com/1",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/addressIdentifier/1",
+                "schemeID": "https://data.deqar.eu/addressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/addressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/addressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              },
+              {
+                "value": "https://data.deqar.eu/addressIdentifier/2",
+                "schemeID": "https://data.deqar.eu/addressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/addressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/addressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullAddressEN"
+              }
+            ]
+          }
+        ],
+        "fullAddress": [
+          {
+            "id": "http://fullAddress.com/1",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/fullAddressIdentifier/1",
+                "schemeID": "https://data.deqar.eu/fullAddressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/fullAddressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/fullAddressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              },
+              {
+                "value": "https://data.deqar.eu/fullAddressIdentifier/2",
+                "schemeID": "https://data.deqar.eu/fullAddressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/fullAddressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/fullAddressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullfullAddressEN"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "contactPoints": [
+      {
+        "notes": [
+          {
+            "language": "en",
+            "value": "note 1"
+          },
+          {
+            "language": "es",
+            "value": "nota 1"
+          }
+        ],
+        "descriptions": [
+          {
+            "language": "en",
+            "value": "description 1"
+          },
+          {
+            "language": "es",
+            "value": "descripción 1"
+          }
+        ],
+        "addresses": [
+          {
+            "id": "http://some.address.com",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/locationIdentifier/1",
+                "schemeID": "https://data.deqar.eu/locationIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              },
+              {
+                "value": "https://data.deqar.eu/locationIdentifier/2",
+                "schemeID": "https://data.deqar.eu/locationIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullAddressEN"
+              }
+            ]
+          }
+        ],
+        "phones": [
+          {
+            "phoneNumber": "+34 22 552 02 94",
+            "countryDialing": "+34",
+            "areaDialing": "+34",
+            "dialNumber": "22 552 02 94"
+          }
+        ],
+        "mailBoxes": [
+          {
+            "uri": "abc@gmail.com"
+          },
+          {
+            "uri": "def@gmail.com"
+          }
+        ],
+        "webResources": [
+          {
+            "url": "http://interactive.form.com",
+            "titles": null,
+            "languages": null,
+            "subjects": []
+          },
+          {
+            "url": "http://interactive.form2.com",
+            "titles": null,
+            "languages": null,
+            "subjects": []
+          }
+        ]
+      }
+    ],
+    "unitOf": null,
+    "hasUnits": [],
+    "logo": {
+      "id": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png",
+      "contentType": {
+        "uri": "https://publications.europa.eu/resource/authority/file-type/PNG",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 1"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 1"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 1"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/file-type",
+        "targetNotation": "File type",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "File type"
+          }
+        ]
+      },
+      "contentUrl": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png"
+    }
+  },
+  "limitQualification": {
+    "uri": "qualification:uri:1",
+    "identifiers": [
+      {
+        "value": "https://data.deqar.eu/limitQualificationIdentifier/1",
+        "schemeID": "https://data.deqar.eu/limitQualificationIdentifier/",
+        "schemeAgencyName": "https://data.deqar.eu/limitQualificationIdentifier/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/limitQualificationIdentifier//schemeAgencyID",
+        "issuedDate": 1320847379
+      },
+      {
+        "value": "https://data.deqar.eu/limitQualificationIdentifier/2",
+        "schemeID": "https://data.deqar.eu/limitQualificationIdentifier/",
+        "schemeAgencyName": "https://data.deqar.eu/limitQualificationIdentifier/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/limitQualificationIdentifier/schemeAgencyID",
+        "issuedDate": 1320847379
+      },
+      {
+        "value": "VATES-B00000000",
+        "schemeID": "TestCertSchemeID",
+        "schemeAgencyName": "TestCertSchemeAgencyName",
+        "schemeAgencyID": "TestCertSchemeAgencyID",
+        "issuedDate": 1320847379
+      }
+    ],
+    "learningOpportunityTypes": [
+      {
+        "uri": "https://publications.europa.eu/resource/authority/snb/learning-opportunity/label_a8f3310675ac",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "SNB 1"
+          },
+          {
+            "language": "es",
+            "value": "snb 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/learning-opportunity/25831c2",
+        "targetNotation": "SNB",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "SNB"
+          }
+        ]
+      }
+    ],
+    "title": {
+      "language": "en",
+      "value": "Learning Opportunity 1"
+    },
+    "alternativeLabels": [
+      {
+        "language": "en",
+        "value": "Alternative labels 1"
+      },
+      {
+        "language": "es",
+        "value": "Alternative labels 2"
+      }
+    ],
+    "definition": {
+      "contents": [
+        {
+          "language": "en",
+          "value": "Definition labels 1"
+        },
+        {
+          "language": "es",
+          "value": "Definition labels 2"
+        }
+      ],
+      "topic": "Topic definition"
+    },
+    "learningOutcomeDescription": {
+      "contents": [
+        {
+          "language": "en",
+          "value": "learningOutcomeDescription labels 1"
+        },
+        {
+          "language": "es",
+          "value": "learningOutcomeDescription labels 2"
+        }
+      ],
+      "topic": "Topic learningOutcomeDescription"
+    },
+    "additionalNotes": [
+      {
+        "contents": [
+          {
+            "language": "en",
+            "value": "additionalNotes labels 1"
+          },
+          {
+            "language": "es",
+            "value": "additionalNotes labels 1"
+          }
+        ],
+        "topic": "Topic learningOutcomeDescription"
+      },
+      {
+        "contents": [
+          {
+            "language": "en",
+            "value": "additionalNotes labels 2"
+          },
+          {
+            "language": "es",
+            "value": "additionalNotes labels 2"
+          }
+        ],
+        "topic": "Topic learningOutcomeDescription"
+      }
+    ],
+    "homepages": [
+      "http://www.google.com",
+      "http://europa.eu"
+    ],
+    "supplementaryDocuments": [
+      "http://www.google.com",
+      "http://europa.eu"
+    ],
+    "iscedFCodes": [
+      {
+        "uri": "http://data.europa.eu/snb/isced-f/011",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "http://data.europa.eu/snb/isced-f/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      },
+      {
+        "uri": "http://data.europa.eu/snb/isced-f/03",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "http://data.europa.eu/snb/isced-f/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      }
+    ],
+    "educationSubjects": [
+      {
+        "uri": "https://publications.europa.eu/resource/authority/snb/education-credit/label_c0245d01ddec",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/education-credit/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      },
+      {
+        "uri": "https://publications.europa.eu/resource/authority/snb/education-credit/label_c0245d01ddec",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/education-credit/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      }
+    ],
+    "volumeOfLearning": "P2Y",
+    "educationLevels": [
+      {
+        "uri": "https://publications.europa.eu/resource/authority/snb/education-credit/label_c0245d01ddec",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/education-credit/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      },
+      {
+        "uri": "https://publications.europa.eu/resource/authority/snb/education-credit/label_c0245d01ddec",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "isced 1"
+          },
+          {
+            "language": "es",
+            "value": "isced 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/education-credit/25831c2",
+        "targetNotation": "isced",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "isced"
+          }
+        ]
+      }
+    ],
+    "languages": [
+      {
+        "uri": "http://publications.europa.eu/resource/authority/language/ENG",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "English"
+          },
+          {
+            "language": "es",
+            "value": "inglês"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "English is a member of the West Germanic group of the Germanic languages. It is an official language of almost 60 sovereign states and is now a global lingua franca.It is the third-most-common native language in the world and it is widely learned as a second language"
+          }
+        ],
+        "targetFrameworkURI": "http://publications.europa.eu/resource/authority/language/",
+        "targetNotation": "language",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "Language"
+          }
+        ]
+      }
+    ],
+    "modes": [
+      {
+        "uri": "http://publications.europa.eu/resource/authority/language/ENG",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "English"
+          },
+          {
+            "language": "es",
+            "value": "inglês"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "English is a member of the West Germanic group of the Germanic languages. It is an official language of almost 60 sovereign states and is now a global lingua franca.It is the third-most-common native language in the world and it is widely learned as a second language"
+          }
+        ],
+        "targetFrameworkURI": "http://publications.europa.eu/resource/authority/language/",
+        "targetNotation": "language",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "Language"
+          }
+        ]
+      }
+    ],
+    "learningSetting": {
+      "uri": "http://data.europa.eu/snb/learning-setting/6fd4685715",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "Europass-standardien luettelo: Oppimistilannetyypit"
+        },
+        {
+          "language": "es",
+          "value": "Europass-standardien luettelo: OppimistilannetyypitES"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "Learning Setting Description"
+        }
+      ],
+      "targetFrameworkURI": "http://data.europa.eu/snb/learning-setting/25831c2",
+      "targetNotation": "language",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "Language"
+        }
+      ]
+    },
+    "maximumDuration": "P2Y",
+    "targetGroups": [
+      {
+        "uri": "http://publications.europa.eu/resource/authority/language/ENG",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "English"
+          },
+          {
+            "language": "es",
+            "value": "inglês"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "English is a member of the West Germanic group of the Germanic languages. It is an official language of almost 60 sovereign states and is now a global lingua franca.It is the third-most-common native language in the world and it is widely learned as a second language"
+          }
+        ],
+        "targetFrameworkURI": "http://publications.europa.eu/resource/authority/language/",
+        "targetNotation": "language",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "Language"
+          }
+        ]
+      }
+    ],
+    "entryRequirementNote": {
+      "contents": [
+        {
+          "language": "en",
+          "value": "entryRequirementNote labels 1"
+        },
+        {
+          "language": "es",
+          "value": "entryRequirementNote labels 2"
+        }
+      ],
+      "topic": "Topic entryRequirementNote"
+    },
+    "eqfLevel": {
+      "uri": "https://publications.europa.eu/resource/authority/snb/eqf/1",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "EQF 1"
+        },
+        {
+          "language": "es",
+          "value": "eqf 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": " http://data.europa.eu/snb/eqf/25831c2",
+      "targetNotation": "EQF",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "EQF"
+        }
+      ]
+    },
+    "nqfLevels": [
+      {
+        "uri": "http://data.europa.eu/snb/qdr/c_04d23b42",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "EQF 1"
+          },
+          {
+            "language": "es",
+            "value": "eqf 1"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "some target description"
+          }
+        ],
+        "targetFrameworkURI": "http://data.europa.eu/snb/qdr/25831c2",
+        "targetNotation": "EQF",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "EQF"
+          }
+        ]
+      }
+    ],
+    "isPartialQualification": true,
+    "accreditations": null
+  },
+  "limitFields": [
+    {
+      "uri": "http://data.europa.eu/snb/isced-f/07",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "EQF 1"
+        },
+        {
+          "language": "es",
+          "value": "eqf 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": "http://data.europa.eu/snb/isced-f/25831c2",
+      "targetNotation": "EQF",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "EQF"
+        }
+      ]
+    },
+    {
+      "uri": "http://data.europa.eu/snb/isced-f/08",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "EQF 1"
+        },
+        {
+          "language": "es",
+          "value": "eqf 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": "http://data.europa.eu/snb/isced-f/25831c2",
+      "targetNotation": "EQF",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "EQF"
+        }
+      ]
+    }
+  ],
+  "limitEQFLevels": [
+    {
+      "uri": "https://publications.europa.eu/resource/authority/snb/eqf/1",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "EQF 1"
+        },
+        {
+          "language": "es",
+          "value": "eqf 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": " http://data.europa.eu/snb/eqf/25831c2",
+      "targetNotation": "EQF",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "EQF"
+        }
+      ]
+    },
+    {
+      "uri": "https://publications.europa.eu/resource/authority/snb/eqf/2",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "EQF 1"
+        },
+        {
+          "language": "es",
+          "value": "eqf 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": " http://data.europa.eu/snb/eqf/25831c2",
+      "targetNotation": "EQF",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "EQF"
+        }
+      ]
+    }
+  ],
+  "limitJurisdictions": [
+    {
+      "uri": "https://publications.europa.eu/resource/authority/snb/jur/1",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "jur 1"
+        },
+        {
+          "language": "es",
+          "value": "jur 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/jur",
+      "targetNotation": "jur",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "jur"
+        }
+      ]
+    },
+    {
+      "uri": "https://publications.europa.eu/resource/authority/snb/jur/2",
+      "targetName": [
+        {
+          "language": "en",
+          "value": "jur 1"
+        },
+        {
+          "language": "es",
+          "value": "jur 1"
+        }
+      ],
+      "targetDescription": [
+        {
+          "language": "en",
+          "value": "some target description"
+        }
+      ],
+      "targetFrameworkURI": "https://publications.europa.eu/resource/authority/snb/jur",
+      "targetNotation": "jur",
+      "targetFramework": [
+        {
+          "language": "en",
+          "value": "jur"
+        }
+      ]
+    }
+  ],
+  "accreditingAgent": {
+    "registration": "https://data.deqar.eu/institution/3334",
+    "vatIdentifiers": [
+      {
+        "value": "https://data.deqar.eu/vatIdentifier/3334",
+        "schemeID": "https://data.deqar.eu/vatIdentifier/3334/schemeID",
+        "schemeAgencyName": "https://data.deqar.eu/vatIdentifier/3334/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/vatIdentifier/3334/schemeAgencyID",
+        "issuedDate": 1320847379,
+        "spatialId": "https://data.deqar.eu/vatIdentifier/2360/spatialID"
+      }
+    ],
+    "taxIdentifiers": [
+      {
+        "value": "https://data.deqar.eu/taxIdentifier/3334",
+        "schemeID": "https://data.deqar.eu/taxIdentifier/schemeID",
+        "schemeAgencyName": "https://data.deqar.eu/taxIdentifier/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/taxIdentifier/schemeAgencyID",
+        "issuedDate": 1320847379,
+        "spatialId": "https://data.deqar.eu/vatIdentifier/2360/spatialID"
+      }
+    ],
+    "identifiers": [
+      {
+        "value": "https://data.deqar.eu/institution/3334",
+        "schemeID": "https://data.deqar.eu/institution/",
+        "schemeAgencyName": "https://data.deqar.eu/institution/schemeAgencyName",
+        "schemeAgencyID": "https://data.deqar.eu/institution/schemeAgencyID",
+        "issuedDate": 1320847379
+      }
+    ],
+    "types": [
+      {
+        "uri": "https://data.deqar.eu/orgType/3/",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 3"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 3"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 3"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 3"
+          }
+        ],
+        "targetFrameworkURI": "https://data.deqar.eu/orgType/targetFrameworkURI",
+        "targetNotation": "https://data.deqar.eu/orgType/targetNotation",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "target Framework type 3"
+          },
+          {
+            "language": "es",
+            "value": "target framework del tipo 3"
+          }
+        ]
+      },
+      {
+        "uri": "https://data.deqar.eu/orgType/2/",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 2"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 2"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 2"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 2"
+          }
+        ],
+        "targetFrameworkURI": "https://data.deqar.eu/orgType/targetFrameworkURI",
+        "targetNotation": "https://data.deqar.eu/orgType/targetNotation",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "target Framework type 2"
+          },
+          {
+            "language": "es",
+            "value": "target framework del tipo 2"
+          }
+        ]
+      }
+    ],
+    "prefLabels": [
+      {
+        "language": "en",
+        "value": "Faculty of Media - FaM"
+      }
+    ],
+    "alternativeNames": [
+      {
+        "language": "sl",
+        "value": "Fakulteta za medije"
+      }
+    ],
+    "localizedHomepages": [
+      {
+        "url": "http://www.fame.si/about-the-faculty",
+        "titles": [
+          {
+            "language": "en",
+            "value": "page title"
+          }
+        ],
+        "languages": [
+          {
+            "uri": "http://publications.europa.eu/resource/authority/language/ENG",
+            "targetName": [
+              {
+                "language": "en",
+                "value": "English"
+              },
+              {
+                "language": "es",
+                "value": "inglês"
+              }
+            ],
+            "targetDescription": [
+              {
+                "language": "en",
+                "value": "English is a member of the West Germanic group of the Germanic languages. It is an official language of almost 60 sovereign states and is now a global lingua franca.It is the third-most-common native language in the world and it is widely learned as a second language"
+              }
+            ],
+            "targetFrameworkURI": "http://publications.europa.eu/resource/authority/language/",
+            "targetNotation": "language",
+            "targetFramework": [
+              {
+                "language": "en",
+                "value": "Language"
+              }
+            ]
+          }
+        ],
+        "subjects": [
+          {
+            "uri": "http://publications.europa.eu/resource/authority/subject/3",
+            "targetName": [
+              {
+                "language": "en",
+                "value": "Subject 3"
+              },
+              {
+                "language": "es",
+                "value": "Sujeto 3"
+              }
+            ],
+            "targetDescription": [
+              {
+                "language": "en",
+                "value": "some target description"
+              }
+            ],
+            "targetFrameworkURI": "http://publications.europa.eu/resource/authority/subject/",
+            "targetNotation": "subject",
+            "targetFramework": [
+              {
+                "language": "en",
+                "value": "Subject"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "locations": [
+      {
+        "identifiers": [
+          {
+            "value": "https://data.deqar.eu/locationIdentifier/3",
+            "schemeID": "https://data.deqar.eu/locationIdentifier/",
+            "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+            "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+            "issuedDate": 1320847379
+          },
+          {
+            "value": "https://data.deqar.eu/locationIdentifier/2",
+            "schemeID": "https://data.deqar.eu/locationIdentifier/",
+            "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+            "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+            "issuedDate": 1320847379
+          }
+        ],
+        "names": [
+          {
+            "language": "en",
+            "value": "location 3"
+          },
+          {
+            "language": "es",
+            "value": "localicación 3"
+          }
+        ],
+        "descriptions": [
+          {
+            "language": "en",
+            "value": "description 3"
+          },
+          {
+            "language": "es",
+            "value": "descripción 3"
+          }
+        ],
+        "addresses": [
+          {
+            "id": "http://address.com/3",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/addressIdentifier/3",
+                "schemeID": "https://data.deqar.eu/addressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/addressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/addressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              },
+              {
+                "value": "https://data.deqar.eu/addressIdentifier/3",
+                "schemeID": "https://data.deqar.eu/addressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/addressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/addressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullAddressEN"
+              }
+            ]
+          }
+        ],
+        "fullAddress": [
+          {
+            "id": "http://fullAddress.com/3",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/fullAddressIdentifier/3",
+                "schemeID": "https://data.deqar.eu/fullAddressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/fullAddressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/fullAddressIdentifier//schemeAgencyID",
+                "issuedDate": null
+              },
+              {
+                "value": "https://data.deqar.eu/fullAddressIdentifier/2",
+                "schemeID": "https://data.deqar.eu/fullAddressIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/fullAddressIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/fullAddressIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullfullAddressEN"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "contactPoints": [
+      {
+        "notes": [
+          {
+            "language": "en",
+            "value": "note 3"
+          },
+          {
+            "language": "es",
+            "value": "nota 3"
+          }
+        ],
+        "descriptions": [
+          {
+            "language": "en",
+            "value": "description 3"
+          },
+          {
+            "language": "es",
+            "value": "descripción 3"
+          }
+        ],
+        "addresses": [
+          {
+            "id": "http://some.address.com",
+            "identifiers": [
+              {
+                "value": "https://data.deqar.eu/locationIdentifier/3",
+                "schemeID": "https://data.deqar.eu/locationIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              },
+              {
+                "value": "https://data.deqar.eu/locationIdentifier/2",
+                "schemeID": "https://data.deqar.eu/locationIdentifier/",
+                "schemeAgencyName": "https://data.deqar.eu/locationIdentifier/schemeAgencyName",
+                "schemeAgencyID": "https://data.deqar.eu/locationIdentifier//schemeAgencyID",
+                "issuedDate": 1320847379
+              }
+            ],
+            "countryCode": {
+              "uri": "http://publications.europa.eu/resource/authority/country/ESP",
+              "targetName": [
+                {
+                  "language": "en",
+                  "value": "EQF 1"
+                },
+                {
+                  "language": "es",
+                  "value": "eqf 1"
+                }
+              ],
+              "targetDescription": [
+                {
+                  "language": "en",
+                  "value": "some target description"
+                }
+              ],
+              "targetFrameworkURI": "http://publications.europa.eu/resource/authority/country",
+              "targetNotation": "EQF",
+              "targetFramework": [
+                {
+                  "language": "en",
+                  "value": "EQF"
+                }
+              ]
+            },
+            "fullAddress": [
+              {
+                "language": "en",
+                "value": "FullAddressEN"
+              }
+            ]
+          }
+        ],
+        "phones": [
+          {
+            "phoneNumber": "+34 22 552 02 94",
+            "countryDialing": "+34",
+            "areaDialing": "+34",
+            "dialNumber": "22 552 02 94"
+          }
+        ],
+        "mailBoxes": [
+          {
+            "uri": "abc@gmail.com"
+          },
+          {
+            "uri": "def@gmail.com"
+          }
+        ],
+        "webResources": [
+          {
+            "url": "http://interactive.form.com",
+            "titles": null,
+            "languages": null,
+            "subjects": []
+          },
+          {
+            "url": "http://interactive.form2.com",
+            "titles": null,
+            "languages": null,
+            "subjects": []
+          }
+        ]
+      }
+    ],
+    "unitOf": null,
+    "hasUnits": [],
+    "logo": {
+      "id": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png",
+      "contentType": {
+        "uri": "https://publications.europa.eu/resource/authority/file-type/PNG",
+        "targetName": [
+          {
+            "language": "en",
+            "value": "target name type 3"
+          },
+          {
+            "language": "es",
+            "value": "target name del tipo 3"
+          }
+        ],
+        "targetDescription": [
+          {
+            "language": "en",
+            "value": "target Description type 3"
+          },
+          {
+            "language": "en",
+            "value": "target Description del tipo 3"
+          }
+        ],
+        "targetFrameworkURI": "https://publications.europa.eu/resource/authority/file-type",
+        "targetNotation": "File type",
+        "targetFramework": [
+          {
+            "language": "en",
+            "value": "File type"
+          }
+        ]
+      },
+      "contentUrl": "https://www.upc.edu/comunicacio/ca/identitat/descarrega-arxius-grafics/fitxers-marca-principal/upc-positiu-p3005.png"
+    }
+  },
+  "issuedDate": 1427839200000,
+  "expiryDate": 1950335947000
+}

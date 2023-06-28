@@ -1,0 +1,30 @@
+{
+    "compileOnSave": false,
+    "angularCompilerOptions": {
+        "strictTemplates": true
+    },
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "module": "ESNext",
+        "target": "ES2016",
+        "lib": ["es2020", "dom"],
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": false,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "typeRoots": ["node_modules/@types"],
+        "paths": {
+            "@services/*": ["src/app/core/services/*"],
+            "@core/*": ["src/app/core/*"],
+            "@features/*": ["src/app/features/*"],
+            "@shared/*": ["src/app/shared/*"],
+            "@environments/*": ["src/environments/*"]
+        }
+    }
+}

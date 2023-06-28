@@ -1,0 +1,42 @@
+<eui-tabs
+    *ngIf="selectedLanguages?.length > 0"
+    class="modal-tabs"
+    (tabClosed)="languageTabClosed($event)"
+    (tabSelected)="languageTabSelected($event)"
+>
+    <eui-tab
+        *ngFor="let language of selectedLanguages; let isFirst = first"
+        [isActive]="isFirst"
+        [isClosable]="!isFirst"
+    >
+        <eui-tab-label>
+            {{ language.label | uppercase }}
+        </eui-tab-label>
+    </eui-tab>
+
+    <euiTabsRightContent>
+        <eui-dropdown>
+            <button
+                euiButton
+                [euiRounded]="true"
+                [euiIconButton]="true"
+                [euiBasicButton]="true"
+            >
+                <span>{{ activeLanguage }}</span>
+                <span euiIcon iconClass="eui-icon eui-icon-chevron-down"></span>
+            </button>
+
+            <eui-dropdown-content>
+                <div euiList>
+                    <button
+                        euiListItem
+                        *ngFor="let language of languages"
+                        (click)="onLanguageSelected(language)"
+                    >
+                        {{ language.label }}
+                    </button>
+                </div>
+            </eui-dropdown-content>
+        </eui-dropdown>
+    </euiTabsRightContent>
+</eui-tabs>

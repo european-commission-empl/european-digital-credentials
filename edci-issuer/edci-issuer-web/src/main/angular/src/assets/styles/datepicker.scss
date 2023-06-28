@@ -1,0 +1,14 @@
+/*DatePickers*/
+
+.eui-datepicker button {
+    border: transparent;
+    background-color: transparent;
+    color: var(--eui-base-color-primary-100);
+}
+
+.eui-datepicker button:hover {
+    opacity: 0.9;
+    color: var(--eui-base-color-primary-100);
+    border: transparent;
+    background-color: transparent;
+}

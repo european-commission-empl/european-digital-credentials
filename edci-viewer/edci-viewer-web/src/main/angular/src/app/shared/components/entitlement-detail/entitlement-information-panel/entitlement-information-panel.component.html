@@ -1,0 +1,43 @@
+<div class="entitlement-detail_panel entitlement-information" *ngIf="
+        activeEntitlement?.specifiedBy?.dcType?.length > 0 ||
+        activeEntitlement?.specifiedBy?.entitlementStatus ||
+        activeEntitlement?.specifiedBy?.validWithin?.length > 0 ||
+        activeEntitlement?.specifiedBy?.limitOccupation?.length > 0||
+        activeEntitlement?.specifiedBy?.limitOrganisation?.length > 0
+    "
+>
+    <edci-panel
+        [title]="'details.entitlements-tab.entitlementInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="entitlement-information-row d-flex flex-wrap">
+            <div class="entitlement-information-row_item" *ngIf="activeEntitlement?.specifiedBy?.dcType?.length > 0">
+                <edci-information-field [text]="activeEntitlement.specifiedBy.dcType"
+                    [title]="'details.entitlements-tab.entitlementType' | translate"
+                    icon="pie-chart"></edci-information-field>
+            </div>
+            <div class="entitlement-information-row_item" *ngIf="activeEntitlement?.specifiedBy?.entitlementStatus">
+                <edci-information-field [text]="[activeEntitlement.specifiedBy.entitlementStatus]"
+                    [title]="'details.entitlements-tab.status' | translate" icon="pricetag"></edci-information-field>
+            </div>
+            <div class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.limitJurisdiction?.length > 0">
+                <edci-information-field [text]="activeEntitlement.specifiedBy.limitJurisdiction"
+                    [title]="'details.entitlements-tab.validWithin' | translate" icon="earth">
+                </edci-information-field>
+            </div>
+            <div class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.limitOccupation?.length > 0">
+                <edci-information-field [text]="activeEntitlement.specifiedBy.limitOccupation"
+                    [title]="'details.entitlements-tab.relatedEsco' | translate" icon="briefcase">
+                </edci-information-field>
+            </div>
+
+            <div class="entitlement-information-row_item"
+                *ngIf="activeEntitlement?.specifiedBy?.limitOrganisation?.length > 0">
+                <edci-information-field [text]="getValidWith()" [title]="'details.entitlements-tab.validWith' | translate" icon="business">
+                </edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

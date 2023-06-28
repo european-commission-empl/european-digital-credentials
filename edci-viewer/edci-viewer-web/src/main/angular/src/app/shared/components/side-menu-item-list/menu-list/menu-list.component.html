@@ -1,0 +1,211 @@
+<ng-container *ngFor="let item of items | keyvalue">
+    <ng-container [ngSwitch]="item.key">
+        <!-- ACHIEVEMENT BLOCK -->
+        <ng-container *ngSwitchCase="'subAchievements'">
+            <ng-container
+                *ngFor="
+                    let achievement of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="achievement"
+                    [label]="achievement.title"
+                    [depthLevel]="depthLevel"
+                    entityType="achievement"
+                    (expanded)="onArrayExpand($event, i, 'subAchievement')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(achievement.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="subAchievementExpanded[i]"
+                    [items]="achievement"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(achievement.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'influencedBy'">
+            <ng-container
+                *ngFor="
+                    let activity of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="activity"
+                    [label]="activity.title"
+                    [depthLevel]="depthLevel"
+                    entityType="activity"
+                    (expanded)="onArrayExpand($event, i, 'influencedBy')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(activity.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="influencedByExpanded[i]"
+                    [items]="activity"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(activity.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'provenBy'">
+            <ng-container
+                *ngFor="
+                    let assessment of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="assessment"
+                    [label]="assessment.title"
+                    [depthLevel]="depthLevel"
+                    entityType="assessment"
+                    (expanded)="onArrayExpand($event, i, 'provenBy')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(assessment.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="provenByExpanded[i]"
+                    [items]="assessment"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(assessment.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'entitlesTo'">
+            <ng-container
+                *ngFor="
+                    let entitlement of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="entitlement"
+                    [label]="entitlement.title"
+                    [depthLevel]="depthLevel"
+                    entityType="entitlement"
+                    (expanded)="onArrayExpand($event, i, 'entitledOwnerTo')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(entitlement.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="entitledOwnerToExpanded[i]"
+                    [items]="entitlement"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(entitlement.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <!-- ACTIVITY BLOCK -->
+        <ng-container *ngSwitchCase="'subActivities'">
+            <ng-container
+                *ngFor="
+                    let activity of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="activity"
+                    [label]="activity.title"
+                    [depthLevel]="depthLevel"
+                    entityType="activity"
+                    (expanded)="onArrayExpand($event, i, 'subActivities')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(activity.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="subActivitiesExpanded[i]"
+                    [items]="activity"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(activity.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <!-- ASSESSMENT BLOCK -->
+        <ng-container *ngSwitchCase="'subAssessments'">
+            <ng-container
+                *ngFor="
+                    let assessment of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="assessment"
+                    [label]="assessment.title"
+                    [depthLevel]="depthLevel"
+                    entityType="assessment"
+                    (expanded)="onArrayExpand($event, i, 'subAssessments')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(assessment.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="subAssessmentsExpanded[i]"
+                    [items]="assessment"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(assessment.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <!-- ENTITLEMENT BLOCK -->
+        <ng-container *ngSwitchCase="'subEntitlements'">
+            <ng-container
+                *ngFor="
+                    let entitlement of item.value;
+                    let i = index;
+                    trackBy: identify
+                "
+            >
+                <edci-menu-item
+                    [entity]="entitlement"
+                    [label]="entitlement.title"
+                    [depthLevel]="depthLevel"
+                    entityType="entitlement"
+                    (expanded)="onArrayExpand($event, i, 'subEntitlements')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(entitlement.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="subEntitlementsExpanded[i]"
+                    [items]="entitlement"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(entitlement.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+        <!-- ORGANISATION BLOCK -->
+        <ng-container *ngSwitchCase="'parentOrganization'">
+            <ng-container *ngIf="item.value">
+                <edci-menu-item
+                    [entity]="item.value"
+                    [label]="item.value.prefLabel"
+                    [depthLevel]="depthLevel"
+                    entityType="organisation"
+                    (expanded)="onSingleExpand($event, 'parentOrganization')"
+                    (selected)="onItemSelected($event)"
+                    [hierarchyTree]="parentList(item.value.id)"
+                ></edci-menu-item>
+                <edci-menu-list
+                    *ngIf="parentOrganizationExpanded"
+                    [items]="item.value"
+                    [depthLevel]="depthLevel + 1"
+                    (selected)="onChildSelected()"
+                    [parentTree]="parentList(item.value.id)"
+                ></edci-menu-list>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

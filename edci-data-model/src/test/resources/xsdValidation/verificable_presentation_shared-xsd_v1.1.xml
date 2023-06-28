@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vp:verifiablePresentation
+        xsi:schemaLocation="http://data.europa.eu/snb http://publications.europa.eu/resource/schema/presentation/sharedschema_1.1.xsd"
+        xmlns="http://data.europa.eu/snb" xmlns:vp="http://data.europa.eu/snb/vp"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:cred="http://data.europa.eu/europass/model/credentials/w3c#"
+        id="urn:verifiable:464e334e-02e2-420e-817b-242b8ccd07be">
+    <vp:type targetFrameworkUrl="http://52.57.141.197/fs/0.10.0/vp/types" targetNotation="verification"
+             uri="http://52.57.141.197/fs/0.10.0/vp/export">
+        <targetName>
+            <text lang="en" content-type="text/plain">export</text>
+        </targetName>
+        <targetDescription>
+            <text lang="en" content-type="text/plain">export</text>
+        </targetDescription>
+        <targetFrameworkName>
+            <text lang="en" content-type="text/plain">Europass Presentation</text>
+        </targetFrameworkName>
+    </vp:type>
+    <vp:verificationChecks>
+        <vp:verificationCheck>
+            <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verification/25831c2"
+                     uri="http://data.europa.eu/snb/verification/2f5b89b96f">
+                <targetName>
+                    <text lang="de" content-type="text/plain">Format</text>
+                    <text lang="no" content-type="text/plain">Format</text>
+                    <text lang="fi" content-type="text/plain">Muoto</text>
+                    <text lang="pt" content-type="text/plain">Formato</text>
+                    <text lang="bg" content-type="text/plain">Формат</text>
+                    <text lang="lt" content-type="text/plain">Formatas</text>
+                    <text lang="hr" content-type="text/plain">Format</text>
+                    <text lang="lv" content-type="text/plain">Formāts</text>
+                    <text lang="fr" content-type="text/plain">Format</text>
+                    <text lang="hu" content-type="text/plain">Formátum</text>
+                    <text lang="sk" content-type="text/plain">Formát</text>
+                    <text lang="sl" content-type="text/plain">Oblika</text>
+                    <text lang="ga" content-type="text/plain">Formáid</text>
+                    <text lang="mk" content-type="text/plain">Формат</text>
+                    <text lang="sr" content-type="text/plain">Format</text>
+                    <text lang="sv" content-type="text/plain">Format</text>
+                    <text lang="mt" content-type="text/plain">Format</text>
+                    <text lang="el" content-type="text/plain">Μορφότυπος</text>
+                    <text lang="en" content-type="text/plain">format</text>
+                    <text lang="is" content-type="text/plain">Snið</text>
+                    <text lang="it" content-type="text/plain">Formato</text>
+                    <text lang="es" content-type="text/plain">Formato</text>
+                    <text lang="et" content-type="text/plain">Vorming</text>
+                    <text lang="cs" content-type="text/plain">Formát</text>
+                    <text lang="pl" content-type="text/plain">Format</text>
+                    <text lang="da" content-type="text/plain">Format</text>
+                    <text lang="ro" content-type="text/plain">Format</text>
+                    <text lang="nl" content-type="text/plain">Formaat</text>
+                    <text lang="tr" content-type="text/plain">Format</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Types</text>
+                </targetFrameworkName>
+            </vp:type>
+            <vp:status targetFrameworkUrl="http://data.europa.eu/snb/verification-status/25831c2"
+                       uri="http://data.europa.eu/snb/verification-status/9895008394">
+                <targetName>
+                    <text lang="no" content-type="text/plain">grønn</text>
+                    <text lang="de" content-type="text/plain">grün</text>
+                    <text lang="fi" content-type="text/plain">vihreä</text>
+                    <text lang="pt" content-type="text/plain">verde</text>
+                    <text lang="bg" content-type="text/plain">зелен</text>
+                    <text lang="lt" content-type="text/plain">žalia</text>
+                    <text lang="lv" content-type="text/plain">Zaļš</text>
+                    <text lang="hr" content-type="text/plain">zeleni</text>
+                    <text lang="fr" content-type="text/plain">vert</text>
+                    <text lang="hu" content-type="text/plain">zöld</text>
+                    <text lang="sk" content-type="text/plain">zelený</text>
+                    <text lang="sl" content-type="text/plain">zelen</text>
+                    <text lang="ga" content-type="text/plain">glas</text>
+                    <text lang="mk" content-type="text/plain">зелено</text>
+                    <text lang="sr" content-type="text/plain">zelena</text>
+                    <text lang="sv" content-type="text/plain">grön</text>
+                    <text lang="mt" content-type="text/plain">aħdar</text>
+                    <text lang="el" content-type="text/plain">πράσινη</text>
+                    <text lang="en" content-type="text/plain">green</text>
+                    <text lang="is" content-type="text/plain">grænt</text>
+                    <text lang="it" content-type="text/plain">verde</text>
+                    <text lang="es" content-type="text/plain">verde</text>
+                    <text lang="et" content-type="text/plain">roheline</text>
+                    <text lang="cs" content-type="text/plain">Zelený</text>
+                    <text lang="pl" content-type="text/plain">zielone</text>
+                    <text lang="da" content-type="text/plain">grøn</text>
+                    <text lang="ro" content-type="text/plain">verde</text>
+                    <text lang="tr" content-type="text/plain">Yeşil</text>
+                    <text lang="nl" content-type="text/plain">groen</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Statusses</text>
+                </targetFrameworkName>
+            </vp:status>
+            <vp:description>
+                <text lang="sl" content-type="text/plain">To potrdilo je tehnično veljavno.</text>
+            </vp:description>
+        </vp:verificationCheck>
+        <vp:verificationCheck>
+            <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verification/25831c2"
+                     uri="http://data.europa.eu/snb/verification/f9c2016fe9">
+                <targetName>
+                    <text lang="de" content-type="text/plain">Siegel</text>
+                    <text lang="no" content-type="text/plain">Segl</text>
+                    <text lang="fi" content-type="text/plain">Sinetti</text>
+                    <text lang="pt" content-type="text/plain">Selo</text>
+                    <text lang="bg" content-type="text/plain">Печат</text>
+                    <text lang="lt" content-type="text/plain">Antspaudas</text>
+                    <text lang="hr" content-type="text/plain">Pečat</text>
+                    <text lang="lv" content-type="text/plain">Zīmogs</text>
+                    <text lang="fr" content-type="text/plain">Sceau</text>
+                    <text lang="hu" content-type="text/plain">Bélyegző</text>
+                    <text lang="sk" content-type="text/plain">Pečať</text>
+                    <text lang="sl" content-type="text/plain">Pečat</text>
+                    <text lang="ga" content-type="text/plain">Séala</text>
+                    <text lang="mk" content-type="text/plain">Печат</text>
+                    <text lang="sr" content-type="text/plain">Pečat</text>
+                    <text lang="sv" content-type="text/plain">Stämpel</text>
+                    <text lang="mt" content-type="text/plain">Siġill</text>
+                    <text lang="el" content-type="text/plain">Σφραγίδα</text>
+                    <text lang="en" content-type="text/plain">seal</text>
+                    <text lang="is" content-type="text/plain">Innsigli</text>
+                    <text lang="it" content-type="text/plain">Sigillo</text>
+                    <text lang="es" content-type="text/plain">Sello</text>
+                    <text lang="et" content-type="text/plain">Tempel</text>
+                    <text lang="cs" content-type="text/plain">Razítko/pečeť</text>
+                    <text lang="pl" content-type="text/plain">Pieczęć</text>
+                    <text lang="ro" content-type="text/plain">Sigiliul eSeal</text>
+                    <text lang="da" content-type="text/plain">Stempel</text>
+                    <text lang="tr" content-type="text/plain">Mühür</text>
+                    <text lang="nl" content-type="text/plain">Stempel</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Types</text>
+                </targetFrameworkName>
+            </vp:type>
+            <vp:status targetFrameworkUrl="http://data.europa.eu/snb/verification-status/25831c2"
+                       uri="http://data.europa.eu/snb/verification-status/641f0c5e5d">
+                <targetName>
+                    <text lang="de" content-type="text/plain">grau</text>
+                    <text lang="no" content-type="text/plain">grå</text>
+                    <text lang="fi" content-type="text/plain">harmaa</text>
+                    <text lang="pt" content-type="text/plain">cinzento</text>
+                    <text lang="bg" content-type="text/plain">сив</text>
+                    <text lang="lt" content-type="text/plain">pilka</text>
+                    <text lang="lv" content-type="text/plain">Pelēks</text>
+                    <text lang="hr" content-type="text/plain">sivi</text>
+                    <text lang="fr" content-type="text/plain">gris</text>
+                    <text lang="hu" content-type="text/plain">szürke</text>
+                    <text lang="sk" content-type="text/plain">sivý</text>
+                    <text lang="sl" content-type="text/plain">siv</text>
+                    <text lang="ga" content-type="text/plain">liath</text>
+                    <text lang="mk" content-type="text/plain">сиво</text>
+                    <text lang="sr" content-type="text/plain">siva</text>
+                    <text lang="sv" content-type="text/plain">grå</text>
+                    <text lang="mt" content-type="text/plain">griż</text>
+                    <text lang="el" content-type="text/plain">γκρι</text>
+                    <text lang="en" content-type="text/plain">gray</text>
+                    <text lang="is" content-type="text/plain">grátt</text>
+                    <text lang="it" content-type="text/plain">grigio</text>
+                    <text lang="es" content-type="text/plain">gris</text>
+                    <text lang="et" content-type="text/plain">hall</text>
+                    <text lang="cs" content-type="text/plain">Šedý</text>
+                    <text lang="pl" content-type="text/plain">szare</text>
+                    <text lang="ro" content-type="text/plain">gri</text>
+                    <text lang="da" content-type="text/plain">grå</text>
+                    <text lang="tr" content-type="text/plain">Gri</text>
+                    <text lang="nl" content-type="text/plain">grijs</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Statusses</text>
+                </targetFrameworkName>
+            </vp:status>
+            <vp:description>
+                <text lang="sl" content-type="text/plain">To potrdilo ne vsebuje e-pečata. Ni mogoče jamčiti za njegov
+                    izvor in pristnost.
+                </text>
+            </vp:description>
+        </vp:verificationCheck>
+        <vp:verificationCheck>
+            <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verification/25831c2"
+                     uri="http://data.europa.eu/snb/verification/271aef9eb4">
+                <targetName>
+                    <text lang="no" content-type="text/plain">Oppheving</text>
+                    <text lang="de" content-type="text/plain">Widerruf</text>
+                    <text lang="fi" content-type="text/plain">Peruuttaminen</text>
+                    <text lang="pt" content-type="text/plain">Revogação</text>
+                    <text lang="bg" content-type="text/plain">Отмяна</text>
+                    <text lang="lt" content-type="text/plain">Atšaukimas</text>
+                    <text lang="hr" content-type="text/plain">Opoziv</text>
+                    <text lang="lv" content-type="text/plain">Atsaukšana</text>
+                    <text lang="fr" content-type="text/plain">Révocation</text>
+                    <text lang="hu" content-type="text/plain">Visszavonás</text>
+                    <text lang="sk" content-type="text/plain">Zrušenie</text>
+                    <text lang="sl" content-type="text/plain">Preklic</text>
+                    <text lang="ga" content-type="text/plain">Cúlghairm</text>
+                    <text lang="mk" content-type="text/plain">Отповикување</text>
+                    <text lang="sr" content-type="text/plain">Opoziv</text>
+                    <text lang="sv" content-type="text/plain">Återkallande</text>
+                    <text lang="mt" content-type="text/plain">Revoka</text>
+                    <text lang="el" content-type="text/plain">Ανάκληση</text>
+                    <text lang="en" content-type="text/plain">revocation</text>
+                    <text lang="is" content-type="text/plain">Afturköllun</text>
+                    <text lang="it" content-type="text/plain">Revoca</text>
+                    <text lang="es" content-type="text/plain">Revocación</text>
+                    <text lang="et" content-type="text/plain">Tühistamine</text>
+                    <text lang="cs" content-type="text/plain">Zrušení</text>
+                    <text lang="pl" content-type="text/plain">Unieważnienie</text>
+                    <text lang="ro" content-type="text/plain">Revocarea</text>
+                    <text lang="da" content-type="text/plain">Tilbagekaldelse</text>
+                    <text lang="nl" content-type="text/plain">Intrekking</text>
+                    <text lang="tr" content-type="text/plain">İptal</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Types</text>
+                </targetFrameworkName>
+            </vp:type>
+            <vp:status targetFrameworkUrl="http://data.europa.eu/snb/verification-status/25831c2"
+                       uri="http://data.europa.eu/snb/verification-status/641f0c5e5d">
+                <targetName>
+                    <text lang="de" content-type="text/plain">grau</text>
+                    <text lang="no" content-type="text/plain">grå</text>
+                    <text lang="fi" content-type="text/plain">harmaa</text>
+                    <text lang="pt" content-type="text/plain">cinzento</text>
+                    <text lang="bg" content-type="text/plain">сив</text>
+                    <text lang="lt" content-type="text/plain">pilka</text>
+                    <text lang="lv" content-type="text/plain">Pelēks</text>
+                    <text lang="hr" content-type="text/plain">sivi</text>
+                    <text lang="fr" content-type="text/plain">gris</text>
+                    <text lang="hu" content-type="text/plain">szürke</text>
+                    <text lang="sk" content-type="text/plain">sivý</text>
+                    <text lang="sl" content-type="text/plain">siv</text>
+                    <text lang="ga" content-type="text/plain">liath</text>
+                    <text lang="mk" content-type="text/plain">сиво</text>
+                    <text lang="sr" content-type="text/plain">siva</text>
+                    <text lang="sv" content-type="text/plain">grå</text>
+                    <text lang="mt" content-type="text/plain">griż</text>
+                    <text lang="el" content-type="text/plain">γκρι</text>
+                    <text lang="en" content-type="text/plain">gray</text>
+                    <text lang="is" content-type="text/plain">grátt</text>
+                    <text lang="it" content-type="text/plain">grigio</text>
+                    <text lang="es" content-type="text/plain">gris</text>
+                    <text lang="et" content-type="text/plain">hall</text>
+                    <text lang="cs" content-type="text/plain">Šedý</text>
+                    <text lang="pl" content-type="text/plain">szare</text>
+                    <text lang="ro" content-type="text/plain">gri</text>
+                    <text lang="da" content-type="text/plain">grå</text>
+                    <text lang="tr" content-type="text/plain">Gri</text>
+                    <text lang="nl" content-type="text/plain">grijs</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Statusses</text>
+                </targetFrameworkName>
+            </vp:status>
+            <vp:description>
+                <text lang="sl" content-type="text/plain">Preverjanje preskočeno.</text>
+            </vp:description>
+        </vp:verificationCheck>
+        <vp:verificationCheck>
+            <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verification/25831c2"
+                     uri="http://data.europa.eu/snb/verification/e2bbc86a28">
+                <targetName>
+                    <text lang="de" content-type="text/plain">Akkreditierung</text>
+                    <text lang="no" content-type="text/plain">Akkreditering</text>
+                    <text lang="fi" content-type="text/plain">Akkreditointi</text>
+                    <text lang="pt" content-type="text/plain">Acreditação</text>
+                    <text lang="bg" content-type="text/plain">Акредитация</text>
+                    <text lang="lt" content-type="text/plain">Akreditacija</text>
+                    <text lang="hr" content-type="text/plain">Akreditacija</text>
+                    <text lang="lv" content-type="text/plain">Akreditācija</text>
+                    <text lang="fr" content-type="text/plain">Accréditation</text>
+                    <text lang="hu" content-type="text/plain">Akkreditáció</text>
+                    <text lang="sk" content-type="text/plain">Akreditácia</text>
+                    <text lang="sl" content-type="text/plain">Akreditacija</text>
+                    <text lang="ga" content-type="text/plain">Creidiúnú</text>
+                    <text lang="mk" content-type="text/plain">Акредитација</text>
+                    <text lang="sr" content-type="text/plain">Akreditacija</text>
+                    <text lang="sv" content-type="text/plain">Ackreditering</text>
+                    <text lang="mt" content-type="text/plain">Akkreditazzjoni</text>
+                    <text lang="el" content-type="text/plain">Διαπίστευση</text>
+                    <text lang="en" content-type="text/plain">accreditation</text>
+                    <text lang="is" content-type="text/plain">Vottun</text>
+                    <text lang="it" content-type="text/plain">Accreditamento</text>
+                    <text lang="es" content-type="text/plain">Acreditación</text>
+                    <text lang="et" content-type="text/plain">Akrediteering</text>
+                    <text lang="cs" content-type="text/plain">Akreditace</text>
+                    <text lang="pl" content-type="text/plain">Akredytacja</text>
+                    <text lang="ro" content-type="text/plain">Acreditarea</text>
+                    <text lang="da" content-type="text/plain">Akkreditering</text>
+                    <text lang="nl" content-type="text/plain">Accreditatie</text>
+                    <text lang="tr" content-type="text/plain">Akreditasyon</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Types</text>
+                </targetFrameworkName>
+            </vp:type>
+            <vp:status targetFrameworkUrl="http://data.europa.eu/snb/verification-status/25831c2"
+                       uri="http://data.europa.eu/snb/verification-status/641f0c5e5d">
+                <targetName>
+                    <text lang="de" content-type="text/plain">grau</text>
+                    <text lang="no" content-type="text/plain">grå</text>
+                    <text lang="fi" content-type="text/plain">harmaa</text>
+                    <text lang="pt" content-type="text/plain">cinzento</text>
+                    <text lang="bg" content-type="text/plain">сив</text>
+                    <text lang="lt" content-type="text/plain">pilka</text>
+                    <text lang="lv" content-type="text/plain">Pelēks</text>
+                    <text lang="hr" content-type="text/plain">sivi</text>
+                    <text lang="fr" content-type="text/plain">gris</text>
+                    <text lang="hu" content-type="text/plain">szürke</text>
+                    <text lang="sk" content-type="text/plain">sivý</text>
+                    <text lang="sl" content-type="text/plain">siv</text>
+                    <text lang="ga" content-type="text/plain">liath</text>
+                    <text lang="mk" content-type="text/plain">сиво</text>
+                    <text lang="sr" content-type="text/plain">siva</text>
+                    <text lang="sv" content-type="text/plain">grå</text>
+                    <text lang="mt" content-type="text/plain">griż</text>
+                    <text lang="el" content-type="text/plain">γκρι</text>
+                    <text lang="en" content-type="text/plain">gray</text>
+                    <text lang="is" content-type="text/plain">grátt</text>
+                    <text lang="it" content-type="text/plain">grigio</text>
+                    <text lang="es" content-type="text/plain">gris</text>
+                    <text lang="et" content-type="text/plain">hall</text>
+                    <text lang="cs" content-type="text/plain">Šedý</text>
+                    <text lang="pl" content-type="text/plain">szare</text>
+                    <text lang="ro" content-type="text/plain">gri</text>
+                    <text lang="da" content-type="text/plain">grå</text>
+                    <text lang="tr" content-type="text/plain">Gri</text>
+                    <text lang="nl" content-type="text/plain">grijs</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Statusses</text>
+                </targetFrameworkName>
+            </vp:status>
+            <vp:description>
+                <text lang="sl" content-type="text/plain">Preverjanje preskočeno.</text>
+            </vp:description>
+        </vp:verificationCheck>
+        <vp:verificationCheck>
+            <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verification/25831c2"
+                     uri="http://data.europa.eu/snb/verification/94d828f160">
+                <targetName>
+                    <text lang="no" content-type="text/plain">Gyldighet</text>
+                    <text lang="de" content-type="text/plain">Gültigkeit</text>
+                    <text lang="fi" content-type="text/plain">Voimassaolo</text>
+                    <text lang="pt" content-type="text/plain">Validade</text>
+                    <text lang="bg" content-type="text/plain">Валидност</text>
+                    <text lang="lt" content-type="text/plain">Galiojimas</text>
+                    <text lang="lv" content-type="text/plain">Derīguma termiņš</text>
+                    <text lang="hr" content-type="text/plain">Valjanost</text>
+                    <text lang="fr" content-type="text/plain">Validité</text>
+                    <text lang="hu" content-type="text/plain">Érvényesség</text>
+                    <text lang="sk" content-type="text/plain">Platnosť</text>
+                    <text lang="sl" content-type="text/plain">Veljavnost</text>
+                    <text lang="ga" content-type="text/plain">Bailíocht</text>
+                    <text lang="mk" content-type="text/plain">Валидноста</text>
+                    <text lang="sr" content-type="text/plain">Validnost</text>
+                    <text lang="sv" content-type="text/plain">Giltighet</text>
+                    <text lang="mt" content-type="text/plain">Validità</text>
+                    <text lang="el" content-type="text/plain">Διάρκεια ισχύος</text>
+                    <text lang="en" content-type="text/plain">validity</text>
+                    <text lang="is" content-type="text/plain">Gildi</text>
+                    <text lang="it" content-type="text/plain">Validità</text>
+                    <text lang="es" content-type="text/plain">Validez</text>
+                    <text lang="et" content-type="text/plain">Kehtivus</text>
+                    <text lang="cs" content-type="text/plain">Platnost</text>
+                    <text lang="pl" content-type="text/plain">Ważność</text>
+                    <text lang="da" content-type="text/plain">Gyldighed</text>
+                    <text lang="ro" content-type="text/plain">Validitatea</text>
+                    <text lang="nl" content-type="text/plain">Geldigheid</text>
+                    <text lang="tr" content-type="text/plain">Geçerlilik</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Types</text>
+                </targetFrameworkName>
+            </vp:type>
+            <vp:status targetFrameworkUrl="http://data.europa.eu/snb/verification-status/25831c2"
+                       uri="http://data.europa.eu/snb/verification-status/9895008394">
+                <targetName>
+                    <text lang="no" content-type="text/plain">grønn</text>
+                    <text lang="de" content-type="text/plain">grün</text>
+                    <text lang="fi" content-type="text/plain">vihreä</text>
+                    <text lang="pt" content-type="text/plain">verde</text>
+                    <text lang="bg" content-type="text/plain">зелен</text>
+                    <text lang="lt" content-type="text/plain">žalia</text>
+                    <text lang="lv" content-type="text/plain">Zaļš</text>
+                    <text lang="hr" content-type="text/plain">zeleni</text>
+                    <text lang="fr" content-type="text/plain">vert</text>
+                    <text lang="hu" content-type="text/plain">zöld</text>
+                    <text lang="sk" content-type="text/plain">zelený</text>
+                    <text lang="sl" content-type="text/plain">zelen</text>
+                    <text lang="ga" content-type="text/plain">glas</text>
+                    <text lang="mk" content-type="text/plain">зелено</text>
+                    <text lang="sr" content-type="text/plain">zelena</text>
+                    <text lang="sv" content-type="text/plain">grön</text>
+                    <text lang="mt" content-type="text/plain">aħdar</text>
+                    <text lang="el" content-type="text/plain">πράσινη</text>
+                    <text lang="en" content-type="text/plain">green</text>
+                    <text lang="is" content-type="text/plain">grænt</text>
+                    <text lang="it" content-type="text/plain">verde</text>
+                    <text lang="es" content-type="text/plain">verde</text>
+                    <text lang="et" content-type="text/plain">roheline</text>
+                    <text lang="cs" content-type="text/plain">Zelený</text>
+                    <text lang="pl" content-type="text/plain">zielone</text>
+                    <text lang="da" content-type="text/plain">grøn</text>
+                    <text lang="ro" content-type="text/plain">verde</text>
+                    <text lang="tr" content-type="text/plain">Yeşil</text>
+                    <text lang="nl" content-type="text/plain">groen</text>
+                </targetName>
+                <targetFrameworkName>
+                    <text lang="en" content-type="text/plain">Europass Standard List of Verification Statusses</text>
+                </targetFrameworkName>
+            </vp:status>
+            <vp:description>
+                <text lang="sl" content-type="text/plain">Potrdilo je še vedno veljavno.</text>
+            </vp:description>
+        </vp:verificationCheck>
+    </vp:verificationChecks>
+    <europassCredential xsdVersion="0.10.0" cred:id="urn:credential:06fdf8f6-04a8-42d5-83a8-13f4078cba28">
+        <type targetFrameworkUrl="http://data.europa.eu/snb/credential/25831c2"
+              uri="http://data.europa.eu/snb/credential/e34929035b">
+            <targetName>
+                <text lang="sl" content-type="text/plain">Generično</text>
+            </targetName>
+            <targetFrameworkName/>
+        </type>
+        <primaryLanguage>sl</primaryLanguage>
+        <language>
+            <language>sl</language>
+        </language>
+        <cred:validFrom>2021-03-04T00:00:00+01:00</cred:validFrom>
+        <cred:issued>2021-03-05T12:17:09+01:00</cred:issued>
+        <cred:issuer idref="urn:epass:org:1"/>
+        <title>
+            <text lang="sl" content-type="text/plain">Elektrotehniko</text>
+        </title>
+        <description>
+            <text lang="sl" content-type="text/plain">Poslanstvo Fakultete za elektrotehniko Univerze v Ljubljani</text>
+        </description>
+        <credentialSubject id="urn:epass:person:1">
+            <contactPoint>
+                <mailBox uri="mailto:karoandnordinetest@gmail.com"/>
+            </contactPoint>
+            <fullName>
+                <text lang="sl" content-type="text/plain">Jan Jan</text>
+            </fullName>
+            <givenNames>
+                <text lang="sl" content-type="text/plain">Jan</text>
+            </givenNames>
+            <familyName>
+                <text lang="sl" content-type="text/plain">Jan</text>
+            </familyName>
+            <dateOfBirth>2021-03-01</dateOfBirth>
+        </credentialSubject>
+        <agentReferences>
+            <organization id="urn:epass:org:1">
+                <registration>SL1048111</registration>
+                <prefLabel>
+                    <text lang="sl" content-type="text/plain">Univerza v Ljubljani</text>
+                </prefLabel>
+                <altLabel>
+                    <text lang="sl" content-type="text/plain">Karolina Ostrowska</text>
+                </altLabel>
+                <hasLocation>
+                    <id>urn:epass:location:1</id>
+                    <hasAddress>
+                        <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country"
+                                 targetNotation="country"
+                                 uri="http://publications.europa.eu/resource/authority/country/SVN">
+                            <targetName>
+                                <text lang="sl" content-type="text/plain">Slovenija</text>
+                            </targetName>
+                            <targetFrameworkName/>
+                        </country>
+                    </hasAddress>
+                </hasLocation>
+                <logo>
+                    <contentType targetFrameworkUrl="http://publications.europa.eu/resource/authority/file-type"
+                                 targetNotation="file-type"
+                                 uri="http://publications.europa.eu/resource/authority/file-type/JPEG">
+                        <targetName>
+                            <text lang="en" content-type="text/plain">JPEG</text>
+                            <text lang="et" content-type="text/plain">JPEG</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text lang="en" content-type="text/plain">File type</text>
+                        </targetFrameworkName>
+                    </contentType>
+                    <content>
+                        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
+                    </content>
+                </logo>
+            </organization>
+        </agentReferences>
+        <proof></proof>
+    </europassCredential>
+    <vp:proof></vp:proof>
+</vp:verifiablePresentation>

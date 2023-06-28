@@ -1,0 +1,112 @@
+<eui-block-content [isBlocked]="loading">
+    <table id="cb-table" euiTable [asyncTable]="true" [rows]="items" [loading]="false" [asyncTable]="true"
+        [euiTableCompact]="true" [euiTableResponsive]="true" (sortChange)="onSortChange($event)">
+        <ng-template euiTemplate="header">
+            <tr>
+                <th sortable sortOn="additionalInfo.updatedOn" class="eui-u-width-10">
+                    {{ 'common.date' | translate | uppercase }}
+                </th>
+                <th sortable sortOn="title.contents.content,label" class="eui-u-width-75">
+                    {{ 'common.title' | translate | uppercase }}
+                </th>
+                <th class="eui-u-text-center eui-u-width-10">
+                    {{ 'common.language' | translate | uppercase}}
+                </th>
+                <th *ngIf="isCredential" class="eui-u-text-center eui-u-width-5">
+                    {{ 'common.issue' | translate | uppercase }}
+                </th>
+                <th class="eui-u-text-center eui-u-width-5">
+                    {{ 'common.edit' | translate | uppercase }}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template let-row let-index="index" euiTemplate="body">
+            <tr class="{{
+                    index === selectedRowIndex ? 'row-state-highlight' : ''
+                }}">
+                <td (click)="onRowSelect(row.oid, index)">
+                    {{ row.additionalInfo.updatedOn | date: 'dd/MM/yyyy' }}
+                </td>
+
+                <td class="select-highlight" (click)="onRowSelect(row.oid, index)">
+                    <div *ngIf="row.additionalInfo.updatedOn < limitDate" class="flex-container">
+                        <span class="mr-1 mb-2">
+                            <eui-icon-svg euiTooltip="{{ 'warning.tooltip' | translate }}" icon="warning" set="sharp"
+                                size="l" fillColor="accent-110"></eui-icon-svg>
+                        </span>
+                        {{ row.displayName }}
+                    </div>
+                    <div *ngIf="row.additionalInfo.updatedOn >= limitDate">
+                        {{ row.displayName }}
+                    </div>
+                </td>
+
+                <td class="eui-u-text-center">
+                    <strong>{{ row.defaultLanguage | uppercase}}</strong>
+                </td>
+
+                <td *ngIf="isCredential" class="eui-u-text-center cursor-default">
+                    <div class="d-block issue-button">
+                        <button euiButton [euiIconButton]="true" [euiBasicButton]="true"
+                            class="eui-u-mr-s eui-u-mb-s no-box" (click)="onIssue.emit(row.oid)">
+                            <span euiIcon [euiPrimary]="true" iconClass="eui-icon eui-icon-send"></span>
+                        </button>
+                    </div>
+                </td>
+
+                <td class="eui-u-text-center cursor-default">
+                    <eui-dropdown>
+                        <button euiButton [euiIconButton]="true" [euiBasicButton]="true">
+                            <span euiIcon [euiPrimary]="true" iconClass="eui-icon eui-icon-more-vertical"></span>
+                        </button>
+                        <eui-dropdown-content>
+                            <div euiList>
+                                <button euiListItem (click)="onEdit.emit(row.oid)">
+                                    <span euiIcon [euiPrimary]="true" iconClass="eui-icon eui-icon-create"></span>
+                                    {{ 'common.edit' | translate }}
+                                </button>
+                                <button euiListItem (click)="onRequestDelete(row)">
+                                    <span euiIcon [euiPrimary]="true"
+                                        iconClass="eui-icon eui-icon-delete-forever"></span>
+                                    {{
+                                    'credential-builder.achievements-tab.delete'
+                                    | translate
+                                    }}
+                                </button>
+                                <button euiListItem (click)="onDuplicate.emit(row.oid)">
+                                    <span euiIcon [euiPrimary]="true" iconClass="eui-icon eui-icon-files-o"></span>
+                                    {{
+                                    'credential-builder.achievements-tab.duplicate'
+                                    | translate
+                                    }}
+                                </button>
+                            </div>
+                        </eui-dropdown-content>
+                    </eui-dropdown>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template euiTemplate="emptyMessage">
+            <tr>
+                <td *ngIf="loading; else noResults" class="eui-u-text-center" colspan="5">{{ 'app.loading.data' |
+                    translate }}</td>
+                <ng-template #noResults>
+                    <td class="eui-u-text-center" colspan="5">
+                    <td>{{ 'app.no.results.found' | translate }}</td>
+                </ng-template>
+            </tr>
+        </ng-template>
+    </table>
+
+    <eui-table-paginator #paginator [hasPageNumberNavigation]="true" [nbPageNumberNavigation]="pagesShown"
+        [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="perPage" [length]="totalItems"
+        (pageChange)="onPageChange($event)"></eui-table-paginator>
+
+    <eui-message-box #messageBoxDelete title="{{ 'common.warning' | translate | uppercase }}"
+        acceptLabel="{{ 'common.yes' | translate | uppercase }}"
+        dismissLabel="{{ 'common.no' | translate | uppercase }}" (accept)="onAcceptDelete()">
+        <div class="eui-u-flex">
+            <p>{{ 'credential-builder.deleteWarning' | translate }}</p>
+        </div>
+    </eui-message-box>
+</eui-block-content>

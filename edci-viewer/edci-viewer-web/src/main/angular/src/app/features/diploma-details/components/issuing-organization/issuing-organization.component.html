@@ -1,0 +1,19 @@
+<edci-viewer-organization-detail
+    *ngIf="activeOrganisation"
+    [organisation]="activeOrganisation"
+    titleSection="{{ 'details.issuing-organization' | translate }}"
+    [showVP]="!organizationPresentation"
+></edci-viewer-organization-detail>
+<div *ngIf="organizationPresentation" class="mt-3">
+    <edci-viewer-organization-detail
+        [organisation]="organizationPresentation"
+        titleSection="{{ 'details.sealing-organization' | translate }}"
+        [showVP]="true"
+    ></edci-viewer-organization-detail>
+</div>
+<div *ngIf="activeOrganisation?.accreditation?.length > 0">
+    <edci-accreditation-panel
+        [accreditations]="activeOrganisation.accreditation"
+    >
+    </edci-accreditation-panel>
+</div>

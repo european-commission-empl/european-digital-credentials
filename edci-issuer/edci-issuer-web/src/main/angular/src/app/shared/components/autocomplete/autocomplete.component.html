@@ -1,0 +1,47 @@
+<!--[isLoading]="isLoading"-->
+<div
+    #divMultipleInput
+    *ngIf="!isSingleSelection; else singleSelection"
+    [formGroup]="autocompleteForm"
+    class="{{ !isPrimaryLanguage ? 'input-disabled' : '' }}"
+>
+    <eui-autocomplete
+        #autocompleteTag
+        chipsPosition="bottom"
+        [placeholder]="placeholder"
+        itemsSortOrder="ASC"
+        chipsSortOrder="ASC"
+        [async]="true"
+        [autocompleteData]="searchList"
+        [formControl]="tagItem"
+        [hasChips]="true"
+        [isDuplicateValueAllowed]="false"
+        [readonly]="!isPrimaryLanguage"
+    ></eui-autocomplete>
+</div>
+<ng-template #singleSelection>
+    <div class="{{ isDisabled ? 'input-disabled' : '' }} position-relative">
+        <ng-container [formGroup]="autocompleteForm">
+            <!--
+                Div to add the event only in a portion of the input
+                The styles for "single-autocomplete-event-div" should
+                match the "Input" element from autocomplete
+            -->
+            <div #divMultipleInput class="single-autocomplete-event-div {{ !item?.value || !isPrimaryLanguage ? 'd-none' : ''}}">
+                {{ item?.value?.label }}
+            </div>
+            <div>
+                <eui-autocomplete
+                    #autocomplete
+                    itemsSortOrder="ASC"
+                    [placeholder]="placeholder"
+                    [async]="true"
+                    [autocompleteData]="searchList"
+                    [formControl]="item"
+                    [readonly]="isDisabled || !isPrimaryLanguage"
+                >
+                </eui-autocomplete>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

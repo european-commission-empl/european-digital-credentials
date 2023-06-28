@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vp:verifiablePresentation xmlns="http://data.europa.eu/snb"
+                           xmlns:cred="http://data.europa.eu/europass/model/credentials/w3c#"
+                           xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:vp="http://data.europa.eu/snb/vp"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           id="urn:verifiable:8c0c7ca6-1b69-4a32-88bb-f250b9bc2702"
+                           xsi:schemaLocation="http://data.europa.eu/snb http://publications.europa.eu/resource/schema/presentation/mandatedschema_dp_1.2.xsd">
+    <vp:type targetFrameworkUrl="http://data.europa.eu/snb/verifiable-presentation/25831c2"
+             uri="http://data.europa.eu/snb/verifiable-presentation/c_825cddc0">
+        <targetName>
+            <text content-type="text/plain" lang="en">Mandated Issue</text>
+        </targetName>
+        <targetFrameworkName>
+            <text content-type="text/plain" lang="en">Europass Verifiable Presentation Type</text>
+        </targetFrameworkName>
+    </vp:type>
+    <vp:issuer id="urn:epass:org:vp:1">
+        <registration spatialID="ES">mockID-for-testing</registration>
+        <prefLabel>
+            <text content-type="text/plain" lang="en">mockOrg</text>
+        </prefLabel>
+        <altLabel>
+            <text content-type="text/plain" lang="en">Robert Dolcet Ricart</text>
+        </altLabel>
+        <hasLocation>
+            <id>urn:epass:location:vp:1</id>
+            <hasAddress>
+                <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country"
+                         targetNotation="country" uri="http://publications.europa.eu/resource/authority/country/ESP">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Spain</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Country</text>
+                    </targetFrameworkName>
+                </country>
+            </hasAddress>
+        </hasLocation>
+    </vp:issuer>
+    <europassCredential cred:id="urn:credential:5499f8c9-054a-415e-aee0-83cb7ed5469a" xsdVersion="0.10.0">
+        <type targetFrameworkUrl="http://data.europa.eu/snb/credential/25831c2"
+              uri="http://data.europa.eu/snb/credential/6dff8a0f87">
+            <targetName>
+                <text content-type="text/plain" lang="en">Diploma Supplement</text>
+            </targetName>
+            <targetFrameworkName>
+                <text content-type="text/plain" lang="en">Europass Standard List of Credential Types</text>
+            </targetFrameworkName>
+        </type>
+        <primaryLanguage>en</primaryLanguage>
+        <language>
+            <language>en</language>
+        </language>
+        <cred:validFrom>2021-06-08T22:00:00Z</cred:validFrom>
+        <cred:issued>2021-09-16T15:49:10Z</cred:issued>
+        <cred:issuer idref="urn:epass:org:1"/>
+        <title>
+            <text content-type="text/plain" lang="en">Guitar Hero Cert</text>
+        </title>
+        <description>
+            <text content-type="text/plain" lang="en">has completed the course and was awarded qualification
+                certificate.
+            </text>
+        </description>
+        <credentialSubject id="urn:epass:person:1">
+            <contactPoint>
+                <address>
+                    <fullAddress>
+                        <text content-type="text/plain" lang="en">Streets with No Name 2</text>
+                    </fullAddress>
+                    <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country"
+                             targetNotation="ATA" uri="http://publications.europa.eu/resource/authority/country/ATA">
+                        <targetName>
+                            <text content-type="text/plain" lang="en">Antarctica</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text content-type="text/plain" lang="en">Countries Named Authority List</text>
+                        </targetFrameworkName>
+                    </country>
+                </address>
+                <mailBox uri="mailto:karomeetstesting@gmail.com"/>
+            </contactPoint>
+            <nationalId schemeAgencyName="European Union" spatialID="EUR">3121231</nationalId>
+            <fullName>
+                <text content-type="text/plain" lang="en">Billy Rolling</text>
+            </fullName>
+            <givenNames>
+                <text content-type="text/plain" lang="en">Billy</text>
+            </givenNames>
+            <familyName>
+                <text content-type="text/plain" lang="en">Rolling</text>
+            </familyName>
+            <achievements>
+                <learningAchievement id="urn:epass:learningAchievement:3">
+                    <identifier schemeID="GRIT">32434242</identifier>
+                    <title>
+                        <text content-type="text/plain" lang="en">Advanced Blues Guitar Course</text>
+                    </title>
+                    <description>
+                        <text content-type="text/plain" lang="en">*Course content summary:
+                            Blues soloing.
+                            Improvising and creating melodies.
+                            Improvising and thinking rhythmically.
+                            Minor blues.
+                            Creating melodic variations.
+                            Solo length and creating climax.
+                            Playing chord tones.
+                            Chord scale soloing.
+                        </text>
+                    </description>
+                    <wasDerivedFrom id="urn:epass:assessment:3">
+                        <title>
+                            <text content-type="text/plain" lang="en">Practical Exam Advanced</text>
+                        </title>
+                        <grade>legendary: 100pts</grade>
+                        <idVerificationMethod
+                                targetFrameworkUrl="http://data.europa.eu/snb/supervision-verification/25831c2"
+                                uri="http://data.europa.eu/snb/supervision-verification/70be69aaf9">
+                            <targetName>
+                                <text content-type="text/plain" lang="en">Supervised with ID Verification</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text content-type="text/plain" lang="en">Europass Standard List of Methods Of
+                                    Supervision And Verification
+                                </text>
+                            </targetFrameworkName>
+                        </idVerificationMethod>
+                        <assessedBy idref="urn:epass:org:2"/>
+                        <specifiedBy idref="urn:epass:asssessmentspec:3"/>
+                        <hasPart id="urn:epass:assessment:2">
+                            <title>
+                                <text content-type="text/plain" lang="en">Practical Exam Basic</text>
+                            </title>
+                            <grade>65pt</grade>
+                            <idVerificationMethod
+                                    targetFrameworkUrl="http://data.europa.eu/snb/supervision-verification/25831c2"
+                                    uri="http://data.europa.eu/snb/supervision-verification/70be69aaf9">
+                                <targetName>
+                                    <text content-type="text/plain" lang="en">Supervised with ID Verification</text>
+                                </targetName>
+                                <targetFrameworkName>
+                                    <text content-type="text/plain" lang="en">Europass Standard List of Methods Of
+                                        Supervision And Verification
+                                    </text>
+                                </targetFrameworkName>
+                            </idVerificationMethod>
+                            <assessedBy idref="urn:epass:org:2"/>
+                            <specifiedBy idref="urn:epass:asssessmentspec:2"/>
+                        </hasPart>
+                    </wasDerivedFrom>
+                    <wasInfluencedBy id="urn:epass:activity:1">
+                        <title>
+                            <text content-type="text/plain" lang="en">Strumming Practice</text>
+                        </title>
+                        <directedBy idref="urn:epass:org:2"/>
+                        <specifiedBy idref="urn:epass:learningactivityspec:1"/>
+                    </wasInfluencedBy>
+                    <wasInfluencedBy id="urn:epass:activity:2">
+                        <title>
+                            <text content-type="text/plain" lang="en">Power and Barre Chords</text>
+                        </title>
+                        <directedBy idref="urn:epass:org:1"/>
+                        <specifiedBy idref="urn:epass:learningactivityspec:2"/>
+                    </wasInfluencedBy>
+                    <wasAwardedBy idref="urn:epass:awardingProcess:3"/>
+                    <hasPart>
+                        <learningAchievement id="urn:epass:learningAchievement:1">
+                            <identifier schemeID="GRIT">344223423</identifier>
+                            <title>
+                                <text content-type="text/plain" lang="en">Intermediate Guitar Course</text>
+                            </title>
+                            <wasDerivedFrom id="urn:epass:assessment:1">
+                                <title>
+                                    <text content-type="text/plain" lang="en">Practical Exam Intermediate</text>
+                                </title>
+                                <grade>awesome</grade>
+                                <idVerificationMethod
+                                        targetFrameworkUrl="http://data.europa.eu/snb/supervision-verification/25831c2"
+                                        uri="http://data.europa.eu/snb/supervision-verification/70be69aaf9">
+                                    <targetName>
+                                        <text content-type="text/plain" lang="en">Supervised with ID Verification</text>
+                                    </targetName>
+                                    <targetFrameworkName>
+                                        <text content-type="text/plain" lang="en">Europass Standard List of Methods Of
+                                            Supervision And Verification
+                                        </text>
+                                    </targetFrameworkName>
+                                </idVerificationMethod>
+                                <assessedBy idref="urn:epass:org:1"/>
+                                <specifiedBy idref="urn:epass:asssessmentspec:1"/>
+                            </wasDerivedFrom>
+                            <wasAwardedBy idref="urn:epass:awardingProcess:1"/>
+                            <specifiedBy idref="urn:epass:learningSpecification:1"/>
+                        </learningAchievement>
+                        <learningAchievement id="urn:epass:learningAchievement:2">
+                            <identifier schemeID="GRIT">3432424232</identifier>
+                            <title>
+                                <text content-type="text/plain" lang="en">Basic Guitar Course</text>
+                            </title>
+                            <wasAwardedBy idref="urn:epass:awardingProcess:2"/>
+                            <specifiedBy idref="urn:epass:learningSpecification:2"/>
+                        </learningAchievement>
+                    </hasPart>
+                    <entitlesTo id="urn:epass:entitlement:1">
+                        <title>
+                            <text content-type="text/plain" lang="en">Blues Concert Player</text>
+                        </title>
+                        <specifiedBy idref="urn:epass:entitlementspec:2"/>
+                    </entitlesTo>
+                    <entitlesTo id="urn:epass:entitlement:2">
+                        <title>
+                            <text content-type="text/plain" lang="en">Jazz Concert Player</text>
+                        </title>
+                        <specifiedBy idref="urn:epass:entitlementspec:3"/>
+                    </entitlesTo>
+                    <entitlesTo id="urn:epass:entitlement:3">
+                        <title>
+                            <text content-type="text/plain" lang="en">Concert Player PRO</text>
+                        </title>
+                        <specifiedBy idref="urn:epass:entitlementspec:4"/>
+                    </entitlesTo>
+                    <specifiedBy idref="urn:epass:learningSpecification:3"/>
+                </learningAchievement>
+                <learningAchievement id="urn:epass:learningAchievement:4">
+                    <identifier schemeID="GRIT">2342424242</identifier>
+                    <title>
+                        <text content-type="text/plain" lang="en">Folk Music</text>
+                    </title>
+                    <wasDerivedFrom id="urn:epass:assessment:4">
+                        <title>
+                            <text content-type="text/plain" lang="en">Solo Guitar Session</text>
+                        </title>
+                        <grade>100%</grade>
+                        <idVerificationMethod
+                                targetFrameworkUrl="http://data.europa.eu/snb/supervision-verification/25831c2"
+                                uri="http://data.europa.eu/snb/supervision-verification/70be69aaf9">
+                            <targetName>
+                                <text content-type="text/plain" lang="en">Supervised with ID Verification</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text content-type="text/plain" lang="en">Europass Standard List of Methods Of
+                                    Supervision And Verification
+                                </text>
+                            </targetFrameworkName>
+                        </idVerificationMethod>
+                        <assessedBy idref="urn:epass:org:2"/>
+                        <specifiedBy idref="urn:epass:asssessmentspec:4"/>
+                    </wasDerivedFrom>
+                    <wasInfluencedBy id="urn:epass:activity:3">
+                        <title>
+                            <text content-type="text/plain" lang="en">Strumming Practice</text>
+                        </title>
+                        <directedBy idref="urn:epass:org:2"/>
+                        <specifiedBy idref="urn:epass:learningactivityspec:1"/>
+                    </wasInfluencedBy>
+                    <wasAwardedBy idref="urn:epass:awardingProcess:4"/>
+                    <entitlesTo id="urn:epass:entitlement:4">
+                        <title>
+                            <text content-type="text/plain" lang="en">Guitar Tutor</text>
+                        </title>
+                        <specifiedBy idref="urn:epass:entitlementspec:1"/>
+                    </entitlesTo>
+                    <specifiedBy idref="urn:epass:learningSpecification:4"/>
+                </learningAchievement>
+            </achievements>
+            <activities>
+                <activity id="urn:epass:activity:4">
+                    <title>
+                        <text content-type="text/plain" lang="en">Strumming Practice</text>
+                    </title>
+                    <directedBy idref="urn:epass:org:2"/>
+                    <specifiedBy idref="urn:epass:learningactivityspec:1"/>
+                </activity>
+            </activities>
+            <entitlements>
+                <entitlement id="urn:epass:entitlement:5">
+                    <title>
+                        <text content-type="text/plain" lang="en">Guitar Tutor</text>
+                    </title>
+                    <specifiedBy idref="urn:epass:entitlementspec:1"/>
+                </entitlement>
+            </entitlements>
+        </credentialSubject>
+        <learningSpecificationReferences>
+            <learningSpecification id="urn:epass:learningSpecification:1">
+                <type targetFrameworkUrl="http://data.europa.eu/snb/learning-opportunity/25831c2"
+                      uri="http://data.europa.eu/snb/learning-opportunity/05053c1cbe">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Course</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Learning Opportunity Types
+                        </text>
+                    </targetFrameworkName>
+                </type>
+                <title>
+                    <text content-type="text/plain" lang="en">Intermediate Guitar Course</text>
+                </title>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/0011">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Basic programmes and qualifications</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/029">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Arts and humanities not elsewhere classified</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <volumeOfLearning>PT100H</volumeOfLearning>
+                <hasECTSCreditPoints>4</hasECTSCreditPoints>
+                <hasCreditPoints>5</hasCreditPoints>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/FIN">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Finnish</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/RUS">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Russian</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/e92d221e4d">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Blended</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+                <learningSettingType targetFrameworkUrl="http://data.europa.eu/snb/learning-setting/25831c2"
+                                     uri="http://data.europa.eu/snb/learning-setting/e207a81fc7">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">non-formal learning</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Learning Setting Types
+                        </text>
+                    </targetFrameworkName>
+                </learningSettingType>
+                <duration>P2M</duration>
+            </learningSpecification>
+            <learningSpecification id="urn:epass:learningSpecification:2">
+                <type targetFrameworkUrl="http://data.europa.eu/snb/learning-opportunity/25831c2"
+                      uri="http://data.europa.eu/snb/learning-opportunity/05053c1cbe">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Course</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Learning Opportunity Types
+                        </text>
+                    </targetFrameworkName>
+                </type>
+                <title>
+                    <text content-type="text/plain" lang="en">Basic Guitar Course</text>
+                </title>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/0011">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Basic programmes and qualifications</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/029">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Arts and humanities not elsewhere classified</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <volumeOfLearning>PT100H</volumeOfLearning>
+                <hasECTSCreditPoints>4</hasECTSCreditPoints>
+                <hasCreditPoints>3</hasCreditPoints>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/FIN">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Finnish</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/RUS">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Russian</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/e92d221e4d">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Blended</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+                <learningSettingType targetFrameworkUrl="http://data.europa.eu/snb/learning-setting/25831c2"
+                                     uri="http://data.europa.eu/snb/learning-setting/e207a81fc7">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">non-formal learning</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Learning Setting Types
+                        </text>
+                    </targetFrameworkName>
+                </learningSettingType>
+                <duration>P2M</duration>
+            </learningSpecification>
+            <learningSpecification id="urn:epass:learningSpecification:3">
+                <type targetFrameworkUrl="http://data.europa.eu/snb/learning-opportunity/25831c2"
+                      uri="http://data.europa.eu/snb/learning-opportunity/05053c1cbe">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Course</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Learning Opportunity Types
+                        </text>
+                    </targetFrameworkName>
+                </type>
+                <title>
+                    <text content-type="text/plain" lang="en">Advanced Blues Guitar Course</text>
+                </title>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/0011">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Basic programmes and qualifications</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/029">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Arts and humanities not elsewhere classified</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <volumeOfLearning>PT300H</volumeOfLearning>
+                <hasECTSCreditPoints>10</hasECTSCreditPoints>
+                <hasCreditPoints>10</hasCreditPoints>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/FIN">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Finnish</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/RUS">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Russian</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/e92d221e4d">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Blended</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+                <learningSettingType targetFrameworkUrl="http://data.europa.eu/snb/learning-setting/25831c2"
+                                     uri="http://data.europa.eu/snb/learning-setting/e207a81fc7">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">non-formal learning</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Learning Setting Types
+                        </text>
+                    </targetFrameworkName>
+                </learningSettingType>
+                <duration>P6M</duration>
+                <learningOutcomes>
+                    <learningOutcome idref="urn:epass:learningOutcome:1"/>
+                    <learningOutcome idref="urn:epass:learningOutcome:2"/>
+                    <learningOutcome idref="urn:epass:learningOutcome:3"/>
+                    <learningOutcome idref="urn:epass:learningOutcome:4"/>
+                </learningOutcomes>
+            </learningSpecification>
+            <learningSpecification id="urn:epass:learningSpecification:4">
+                <type targetFrameworkUrl="http://data.europa.eu/snb/learning-opportunity/25831c2"
+                      uri="http://data.europa.eu/snb/learning-opportunity/05053c1cbe">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Course</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Learning Opportunity Types
+                        </text>
+                    </targetFrameworkName>
+                </type>
+                <title>
+                    <text content-type="text/plain" lang="en">Folk Music</text>
+                </title>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/0011">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Basic programmes and qualifications</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <hasISCED-FCode targetFrameworkUrl="http://data.europa.eu/snb/isced-f/25831c2"
+                                uri="http://data.europa.eu/snb/isced-f/029">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Arts and humanities not elsewhere classified</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">International Standard Classification of Education:
+                            Fields of Education and Training 2013
+                        </text>
+                    </targetFrameworkName>
+                </hasISCED-FCode>
+                <volumeOfLearning>PT120H</volumeOfLearning>
+                <hasECTSCreditPoints>3</hasECTSCreditPoints>
+                <hasCreditPoints>4</hasCreditPoints>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/FIN">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Finnish</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/RUS">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Russian</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/e92d221e4d">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Blended</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+                <learningSettingType targetFrameworkUrl="http://data.europa.eu/snb/learning-setting/25831c2"
+                                     uri="http://data.europa.eu/snb/learning-setting/e207a81fc7">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">non-formal learning</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Learning Setting Types
+                        </text>
+                    </targetFrameworkName>
+                </learningSettingType>
+                <duration>P2M</duration>
+                <learningOutcomes>
+                    <learningOutcome idref="urn:epass:learningOutcome:1"/>
+                </learningOutcomes>
+            </learningSpecification>
+        </learningSpecificationReferences>
+        <learningOutcomeReferences>
+            <learningOutcome id="urn:epass:learningOutcome:1">
+                <identifier schemeID="GUIT">1235/000/7B</identifier>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">Vast strumming pattern knowledge</text>
+                </prefLabel>
+                <description>
+                    <text content-type="text/plain" lang="en">Of course, it takes learning and practice (as does
+                        everything else in life), but once you understand the fundamentals, you'll see how practical
+                        blues really is....
+                        ...and most of all: how thrilling it is to play!
+                    </text>
+                </description>
+                <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/snb/skill-type/25831c2"
+                                     uri="http://data.europa.eu/snb/skill-type/knowledge">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">knowledge</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept (sub-) Types</text>
+                    </targetFrameworkName>
+                </learningOutcomeType>
+                <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/snb/skill-reuse-level/25831c2"
+                                  uri="http://data.europa.eu/snb/skill-reuse-level/cross-sector">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">cross-sector skills and competences</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept reusability levels</text>
+                    </targetFrameworkName>
+                </reusabilityLevel>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/54e7e8a6-3de2-453a-9f75-645e3488b9c0">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">tune stringed musical instruments</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/827aedbf-ab78-43f7-86e3-62d99a449a02">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">types of guitars</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/0939079f-e4dc-46c3-94fa-5155fc34c888">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">acoustical engineering</text>
+                    </targetName>
+                </relatedEscoSkill>
+            </learningOutcome>
+            <learningOutcome id="urn:epass:learningOutcome:2">
+                <identifier schemeID="GUIT">1235/000/7C</identifier>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">Blues Scale knowledge</text>
+                </prefLabel>
+                <description>
+                    <text content-type="text/plain" lang="en">Guitarists who know how to play blues guitar have a
+                        definite advantage over others.
+                    </text>
+                </description>
+                <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/snb/skill-type/25831c2"
+                                     uri="http://data.europa.eu/snb/skill-type/knowledge">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">knowledge</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept (sub-) Types</text>
+                    </targetFrameworkName>
+                </learningOutcomeType>
+                <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/snb/skill-reuse-level/25831c2"
+                                  uri="http://data.europa.eu/snb/skill-reuse-level/transversal">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">transversal skills and competences</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept reusability levels</text>
+                    </targetFrameworkName>
+                </reusabilityLevel>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/9a922e78-dcbb-4d95-908b-0ba34fc06449">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">write musical scores</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/d2ee5710-a332-4fe7-868c-a350d121950c">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">music therapy theories</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/29891a32-64aa-4f64-b6eb-1fa990659375">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">improvise music</text>
+                    </targetName>
+                </relatedEscoSkill>
+            </learningOutcome>
+            <learningOutcome id="urn:epass:learningOutcome:4">
+                <identifier schemeID="GUIT">1235/000/2D</identifier>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">Country and folk soloing basics</text>
+                </prefLabel>
+                <description>
+                    <text content-type="text/plain" lang="en">After the fundamentals, you have the chance to learn the
+                        intricacies of blues, country and rock.
+                    </text>
+                </description>
+                <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/snb/skill-type/25831c2"
+                                     uri="http://data.europa.eu/snb/skill-type/skill">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">skill</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept (sub-) Types</text>
+                    </targetFrameworkName>
+                </learningOutcomeType>
+                <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/snb/skill-reuse-level/25831c2"
+                                  uri="http://data.europa.eu/snb/skill-reuse-level/occupation-specific">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">occupation specific skills and competences</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept reusability levels</text>
+                    </targetFrameworkName>
+                </reusabilityLevel>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/b1ed31c4-13c8-46a5-8d9a-aa9e992b9ae1">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">design a music show</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/d7cac6b2-fab5-432a-af1c-23154ea56522">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">perform music solo</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/79862c50-3b36-4c37-9ff6-669a54fce459">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">perform music in ensemble</text>
+                    </targetName>
+                </relatedEscoSkill>
+            </learningOutcome>
+            <learningOutcome id="urn:epass:learningOutcome:3">
+                <identifier schemeID="GUIT">1235/000/3A</identifier>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">Blues soloing basics</text>
+                </prefLabel>
+                <description>
+                    <text content-type="text/plain" lang="en">Blues is one of the most important genres of music. It has
+                        shaped other styles, like jazz, rock, metal, even country.
+                    </text>
+                </description>
+                <learningOutcomeType targetFrameworkUrl="http://data.europa.eu/snb/skill-type/25831c2"
+                                     uri="http://data.europa.eu/snb/skill-type/skill">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">skill</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept (sub-) Types</text>
+                    </targetFrameworkName>
+                </learningOutcomeType>
+                <reusabilityLevel targetFrameworkUrl="http://data.europa.eu/snb/skill-reuse-level/25831c2"
+                                  uri="http://data.europa.eu/snb/skill-reuse-level/sector-specific">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">sector specific skills and competences</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">ESCO Skill Pillar concept reusability levels</text>
+                    </targetFrameworkName>
+                </reusabilityLevel>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/52eb7ab6-269f-4f44-a21d-b0c705eaf857">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">musical genres</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/d11e4683-d2fe-45fd-bb1a-e995f7877851">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">musical theory</text>
+                    </targetName>
+                </relatedEscoSkill>
+                <relatedEscoSkill targetFrameworkUrl="http://data.europa.eu/esco/model#Skill" targetNotation="Skill"
+                                  uri="http://data.europa.eu/esco/skill/0939079f-e4dc-46c3-94fa-5155fc34c888">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">acoustical engineering</text>
+                    </targetName>
+                </relatedEscoSkill>
+            </learningOutcome>
+        </learningOutcomeReferences>
+        <learningActivitySpecificationReferences>
+            <learningActivitySpecification id="urn:epass:learningactivityspec:2">
+                <title>
+                    <text content-type="text/plain" lang="en">Power and Barre Chords</text>
+                </title>
+            </learningActivitySpecification>
+            <learningActivitySpecification id="urn:epass:learningactivityspec:1">
+                <title>
+                    <text content-type="text/plain" lang="en">Strumming Practice</text>
+                </title>
+            </learningActivitySpecification>
+        </learningActivitySpecificationReferences>
+        <assessmentSpecificationReferences>
+            <assessmentSpecification id="urn:epass:asssessmentspec:3">
+                <title>
+                    <text content-type="text/plain" lang="en">Practical Exam Advanced</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/assessment/25831c2"
+                      uri="http://data.europa.eu/snb/assessment/19a2e5e671">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">peer assessment</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Assessment Types</text>
+                    </targetFrameworkName>
+                </type>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/GLG">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Galician</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/9191af2ed9">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Presential</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+            </assessmentSpecification>
+            <assessmentSpecification id="urn:epass:asssessmentspec:1">
+                <title>
+                    <text content-type="text/plain" lang="en">Practical Exam Intermediate</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/assessment/25831c2"
+                      uri="http://data.europa.eu/snb/assessment/19a2e5e671">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">peer assessment</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Assessment Types</text>
+                    </targetFrameworkName>
+                </type>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/GLG">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Galician</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/9191af2ed9">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Presential</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+            </assessmentSpecification>
+            <assessmentSpecification id="urn:epass:asssessmentspec:4">
+                <title>
+                    <text content-type="text/plain" lang="en">Solo Guitar Session</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/assessment/25831c2"
+                      uri="http://data.europa.eu/snb/assessment/19a2e5e671">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">peer assessment</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Assessment Types</text>
+                    </targetFrameworkName>
+                </type>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/GLG">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Galician</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/9191af2ed9">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Presential</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+            </assessmentSpecification>
+            <assessmentSpecification id="urn:epass:asssessmentspec:2">
+                <title>
+                    <text content-type="text/plain" lang="en">Practical Exam Basic</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/assessment/25831c2"
+                      uri="http://data.europa.eu/snb/assessment/19a2e5e671">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">peer assessment</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List Of Assessment Types</text>
+                    </targetFrameworkName>
+                </type>
+                <language targetFrameworkUrl="http://publications.europa.eu/resource/authority/language"
+                          targetNotation="language" uri="http://publications.europa.eu/resource/authority/language/GLG">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Galician</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Language</text>
+                    </targetFrameworkName>
+                </language>
+                <mode targetFrameworkUrl="http://data.europa.eu/snb/learning-assessment/25831c2"
+                      uri="http://data.europa.eu/snb/learning-assessment/9191af2ed9">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">Presential</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Modes Of Learning and
+                            Assessment
+                        </text>
+                    </targetFrameworkName>
+                </mode>
+            </assessmentSpecification>
+        </assessmentSpecificationReferences>
+        <entitlementSpecificationReferences>
+            <entitlementSpecification id="urn:epass:entitlementspec:4">
+                <title>
+                    <text content-type="text/plain" lang="en">Concert Player PRO</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/entitlement/25831c2"
+                      uri="http://data.europa.eu/snb/entitlement/bebd32e8e6">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">membership</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Types</text>
+                    </targetFrameworkName>
+                </type>
+                <status targetFrameworkUrl="http://data.europa.eu/snb/entitlement-status/25831c2"
+                        uri="http://data.europa.eu/snb/entitlement-status/5b8d6b34fb">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">prospective</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Statuses</text>
+                    </targetFrameworkName>
+                </status>
+            </entitlementSpecification>
+            <entitlementSpecification id="urn:epass:entitlementspec:2">
+                <title>
+                    <text content-type="text/plain" lang="en">Blues Concert Player</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/entitlement/25831c2"
+                      uri="http://data.europa.eu/snb/entitlement/52f62180c2">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">occupation</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Types</text>
+                    </targetFrameworkName>
+                </type>
+                <status targetFrameworkUrl="http://data.europa.eu/snb/entitlement-status/25831c2"
+                        uri="http://data.europa.eu/snb/entitlement-status/b7015a8a8c">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">actual</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Statuses</text>
+                    </targetFrameworkName>
+                </status>
+            </entitlementSpecification>
+            <entitlementSpecification id="urn:epass:entitlementspec:3">
+                <title>
+                    <text content-type="text/plain" lang="en">Jazz Concert Player</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/entitlement/25831c2"
+                      uri="http://data.europa.eu/snb/entitlement/52f62180c2">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">occupation</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Types</text>
+                    </targetFrameworkName>
+                </type>
+                <status targetFrameworkUrl="http://data.europa.eu/snb/entitlement-status/25831c2"
+                        uri="http://data.europa.eu/snb/entitlement-status/b7015a8a8c">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">actual</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Statuses</text>
+                    </targetFrameworkName>
+                </status>
+            </entitlementSpecification>
+            <entitlementSpecification id="urn:epass:entitlementspec:1">
+                <title>
+                    <text content-type="text/plain" lang="en">Guitar Tutor</text>
+                </title>
+                <type targetFrameworkUrl="http://data.europa.eu/snb/entitlement/25831c2"
+                      uri="http://data.europa.eu/snb/entitlement/64aad92881">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">learning opportunity</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Types</text>
+                    </targetFrameworkName>
+                </type>
+                <status targetFrameworkUrl="http://data.europa.eu/snb/entitlement-status/25831c2"
+                        uri="http://data.europa.eu/snb/entitlement-status/b7015a8a8c">
+                    <targetName>
+                        <text content-type="text/plain" lang="en">actual</text>
+                    </targetName>
+                    <targetFrameworkName>
+                        <text content-type="text/plain" lang="en">Europass Standard List of Entitlement Statuses</text>
+                    </targetFrameworkName>
+                </status>
+            </entitlementSpecification>
+        </entitlementSpecificationReferences>
+        <agentReferences>
+            <organization id="urn:epass:org:2">
+                <registration>Gut22828282</registration>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">Department of Strings</text>
+                </prefLabel>
+                <altLabel>
+                    <text content-type="text/plain" lang="en">Strings Depo</text>
+                </altLabel>
+                <homepage uri="https://en.wikipedia.org/wiki/Guitar_Hero"/>
+                <hasLocation>
+                    <id>urn:epass:location:2</id>
+                    <hasAddress>
+                        <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country"
+                                 targetNotation="country"
+                                 uri="http://publications.europa.eu/resource/authority/country/IRL">
+                            <targetName>
+                                <text content-type="text/plain" lang="en">Ireland</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text content-type="text/plain" lang="en">Country</text>
+                            </targetFrameworkName>
+                        </country>
+                    </hasAddress>
+                </hasLocation>
+                <unitOf idref="urn:epass:org:1"/>
+                <logo>
+                    <contentType targetFrameworkUrl="http://publications.europa.eu/resource/authority/file-type"
+                                 targetNotation="file-type"
+                                 uri="http://publications.europa.eu/resource/authority/file-type/JPEG">
+                        <targetName>
+                            <text content-type="text/plain" lang="en">JPEG</text>
+                            <text content-type="text/plain" lang="et">JPEG</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text content-type="text/plain" lang="en">File type</text>
+                        </targetFrameworkName>
+                    </contentType>
+                    <contentEncoding targetFrameworkUrl="http://data.europa.eu/snb/encoding/25831c2"
+                                     uri="http://data.europa.eu/snb/encoding/6146cde7dd">
+                        <targetName>
+                            <text content-type="text/plain" lang="en">base64</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text content-type="text/plain" lang="en">Europass Standard List of Content Encoding Types
+                            </text>
+                        </targetFrameworkName>
+                    </contentEncoding>
+                    <contentUrl>
+                        https://i.fbcd.co/products/original/fcfa2a1940df73db6d30fb796ea5edb6304dfc3be1f0a184f7cabc6496c88508.jpg
+                    </contentUrl>
+                    <content>
+                        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
+                    </content>
+                </logo>
+            </organization>
+            <organization id="urn:epass:org:1">
+                <registration>VATSI-61038750</registration>
+                <prefLabel>
+                    <text content-type="text/plain" lang="en">ANTHONY FISHER CAMILLERI S.P.</text>
+                </prefLabel>
+                <altLabel>
+                    <text content-type="text/plain" lang="en">Anthony Fisher Camilleri S.p. E Seal</text>
+                </altLabel>
+                <homepage uri="https://en.wikipedia.org/wiki/Guitar_Hero"/>
+                <hasLocation>
+                    <id>urn:epass:location:1</id>
+                    <hasAddress>
+                        <country targetFrameworkUrl="http://publications.europa.eu/resource/authority/country"
+                                 targetNotation="country"
+                                 uri="http://publications.europa.eu/resource/authority/country/SVN">
+                            <targetName>
+                                <text content-type="text/plain" lang="en">Slovenia</text>
+                            </targetName>
+                            <targetFrameworkName>
+                                <text content-type="text/plain" lang="en">Country</text>
+                            </targetFrameworkName>
+                        </country>
+                    </hasAddress>
+                </hasLocation>
+                <logo>
+                    <contentType targetFrameworkUrl="http://publications.europa.eu/resource/authority/file-type"
+                                 targetNotation="file-type"
+                                 uri="http://publications.europa.eu/resource/authority/file-type/PNG">
+                        <targetName>
+                            <text content-type="text/plain" lang="en">PNG</text>
+                            <text content-type="text/plain" lang="et">PNG</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text content-type="text/plain" lang="en">File type</text>
+                        </targetFrameworkName>
+                    </contentType>
+                    <contentEncoding targetFrameworkUrl="http://data.europa.eu/snb/encoding/25831c2"
+                                     uri="http://data.europa.eu/snb/encoding/6146cde7dd">
+                        <targetName>
+                            <text content-type="text/plain" lang="en">base64</text>
+                        </targetName>
+                        <targetFrameworkName>
+                            <text content-type="text/plain" lang="en">Europass Standard List of Content Encoding Types
+                            </text>
+                        </targetFrameworkName>
+                    </contentEncoding>
+                    <contentUrl>https://www.pngitem.com/pimgs/m/175-1751662_burning-guitar-png-transparent-png.png
+                    </contentUrl>
+                    <content>
+                        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
+                    </content>
+                </logo>
+            </organization>
+        </agentReferences>
+        <awardingProcessReferences>
+            <awardingProcess id="urn:epass:awardingProcess:3">
+                <awardingBody idref="urn:epass:org:1"/>
+                <date>2021-06-07T22:00:00Z</date>
+            </awardingProcess>
+            <awardingProcess id="urn:epass:awardingProcess:2">
+                <awardingBody idref="urn:epass:org:1"/>
+                <date>2021-06-07T22:00:00Z</date>
+            </awardingProcess>
+            <awardingProcess id="urn:epass:awardingProcess:4">
+                <awardingBody idref="urn:epass:org:1"/>
+                <date>2021-06-07T22:00:00Z</date>
+            </awardingProcess>
+            <awardingProcess id="urn:epass:awardingProcess:1">
+                <awardingBody idref="urn:epass:org:1"/>
+                <date>2021-06-07T22:00:00Z</date>
+            </awardingProcess>
+        </awardingProcessReferences>
+    </europassCredential>
+    <vp:proof>
+        <ds:Signature Id="id-8cb51171726b3437b80b6c4a3a269975">
+            <ds:SignedInfo>
+                <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+                <ds:Reference Id="r-id-8cb51171726b3437b80b6c4a3a269975-1" URI="">
+                    <ds:Transforms>
+                        <ds:Transform Algorithm="http://www.w3.org/2002/06/xmldsig-filter2">
+                            <dsig-filter2:XPath xmlns:dsig-filter2="http://www.w3.org/2002/06/xmldsig-filter2"
+                                                Filter="subtract">/descendant::ds:Signature
+                            </dsig-filter2:XPath>
+                        </ds:Transform>
+                        <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                    </ds:Transforms>
+                    <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                    <ds:DigestValue>cksCWQKFykJhKDcB8kum2qaMAQWzO/lX3XFIqTauKcU=</ds:DigestValue>
+                </ds:Reference>
+                <ds:Reference Type="http://uri.etsi.org/01903#SignedProperties"
+                              URI="#xades-id-8cb51171726b3437b80b6c4a3a269975">
+                    <ds:Transforms>
+                        <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                    </ds:Transforms>
+                    <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                    <ds:DigestValue>w3JnpQEojbKqUMlP0ttQ8HoaFEGiboC4Llk2ioCsaVg=</ds:DigestValue>
+                </ds:Reference>
+            </ds:SignedInfo>
+            <ds:SignatureValue Id="value-id-8cb51171726b3437b80b6c4a3a269975">
+                D4a9gvJQ/+6JORQNMnVRIt2iXdkrWnfmBLkDjiFInI1gRnOqSykwgQCQ/uU2na5C5e/EKmW9B5C6Am+TIjoLjwAWpN445BVm8UdTCi5yXiA2wwkgDjaASkYb8+N4J52PpFYmjwDtBWKR1vMwgQL8kcsjcY+L/my5GZgO4zya4f8oKdBDa75qvMAxsdujPDbcDblmfH2tLYORhjSOQvKCwV19r5x2ATVyxoE5vLrPAGD2ysRAJ/euiQyxMt6vVELkL9YWdUDsoBLYacnAuNYF/2ikYxLReSO10tIVuzWSMVag5/DWWdr71RsRfIe52rsn4vYesrOkVURMjSX1WmYgRQ==
+            </ds:SignatureValue>
+            <ds:KeyInfo>
+                <ds:X509Data>
+                    <ds:X509Certificate>
+                        MIII5TCCBs2gAwIBAgITYgAGDuUU/rSCu0b6GQAAAAYO5TANBgkqhkiG9w0BAQsFADBiMRMwEQYKCZImiZPyLGQBGRYDaW50MRYwFAYKCZImiZPyLGQBGRYGZXZlcmlzMRcwFQYKCZImiZPyLGQBGRYHdXNlcnNhZDEaMBgGA1UEAxMRZXZlcmlzIElzc3VpbmcgQ0EwHhcNMjEwNjA0MTIzOTQwWhcNMjIwNTMwMTMyOTEwWjCB8zETMBEGCgmSJomT8ixkARkWA2ludDEWMBQGCgmSJomT8ixkARkWBmV2ZXJpczEXMBUGCgmSJomT8ixkARkWB3VzZXJzYWQxDzANBgNVBAsTBkV2ZXJpczEPMA0GA1UECxMGRXVyb3BlMQ4wDAYDVQQLEwVTcGFpbjESMBAGA1UECxMJQmFyY2Vsb25hMQ4wDAYDVQQLEwVVc2VyczEdMBsGA1UEAxMUUm9iZXJ0IERvbGNldCBSaWNhcnQxNjA0BgkqhkiG9w0BCQEWJ3JvYmVydC5kb2xjZXQucmljYXJ0QGV2ZXJpcy5udHRkYXRhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANIQqJFet014Zga/EHUDRXc2LOBZ0GRKmF3vUWFt6LV+NK+lE8uTKryv0Yt9buzn3VteeLxrOipPsOXx3EhGaamYP0JFXj6GANlUyS45o5tMjqaw4SG+E8xQF5a/RIMtGJQs/ceyl7hbhssNOKVa40moF1t/XuDZxlaTA5jkweaMNeieuYpQXn1a/nVQSBm9yE5glYzD8fxmZiwn3xUm22qwKGS1QIjRkkE2Rp0hdwBBSxttFKCXaQOfQZZCMskpH8rD4/dJikFgxcRFVSQ7mZtTeLU+4RkubxgstzvRlgmMaWIJkB8npfIVf6iJ21hrFn34IVGabLdzUUkTOhHHFoUCAwEAAaOCBAAwggP8MD0GCSsGAQQBgjcVBwQwMC4GJisGAQQBgjcVCIGskGiH5pgFhbGRGoXAhWSBsssBEIKx3BOHn8RrAgFkAgERMCkGA1UdJQQiMCAGCisGAQQBgjcKAwQGCCsGAQUFBwMEBggrBgEFBQcDAjAOBgNVHQ8BAf8EBAMCBaAwNQYJKwYBBAGCNxUKBCgwJjAMBgorBgEEAYI3CgMEMAoGCCsGAQUFBwMEMAoGCCsGAQUFBwMCMEQGCSqGSIb3DQEJDwQ3MDUwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQU4YX/L2MtULZQ0/cflfWbGWxak8swHwYDVR0jBBgwFoAUQotGYopjcPqX5+paGvKAYS0n+3swggEmBgNVHR8EggEdMIIBGTCCARWgggERoIIBDYaBwWxkYXA6Ly8vQ049ZXZlcmlzJTIwSXNzdWluZyUyMENBLENOPVNDTEQwMVBDQVNCMDEsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9ZXZlcmlzLERDPWludD9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnSGR2h0dHA6Ly9ldmVyaXNDQS51c2Vyc2FkLmV2ZXJpcy5pbnQvQ2VydEVucm9sbC9ldmVyaXMlMjBJc3N1aW5nJTIwQ0EuY3JsMIIBPgYIKwYBBQUHAQEEggEwMIIBLDCBswYIKwYBBQUHMAKGgaZsZGFwOi8vL0NOPWV2ZXJpcyUyMElzc3VpbmclMjBDQSxDTj1BSUEsQ049UHVibGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1ldmVyaXMsREM9aW50P2NBQ2VydGlmaWNhdGU/YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZpY2F0aW9uQXV0aG9yaXR5MHQGCCsGAQUFBzAChmhodHRwOi8vZXZlcmlzQ0EudXNlcnNhZC5ldmVyaXMuaW50L0NlcnRFbnJvbGwvU0NMRDAxUENBU0IwMS51c2Vyc2FkLmV2ZXJpcy5pbnRfZXZlcmlzJTIwSXNzdWluZyUyMENBLmNydDBXBgNVHREEUDBOoCMGCisGAQQBgjcUAgOgFQwTcmRvbGNldHJAZXZlcmlzLmNvbYEncm9iZXJ0LmRvbGNldC5yaWNhcnRAZXZlcmlzLm50dGRhdGEuY29tMA0GCSqGSIb3DQEBCwUAA4ICAQBFpZtJ4ydXRrxrMjIjQqIlyyu0OU7svnMXjrkESJJxGohpLBoXVgNZxq3tm2STiwmdwEo0M3MUHLkBFJ3lSVCR0umc56uW29NLqQUnurfIamV565ObaXDI6Lf3IkXqeFU6Q49X2USHVozDkeSO6ZwzR4DCQtSW2qt4eVNvq91iMqf1XwSW4YAxl2LTuO/ZgeXu49z8P5OGr21tDSh4SlmcQtEQa+DjocVAbafpo1DkxF8ZeVrwVZVZwWzm4P9+8ITrYM4yLTW2l+oSXizWykzKSyS0Z/e1sTkefJC4YNIRMokDbtAryjp4Jjq439I0ddJy5Nte/E9QSVPYQ/NUQVTcMSQmKBvF8eg6c3PhLQP0JYSwIVYeVWC+raBhBDUbJ1WDeS9G1O8sZcSBb7wJhwNaAcamf3YQ8XyvzpX2IROdSuPffSohOK7e71BefueVfHfea8kor8tvWEK//qUUpri6pw3cdp6fEJy21huEG6ffH97xenoEPJeaUjS89SGyDmetsGfUAgBo9sn0WWg1uRhtctGQm7C5B4gqDWMJ4dEZ5d1w6dWfCDGqaVnsjGLNxEMA+OaA16BuT6Psc5hW6SHTPe/cTEX1aG7//FSqg8r0J2923jG/Vru8VaQeQZV/+2hdKq0n04lohp09tRhDdtJ7SUViPe0/OHcZNbJcyJ8Law==
+                    </ds:X509Certificate>
+                    <ds:X509Certificate>
+                        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
+                    </ds:X509Certificate>
+                    <ds:X509Certificate>
+                        MIIFCTCCAvGgAwIBAgIQEVFQTdnrIJxFtTuoAPxmsjANBgkqhkiG9w0BAQsFADAXMRUwEwYDVQQDEwxldmVyaXNSb290Q0EwHhcNMTcwNTMwMTMxOTEyWhcNMjIwNTMwMTMyOTEwWjAXMRUwEwYDVQQDEwxldmVyaXNSb290Q0EwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDBeLqB+GeJKGu0gFJOkaQsTSQioDyYvSKgkpRAXoF/eoByZ8rwz7BfryPE+lr3ZfWS+PSkjdyEFKdI9j1kSEdadT43cbGNQxIhFR0FRF0dfTAaXhNSuf7mg41fbXKp7ivno3vVCJz9g6RwPzXrBn9BPnf+bMFAAIc2csqcMxJnige/a7reQvsJMHIRVILYCBw6tzKgph2/JzeSDjM0FQz4+K+iWYZFLPWAqle5Sj3ISydTdqAb9kgFpL2bTQUkYh5FQHVMsyViM59l5HnFZ0Xk7FpT89sA2D9xA6vPn+SFDlM6xE3qIYOixsDLljd7gBZ8kYZUFX8QVNFyh2ko5iXCHVisypAEEC8SbRRsPnv1rDQITBTCTxC8ub/SWFA41FM4rp9nygqS6hnWXmd2Ny+zMvfJh7VuGd2cSdJsApuBufd0GFqqV68zOmUATRDVn39VMxB1YAhZQmamp7VI4SbDIanjQaPs2X377JhLf2o0NoNzukmYN0zAmoT1+UKOMmDYVk9d7x2769pamIe+JMc64EEg7Zh++mBwdrSNAClCBAbzNmcAdJ3xDKC8YRRsU8Gu3zuYn6I3/dci1A+hdli9Z5AfmvIv8blpL6Uzg162ZH/rujwpqwxb3EHiuqE82ue75VeF2GrJhTwWc4Hdc125DW3A2yYQMCQfAcmWI8yTZQIDAQABo1EwTzALBgNVHQ8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQU5zpc9zeO1DwTwTr/M3dKoZSPo+MwEAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQELBQADggIBADMQmYzRGFE66LAlJkDNaq1aXq0edTy1t12TJbODzoqODu/zgxTYqi7/eqP16ZxA88GtkYvd/9HfogrqsYn6Uc2AjUycM77pO6fvPawUg/wtSrZGv0v9ATOUxeI4tpyZNX8CpVsdOB52YvjBZoljz5vIaJMyBy09etzs0uLYv6yZfFc5yijgQqmO5w0/ciwkRoOsqpDIZf8ig8aIKjhUCLrE9zZVSuVRNZSWgaqIJNaExZm3Ku4QcloceRsf+5Mx5kOEFgAjpskF/Iyj2q2PuhvVxxuQwtThVbFY40R29Nr3c51y4aCJDg5wGH00if3SHtm1O6XJAgP98FRi7Va95tQv7K6sPqSlnleKUJDqDq8fA/OhfNMdK9LqXfWCd9naY5oL6rHKcBCVO+k7Sk6KAoGSihLHnLCbhT/3eG1ClGKhWewksV4zMldhJM6It785KivE1Tf6U1XfwYcgGZFk6mM4CiafZWZVN4yCzhzw4JgUMwLP0DmXTPTnx7LPjlTfr0y9ONQxyb/C0bbJxo+QchQoGteZ8pRbFUFzZUSLzIlVGmeGlnl3EY9uro+GbPWrbRhLczhrU1Qeu12CAMKw7cm/8/Xtjt7V1v6cDLrz48DhPV9wX962HjN4Fo5QHWYjATp3I7hlJaP8GmpEWA92cmidA9x4UAQwkCRqUJUFSvjE
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+            <ds:Object>
+                <xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"
+                                            Target="#id-8cb51171726b3437b80b6c4a3a269975">
+                    <xades:SignedProperties Id="xades-id-8cb51171726b3437b80b6c4a3a269975">
+                        <xades:SignedSignatureProperties>
+                            <xades:SigningTime>2021-09-16T15:49:17Z</xades:SigningTime>
+                            <xades:SigningCertificateV2>
+                                <xades:Cert>
+                                    <xades:CertDigest>
+                                        <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+                                        <ds:DigestValue>
+                                            q23ckNmT5cOHoSFash8AT1seL2qHFqaJy9DTIPoJ1+uGJ8a/R3HVd7jjy/K0np1V607kFlb6pHLa5fC6IgTeQA==
+                                        </ds:DigestValue>
+                                    </xades:CertDigest>
+                                    <xades:IssuerSerialV2>
+                                        MH0wZqRkMGIxEzARBgoJkiaJk/IsZAEZFgNpbnQxFjAUBgoJkiaJk/IsZAEZFgZldmVyaXMxFzAVBgoJkiaJk/IsZAEZFgd1c2Vyc2FkMRowGAYDVQQDExFldmVyaXMgSXNzdWluZyBDQQITYgAGDuUU/rSCu0b6GQAAAAYO5Q==
+                                    </xades:IssuerSerialV2>
+                                </xades:Cert>
+                            </xades:SigningCertificateV2>
+                        </xades:SignedSignatureProperties>
+                        <xades:SignedDataObjectProperties>
+                            <xades:DataObjectFormat ObjectReference="#r-id-8cb51171726b3437b80b6c4a3a269975-1">
+                                <xades:MimeType>text/xml</xades:MimeType>
+                            </xades:DataObjectFormat>
+                            <xades:AllDataObjectsTimeStamp
+                                    Id="TS-T-E548B23F705F6564E6214ABBD2C1993E3AEB83D88245A35F083F011671534A7C">
+                                <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                                <xades:EncapsulatedTimeStamp>
+                                    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
+                                </xades:EncapsulatedTimeStamp>
+                            </xades:AllDataObjectsTimeStamp>
+                        </xades:SignedDataObjectProperties>
+                    </xades:SignedProperties>
+                </xades:QualifyingProperties>
+            </ds:Object>
+        </ds:Signature>
+    </vp:proof>
+</vp:verifiablePresentation>

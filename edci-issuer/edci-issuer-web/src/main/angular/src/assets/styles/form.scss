@@ -1,0 +1,313 @@
+/* new design */
+/* need to fix base size*/
+edci-html-templates-form,
+edci-learning-outcomes-form,
+edci-credentials-form,
+edci-organizations-form,
+edci-activities-form,
+edci-achievements-form,
+edci-assessments-form,
+edci-accreditation-form,
+edci-entitlements-form {
+    .page-title {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: normal;
+    }
+
+    .page-subtitle {
+        font-size: 20px;
+        line-height: normal;
+    }
+
+    .form-title {
+        font-size: 20px;
+        color: var(--eui-base-color-grey-75);
+        margin-bottom: 0.25rem;
+    }
+
+    /* gray line to separate content */
+    .gray-line {
+        height: 1px;
+        width: 100%;
+        background-color: var(--eui-base-color-grey-50);
+    }
+
+    /* blue line to separate content */
+    .blue-line {
+        height: 1px;
+        width: 100%;
+        background-color: var(--eui-base-color-primary-100);
+    }
+
+    .form-content-wrapper {
+        width: 784px;
+        display: flex;
+        justify-content: center;
+
+        form {
+            flex-grow: 1;
+
+            label {
+                color: var(--eui-base-color-grey-100);
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    div.cb-modal-form-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 4rem;
+        background-color: var(--gray-50);
+        border: none;
+        box-shadow: none;
+        border-radius: 8px;
+    }
+
+    .form-dropdown {
+        max-width: 370px !important;
+    }
+
+    edci-upload .upload-component button.eui-button {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--eui-base-color-primary-100);
+        max-width: 159px;
+        border: 2px solid var(--eui-base-color-primary-100);
+        padding: 16px 20px;
+    }
+
+    edci-upload .upload-component button.eui-button:hover {
+        background-color: var(--eui-base-color-primary-100);
+        color: var(--eui-base-color-white);
+    }
+
+    ux-control-feedback .ux-control-feedback .ux-c-control-feedback__message {
+        font-size: 14px;
+        margin-top: 1rem;
+    }
+
+    eui-dropdown {
+        min-width: 142px;
+        border-radius: 4px;
+        border: solid 0.5px var(--eui-base-color-grey-75);
+        background-color: var(--gray-50);
+
+        .mat-menu-trigger,
+        .eui-button,
+        .eui-button__container {
+            width: 100%;
+        }
+
+        .eui-button {
+            border: initial;
+            font-size: 14px;
+            color: var(--eui-base-color-grey-75);
+        }
+
+        .eui-button--basic:hover {
+            border-radius: 4px;
+            border: initial;
+        }
+
+        .eui-button .eui-button__container {
+            align-items: center;
+            display: inline-flex;
+            position: relative;
+            justify-content: space-between;
+        }
+
+        .eui-icon-chevron-down:before {
+            color: var(--eui-base-color-primary-100);
+        }
+
+        .eui-button--rounded:focus {
+            box-shadow: none;
+            background-color: transparent;
+        }
+    }
+
+    eui-tabs {
+        .eui-tabs .eui-tab-item {
+            border-top: 1px solid var(--eui-base-color-grey-50);
+            border-left: 1px solid var(--eui-base-color-grey-50);
+            border-right: 1px solid var(--eui-base-color-grey-50);
+            border-bottom: 4px solid var(--eui-base-color-grey-50);
+            box-shadow: none;
+            background-color: var(--eui-base-color-grey-10);
+            border-radius: 4px;
+            color: var(--eui-base-color-grey-75);
+        }
+
+        .eui-tabs .eui-tab-item:hover:not(.eui-tab-item--active) {
+            border-bottom: 4px solid var(--eui-base-color-primary-100);
+            background-color: var(--eui-base-color-primary-5);
+        }
+
+        .eui-tabs .eui-tab-item--active {
+            border-bottom: 4px solid var(--eui-base-color-primary-100);
+            border-top: 0.5px solid var(--eui-base-color-primary-100);
+            border-left: 0.5px solid var(--eui-base-color-primary-100);
+            border-right: 0.5px solid var(--eui-base-color-primary-100);
+            box-shadow: none;
+            background-color: var(--eui-base-color-primary-5);
+            border-radius: 4px;
+            color: var(--eui-base-color-primary-100);
+        }
+    }
+
+    /* custom html labels */
+    .eui-icon-add-circle {
+        color: var(--eui-base-color-primary-100);
+    }
+
+    .add-btn-label {
+        font-weight: bold;
+        color: var(--eui-base-color-primary-100);
+        font-size: 14px;
+    }
+
+    /* align tag and modal buttons */
+    .buttons-wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .form-group {
+            width: 45%;
+        }
+
+        edci-cb-modal-footer button:last-child {
+            margin-right: 0 !important;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .buttons-wrapper {
+            display: block;
+
+            .form-group {
+                width: 100%;
+            }
+
+            edci-cb-modal-footer button:last-child {
+                margin-right: 0 !important;
+            }
+
+            .add-btn-label {
+                display: none;
+            }
+        }
+    }
+
+    /* tags */
+    .tags-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        padding: 2px 3px;
+        background-color: var(--eui-base-color-primary-10);
+        border-radius: 2px;
+
+        .tags-label {
+            font-size: 14px;
+            font-weight: initial;
+            color: var(--eui-base-color-primary-100);
+        }
+
+        input {
+            border: none;
+        }
+    }
+
+    /* modal footer */
+    .modal-button:hover eui-icon.eui-icon-close-m {
+        color: var(--eui-base-color-white) !important;
+    }
+
+    .modal-button {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.block-container {
+    border: 1px solid #757575;
+    padding: var(--eui-base-spacing-m) var(--eui-base-spacing-l);
+    border-radius: 6px;
+    margin-bottom: var(--eui-base-spacing-m);
+}
+
+.elementDisabled {
+    input {
+        height: 38.5px !important;
+        background-color: var(--eui-base-color-grey-5) !important;
+        border: solid 1px #cfcfcf !important;
+        pointer-events: none !important;
+        // border-color: transparent !important;
+    }
+    select {
+        height: 38.5px !important;
+        background-color: var(--eui-base-color-grey-5) !important;
+        border: solid 1px #cfcfcf !important;
+        pointer-events: none !important;
+        opacity: 1;
+        // border-color: transparent !important;
+    }
+    .eui-autocomplete input {
+        height: 38.5px !important;
+        background-color: var(--eui-base-color-grey-5) !important;
+        border: solid 1px #cfcfcf !important;
+        pointer-events: none !important;
+        padding: calc(var(--eui-base-spacing-s) - 1px);
+        color: var(--eui-base-color-grey-75);
+        // border-color: transparent !important;
+    }
+    .eui-chip--primary:not(.eui-chip--outline).eui-chip{
+        background: var(--eui-base-color-grey-15);
+        color:var(--eui-base-color-black);
+    }
+}
+
+.form-group.required .control-label::after {
+    color: red;
+    content: "*";
+}
+
+label.required::after {
+    color: red;
+    content: "*";
+}
+
+h1.control-required::after {
+    color: red;
+    content: "*";
+}
+
+.required-color {
+    color: red;
+}
+
+// Credential builder form wrapper
+div.cb-modal-form-wrapper {
+    border: solid 1px #eaeaea;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11);
+    margin-top: 0.5rem;
+    padding: 1.5rem;
+
+    label {
+        font-size: 14px;
+        margin-bottom: 0.25rem;
+    }
+}
+
+.ux-t-ecl input,
+.ux-t-ecl textarea {
+    resize: vertical;
+}
+
+.eui-input-text {
+    height: 38.5px !important;
+}

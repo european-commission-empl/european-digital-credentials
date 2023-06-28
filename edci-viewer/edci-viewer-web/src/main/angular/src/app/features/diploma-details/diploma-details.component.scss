@@ -1,0 +1,94 @@
+.details-header {
+    background-color: #fff;
+    border: solid 1px #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+
+    .info-diploma {
+        p {
+            &.credential-title {
+                font-size: 25px;
+                font-weight: bold;
+                margin-bottom: 0.4rem;
+                margin-top: 0.2rem;
+            }
+
+            &.credential-info {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.body-container {
+    align-items: flex-start;
+    display: flex;
+    margin-top: 1px;
+    width: 100%;
+
+    .sidebar-items--inner-navigation-sidebar .sidebar-item__header--active {
+        background-color: transparent !important;
+        border-left: 6px solid #006fb4;
+    }
+
+    .sidebar-container {
+        background-color: #807e7e;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+        margin-right: 1px;
+
+        .sidebar-item__header-label-wrapper {
+            .sidebar-item__header-label-wrapper-label {
+                color: #000;
+                padding: 0.4rem !important;
+            }
+        }
+    }
+
+    .info-container {
+        background-color: transparent;
+        height: fit-content;
+        min-height: 32rem;
+        padding-left: 20px;
+
+        > * > div {
+            border: solid 1px #f4f4f4;
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+        }
+    }
+}
+
+.diplomaThumbnail {
+    cursor: pointer;
+    max-height: 6.5em;
+}
+
+.img-container {
+    max-height: 6.5em;
+
+    .img-resp-height {
+        max-height: 6rem;
+        max-width: 100%;
+        width: auto;
+    }
+}
+
+p {
+    font-size: 16px;
+    margin: 0;
+}
+
+// Style for "badge" item for details (nested entities)
+.entity-container {
+    margin-bottom: 0;
+    .entity-container_item-badge {
+        background-color: var(--eui-base-color-primary-100);
+        border-radius: var(--eui-base-spacing-xs);
+        color: var(--eui-base-color-white)!important;
+        padding: var(--eui-base-spacing-xs) var(--eui-base-spacing-m);
+        margin-bottom: 0;
+        text-decoration: underline !important;
+        +.entity-container_item-badge {
+            margin-left: var(--eui-base-spacing-m);
+        }
+    }
+}

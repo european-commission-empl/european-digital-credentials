@@ -1,0 +1,50 @@
+<section *ngIf="activeAchievement?.awardedBy">
+    <ng-container *ngIf="activeAchievement.awardedBy.awardingBody.length > 0">
+        <div *ngFor="let awBody of activeAchievement.awardedBy?.awardingBody">
+            <edci-section [title]="getAwardingBodyName(awBody)" [isMainTitle]="true" [isExpanded]="true" class="mb-0">
+                <edci-contact-detail *ngFor="let cPoint of awBody.contactPoint" [contact]="cPoint">
+                </edci-contact-detail>
+                <edci-viewer-identifiers [eidasIdentifier]="awBody?.geteIDASIdentifier"
+                    [vatIdentifiers]="awBody?.vatIdentifier" [taxIdentifiers]="awBody?.taxIdentifier"
+                    [registration]="awBody?.registration" [identifiers]="awBody?.identifier"
+                    [nationalID]="awBody?.nationalID">
+                </edci-viewer-identifiers>
+            </edci-section>
+        </div>
+        <section *ngIf="activeAchievement?.awardedBy?.awardingDate" class="row">
+            <h6 class="col-12">{{'details.achievements-tab.awardingDate' | translate}}</h6>
+            <p class="col-12">{{ activeAchievement.awardedBy.awardingDate }}</p>
+        </section>
+        <edci-section *ngIf="activeAchievement?.description" class="row" [title]="'details.achievements-tab.description' | translate">
+            <p class="col-12">{{ activeAchievement.description}}</p>
+        </edci-section>
+        <edci-section *ngIf="activeAchievement?.specifiedBy?.learningOutcomeSummary" class="row" [title]="'details.achievements-tab.learningOutcomeSummary' | translate">
+            <p class="col-12">{{ activeAchievement.specifiedBy.learningOutcomeSummary.noteLiteral | edciJoin}}</p>
+        </edci-section>
+    </ng-container>
+    <!--<edci-detail-organisation-section
+                [organisation]="activeAchievement.awardingBody"
+            >
+            </edci-detail-organisation-section>-->
+</section>
+<!--<ng-container>
+            <div
+                *ngIf="activeAchievement.awardingDate"
+                class="awarding-information d-flex"
+            >
+                <div
+                    *ngIf="activeAchievement.awardingDate"
+                    class="d-flex flex-column"
+                >
+                    <p class="field-title">
+                        {{
+                            'details.achievements-tab.awardingDate' | translate
+                        }}
+                    </p>
+                    <p>{{ activeAchievement.awardingDate }}</p>
+                </div>
+            </div>
+            <div *ngIf="activeAchievement?.description">
+                <p>{{ activeAchievement.description }}</p>
+            </div>
+        </ng-container>-->

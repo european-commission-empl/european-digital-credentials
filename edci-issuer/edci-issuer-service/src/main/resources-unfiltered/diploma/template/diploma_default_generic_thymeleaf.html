@@ -1,0 +1,84 @@
+<div style="font-style: normal; padding-bottom: 2rem; padding-top: 6rem;">
+    <div
+            style="flex: 0 0 100%; max-width: 100%; display: block; text-align: center;"
+    >
+        <img
+                style="max-height: 4.5rem; width: auto;"
+                th:if="${credential.issuer.logo != null}"
+                th:src="${credential.issuer.logo}"
+        />
+        <br/>
+        <p style="font-size: 18px; color: #525252;"
+           th:text="${credential.issuer.prefLabel}">
+        </p>
+    </div>
+    <div style="flex: 0 0 100%; max-width: 100%;">
+        <p style="
+        padding-left: 0.5rem !important;
+        margin: 3rem 1em;
+        text-align: center !important;
+        font-weight: 700 !important;
+        color: #004494 !important;
+        text-decoration: underline;
+        font-size: 31px;
+      "
+           th:text="${credential.displayParameter.title}">
+        </p>
+    </div>
+    <div style="flex: 0 0 100%; max-width: 100%;">
+        <p style="text-align: center; font-weight: 700 !important; font-size: 18px;"
+           th:text="${credential.issuer.prefLabel}">
+        </p>
+        <p style="text-align: center; font-size: 18px;"
+           th:text="#{diploma.msg.certifiesThat}">
+        </p>
+    </div>
+    <div style="flex: 0 0 100%; max-width: 100%;">
+        <p style="
+        font-weight: 700 !important;
+        font-size: 31px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        color: #004494 !important;
+        text-align: center;
+        font-style: italic !important;
+      "
+           th:with="
+           caseFullName = ${credential.credentialSubject.fullName != null and !#strings.isEmpty(credential.credentialSubject.fullName)},
+           caseGivenName = ${credential.credentialSubject.givenName != null and !#strings.isEmpty(credential.credentialSubject.givenName)},
+           caseBirthName = ${credential.credentialSubject.birthName != null and !#strings.isEmpty(credential.credentialSubject.birthName)},
+           caseFamilyName = ${credential.credentialSubject.familyName != null and !#strings.isEmpty(credential.credentialSubject.familyName)},
+           caseNationalID = ${credential.credentialSubject.nationalID != null and !#strings.isEmpty(credential.credentialSubject.nationalID)}"
+           th:text="${
+           caseFullName ? credential.credentialSubject.fullName :
+           caseGivenName ? #strings.concatReplaceNulls('', credential.credentialSubject.givenName, ' ', credential.credentialSubject.patronymicName, ' ', credential.credentialSubject.familyName) :
+           caseBirthName ? credential.credentialSubject.birthName :
+           caseFamilyName ? credential.credentialSubject.familyName :
+           caseNationalID ? credential.credentialSubject.nationalID : 'Anonymous'
+           }">
+        </p>
+    </div>
+    <div
+            style="
+      flex: 0 0 100%;
+      max-width: 100%;
+      height: 7cm;
+      margin: 0 auto;
+      width: 87%;
+      padding-bottom: 1rem !important;
+    "
+    >
+        <p style="white-space: pre-line;
+                    font-size: 12px; text-align: center; font-weight: 300 !important;"
+           th:text="${credential.displayParameter.description}">
+        </p>
+    </div>
+    <div style="flex: 0 0 100%; max-width: 100%; margin-left: 2.5rem;">
+        <p style="
+            font-style: oblique;
+            text-align: left;
+            font-weight: 300 !important;"
+           th:text="${#temporals.format(credential.issued, 'dd/MM/yyyy')}">
+        </p>
+    </div>
+</div>

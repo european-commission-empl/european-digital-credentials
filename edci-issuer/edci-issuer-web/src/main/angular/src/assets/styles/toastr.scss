@@ -1,0 +1,54 @@
+// toast
+.ui-toast .ui-toast-message {
+    color: #fff;
+
+    &.ui-toast-message-error {
+        background-color: #da2130;
+        border-bottom: 4px solid #cb141e;
+    }
+
+    &.ui-toast-message-success {
+        background-color: #467a39;
+        border-bottom: 4px solid #2f5d24;
+    }
+
+    &.ui-toast-message-warn {
+        background-color: #f29527;
+        border-bottom: 4px solid #ec7817;
+    }
+
+    &.ui-toast-message-info {
+        background-color: #006fb4;
+        border-bottom: 4px solid #00529c;
+    }
+
+    .ui-toast-close-icon {
+        color: #fff;
+    }
+}
+
+.ui-toast-detail {
+    overflow-wrap: break-word;
+}
+
+/* Custom Material snacks status */
+.mat-snack-bar-container {
+    color: var(--eui-base-color-white);
+
+    &.success {
+        background: var(--success);
+    }
+
+    &.danger {
+        background: var(--danger);
+    }
+
+    &.info {
+        background: var(--info);
+    }
+}
+
+// Growl
+.ux-growl-item-message-detail {
+    word-break: break-word;
+}

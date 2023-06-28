@@ -1,0 +1,19 @@
+.activity-information {
+    edci-panel {
+        --edci-panel-content-padding-bottom: 0;
+        --edci-panel-content-margin-bottom: -2px;
+    }
+
+    &-row {
+        &_item {
+            flex-basis: calc(100% / 3);
+            padding: 0 4px 22px;
+        }
+    }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+}

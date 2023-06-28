@@ -1,0 +1,53 @@
+@import '/src/assets/styles/textarea/textarea.scss';
+
+#issueModal {
+    .modal-header {
+        display: none;
+    }
+
+    .cb-modal-form-wrapper {
+        font-size: 14px;
+    }
+
+    .modal-button {
+        padding: 0.7rem 3.9rem;
+    }
+
+    .ux-modal__body {
+        padding: 1rem 8rem;
+    }
+
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    .form-header > .ux-layout-page-header-wrapper {
+        padding-left: 0.75rem !important;
+    }
+
+    .form-datepicker {
+        input,
+        button {
+            position: relative;
+        }
+    }
+}
+
+#issueModal > div > div > div.ux-modal__body > uxmodalbody > div > div > ux-panel > div.ux-panel > div > div.ux-panel-content > div > div > div:nth-child(1) > div:nth-child(4) > div > div > div.w-50.mr-2.col-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 0.5rem;
+}
+
+#issueModal > div > div > div.ux-modal__body > uxmodalbody > div > div > ux-panel > div.ux-panel > div > div.ux-panel-content > div > div > div:nth-child(1) > div:nth-child(4) > div > div > div.w-50.col-6{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 0.5rem;
+}
+
+#issueModal > div > div > div.ux-modal__body > uxmodalbody > div{
+    border: unset !important;
+    box-shadow: unset !important;
+}

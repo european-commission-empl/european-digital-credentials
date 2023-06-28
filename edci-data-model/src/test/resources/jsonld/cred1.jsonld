@@ -1,0 +1,170 @@
+{
+  "id": "urn:credential:fa7586fa-6a6a-4a0c-b857-62a97ce43181",
+  "type": [
+    "VerifiableCredential",
+    "EuropeanDigitalCredential"
+  ],
+  "displayParameter": {
+    "id": "http://example.org/display1",
+    "type": "DisplayParameter",
+    "primaryLanguage": {
+      "id": "http://publications.europa.eu/resource/authority/language/ENG",
+      "type": "Concept",
+      "inScheme": {
+        "id": "http://publications.europa.eu/resource/authority/language",
+        "type": "ConceptScheme"
+      },
+      "notation": "language",
+      "prefLabel": {
+        "en": "English",
+        "fr": "anglais"
+      }
+    },
+    "language": [
+      {
+        "id": "http://publications.europa.eu/resource/authority/language/FRA",
+        "type": "Concept"
+      },
+      {
+        "id": "http://publications.europa.eu/resource/authority/language/ENG",
+        "type": "Concept",
+        "inScheme": {
+          "id": "http://publications.europa.eu/resource/authority/language",
+          "type": "ConceptScheme"
+        },
+        "notation": "language",
+        "prefLabel": {
+          "en": "English",
+          "fr": "anglais"
+        }
+      }
+    ],
+    "title": {
+      "en": "Some kind of credential"
+    }
+  },
+  "credentialSchema": {
+    "id": "http://dev.everisdx.io/datamodel/shacl/EDC-generic.ttl",
+    "type": "ShaclValidator2017"
+  },
+  "credentialSubject": {
+    "id": "urn:epass:person:1",
+    "type": "Person",
+    "contactPoint": {
+      "id": "http://example.org/cp1",
+      "type": "ContactPoint",
+      "emailAddress": {
+        "id": "mailto:edciempl2019@gmail.com",
+        "type": "Mailbox"
+      }
+    },
+    "hasClaim": {
+      "id": "urn:epass:learningAchievement:1",
+
+      "awardedBy": {
+        "id": "urn:epass:awardingProcess:1",
+        "type": "AwardingProcess",
+        "awardingBody": {
+          "id": "http://example.org/issuer565049",
+          "type": "Organisation",
+          "eIDASIdentifier": {
+            "id": "urn:epass:legalIdentifier:1",
+            "type": "LegalIdentifier",
+            "spatial": {
+              "id": "http://publications.europa.eu/resource/authority/country/FRA",
+              "type": "Concept"
+            },
+            "notation": "eidasIdentifier123"
+          },
+          "location": {
+            "id": "http://example.org/loc1",
+            "type": "Location",
+            "address": {
+              "id": "http://example.org/add1",
+              "type": "Address",
+              "countryCode": {
+                "id": "http://publications.europa.eu/resource/authority/country/FRA",
+                "type": "Concept",
+                "inScheme": {
+                  "id": "http://publications.europa.eu/resource/authority/country",
+                  "type": "ConceptScheme"
+                },
+                "notation": "country",
+                "prefLabel": {
+                  "en": "France",
+                  "fr": "France"
+                }
+              }
+            }
+          },
+          "legalName": {
+            "en": "some legal name",
+            "fr": "un nom lÃ©gal"
+          }
+        }
+      },
+      "title": {
+        "en": "some kind of learning achievement",
+        "fr": "une sorte de rÃ©ussite scolaire"
+      }
+    },
+    "birthName": {
+      "en": "Maxi"
+    },
+    "familyName": {
+      "en": "Power"
+    },
+    "fullName": {
+      "en": "Max Power"
+    },
+    "givenName": {
+      "en": "Max"
+    }
+  },
+  "expirationDate": "2024-09-25T00:00:00Z",
+  "issuanceDate": "2010-01-01T00:00:00Z",
+  "issuer": {
+    "id": "http://example.org/issuer565049",
+    "type": "Organisation",
+    "eIDASIdentifier": {
+      "id": "urn:epass:legalIdentifier:1",
+      "type": "LegalIdentifier",
+      "spatial": {
+        "id": "http://publications.europa.eu/resource/authority/country/FRA",
+        "type": "Concept"
+      },
+      "notation": "eidasIdentifier123"
+    },
+    "location": {
+      "id": "http://example.org/loc1",
+      "type": "Location",
+      "address": {
+        "id": "http://example.org/add1",
+        "type": "Address",
+        "countryCode": {
+          "id": "http://publications.europa.eu/resource/authority/country/FRA",
+          "type": "Concept",
+          "inScheme": {
+            "id": "http://publications.europa.eu/resource/authority/country",
+            "type": "ConceptScheme"
+          },
+          "notation": "country",
+          "prefLabel": {
+            "en": "France",
+            "fr": "France"
+          }
+        }
+      }
+    },
+    "legalName": {
+      "en": "some legal name",
+      "fr": "un nom lÃ©gal"
+    }
+  },
+  "validFrom": "2010-10-01T00:00:00Z",
+  "validUntil": "2024-09-25T00:00:00Z",
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "http://dev.everisdx.io/datamodel/edc-ap-context.jsonld"
+  ]
+}

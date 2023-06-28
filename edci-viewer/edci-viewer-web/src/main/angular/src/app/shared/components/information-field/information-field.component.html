@@ -1,0 +1,20 @@
+<section>
+    <div class="edci-information-field d-flex flex-column">
+        <div class="d-flex align-items-start">
+            <eui-icon-svg icon="{{icon}}" set="{{outline ? 'outline' : 'sharp'}}" size="m">
+            </eui-icon-svg>
+            <div>
+                <p [ngClass]="{ 'with-link': link }" class="edci-information-field_title" (click)="goToLink()">
+                    {{ title }}
+                </p>
+                <div *ngIf="text" class="edci-information-field_information">
+                    <p *ngFor="let parraph of text">
+                        {{ parraph }}
+                    </p>
+                </div>
+            </div>
+            <img *ngIf="tooltip" class="edci-information-field_tooltip" src="assets/icons/icon-tooltip.svg"
+                [uxTooltip]="tooltip" />
+        </div>
+    </div>
+</section>

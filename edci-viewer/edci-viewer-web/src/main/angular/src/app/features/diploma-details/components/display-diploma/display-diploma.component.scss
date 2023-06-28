@@ -1,0 +1,45 @@
+.page-link {
+    height: 100%;
+}
+
+.nav-disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+#pdfModal {
+    .ux-modal__header {
+        display: none;
+    }
+}
+
+.img-footer {
+    > uxmodalfooter {
+        width: 100%;
+    }
+
+    .center {
+        margin: 0 auto;
+    }
+}
+
+.page-item{
+    cursor: pointer;
+}
+
+.page-item.selector{
+    border: 1px solid #bdbdbd;
+    color: #424242 !important;
+    height: calc(2.5rem + 2px);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white;
+    background-position: calc(100% - 0.75rem) center !important;
+    background-repeat: no-repeat !important;
+    background-size: 8px 10px !important;
+    padding: 0.5rem 0.75rem !important;
+    select{
+        border: none !important;
+    }
+}

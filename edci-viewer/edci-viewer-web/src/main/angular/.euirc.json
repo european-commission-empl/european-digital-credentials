@@ -1,0 +1,8 @@
+{
+    "projects": {
+        "app": {
+            "name": "app",
+            "folder": "."
+        }
+    }
+}
