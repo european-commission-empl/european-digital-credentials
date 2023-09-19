@@ -1,0 +1,24 @@
+#edci-cb-tab-header {
+    margin: 0 0.5rem;
+
+    > .section-title {
+        border-bottom: none;
+        color: #3c3c3c;
+        font-size: 16px;
+        padding-right: 2rem;
+        width: 70%;
+    }
+
+    > div {
+        margin-bottom: 1rem;
+        padding-top: 3rem;
+        position: relative;
+        width: 30%;
+
+        > button {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+        }
+    }
+}

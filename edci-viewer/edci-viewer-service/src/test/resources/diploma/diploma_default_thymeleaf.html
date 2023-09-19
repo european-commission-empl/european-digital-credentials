@@ -1,0 +1,1385 @@
+<!-- Title  [PAGE 1]-->
+<div
+        class="diplomaBG"
+        style="
+    height: 28.8cm;
+    width: 89.8%;
+    padding: 1cm 1cm;
+    background: rgb(246, 246, 246);
+">
+    <div style="display: inline-block; width: 100%; table-layout: fixed">
+        <!-- <div style="float: left">
+               <img
+                 style="align-self: center"
+                 th:src="${'data:image/png;base64,' + credential.issuer.logo}"
+               />
+               </div> -->
+        <div style="text-align: center">
+            <p
+                    style="
+          font-size: 24px;
+          font-weight: bold;
+          padding-bottom: 16px;
+          margin: 0;
+          color: black;
+          font-weight: bold;
+        "
+                    th:text="${credential.issuer.prefLabel}"
+            ></p>
+            <p
+                    style="
+          font-size: 32px;
+          font-weight: bold;
+          margin: 0;
+          color: black;
+          font-weight: bold;
+        "
+                    th:text="#{diploma.supplement.header}"
+            >
+            </p>
+        </div>
+    </div>
+    <div style="padding-top: 24px">
+        <p style="margin: 0; color: black">
+            This Diploma Supplement model was developed by the European Commission,
+            Council of Europe and Unesco/CEPES. The purpose of the supplement is to
+            provide sufficient independent data to improve the international
+            ‘transparency’ and fair academic and professional recognition of
+            qualifications (diplomas, degrees, certificates etc.).
+        </p>
+    </div>
+    <!-- INFOMRATION -->
+    <div style="padding-top: 12px">
+        <p
+                style="
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 8px 0;
+        margin: 0;
+        color: black;
+        font-weight: bold;
+      "
+                th:text="'1.&nbsp;'+#{diploma.supplement.title.holder}"
+        >
+        </p>
+        <div style="border: double">
+            <!-- Credential Subject -->
+            <div style="margin: 8px 0; padding: 0 8px">
+                <table style="width: 100%; table-layout: fixed">
+                    <tr>
+                        <td>
+                            <div>
+                                <p
+                                        style="
+                    font-size: 14px;
+                    padding-bottom: 4px;
+                    margin: 0;
+                    color: black;
+                    font-weight: bold;
+                  "
+                                        th:text="'1.1&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.family.name}"
+                                >
+                                </p>
+                                <div
+                                        style="
+                    border: 1px solid black;
+                    margin-left: 28px;
+                    background: white;
+                    height: 27px;
+                  "
+                                >
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:text="${credential.credentialSubject.familyName}"
+                                    ></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <p
+                                        style="
+                    font-size: 14px;
+                    padding-bottom: 4px;
+                    margin: 0;
+                    color: black;
+                    font-weight: bold;
+                  "
+                                        th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.first.name}"
+                                >
+                                </p>
+                                <div
+                                        style="
+                    border: 1px solid black;
+                    margin-left: 28px;
+                    background: white;
+                    height: 27px;
+                  "
+                                >
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:text="${credential.credentialSubject.givenName}"
+                                    ></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="padding-top: 8px">
+                                <p
+                                        style="
+                    font-size: 14px;
+                    padding-bottom: 4px;
+                    margin: 0;
+                    color: black;
+                    font-weight: bold;
+                  "
+                                        th:text="'1.3&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.date.birth}"
+                                >
+                                </p>
+                                <div
+                                        style="
+                    border: 1px solid black;
+                    margin-left: 28px;
+                    background: white;
+                    height: 27px;
+                  "
+                                >
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:if="${credential.credentialSubject.dateOfBirth != null}"
+                                            th:text="${#dates.format(credential.credentialSubject.dateOfBirth, 'dd/MM/yyyy')}"
+                                    ></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="padding-top: 8px">
+                                <p
+                                        style="
+                    font-size: 14px;
+                    padding-bottom: 4px;
+                    margin: 0;
+                    color: black;
+                    font-weight: bold;
+                  "
+                                        th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.student.id}"
+                                >
+                                </p>
+                                <div
+                                        style="
+                    border: 1px solid black;
+                    margin-left: 28px;
+                    background: white;
+                    height: 27px;
+                  "
+                                >
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                    >
+				  <span th:text="${#strings.arrayJoin(credential.credentialSubject.nationalId,', ')}">
+				  </span><span th:if="${!(#arrays.isEmpty(credential.credentialSubject.nationalId) && #arrays.isEmpty(credential.credentialSubject.identifier))}">,
+				  </span><span th:text="${#strings.arrayJoin(credential.credentialSubject.identifier,', ')}"
+                               style="margin: 0; padding: 0;"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <p
+                style="
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 8px 0;
+        margin: 0;
+        color: black;
+        font-weight: bold;
+      "
+                th:text="'2.&nbsp;'+#{diploma.supplement.title.issuing.org}"
+        >
+        </p>
+        <div style="border: double">
+            <!-- Issuing Organization -->
+            <div style="padding: 0 8px">
+                <div style="margin: 8px 0; padding: 0 8px">
+                    <table style="width: 100%; table-layout: fixed">
+                        <tr>
+                            <td>
+                                <div>
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding-bottom: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:text="'2.1&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.name.institution}"
+                                    >
+                                    </p>
+                                    <div
+                                            style="
+                      border: 1px solid black;
+                      margin-left: 28px;
+                      background: white;
+                      height: 27px;
+                    "
+                                    >
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${credential.issuer.prefLabel}"
+                                        ></p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding-bottom: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.country}"
+                                    >
+                                    </p>
+                                    <div
+                                            style="
+                      border: 1px solid black;
+                      margin-left: 28px;
+                      background: white;
+                      height: 27px;
+                    "
+                                    >
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:if="${
+                        credential.issuer.hasLocation != null &&
+                        credential.issuer.hasLocation.size > 0 &&
+                        credential.issuer.hasLocation[0].hasAddress != null &&
+                        credential.issuer.hasLocation[0].hasAddress.size > 0 &&
+                        credential.issuer.hasLocation[0].hasAddress[0].country
+                      }"
+                                                th:text="${credential.issuer.hasLocation[0].hasAddress[0].country}"
+                                        ></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; table-layout: fixed">
+                        <tr>
+                            <td>
+                                <div style="padding-top: 8px">
+                                    <p
+                                            style="
+                      font-size: 14px;
+                      padding-bottom: 4px;
+                      margin: 0;
+                      color: black;
+                      font-weight: bold;
+                    "
+                                            th:text="'2.3&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.address}"
+                                    >
+                                    </p>
+                                    <div
+                                            style="
+                      border: 1px solid black;
+                      margin-left: 28px;
+                      background: white;
+                      height: 67px;
+                    "
+                                    >
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:if="${!#lists.isEmpty(credential.issuer.hasLocation)
+							&& (!#strings.isEmpty(credential.issuer.hasLocation[0].geographicName)
+								|| !#lists.isEmpty(credential.issuer.hasLocation[0].hasAddress))}"
+                                        >
+					<span th:text="${#strings.defaultString(credential.issuer.hasLocation[0].geographicName, '')}">
+					</span>
+                                            <br th:if="${!#strings.isEmpty(credential.issuer.hasLocation[0].geographicName)}"/>
+                                            <span th:text="${#strings.defaultString(credential.issuer.hasLocation[0].hasAddress[0].fullAddress, '')}">
+					</span>
+                                            <br th:if="${!#strings.isEmpty(credential.issuer.hasLocation[0].hasAddress[0].fullAddress)}"/>
+                                            <span th:text="${#strings.defaultString(credential.issuer.hasLocation[0].hasAddress[0].country, '')}">
+					</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <page-break-beacon th:if="${!#lists.isEmpty(credential.credentialSubject.achievements)}"/>
+        <!-- ACHIEVEMENTS [PAGE 2]-->
+        <div
+                th:each="achievement,iterStat : ${credential.credentialSubject.achievements}"
+                th:with="startIndex=3"
+        >
+            <div
+                    class="diplomaBG"
+                    style="
+          height: 28.8cm;
+          width: 89.8%;
+          padding: 1cm 1cm;
+          background: rgb(246, 246, 246);
+    ">
+                <p
+                        style="
+            font-size: 24px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 8px 0;
+            margin: 0;
+            color: black;
+            font-weight: bold;
+          "
+                        th:text="${iterStat.index+startIndex + '. ' + achievement.specifiedBy.title}"
+                ></p>
+                <!-- Qualification -->
+                <div style="border: double">
+                    <div style="margin: 8px 0; padding: 0 8px">
+                        <p
+                                style="
+                font-size: 14px;
+                font-weight: bold;
+                text-align: center;
+                padding: 8px 0;
+                margin: 0;
+                color: black;
+                font-weight: bold;
+              "
+                                th:text="${iterStat.index+startIndex} + '.1 ' + #{diploma.supplement.title.qualification}"
+                        ></p>
+                        <table style="width: 100%; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.1.1 ' + #{diploma.supplement.qualification.name}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                        >
+                                            <p
+                                                    style="font-size: 14px; padding: 4px; margin: 0"
+                                                    th:if="${achievement.specifiedBy != null}"
+                                                    th:text="${achievement.specifiedBy.title}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + #{diploma.supplement.qualification.title}"
+                                        >
+
+                                        </p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy.additionalNote != null &&
+                          achievement.specifiedBy.additionalNote.size > 0
+                        }"
+                                            >
+                                                <block th:each="note,iterator : ${achievement.specifiedBy.additionalNote}"
+                                                       th:with="length=${#strings.length(note)}">
+						   <span th:text="( ${length > 50} ) ? 
+								${#strings.substring(note,0,50)} + '...'
+								: ${note}">
+							</span>
+                                                    <br/>
+                                                </block>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 8px">
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.1.2 ' + #{diploma.supplement.qualification.field.study}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy != null &&
+                          achievement.specifiedBy.hasISCEDFCode != null &&
+                          achievement.specifiedBy.hasISCEDFCode.size > 0
+                        }"
+                                                    th:text="${#strings.arrayJoin(achievement.specifiedBy.hasISCEDFCode, ', ')}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div style="padding: 8px 0">
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.1.3 ' + #{diploma.supplement.qualification.awarding}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${achievement.wasAwardedBy != null && achievement.wasAwardedBy.awardingBody != null}"
+                                                    th:text="${achievement.wasAwardedBy.awardingBody.prefLabel}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + #{diploma.supplement.qualification.awarding.status}"
+                                        >
+                                        </p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+
+                                                    th:if="${achievement.specifiedBy.class.simpleName == 'QualificationDTO' && !#lists.isEmpty(achievement.specifiedBy.hasAccreditation)}"
+                                                    th:with="accreditation=${achievement.specifiedBy.hasAccreditation[0]}"
+                                            >
+                                                <span th:if="${accreditation.title != null}"
+                                                      th:text="${accreditation.title}"></span><br>
+                                                <span th:if="${accreditation.accreditingAgent.prefLabel != null}"
+                                                      th:text="${accreditation.accreditingAgent.prefLabel}"></span><br>
+                                                <span th:if="${accreditation.issuedDate != null}"
+                                                      th:text="${accreditation.issuedDate}"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.1.4 ' + #{diploma.supplement.qualification.administering}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.associatedLearningOpportunity != null &&
+                          achievement.associatedLearningOpportunity.providedBy != null
+                        }"
+                                                    th:text="${achievement.associatedLearningOpportunity.providedBy.prefLabel}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + #{diploma.supplement.qualification.administering.status}"
+                                        >
+                                        </p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.associatedLearningOpportunity != null &&
+                          achievement.associatedLearningOpportunity.additionalNote != null &&
+                          achievement.associatedLearningOpportunity.additionalNote.size > 0
+                        }"
+                                            >
+                        <span
+                                th:each="note,iterStat : ${achievement.associatedLearningOpportunity.additionalNote}"
+                                th:if="${
+                            note.subject != null &&
+                            #strings.toLowerCase(note.subject) == 'status'
+                          }"
+                                th:text="${iterStat.last ? note : note + ', '}"
+                        ></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 8px">
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.1.5 ' + #{diploma.supplement.qualification.lang}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 27px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy != null &&
+                          achievement.specifiedBy.language != null &&
+                          achievement.specifiedBy.language.size > 0
+                        }"
+                                                    th:text="${#strings.arrayJoin(achievement.specifiedBy.language, ', ')}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- Level of the Qualification -->
+                    <div
+                            style="border-top: 4px solid black; margin: 8px 0; padding: 0 8px"
+                    >
+                        <p
+                                style="
+                font-size: 14px;
+                font-weight: bold;
+                text-align: center;
+                padding: 8px 0;
+                margin: 0;
+                color: black;
+                font-weight: bold;
+              "
+                                th:text="${iterStat.index+startIndex} + '.2 ' + #{diploma.supplement.title.level.qualification}"
+                        ></p>
+                        <table style="width: 100%; padding: 0 8px; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.2.1 ' + #{diploma.supplement.level.qualification.nfq}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <div
+                                                    th:if="${achievement.specifiedBy != null && achievement.specifiedBy.specificationType == 'qualification'}"
+                                            >
+                                                <div
+                                                        th:with="
+        qualificationCode=${achievement.specifiedBy.qualificationCode},
+        nqfLvl=${achievement.specifiedBy.nqfLevel},
+        eqfLvl=${achievement.specifiedBy.eqfLevel}
+    "
+                                                >
+                                                    <div
+                                                            th:with="hasQualificationCode=${#ctx.containsVariable('qualificationCode')}"
+                                                    >
+                                                        <p
+                                                                style="
+                                font-size: 14px;
+                                padding: 4px;
+                                margin: 0;
+                                color: black;
+                                font-weight: bold;
+                              "
+                                                                th:if="${ hasQualificationCode && qualificationCode != null }"
+                                                                th:text="qualificationCode + ' '"
+                                                        ></p>
+                                                    </div>
+                                                    <div
+                                                            th:with="
+                hasNqf=${
+                    #ctx.containsVariable('nqfLvl') &&
+                    nqfLvl !=null &&
+                    nqfLvl.size > 0
+                },
+                hasEqf=${
+                    #ctx.containsVariable('eqfLvl') &&
+                    eqfLvl != null
+                },
+        "
+                                                    >
+                                                        <p
+                                                                style="
+                                font-size: 14px;
+                                padding: 4px;
+                                margin: 0;
+                                color: black;
+                                font-weight: bold;
+                              "
+                                                                th:if="${hasNqf || hasEqf}"
+                                                                th:text="${#strings.concatReplaceNulls('', #strings.arrayJoin(nqfLvl, ', '), ' / ', 'EQF ', eqfLvl)}"
+                                                        ></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ${iterStat.index+startIndex} + '.2.2 ' + #{diploma.supplement.level.qualification.duration}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy != null &&
+                          achievement.specifiedBy.maximumDuration != null
+                        }"
+                                                    th:with="month=#{diploma.supplement.month}, year=#{diploma.supplement.year}, day=#{diploma.supplement.day}"
+                                                    th:text="${
+								#strings.replace(
+								  #strings.replace(
+									#strings.replace(
+										#strings.replace(achievement.specifiedBy.duration,'P','')
+									,'M', ' ' + month + ' ')
+								  ,'Y', ' ' + year + ' ')
+								,'D', ' ' + day + ' ')
+							  }"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%; padding: 0 8px; table-layout: fixed">
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 8px">
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex+1} + '.2.3 ' + #{diploma.supplement.level.qualification.requirements}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy != null &&
+                          achievement.specifiedBy.entryRequirementsNote != null
+                        }"
+
+                                            >
+                                                <span th:text="${#strings.substring(achievement.specifiedBy.entryRequirementsNote,0,400)}"></span>
+                                                <span th:if="${#strings.length(achievement.specifiedBy.entryRequirementsNote) > 400}">...</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- Contents & Results -->
+                    <div
+                            style="border-top: 4px solid black; margin: 8px 0; padding: 0 8px"
+                    >
+                        <p
+                                style="
+                font-weight: bold;
+                text-align: center;
+                padding: 8px 0;
+                margin: 0;
+                font-size: 14px;
+                color: black;
+                font-weight: bold;
+              "
+                                th:text="${iterStat.index+startIndex} + '.3 ' + #{diploma.supplement.title.contents.results}"
+                        ></p>
+                        <table style="width: 100%">
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 8px">
+                                        <p
+                                                style="
+                        word-break: break-word;
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.3.1 ' + #{diploma.supplement.contents.mode.study}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 27px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          font-size: 14px;
+                          padding: 4px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${achievement.specifiedBy != null && !#lists.isEmpty(achievement.specifiedBy.mode)}"
+                                                    th:text="${#strings.listJoin(achievement.specifiedBy.mode,', ')}"
+                                            ></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="padding-top: 8px">
+                                        <p
+                                                style="
+                        font-size: 14px;
+                        padding-bottom: 4px;
+                        margin: 0;
+                        color: black;
+                        font-weight: bold;
+                      "
+                                                th:text="${iterStat.index+startIndex} + '.3.2 ' + #{diploma.supplement.contents.requirements}"
+                                        ></p>
+                                        <div
+                                                style="
+                        border: 1px solid black;
+                        margin-left: 28px;
+                        background: white;
+                        height: 67px;
+                      "
+                                        >
+                                            <p
+                                                    style="
+                          padding: 4px;
+                          font-size: 14px;
+                          margin: 0;
+                          color: black;
+                          font-weight: bold;
+                        "
+                                                    th:if="${
+                          achievement.specifiedBy != null &&
+                          achievement.specifiedBy.additionalNote != null &&
+                          achievement.specifiedBy.additionalNote.size > 0
+                        }"
+                                            >
+                        <span th:each="note,iterStat : ${achievement.specifiedBy.additionalNote}">
+							<span th:if="${#strings.containsIgnoreCase(note.subject, 'requirement')}"
+                                  th:text="${iterStat.last ? note : note + ', '}"
+
+                            ></span>
+						</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <page-break-beacon th:if="${achievement.hasPart != null}"/>
+            <!-- SUB-ACHIEVEMENTS [PAGE 3]-->
+            <div
+                    class="diplomaBG"
+                    style="
+            height: 28.8cm;
+            width: 89.8%;
+            padding: 1cm 1cm;
+            background: rgb(246, 246, 246);
+        "
+                    th:if="${achievement.hasPart != null}"
+            >
+                <p
+                        style="
+		  font-weight: bold;
+		  text-align: center;
+		  padding: 8px 0;
+		  margin: 0;
+		"
+                        th:text="${iterStat.index+startIndex} + '.4 ' + #{diploma.supplement.title.subachievements}"
+                ></p>
+                <div style="border: double">
+                    <div>
+                        <div>
+                            <div style="padding: 8px 8px 8px 28px">
+                                <table style="width: 100%; border-spacing: 0">
+                                    <thead>
+                                    <tr>
+                                        <th
+                                                style="
+                          width: 15%;
+                          text-align: left;
+                          font-weight: bold;
+                          color: black;
+                        "
+                                                th:text="#{diploma.supplement.subachievements.code}"
+                                        >
+                                        </th>
+                                        <th
+                                                style="
+                          width: 55%;
+                          text-align: left;
+                          font-weight: bold;
+                          color: black;
+                        "
+                                                th:text="#{diploma.supplement.subachievements.subject}"
+                                        >
+                                        </th>
+                                        <th
+                                                style="
+                          width: 15%;
+                          text-align: left;
+                          font-weight: bold;
+                          color: black;
+                        "
+                                                th:text="#{diploma.supplement.subachievements.marks}"
+                                        >
+                                        </th>
+                                        <th
+                                                style="
+                          width: 15%;
+                          text-align: left;
+                          font-weight: bold;
+                          color: black;
+                        "
+                                                th:text="#{diploma.supplement.subachievements.ects}"
+                                        >
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="subAchievement : ${achievement.hasPart}">
+                                    <tr style="background-color: white">
+                                        <td
+                                                style="
+                          border: 1px solid black;
+                          color: black;
+                          height: 27px;
+                        "
+                                                th:text="${
+                          (subAchievement.identifier != null &&
+                          subAchievement.identifier.size > 0)
+                          ? subAchievement.identifier[0] : ' '
+                        }"
+                                        >
+                                            &nbsp;
+                                        </td>
+                                        <td
+                                                style="
+                          border: 1px solid black;
+                          color: black;
+                          height: 27px;
+                        "
+                                                th:text="${subAchievement.specifiedBy.title}"
+                                        >
+                                            &nbsp;
+                                        </td>
+                                        <td
+                                                style="
+                          border: 1px solid black;
+                          color: black;
+                          height: 27px;
+                        "
+                                                th:text="${subAchievement.wasDerivedFrom != null ? subAchievement.wasDerivedFrom[0].grade : ' ' }"
+                                        >
+                                            &nbsp;
+                                        </td>
+                                        <td
+                                                style="
+                          border: 1px solid black;
+                          color: black;
+                          height: 27px;
+                        "
+                                                th:text="${subAchievement.specifiedBy.hasECTSCreditPoints}"
+                                        ></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FUNCTION OF THE QUALIFICATION -->
+            <page-break-beacon/>
+            <div
+                    class="diplomaBG"
+                    style="
+            height: 28.8cm;
+            width: 89.8%;
+            padding: 1cm 1cm;
+            background: rgb(246, 246, 246);
+        "
+            >
+                <div style="border: double">
+                    <div style="margin: 8px 0">
+                        <div style="padding: 0 8px">
+                            <p
+                                    style="
+                  font-weight: bold;
+                  text-align: center;
+                  padding: 8px 0;
+                  margin: 0;
+                "
+                                    th:text="${iterStat.index+startIndex} + '.5 ' + #{diploma.supplement.title.function.qualification}"
+                            ></p>
+                            <table style="width: 100%; padding: 0 8px; table-layout: fixed">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <p
+                                                    style="
+                          word-break: break-word;
+                          font-size: 14px;
+                          padding-bottom: 4px;
+                          margin: 0;
+                          font-weight: bold;
+                        "
+                                                    th:text="${iterStat.index+startIndex} + '.5.1 ' + #{diploma.supplement.function.qualification.access}"
+                                            ></p>
+                                            <div
+                                                    style="
+                          border: 1px solid black;
+                          margin-left: 28px;
+                          background: white;
+                          height: 67px;
+                        "
+                                            >
+                                                <p
+                                                        style="
+                            word-break: break-word;
+                            padding: 4px;
+                            margin: 0;
+                          "
+                                                        th:if="${
+                            achievement.entitlesTo != null &&
+                            achievement.entitlesTo.size > 0
+                          }"
+                                                >
+                          <span
+                                  th:each="entitlement,iterStat : ${achievement.entitlesTo}"
+                                  th:if="${
+                              (entitlement.specifiedBy &&
+                              entitlement.specifiedBy.type != null) &&
+                              #strings.toLowerCase(entitlement.specifiedBy.type) == 'learning opportunity'
+                            }"
+                                  th:text="${iterStat.last ? entitlement.specifiedBy.title : entitlement.specifiedBy.title + ', '}"
+                          ></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p
+                                                    style="
+                          word-break: break-word;
+                          font-size: 14px;
+                          padding-bottom: 4px;
+                          margin: 0;
+                          font-weight: bold;
+                        "
+                                                    th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + ${iterStat.index+startIndex} + '.5.2 ' + #{diploma.supplement.function.qualification.prof.status}"
+                                            ></p>
+                                            <div
+                                                    style="
+                          border: 1px solid black;
+                          margin-left: 28px;
+                          background: white;
+                          height: 67px;
+                        "
+                                            >
+                                                <p
+                                                        style="
+                            word-break: break-word;
+                            padding: 4px;
+                            margin: 0;
+                          "
+                                                        th:if="${
+                            achievement.entitlesTo != null &&
+                            achievement.entitlesTo.size > 0
+                          }"
+                                                >
+                          <span
+                                  th:each="entitlement,iterStat : ${achievement.entitlesTo}"
+                                  th:if="${
+                              entitlement.specifiedBy.type != null &&
+                              (#strings.toLowerCase(entitlement.specifiedBy.type) == 'membership' ||
+                              #strings.toLowerCase(entitlement.specifiedBy.type) == 'occupation')
+                            }"
+                          >
+						  <span th:if="${ !#strings.isEmpty(entitlement.specifiedBy.title) }"
+                                th:text="${entitlement.specifiedBy.title}">
+						  </span>
+						  <br th:if="${ !iterStat.last }"/>
+						  </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- ADDITIONAL INFORMATION -->
+                        <div
+                                style="border-top: 4px solid black; margin: 8px 0; padding: 0 8px"
+                        >
+                            <p
+                                    style="
+                  font-weight: bold;
+                  text-align: center;
+                  padding: 8px 0;
+                  margin: 0;
+                "
+                                    th:text="${iterStat.index+startIndex} + '.6 ' + #{diploma.supplement.title.information}"
+                            ></p>
+                            <table style="width: 100%; padding: 0 8px; table-layout: fixed">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <p
+                                                    style="
+                          word-break: break-word;
+                          font-size: 14px;
+                          padding-bottom: 4px;
+                          font-weight: bold;
+                          margin: 0;
+                        "
+                                                    th:text="${iterStat.index+startIndex} + '.6.1 ' + #{diploma.supplement.information.additional}"
+                                            ></p>
+                                            <div
+                                                    style="
+                          border: 1px solid black;
+                          margin-left: 28px;
+                          background: white;
+                          height: 345px;
+                        "
+                                            >
+                                                <p
+                                                        style="
+                            word-break: break-word;
+                            padding: 4px;
+                            margin: 0;
+                          "
+                                                        th:if="${
+                            achievement.specifiedBy != null &&
+                            achievement.specifiedBy.additionalNote != null &&
+                            achievement.specifiedBy.additionalNote.size > 0
+                          }"
+                                                >
+                          <span
+                                  th:each="note,iterStat : ${achievement.specifiedBy.additionalNote}"
+                          >
+							  <span th:text="${note}">
+							  </span>
+							  <br th:if="${ !iterStat.last }"/>
+						  </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="padding-top: 8px">
+                                            <p
+                                                    style="
+                          word-break: break-word;
+                          font-size: 14px;
+                          padding-bottom: 4px;
+                          font-weight: bold;
+                          margin: 0;
+                        "
+                                                    th:text="${iterStat.index+startIndex} + '.6.2 ' + #{diploma.supplement.information.further}"
+                                            ></p>
+                                            <div
+                                                    style="
+                          border: 1px solid black;
+                          margin-left: 28px;
+                          background: white;
+                          height: 67px;
+                        "
+                                            >
+                                                <p
+                                                        style="
+                            word-break: break-word;
+                            padding: 4px;
+                            margin: 0;
+                          "
+                                                        th:if="${
+                            achievement.specifiedBy != null &&
+                            achievement.specifiedBy.supplementaryDoc != null &&
+                            achievement.specifiedBy.supplementaryDoc.size > 0
+                          }"
+                                                >
+                                                    <a
+                                                            th:each="webDocument,iterStat : ${achievement.specifiedBy.supplementaryDoc}"
+                                                            th:href="${webDocument}"
+                                                            th:text="${webDocument}"
+                                                    ></a
+                                                    ><span th:if="${!iterStat.last}">, </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <page-break-beacon th:if="${!iterStat.last}"/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div *ngIf="activeEntitlement" class="entitlement-main-panel">
+    <edci-panel [title]="activeEntitlement.title" [isMainPanel]="true" [isExpanded]="true">
+        <div class="entitlement-detail_panel">
+            <edci-entitlement-main-panel [activeEntitlement]="activeEntitlement">
+            </edci-entitlement-main-panel>
+        </div>
+
+        <div class="entitlement-detail_panel">
+            <edci-entitlement-information-panel [activeEntitlement]="activeEntitlement">
+            </edci-entitlement-information-panel>
+        </div>
+
+        <edci-panel *ngIf="activeEntitlement?.subEntitlements?.length > 0"
+            [title]="'details.entitlements-tab.subEntitlements' | translate">
+            <section class="entity-container d-flex flex-wrap">
+                <ng-container *ngFor="
+                            let entitlement of activeEntitlement.subEntitlements
+                        ">
+                    <section class="col-4 wrap mt-2 mb-3">
+                        <a class="entity-container_item-badge" (click)="changeSelection(entitlement.id)">
+                            {{ entitlement.title }}
+                        </a>
+                    </section>
+                </ng-container>
+            </section>
+        </edci-panel>
+
+        <div class="entitlement-detail_panel">
+            <edci-entitlement-other-information-panel [activeEntitlement]="activeEntitlement">
+            </edci-entitlement-other-information-panel>
+        </div>
+    </edci-panel>
+</div>

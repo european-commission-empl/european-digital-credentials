@@ -1,0 +1,6 @@
+<!--?xml version="1.0" ?-->
+<!DOCTYPE replace [<!ENTITY ent SYSTEM "file:C:\Dev\EDCI\git\edci\edci-commons\src\test\resources\xxeTest\xxe_file.txt"> ]>
+<userInfo>
+    <firstName>John</firstName>
+    <lastName>&ent;</lastName>
+</userInfo>

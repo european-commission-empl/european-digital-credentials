@@ -1,0 +1,577 @@
+<!-- Title  [PAGE 1]-->
+<div>
+    <div>
+        <h1
+                th:text="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].prefLabel}"
+        ></h1>
+        <h1
+                th:text="#{diploma.supplement.header}"
+        >
+        </h1>
+    </div>
+    <div>
+        <p>
+            This Diploma Supplement model was developed by the European Commission,
+            Council of Europe and Unesco/CEPES. The purpose of the supplement is to
+            provide sufficient independent data to improve the international
+            ‘transparency’ and fair academic and professional recognition of
+            qualifications (diplomas, degrees, certificates etc.).
+        </p>
+    </div>
+    <!-- INFORMATION -->
+    <div>
+        <h2
+                th:text="'1.&nbsp;'+#{diploma.supplement.title.holder}"
+        >
+        </h2>
+        <div>
+            <!-- Credential Subject -->
+            <div>
+                <h3
+                        th:text="'1.1&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.family.name}"
+                >
+                </h3>
+                <p
+                        th:if="${credential.credentialSubject.familyName != null && !#maps.isEmpty(credential.credentialSubject.familyName)}"
+                        th:text="${credential.credentialSubject.familyName}"
+                ></p>
+            </div>
+            <div>
+                <h3
+                        th:text="'1.2&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.first.name}"
+                >
+                </h3>
+                <p
+                        th:if="${credential.credentialSubject.givenName != null && !#maps.isEmpty(credential.credentialSubject.givenName)}"
+                        th:text="${credential.credentialSubject.givenName}"
+                ></p>
+            </div>
+            <div>
+                <h3
+                        th:text="'1.3&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.date.birth}"
+                >
+                </h3>
+
+                <p
+                        th:if="${credential.credentialSubject.dateOfBirth != null}"
+                        th:text="${#temporals.format(credential.credentialSubject.dateOfBirth, 'dd/MM/yyyy')}"
+                ></p>
+            </div>
+            <div>
+                <h3
+                        th:text="'1.4&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.student.id}"
+                >
+                </h3>
+                <p
+                >
+                    <span th:text="${#strings.arrayJoin(credential.credentialSubject.nationalID,', ')}"></span>
+                    <span th:if="${credential.credentialSubject.identifier != null && (credential.credentialSubject.nationalID != null || !#arrays.isEmpty(credential.credentialSubject.nationalID))}">,</span>
+                    <span th:text="${#strings.arrayJoin(credential.credentialSubject.identifier,', ')}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <h2
+            th:text="'2.&nbsp;'+#{diploma.supplement.title.issuing.org}"
+    >
+    </h2>
+    <div>
+        <!-- Issuing Organization -->
+        <div>
+            <div>
+                <h3
+                        th:text="'2.1&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.name.institution}"
+                >
+                </h3>
+                <p
+                        th:if="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].prefLabel != null && !#maps.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].prefLabel)}"
+                        th:text="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].prefLabel}"
+                ></p>
+            </div>
+            <div>
+                <h3
+                        th:text="'2.2&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.country}"
+                >
+                </h3>
+                <p
+                        th:if="${
+                                credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location != null &&
+                                !#lists.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location) &&
+                                credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address != null &&
+                                !#lists.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address) &&
+                                credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address[0].countryCode != null
+                            }"
+                        th:text="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address[0].countryCode}"
+                ></p>
+            </div>
+            <div>
+                <h3
+                        th:text="'2.3&nbsp;&nbsp;&nbsp;'+#{diploma.supplement.address}"
+                >
+                </h3>
+                <p
+                        th:if="${!#lists.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location)
+							&& (!#strings.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].geographicName)
+								|| !#lists.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address))}"
+                >
+					<span th:text="${#strings.defaultString(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].geographicName, '')}">
+					</span>
+                    <br th:if="${!#strings.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].geographicName)}"/>
+                    <span th:text="${#strings.defaultString(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address[0].fullAddress, '')}">
+					</span>
+                    <br th:if="${!#strings.isEmpty(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address[0].fullAddress)}"/>
+                    <span th:text="${#strings.defaultString(credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].location[0].address[0].countryCode, '')}">
+					</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <page-break-beacon
+            th:if="${!#lists.isEmpty(credential.credentialSubject.hasClaim) and
+                        !#lists.isEmpty(credential.credentialSubject.hasClaim.?[#this.class.simpleName == 'LearningAchievementDTO'])}"/>
+    <!-- ACHIEVEMENTS [PAGE 2]-->
+    <page-container
+            th:each="achievement,iterStat : ${credential.credentialSubject.hasClaim.?[#this.class.simpleName == 'LearningAchievementDTO']}"
+            th:with="startIndex=3"
+            th:if="${
+                        achievement.class.simpleName == 'LearningAchievementDTO'
+                    }"
+    >
+        <div>
+            <h2 th:if="${achievement.specifiedBy != null}"
+                th:text="${iterStat.index+startIndex + '. ' + achievement.specifiedBy.title}"
+            ></h2>
+            <!-- Qualification -->
+            <div>
+                <div>
+                    <h3 th:text="${iterStat.index+startIndex} + '.1 ' + #{diploma.supplement.title.qualification}"></h3>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.1.1 ' + #{diploma.supplement.qualification.name}"></h4>
+                        <p th:if="${achievement.specifiedBy != null}"
+                           th:text="${achievement.specifiedBy.title}"></p>
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.1.2 ' + #{diploma.supplement.qualification.field.study}"
+                        ></h4>
+                        <p>
+                                <span
+                                        th:if="${
+                                          achievement.specifiedBy != null &&
+                                          achievement.specifiedBy.educationSubject != null &&
+                                          !#lists.isEmpty(achievement.specifiedBy.educationSubject)
+                                        }"
+                                        th:text="${#strings.arrayJoin(achievement.specifiedBy.educationSubject, ', ')}"
+                                ></span>
+                            <span
+                                    th:if="${
+                                      achievement.specifiedBy != null &&
+                                      achievement.specifiedBy.thematicArea != null &&
+                                      !#lists.isEmpty(achievement.specifiedBy.thematicArea)
+                                    }"
+                                    th:text="${#strings.arrayJoin(achievement.specifiedBy.thematicArea, ', ')}"
+                            ></span>
+                        </p>
+
+                    </div>
+                    <table style="width:100%; border-collapse: collapse; padding-left: 0px;">
+                        <tr>
+                            <td style="width:50%; padding-left: 0px;">
+                                <h4 style="margin: 1px 0px 1px 0px;;"
+                                    th:text="${iterStat.index+startIndex} + '.1.3 ' + #{diploma.supplement.qualification.awarding}"></h4>
+                            </td>
+                            <td style="width:50%; padding-left: 0px;">
+                                <h4 style="margin: 1px 0px 1px 0px;;"
+                                    th:text="#{diploma.supplement.qualification.awarding.status}"></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50%; padding-left: 0px;">
+                                <p
+                                        th:if="${achievement.awardedBy != null && achievement.awardedBy.awardingBody != null}"
+                                        th:text="${#strings.arrayJoin(achievement.awardedBy.awardingBody.![legalName], ', ')}"
+                                ></p>
+                            </td>
+                            <td style="width:50%; padding-left: 0px;">
+                                <p
+                                        th:if="${achievement.awardedBy != null && achievement.awardedBy.awardingBody != null}"
+                                >
+                                    <span th:each="awarding,iterStat: ${achievement.awardedBy.awardingBody}"
+                                          th:if="${!#lists.isEmpty(awarding.accreditation) and awarding.accreditation[0].title != null}"
+                                          th:text="${awarding.accreditation[0].title + (!iterStat.last ? ', ' : '')}"></span>
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <table style="width:100%; border-collapse: collapse; padding-left: 0px;">
+                        <thead>
+                        <tr>
+                            <td style="width:50%; padding-left: 0px;">
+                                <h4 style="margin: 1px 0px 1px 0px;;"
+                                    th:text="${iterStat.index+startIndex} + '.1.4 ' + #{diploma.supplement.qualification.administering}"></h4>
+                            </td>
+                            <td style="width:50%; padding-left: 0px;">
+                                <h4 style="margin: 1px 0px 1px 0px;;"
+                                    th:text="#{diploma.supplement.qualification.administering.status}"></h4>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td style="width:50%; padding-left: 0px;">
+                                <p
+                                        th:if="${achievement.learningOpportunity != null && achievement.learningOpportunity.providedBy != null}"
+                                        th:text="${#strings.arrayJoin(achievement.learningOpportunity.providedBy.![legalName], ', ')}"
+                                ></p>
+                            </td>
+                            <td style="width:50%; padding-left: 0px;">
+                                <p
+                                        th:if="${
+                                              achievement.learningOpportunity != null &&
+                                              achievement.learningOpportunity.additionalNote != null &&
+                                              !#lists.isEmpty(achievement.learningOpportunity.additionalNote)
+                                            }"
+                                >
+                                        <span
+                                                th:each="note,iterStat : ${achievement.learningOpportunity.additionalNote}"
+                                                th:if="${
+                                                    note.subject != null &&
+                                                    #strings.toLowerCase(note.subject) == 'status'
+                                                }"
+                                                th:text="${iterStat.last ? note : note + ', '}"
+                                        ></span>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.1.5 ' + #{diploma.supplement.qualification.lang}"
+                        ></h4>
+                        <p
+                                th:if="${
+                                  achievement.specifiedBy != null &&
+                                  achievement.specifiedBy.language != null &&
+                                  !#lists.isEmpty(achievement.specifiedBy.language)
+                                }"
+                                th:text="${#strings.arrayJoin(achievement.specifiedBy.language, ', ')}"
+                        ></p>
+                    </div>
+                </div>
+                <!-- Level of the Qualification -->
+                <div>
+                    <h3
+                            th:text="${iterStat.index+startIndex} + '.2 ' + #{diploma.supplement.title.level.qualification}"
+                    ></h3>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.2.1 ' + #{diploma.supplement.level.qualification.nfq}"
+                        ></h4>
+                        <div
+                                th:if="${achievement.specifiedBy != null && achievement.specifiedBy.class.simpleName == 'QualificationDTO'}"
+                        >
+                            <div
+                                    th:with="qualificationCode=${achievement.specifiedBy.qualificationCode},
+                                                nqfLvl=${achievement.specifiedBy.nqfLevel},
+                                                eqfLvl=${achievement.specifiedBy.eqfLevel}"
+                            >
+                                <div
+                                        th:with="hasQualificationCode=${#ctx.containsVariable('qualificationCode')}"
+                                >
+                                    <p
+                                            th:if="${ hasQualificationCode && qualificationCode != null }"
+                                            th:text="qualificationCode + ' '"
+                                    ></p>
+                                </div>
+                                <div
+                                        th:with="hasNqf=${
+                                                    #ctx.containsVariable('nqfLvl') &&
+                                                    nqfLvl !=null &&
+                                                    !#lists.isEmpty(nqfLvl)},
+                                                 hasEqf=${
+                                                    #ctx.containsVariable('eqfLvl') &&
+                                                    eqfLvl != null}"
+                                >
+                                    <p
+                                            th:if="${hasNqf || hasEqf}"
+                                            th:text="${#strings.concatReplaceNulls('', #strings.arrayJoin(nqfLvl, ', '), (hasEqf && hasNqf) ? ' / ' : '', hasEqf ? 'EQF ' : '', eqfLvl)}"
+                                    ></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.2.2 ' + #{diploma.supplement.level.qualification.duration}"
+                        ></h4>
+                        <p
+                                th:if="${
+                                  achievement.specifiedBy != null &&
+                                  achievement.specifiedBy.maximumDuration != null
+                                }"
+                                th:with="month=#{diploma.supplement.month}, year=#{diploma.supplement.year}, day=#{diploma.supplement.day}"
+                                th:text="${
+								#strings.replace(
+								  #strings.replace(
+									#strings.replace(
+										#strings.replace(achievement.specifiedBy.maximumDuration,'P','')
+                                        ,'M', ' ' + month + ' ')
+                                      ,'Y', ' ' + year + ' ')
+                                    ,'D', ' ' + day + ' ')
+                                  }"
+                        ></p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.2.3 ' + #{diploma.supplement.level.qualification.requirements}"
+                        ></h4>
+                        <p
+                                th:if="${
+                                  achievement.specifiedBy != null &&
+                                  achievement.specifiedBy.entryRequirement != null
+                                }"
+                                th:with="maxLength=${#strings.length(achievement.specifiedBy.entryRequirement) > 380}"
+                        >
+                            <span th:if="${maxLength}"
+                                  th:text="${#strings.substring(achievement.specifiedBy.entryRequirement,0,380)} + '...'"></span>
+                            <span th:unless="${maxLength}"
+                                  th:text="${achievement.specifiedBy.entryRequirement}"></span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Contents & Results -->
+                <div>
+                    <h3
+                            th:text="${iterStat.index+startIndex} + '.3 ' + #{diploma.supplement.title.contents.results}"
+                    ></h3>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.3.1 ' + #{diploma.supplement.contents.mode.study}"
+                        ></h4>
+                        <p
+                                th:if="${achievement.specifiedBy != null && !#lists.isEmpty(achievement.specifiedBy.mode)}"
+                                th:text="${#strings.listJoin(achievement.specifiedBy.mode,', ')}"
+                        ></p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.3.2 ' + #{diploma.supplement.contents.requirements}"
+                        ></h4>
+                        <p
+                                th:if="${
+                                  achievement.specifiedBy != null &&
+                                  achievement.specifiedBy.additionalNote != null &&
+                                  !#lists.isEmpty(achievement.specifiedBy.additionalNote)
+                                }"
+                        >
+                            <span th:each="note,iterStat : ${achievement.specifiedBy.additionalNote}">
+                                <span th:if="${#strings.containsIgnoreCase(note.subject, 'requirement')}"
+                                      th:text="${iterStat.last ? note : note + ', '}"></span>
+                            </span>
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.3.3 ' + #{diploma.supplement.contents.details}"
+                        ></h4>
+                        <p th:if="${achievement.specifiedBy != null && achievement.specifiedBy.title != null && !#maps.isEmpty(achievement.specifiedBy.title)}"
+                           th:text="${achievement.specifiedBy.title}"></p>
+                    </div>
+                    <div>
+                        <h4 style="margin: 1px 0px 1px 0px;"
+                            th:text="${iterStat.index+startIndex} + '.3.4 ' + #{diploma.supplement.contents.grading}"
+                        ></h4>
+                        <p th:if="${achievement.specifiedBy != null && achievement.specifiedBy.title != null && !#maps.isEmpty(achievement.specifiedBy.title)}"
+                           th:text="${achievement.specifiedBy.title}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <page-break-beacon th:if="${achievement.hasPart != null}"/>
+        <!-- SUB-ACHIEVEMENTS [PAGE 3]-->
+        <div
+                th:if="${achievement.hasPart != null}"
+        >
+            <h3
+                    th:text="${iterStat.index+startIndex} + '.4 ' + #{diploma.supplement.title.subachievements}"
+            ></h3>
+            <div>
+                <table style="width:100%; border: 1px solid black; border-collapse: collapse; table-layout:auto;">
+                    <thead>
+                    <tr>
+                        <th style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="#{diploma.supplement.subachievements.code}"></th>
+                        <th style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="#{diploma.supplement.subachievements.subject}"></th>
+                        <th style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="#{diploma.supplement.subachievements.marks}"></th>
+                        <th style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="#{diploma.supplement.subachievements.ects}"></th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="subAchievement : ${achievement.hasPart}">
+                    <tr>
+                        <td style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="${(subAchievement.identifier != null && !#lists.isEmpty(subAchievement.identifier)) ? #strings.arrayJoin(subAchievement.identifier, ', ') : ' '}">
+                            &nbsp;
+                        </td>
+                        <td style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:if="${subAchievement.specifiedBy != null && subAchievement.specifiedBy.title != null && !#maps.isEmpty(subAchievement.specifiedBy.title)}"
+                            th:text="${subAchievement.specifiedBy.title}">
+                            &nbsp;
+                        </td>
+                        <td style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:text="${!#lists.isEmpty(subAchievement.provenBy) ? subAchievement.provenBy[0].grade : ' ' }">
+                            &nbsp;
+                        </td>
+                        <td style="width:25%; border: 1px solid black; border-collapse: collapse; padding: 15px;"
+                            th:if="${subAchievement.specifiedBy != null && subAchievement.specifiedBy.creditPoint != null}"
+                            th:with="credit=${'https://publications.europa.eu/resource/authority/snb/education-credit/60b314e826'},
+                                     creditList=${subAchievement.specifiedBy.creditPoint.?[#this.framework != null && #strings.equals(#this.framework.id, #root.credit)]}">
+                            <span th:if="${!#lists.isEmpty(subAchievement.specifiedBy.creditPoint) and !#lists.isEmpty(creditList)}"
+                                  th:text="${#strings.arrayJoin(creditList, ', ')}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- FUNCTION OF THE QUALIFICATION -->
+        <page-break-beacon/>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <h3
+                                th:text="${iterStat.index+startIndex} + '.5 ' + #{diploma.supplement.title.function.qualification}"
+                        ></h3>
+                        <div>
+                            <h4 style="margin: 1px 0px 1px 0px;"
+                                th:text="${iterStat.index+startIndex} + '.5.1 ' + #{diploma.supplement.function.qualification.access}"
+                            ></h4>
+                            <p
+                                    th:if="${
+                                        achievement.entitlesTo != null &&
+                                        !#lists.isEmpty(achievement.entitlesTo)
+                                    }"
+                            >
+                                  <span
+                                          th:each="entitlement,iterStat : ${achievement.entitlesTo}"
+                                          th:with="learningOpportunity=${'https://publications.europa.eu/resource/authority/snb/entitlement/64aad92881'}"
+                                          th:if="${!#lists.isEmpty(entitlement.specifiedBy.dcType) and !#lists.isEmpty(entitlement.specifiedBy.dcType.?[#strings.equals(#this.id,#root.learningOpportunity)])}"
+                                          th:text="${iterStat.last ? entitlement.specifiedBy.title : entitlement.specifiedBy.title + ', '}"
+                                  ></span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="margin: 1px 0px 1px 0px;"
+                                th:text="${iterStat.index+startIndex} + '.5.2 ' + #{diploma.supplement.function.qualification.prof.status}"
+                            ></h4>
+                            <p
+                                    th:if="${
+                                        achievement.entitlesTo != null &&
+                                        !#lists.isEmpty(achievement.entitlesTo)
+                                    }"
+                            >
+                                <span th:each="entitlement,iterStat : ${achievement.entitlesTo}"
+                                      th:with="membership=${'https://publications.europa.eu/resource/authority/snb/entitlement/bebd32e8e6'},
+                                               occupation=${'https://publications.europa.eu/resource/authority/snb/entitlement/52f62180c2'}"
+                                >
+                                  <span th:if="${!#strings.isEmpty(entitlement.specifiedBy.title) &&
+                                                !#lists.isEmpty(entitlement.specifiedBy.dcType) and !#lists.isEmpty(entitlement.specifiedBy.dcType.?[#strings.equals(#this.id, #root.membership) || #strings.equals(#this.id, #root.occupation)])}"
+                                        th:text="${entitlement.specifiedBy.title}">
+                                  </span>
+                                  <br th:if="${ !iterStat.last }"/>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- ADDITIONAL INFORMATION -->
+                    <div>
+                        <h3
+                                th:text="${iterStat.index+startIndex} + '.6 ' + #{diploma.supplement.title.information}"
+                        ></h3>
+                        <div>
+                            <h4 style="margin: 1px 0px 1px 0px;"
+                                th:text="${iterStat.index+startIndex} + '.6.1 ' + #{diploma.supplement.information.additional}"
+                            ></h4>
+                            <p
+                                    th:if="${
+                                        achievement.specifiedBy != null &&
+                                        achievement.specifiedBy.additionalNote != null &&
+                                        !#lists.isEmpty(achievement.specifiedBy.additionalNote)
+                                    }"
+                            >
+                              <span th:each="note,iterStat : ${achievement.specifiedBy.additionalNote}">
+                                  <span th:text="${note}"></span>
+                                  <br th:if="${ !iterStat.last }"/>
+                              </span>
+                                <span th:each="note,iterStat : ${achievement.additionalNote}">
+                                  <span th:text="${note}"></span>
+                                  <br th:if="${ !iterStat.last }"/>
+                              </span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="margin: 1px 0px 1px 0px;"
+                                th:text="${iterStat.index+startIndex} + '.6.2 ' + #{diploma.supplement.information.further}"
+                            ></h4>
+                            <div th:if="${
+                                            achievement.specifiedBy != null &&
+                                            achievement.specifiedBy.supplementaryDocument != null &&
+                                            !#lists.isEmpty(achievement.specifiedBy.supplementaryDocument)
+                                        }">
+                                <p
+                                        th:each="webDocument,iterStat : ${achievement.specifiedBy.supplementaryDocument}"
+                                >
+                                    <a
+                                            th:if="${iterStat.count <= 5}"
+                                            th:href="${webDocument}"
+                                            th:text="${webDocument}"
+                                    ></a
+                                    ><br th:if="${!iterStat.last and iterStat.count < 5}"/>
+                                </p>
+                            </div>
+                            <div th:if="${
+                                            achievement != null &&
+                                            achievement.supplementaryDocument != null &&
+                                            !#lists.isEmpty(achievement.supplementaryDocument)
+                                        }">
+                                <p
+                                        th:each="webDocument,iterStat : ${achievement.supplementaryDocument}"
+                                >
+
+                                    <a
+                                            th:if="${iterStat.count <= 5}"
+                                            th:href="${webDocument}"
+                                            th:text="${webDocument}"
+                                    ></a
+                                    ><br th:if="${!iterStat.last and iterStat.count < 5}"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <h2
+                            th:text="'4.&nbsp;'+#{diploma.supplement.title.educational.system}"
+                    >
+                    </h2>
+                    <div>
+                        <h3
+                                th:text="'4.1'+#{diploma.supplement.title.educational.note}"
+                        >
+                        </h3>
+                        <p
+                                th:if="${achievement.awardedBy != null}"
+                                th:text="${achievement.awardedBy.educationalSystemNote}"
+                        ></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <page-break-beacon th:if="${!iterStat.last}"/>
+    </page-container>
+</div>
+</div>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qmsAccreditations xmlns="http://data.europa.eu/esco/qms-xml/schema/accreditation"
+>
+    <accreditation id="http://data.europa.eu/esco/qdr/accreditation/0001">
+        <title lang="en">Institutional Review Catholic University Leuven</title>
+        <title lang="nl">INSTELLINGSREVIEW Katholieke Universiteit Leuven</title>
+        <accreditedTo type="organization"> <!-- to define this type -->
+            <organization id="http://www.example.com/organization/0002">
+                <registration
+                        schemeAgencyName="Kruispuntbank van Ondernemingen"
+                        issuedDate="2000-10-01T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/BEL">0419.052.173
+                </registration>
+                <vatIdentifier
+                        schemeAgencyName="Kruispuntbank van Ondernemingen"
+                        issuedDate="1992-02-25T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/BEL">BE0419.052.173
+                </vatIdentifier>
+                <prefLabel lang="en">KU Leuven</prefLabel>
+                <prefLabel lang="nl">KU Leuven</prefLabel>
+                <Status>released</Status>
+                <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+            </organization>
+        </accreditedTo>
+        <accreditedBy>
+            <organization id="http://www.example.com/organization/0001">
+                <registration
+                        schemeAgencyName="KVK"
+                        issuedDate="2000-10-01T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/NLD">27366406
+                </registration>
+                <vatIdentifier
+                        schemeAgencyName="KVK"
+                        issuedDate="2000-10-01T00:00:00"
+                        spatialID="http://publications.europa.eu/resource/authority/country/NLD">8139.51.008.B.01
+                </vatIdentifier>
+                <prefLabel lang="en">NVAO</prefLabel>
+                <prefLabel lang="en">The Accreditation Organisation of the Netherlands and Flanders</prefLabel>
+                <Status>released</Status>
+                <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+            </organization>
+        </accreditedBy>
+        <limitField uri="http://data.europa.eu/esco/isced-f/0230"/>
+        <limitField uri="http://data.europa.eu/esco/isced-f/0231"/>
+        <limitEQFLevel uri="http://data.europa.eu/esco/eqf/6"/>
+        <limitEQFLevel uri="http://data.europa.eu/esco/eqf/7"/>
+        <limitEQFLevel uri="http://data.europa.eu/esco/eqf/8"/>
+        <limitJurisdiction uri="http://data.europa.eu/esco/nuts/BE21"/>
+        <issuedDate>2017-09-01T00:00:00</issuedDate>
+        <expiryDate>2023-09-30T00:00:00</expiryDate>
+        <Status>released</Status>
+        <LastModificationDate>2016-03-28T13:13:35+02:00</LastModificationDate>
+        <accreditationBody>
+            <accreditations>
+                <accreditation id="http://data.europa.eu/esco/qdr/accreditation/0001">
+                    <type uri="http://data.europa.eu/europass/accreditationType/institutionalQualityAssurance"/>
+                    <title lang="en">Institutional Review Catholic University Leuven</title>
+                    <title lang="nl">INSTELLINGSREVIEW Katholieke Universiteit Leuven</title>
+                    <description>
+                        <text lang="nl" content-type="text/plain">De NVAO besluit dat Katholieke
+                            Universiteit Leuven een adequaat onderwijsbeleid heeft dat zij effectief en
+                            verbeteringsgericht uitvoert zodat zij, mede op basis van de heersende kwaliteitscultuur,
+                            kan garanderen dat de kwaliteit van haar onderwijs zich op een internationaal en
+                            maatschappelijk relevant niveau bevindt
+                        </text>
+                    </description>
+                    <description>
+                        <text lang="en" content-type="text/plain">The NVAO concludes the Catholic
+                            University Leuven has an adequate education policy that is applied effective and
+                            improvement-oriented and therefore, partly on the basis of the prevailing quality culture,
+                            it can guarantee that the quality of its education is at an internationally and socially
+                            relevant level.
+                        </text>
+                    </description>
+                    <decision scoringScheme="http://www.example.com/scoringScheme/0001">positive</decision>
+                    <report>
+                        <uri>https://search.nvao.net/files/59b6aa2e18c4f_KUL%20-%20Evaluatierapport.pdf</uri>
+                    </report>
+                    <organization idref="http://www.example.com/organization/0002"/>
+                    <limitField uri="http://data.europa.eu/esco/isced-f/0230"/>
+                    <limitField uri="http://data.europa.eu/esco/isced-f/0231"/>
+                    <limitEQFLevel uri="http://data.europa.eu/esco/eqf/6"/>
+                    <limitEQFLevel uri="http://data.europa.eu/esco/eqf/7"/>
+                    <limitEQFLevel uri="http://data.europa.eu/esco/eqf/8"/>
+                    <limitJurisdiction uri="http://data.europa.eu/esco/nuts/BE21"/>
+                    <accreditingAgent idref="http://www.example.com/organization/0001"/>
+                    <issuedDate>2017-09-01T00:00:00</issuedDate>
+                    <reviewDate>2023-09-30T00:00:00</reviewDate>
+                    <expiryDate>2023-09-30T00:00:00</expiryDate>
+                    <homepage>
+                        <uri>https://www.nvao.net/nl/besluiten/katholieke-universiteit-leuven-1</uri>
+                    </homepage>
+                    <landingpage>
+                        <uri>https://www.nvao.net/nl/besluiten/instellingen?sd=be</uri>
+                    </landingpage>
+                    <supplementaryDoc>
+                        <uri>https://search.nvao.net/files/59b6aa2e18c4f_KUL%20-%20%20Besluit.pdf</uri>
+                        <title lang="en">Some title</title>
+                        <title lang="nl">Besluit instellingsreview</title>
+                    </supplementaryDoc>
+                    <supplementaryDoc>
+                        <uri>https://search.nvao.net/files/59b6ed1f46540_KUL%20-%20Adviesrapport.pdf</uri>
+                        <title lang="nl">Advice report</title>
+                        <title lang="nl">Advies rapport</title>
+                    </supplementaryDoc>
+                </accreditation>
+            </accreditations>
+            <agentReferences>
+                <organization id="http://www.example.com/organization/0001">
+                    <registration
+                            schemeAgencyName="KVK"
+                            issuedDate="2000-10-01T00:00:00"
+                            spatialID="http://publications.europa.eu/resource/authority/country/NLD">27366406
+                    </registration>
+                    <vatIdentifier
+                            schemeAgencyName="KVK"
+                            issuedDate="2000-10-01T00:00:00"
+                            spatialID="http://publications.europa.eu/resource/authority/country/NLD">8139.51.008.B.01
+                    </vatIdentifier>
+                    <prefLabel lang="en">NVAO</prefLabel>
+                    <prefLabel lang="en">The Accreditation Organisation of the Netherlands and Flanders</prefLabel>
+                    <homepage>
+                        <uri>https://www.nvao.net/en/about-us</uri>
+                    </homepage>
+                    <spatial uri="http://publications.europa.eu/resource/authority/country/NLD"/>
+                    <hasAddress>
+                        <fullAddress>
+                            <text lang="nl" content-type="text/plain">Parkstraat 28 2514 JK Den Haag
+                            </text>
+                        </fullAddress>
+                        <country uri="http://publications.europa.eu/resource/authority/country/NLD"/>
+                    </hasAddress>
+                    <communication>
+                        <webresource>
+                            <uri>https://www.nvao.net/nl/contact</uri>
+                        </webresource>
+                    </communication>
+                </organization>
+                <organization id="http://www.example.com/organization/0002">
+                    <registration
+                            schemeAgencyName="Kruispuntbank van Ondernemingen"
+                            issuedDate="2000-10-01T00:00:00"
+                            spatialID="http://publications.europa.eu/resource/authority/country/BEL">0419.052.173
+                    </registration>
+                    <vatIdentifier
+                            schemeAgencyName="Kruispuntbank van Ondernemingen"
+                            issuedDate="1992-02-25T00:00:00"
+                            spatialID="http://publications.europa.eu/resource/authority/country/BEL">BE0419.052.173
+                    </vatIdentifier>
+                    <!--taxIdentifier schemeID="" schemeAgencyName="" spatial=""></taxIdentifier-->
+                    <prefLabel lang="en">KU Leuven</prefLabel>
+                    <prefLabel lang="nl">KU Leuven</prefLabel>
+                    <altLabel lang="en">Catholic University Leuven</altLabel>
+                    <altLabel lang="nl">Katholieke Universiteit Leuven</altLabel>
+                    <homepage>
+                        <uri>https://www.kuleuven.be</uri>
+                    </homepage>
+                    <spatial uri="http://publications.europa.eu/resource/authority/country/BEL"/>
+                    <!--hasAddress>
+    			<fullAddress>
+    				<text lang="" content-type=""></text>
+    			</fullAddress>
+    			<country uri="http://publications.europa.eu/resource/authority/country/BEL"/>
+    		</hasAddress-->
+                    <communication>
+                        <mailBox>
+                            <uri>mailto:info@kuleuven.be</uri>
+                        </mailBox>
+                    </communication>
+                </organization>
+            </agentReferences>
+            <scoringSchemeReferences>
+                <scoringScheme id="http://www.example.com/scoringScheme/0001">
+                    <title lang="en">NVAO Review results</title>
+                    <description>
+                        <text lang="en" content-type="text/plain">When an institution is reviewed, it
+                            will get either a Positive or a Negative verdict.
+                        </text>
+                    </description>
+                    <supplementaryDoc>
+                        <uri>https://www.nvao.net/nl/procedures/vlaanderen/instellingsreview</uri>
+                    </supplementaryDoc>
+                </scoringScheme>
+            </scoringSchemeReferences>
+        </accreditationBody>
+    </accreditation>
+</qmsAccreditations>

@@ -1,0 +1,48 @@
+table#cb-table {
+    border-top: 1px solid rgba(33, 68, 147, 0.53);
+    width: calc(100% - 0.5rem) !important;
+    margin: 0 0.5rem;
+    eui-dropdown-content > div > div > button > div {
+        color: #004494;
+    }
+    th {
+        background-color: #f9f9f9;
+        padding: 1rem !important;
+        > div {
+            color: #3c3c3c;
+            font-size: 14px;
+            > span {
+                color: #3c3c3c;
+            }
+        }
+    }
+    tr {
+        cursor: pointer;
+        &:last-of-type {
+            border-bottom: 1px solid var(--eui-base-color-grey-15);
+        }
+        > td {
+            font-size: 16px !important;
+            background-color: #fff;
+            padding-bottom: 9px !important;
+            padding-top: 9px !important;
+            .issue-button {
+                > button {
+                    .eui-icon-send {
+                        margin-bottom: -10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .cursor-default {
+        cursor: default !important;
+    }
+}
+
+edci-cb-table {
+    .eui-table-paginator__page {
+        padding: 0 10px;
+    }
+}

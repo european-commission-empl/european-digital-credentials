@@ -1,0 +1,788 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #3c3c3c;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+.header, .header-space {
+  height: 1.5cm;
+}
+
+.footer, .footer-space {
+	height: 5mm;
+}
+
+
+/* Header styles */
+.header {
+    display: block;
+    height: 5.5cm;
+    width: 21cm;
+    padding: 0;
+    margin: 0;
+	top: -35mm;
+	left: -20mm;
+    position: fixed;
+}
+
+.header-logo{
+    position: absolute;
+    top: 45px;
+    right: 1cm;
+    height: 75px;
+    width: auto;
+}
+
+.page-header-content {
+    height: 0.5cm;
+	padding: 0 20mm;
+    margin: 0;
+}
+
+.header h1 {
+	font-size: 6mm;
+	margin: 0;
+    padding: 0;
+}
+
+.margin-bot {
+    margin-bottom: 20px;
+}
+
+.header p {
+	text-transform: uppercase;
+	margin: .55rem 0 .3rem;
+	padding: 0;
+	font-weight: 600;
+}
+
+.header p, .header span {
+    font-size: 3.5mm;
+}
+
+/* Footer styles */
+.footer {
+    display: flex;
+    height: 5mm;
+    width: 21cm;
+    margin-top: 1cm;
+	padding: 5mm 0;
+    position: fixed;
+    vertical-align: middle;
+	bottom: -25mm;
+	left: -20mm;
+    background: #f4f7ff;
+}
+
+.footer-space {
+    background: blue;
+}
+
+.footer > * {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 20mm;
+}
+
+.footer img {
+	width: 170px;
+}
+
+
+/* Page styles */
+.page {
+	margin: 0;
+	padding: 0;
+	page-break-after: always;
+    position: relative;
+    counter-increment: page;
+}
+
+.page h1 {
+	color: #224493;
+	font-weight: 600;
+	font-size: 5mm;
+	margin: 0;
+	padding: 0;
+	height: 1cm;
+	margin-bottom: 0.5cm;
+}
+
+.spacing {
+	flex: 1;
+}
+
+.table-of-contents.page ol {
+	margin: 0;
+    padding-left: 0;
+    list-style: inside decimal;
+}
+
+.table-of-contents.page ol li {
+    margin: 5mm 0;
+    font-weight: 600;
+}
+
+.main-content {
+	background: #f8f8f8;
+	padding: 0.3cm;
+	margin: 0 -0.3cm 1cm;
+}
+
+/* Shared main content */
+.main-content h2 {
+	color: #224493;
+	font-weight: 600;
+	margin: 0 0 0.5cm;
+	padding: 0;
+    font-size: 4.5mm;
+    text-transform: uppercase;
+}
+
+.main-content ol {
+	margin: 0;
+	padding-left: 0;
+	list-style: inside decimal;
+	font-weight: 600;
+}
+
+.main-content ol li {
+    font-size: 0.8rem;
+    line-height: 1.2rem;
+}
+
+/* Verification */
+#zero.page .content ul.timeline {
+    margin-bottom: 2rem;
+    padding: 0;
+    position: relative;
+	list-style: none;
+}
+
+.sharelink-qr {
+    position: absolute;
+    top: 700px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.sharelink-url {
+    position: absolute;
+    top: 892px;
+    left: 50%;
+    transform: translate(-50%);
+    font-size:0.75em;
+}
+
+.sharelink-date {
+    position: absolute;
+    top: 860px;
+    left: 50%;
+    transform: translate(-50%);
+    font-size:0.75em;
+}
+
+#zero.page .content ul.timeline::before {
+    background-color: rgba(157, 157, 157, 0.3);
+    border-radius: 3.5px;
+    width: 6px;
+	left: 1.1rem;
+	bottom: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: -.75rem;
+    height: 93%;
+}
+
+#zero.page .content ul.timeline li {
+    cursor: auto;
+    position: relative;
+}
+
+#zero.page .content ul.timeline li:last-child {
+    padding-bottom: 0;
+}
+
+#zero.page .content ul.timeline li .content {
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+}
+
+#zero.page .content ul.timeline li .content .title {
+    font-size: 0.9rem;
+	padding-bottom: 0.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#zero.page .content ul.timeline li .content .sub {
+	font-size: 0.9rem;
+    color: #767676;
+}
+
+#zero.page .content ul.timeline li .icon {
+    color: #333;
+    vertical-align: top;
+    display: inline-block;
+    position: absolute;
+    left: 0.5rem;
+}
+
+#zero.page .content ul.timeline li > .status-icon {
+    position: absolute;
+    z-index: 1;
+    top: 1px;
+    left: 7.5px;
+    width: 26px;
+}
+
+#zero.page .content ul.timeline li > .status-icon-empty {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 12.8px;
+    width: 15px;
+}
+
+#zero.page .content ul.timeline li > .status-icon-background {
+    position: absolute;
+    background: white;
+    width: 20px;
+    top: 5px;
+    left: 5px;
+    height: 15px;
+}
+
+#zero.page .content ul.timeline li > .ux-icon-circle-o img {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+#one.page .content ul.timeline li .content {
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+}
+
+#one.page .content ul.timeline li {
+    cursor: auto;
+    position: relative;
+}
+
+#one.page .content ul.timeline {
+    margin-bottom: 2rem;
+    padding: 0;
+    position: relative;
+	list-style: none;
+}
+
+#one.page .content ul.timeline li .icon {
+    vertical-align: top;
+    display: inline-block;
+    position: absolute;
+    left: 0.5rem;
+}
+
+#one.page .content ul.timeline li.correct > .ux-icon-circle-o .wrap-icon {
+    background: transparent;
+    position: relative;
+}
+
+
+@page {
+	size: A4 portrait; /* can use also 'landscape' for orientation */
+    padding: 0;
+    margin: 35mm 20mm 25mm;
+
+
+    @bottom-right {
+        padding-top: 10mm;
+        margin: 0;
+        font-weight: 600;
+        font-size: 3.5mm;
+        content: "\A" counter(page) " / " counter(displayDetail);
+    }
+}
+
+.f-18 {
+    font-size: 18px;
+}
+.f-31 {
+    font-size: 31px;
+}
+.label-logo {
+    color: #525252;
+}
+.img-logo {
+    max-height: 4.5rem;
+    width: auto;
+}
+.border-bottom-title {
+    background: #004494;
+    margin: 0 auto;
+    width: 95%;
+}
+.wrapper {
+    margin: 0 auto;
+    width: 47.6rem;
+}
+.diplomaBG {
+    background-size: contain !important;
+    height: 100% !important;
+    padding-bottom: 2rem;
+    width: 100% !important;
+}
+.diploma {
+    height: 297mm;
+    padding-bottom: 2rem;
+    width: 210mm;
+    position: relative;
+    top: -35mm;
+    left: -20mm;
+    z-index: 2;
+}
+.diploma-img {
+    max-width:100%;
+    max-height:100%;
+}
+.diploma-spinner {
+    left: 40%;
+    margin-top: 30%;
+}
+.cert-wrapper {
+    height: 20%;
+    margin: 0 auto;
+    width: 87%;
+}
+.cert-wrapper > .description-cert {
+    font-size: 12px;
+    word-break: break-all;
+}
+.position-wrapper {
+    margin-left: 2.5rem;
+}
+.logo-wrapper {
+    display: block;
+    text-align: center;
+    padding-top: 12%;
+}
+.ux-growl {
+    width: auto;
+}
+.f-18 {
+    font-size: 18px;
+}
+.f-31 {
+    font-size: 31px;
+}
+.label-logo {
+    color: #525252;
+}
+.img-logo {
+    max-height: 4.5rem;
+    width: auto;
+}
+.border-bottom-title {
+    background: #004494;
+    margin: 0 auto;
+    width: 95%;
+}
+.wrapper {
+    margin: 0 auto;
+    width: 47.6rem;
+}
+.date-oblique {
+    font-style: oblique;
+}
+.col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.d-block {
+    display: block !important;
+}
+.d-flex {
+    display: flex !important;
+}
+.text-center {
+	text-align: center !important;
+}
+.justify-content-center {
+    justify-content: center !important;
+}
+.ux-u-color-primary {
+    color: #004494 !important;
+}
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-left {
+    text-align: left !important;
+}
+.pl-2 {
+    padding-left: .5rem !important;
+}
+.pr-2 {
+    padding-right: .5rem !important;
+}
+.pb-3 {
+    padding-bottom: 1rem !important;
+}
+.w-80 {
+    width: 90% !important;
+}
+.margin-auto {
+    margin: 0 auto !important;
+}
+.border-bottom {
+    border-bottom: 1px solid #bdbdbd !important;
+}
+.border-primary {
+    border-color: #004494 !important;
+}
+.font-weight-light {
+    font-weight: 300 !important;
+}
+.font-italic {
+    font-style: italic !important;
+}
+.ux-u-color-primary {
+    color: #004494 !important;
+}
+
+.text-decoration-underline{
+    text-decoration: underline;
+}
+
+
+.page .content h2 { font-size: 5mm; }
+
+#table-proven-by {border-collapse: collapse; width: 100%; margin-top: 1%; margin-bottom: 1%;}
+
+#table-proven-by td, #table-proven-by th {border: 1px solid #dddddd; text-align: left; padding: 8px; }
+
+#table-proven-by th { background-color: #f5f5f5; color: #616161; padding-right: 80%; }
+
+ol.elemList {
+  counter-reset: item
+}
+ol.elemList li {
+  display: block
+}
+ol.elemList li:before {
+  content: counters(item, ".") " ";
+  counter-increment: item
+}
+
+.status-icon {
+    position: absolute;
+    width: 26px;
+}
+
+.status-icon-ribbon {
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+    top: 1px;
+    left: 10px;
+}
+
+.title-ribbon-correct span {
+    color: green;
+}
+
+.title-ribbon-warning span {
+    color: #f08d23;
+}
+
+.title-ribbon-incorrect span {
+    color: red;
+}
+
+    </style>
+</head>
+<body>
+
+<section name="diplomaPage" class="pageDiploma" th:each="diploma : ${diplomaList}">
+    <div class="diploma">
+        <img class="diploma-img"
+             th:if="${diploma != null}"
+             th:src="${diploma}"/>
+    </div>
+</section>
+
+<div class="header"
+     th:if="${europassCredentialDetailView.issuerCredential != null and europassCredentialDetailView.credentialMetadata != null}">
+
+    <div>
+        <img class="header-logo"
+             th:if="${europassCredentialDetailView.issuerCredential.logo != null}"
+             th:src="${'data:' + europassCredentialDetailView.issuerCredential.logo.contentType + ';base64,' + europassCredentialDetailView.issuerCredential.logo.content}"/>
+    </div>
+
+</div>
+
+<div class="footer">
+    <div>
+        <img th:src="${europeLogo}"
+             alt="European Union logo"/>
+    </div>
+</div>
+
+<section id="zero" class="page"
+         th:if="${europassVerifications != null and !europassVerifications.empty}">
+    <h1>[[#{details.authenticationAndVerificationCheck}]]</h1>
+    <p clas="margin-bot">[[#{details.disclaimer}]]</p>
+    <div class="content">
+        <div th:insert="tabs/verification_tab :: verification"></div>
+        <img class="sharelink-qr"
+             th:if="${shareLinkQR != null}"
+             th:src="${shareLinkQR}"/>
+        <a th:if="${shareLinkQR != null}" class="sharelink-url" th:href="${shareLink}" th:text="${shareLink}"></a>
+        <p class="sharelink-date" th:if="${shareLinkExpireDate != null}">
+            [[#{details.diploma-details-tab.expiryDate}]]: [[${shareLinkExpireDate}]]
+        </p>
+    </div>
+</section>
+
+<section class="page table-of-contents">
+    <div class="main-content">
+        <label class="font-weight-bold">[[#{details.diploma-details-tab.type}]]: </label>
+        <span th:text="${europassCredentialDetailView.credentialMetadata.type}"></span>
+        <div>
+            <label class="font-weight-bold">[[#{details.diploma-details-tab.validFrom}]]: </label>
+            <span th:text="${europassCredentialDetailView.credentialMetadata.issuanceDate}"></span>
+        </div>
+        <div th:if="${europassCredentialDetailView.credentialMetadata.expirationDate != null}">
+            <label class="font-weight-bold">[[#{details.diploma-details-tab.expiryDate}]]: </label>
+            <span th:text="${europassCredentialDetailView.credentialMetadata.expirationDate}"></span>
+        </div>
+    </div>
+    <h1 th:text="#{details.table.of.contents}"></h1>
+    <ol>
+        <li>
+            <a href="#one" th:text="#{details.issuing.sealing.organisations}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.credentialSubject != null}">
+            <a href="#two" th:text="#{details.credential-owner}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.achievements != null and !europassCredentialDetailView.achievements.empty}">
+            <a href="#three" th:text="#{details.achievements}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.activities != null and !europassCredentialDetailView.activities.empty}">
+            <a href="#four" th:text="#{details.activities}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.entitlements != null and !europassCredentialDetailView.entitlements.empty}">
+            <a href="#five" th:text="#{details.entitlements}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.subCredentials != null and !europassCredentialDetailView.subCredentials.empty}">
+            <a href="#six" th:text="#{details.sub-credentials}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.organizationsList != null and !europassCredentialDetailView.organizationsList.empty}">
+            <a href="#seven" th:text="#{details.organizations}"></a>
+        </li>
+        <li th:if="${europassCredentialDetailView.assessmentsList != null and !europassCredentialDetailView.assessmentsList.empty}">
+            <a href="#eight" th:text="#{details.assessments}"></a>
+        </li>
+    </ol>
+
+</section>
+
+<section th:if="${europassCredentialDetailView.issuerCredential} != null" id="one" class="page">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.issuing.sealing.organisations}]]</h1>
+    <div class="content">
+        <div th:insert="tabs/issuers_tab :: organization(orgCred=${europassCredentialDetailView.issuerCredential}, orgVerif=${europassCredentialDetailView.issuerPresentation}, iter=1+'. ', europassVerifications=${europassVerifications})"></div>
+    </div>
+</section>
+
+<section id="two" class="page">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.credential-owner}]]</h1>
+    <div th:insert="tabs/owner_tab :: owner(person=${europassCredentialDetailView.credentialSubject})"></div>
+</section>
+
+<section id="three" class="page"
+         th:if="${europassCredentialDetailView.achievements != null and !europassCredentialDetailView.achievements.empty}">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.achievements}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol class="elemList">
+                <li th:each="achievement : ${europassCredentialDetailView.achievements}">
+                    <span th:text="${achievement.title}"></span>
+                </li>
+                <li th:if="!${europassCredentialDetailView.achievementsList.empty}"
+                    th:text="#{details.rel.achievements}"></li>
+                <ol class="elemList">
+                    <li th:each="achievement : ${europassCredentialDetailView.achievementsList}">
+                        <span th:text="${achievement.title}"></span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+        <div class="achievement-content"
+             th:each="achievement, iter : ${europassCredentialDetailView.achievements}">
+            <div th:insert="tabs/achievement_tab :: achievement(achievement=${achievement}, iter=${iter.index + 1 + '. '}, sub=false)"></div>
+        </div>
+
+        <h2 th:if="!${europassCredentialDetailView.achievementsList.empty}">
+            [[${#lists.size(europassCredentialDetailView.achievements) + 1}]].- [[#{details.rel.achievements}]]
+        </h2>
+
+        <div class="achievement-content"
+             th:each="achievement, iter : ${europassCredentialDetailView.achievementsList}">
+            <div th:insert="tabs/achievement_tab :: achievement(achievement=${achievement},
+                    iter=${(#lists.size(europassCredentialDetailView.achievements) + 1) + '. ' + (iter.index + 1) + '. '}, sub=true)"></div>
+        </div>
+
+    </div>
+</section>
+
+<section id="four" class="page"
+         th:if="${europassCredentialDetailView.activities != null and
+!europassCredentialDetailView.activities.empty}">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.activities}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol class="elemList">
+                <li th:each="activity : ${europassCredentialDetailView.activities}">
+                    <span th:text="${activity.title}"></span>
+                </li>
+                <li th:if="!${europassCredentialDetailView.activitiesList.empty}"
+                        th:text="#{details.rel.activities}"></li>
+                <ol class="elemList">
+                    <li th:each="activity : ${europassCredentialDetailView.activitiesList}">
+                        <span th:text="${activity.title}"></span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+
+        <div class="activity-content"
+             th:each="activity, iter : ${europassCredentialDetailView.activities}">
+            <div th:insert="tabs/activity_tab :: activity(activity=${activity}, iter=${iter.index + 1 + '. '}, sub=false)"></div>
+        </div>
+
+        <h2 th:if="!${europassCredentialDetailView.activitiesList.empty}">
+            [[${#lists.size(europassCredentialDetailView.activities) + 1}]].- [[#{details.rel.activities}]]
+        </h2>
+
+        <div class="activity-content"
+             th:each="activity, iter : ${europassCredentialDetailView.activitiesList}">
+            <div th:insert="tabs/activity_tab :: activity(activity=${activity},
+                    iter=${(#lists.size(europassCredentialDetailView.activities) + 1) + '. ' + (iter.index + 1) + '. '}, sub=true)"></div>
+        </div>
+
+    </div>
+</section>
+
+<section id="five" class="page"
+         th:if="${europassCredentialDetailView.entitlements != null and !europassCredentialDetailView.entitlements.empty}">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.entitlements}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol class="elemList">
+                <li th:each="entitlement : ${europassCredentialDetailView.entitlements}">
+                    <span th:text="${entitlement.title}"></span>
+                </li>
+                <li th:if="!${europassCredentialDetailView.entitlementsList.empty}">
+                    [[#{details.rel.entitlements}]]
+                </li>
+                <ol class="elemList">
+                    <li th:each="entitlement : ${europassCredentialDetailView.entitlementsList}">
+                        <span th:text="${entitlement.title}"></span>
+                    </li>
+                </ol>
+            </ol>
+        </div>
+
+        <div class="entitlement-content"
+             th:each="entitlement, iter : ${europassCredentialDetailView.entitlements}">
+            <div th:insert="tabs/entitlement_tab :: entitlement(entitlement=${entitlement}, iter=${iter.index + 1 + '. '}, sub=false)"></div>
+        </div>
+
+        <h2 th:if="!${europassCredentialDetailView.entitlementsList.empty}">
+            [[${#lists.size(europassCredentialDetailView.entitlements) + 1}]].- [[#{details.rel.entitlements}]]
+        </h2>
+
+        <div class="entitlement-content"
+             th:each="entitlement, iter : ${europassCredentialDetailView.entitlementsList}">
+            <div th:insert="tabs/entitlement_tab :: entitlement(entitlement=${entitlement},
+                    iter=${(#lists.size(europassCredentialDetailView.entitlements) + 1) + '. ' + (iter.index + 1) + '. '}, sub=true)"></div>
+        </div>
+
+    </div>
+</section>
+
+
+<section id="six" class="page"
+         th:if="${europassCredentialDetailView.subCredentials != null and !europassCredentialDetailView.subCredentials.empty}">
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.sub-credentials}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol>
+                <li th:each="subcred : ${europassCredentialDetailView.subCredentials}">
+                    <span th:text="${subcred.credentialMetadata.title}"></span>
+                </li>
+            </ol>
+        </div>
+        <div th:each="subcred, iter : ${europassCredentialDetailView.subCredentials}">
+            <div th:insert="tabs/sub_credential_tab :: subcred(subcred=${subcred}, iter=${iter.index + 1 + '. '}, sub=false)"></div>
+        </div>
+    </div>
+</section>
+
+
+<section id="seven" class="page"
+         th:if="${europassCredentialDetailView.organizationsList != null and !europassCredentialDetailView.organizationsList.empty}">
+
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.organizations}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol>
+                <li th:each="organization : ${europassCredentialDetailView.organizationsList}">
+                    <span th:text="${organization.preferredName}"></span>
+                </li>
+            </ol>
+        </div>
+        <div th:each="organization, iter : ${europassCredentialDetailView.organizationsList}">
+            <div th:insert="tabs/organization_tab :: organization(org=${organization}, iter=${iter.index + 1 + '. '})"></div>
+        </div>
+    </div>
+</section>
+
+<section id="eight" class="page"
+         th:if="${europassCredentialDetailView.assessmentsList != null and !europassCredentialDetailView.assessmentsList.empty}">
+
+    <h1>[[${indexCount.andIncrement}]].- [[#{details.assessments}]]</h1>
+    <div class="content">
+        <div class="main-content">
+            <ol>
+                <li th:each="assessment : ${europassCredentialDetailView.assessmentsList}">
+                    <span th:text="${assessment.title}"></span>
+                </li>
+            </ol>
+        </div>
+        <div th:each="assessment, iter : ${europassCredentialDetailView.assessmentsList}">
+            <div th:insert="tabs/assessment_tab :: assessment(assessment=${assessment}, iter=${iter.index + 1 + '. '}, sub=false)"></div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

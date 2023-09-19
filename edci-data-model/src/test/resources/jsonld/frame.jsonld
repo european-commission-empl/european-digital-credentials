@@ -1,0 +1,241 @@
+{
+  "@context":[{
+              		"adms": "http://www.w3.org/ns/adms#",
+              		"owl": "http://www.w3.org/2002/07/owl#",
+              		"skosXl": "http://www.w3.org/2008/05/skos-xl#",
+              		"org": "http://www.w3.org/ns/org#",
+              		"elm": "http://data.europa.eu/snb/model/",
+              		"iso-thes": "http://purl.org/iso25964/skos-thes#",
+              		"xsd": "http://www.w3.org/2001/XMLSchema#",
+              		"skos": "http://www.w3.org/2004/02/skos/core#",
+              		"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+              		"gr": "http://purl.org/goodrelations/v1#",
+              		"dct": "http://purl.org/dc/terms/",
+              		"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+              		"esco": "http://data.europa.eu/esco/model#",
+              		"rov": "http://www.w3.org/ns/regorg#",
+              		"sem": "http://semanticweb.cs.vu.nl/2009/11/sem/",
+              		"locn": "http://www.w3.org/ns/locn#",
+              		"dcat": "http://www.w3.org/ns/dcat#",
+              		"prov": "http://www.w3.org/ns/prov#",
+              		"qdr": "http://data.europa.eu/esco/qdr#",
+              		"foaf": "http://xmlns.com/foaf/0.1/",
+              		"Accreditation": "elm:Accreditation",
+              		"language": {
+              			"@id": "http://purl.org/dc/terms/language",
+              			"@type": "@id"
+              		},
+              		"contentUrl": {
+              			"@id": "http://data.europa.eu/snb/model/contentUrl",
+              			"@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+              		},
+              		"title": {
+              			"@id": "http://purl.org/dc/terms/title"
+              		},
+              		"notation": {
+              			"@id": "http://www.w3.org/2004/02/skos/core#notation",
+              			"@type": "http://example.com/elm/loq"
+              		},
+              		"spatial": {
+              			"@id": "http://purl.org/dc/terms/spatial",
+              			"@type": "@id"
+              		},
+              		"issued": {
+              			"@id": "http://purl.org/dc/terms/issued",
+              			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+              		},
+              		"address": {
+              			"@id": "http://data.europa.eu/snb/model/address",
+              			"@type": "@id"
+              		},
+              		"schemeName": {
+              			"@id": "http://data.europa.eu/snb/model/schemeName"
+              		},
+              		"fullAddress": {
+              			"@id": "http://data.europa.eu/snb/model/fullAddress",
+              			"@type": "@id"
+              		},
+              		"countryCode": {
+              			"@id": "http://data.europa.eu/snb/model/countryCode",
+              			"@type": "@id"
+              		},
+              		"noteLiteral": {
+              			"@id": "http://data.europa.eu/snb/model/noteLiteral"
+              		},
+              		"schemeAgency": {
+              			"@id": "http://www.w3.org/ns/adms#schemeAgency"
+              		},
+              		"schemeVersion": {
+              			"@id": "http://data.europa.eu/snb/model/schemeVersion"
+              		},
+              		"type": {
+              			"@id": "http://purl.org/dc/terms/type",
+              			"@type": "@id"
+              		},
+              		"phoneNumber": {
+              			"@id": "http://data.europa.eu/snb/model/phoneNumber"
+              		},
+              		"vatIdentifier": {
+              			"@id": "http://data.europa.eu/snb/model/vatIdentifier",
+              			"@type": "@id"
+              		},
+              		"modified": {
+              			"@id": "http://purl.org/dc/terms/modified",
+              			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+              		},
+              		"taxIdentifier": {
+              			"@id": "http://data.europa.eu/snb/model/taxIdentifier",
+              			"@type": "@id"
+              		},
+              		"eidasLegalIdentifier": {
+              			"@id": "http://data.europa.eu/snb/model/eidasLegalIdentifier",
+              			"@type": "@id"
+              		},
+              		"subOrganizationOf": {
+              			"@id": "http://www.w3.org/ns/org#subOrganizationOf",
+              			"@type": "@id"
+              		},
+              		"identifier": {
+              			"@id": "http://www.w3.org/ns/adms#identifier",
+              			"@type": "@id"
+              		},
+              		"legalName": {
+              			"@id": "http://www.w3.org/ns/regorg#legalName"
+              		},
+              		"location": {
+              			"@id": "http://data.europa.eu/snb/model/location",
+              			"@type": "@id"
+              		},
+              		"homepage": {
+              			"@id": "http://xmlns.com/foaf/0.1/homepage",
+              			"@type": "@id"
+              		},
+              		"status": {
+              			"@id": "http://data.europa.eu/snb/model/status"
+              		},
+              		"additionalNote": {
+              			"@id": "http://data.europa.eu/snb/model/additionalNote",
+              			"@type": "@id"
+              		},
+              		"hasSubOrganization": {
+              			"@id": "http://www.w3.org/ns/org#hasSubOrganization",
+              			"@type": "@id"
+              		},
+              		"contentType": {
+              			"@id": "http://data.europa.eu/snb/model/contentType",
+              			"@type": "@id"
+              		},
+              		"contentSize": {
+              			"@id": "http://data.europa.eu/snb/model/contentSize",
+              			"@type": "http://www.w3.org/2001/XMLSchema#integer"
+              		},
+              		"contentEncoding": {
+              			"@id": "http://data.europa.eu/snb/model/contentEncoding",
+              			"@type": "@id"
+              		},
+              		"content": {
+              			"@id": "http://data.europa.eu/snb/model/content"
+              		},
+              		"description": {
+              			"@id": "http://purl.org/dc/terms/description"
+              		},
+              		"dialNumber": {
+              			"@id": "http://data.europa.eu/snb/model/dialNumber"
+              		},
+              		"countryDialing": {
+              			"@id": "http://data.europa.eu/snb/model/countryDialing"
+              		},
+              		"areaDialing": {
+              			"@id": "http://data.europa.eu/snb/model/areaDialing"
+              		},
+              		"prefLabel": {
+              			"@id": "http://www.w3.org/2004/02/skos/core#prefLabel"
+              		},
+              		"phone": {
+              			"@id": "http://data.europa.eu/snb/model/phone",
+              			"@type": "@id"
+              		},
+              		"mailbox": {
+              			"@id": "http://data.europa.eu/snb/model/mailbox",
+              			"@type": "@id"
+              		},
+              		"contactForm": {
+              			"@id": "http://data.europa.eu/snb/model/contactForm",
+              			"@type": "@id"
+              		},
+              		"registration": {
+              			"@id": "http://www.w3.org/ns/regorg#registration",
+              			"@type": "@id"
+              		},
+              		"contactPoint": {
+              			"@id": "http://data.europa.eu/snb/model/contactPoint",
+              			"@type": "@id"
+              		},
+              		"altLabel": {
+              			"@id": "http://www.w3.org/2004/02/skos/core#altLabel"
+              		},
+              		"groupMemberOf": {
+              			"@id": "http://data.europa.eu/snb/model/groupMemberOf",
+              			"@type": "@id"
+              		},
+              		"logo": {
+              			"@id": "http://data.europa.eu/snb/model/logo",
+              			"@type": "@id"
+              		},
+              		"landingPage": {
+              			"@id": "http://data.europa.eu/snb/model/landingPage",
+              			"@type": "@id"
+              		},
+              		"organisation": {
+              			"@id": "http://data.europa.eu/snb/model/organisation",
+              			"@type": "@id"
+              		},
+              		"reviewDate": {
+              			"@id": "http://data.europa.eu/snb/model/reviewDate",
+              			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+              		},
+              		"valid": {
+              			"@id": "http://purl.org/dc/terms/valid",
+              			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+              		},
+              		"supplementaryDocument": {
+              			"@id": "http://data.europa.eu/snb/model/supplementaryDocument",
+              			"@type": "@id"
+              		},
+              		"expiryDate": {
+              			"@id": "http://data.europa.eu/snb/model/expiryDate",
+              			"@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+              		},
+              		"accreditingAgent": {
+              			"@id": "http://data.europa.eu/snb/model/accreditingAgent",
+              			"@type": "@id"
+              		},
+              		"limitJurisdiction": {
+              			"@id": "http://data.europa.eu/snb/model/limitJurisdiction",
+              			"@type": "@id"
+              		},
+              		"limitEQFLevel": {
+              			"@id": "http://data.europa.eu/snb/model/limitEQFLevel",
+              			"@type": "@id"
+              		},
+              		"report": {
+              			"@id": "http://data.europa.eu/snb/model/report",
+              			"@type": "@id"
+              		},
+              		"limitField": {
+              			"@id": "http://data.europa.eu/snb/model/limitField",
+              			"@type": "@id"
+              		},
+              		"publisher": {
+              			"@id": "http://purl.org/dc/terms/publisher",
+              			"@type": "@id"
+              		},
+              		"inScheme": {
+              			"@id": "http://www.w3.org/2004/02/skos/core#inScheme",
+              			"@type": "@id"
+              		}
+
+              	}],
+  "@type": ["Accreditation"],
+  "@embed": "@always"
+}

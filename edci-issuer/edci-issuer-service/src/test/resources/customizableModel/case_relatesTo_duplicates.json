@@ -1,0 +1,43 @@
+{
+  "customizableEntityDTOS": [
+    {
+      "label": "Personal Data",
+      "specClass": "eu.europa.ec.empl.edci.issuer.common.model.RecipientDataDTO",
+      "position": 1,
+      "fields": [
+        {
+          "position": 2,
+          "label": "Last Name",
+          "fieldPath": "REC.familyName",
+          "mandatory": true,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 1,
+          "label": "First name",
+          "fieldPath": "REC.givenNames",
+          "mandatory": true,
+          "relationDependant": false,
+          "additionalInfo": null
+        },
+        {
+          "position": 8,
+          "labelKey": "custom.field.person.address",
+          "fieldPath": "REC.hasLocation(0).hasAddress(0).fullAddress",
+          "mandatory": false,
+          "relatesTo": "REC.hasLocation(0).hasAddress(0).countryCode"
+        },
+        {
+          "position": 9,
+          "labelKey": "custom.field.person.address.country",
+          "fieldPath": "REC.hasLocation(0).hasAddress(0).countryCode",
+          "mandatory": false,
+          "relatesTo": "REC.hasLocation(0).hasAddress(0).fullAddress"
+        }
+      ],
+      "relations": [
+      ]
+    }
+  ]
+}

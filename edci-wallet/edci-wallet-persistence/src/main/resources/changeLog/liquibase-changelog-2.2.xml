@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="2.2" global="false"/>
+
+    <changeSet id="01_WALLET_CREATE_INDEX_WALLET_ADDRESS" author="edci" runAlways="false" failOnError="false" onValidationFail="MARK_RAN">
+        <createIndex indexName="WALLET_ADDRESS_INDEX" tableName="WALLET_T">
+            <column name="WALLET_ADDRESS"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Updates the version table with vith the ${current.version} value (Always called at the end of the databaseChangeLogs)-->
+    <include file="changeLog/liquibase-changelog-update-version.xml" />
+
+</databaseChangeLog>

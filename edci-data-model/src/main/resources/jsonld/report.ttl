@@ -1,0 +1,82 @@
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix cc:   <http://creativecommons.org/ns#> .
+@prefix clv:  <http://data.europa.eu/m8g/> .
+@prefix cpv:  <https://www.w3.org/ns/person#> .
+@prefix cred: <https://www.w3.org/2018/credentials#> .
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix edc:  <http://data.europa.eu/snb/model/edc-constraints-no-semantics/> .
+@prefix edca: <http://data.europa.eu/snb/model/edc-all-constraints-no-semantics/> .
+@prefix elm:  <http://data.europa.eu/snb/model/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix org:  <http://www.w3.org/ns/org#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rov:  <http://www.w3.org/ns/regorg#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+[ rdf:type     sh:ValidationReport ;
+  sh:conforms  false ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:ents:0> ;
+                 sh:resultMessage              "maxCount[1]: Invalid cardinality: expected max 1: Got count = 2" ;
+                 sh:resultPath                 dc:type ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                edc:LearningEntitlementSpecification-dc_type
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:ents:0> ;
+                 sh:resultMessage              "minCount[1]: Invalid cardinality: expected min 1: Got count = 0" ;
+                 sh:resultPath                 elm:entitlementStatus ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent ;
+                 sh:sourceShape                edc:LearningEntitlementSpecification-elm_entitlementStatus
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:credential:0bd26efe-6605-468b-845b-5acf00fabb20> ;
+                 sh:resultMessage              "minCount[1]: Invalid cardinality: expected min 1: Got count = 0" ;
+                 sh:resultPath                 elm:credentialProfiles ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent ;
+                 sh:sourceShape                edc:EuropeanDigitalCredential-cred_credentialProfiles
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:acc:0> ;
+                 sh:resultMessage              "Node[<http://data.europa.eu/snb/model/edc-constraints-mdr/AccreditationTypeRestriction>] at focusNode <http://publications.europa.eu/resource/authority/country/FRA>" ;
+                 sh:resultPath                 dc:type ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent ;
+                 sh:sourceShape                []  ;
+                 sh:value                      <http://publications.europa.eu/resource/authority/country/FRA>
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:cla:0> ;
+                 sh:resultMessage              "maxCount[1]: Invalid cardinality: expected max 1: Got count = 2" ;
+                 sh:resultPath                 elm:specifiedBy ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                edc:LearningAchievement-elm_specifiedBy
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:awar:0> ;
+                 sh:resultMessage              "minCount[1]: Invalid cardinality: expected min 1: Got count = 0" ;
+                 sh:resultPath                 elm:awards ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MinCountConstraintComponent ;
+                 sh:sourceShape                edc:AwardingProcess-elm_awards
+               ] ;
+  sh:result    [ rdf:type                      sh:ValidationResult ;
+                 sh:focusNode                  <urn:ents:0> ;
+                 sh:resultMessage              "Node[<http://data.europa.eu/snb/model/edc-constraints-mdr/LearningEntitlementStatusRestriction>] at focusNode <http://publications.europa.eu/resource/authority/country/FRA>" ;
+                 sh:resultPath                 elm:status ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:NodeConstraintComponent ;
+                 sh:sourceShape                []  ;
+                 sh:value                      <http://publications.europa.eu/resource/authority/country/FRA>
+               ]
+] .

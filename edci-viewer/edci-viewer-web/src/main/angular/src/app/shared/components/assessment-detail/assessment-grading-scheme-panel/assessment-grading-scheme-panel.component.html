@@ -1,0 +1,74 @@
+<div
+    class="assessment-grading-scheme_panel assessment-information"
+    *ngIf="
+        activeAssessment?.specifiedBy?.gradingScheme?.title ||
+        activeAssessment?.specifiedBy?.gradingScheme?.description ||
+        activeAssessment?.specifiedBy?.gradingScheme?.supplementaryDocument
+    "
+>
+    <edci-panel
+        [title]="'details.assessments-tab.gradingScheme' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <section *ngIf="activeAssessment?.specifiedBy?.gradingScheme?.title?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.altName' | translate}}</h6>
+            <p *ngFor="let label of activeAssessment.specifiedBy.gradingScheme.title" class="col-12">
+                {{ label }}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.gradingScheme?.description?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.description' | translate}}</h6>
+            <p *ngFor="let description of activeAssessment.specifiedBy.gradingScheme.description" class="col-12">
+                {{ description }}
+            </p>
+        </section>
+
+
+        <section *ngIf="activeAssessment?.specifiedBy?.gradingScheme?.supplementaryDocument?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.otherDocuments' | translate}}</h6>
+            <p *ngFor="let supplementaryDoc of activeAssessment?.specifiedBy?.gradingScheme?.supplementaryDocument" class="col-12">
+                <a href="{{supplementaryDoc.link}}">{{ supplementaryDoc.link }}</a>
+            </p>
+        </section>
+
+        <!--<div
+            *ngIf="activeAssessment.specifiedBy?.gradingScheme?.title"
+            class="col-12"
+        >
+            <p>
+                <strong>
+                    {{ activeAssessment.specifiedBy?.gradingScheme?.title }}
+                </strong>
+            </p>
+        </div>
+        <edci-viewer-identifiers
+            *ngIf="
+                activeAssessment.specifiedBy?.gradingScheme?.identifier
+                    ?.length > 0
+            "
+            [identifiers]="
+                activeAssessment.specifiedBy?.gradingScheme?.identifier
+            "
+        >
+        </edci-viewer-identifiers>
+        <div
+            *ngIf="activeAssessment.specifiedBy?.gradingScheme?.description"
+            class="col-12 mb-3"
+        >
+            <p>
+                {{ activeAssessment.specifiedBy?.gradingScheme?.description }}
+            </p>
+        </div>
+        <edci-viewer-other-documents
+            *ngIf="
+                activeAssessment.specifiedBy?.gradingScheme
+                    ?.supplementaryDocument
+            "
+            [otherDocuments]="
+                activeAssessment.specifiedBy?.gradingScheme
+                    ?.supplementaryDocument
+            "
+        ></edci-viewer-other-documents>-->
+    </edci-panel>
+</div>

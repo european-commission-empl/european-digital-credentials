@@ -1,0 +1,209 @@
+<div *ngIf="!loading" class="input-form-wrapper container">
+    <div class="row">
+        <div class="breadcrumb__wrapper mb-4">
+            <edci-breadcrumb [parts]="parts"></edci-breadcrumb>
+        </div>
+    </div>
+    <div class="row">
+        <edci-status-bar></edci-status-bar>
+    </div>
+    <section class="row">
+        <div class="col-7">
+            <h1> {{ 'credential-builder.customise-data.input-form.title' | translate }} </h1>
+            <h4 class="mt-3 mb-5">{{'credential-builder.customise-data.input-form.subtitle' | translate}}</h4>
+        </div>
+    </section>
+    <!--<div class="row">-->
+    <form [formGroup]="recipientsGroup">
+        <div formArrayName="recipients" class="recipient">
+            <section *ngFor="let recipient of recipients.controls; let x = index" class="row recipient_card">
+                <div class="row">
+                    <div class="col-12">
+                        <section class="row justify-content-center recipient_header" (click)="toggleExpanded(x)">
+                            <h3 class="col-7">{{ x + 1 }}. {{'credential-builder.issue.recipient' | translate}}</h3>
+                            <eui-icon-svg *ngIf="isExpanded(x)" class="col-1" icon="caret-down" set="sharp" size="m"
+                                fillColor="primary-100"></eui-icon-svg>
+                            <eui-icon-svg *ngIf="!isExpanded(x)" class="col-1" icon="caret-up" set="sharp" size="m"
+                                fillColor="primary-100"></eui-icon-svg>
+                        </section>
+                        <section class="row justify-content-center recipient_body"
+                            [@openClose]="isExpanded(x)? 'open' : 'close'">
+                            <div class="col-8" [formGroupName]="x">
+                                <div *ngFor="let block of customizedView.customizableInstanceViews; let i = index;"
+                                    class="input-form-row">
+                                    <!--<div *ngIf="block.fields.length > 0 || block.relations.length > 0" class="mb-4 col-12">-->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>{{block.label}}</h4>
+                                        </div>
+                                    </div>
+                                    <!--<div class="row">-->
+                                    <div class="row" formGroupName="entry-{{block.frontId}}">
+                                        <div *ngFor="let showField of block.fields; let j = index;"
+                                            class="col-6 p-0 recipient_field_wrapper"
+                                            [ngClass]="{'col-12': showField.fieldType === 'TEXT_AREA'}">
+                                            <div euiInputGroup class="col-12 px-2">
+                                                <label euiLabel for="entry-{{block.frontId}}"
+                                                    *ngIf="!showField.label.includes('>')"
+                                                    [euiRequired]="showField.validation.includes('Mandatory') && showField.mandatory && !showField.validation.includes('MandatoryIfNot')">{{showField.label}}</label>
+                                                <label euiLabel for="entry-{{block.frontId}}"
+                                                    *ngIf="showField.label.includes('>')"
+                                                    [euiRequired]="showField.validation.includes('Mandatory') && showField.mandatory && !showField.validation.includes('MandatoryIfNot')">{{showField.label.split('>')[1]}}</label>
+                                                <input class="col-12" euiInputText id="entry-{{block.frontId}}"
+                                                    formControlName="{{block.frontId}}-{{showField.frontId}}"
+                                                    *ngIf="showField.fieldType === 'TEXT'" />
+                                                <eui-datepicker
+                                                    formControlName="{{block.frontId}}-{{showField.frontId}}"
+                                                    id="entry-{{block.frontId}}"
+                                                    *ngIf="showField.fieldType === 'DATE'"></eui-datepicker>
+                                                <textarea class="col-12" euiTextArea id="entry-{{block.frontId}}"
+                                                    formControlName="{{block.frontId}}-{{showField.frontId}}" rows="5"
+                                                    cols="33" [euiMaxlength]="255"
+                                                    *ngIf="showField.fieldType === 'TEXT_AREA'"></textarea>
+                                                <edci-controlled-list class="col-12 p-0" id="entry-{{block.frontId}}"
+                                                    [entityType]="showField.controlledListType"
+                                                    [selectedLanguages]="languages"
+                                                    [itemsSelected]="recipients.controls[i]?.value?.citizenshipCountry"
+                                                    [activeLanguage]="selectedLanguage" [isSingleSelection]="true"
+                                                    (onItemSelectionChange)="controlledListSelected(block, showField, x, $event)"
+                                                    *ngIf="showField.fieldType === 'CONTROLLED_LIST'"></edci-controlled-list>
+
+                                                <!--<edci-controlled-list-select
+                                                    id="entry-{{block.frontId}}"
+                                                                            formControlName="{{block.frontId}}-{{showField.frontId}}"
+                                                                [entityType]="showField.entityType"
+                                                                [selectedLanguages]="languages"
+                                                                [activeLanguage]="defaultLanguage"
+                                                                *ngIf="showField.fieldType === 'CONTROLLED_LIST_SELECT'"
+                                                            ></edci-controlled-list-select>-->
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.maxlength"
+                                                    typeClass="danger">
+                                                    {{ 'error.maxLength.255' | translate }}
+                                                </ux-control-feedback>
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.email"
+                                                    typeClass="danger">
+                                                    {{ 'error.emailPattern' | translate }}
+                                                </ux-control-feedback>
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.pattern"
+                                                    typeClass="danger">
+                                                    {{ 'error.number' | translate }}
+                                                </ux-control-feedback>
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].errors?.required
+                                                                && recipients.controls[x]['controls']['entry-'+block.frontId]['controls'][block.frontId+'-'+showField.frontId].touched"
+                                                    typeClass="danger">
+                                                    {{ 'error.required' | translate }}
+                                                </ux-control-feedback>
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId].errors?.['atLeastOneRequiredError'+getGroup(showField)] &&
+                                                                recipients.controls[x]['controls']['entry-'+block.frontId]?.touched"
+                                                    typeClass="danger">
+                                                    {{ 'credential-builder.common.provide.atLeastOne' | translate }}
+                                                </ux-control-feedback>
+                                                <ux-control-feedback
+                                                    *ngIf="recipients.controls[x]['controls']['entry-'+block.frontId].errors?.['multipleFieldsBoundError'+getGroup(showField)]"
+                                                    typeClass="danger">
+                                                    {{ "credential-builder.common.provide.bothFields" | translate }}
+                                                </ux-control-feedback>
+                                                <!--<ux-control-feedback *ngIf="recipients.controls[x]['controls']['entry-'+block.position]['controls'][block.position + '-' + (j+1)].errors?.invalidDateError" typeClass="danger">
+                                                                {{ 'error.minDate' | translate : {
+                                                                    selfParam: 'credential-builder.issue.dateOfBirth' | translate,
+                                                                    dateParam: maxDateOfBirth | date : 'dd/MM/yyyy' }
+                                                                }}
+                                                            </ux-control-feedback>-->
+                                            </div>
+                                        </div>
+                                        <div *ngFor="let relationGroup of relationsGroups['entry-' + block.frontId]"
+                                            class="col-12">
+                                            <h6 class="my-3">{{relationGroup.groupLabel}}</h6>
+                                            <div *ngFor="let relation of relationGroup.relations">
+                                                <div euiInputGroup>
+                                                    <input class="col-12" euiInputCheckBox
+                                                        id="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}"
+                                                        (click)="addRelation(x, block, relation)" />
+                                                    <label euiLabel
+                                                        for="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}"
+                                                        *ngIf="relation.label.includes('>>')">{{relation.label.split('>>')[1]}}</label>
+                                                    <label euiLabel
+                                                        for="entry-{{x}}-{{block.frontId}}-{{relation.frontId}}"
+                                                        *ngIf="!relation.label.includes('>>')">{{ relation.label
+                                                        }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="row justify-content-center" *ngIf="recipients.controls?.length >1">
+                    <div class="col-8">
+                        <div class="removeRecipients" (click)="removeRecipient(x)">
+                            <eui-icon-svg icon="trash" set="sharp" size="m" fillColor="primary-100"></eui-icon-svg>
+                            <span> {{ 'credential-builder.issue.removeRecipient' | translate}} </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    <!--</div>-->
+
+    <div class="row justify-content-center footerForms">
+        <div class="col-7">
+            <div class="row align-items-center addRecipient">
+                <div class="col-12">
+                    <div (click)="addRecipient()" class="addRecipient_wrapper">
+                        <eui-icon-svg set="sharp" icon="add-circle" fillColor="primary-100" size="m"></eui-icon-svg>
+                        <span>{{ 'credential-builder.issue.addAnotherRecipient' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row consentForm">
+                <div class="col-12">
+                    <div euiInputGroup [formGroup]="consentForm">
+                        <ng-container>
+                            <input euiInputCheckBox id="consent-box-2" name="dyn-checkbox" class="__hide-input"
+                                formControlName="consentCheckBox">
+                            <label for="consent-box-2">{{ concentText | translate }}</label>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 align-self-end">
+            <div class="row">
+                <div class="col-6">
+                    <button euiButton [euiOutline]="true" [euiSecondary]="true" [euiSizeL]="true"
+                        (click)="backToFields()" class="w-100">
+                        <!--<eui-icon-svg icon="close" set="sharp" size="m" fillColor="primary-100"></eui-icon-svg>-->
+                        <span euiIcon iconClass="eui-icon eui-icon-close-m"></span>
+                        <span euiLabel> {{ 'common.cancel' | translate }}</span>
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button euiButton [euiPrimary]="true" [euiSizeL]="true" (click)="sendForm()" class="w-100">
+                        <span euiLabel>{{ 'common.next' | translate }}</span>
+                        <span euiIcon iconClass="eui-icon eui-icon-angle-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<eui-message-box #messageBoxFormError typeClass="warning" title="{{ 'common.warning' | translate | uppercase }}"
+    messageBoxType="ok">
+    <p>{{ 'credential-builder.issue.issueError' | translate }}</p>
+</eui-message-box>
+
+<div *ngIf="loading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner class="spinner" color="primary" mode="indeterminate" value="50">
+    </mat-progress-spinner>
+</div>

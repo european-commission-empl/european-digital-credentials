@@ -1,0 +1,102 @@
+<div class="entitlements-detail_panel other-information" *ngIf="
+        activeEntitlement?.specifiedBy?.title?.length > 0 ||
+        activeEntitlement?.specifiedBy?.limitNationalOccupation?.length > 0 ||
+        activeEntitlement?.specifiedBy?.supplementaryDocument?.length > 0 ||
+        activeEntitlement?.specifiedBy?.additionalNote?.length > 0 ||
+        activeEntitlement?.specifiedBy?.homepage?.length > 0
+    "
+>
+    <edci-panel
+        [title]="'details.entitlements-tab.otherInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+
+        <section *ngIf="activeEntitlement?.specifiedBy?.title?.length > 0" class="row">
+            <h6 class="col-12">{{'details.entitlements-tab.altName' | translate}}</h6>
+            <p class="col-12">{{ activeEntitlement.specifiedBy.title }}</p>
+        </section>
+
+        <section *ngIf="activeEntitlement?.specifiedBy?.limitNationalOccupation?.length > 0" class="row">
+            <h6 class="col-12">{{'details.entitlements-tab.limitOccupation' | translate}}</h6>
+            <p class="col-12" *ngFor="let lno of activeEntitlement.specifiedBy.limitNationalOccupation"> {{ lno }}</p>
+        </section>
+
+        <section *ngIf="activeEntitlement?.specifiedBy?.supplementaryDocument?.length > 0" class="row">
+            <h6 class="col-12">{{'details.entitlements-tab.otherDocuments' | translate}}</h6>
+            <p class="col-12" *ngFor="let document of activeEntitlement.specifiedBy.supplementaryDocument">
+                <a href="{{document.link}}">{{ document.link }}</a>
+            </p>
+        </section>
+
+        <edci-section *ngIf="activeEntitlement?.specifiedBy?.additionalNote?.length > 0" class="row"
+            [title]="'details.entitlements-tab.moreInformation' | translate">
+            <ng-container *ngFor="let note of activeEntitlement.specifiedBy.additionalNote">
+                <p *ngFor="let literal of note.noteLiteral" class="col-12">{{ literal }}</p>
+            </ng-container>
+        </edci-section>
+
+        <section *ngIf="activeEntitlement?.specifiedBy?.homepage?.length > 0" class="row">
+            <h6 class="col-12">{{'details.entitlements-tab.homePage' | translate}}</h6>
+            <p *ngFor="let page of activeEntitlement.specifiedBy.homepage" class="col-12">
+                <a href="{{page.link}}">{{ page.link }}</a>
+            </p>
+        </section>
+        <!--
+        <div class="d-flex flex-column">
+            <div *ngIf="activeEntitlement?.specifiedBy?.otherDocs?.length > 0" class="other-information_section">
+                <p class="other-information_title">
+                    {{
+                        'details.entitlements-tab.relatedDocuments' | translate
+                    }}
+                </p>
+                <div class="d-flex flex-wrap">
+                    <ng-container
+                        *ngFor="
+                            let document of activeEntitlement.specifiedBy
+                                .otherDocs
+                        "
+                    >
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    activeEntitlement?.moreInformation?.length > 0 ||
+                    activeEntitlement?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="other-information_section"
+            >
+                <ng-container
+                    *ngFor="let content of activeEntitlement?.moreInformation"
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+                <ng-container
+                    *ngFor="
+                        let content of activeEntitlement?.specifiedBy
+                            ?.moreInformation
+                    "
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+            </div>
+        </div>-->
+    </edci-panel>
+</div>

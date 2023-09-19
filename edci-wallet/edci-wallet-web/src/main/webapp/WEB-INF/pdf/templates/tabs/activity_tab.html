@@ -1,0 +1,104 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div th:fragment="activity(activity, iter, sub)">
+
+    <h2 th:if="${!sub}" th:id=" ${activity.id}"
+        class="activity-title"
+        th:text="${iter + activity.title}"></h2>
+    <h3 th:if="${sub}" th:id=" ${activity.id}"
+        class="activity-rel-title"
+        th:text="${iter + activity.title}"></h3>
+
+    <div class="sub-section">
+        <div th:if="${activity.description}">
+            <p th:text="${activity.description}"></p>
+        </div>
+        <div>
+            <p>
+            <span th:if="${activity.startDate}"><strong>[[#{details.activities-tab.startDate}]]: </strong><span
+                    th:text="${activity.startDate}"></span></span>
+                <span th:if="${activity.endDate}"><strong>[[#{details.activities-tab.endDate}]]: </strong><span
+                        th:text="${activity.endDate}"></span></span>
+            </p>
+            <div th:if="${activity.workloadInHours}">
+                <p><strong>[[#{details.activities-tab.workloadInHours}]]: </strong><span
+                        th:text="${activity.workloadInHours}"></span></p>
+            </div>
+        </div>
+    </div>
+    <div th:if="${activity.directedBy}">
+        <strong>[[#{details.activities-tab.directedBy}]]: </strong>
+        <a th:href="${'#' + activity.directedBy.id}">
+            <span th:text="${activity.directedBy.preferredName}"></span></a>
+
+    </div>
+    <div th:if="${activity.influenced != null and !activity.influenced.empty}">
+        <strong>[[#{details.activities-tab.influences}]]: </strong>
+        <p th:each="influence : ${activity.influenced}">
+            <a th:href="${'#' + influence.id}"
+               th:text="${influence.title}"></a>
+        </p>
+    </div>
+    <div th:if="${activity.subActivities != null and !activity.subActivities.empty}">
+        <strong>[[#{details.activities-tab.subActivities}]]: </strong>
+        <span th:each="influence: ${activity.subActivities}">
+                    <a th:href="${'#' + influence.id}"
+                       th:text="${influence.title}"></a>
+                </span>
+    </div>
+    <div th:insert="tabs/fields/more_information_field :: moreInformation(${activity.moreInformation})"></div>
+
+    <div th:if="${activity.specifiedBy != null}">
+        <p th:insert="tabs/fields/specifiedBy_field.html :: specified(${activity.specifiedBy}, #{details.activities-tab.specification})"></p>
+
+        <p th:if="${activity.specifiedBy.identifier != null and !activity.specifiedBy.identifier.empty}">
+        <ul style="list-style-type:none;padding-left:0px;">
+            <li th:each="iden : ${activity.specifiedBy.identifier}">
+                <div th:insert="tabs/fields/identifier_field :: identifier(${iden}, #{details.activities-tab.identifier})"></div>
+            </li>
+        </ul>
+        </p>
+        <div th:if="${activity.specifiedBy.description}">
+            <p th:text="${activity.specifiedBy.description}"></p>
+        </div>
+        <p th:if="${activity.specifiedBy.learningActivityType}">
+            <strong>[[#{details.activities-tab.learningActivityType}]]: </strong>
+            <span th:each="laType, iter : ${activity.specifiedBy.learningActivityType}">
+                <span th:text="${laType}"></span>
+            </span>
+        </p>
+        <p th:if="${activity.specifiedBy.modeOfLearning}">
+            <strong>[[#{details.activities-tab.modeOfLearning}]]: </strong><span
+                th:text="${activity.specifiedBy.modeOfLearning}"></span>
+        </p>
+        <p th:if="${activity.specifiedBy.workloadInHours}">
+            <strong>[[#{details.activities-tab.notionalWorkloadInHours}]]: </strong><span
+                th:text="${activity.specifiedBy.workloadInHours}"></span>
+        </p>
+        <p th:if="${activity.specifiedBy.instructionLanguage}">
+            <strong>[[#{details.activities-tab.languagesOfInstruction}]]: </strong>
+            <span th:each="loInstr, iter : ${activity.specifiedBy.instructionLanguage}">
+                <span th:if="!${iter.last}" th:text="${loInstr} + ', '"></span>
+                <span th:if="${iter.last}" th:text="${loInstr}"></span>
+            </span>
+        </p>
+        <div th:if="${activity.specifiedBy.otherDocuments != null and !activity.specifiedBy.otherDocuments.empty}">
+            <strong>[[#{details.activities-tab.other.docs}]]</strong>
+            <ul style="list-style-type:none;padding-left:0px;"
+                th:each="document : ${activity.specifiedBy.otherDocuments}">
+                <li><a th:href="@{${document.link}}">
+                    <span th:text="${document.title != null} ? ${document.title} : ${document.link}"></span>
+                </a></li>
+            </ul>
+        </div>
+
+        <div th:insert="tabs/fields/more_information_field :: moreInformation(${activity.specifiedBy.moreInformation})"></div>
+
+    </div>
+    <div style="page-break-after:always"></div>
+</div>
+</body>
+</html>

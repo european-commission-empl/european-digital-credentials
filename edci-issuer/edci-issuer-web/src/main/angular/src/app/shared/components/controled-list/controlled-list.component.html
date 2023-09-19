@@ -1,0 +1,38 @@
+<!--[isLoading]="isLoading"-->
+
+<form class="controlled-list__component" [formGroup]="formGroup">
+    <div euiInputGroup>
+        <div class="eui-input-group-addon">
+                <eui-autocomplete
+                    #autocompleteTag
+                    *ngIf="!isSingleSelection; else singleSelection"
+                    chipsPosition="bottom"
+                    chipsSortOrder="ASC"
+                    itemsSortOrder="ASC"
+                    [placeholder]="placeHolder"
+                    (selectionChange)="onSelectionChange($event)"
+                    [async]="true"
+                    [autocompleteData]="searchList"
+                    [formControl]="multipleEntity"
+                    [hasChips]="true"
+                    [isDuplicateValueAllowed]="false"
+                    [readonly]="isDisabled || !isPrimaryLanguage"
+                ></eui-autocomplete>
+                <ng-template #singleSelection>
+                    <eui-autocomplete
+                        #autocomplete
+                        itemsSortOrder="ASC"
+                        [placeholder]="placeHolder"
+                        (focusout)="onSingleEntityFocusOut()"
+                        [async]="true"
+                        [autocompleteData]="searchList"
+                        [formControl]="singleEntity"
+                        [readonly]="isDisabled || !isPrimaryLanguage"
+                        [isFreeValueAllowed]="false" 
+                        isForceSelection
+                    ></eui-autocomplete>
+            </ng-template>
+            <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="1.6" global="false"/>
+
+    <changeSet id="add_OCBIDS" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <!--<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="SPEC_EUROPASS_CREDENTIAL" columnName="OCBID"/>
+            </not>
+            <not>
+                <columnExists tableName="SPEC_LEARNING_ACHIEVEMENT" columnName="OCBID"/>
+            </not>
+            <not>
+                <columnExists tableName="SPEC_ACTIVITY" columnName="OCBID"/>
+            </not>
+            <not>
+                <columnExists tableName="SPEC_ASSESSMENT" columnName="OCBID"/>
+            </not>
+            <not>
+                <columnExists tableName="SPEC_ENTITLEMENT" columnName="OCBID"/>
+            </not>
+        </preConditions>-->
+        <customChange class="eu.europa.ec.empl.edci.issuer.service.liquibase.CustomChangeOCBIDs"></customChange>
+        <rollback>
+            <delete tableName="DATABASECHANGELOG">
+                <where>ID='add_OCBIDS'</where>
+            </delete>
+            <delete tableName="DATABASECHANGELOG">
+                <where>ID='versionTableInsert_1.6'</where>
+            </delete>
+            <delete tableName="LIQUIBASE_VERSION">
+                <where>ID='1.6'</where>
+            </delete>
+            <dropColumn tableName="SPEC_EUROPASS_CREDENTIAL" columnName="OCBID"></dropColumn>
+            <dropColumn tableName="SPEC_LEARNING_ACHIEVEMENT" columnName="OCBID"></dropColumn>
+            <dropColumn tableName="SPEC_ASSESSMENT" columnName="OCBID"></dropColumn>
+            <dropColumn tableName="SPEC_ACTIVITY" columnName="OCBID"></dropColumn>
+            <dropColumn tableName="SPEC_ENTITLEMENT" columnName="OCBID"></dropColumn>
+        </rollback>
+    </changeSet>
+    <include file="changeLog/liquibase-changelog-update-version.xml"/>
+</databaseChangeLog>

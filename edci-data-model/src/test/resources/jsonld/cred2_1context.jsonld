@@ -1,0 +1,1 @@
+{"id":"urn:credential:0bd26efe-6605-468b-845b-5acf00fabb20","type":["VerifiableCredential","Generic"],"credentialSubject":"urn:person:1","expirationDate":1658320475607,"issuanceDate":1658234075607,"issued":1658234075607,"issuer":"urn:org:1","validFrom":1658234075607,"validUntil":1658320475607,"@context":"https://www.w3.org/2018/credentials/v1"}

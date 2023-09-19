@@ -1,0 +1,15 @@
+edci-status-bar  {
+
+    .ux-wizard-step__current-marker {
+        display: none;
+    }
+
+    .ux-wizard-steps {
+        border: none;
+    }
+
+    .ux-wizard-steps {
+        pointer-events: none;
+    }
+
+}

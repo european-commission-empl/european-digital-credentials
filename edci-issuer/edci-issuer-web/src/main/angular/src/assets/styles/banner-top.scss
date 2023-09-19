@@ -1,0 +1,34 @@
+// Language Dropdown
+div.mat-menu-panel {
+    max-height: 60vh !important;
+    min-width: 145px !important;
+}
+
+/* top banner above menus*/
+div#globan.globan.dark {
+    background-color: var(--gray-50);
+
+    .globan-content {
+        span {
+            color: var(--eui-base-color-grey-100);
+        }
+
+        button {
+            font-weight: bold;
+            color: var(--eui-base-color-primary-100);
+            background-color: var(--eui-base-color-grey-5);
+
+            &:after {
+                background: center center / 12px auto no-repeat transparent
+                    url(https://europa.eu/webtools/services/globan/images/chevron-blue.svg);
+            }
+        }
+    }
+}
+
+/* banner top */
+.eui-user-profile-content {
+    .eui-user-profile__avatar {
+        display: none;
+    }
+}

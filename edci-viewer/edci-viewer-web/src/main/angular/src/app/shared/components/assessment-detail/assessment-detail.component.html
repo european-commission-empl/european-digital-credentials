@@ -1,0 +1,42 @@
+<div *ngIf="activeAssessment" class="assessment-main-panel">
+    <edci-panel [title]="activeAssessment.title" [isMainPanel]="true" [isExpanded]="true">
+        <!-- Main Panlel -->
+        <div class="assessment-detail_panel">
+            <edci-assessment-main-panel [activeAssessment]="activeAssessment">
+            </edci-assessment-main-panel>
+        </div>
+        <!-- Informarion Panel -->
+        <div class="assessment-detail_panel">
+            <edci-assessment-information-panel [activeAssessment]="activeAssessment">
+            </edci-assessment-information-panel>
+        </div>
+
+        <!-- Sub Assessment -->
+        <div class="assessment-detail_panel" *ngIf="activeAssessment?.subAssessments?.length > 0">
+            <edci-panel [title]="'details.assessments-tab.subAssessments' | translate" [(isExpanded)]="isPanelExpanded">
+                <div class="entity-container d-flex flex-wrap">
+                    <ng-container *ngFor="let assessment of activeAssessment.subAssessments">
+                        <section class="col-4 wrap mt-2 mb-3">
+                            <a class="entity-container_item-badge" (click)="changeSelection(assessment.id)">
+                                {{ assessment.title }}
+                            </a>
+                        </section>
+                    </ng-container>
+                </div>
+            </edci-panel>
+        </div>
+
+
+        <!-- Grade Scheme -->
+        <div class="assessment-detail_panel">
+            <edci-assessment-grading-scheme-panel [activeAssessment]="activeAssessment">
+            </edci-assessment-grading-scheme-panel>
+        </div>
+
+        <!-- Other Information -->
+        <div class="assessment-detail_panel">
+            <edci-assessment-other-information-panel [activeAssessment]="activeAssessment">
+            </edci-assessment-other-information-panel>
+        </div>
+    </edci-panel>
+</div>

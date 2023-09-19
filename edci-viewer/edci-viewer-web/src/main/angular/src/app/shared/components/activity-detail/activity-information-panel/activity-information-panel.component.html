@@ -1,0 +1,73 @@
+<div
+    class="activity-detail_panel activity-information"
+    *ngIf="
+        activeActivity?.specifiedBy?.volumeOfLearning ||
+        activeActivity?.workload ||
+        activeActivity?.specifiedBy?.contactHour?.length ||
+        activeActivity?.specifiedBy?.language?.length ||
+        activeActivity?.levelOfCompletion ||
+        activeActivity?.specifiedBy?.mode?.length ||
+        activeActivity?.dcType?.length
+    "
+>
+    <edci-panel
+        [title]="'details.activities-tab.activityInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+        <div class="activity-information-row d-flex flex-wrap">
+            <div class="activity-information-row_item" *ngIf="activeActivity?.specifiedBy?.volumeOfLearning">
+                <edci-information-field
+                    [text]="[getVolumeOfLearning()]"
+                    [title]="'details.activities-tab.volumeOfLearning' | translate"
+                    icon="hourglass"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.workload">
+                <edci-information-field
+                    [text]="[getActualWorkload()]"
+                    [title]="'details.activities-tab.actualWorkload' | translate"
+                    icon="hourglass"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.specifiedBy?.contactHour?.length > 0">
+                <edci-information-field
+                    [text]="getContactHours()"
+                    [title]="'details.activities-tab.contactHours' | translate"
+                    icon="hourglass"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.specifiedBy?.language?.length > 0">
+                <edci-information-field
+                    [text]="activeActivity.specifiedBy.language"
+                    [title]="'details.activities-tab.languagesOfInstruction'| translate"
+                    icon="chatbubble-ellipses"
+                    [outline]="true"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.levelOfCompletion">
+                <edci-information-field
+                    [text]="[activeActivity?.levelOfCompletion+'%']"
+                    [title]="'details.activities-tab.levelOfCompletion'| translate"
+                    icon="pie-chart"
+                    [outline]="true"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.specifiedBy?.mode?.length > 0">
+                <edci-information-field
+                    [text]="activeActivity?.specifiedBy?.mode"
+                    [title]="'details.activities-tab.learningSettings' | translate"
+                    icon="easel"
+                    [outline]="true"
+                ></edci-information-field>
+            </div>
+            <div class="activity-information-row_item" *ngIf="activeActivity?.specifiedBy?.dcType?.length > 0">
+                <edci-information-field
+                    [text]="activeActivity?.specifiedBy?.dcType"
+                    [title]="'details.activities-tab.learningActivityType' | translate"
+                    icon="pie-chart"
+                    [outline]="true"
+                ></edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

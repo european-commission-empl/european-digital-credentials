@@ -1,0 +1,77 @@
+<edci-panel *ngIf="activeAchievement" [title]="activeAchievement?.title" [isMainPanel]="true" [isExpanded]="true">
+    <edci-achievement-main-panel [activeAchievement]="activeAchievement"></edci-achievement-main-panel>
+
+    <edci-achievement-learning-outcomes-panel [activeAchievement]="activeAchievement">
+    </edci-achievement-learning-outcomes-panel>
+
+    <edci-achievement-information-panel [activeAchievement]="activeAchievement">
+    </edci-achievement-information-panel>
+
+    <!-- InfluencedBy | Learning Activities-->
+    <edci-panel *ngIf="activeAchievement?.influencedBy?.length > 0"
+        [title]="'details.achievements-tab.learningActivities' | translate"
+        [(isExpanded)]="isLearningActivitiesExpanded">
+        <section class="entity-container d-flex flex-wrap">
+            <ng-container *ngFor="let activity of activeAchievement.influencedBy">
+                <section class="col-4 wrap mt-2 mb-3">
+                    <a class="entity-container_item-badge" (click)="changeSelection(activity.id)">
+                        {{ activity.title }}
+                    </a>
+                </section>
+            </ng-container>
+        </section>
+    </edci-panel>
+
+    <!-- entitledOwnerTo | Entitles Owner To  -->
+    <edci-panel *ngIf="activeAchievement?.entitlesTo?.length > 0"
+        [title]="'details.achievements-tab.entitlesOwnerTo' | translate" [(isExpanded)]="isEntitlesOwnerToExpanded">
+        <section class="entity-container d-flex flex-wrap">
+            <ng-container *ngFor="
+                        let entitlement of activeAchievement.entitlesTo
+                    ">
+                <section class="col-4 wrap mt-2 mb-3">
+                    <a class="entity-container_item-badge" (click)="changeSelection(entitlement.id)">
+                        {{ entitlement.title }}
+                    </a>
+                </section>
+            </ng-container>
+        </section>
+    </edci-panel>
+
+    <!-- provenBy | Proven By  -->
+    <edci-panel *ngIf="activeAchievement?.provenBy?.length > 0"
+        [title]="'details.achievements-tab.assessedBy' | translate" [isExpanded]="isProvenByExpanded">
+        <section class="entity-container d-flex flex-wrap">
+            <ng-container *ngFor="let assessment of activeAchievement.provenBy">
+                <section class="col-4 wrap mt-2 mb-3">
+                    <a class="entity-container_item-badge" (click)="changeSelection(assessment.id)">
+                        {{ assessment.title }}
+                    </a>
+                </section>
+            </ng-container>
+        </section>
+    </edci-panel>
+
+    <!-- subAchievements | Sub-Achievements -->
+    <edci-panel *ngIf="activeAchievement?.subAchievements?.length > 0"
+        [title]="'details.achievements-tab.subAchievements' | translate" [(isExpanded)]="isSubAchievementsExpanded">
+        <section class="entity-container d-flex flex-wrap">
+            <ng-container class="row" *ngFor="
+                        let achievement of activeAchievement.subAchievements
+                    ">
+                <section class="col-4 wrap mt-2 mb-3">
+                    <a class="entity-container_item-badge" (click)="changeSelection(achievement.id)">
+                        {{ achievement.title }}
+                    </a>
+                </section>
+            </ng-container>
+        </section>
+    </edci-panel>
+
+    <edci-accreditation-panel *ngIf="activeAchievement?.specifiedBy?.qualification?.hasAccreditation?.length > 0"
+        [accreditations]="activeAchievement.specifiedBy.qualification.hasAccreditation">
+    </edci-accreditation-panel>
+
+    <edci-achievement-other-information-panel [activeAchievement]="activeAchievement">
+    </edci-achievement-other-information-panel>
+</edci-panel>

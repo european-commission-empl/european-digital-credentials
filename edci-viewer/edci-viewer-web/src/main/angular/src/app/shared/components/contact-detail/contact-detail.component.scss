@@ -1,0 +1,9 @@
+eui-icon-svg {
+    color: var(--eui-base-color-primary-100);
+}
+
+.contact-row{
+    p + p{
+        margin-top:var(--eui-base-spacing-2xs);
+    }
+}

@@ -1,0 +1,38 @@
+<div
+    class="assessment-detail_panel assessment-information"
+    *ngIf="
+        activeAssessment?.specifiedBy?.type ||
+        activeAssessment?.specifiedBy?.mode ||
+        activeAssessment?.idVerification
+    "
+>
+    <edci-panel
+        [title]="'details.assessments-tab.assessmentInformation' | translate"
+        [(isExpanded)]="isPanelExpanded"
+    >
+
+        <div class="assessment-information-row d-flex flex-wrap">
+            <div class="assessment-information-row_item" *ngIf="activeAssessment?.specifiedBy?.dcType?.length > 0">
+                <edci-information-field
+                    [text]="activeAssessment.specifiedBy.dcType"
+                    [title]="'details.assessments-tab.assessmentType' | translate"
+                    icon="shapes"
+                    [outline]="false"
+                ></edci-information-field>
+            </div>
+            <div class="assessment-information-row_item" *ngIf="activeAssessment?.specifiedBy?.mode?.length > 0">
+                <edci-information-field [text]="activeAssessment.specifiedBy.mode"
+                    [title]="'details.assessments-tab.modeOfAssessment' | translate"
+                    icon="easel"
+                    [outline]="true"
+                ></edci-information-field>
+            </div>
+            <div class="assessment-information-row_item" *ngIf="activeAssessment?.idVerification">
+                <edci-information-field [text]="[activeAssessment.idVerification]"
+                    [title]="'details.assessments-tab.idVerification' | translate"
+                    icon="finger-print"
+                ></edci-information-field>
+            </div>
+        </div>
+    </edci-panel>
+</div>

@@ -1,0 +1,31 @@
+.entitlement-form {
+    .ui-multiselect .ui-multiselect-panel {
+        width: 100%;
+    }
+
+    .mat-input-element {
+        margin: 0 !important;
+    }
+
+    .entity-input {
+        align-items: baseline;
+        // align-items: center;
+        display: flex !important;
+
+        // .disabled {
+        //     opacity: 0.4;
+        //     pointer-events: none !important;
+        // }
+
+        edci-autocomplete {
+            flex-grow: 1;
+        }
+    }
+
+    .form-datepicker {
+        input,
+        button {
+            position: relative;
+        }
+    }
+}

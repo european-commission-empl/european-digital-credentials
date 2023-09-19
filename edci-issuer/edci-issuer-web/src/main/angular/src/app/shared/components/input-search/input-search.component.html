@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+    <div euiInputGroup class="col-md-4 flex-row eui-input-search">
+        <label euiLabel class="inline-label" for="inputSearch">{{title}}</label>
+        <div class="eui-input-group-addon">
+            <input euiInputText formControlName="inputText" placeholder="{{placeHolder}}" id="inputSearch"/>
+            <button euiButton [euiPrimary]="true" [euiIconButton]="true" (click)="onClick()"><span euiIcon iconClass="eui-icon eui-icon-search"></span></button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,9 @@
+button{
+    .eui-icon-add-circle{
+        + .add-label{
+            font-size: var(--eui-base-font-size-m);
+            font-weight:bold;
+            color: var(--eui-base-color-primary-100);
+        }
+    }
+}

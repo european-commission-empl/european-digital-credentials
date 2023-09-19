@@ -1,0 +1,74 @@
+.edci-panel {
+    border: solid 1px var(--eui-base-color-grey-5);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+
+   /* &_main {
+        margin-left: var(--eui-base-spacing-xs);
+        margin-right: var(--eui-base-spacing-xs);
+    } */
+
+    & .edci-panel_title-only span{
+        font-size : var(--eui-base-font-size-m);
+    }
+    &_title {
+        background-color: var(--eui-base-color-primary-100);
+        border-radius: 3px;
+        color: var(--eui-base-color-white);
+        font-size: var(--eui-base-font-2xl);
+        font-weight: bold;
+        padding: var(--eui-base-spacing-m) var(--eui-base-spacing-l);
+
+        &-only {
+            background-color: var(--eui-base-color-grey-5);
+            color: var(--eui-base-color-primary-100);
+
+            > p.edci-panel_title-text {
+                border-right: 1px solid #fff;
+                flex-grow: 1;
+                margin-right: var(--eui-base-spacing-s);
+            }
+        }
+
+        &-text {
+            font-size: var(--eui-base-font-size-2xl);
+        }
+    }
+
+    &_icon {
+        color: var(--eui-base-color-primary-100);
+        font-size: var(--eui-base-font-size-l);
+        display: inline;
+        margin-right: var(--eui-base-spacing-s);
+
+        &-img {
+            transition: all .5s ease-in-out;
+
+            &.rotate-180 {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &_content {
+        border-radius: 3px;
+        margin-bottom: var(--edci-panel-content-margin-bottom, 0);
+        margin-left: var(--edci-panel-content-margin-left, 0);
+        margin-right: var(--edci-panel-content-margin-right, 0);
+        margin-top: var(--edci-panel-content-margin-top, 0);
+        padding: var(--eui-base-spacing-l) var(--eui-base-spacing-l);
+
+        &_only {
+            background-color: var(--eui-base-color-grey-5);
+            padding-top:0;
+        }
+    }
+
+    .subPanel_title_wrapper {
+        /*height: 0.1em;
+        padding: 0 var(--eui-base-spacing-xs);
+        margin-top: var(--eui-base-spacing-m);*/
+        cursor:pointer;
+        padding-bottom:var(--eui-base-spacing-m);
+        border-bottom: 0.1em solid var(--eui-base-color-grey-35);
+    }
+}

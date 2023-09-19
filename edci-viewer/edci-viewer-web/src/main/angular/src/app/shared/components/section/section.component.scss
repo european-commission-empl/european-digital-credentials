@@ -1,0 +1,37 @@
+.edci-section {
+    &_clickable {
+        color: var(--eui-base-color-primary-100);
+        font-size: var(--eui-base-font-size-m);
+        font-weight: bold;
+        text-align: end;
+
+        &_text_only {
+            margin-right: var(--eui-base-spacing-s);
+        }
+    }
+
+    &_icon {
+        display: inline;
+
+        &-img {
+            transition: all .5s ease-in-out;
+
+            &.rotate-180 {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+}
+
+h3 {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+.margin {
+    margin-top: var(--eui-base-spacing-s);
+}
+
+.content {
+    margin-top: var(--eui-base-spacing-m);
+}

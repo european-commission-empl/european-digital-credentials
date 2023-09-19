@@ -1,0 +1,144 @@
+<div class="assessment-detail_panel other-information" *ngIf="
+        activeAssessment?.specifiedBy?.title?.length > 0 ||
+        activeAssessment?.specifiedBy?.description?.length > 0 ||
+        activeAssessment?.specifiedBy?.category?.length > 0 ||
+        activeAssessment?.specifiedBy?.additionalNote?.length > 0 ||
+        activeAssessment?.assessedBy?.legalName || activeAssessment?.assessedBy?.fullName ||
+        activeAssessment?.specifiedBy?.language?.length > 0 ||
+        activeAssessment?.specifiedBy?.homePage?.length > 0 ||
+        activeAssessment?.specifiedBy?.supplementaryDocument?.length > 0
+        ">
+    <edci-panel [title]="'details.assessments-tab.otherInformation' | translate" [(isExpanded)]="isPanelExpanded">
+
+        <section *ngIf="activeAssessment?.specifiedBy?.title?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.altName' | translate}}</h6>
+            <p class="col-12">{{ activeAssessment.specifiedBy.title }}</p>
+
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.description?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.description' | translate}}</h6>
+            <p *ngFor="let description of activeAssessment.specifiedBy.description" class="col-12">
+                {{ description }}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.category?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.category' | translate}}</h6>
+            <p *ngFor="let category of activeAssessment.specifiedBy.category" class="col-12">
+                {{ category }}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.additionalNote?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.moreInformation' | translate}}</h6>
+            <ng-container *ngFor="let note of activeAssessment.specifiedBy.additionalNote">
+                <p *ngFor="let literal of note.noteLiteral" class="col-12">
+                    {{ literal }}
+                </p>
+            </ng-container>
+        </section>
+
+        <section *ngIf="activeAssessment?.assessedBy?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.assessedBy' | translate}}</h6>
+            <p *ngFor="let org of activeAssessment?.assessedBy" class="col-12">
+                {{ org.legalName ? org.legalName : org.fullName}}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.language?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.language' | translate}}</h6>
+            <p *ngFor="let language of activeAssessment.specifiedBy.language" class="col-12">
+                {{ language }}
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.homepage?.length > 0" class="row">
+            <h6 class="col-12">{{'details.assessments-tab.homePage' | translate}}</h6>
+            <p *ngFor="let homepage of activeAssessment.specifiedBy.homepage" class="col-12">
+                <a href="{{homepage.link}}">{{ homepage.link }}</a>
+            </p>
+        </section>
+
+        <section *ngIf="activeAssessment?.specifiedBy?.supplementaryDocument?.length > 0" class="row">
+            <h6 class="col-12">{{ 'details.assessments-tab.otherDocuments' | translate }}</h6>
+            <p *ngFor="let document of activeAssessment.specifiedBy.supplementaryDocument" class="col-12">
+                <a href="{{document.link}}">{{ document.link }}</a>
+            </p>
+        </section>
+
+        <!--
+        <div class="d-flex flex-column">
+            <div
+                *ngIf="activeAssessment?.specifiedBy?.otherDocuments?.length > 0"
+                class="other-information_section"
+            >
+                <p class="other-information_title">
+
+                </p>
+                <div class="d-flex flex-wrap">
+                    <ng-container
+                        *ngFor="
+                            let document of activeAssessment.specifiedBy
+                                .otherDocuments
+                        "
+                    >
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    activeAssessment?.moreInformation?.length > 0 ||
+                    activeAssessment?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="other-information_section"
+            >
+                <ng-container
+                    *ngFor="let content of activeAssessment?.moreInformation"
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+                <ng-container
+                    *ngFor="
+                        let content of activeAssessment?.specifiedBy
+                            ?.moreInformation
+                    "
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+            </div>
+            <div
+                class="other-information_section"
+                *ngIf="activeAssessment?.specifiedBy?.homePage?.length > 0"
+            >
+                <p class="other-information_title">
+                    {{ 'details.assessments-tab.homePage' | translate }}
+                </p>
+                <div class="d-flex flex-column">
+                    <a
+                        *ngFor="let page of activeAssessment.specifiedBy.homePage"
+                        [href]="page.link"
+                        >{{ page.title ? page.title : page.link }}</a
+                    >
+                </div>
+            </div>
+        </div>-->
+    </edci-panel>
+</div>

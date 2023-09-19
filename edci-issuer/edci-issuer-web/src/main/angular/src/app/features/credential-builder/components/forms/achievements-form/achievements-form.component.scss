@@ -1,0 +1,18 @@
+.achievement-form {
+    ux-dropdown-button > ux-button > button {
+        box-shadow: none !important;
+    }
+
+    .entity-input {
+        align-items: baseline;
+        display: flex !important;
+
+        edci-autocomplete {
+            flex-grow: 1;
+        }
+    }
+
+    .no_red_border .eui-input-text--danger, eui-input-text--invalid {
+        border-color: var(--eui-base-color-grey-50) !important;
+    }
+}

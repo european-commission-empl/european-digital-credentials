@@ -1,0 +1,767 @@
+<ux-modal id="issueModal" (onClose)="closeModal()" customWidth="75%">
+    <uxModalBody>
+        <h1 class="font-weight-bold">
+            {{ 'credential-builder.issue.issueCredentials' | translate }}
+        </h1>
+        <p>{{ 'credential-builder.issue.addAsMany' | translate }}</p>
+        <div
+            *ngIf="recipients.controls?.length > 0"
+            [formGroup]="recipientsGroup"
+            class="cb-modal-form-wrapper"
+        >
+            <div formArrayName="recipients" class="cb-modal-form-container-div">
+                <ng-container
+                    *ngFor="let recipient of recipients.controls; let i = index"
+                    class="cb-modal-form-container"
+                >
+                    <ux-panel
+                        label="{{ i + 1 }}. {{
+                            'credential-builder.issue.recipient' | translate
+                        }}"
+                        [isExpandable]="true"
+                    >
+                        <div class="cb-modal-form">
+                            <div
+                                class="col-12 cb-modal-form-div"
+                                [formGroupName]="i"
+                            >
+                                <div class="col-12 cb-modal-form">
+                                    <h1 class="form-header">
+                                        {{
+                                            'credential-builder.issue.personalData'
+                                                | translate
+                                        }}
+                                    </h1>
+                                    <div class="row">
+                                        <div
+                                            class="form-group required col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3"
+                                        >
+                                            <label
+                                                class="d-inline-flex control-label"
+                                                >{{
+                                                    'credential-builder.issue.firstName'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <input
+                                                euiInputText
+                                                type="text"
+                                                class="form-control"
+                                                formControlName="firstName"
+                                            />
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].firstName.invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].firstName.errors
+                                                        ?.required &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].firstName.touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.required' | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].firstName.errors
+                                                        ?.maxlength
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.maxLength.255'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                        <div
+                                            class="form-group required col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3"
+                                        >
+                                            <label
+                                                class="d-inline-flex control-label"
+                                                >{{
+                                                    'credential-builder.issue.lastName'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <input
+                                                euiInputText
+                                                type="text"
+                                                class="form-control"
+                                                formControlName="lastName"
+                                            />
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].lastName.invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].lastName.errors
+                                                        ?.required &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].lastName.touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.required' | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].lastName.errors?.maxlength
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.maxLength.255'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                        <div
+                                            class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3"
+                                        >
+                                            <label
+                                                class="d-inline-flex control-label"
+                                                >{{
+                                                    'credential-builder.issue.dateOfBirth'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <ux-form-group
+                                                [isVertical]="true"
+                                                class="form-datepicker"
+                                            >
+                                                <eui-datepicker
+                                                    formControlName="dateOfBirth"
+                                                    [placeholder]="'dd/mm/yyyy'"
+                                                    (onDateSelect)="
+                                                        checkValidDate(
+                                                            recipients.controls[
+                                                                i
+                                                            ]['controls']
+                                                                .dateOfBirth
+                                                        )
+                                                    "
+                                                ></eui-datepicker>
+                                                <ux-control-feedback
+                                                    *ngIf="
+                                                        recipients.controls[i][
+                                                            'controls'
+                                                        ].dateOfBirth.invalid &&
+                                                        recipients.controls[i][
+                                                            'controls'
+                                                        ].dateOfBirth.errors
+                                                            ?.invalidDateError
+                                                    "
+                                                    typeClass="danger"
+                                                >
+                                                    {{
+                                                        'error.minDate'
+                                                            | translate
+                                                                : {
+                                                                      selfParam:
+                                                                          'credential-builder.issue.dateOfBirth'
+                                                                          | translate,
+                                                                      dateParam:
+                                                                          maxDateOfBirth
+                                                                          | date
+                                                                              : 'dd/MM/yyyy'
+                                                                  }
+                                                    }}
+                                                </ux-control-feedback>
+                                            </ux-form-group>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="form-group col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+                                        >
+                                            <label class="d-inline-flex"
+                                                >{{
+                                                    'credential-builder.issue.citizenship'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <edci-controlled-list
+                                                entityType="country"
+                                                [selectedLanguages]="languages"
+                                                [itemsSelected]="
+                                                    recipients.controls[i]
+                                                        ?.value
+                                                        ?.citizenshipCountry
+                                                "
+                                                [activeLanguage]="
+                                                    defaultLanguage
+                                                "
+                                                (onError)="closeModal()"
+                                                (onItemsSelectionChange)="
+                                                    citizenshipCountrySelectionChange(
+                                                        $event,
+                                                        i
+                                                    )
+                                                "
+                                            ></edci-controlled-list>
+                                        </div>
+                                        <div
+                                            class="form-group col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+                                        >
+                                            <label class="d-inline-flex"
+                                                >{{
+                                                    'credential-builder.issue.placeOfBirth'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <edci-controlled-list
+                                                entityType="country"
+                                                [isSingleSelection]="true"
+                                                [activeLanguage]="
+                                                    defaultLanguage
+                                                "
+                                                [selectedLanguages]="languages"
+                                                (onError)="closeModal()"
+                                                (onItemSelectionChange)="
+                                                    placeOfBirthCountrySelectionChange(
+                                                        $event,
+                                                        i
+                                                    )
+                                                "
+                                            ></edci-controlled-list>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <label class="d-inline-flex"
+                                                >{{
+                                                    'credential-builder.issue.nationalIdentifier'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <div
+                                                class="d-flex col-12"
+                                                formGroupName="nationalIdentifier"
+                                            >
+                                                <div class="w-50 mr-2 col-6">
+                                                    <input
+                                                        euiInputText
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="{{
+                                                            'common.spatialId'
+                                                                | translate
+                                                        }}"
+                                                        formControlName="spatialId"
+                                                    />
+                                                    <ux-control-feedback
+                                                        *ngIf="
+                                                            recipients.controls[
+                                                                i
+                                                            ]['controls']
+                                                                .nationalIdentifier
+                                                                .controls[
+                                                                'spatialId'
+                                                            ].errors?.maxlength
+                                                        "
+                                                        typeClass="danger"
+                                                    >
+                                                        {{
+                                                            'error.maxLength.255'
+                                                                | translate
+                                                        }}
+                                                    </ux-control-feedback>
+                                                </div>
+                                                <div class="w-50 col-6">
+                                                    <input
+                                                        euiInputText
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="{{
+                                                            'common.identifier'
+                                                                | translate
+                                                        }}"
+                                                        formControlName="content"
+                                                    />
+                                                    <ux-control-feedback
+                                                        *ngIf="
+                                                            recipients.controls[
+                                                                i
+                                                            ]['controls']
+                                                                .nationalIdentifier
+                                                                .controls[
+                                                                'content'
+                                                            ].errors?.maxlength
+                                                        "
+                                                        typeClass="danger"
+                                                    >
+                                                        {{
+                                                            'error.maxLength.255'
+                                                                | translate
+                                                        }}
+                                                    </ux-control-feedback>
+                                                </div>
+                                            </div>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].nationalIdentifier.errors
+                                                        ?.legalIdentifierError &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].nationalIdentifier
+                                                        .controls['content']
+                                                        .touched &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].nationalIdentifier
+                                                        .controls['spatialId']
+                                                        .touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.legalIdentifierError'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <ng-container
+                                            formGroupName="ownerAddress"
+                                        >
+                                            <div
+                                                class="form-group col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+                                            >
+                                                <label class="d-inline-flex"
+                                                    >{{
+                                                        'credential-builder.issue.address'
+                                                            | translate
+                                                    }}
+                                                </label>
+                                                <input
+                                                    euiInputText
+                                                    type="text"
+                                                    class="form-control"
+                                                    formControlName="address"
+                                                />
+                                                <ux-control-feedback
+                                                    *ngIf="
+                                                        recipients.controls[i][
+                                                            'controls'
+                                                        ].ownerAddress.controls[
+                                                            'address'
+                                                        ].errors?.maxlength
+                                                    "
+                                                    typeClass="danger"
+                                                >
+                                                    {{
+                                                        'error.maxLength.255'
+                                                            | translate
+                                                    }}
+                                                </ux-control-feedback>
+                                            </div>
+                                            <div
+                                                class="form-group col-12 col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
+                                            >
+                                                <label class="d-inline-flex"
+                                                    >{{
+                                                        'credential-builder.issue.addressCountry'
+                                                            | translate
+                                                    }}
+                                                </label>
+                                                <edci-controlled-list
+                                                    entityType="country"
+                                                    [isSingleSelection]="true"
+                                                    [activeLanguage]="
+                                                        defaultLanguage
+                                                    "
+                                                    [selectedLanguages]="
+                                                        languages
+                                                    "
+                                                    (onError)="closeModal()"
+                                                    (onItemSelectionChange)="
+                                                        addressCountrySelectionChange(
+                                                            $event,
+                                                            i
+                                                        )
+                                                    "
+                                                ></edci-controlled-list>
+                                                <ux-control-feedback
+                                                    *ngIf="
+                                                        recipients.controls[i][
+                                                            'controls'
+                                                        ].ownerAddress.errors
+                                                            ?.ownerAddressError
+                                                    "
+                                                    typeClass="danger"
+                                                >
+                                                    {{
+                                                        'error.ownerAddressError'
+                                                            | translate
+                                                    }}
+                                                </ux-control-feedback>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <edci-controlled-list-select
+                                                label="{{
+                                                    'credential-builder.issue.gender'
+                                                        | translate
+                                                }}"
+                                                entityType="human-sex"
+                                                [selectedLanguages]="languages"
+                                                [activeLanguage]="
+                                                    defaultLanguage
+                                                "
+                                                formControlName="gender"
+                                            ></edci-controlled-list-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <h1 class="form-header control-required">
+                                        {{
+                                            'credential-builder.issue.deliveryAddress'
+                                                | translate
+                                        }}
+                                    </h1>
+                                    <div class="row">
+                                        <div
+                                            class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+                                        >
+                                            <label class="d-inline-flex"
+                                                >{{
+                                                    'credential-builder.issue.emailAddress'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <input
+                                                euiInputText
+                                                type="text"
+                                                class="form-control"
+                                                formControlName="emailAddress"
+                                            />
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.errors
+                                                        ?.required &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.required' | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.errors
+                                                        ?.emailWithComma &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.emailPatternWithComma'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].emailAddress.errors
+                                                        ?.maxlength
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.maxLength.255'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                        <div
+                                            class="form-group col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+                                        >
+                                            <label class="d-inline-flex"
+                                                >{{
+                                                    'credential-builder.issue.walletAddress'
+                                                        | translate
+                                                }}
+                                            </label>
+                                            <input
+                                                euiInputText
+                                                type="text"
+                                                class="form-control"
+                                                formControlName="walletAddress"
+                                            />
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].walletAddress.errors
+                                                        ?.maxlength
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.maxLength.255'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ux-u-text-align-center" b>
+                                    <span>
+                                        <ux-control-feedback
+                                            *ngIf="
+                                                recipients.controls[i]?.errors
+                                                    ?.missingAddress &&
+                                                recipients.controls[i][
+                                                    'controls'
+                                                ].walletAddress.touched &&
+                                                recipients.controls[i][
+                                                    'controls'
+                                                ].emailAddress.touched
+                                            "
+                                            typeClass="danger"
+                                        >
+                                            {{
+                                                'error.selectEmailOrWallet'
+                                                    | translate
+                                            }}
+                                        </ux-control-feedback>
+                                    </span>
+                                </div>
+                                <div
+                                    class="col-12"
+                                    *ngIf="assessments?.length > 0"
+                                >
+                                    <h1 class="form-header">
+                                        {{
+                                            'credential-builder.issue.grades'
+                                                | translate
+                                        }}
+                                    </h1>
+                                    <div
+                                        class="row align-items-end"
+                                        formGroupName="grades"
+                                    >
+                                        <div
+                                            *ngFor="
+                                                let assessment of assessments
+                                            "
+                                            class="form-group required col-12 col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-3"
+                                        >
+                                            <label
+                                                class="d-inline-flex control-label"
+                                                >{{ assessment.defaultTitle }}
+                                            </label>
+                                            <input
+                                                euiInputText
+                                                type="text"
+                                                class="form-control"
+                                                [formControlName]="
+                                                    assessment.oid
+                                                "
+                                            />
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].errors?.required &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.required' | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].invalid &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].errors?.onlySpaceError &&
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].touched
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.noBlankSpaceOnly'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                            <ux-control-feedback
+                                                *ngIf="
+                                                    recipients.controls[i][
+                                                        'controls'
+                                                    ].grades.controls[
+                                                        assessment.oid
+                                                    ].errors?.maxlength
+                                                "
+                                                typeClass="danger"
+                                            >
+                                                {{
+                                                    'error.maxLength.255'
+                                                        | translate
+                                                }}
+                                            </ux-control-feedback>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                euiButton
+                                [euiIconButton]="true"
+                                [euiBasicButton]="true"
+                                [euiPrimary]="true"
+                                [euiSizeM]="true"
+                                (click)="removeRecipient(i)"
+                                *ngIf="recipients.controls?.length > 1"
+                            >
+                                {{
+                                    'credential-builder.issue.removeRecipient'
+                                        | translate
+                                }}
+                                <span
+                                    euiIcon
+                                    iconClass="eui-icon eui-icon-trash-o"
+                                ></span>
+                            </button>
+                        </div>
+                    </ux-panel>
+                </ng-container>
+            </div>
+        </div>
+        <button
+            euiButton
+            [euiIconButton]="true"
+            [euiBasicButton]="true"
+            [euiPrimary]="true"
+            [euiSizeM]="true"
+            (click)="addRecipient()"
+        >
+            {{ 'credential-builder.issue.addAnotherRecipient' | translate }}
+            <span
+                euiIcon
+                iconClass="eui-icon eui-icon-plus-circle-thin-o"
+            ></span>
+        </button>
+        <form [formGroup]="consentForm" class="required pl-2 mt-4">
+            <div euiInputGroup>
+                <ng-container>
+                    <input
+                        euiInputCheckBox
+                        id="concentCheckBox"
+                        name="concentCheckBox"
+                        [formControl]="concentCheckBox"
+                    />
+                    <label for="concentCheckBox">{{
+                        concentText | translate
+                    }}</label>
+                </ng-container>
+            </div>
+            <ux-control-feedback
+                *ngIf="concentCheckBox.touched && !concentCheckBox.value"
+                typeClass="danger"
+            >
+                {{ 'error.concentError' | translate }}
+            </ux-control-feedback>
+        </form>
+    </uxModalBody>
+    <uxModalFooter>
+        <button
+            euiButton
+            [euiOutline]="true"
+            class="eui-u-mr-s eui-u-mb-s modal-button mr-4"
+            (click)="closeModal()"
+            [euiPrimary]="true"
+        >
+            {{ 'common.cancel' | translate }}
+        </button>
+        <button
+            euiButton
+            [euiPrimary]="true"
+            class="eui-u-mr-s eui-u-mb-s modal-button"
+            (click)="onIssue()"
+            [disabled]="isLoading"
+        >
+            {{ 'common.next' | translate }}
+        </button>
+    </uxModalFooter>
+</ux-modal>
+
+<div *ngIf="isLoading" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+<eui-message-box
+    #messageBoxFormError
+    typeClass="warning"
+    title="{{ 'common.warning' | translate | uppercase }}"
+    messageBoxType="ok"
+>
+    <p>{{ 'credential-builder.formError' | translate }}</p>
+</eui-message-box>

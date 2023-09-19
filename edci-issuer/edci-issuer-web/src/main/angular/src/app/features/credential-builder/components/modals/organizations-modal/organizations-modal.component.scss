@@ -1,0 +1,119 @@
+@import '/src/assets/styles/textarea/textarea.scss';
+
+.logo-upload-button {
+    span {
+        color: #333;
+        font-size: 14px !important;
+    }
+}
+
+.entity-input {
+    align-items: baseline;
+    display: flex !important;
+
+    .disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    edci-autocomplete {
+        flex-grow: 1;
+    }
+}
+
+.accreditation-text {
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.contenedor {
+    background-color: #fff;
+    color: #004494;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
+    .item-disabled {
+        align-items: center !important;
+        border: 1px solid #bdbdbd;
+        border-radius: 3px;
+        color: rgb(189, 189, 189) !important;
+        display: flex !important;
+        height: auto !important;
+        margin: 0 !important;
+        margin-right: 5px !important;
+        min-height: 33.5px !important;
+        padding: 0.375rem 0.75rem;
+        pointer-events: none;
+    }
+
+    .item-enabled {
+        align-items: center !important;
+        border: 1px solid black;
+        border-radius: 3px;
+        color: black !important;
+        display: flex !important;
+        height: auto !important;
+        margin: 0 !important;
+        min-height: 33.5px !important;
+        padding: 0.375rem 0.75rem;
+
+        &:hover {
+            border: 1px solid #004494;
+            color: #004494;
+        }
+
+        span {
+            color: black !important;
+            margin-left: 0.25rem;
+            margin-right: 0.25rem;
+
+            &:hover {
+                color: black !important;
+            }
+        }
+    }
+}
+
+uxModalBody {
+    .cb-modal-form-wrapper {
+        .cb-modal-form {
+            .col-12{
+                padding-right: 15px;
+                padding-left: 15px;
+
+                .col-6, .col-9, .col-5, .col-3{
+                    position: relative;
+                    width: 100%;
+                    min-height: 1px;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                }
+
+                .col-6{
+                    flex-basis: 50%;
+                }
+
+                .col-9{
+                    flex-basis: 75%;
+                }
+
+                .col-3{
+                    flex-basis: 25%;
+                }
+
+                label{
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+edci-organization {
+    input {
+        height: 38.5px !important;
+    }
+}

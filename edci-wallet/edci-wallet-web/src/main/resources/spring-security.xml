@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-5.2.xsd
+                           http://www.springframework.org/schema/security/oauth2
+                           https://www.springframework.org/schema/security/spring-security-oauth2-2.0.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <security:http auto-config="false" use-expressions="true" create-session="stateless" disable-url-rewriting="true"
+                   request-matcher="regex" pattern="/.*" authentication-manager-ref="authenticationManager"
+                   entry-point-ref="oauth2AuthenticationEntryPoint">
+        <security:custom-filter after="SECURITY_CONTEXT_FILTER" ref="corsFilter"/>
+        <security:intercept-url pattern=".*" access="permitAll()" method="OPTIONS"/>
+        <security:custom-filter before="PRE_AUTH_FILTER" ref="resourceServerFilter"/>
+        <security:csrf disabled="${oidc.csrf.disabled}"/>
+    </security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="openIdConnectAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <!-- INTROSPECTION CONFIG -->
+    <oauth:resource-server id="resourceServerFilter" token-services-ref="introspectingService" stateless="true"
+                           authentication-manager-ref="authenticationManager"
+                           entry-point-ref="oauth2AuthenticationEntryPoint"/>
+
+    <bean id="oauth2AuthenticationEntryPoint"
+          class="eu.europa.ec.empl.edci.security.oauth2.EDCIOAuth2AuthenticationEntryPoint"/>
+
+    <bean id="openIdConnectAuthenticationProvider"
+          class="eu.europa.ec.empl.edci.security.oidc.EDCIOIDCAuthenticationProvider">
+        <property name="tokenServices" ref="introspectingService"/>
+        <property name="configService" ref="walletConfigService"/>
+        <property name="authoritiesMapper" ref="namedAdminAuthoritiesMapper"/>
+    </bean>
+
+    <bean id="introspectingService" class="org.mitre.oauth2.introspectingfilter.IntrospectingTokenService">
+        <property name="introspectionConfigurationService" ref="staticIntrospectionConfigurationService"/>
+        <property name="introspectionAuthorityGranter" ref="simpleIntrospectionAuthorityGranter"/>
+    </bean>
+
+    <bean class="org.mitre.openid.connect.client.service.impl.DynamicServerConfigurationService"
+          id="dynamicServerConfigurationService"/>
+
+    <bean id="walletConfigService" class="eu.europa.ec.empl.edci.wallet.service.WalletConfigService"/>
+
+    <bean id="namedAdminAuthoritiesMapper" class="org.mitre.openid.connect.client.NamedAdminAuthoritiesMapper"/>
+
+    <bean id="simpleIntrospectionAuthorityGranter"
+          class=" org.mitre.oauth2.introspectingfilter.service.impl.SimpleIntrospectionAuthorityGranter"/>
+
+    <bean id="corsFilter" class="eu.europa.ec.empl.edci.security.filter.CorsFilter"/>
+</beans>

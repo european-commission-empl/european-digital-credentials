@@ -1,0 +1,38 @@
+<div style="font-style: normal; padding-bottom: 2rem; padding-top: 10rem;">
+    <div
+            style="flex: 0 0 100%; max-width: 100%; display: block; text-align: center;"
+    >
+        <img
+                style="max-height: 4.5rem; width: auto;"
+                th:if="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].logo != null}"
+                th:src="${credential.credentialSubject.hasClaim[0].awardedBy.awardingBody[0].logo}"
+        />
+        <br/>
+        <p style="margin-top: 6rem; text-align: center !important; font-weight: 700; font-family: sans-serif; color: #404040 !important; font-size: 36px;"
+           th:text="${credential.displayParameter.title}"></p>
+        <br>
+        <p style="text-align: center !important; font-weight: 300; font-family: sans-serif; color: #404040 !important; font-size: 20px;"
+           th:text="#{diploma.msg.certifiesThat}"></p>
+        <br>
+        <p style="margin-bottom:0; text-align: center !important; font-weight: 300; font-style: italic; color: #004494 !important; font-size: 36px;"
+           th:with="
+         caseFullName = ${credential.credentialSubject.fullName != null and !#strings.isEmpty(credential.credentialSubject.fullName)},
+         caseGivenName = ${credential.credentialSubject.givenName != null and !#strings.isEmpty(credential.credentialSubject.givenName)},
+         caseBirthName = ${credential.credentialSubject.birthName != null and !#strings.isEmpty(credential.credentialSubject.birthName)},
+         caseFamilyName = ${credential.credentialSubject.familyName != null and !#strings.isEmpty(credential.credentialSubject.familyName)},
+         caseNationalID = ${credential.credentialSubject.nationalID != null and !#strings.isEmpty(credential.credentialSubject.nationalID)}"
+           th:text="${
+         caseFullName ? credential.credentialSubject.fullName :
+         caseGivenName ? #strings.concatReplaceNulls('', credential.credentialSubject.givenName, ' ', credential.credentialSubject.patronymicName, ' ', credential.credentialSubject.familyName) :
+         caseBirthName ? credential.credentialSubject.birthName :
+         caseFamilyName ? credential.credentialSubject.familyName :
+         caseNationalID ? credential.credentialSubject.nationalID : 'Anonymous'
+         }"></p>
+        <p style="margin-top:0; height:0; margin-left: 15%; width: 70%; border-bottom:1px solid #cdcdcd;"/></p>
+        <br>
+        <!--<p style="margin-bottom:0; text-align: center !important; font-weight: 300; font-family: sans-serif; color: #404040 !important; font-size: 20px;"
+           th:text="#{diploma.msg.for}"></p> -->
+        <p style="margin-top:0; text-align: center !important; font-weight: 300; font-family: sans-serif; color: #404040 !important; font-size: 20px;"
+           th:text="${credential.displayParameter.description}"></p>
+    </div>
+</div>

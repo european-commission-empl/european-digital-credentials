@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration status="DEBUG" monitorInterval="30">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${log.pattern}"/>
+        </Console>
+        <Rollingfile name="FILE_APPENDER" fileName="${log.base.path}${log.file}.log"
+                     filePattern="${log.base.path}${log.file}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+            <DefaultRolloverStategy max="10">
+                <Delete basePath="${log.base.path}" maxDepth="10">
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStategy>
+        </Rollingfile>
+        <Rollingfile name="DSS_APPENDER" fileName="${log.base.path}${log.dss.file}.log"
+                     filePattern="${log.base.path}${log.dss.file}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+            <DefaultRolloverStategy max="10">
+                <Delete basePath="${log.base.path}" maxDepth="10">
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStategy>
+        </Rollingfile>
+        <Rollingfile name="QMS_ACCREDITATIONS_APPENDER" fileName="${log.base.path}${log.qms.acc.file}.log"
+                     filePattern="${log.base.path}${log.qms.acc.file}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${log.pattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="30MB"/>
+            </Policies>
+            <DefaultRolloverStategy max="10">
+                <Delete basePath="${log.base.path}" maxDepth="10">
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStategy>
+        </Rollingfile>
+    </Appenders>
+    <Loggers>
+        <Logger name="eu.europa.ec.joinup" level="${log.level}">
+            <AppenderRef ref="DSS_APPENDER"/>
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="eu.europa.ec.empl.edci.dss" level="${log.level}">
+            <AppenderRef ref="DSS_APPENDER"/>
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="org.apache" level="error" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Logger name="eu.europa.ec.empl.edci.service.QDRAccreditationsService" level="${log.level}">
+            <AppenderRef ref="QMS_ACCREDITATIONS_APPENDER"/>
+            <AppenderRef ref="console"/>
+        </Logger>
+        <Root level="${log.level}">
+            <AppenderRef ref="FILE_APPENDER"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</configuration>

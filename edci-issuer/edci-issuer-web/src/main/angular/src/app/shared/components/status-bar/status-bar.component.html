@@ -1,0 +1,6 @@
+<ux-wizard-steps [isNavigationAllowed]="true">
+    <ux-wizard-step [label]="step.labelKey | translate" [isCompleted]="step.isCompleted" [isActive]="step.isActive" [isDisabled]="step.isDisabled" [isInvalid]="step.isInvalid" *ngFor="let step of steps">
+        <uxWizardStepContent>
+        </uxWizardStepContent>
+    </ux-wizard-step>
+</ux-wizard-steps>

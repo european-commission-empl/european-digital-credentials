@@ -1,0 +1,32 @@
+<ux-modal
+    [id]="modalId"
+    class="entitlementModal"
+    [titleLabel]="
+        modalTitleBreadcrumb?.length > 0
+            ? (modalTitleBreadcrumb | appOcbModalBreadcrumb: modalTitle)
+            : modalTitle
+    "
+    (onClose)="closeModal(false)"
+    customWidth="75%"
+>
+    <uxModalBody>
+        <edci-entitlements-form *ngIf="!isLoading" [modalData]="modalData" [isModal]="true" [eventSave]="eventSave.asObservable()" [editEntitlementOid]="editEntitlementOid" (onSaveEvent)="saveForm($event)"></edci-entitlements-form>
+    </uxModalBody>
+    <uxModalFooter>
+        <edci-cb-modal-footer
+            (onClose)="closeModal(false)"
+            (onSave)="onSave()"
+            [isDisabled]="isSaveDisabled"
+        ></edci-cb-modal-footer>
+    </uxModalFooter>
+</ux-modal>
+
+<div *ngIf="isLoading || isSaveDisabled" class="spinner-wrapper-full-screen">
+    <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        value="50"
+    >
+    </mat-progress-spinner>
+</div>

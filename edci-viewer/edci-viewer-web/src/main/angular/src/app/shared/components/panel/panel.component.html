@@ -1,0 +1,24 @@
+<div class="edci-panel {{!isMainPanel ? 'edci-panel_main' : ''}}">
+    <section class="
+            edci-panel_title
+            row m-0
+        " [ngClass]="{ 'edci-panel_title-only': !isMainPanel}">
+        <div class="col-12 pl-0 pr-0" [ngClass]="{ 'subPanel_title_wrapper': !isMainPanel }" (click)="toggleExpanded()">
+            <i *ngIf="!isMainPanel" class="{{
+                    isExpanded ? 'fa fa-chevron-up' : 'fa fa-chevron-down'
+                }} cursor-pointer edci-panel_icon edci-panel_icon-img"></i>
+
+            <span class="edci-panel_title-text">{{ title }}</span>
+
+            <!--<div *ngIf="!isMainPanel" class="line"></div>-->
+        </div>
+    </section>
+    <section class="row m-0">
+        <div class="col-12 p-0" [@openClose]="isExpanded? 'open': 'close'">
+            <div class="edci-panel_content {{!isMainPanel ? 'edci-panel_content_only' : ''}}"
+                [ngClass]="{ 'edci-panel_content_only' : !isMainPanel}">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </section>
+</div>

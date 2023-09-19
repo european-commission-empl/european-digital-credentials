@@ -1,0 +1,8 @@
+{
+ "@context": ["https://www.w3.org/2018/credentials/v1"],
+ "holder": "did:ebsi:CT3ZWkGyFyoqiMEQJ4Ntthw2UiN7CdqG5jWog3EskvG3",
+ "type": [
+ "VerifiablePresentation"
+ ],
+ "verifiableCredential": []
+}

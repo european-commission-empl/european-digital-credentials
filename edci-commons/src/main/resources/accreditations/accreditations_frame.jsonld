@@ -1,0 +1,42 @@
+{
+   "@context":[
+      "http://data.europa.eu/snb/model/context/edc-ap",
+      {
+         "id":"@id",
+         "notation":{
+            "@id":"skos:notation",
+            "@type": "http://example.com/elm/loq"
+         },
+         "content":{
+            "@id":"elm:content"
+         },
+         "schemeName":{
+            "@id":"elm:schemeName"
+         },
+         "schemeVersion":{
+            "@id":"elm:schemeVersion"
+         },         
+         "areaDialing" : {
+            "@id" : "elm:areaDialing"
+         },
+         "countryDialing" : {
+            "@id" : "elm:countryDialing"
+         },
+         "dialNumber" : {
+            "@id" : "elm:dialNumber"
+         },
+         "phoneNumber" : {
+            "@id" : "elm:phoneNumber"
+         },
+         "emailAddress":"elm:mailbox",
+         "dateModified": { 
+             "@id": "dc:modified",
+             "@type": "xsd:dateTime"
+         }
+      }
+   ],
+   "@type":[
+      "Accreditation"
+   ],
+   "@embed":"@always"
+}

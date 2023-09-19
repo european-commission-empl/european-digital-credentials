@@ -1,0 +1,22 @@
+/* Mat icons */
+.mat-icon {
+    cursor: default;
+
+    &.success {
+        color: var(--success);
+    }
+
+    &.danger {
+        color: var(--danger);
+        cursor: help;
+    }
+
+    &.warning {
+        color: var(--warning);
+        cursor: help;
+    }
+}
+
+.pointer .mat-icon {
+    cursor: pointer;
+}

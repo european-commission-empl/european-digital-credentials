@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <property name="current.version" value="2.2" global="false"/>
+
+    <changeSet id="01_OCB_DROP_ISSUER_CONSTRAINT"  author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyTableName="SPEC_EUROPASS_CREDENTIAL" foreignKeyName="FK_SPEC_EUROPASS_CREDENTIAL_ISSUER_PK"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="SPEC_EUROPASS_CREDENTIAL" constraintName="FK_SPEC_EUROPASS_CREDENTIAL_ISSUER_PK"/>
+    </changeSet>
+
+    <changeSet id="02_OCB_DROP_ISSUER_COLUMN" author="edci" runAlways="false" failOnError="true" onValidationFail="MARK_RAN">
+        <preConditions onFail="MARK_RAN" >
+            <columnExists tableName="SPEC_EUROPASS_CREDENTIAL" columnName="ISSUER_PK"/>
+        </preConditions>
+        <dropColumn tableName="SPEC_EUROPASS_CREDENTIAL" columnName="ISSUER_PK"/>
+    </changeSet>
+
+    <include file="changeLog/liquibase-changelog-update-version.xml"/>
+</databaseChangeLog>

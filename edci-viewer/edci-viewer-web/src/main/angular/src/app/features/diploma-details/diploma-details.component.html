@@ -1,0 +1,103 @@
+<div class="edci-container pt-5">
+    <div *ngIf="isDetailLoaded; else waitingForDetails" class="row">
+        <div class="col-12 d-inline-flex mb-4 p-3 details-header">
+            <div id="headerPage" class="row">
+                <div class="col-12 float-left d-inline-flex">
+                    <div *ngIf="diplomaImg?.length > 0">
+                        <img *ngIf="diplomaImg && diplomaImg[0]" class="diplomaThumbnail"
+                            [src]="diplomaImg[0] | edciSanitize: 'resourceUrl'" routerLink="/diploma-details/diploma"
+                            routerLinkActive="d-none" />
+                    </div>
+                    <div class="col-12">
+                        <div *ngIf="header.title" class="col-12 mb-1 info-diploma">
+                            <p class="credential-title">
+                                {{ header.title }}
+                            </p>
+                        </div>
+
+                        <div class="col-12 d-inline-flex info-diploma">
+                            <p *ngIf="header.issued" class="mr-3 credential-info">
+                                <strong>{{
+                                    'details.diploma-details-tab.issued'
+                                    | translate
+                                    }}:
+                                </strong>
+                                {{ header.issued }}
+                            </p>
+                            <p *ngIf="header.validFrom" class="mr-3 credential-info">
+                                <strong>{{
+                                    'details.diploma-details-tab.validFrom'
+                                    | translate
+                                    }}:
+                                </strong>
+                                {{ header.validFrom }}
+                            </p>
+                            <p *ngIf="header.expiryDate" class="mr-2 credential-info">
+                                <strong>{{
+                                    'details.diploma-details-tab.expiryDate'
+                                    | translate
+                                    }}:
+                                </strong>
+                                {{ header.expiryDate }}
+                            </p>
+                            <p *ngIf="header.credentialType" class="ml-2 credential-info border-left pl-3">
+                                <strong>
+                                    {{
+                                    'details.diploma-details-tab.type'
+                                    | translate
+                                    }}:
+                                </strong>
+                                {{ header.credentialType }}
+                            </p>
+                            <p *ngIf="header.uuid" class="ml-2 credential-info border-left pl-3">
+                                <strong>
+                                    {{
+                                    'details.diploma-details-tab.uuid'
+                                    | translate
+                                    }}:
+                                </strong>
+                                {{ header.uuid }}
+                            </p>
+                        </div>
+                        <div *ngIf="linkExpirationDate" class="col-12 info-diploma pt-3 d-inline-flex">
+                            <p class="credential-info">
+                                {{ 'credentialExpire' | translate }}:
+                                {{ linkExpirationDate }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 img-container text-right" *ngIf="issuerLogo">
+                <img
+                    alt="issuer-logo"
+                    class="img-resp-height"
+                    [src]="issuerLogo | edciSanitize: 'resourceUrl'"
+                />
+            </div>
+        </div>
+        <edci-viewer-diploma-toolbar class="col-12 p-0 mb-4" [credId]="credId" [userId]="userId"
+            [primaryLanguage]="language" [language]="availableLanguages" [isXMLDisabled]="
+                formatType === 'VP' || header.credentialType === 'export'
+            " (onLanguageChange)="onLanguageChange($event)"
+            (onUploadNewCredential)="onUploadNewCredential($event)"></edci-viewer-diploma-toolbar>
+        <div *ngIf="!reloadDetailsLanguage; else reloadingDetails" class="body-container col-12 pb-5 p-0">
+            <div class="col-3 sidebar-container p-0 mr-1">
+                <edci-side-menu-item-list [items]="credential">
+                </edci-side-menu-item-list>
+            </div>
+            <div class="col-9 info-container diploma-details pr-0">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <ng-template #reloadingDetails>
+            <mat-progress-spinner class="details-spinner" color="primary" mode="indeterminate" value="50">
+            </mat-progress-spinner>
+        </ng-template>
+    </div>
+    <ng-template #waitingForDetails>
+        <mat-progress-spinner class="details-spinner" color="primary" mode="indeterminate" value="50">
+        </mat-progress-spinner>
+    </ng-template>
+</div>
+

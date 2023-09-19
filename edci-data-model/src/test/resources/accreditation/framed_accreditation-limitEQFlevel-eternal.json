@@ -1,0 +1,209 @@
+{
+  "id": "http://data.europa.eu/snb/data-dev/accreditation/d2455324-332c-4f80-80b8-bd37312341d6",
+  "@type": "Accreditation",
+  "accreditingAgent": {
+    "id": "http://data.europa.eu/snb/data-dev/europassResource/ed5ff72d-3e12-4551-a543-60de9b41ee49",
+    "@type": [
+      "Organisation",
+      "foaf:Agent"
+    ],
+    "identifier": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/74cf0d0b-ccc8-42b0-b456-1b0cccf84dad",
+      "@type": [
+        "Identifier",
+        "adms:Identifier"
+      ],
+      "schemeId": "ACCREDIdentifier6SchemeID_0051",
+      "creator": "http://ACCREDIdentifier6SchemeAgencyID_0051",
+      "notation": {
+        "@type": "http://qdr.eoppep.gr",
+        "@value": "ACCRED0051ID06"
+      }
+    },
+    "location": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/84169aab-d01d-4899-a184-79c2328b4c1b",
+      "@type": "Location",
+      "address": {
+        "id": "http://data.europa.eu/snb/data-dev/europassResource/07ab344a-3e67-428a-8055-db7be1e9f0fc",
+        "@type": "Address",
+        "countryCode": {
+          "id": "http://publications.europa.eu/resource/authority/country/GRC",
+          "@type": "Concept",
+          "inScheme": {
+            "id": "http://publications.europa.eu/resource/authority/country",
+            "@type": "ConceptScheme"
+          }
+        }
+      },
+      "spatialCode": {
+        "id": "http://publications.europa.eu/resource/authority/country/GRC",
+        "@type": "Concept",
+        "inScheme": {
+          "id": "http://publications.europa.eu/resource/authority/country",
+          "@type": "ConceptScheme"
+        }
+      }
+    },
+    "elm:status": "released",
+    "dateModified": "2023-06-13T09:21:25Z",
+    "legalName": {
+      "el": "Εθνικός Οργανισμός Πιστοποίησης Προσόντων και Επαγγελματικού προσανατολισμού",
+      "en": "National Organisation for the Certification of Qualifications"
+    }
+  },
+  "organisation": {
+    "id": "http://data.europa.eu/snb/data-dev/europassResource/d5e65781-d028-4df8-95ab-611078dd2e2d",
+    "@type": [
+      "Organisation",
+      "foaf:Agent"
+    ],
+    "registration": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/74cf0d0b-ccc8-42b0-b456-1b0cccf84dad",
+      "@type": [
+        "Identifier",
+        "adms:Identifier"
+      ],
+      "schemeId": "ACCREDIdentifier6SchemeID_0051",
+      "creator": "http://ACCREDIdentifier6SchemeAgencyID_0051",
+      "notation": {
+        "@type": "http://qdr.eoppep.gr",
+        "@value": "ACCRED0051ID06"
+      }
+    },
+    "location": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/c5345889-1361-4703-ac3e-76c684be8934",
+      "@type": "Location",
+      "address": {
+        "id": "http://data.europa.eu/snb/data-dev/europassResource/676c8442-4678-49d4-b465-3f43600ad86c",
+        "@type": "Address",
+        "countryCode": {
+          "id": "http://publications.europa.eu/resource/authority/country/GRC",
+          "@type": "Concept",
+          "inScheme": {
+            "id": "http://publications.europa.eu/resource/authority/country",
+            "@type": "ConceptScheme"
+          }
+        }
+      },
+      "spatialCode": {
+        "id": "http://publications.europa.eu/resource/authority/country/GRC",
+        "@type": "Concept",
+        "inScheme": {
+          "id": "http://publications.europa.eu/resource/authority/country",
+          "@type": "ConceptScheme"
+        }
+      }
+    },
+    "elm:status": "released",
+    "dateModified": "2023-06-13T09:21:25Z",
+    "legalName": {
+      "el": "Υπουργείο Παραγωγικής Ανασυγκρότησης, Περιβάλλοντος και Ενέργειας",
+      "en": "Ministry of Rural Development and Food"
+    },
+    "homepage": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/9a989272-eb58-4fd7-b67c-2f9a824067c7",
+      "@type": "WebResource",
+      "contentURL": "http://www.minagric.gr",
+      "language": {
+        "id": "http://publications.europa.eu/resource/authority/language/ELL",
+        "@type": "Concept",
+        "inScheme": {
+          "id": "http://publications.europa.eu/resource/authority/language",
+          "@type": "ConceptScheme"
+        }
+      },
+      "title": {
+        "el": "Υπουργείο Παραγωγικής Ανασυγκρότησης, Περιβάλλοντος και Ενέργειας",
+        "en": "Ministry of Rural Development and Food"
+      }
+    }
+  },
+  "elm:status": "released",
+  "dateModified": "2023-06-13T09:21:25Z",
+  "publisher": {
+    "id": "http://data.europa.eu/esco/qdr/organizations/1ce6b095-3037-4d8b-b423-abf53818e768",
+    "@type": [
+      "Organisation",
+      "foaf:Agent"
+    ],
+    "location": {
+      "id": "http://data.europa.eu/snb/data-dev/europassResource/6ea30b29-f9b5-440a-8707-8adfba9ae2f1",
+      "@type": "Location",
+      "address": {
+        "id": "http://data.europa.eu/snb/data-dev/europassResource/4c92e4d1-df1f-4d97-8853-213f946409e7",
+        "@type": "Address",
+        "countryCode": {
+          "id": "http://publications.europa.eu/resource/authority/country/DEU",
+          "@type": "Concept",
+          "inScheme": {
+            "id": "http://publications.europa.eu/resource/authority/country",
+            "@type": "ConceptScheme"
+          }
+        }
+      }
+    },
+    "elm:status": "released",
+    "dateModified": "2023-05-30T11:11:22Z",
+    "legalName": {
+      "en": "ORG-20230111"
+    }
+  },
+  "title": {
+    "el": "Πτυχίο ΕΠΑΓΓΕΛΜΑΤΙΚΗΣ ΣΧΟΛΗΣ (ΕΠΑ.Σ.)",
+    "en": "VOCATIONAL SCHOOL (EPA.S.) CERTIFICATE (PTYCHIO EPA.S.)"
+  },
+  "dcType": {
+    "id": "http://data.europa.eu/snb/accreditation/003293d2ce",
+    "@type": "Concept",
+    "inScheme": {
+      "id": "http://data.europa.eu/snb/accreditation/25831c2",
+      "@type": "ConceptScheme"
+    }
+  },
+  "limitEQFLevel": {
+    "id": "http://data.europa.eu/snb/eqf/6",
+    "type": "Concept",
+    "inScheme": {
+      "id": "http://data.europa.eu/snb/eqf/25831c2",
+      "type": "ConceptScheme"
+    },
+    "prefLabel": {
+      "en": "Level 6"
+    }
+  },
+  "@context": [
+    "http://data.europa.eu/snb/model/context/edc-ap",
+    {
+      "id": "@id",
+      "notation": {
+        "@id": "skos:notation"
+      },
+      "content": {
+        "@id": "elm:content"
+      },
+      "schemeName": {
+        "@id": "elm:schemeName"
+      },
+      "schemeVersion": {
+        "@id": "elm:schemeVersion"
+      },
+      "areaDialing": {
+        "@id": "elm:areaDialing"
+      },
+      "countryDialing": {
+        "@id": "elm:countryDialing"
+      },
+      "dialNumber": {
+        "@id": "elm:dialNumber"
+      },
+      "phoneNumber": {
+        "@id": "elm:phoneNumber"
+      },
+      "emailAddress": "elm:mailbox",
+      "dateModified": {
+        "@id": "dc:modified",
+        "@type": "xsd:dateTime"
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "customizableInstanceDTOS": [
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "fields": [
+        {
+          "position": 4,
+          "labelKey": "custom.field.achievement.additionalNote",
+          "fieldPath": "{#2}.ACH{4}.additionalNote{Topic 01}",
+          "fieldType": "TEXT_AREA",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 4,
+          "labelKey": "custom.field.achievement.additionalNote",
+          "fieldPath": "{#2}.ACH{4}.additionalNote{Topic 02}",
+          "fieldType": "TEXT_AREA",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{4}.title(es)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{4}.title(en)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        }
+      ],
+      "relations": [
+        {
+          "position": 5,
+          "relPath": "{#2}.ACH{4}.additionalNote{Topic 02}",
+          "labelKey": "custom.relation.achievements.additionalNote"
+        },
+        {
+          "position": 5,
+          "relPath": "{#2}.ACH{4}.additionalNote{Topic 01}",
+          "labelKey": "custom.relation.achievements.additionalNote"
+        }
+      ]
+    },
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "fields": [
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{3}.title(es)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{3}.title(en)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        }
+      ],
+      "relations": [
+        {
+          "position": 7,
+          "relPath": "{#2}.ACH{3}.hasPart{5}",
+          "labelKey": "custom.relation.achievements.hasPart"
+        }
+      ]
+    },
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "fields": [
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{5}.title(en)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{5}.title(es)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        }
+      ],
+      "relations": []
+    },
+    {
+      "labelKey": "custom.entity.label.credential",
+      "position": 2,
+      "fields": [
+        {
+          "position": 2,
+          "labelKey": "custom.field.credential.description",
+          "fieldPath": "{#2}.description(es)",
+          "fieldType": "TEXT_AREA",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 2,
+          "labelKey": "custom.field.credential.description",
+          "fieldPath": "{#2}.description(en)",
+          "fieldType": "TEXT_AREA",
+          "mandatory": false,
+          "additionalInfo": []
+        }
+      ],
+      "relations": [
+        {
+          "position": 5,
+          "relPath": "{#2}.REC.achievements{3}",
+          "labelKey": "custom.relation.credential.achievements"
+        },
+        {
+          "position": 5,
+          "relPath": "{#2}.REC.achievements{2}",
+          "labelKey": "custom.relation.credential.achievements"
+        }
+      ]
+    },
+    {
+      "labelKey": "custom.entity.label.achievement",
+      "position": 3,
+      "fields": [
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{2}.title(es)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        },
+        {
+          "position": 1,
+          "labelKey": "custom.field.achievement.title",
+          "fieldPath": "{#2}.ACH{2}.title(en)",
+          "fieldType": "TEXT",
+          "mandatory": false,
+          "additionalInfo": []
+        }
+      ],
+      "relations": [
+        {
+          "position": 7,
+          "relPath": "{#2}.ACH{2}.hasPart{4}",
+          "labelKey": "custom.relation.achievements.hasPart"
+        }
+      ]
+    }
+  ]
+}

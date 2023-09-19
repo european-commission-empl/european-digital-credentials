@@ -1,0 +1,7 @@
+{
+    "modules": {
+        "core": {
+            "userDetails": "/user-details"
+        }
+    }
+}

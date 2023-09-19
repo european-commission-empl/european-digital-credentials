@@ -1,0 +1,12 @@
+{
+    "user-details": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "fullName": "John Doe",
+        "organisationRef": {
+          "id": "123456", "abbreviation": "DIGIT.B.3"
+        },
+        "userId": "doejohn",
+        "email": "John.DOE@ec.europa.eu"
+    }
+}

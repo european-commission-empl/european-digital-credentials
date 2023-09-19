@@ -1,0 +1,129 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "edc": "https://data.europa.eu/snb/model/edc-constraints#",
+    "vc": "http://data.europa.eu/snb/model/w3c/vc#",
+    "vp": "http://data.europa.eu/snb/model/w3c/vp#",
+    "elm": "https://data.europa.eu/snb/model#",
+    "sec": "https://w3id.org/security#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dc": "http://purl.org/dc/terms/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rov": "http://www.w3.org/ns/regorg#",
+    "foaf":   "http://xmlns.com/foaf/0.1/",
+
+    "id": "@id",
+    "type": "@type",
+
+        "Organisation": {
+           "@id": "https://data.europa.eu/snb/model#Organisation",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "elm": "https://data.europa.eu/snb/model#",
+               "skos": "http://www.w3.org/2004/02/skos/core#",
+
+               "registration": {"@id" : "elm:eidasLegalIdentifier", "@type": "elm:LegalIdentifier"},
+               "altLabel": {"@id": "skos:altLabel", "@container": "@set"},
+               "accreditation": {"@id": "elm:Accreditation"},
+               "legalName": {"@id": "rov:legalName", "@container": "@set"},
+               "location": {
+                   "@id": "https://data.europa.eu/snb/model#location",
+                   "@type": "dc:Location",
+                   "@context": {
+                       "@version": 1.1,
+                       "@protected": true,
+
+                       "id": "@id",
+                       "type": "@type"
+                   }
+               }
+           }
+       },
+       "Address": {
+           "@id": "https://data.europa.eu/snb/model#Address",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "country": {"@id": "elm:countryCode", "@type": "skos:Concept"}
+           }
+       },
+       "Location": {
+           "@id": "dc:Location",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "address": {"@id" : "elm:address", "@type": "elm:Address"}
+           }
+       },
+       "Person": {
+           "@id": "https://data.europa.eu/snb/model#Person",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "givenName": {"@id": "foaf:givenName"},
+               "familyName": {"@id": "foaf:familyName"},
+               "birthName": {"@id": "foaf:birthName"},
+               "fullName": {"@id": "foaf:fullName"},
+               "hasClaim": {"@id": "elm:hasClaim", "@type": "elm:LearningAchievement"}
+           }
+       },
+       "LearningAchievement": {
+           "@id": "https://data.europa.eu/snb/model#LearningAchievement",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "title": {"@id": "dc:title"}
+           }
+       },
+       "Concept": {
+           "@id": "skos:Concept",
+           "@type": "@id",
+           "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "notation": {"@id": "skos:notation"}
+           }
+       },
+       "LegalIdentifier": {
+           "@id": "https://data.europa.eu/snb/model#LegalIdentifier",
+             "@context": {
+               "@version": 1.1,
+               "@protected": true,
+
+               "id": "@id",
+               "type": "@type",
+
+               "identifierContent": {"@id": "skos:notation"},
+               "spatial": {"@id": "dc:spatial", "@type": "skos:Concept"}
+           }
+       }
+    }
+}

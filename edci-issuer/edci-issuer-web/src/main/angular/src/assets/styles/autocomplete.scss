@@ -1,0 +1,16 @@
+eui-autocomplete.ocb__autocomplete > .eui-autocomplete > input {
+    border: 1px solid #bdbdbd !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+.eui-autocomplete > input {
+    padding: 0.5rem 0.75rem !important;
+}
+
+eui-autocomplete {
+    .custom-select {
+        background-image: none !important;
+    }
+}

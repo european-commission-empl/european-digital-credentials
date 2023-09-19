@@ -1,0 +1,121 @@
+<div *ngIf="formGroup" [formGroup]="formGroup">
+  <div class="row" *ngIf="showAddBtn">
+    <div class="col-12 justify-content-end d-flex">
+      <!-- Add address -->
+      <button
+        euiButton
+        [euiIconButton]="true"
+        [euiBasicButton]="true"
+        [euiSizeM]="true"
+        (click)="addAddress()"
+        styleClass="buttonSizeM"
+        [euiDisabled]="!isPrimaryLanguage"
+        *ngIf="isFirstGroupMember">
+        <span euiIcon iconClass="eui-icon eui-icon-add-circle eui-u-color-primary-110"></span>
+        <span class="eui-u-color-primary-110 eui-u-font-bold">
+          {{ "credential-builder.addressForm.button.addAddress" | translate }}
+        </span>
+      </button>
+
+      <!-- delete address -->
+      <button
+        euiButton
+        [euiDisabled]="!isPrimaryLanguage"
+        [euiIconButton]="true"
+        [euiBasicButton]="true"
+        [euiSizeM]="true"
+        (click)="deleteAddress()"
+        *ngIf="!isFirstGroupMember">
+        <span euiIcon iconClass="eui-icon eui-icon-trash-o eui-u-color-primary-110 eui-u-font-bold"></span>
+        <span class="eui-u-color-primary-110 eui-u-font-bold">
+          {{ "credential-builder.addressForm.button.deleteAddress" | translate }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-12" [formGroup]="getLocationDescriptionGrp()">
+      <!-- Description -->
+      <label class="d-inline-flex">
+        {{ "credential-builder.addressForm.fieldLabel.description" | translate }}
+      </label>
+
+      <div *ngIf="getLocationDescriptionCtrl(language)">
+        <input
+          placeholder="{{ 'credential-builder.common.address.description' | translate }}"
+          euiInputText
+          type="text"
+          class="form-control"
+          (change)="doCheckCountryRequired()"
+          [formControl]="getLocationDescriptionCtrl(language)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <!-- address -->
+    <div class="col-12" [formGroup]="getLocationAddressGrp()">
+      <label class="d-inline-flex">
+        {{ "credential-builder.addressForm.fieldLabel.address" | translate }}
+      </label>
+      <div *ngIf="getLocationAddressCtrl(language)">
+        <input
+          placeholder="{{ 'credential-builder.common.address.fullAddress' | translate }}"
+          euiInputText
+          type="text"
+          class="form-control"
+          (change)="doCheckCountryRequired()"
+          [formControl]="getLocationAddressCtrl(language)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-6">
+      <!-- Location -->
+      <label
+        class="d-inline-flex">
+        {{ "credential-builder.organizations-tab.location" | translate }}
+      </label>
+      <edci-controlled-list
+        entityType="atu"
+        [placeHolder]="'credential-builder.common.address.location' | translate"
+        [isPrimaryLanguage]="isPrimaryLanguage"
+        [isSingleSelection]="true"
+        [selectedLanguages]="selectedLanguages"
+        [activeLanguage]="language"
+        [itemsSelected]="getAreaSelectedCtrl().value"
+        (onItemSelectionChange)="areaSelectionChange($event)"
+        [ngClass]="{
+          elementDisabled: !isPrimaryLanguage
+        }"></edci-controlled-list>
+    </div>
+
+    <div class="col-6">
+      <!-- Country -->
+      <label
+        class="d-inline-flex control-label"
+        [ngClass]="{
+          required: isCountryOrAreaRequired()
+        }">
+        {{ "credential-builder.organizations-tab.country" | translate }}
+      </label>
+      <edci-controlled-list
+        entityType="country"
+        [placeHolder]="'credential-builder.common.address.country' | translate"
+        [isSingleSelection]="true"
+        [isPrimaryLanguage]="isPrimaryLanguage"
+        [selectedLanguages]="selectedLanguages"
+        [activeLanguage]="language"
+        [itemsSelected]="getCountrySelectedCtrl().value"
+        (onItemSelectionChange)="countrySelectionChange($event)"
+        [ngClass]="{
+          elementDisabled: !isPrimaryLanguage
+        }"></edci-controlled-list>
+      <ux-control-feedback *ngIf="getCountrySelectedCtrl().errors?.required" typeClass="danger">
+        {{ "error.required" | translate }}
+      </ux-control-feedback>
+    </div>
+  </div>
+</div>

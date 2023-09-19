@@ -1,0 +1,131 @@
+<div class="achievement-detail_panel"
+    *ngIf="activeAchievement?.specifiedBy?.title?.length > 0 ||
+    activeAchievement?.specifiedBy?.entryRequirement?.noteLiteral?.length > 0 ||
+    activeAchievement?.specifiedBy?.supplementaryDocument?.length > 0 ||
+    activeAchievement?.specifiedBy?.homepage?.length > 0 ||
+    activeAchievement?.specifiedBy?.qualification?.isPartialQualification?.length > 0 ||
+    activeAchievement?.awardedBy?.educationalSystemNote?.length > 0 ||
+    activeAchievement?.specifiedBy?.additionalNote?.length > 0
+    ">
+    <edci-panel [title]="'details.achievements-tab.otherInformation' | translate">
+        <section *ngIf="activeAchievement?.specifiedBy?.title?.length > 0" class="row">
+            <h6 class="col-12">{{'details.achievements-tab.altName' | translate}}</h6>
+            <p class="col-12">{{ activeAchievement.specifiedBy.title }}</p>
+        </section>
+
+        <edci-section *ngIf="activeAchievement?.specifiedBy?.entryRequirement?.noteLiteral?.length > 0"
+            [title]="'details.achievements-tab.entryRequirements' | translate">
+            <section class="row mb-0">
+                <p *ngFor="let note of activeAchievement.specifiedBy.entryRequirement.noteLiteral" class="col-12">{{ note }}</p>
+            </section>
+        </edci-section>
+
+
+        <section *ngIf="activeAchievement?.specifiedBy?.supplementaryDocument?.length > 0" class="row">
+            <h6 class="col-12"> {{ 'details.achievements-tab.relatedDocuments' | translate }}</h6>
+            <p *ngFor="let document of activeAchievement.specifiedBy.supplementaryDocument" class="col-12">
+                <a href="{{document.link}}">
+                    {{ document.link}}
+                </a>
+            </p>
+        </section>
+        <section *ngIf="activeAchievement?.specifiedBy?.homepage?.length > 0" class="row">
+            <h6 class="col-12"> {{ 'details.achievements-tab.homePage' | translate }}</h6>
+            <p *ngFor="let document of activeAchievement.specifiedBy.homepage" class="col-12">
+                <a href="{{document.link}}">{{ document.link }}</a>
+            </p>
+        </section>
+
+        <section *ngIf="activeAchievement?.specifiedBy?.qualification?.isPartialQualification != null" class="row">
+            <h6 class="col-12"> {{ 'details.achievements-tab.partialQualification' | translate }}</h6>
+            <p class="col-12 text-capitalize"> {{ getPartialQualification() }} </p>
+        </section>
+
+        <edci-section *ngIf="activeAchievement?.awardedBy?.educationalSystemNote"
+            [title]="'details.achievements-tab.nationalSystem' | translate" class="row">
+                <p class="col-12">
+                    {{ activeAchievement?.awardedBy?.educationalSystemNote }}
+                </p>
+        </edci-section>
+
+        <section *ngIf="activeAchievement?.specifiedBy?.additionalNote?.length > 0" class="row">
+            <h6 class="col-12">{{'details.moreInformation' |translate}}</h6>
+            <ng-container *ngFor="let note of activeAchievement?.specifiedBy?.additionalNote">
+                <p *ngFor="let literal of note.noteLiteral" class="col-12">
+                    {{ literal }}
+                </p>
+            </ng-container>
+        </section>
+
+        <!--<div class="d-flex flex-column">
+            <div
+                *ngIf="activeAchievement?.specifiedBy?.entryRequirements"
+                class="other-information_section"
+            >
+                <p class="other-information_title">
+                    {{ 'details.achievements-tab.relatedDocuments' | translate }}
+                </p>
+                <p class="other-information_description">
+                    {{ activeAchievement.specifiedBy.entryRequirements }}
+                </p>
+            </div>
+            <div
+                *ngIf="
+                    activeAchievement?.specifiedBy?.otherDocuments?.length > 0
+                "
+                class="other-information_section"
+            >
+                <p class="other-information_title">
+
+                </p>
+                <div class="d-flex flex-wrap">
+                    <ng-container
+                        *ngFor="
+                            let document of activeAchievement.specifiedBy
+                                .otherDocuments
+                        "
+                    >
+                        <edci-information-field
+                            class="mr-3"
+                            [title]="document.title || document.link"
+                            [link]="document.link"
+                            icon="icon-file"
+                        >
+                        </edci-information-field>
+                    </ng-container>
+                </div>
+            </div>
+            <div
+                *ngIf="
+                    activeAchievement?.moreInformation?.length > 0 ||
+                    activeAchievement?.specifiedBy?.moreInformation?.length > 0
+                "
+                class="other-information_section"
+            >
+                <ng-container
+                    *ngFor="let content of activeAchievement?.moreInformation"
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+                <ng-container
+                    *ngFor="
+                        let content of activeAchievement?.specifiedBy
+                            ?.moreInformation
+                    "
+                >
+                    <p class="other-information_title">
+                        {{ content.topic }}
+                    </p>
+                    <p class="other-information_description">
+                        {{ content.content }}
+                    </p>
+                </ng-container>
+            </div>
+        </div>-->
+    </edci-panel>
+</div>

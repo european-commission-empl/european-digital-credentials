@@ -1,0 +1,66 @@
+:host {
+    .edci-breadcrumb {
+        background-color: transparent;
+        margin: 0;
+
+        .edci-breadcrumb__container {
+            border-bottom: none;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 calc(1rem - 1px);
+
+            .edci-breadcrumb__segment {
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                font-size: 14px;
+                margin-top: 1rem;
+                max-width: 100%;
+                display: flex;
+                align-items: center;
+            }
+
+            .edci-breadcrumb__link {
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                margin: 0;
+            }
+
+            .edci-breadcrumb--standalone {
+                font-family: Arial, sans-serif;
+                text-decoration: none;
+            }
+
+            .edci-breadcrumb__link,
+            .edci-breadcrumb__link:hover,
+            .edci-breadcrumb__link:active,
+            .edci-breadcrumb__link:focus,
+            .edci-breadcrumb__link:visited {
+                color: #004494;
+                &.active-link {
+                    color: #707070;
+                }
+            }
+
+            .edci-breadcrumb__icon {
+                fill: #004494;
+                height: 0.75rem;
+                width: 0.75rem;
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .edci-icon--rotate-90 {
+                transform: rotateZ(90deg);
+            }
+
+            .edci-icon {
+                transition: transform 0.3s ease-in-out;
+            }
+        }
+    }
+}

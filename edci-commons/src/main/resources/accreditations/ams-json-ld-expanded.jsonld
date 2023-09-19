@@ -1,0 +1,5746 @@
+[
+  {
+    "@id": "http://data.europa.eu/esco/qdr/organizations/1",
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/35345285-b97f-4c0b-a7f6-2b10daf411db"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "First organization",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "Organization one",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3932f21b-0709-497b-8eac-46c34fd581da"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/7cf65fb1-ce3a-4cac-b433-60ac0d07e4c7"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Organisation",
+      "http://xmlns.com/foaf/0.1/Agent"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/accreditation/003293d2ce",
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "En licensprocedure, der anvendes på organisationsniveau. En institutionslicens indebærer en driftstilladelse til institutionen og tildeles af de offentlige myndigheder eller deres repræsentanter.",
+        "@language": "da"
+      },
+      {
+        "@value": "Bir kuruluş düzeyinde uygulanan bir lisanslama prosedürü. Kurumsal Lisanslama, kurumun faaliyet göstermesi için izin anlamına gelir ve Kamu Makamlarınca ya da onların yetkili kıldıklarınca sağlanır.",
+        "@language": "tr"
+      },
+      {
+        "@value": "Szervezeti szintű engedélyezési eljárás. Az intézményi engedélyezést hatóságok vagy azok megbízottjai végzik, és magában foglalja az intézmény működésének engedélyezését.",
+        "@language": "hu"
+      },
+      {
+        "@value": "Organisatsiooni tasandil kohaldatav litsentsimismenetlus. Asutuse litsentsimine tähendab asutusele tegevuslitsentsi andmist ning seda annavad välja ametiasutused või nende esindajad.",
+        "@language": "et"
+      },
+      {
+        "@value": "Proċedura ta’ liċenzjar tal-kwalità applikata fil-livell ta’ organizzazzjoni. Il-Liċenzjar Istituzzjonali jimplika l-permess biex l-istituzzjoni topera, u jingħata minn Awtoritajiet Pubbliċi jew delegati tagħhom.",
+        "@language": "mt"
+      },
+      {
+        "@value": "Постапка за лиценцирање која се применува на ниво на организација. Институционалното лиценцирање подразбира дозвола за институција да работи, а е доделена од страна на јавните власти или делегатите , соодветно.",
+        "@language": "mk"
+      },
+      {
+        "@value": "Διαδικασία αδειοδότησης που εφαρμόζεται στο επίπεδο ενός οργανισμού. Η αδειοδότηση φορέα συνεπάγεται τη χορήγηση άδειας λειτουργίας στον φορέα η οποία χορηγείται από δημόσιες αρχές ή εκπροσώπους τους.",
+        "@language": "el"
+      },
+      {
+        "@value": "Procedura licencjonowania stosowana na poziomie instytucji. „Licencja instytucjonalna” oznacza zezwolenie dla danej instytucji na działalność i jest wydawana przez organy publiczne lub ich przedstawicieli.",
+        "@language": "pl"
+      },
+      {
+        "@value": "Organizācijas līmenī piemērota licencēšanas procedūra. Institucionālā licencēšana nozīmē atļauju iestādei darboties, un to piešķir valsts iestādes vai to pilnvarotas struktūras.",
+        "@language": "lv"
+      },
+      {
+        "@value": "Une procédure d’octroi de licence est appliquée au niveau d’une organisation. L’octroi de licence institutionnel implique la permission pour l'établissement d’exercer des activités, et il est effectué par des autorités publiques ou leurs délégués.",
+        "@language": "fr"
+      },
+      {
+        "@value": "Postopek licenciranja, ki se uporablja na ravni organizacije. Institucionalna licenca pomeni dovoljenje za delovanje institucije, podeljujejo pa jo javni organi ali njihovi predstavniki.",
+        "@language": "sl"
+      },
+      {
+        "@value": "A licencing procedure applied at the level of an organisation. Institutional Licencing implies permission for the institution to operate, and is awarded by Public Authorities or delegates thereof.",
+        "@language": "en"
+      },
+      {
+        "@value": "Postupak licenciranja koji se primjenjuje na razini organizacije. Licenciranje institucije podrazumijeva dopuštenje za njezin rad te ga provode javna tijela ili njihovi delegati.",
+        "@language": "hr"
+      },
+      {
+        "@value": "Licenční postup uplatňovaný na úrovni organizace. Institucionální licence znamená, že instituce má povolení k činnosti. Je udělována veřejnými orgány nebo jejich pověřenci.",
+        "@language": "cs"
+      },
+      {
+        "@value": "Organisaation tasolla sovellettava lisensointimenettely. Institutionaalinen lisensointi tarkoittaa toimiluvan antamista instituutiolle. Sen antaa viranomainen tai delegoitu taho.",
+        "@language": "fi"
+      },
+      {
+        "@value": "Procedimento de licenças aplicado a nível de uma instituição. A atribuição de licenças institucionais implica a autorização de funcionamento da instituição e é concedida pelas autoridades públicas ou seus delegados.",
+        "@language": "pt"
+      },
+      {
+        "@value": "Procedura za licenciranje koja se primenjuje na nivou organizacije. Institucionalno licenciranje podrazumeva dozvolu za rad institucije, a dodeljuju je javne vlasti ili njihovi delegati.",
+        "@language": "sr"
+      },
+      {
+        "@value": "En licensiering som tillämpas på organisationsnivå. Institutionell licensiering innebär tillstånd för institutionen att bedriva verksamhet och beviljas av myndigheter eller deras företrädare.",
+        "@language": "sv"
+      },
+      {
+        "@value": "Próiseas ceadúnúcháin a dhéantar ar leibhéal eagraíochta. Tugann Ceadúnú Institiúideach le fios go dtugtar cead don institiúid oibriú, agus is iad na hÚdaráis Phoiblí nó a dtoscairí a bhronnann an ceadúnú sin.",
+        "@language": "ga"
+      },
+      {
+        "@value": "Godkjenningsprosedyre for en institusjon. Godkjenning av en institusjon innebærer at offentlige myndigheter (eller organer med delegert ansvar) gir institusjonen tillatelse til å drive virksomhet.",
+        "@language": "no"
+      },
+      {
+        "@value": "Auf Ebene einer Einrichtung angewendetes Lizenzierungsverfahren. Eine institutionelle Lizenzierung berechtigt die Einrichtung, ihre Tätigkeit auszuüben; die Lizenzierung erfolgt durch Behörden oder deren Beauftragte.",
+        "@language": "de"
+      },
+      {
+        "@value": "Una procedura di autorizzazione applicata a livello di un'organizzazione. L'autorizzazione istituzionale implica il permesso per l'istituzione di operare, ed è concessa da autorità pubbliche o da loro delegati.",
+        "@language": "it"
+      },
+      {
+        "@value": "Postup udeľovania licencie uplatňovaný na úrovni organizácie. Udeľovanie licencie na úrovni inštitúcie znamená udelenie povolenia inštitúcii na činnosť a udeľujú ho orgány verejnej moci alebo ich zástupcovia.",
+        "@language": "sk"
+      },
+      {
+        "@value": "Leyfisveitingarferli bundið við stofnunarstig. Stofnunarbundin leyfisveiting felur í sér leyfi til viðkomandi stofnunar til að starfa; það er veitt af opinberu yfirvaldi eða fulltrúum þess.",
+        "@language": "is"
+      },
+      {
+        "@value": "Procedură de acordare a licențelor aplicată la nivel de organizație. Acordarea de licențe îi permite instituției să funcționeze și se realizează de către autoritățile publice sau delegații acestora.",
+        "@language": "ro"
+      },
+      {
+        "@value": "Процедура за лицензиране, прилагана на нивото на дадена организация. Институционалното лицензиране включва разрешение за институцията да извършва дейност и се предоставя от публични органи или техни делегати.",
+        "@language": "bg"
+      },
+      {
+        "@value": "Procedimiento de licencia aplicado a nivel de una organización. La licencia institucional implica que la organización está autorizada por la Administración o sus delegados para llevar a cabo sus actividades.",
+        "@language": "es"
+      },
+      {
+        "@value": "Een licentieprocedure op het niveau van een organisatie. Dit houdt in dat een instelling van de overheid of een gedelegeerde instantie toestemming krijgt voor haar activiteiten.",
+        "@language": "nl"
+      },
+      {
+        "@value": "Organizacijos taikoma licencijavimo procedūra. Institucinės licencijos suteikimas reiškia, kad įstaigai leidžiama veikti, licenciją suteikia valdžios institucijos arba jų atstovai.",
+        "@language": "lt"
+      }
+    ],
+    "http://www.w3.org/2008/05/skos-xl#prefLabel": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_11f5d869de3f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_8369920ebb5e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_b3eea39e93c8"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_c2caa1b73b9d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_2d465d1be4bb"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_41dd9ea0f5c9"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_bbe9f5ffd375"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_0170c8875f23"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_e90c29af19e2"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_a31b71cc1208"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_529112497cd2"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_fa318ea4da74"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_afa7db0bae0b"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_41a2531f3ca9"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_f7708b8642d9"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_eccac2009250"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_fe3eb8d5bb"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_35cec053db27"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_3495a64726bf"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_4a16b4c7b22e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_68fde8784ffa"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_8d7d378a9806"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_2d028ac232ce"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_c9832753db8a"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_2130b9f2d91c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_f7a3adf09f4f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_81bc26a521e7"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_2f8416fd77e7"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/label_874e882b3fba"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlDefinition": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_7b707813a204"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_33a4216540fe"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_ff559240978e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_2bdb7029eab3"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_e08988596406"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_40519e641287"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_610b194bfb8c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_a0a94cff653e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_66b1eb2b6c6c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_e077af4829b6"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_285e538f9a85"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_46320bad4f83"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_ff6897c63c72"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_82975777ff65"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_bdfdb26551a4"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_3baac8e104c2"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_d4c4ab54ac20"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_eaf10650fdf0"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_e08e8c6d4c8b"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_d54f44af98b0"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_730775d1675a"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_d30c9acd4404"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_18d8be86a63f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_3b06bb3454ab"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_6e2d6bd13787"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_4cc80f3dbea5"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_6030d88ba486"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_933e020b4761"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/note_5a77bc590d"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Stofnunarbundið leyfi",
+        "@language": "is"
+      },
+      {
+        "@value": "Licença institucional",
+        "@language": "pt"
+      },
+      {
+        "@value": "Институционален лиценз",
+        "@language": "bg"
+      },
+      {
+        "@value": "Licencia institucional",
+        "@language": "es"
+      },
+      {
+        "@value": "Licence institutionnelle",
+        "@language": "fr"
+      },
+      {
+        "@value": "Licencja instytucjonalna",
+        "@language": "pl"
+      },
+      {
+        "@value": "Институционална Лиценца",
+        "@language": "mk"
+      },
+      {
+        "@value": "Licenca institucije",
+        "@language": "hr"
+      },
+      {
+        "@value": "Institutional License",
+        "@language": "en"
+      },
+      {
+        "@value": "Autorizzazione istituzionale",
+        "@language": "it"
+      },
+      {
+        "@value": "Asutuse litsents",
+        "@language": "et"
+      },
+      {
+        "@value": "Godkjenning av institusjon",
+        "@language": "no"
+      },
+      {
+        "@value": "Intézményi engedély",
+        "@language": "hu"
+      },
+      {
+        "@value": "Licencia na úrovni inštitúcie",
+        "@language": "sk"
+      },
+      {
+        "@value": "Liċenzja Istituzzjonali",
+        "@language": "mt"
+      },
+      {
+        "@value": "Institucinė licencija",
+        "@language": "lt"
+      },
+      {
+        "@value": "Institutionelle Lizenz",
+        "@language": "de"
+      },
+      {
+        "@value": "Institutionslicens",
+        "@language": "da"
+      },
+      {
+        "@value": "Institutionele licentie",
+        "@language": "nl"
+      },
+      {
+        "@value": "Licență instituțională",
+        "@language": "ro"
+      },
+      {
+        "@value": "Institucionāla licence",
+        "@language": "lv"
+      },
+      {
+        "@value": "Άδεια φορέα",
+        "@language": "el"
+      },
+      {
+        "@value": "Institucionální licence",
+        "@language": "cs"
+      },
+      {
+        "@value": "Kurumsal Lisans",
+        "@language": "tr"
+      },
+      {
+        "@value": "Institutionell licens",
+        "@language": "sv"
+      },
+      {
+        "@value": "Ceadúnú Institiúideach",
+        "@language": "ga"
+      },
+      {
+        "@value": "Institucionalna licenca",
+        "@language": "sr"
+      },
+      {
+        "@value": "Institucionalna licenca",
+        "@language": "sl"
+      },
+      {
+        "@value": "Institutionaalinen lisenssi",
+        "@language": "fi"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlNotation": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/notation_daa3b744a9954979bc15d1b03d12809f"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#startDate": [
+      {
+        "@value": "2020-06-24",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#status": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/concept-status/CURRENT"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "003293d2ce"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/25831c2"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "003293d2ce"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/25831c2"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2020-03-18",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v.2."
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/accreditation/25831c2",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/accreditation/c5f442fc-adcb-4ce0-b698-19b0156a5c26",
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/supplementaryDocument": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/df99b4e2-1625-4429-ac69-0cc707b0e858"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/ed35fc9e-cc56-4231-9377-7d62db23be13"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/landingPage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/ec26ca1e-f31e-4b96-ad04-06c9702bd71a"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/9309fe7f-b8b3-4bd1-a272-0c84581456b8"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/reviewDate": [
+      {
+        "@value": "2025-05-20T00:00:00Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/da8a2568-064e-4c4d-98d5-adee8d12d9fc"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@value": "",
+        "@language": "fi"
+      },
+      {
+        "@value": "Accreditation is carried out according to globally uniform policies and requirements. International evaluations have revealed that FINAS’s operations are on an equal footing with accreditation activities in other countries.\n        This enables the worldwide acceptability of certificates and results issued by bodies accredited in Finland.; The European Quality Assurance Register for Higher Education (EQAR) is the official register of such agencies, listing those that work in line with an agreed common framework to ensure the quality of higher education institutions and study programmes.\n        EQAR launched the Database of External Quality Assurance Results (DEQAR) in 2018 to ensure direct access to the reports and decisions of EQAR-registered agencies.",
+        "@language": "en"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/limitEQFLevel": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/6"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/7"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/accreditingAgent": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/1a250bb7-de2f-4030-9b2f-a8babbbbe75b"
+      }
+    ],
+    "http://purl.org/dc/terms/valid": [
+      {
+        "@value": "2019-05-20T00:00:00Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "FINEEC: Institutional audit\n        Audit of Jyväskylä University of Applied Sciences",
+        "@language": "en"
+      },
+      {
+        "@value": "FINEEC: Institutional audit Audit of Jyväskylä University of Applied Sciences",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/report": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/7c0b5d79-97a6-46cf-9bad-d80949213f3e"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://data.europa.eu/snb/accreditation/003293d2ce"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/1598958b-9853-4b9e-9e61-12a09943d4de"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/c2cbf631-0f72-4125-b9fe-3fe495095116"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/organisation": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/923b3d84-b0ed-4a57-881d-f00ccdd6b8f8"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Accreditation"
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/5d4e14bf-482e-4e47-a1a2-0e52dfe20eb1"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/8256ae26-2207-4d82-a9fa-a886891a87fd"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2019-05-20T00:00:00Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/limitJurisdiction": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/atu/FIN"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/limitField": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/00"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/expiryDate": [
+      {
+        "@value": "2025-05-20T00:00:00Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://purl.org/dc/terms/publisher": [
+      {
+        "@id": "http://data.europa.eu/esco/qdr/organizations/1"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/011fe5f9-f85c-481b-b1c9-53c32c172907",
+    "http://data.europa.eu/snb/model/elm/phoneNumber": [
+      {
+        "@value": "+32464111111"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/dialNumber": [
+      {
+        "@value": "dialNumber8"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/countryDialing": [
+      {
+        "@value": "32"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/areaDialing": [
+      {
+        "@value": "46"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Phone"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/032f7763-b0f6-4b09-bd80-997599b175a8",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/0faf4035-3b37-4494-b96e-6202ef1ad131",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/11366149-8f9c-4654-a494-9f32d2d336f9",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/14cedacc-4db9-4ca1-bdc9-179c3a5f9423",
+    "http://data.europa.eu/snb/model/elm/fullAddress": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/6e2a68db-4bcf-49a5-b1b0-1ac8b1bf01c1"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/countryCode": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/BEL"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Address"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/14e480fb-2546-4233-8e8d-5008abeee54d",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/1598958b-9853-4b9e-9e61-12a09943d4de",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://karvi.fi/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/16ce6a52-dc14-49c0-880c-8645ab712011",
+    "http://data.europa.eu/snb/model/elm/countryCode": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/ESP"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Address"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/1a250bb7-de2f-4030-9b2f-a8babbbbe75b",
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/8742b638-edb7-43f2-83cb-a7acfe60a126"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d3cd2b7c-47e7-4338-af39-f0c43dbdcc61"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/c4b71b65-3a9e-42bc-82f7-92348f3b5838"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/bde0bea3-2973-4941-a219-74708c1afc01"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/ab18ed8d-2e34-4e11-a6f4-9acbb79b93c0"
+      }
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/4cd5d179-49ba-4d46-bf50-2345c3cf546f"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/e63d7d38-c56f-4352-8f9f-79d638593599"
+      }
+    ],
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Agent",
+      "http://data.europa.eu/snb/model/elm/Organisation"
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/46c0f5d6-5fef-4331-bfc9-65ec3f68e099"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "Finnish Education Evaluation Centre (FINEEC)",
+        "@language": "en"
+      },
+      {
+        "@value": "Finnish Education Evaluation Centre (FINEEC)",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/20b7a8ae-ad45-4198-bbe6-587b472774e1",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/27b5339c-fb80-4f43-a5ee-c1f631aa7cb5",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "JAMK is a higher education institution that deliver university study programmes in two scientific areas in a greater number of fields. The University has constitutent higher education institutions which are legal entities and are called faculties.; JAMK is a creative reinvented institute of higher education. They develop and strengthen learning, competence and competitiveness together with partners and cooperation networks, both in Finland and internationally. They have over 8 500 students and 900 employees.",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/295e5932-4f1d-4321-b4d0-7a0cf3c4ccad",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/2cc7a39a-a29d-4f83-b194-9d24a8f978fd",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/2db4eee1-0e51-4666-96df-523cf6352657",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "2489854",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/2f5a0d74-bfba-4f53-ab69-13e888dfc45e",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "10065502",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3329e1fc-5767-447e-a804-8126a673d3a6",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/338902de-28eb-4cb9-a01f-74a940a2402f",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0-ORG-Publisher",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName0"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/35345285-b97f-4c0b-a7f6-2b10daf411db",
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "http://university-of-hasselt/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3566e180-89c6-403a-9744-4856f5d1ba46",
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Organisation",
+      "http://xmlns.com/foaf/0.1/Agent"
+    ],
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/9e953c83-ea13-4fa3-addb-4b1008f105dd"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/6dd58ba8-0e45-4afa-9180-854609e57ab1"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/0faf4035-3b37-4494-b96e-6202ef1ad131"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/e018970f-06f8-47b5-9536-b1b48e18629f"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "National Commission for Further and Higher Education",
+        "@language": "en"
+      },
+      {
+        "@value": "National Commission for Further and Higher Education",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/a8b7c9b7-dabd-4ec0-9e35-7e17caa1f08c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/51efee75-a3c3-4451-adef-e79c32cae691"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/776f0ff2-97b4-4766-a144-36fceaf18497"
+      }
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/338902de-28eb-4cb9-a01f-74a940a2402f"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3658c8c6-988a-4fbd-834b-bb1783237bd7",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3932f21b-0709-497b-8eac-46c34fd581da",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "BE0123432123"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/BEL"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3b346ec3-3079-4dd4-b0d2-8c3a7c186634",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "Jyväskylä, Rajakatu 35, 40200 Jyväskylä, Finland",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3e463dc3-16dc-4c8a-b3a7-9b64c4016d88",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/3ed9b42c-e09c-4c7c-b74c-80bf3272272a",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/46c0f5d6-5fef-4331-bfc9-65ec3f68e099",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/4827f738-5a88-41ff-9cf0-abb6f68a186d",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0-ORG-04",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName0"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/4a1e087f-4de8-4d70-a429-466fffe06530",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "European University Association",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Group"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/4cd5d179-49ba-4d46-bf50-2345c3cf546f",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0-ORG-02",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName0"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/4ec71e4c-d7a7-4bf2-bd3b-95669180f8b9",
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/11366149-8f9c-4654-a494-9f32d2d336f9"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/7dccf16c-6270-4c4d-bc15-5749c3219ba9"
+      }
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/80ca6326-378b-4d14-85d0-041db7ffe8db"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/c2cd7396-66f2-4eca-9f25-f30dc0e2bae3"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "Faculty of Engineering",
+        "@language": "en"
+      },
+      {
+        "@value": "Faculty of Engineering",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/5ae246e3-9c56-444c-abf7-a5d3b2c40f6f"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Organisation",
+      "http://xmlns.com/foaf/0.1/Agent"
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/ba85eba9-ff99-4170-ad7e-bc70c11766ea"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/20b7a8ae-ad45-4198-bbe6-587b472774e1"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://www.w3.org/ns/org#hasSubOrganization": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/923b3d84-b0ed-4a57-881d-f00ccdd6b8f8"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/f8d4bbd0-10f5-4903-996f-d8d15f69d74c"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/51efee75-a3c3-4451-adef-e79c32cae691",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/5ae246e3-9c56-444c-abf7-a5d3b2c40f6f",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "notaLiteral0",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/5cfc182b-f383-417c-ad8a-e90d8492f211",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "4548764",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion44"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName44"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/5d4e14bf-482e-4e47-a1a2-0e52dfe20eb1",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "190",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/63ddab4a-2ead-45a8-a4e5-ed71781dc903",
+    "http://data.europa.eu/snb/model/elm/phoneNumber": [
+      {
+        "@value": "326795857"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Phone"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/65106d64-876a-4e67-b808-b5ffb89f55a2",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "12345678",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/6525cd1f-4850-4fdf-a5b1-45a86e6784f0",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/6aa22efe-abc1-4bd0-820c-2c5fecabfe94",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "Jyväskylä, Rajakatu 35, 40200 Jyväskylä, Finland",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/6dd58ba8-0e45-4afa-9180-854609e57ab1",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/6e2a68db-4bcf-49a5-b1b0-1ac8b1bf01c1",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "Kerkstraat 1, 3500 Hasselt",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/6fde8e5e-bbfd-4f3c-8e5a-3e4ccca1311b",
+    "http://data.europa.eu/snb/model/elm/mailbox": [
+      {
+        "@id": "mailto:research.alliance@eu.edu.com"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/ContactPoint"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/72295588-9f91-4e3f-a33f-509dc5b94d56",
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/dfce101c-2f83-41d6-aee0-09033679c3e1"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/9253c406-8dbb-47c6-bd95-ee7ec24a582b"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Agent",
+      "http://data.europa.eu/snb/model/elm/Organisation"
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "http://www.w3.org/ns/org#subOrganizationOf": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/923b3d84-b0ed-4a57-881d-f00ccdd6b8f8"
+      }
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/4827f738-5a88-41ff-9cf0-abb6f68a186d"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "Faculty of Chemical Engineering",
+        "@language": "en"
+      },
+      {
+        "@value": "Faculty of Chemical Engineering",
+        "@language": "fi"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/6525cd1f-4850-4fdf-a5b1-45a86e6784f0"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3e463dc3-16dc-4c8a-b3a7-9b64c4016d88"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/8f4df86b-9ff0-45e2-89e5-4fc7071585db"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/14e480fb-2546-4233-8e8d-5008abeee54d"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/b06db383-0334-406c-a994-acc93fd9e4a6"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/74b362a0-a03c-4ba4-8a58-7a553447ab71",
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3ed9b42c-e09c-4c7c-b74c-80bf3272272a"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/e53db7bd-0ff2-4bdc-b574-653b3bbea419"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/032f7763-b0f6-4b09-bd80-997599b175a8"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/295e5932-4f1d-4321-b4d0-7a0cf3c4ccad"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3329e1fc-5767-447e-a804-8126a673d3a6"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/a1acbce5-e494-4422-89cb-05c1eafa7211"
+      }
+    ],
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Agent",
+      "http://data.europa.eu/snb/model/elm/Organisation"
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/815c0435-28e0-460c-90ba-b9e367bd52c5"
+      }
+    ],
+    "http://www.w3.org/ns/org#subOrganizationOf": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/923b3d84-b0ed-4a57-881d-f00ccdd6b8f8"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "Faculty of Civil Engineering, Architecture and Geodesy",
+        "@language": "en"
+      },
+      {
+        "@value": "Faculty of Civil Engineering, Architecture and Geodesy",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/a0ed1e2c-1266-42f7-a776-cc0736df52ca"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/776f0ff2-97b4-4766-a144-36fceaf18497",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/7c0b5d79-97a6-46cf-9bad-d80949213f3e",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "Accreditation report",
+        "@language": "en"
+      },
+      {
+        "@value": "Accreditation report",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://backend.deqar.eu/reports/FINEEC/20200303_1404_JAMK_auditointi.pdf",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/7cf65fb1-ce3a-4cac-b433-60ac0d07e4c7",
+    "http://data.europa.eu/snb/model/elm/address": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/14cedacc-4db9-4ca1-bdc9-179c3a5f9423"
+      }
+    ],
+    "@type": [
+      "http://purl.org/dc/terms/Location"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/7dccf16c-6270-4c4d-bc15-5749c3219ba9",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/80ca6326-378b-4d14-85d0-041db7ffe8db",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0-ORG-05",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName0"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/815c0435-28e0-460c-90ba-b9e367bd52c5",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0-ORG-03",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName0"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/8256ae26-2207-4d82-a9fa-a886891a87fd",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "48198",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/8742b638-edb7-43f2-83cb-a7acfe60a126",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/8842348e-9f0e-4f71-8ce6-4a04b01f948b",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "logo",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@value": "a logo",
+        "@language": "en"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentType": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/file-type/7Z"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentSize": [
+      {
+        "@value": "0",
+        "@type": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentEncoding": [
+      {
+        "@id": "http://data.europa.eu/snb/encoding/6146cde7dd"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/content": [
+      {
+        "@value": "content2"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/MediaObject"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/8f4df86b-9ff0-45e2-89e5-4fc7071585db",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "notaLiteral0",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/923b3d84-b0ed-4a57-881d-f00ccdd6b8f8",
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3658c8c6-988a-4fbd-834b-bb1783237bd7"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/2cc7a39a-a29d-4f83-b194-9d24a8f978fd"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#registration": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/9846a767-8c20-46e6-87e5-d6172398cd1a"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/taxIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/2db4eee1-0e51-4666-96df-523cf6352657"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/65106d64-876a-4e67-b808-b5ffb89f55a2"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/additionalNote": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/27b5339c-fb80-4f43-a5ee-c1f631aa7cb5"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/vatIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/5cfc182b-f383-417c-ad8a-e90d8492f211"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/2f5a0d74-bfba-4f53-ab69-13e888dfc45e"
+      }
+    ],
+    "http://www.w3.org/ns/regorg#legalName": [
+      {
+        "@value": "JAMK University of Applied Sciences",
+        "@language": "en"
+      },
+      {
+        "@value": "JAMK University of Applied Sciences",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/eidasLegalIdentifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/f8cb6995-b0f0-49ef-a63c-44fd846e16a4"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/groupMemberOf": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/4a1e087f-4de8-4d70-a429-466fffe06530"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d1a280c1-d266-4450-a0b5-799cd4fc72cb"
+      }
+    ],
+    "http://www.w3.org/ns/org#hasSubOrganization": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/74b362a0-a03c-4ba4-8a58-7a553447ab71"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "University of Applied Sciences",
+        "@language": "en"
+      },
+      {
+        "@value": "University of Applied Sciences",
+        "@language": "fi"
+      },
+      {
+        "@value": "JAMK",
+        "@language": "en"
+      },
+      {
+        "@value": "JAMK",
+        "@language": "fi"
+      },
+      {
+        "@value": "Jamk University",
+        "@language": "en"
+      },
+      {
+        "@value": "Jamk University",
+        "@language": "fi"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/location": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d"
+      }
+    ],
+    "@type": [
+      "http://xmlns.com/foaf/0.1/Agent",
+      "http://data.europa.eu/snb/model/elm/Organisation"
+    ],
+    "http://data.europa.eu/snb/model/elm/status": [
+      {
+        "@value": "released"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/logo": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/8842348e-9f0e-4f71-8ce6-4a04b01f948b"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contactPoint": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/f89799d7-ceac-4903-991a-71b42f548146"
+      }
+    ],
+    "http://purl.org/dc/terms/modified": [
+      {
+        "@value": "2023-05-03T12:22:34Z",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://www.w3.org/ns/adms#identifier": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/967f423a-5853-4e38-9181-5fcea964e754"
+      }
+    ],
+    "http://www.w3.org/ns/org#subOrganizationOf": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/4ec71e4c-d7a7-4bf2-bd3b-95669180f8b9"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/9253c406-8dbb-47c6-bd95-ee7ec24a582b",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/9309fe7f-b8b3-4bd1-a272-0c84581456b8",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://karvi.fi/publication/accreditation-degree-programme-information-communications-technology-jamk-university-applied-sciences/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/9593970d-b2d7-4eb0-bb1b-cb0891db9dba",
+    "http://data.europa.eu/snb/model/elm/fullAddress": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/99828540-a785-4f3d-bc84-4615d5674dad"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/countryCode": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/BEL"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Address"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/967f423a-5853-4e38-9181-5fcea964e754",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "42424242",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "UniAssociation ID"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/ns/adms#Identifier",
+      "http://data.europa.eu/snb/model/elm/Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/9846a767-8c20-46e6-87e5-d6172398cd1a",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "FI0504",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/99828540-a785-4f3d-bc84-4615d5674dad",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "Blue Glass Street 50, 1090, Forest, Brussels",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/9e953c83-ea13-4fa3-addb-4b1008f105dd",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/a0ed1e2c-1266-42f7-a776-cc0736df52ca",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/a1acbce5-e494-4422-89cb-05c1eafa7211",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "notaLiteral0",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/a8b7c9b7-dabd-4ec0-9e35-7e17caa1f08c",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.edu",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/ab18ed8d-2e34-4e11-a6f4-9acbb79b93c0",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "notaLiteral0",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/b06db383-0334-406c-a994-acc93fd9e4a6",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/ba85eba9-ff99-4170-ad7e-bc70c11766ea",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/bde0bea3-2973-4941-a219-74708c1afc01",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/c2cbf631-0f72-4125-b9fe-3fe495095116",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://auditoinnit.karvi.fi/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/c2cd7396-66f2-4eca-9f25-f30dc0e2bae3",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/c4b71b65-3a9e-42bc-82f7-92348f3b5838",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/c9021b8d-2711-4085-b453-e15982cbc8cf",
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://unix.eu/contact/en/contact-form/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/ca3e6530-cff4-4a20-8bcc-ec7085249251",
+    "http://data.europa.eu/snb/model/elm/fullAddress": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/6aa22efe-abc1-4bd0-820c-2c5fecabfe94"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/countryCode": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/FIN"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Address"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/d1a280c1-d266-4450-a0b5-799cd4fc72cb",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Research Alliance",
+        "@language": "en"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contactPoint": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/6fde8e5e-bbfd-4f3c-8e5a-3e4ccca1311b"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Group"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/d338dc7d-de32-47c8-ba26-e140e001cc9f",
+    "http://data.europa.eu/snb/model/elm/fullAddress": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/3b346ec3-3079-4dd4-b0d2-8c3a7c186634"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/countryCode": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/FIN"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Address"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/d3cd2b7c-47e7-4338-af39-f0c43dbdcc61",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/d3f7d402-aabd-46e5-9de3-75a2c4193d74",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://europa.eu/europass/en/contact-us/submit-query",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/d899119d-021e-4a5f-94ea-179bb72b433d",
+    "http://data.europa.eu/snb/model/elm/address": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/9593970d-b2d7-4eb0-bb1b-cb0891db9dba"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/ca3e6530-cff4-4a20-8bcc-ec7085249251"
+      }
+    ],
+    "@type": [
+      "http://purl.org/dc/terms/Location"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/da8a2568-064e-4c4d-98d5-adee8d12d9fc",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "FINEEC's audit reports are meant to be read on FINEEC's digital audit platform https://auditoinnit.karvi.fi/auditoinnit/en/. This PDF is a printout of the website.; You can access the full accreditation report from the DEQAR portal.",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/df99b4e2-1625-4429-ac69-0cc707b0e858",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://data.deqar.eu/report/190",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/dfce101c-2f83-41d6-aee0-09033679c3e1",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/e018970f-06f8-47b5-9536-b1b48e18629f",
+    "http://data.europa.eu/snb/model/elm/noteLiteral": [
+      {
+        "@value": "notaLiteral0",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Note"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/e53db7bd-0ff2-4bdc-b574-653b3bbea419",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://www.jamk.fi/en",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/e63d7d38-c56f-4352-8f9f-79d638593599",
+    "http://www.w3.org/ns/adms#schemeAgency": [
+      {
+        "@value": "schemeAgency1",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeVersion": [
+      {
+        "@value": "schemeVersion43"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/schemeName": [
+      {
+        "@value": "schemeName43"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/ec26ca1e-f31e-4b96-ad04-06c9702bd71a",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://auditoinnit.karvi.fi/luvut/tiivistelma-3/",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/ed35fc9e-cc56-4231-9377-7d62db23be13",
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "title1",
+        "@language": "en"
+      },
+      {
+        "@value": "title1",
+        "@language": "fi"
+      }
+    ],
+    "http://purl.org/dc/terms/language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/contentUrl": [
+      {
+        "@value": "https://data.deqar.eu/report/48198",
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/WebResource"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/f89799d7-ceac-4903-991a-71b42f548146",
+    "http://data.europa.eu/snb/model/elm/contactForm": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/c9021b8d-2711-4085-b453-e15982cbc8cf"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d3f7d402-aabd-46e5-9de3-75a2c4193d74"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/address": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/d338dc7d-de32-47c8-ba26-e140e001cc9f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/16ce6a52-dc14-49c0-880c-8645ab712011"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/mailbox": [
+      {
+        "@id": "mailto:contact@unix.edu"
+      },
+      {
+        "@id": "mailto:another-contact@jamk.edu"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@value": "You will usually receive an answer within 3 working days (more complex enquiries may take longer)",
+        "@language": "en"
+      }
+    ],
+    "http://data.europa.eu/snb/model/elm/phone": [
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/63ddab4a-2ead-45a8-a4e5-ed71781dc903"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/data-dev/europassResource/011fe5f9-f85c-481b-b1c9-53c32c172907"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/ContactPoint"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/f8cb6995-b0f0-49ef-a63c-44fd846e16a4",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "eIDAS-12345",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/data-dev/europassResource/f8d4bbd0-10f5-4903-996f-d8d15f69d74c",
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation1",
+        "@type": "http://example.com/elm/loq"
+      }
+    ],
+    "http://purl.org/dc/terms/spatial": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/terms/issued": [
+      {
+        "@value": "2006-05-04T18:13:51",
+        "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/LegalIdentifier",
+      "http://www.w3.org/ns/adms#Identifier"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/encoding/25831c2",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/encoding/6146cde7dd",
+    "http://publications.europa.eu/ontology/euvoc#status": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/concept-status/CURRENT"
+      }
+    ],
+    "http://www.w3.org/2008/05/skos-xl#prefLabel": [
+      {
+        "@id": "http://data.europa.eu/snb/encoding/label_0c32656061"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#startDate": [
+      {
+        "@value": "2020-06-24",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "6146cde7dd"
+      },
+      {
+        "@value": "base64"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://data.europa.eu/snb/encoding/25831c2"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlNotation": [
+      {
+        "@id": "http://data.europa.eu/snb/encoding/notation_a9f6117679cd7f479e8775898f68165f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/encoding/notation_0c32656061"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v.1."
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf": [
+      {
+        "@id": "http://data.europa.eu/snb/encoding/25831c2"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "6146cde7dd"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "base64",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2020-03-18",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/eqf/25831c2",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/eqf/6",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2008/05/skos-xl#prefLabel": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_0d688da0a5"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_2f7045ff69"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_7ae051ec1c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_0fdbafa302"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_6f85835c02"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_9ee860f538"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_7377d0694b"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_21aa6af71d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_07346aba7d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_aaeac59f62"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_3f0da0652e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_8f6d9cf729"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_6b7031d904"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_9e5a40a1b0"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_4a30fbba5d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_bf745e226f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_c01ec738b6"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_66f30e5530"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_caccce8d8d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_db269ebafe"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_2c26ec24b4"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_38b10d3154"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_ceef1cccf9"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_b87fa73e5c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_99451c4218"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_824d66a4de"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_4716529f88"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_1d90c1dd14"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_96058da1ac"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "6. Szint",
+        "@language": "hu"
+      },
+      {
+        "@value": "Raven 6",
+        "@language": "sl"
+      },
+      {
+        "@value": "Επίπεδο 6",
+        "@language": "el"
+      },
+      {
+        "@value": "Úroveň 6",
+        "@language": "cs"
+      },
+      {
+        "@value": "6. Stepen",
+        "@language": "sr"
+      },
+      {
+        "@value": "Úroveň 6",
+        "@language": "sk"
+      },
+      {
+        "@value": "Livello 6",
+        "@language": "it"
+      },
+      {
+        "@value": "Nivel 6",
+        "@language": "es"
+      },
+      {
+        "@value": "6 Lygis",
+        "@language": "lt"
+      },
+      {
+        "@value": "Poziom 6",
+        "@language": "pl"
+      },
+      {
+        "@value": "Līmenis 6",
+        "@language": "lv"
+      },
+      {
+        "@value": "Level 6",
+        "@language": "en"
+      },
+      {
+        "@value": "Nivelul 6",
+        "@language": "ro"
+      },
+      {
+        "@value": "Niveau 6",
+        "@language": "da"
+      },
+      {
+        "@value": "Niveau 6",
+        "@language": "de"
+      },
+      {
+        "@value": "Niveau 6",
+        "@language": "fr"
+      },
+      {
+        "@value": "Niveau 6",
+        "@language": "nl"
+      },
+      {
+        "@value": "Nível 6",
+        "@language": "pt"
+      },
+      {
+        "@value": "Razina 6",
+        "@language": "hr"
+      },
+      {
+        "@value": "Seviye 6",
+        "@language": "tr"
+      },
+      {
+        "@value": "Nivå 6",
+        "@language": "no"
+      },
+      {
+        "@value": "Nivå 6",
+        "@language": "sv"
+      },
+      {
+        "@value": "Ниво 6",
+        "@language": "bg"
+      },
+      {
+        "@value": "Ниво 6",
+        "@language": "mk"
+      },
+      {
+        "@value": "Þrep 6",
+        "@language": "is"
+      },
+      {
+        "@value": "6. Tase",
+        "@language": "et"
+      },
+      {
+        "@value": "Taso 6",
+        "@language": "fi"
+      },
+      {
+        "@value": "Leibhéal 6",
+        "@language": "ga"
+      },
+      {
+        "@value": "Livell 6",
+        "@language": "mt"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "<html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Knowledge\">advanced knowledge of a field of work or study, involving a critical understanding of theories and principles</html:div>\n          <html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Skill\">advanced skills, demonstrating mastery and innovation, required to solve complex and unpredictable problems in a specialised field of work or study</html:div>\n          <html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Competence\">manage complex technical or professional activities or projects, taking responsibility for decisionmaking in unpredictable work or study contexts\n            <html:br></html:br>take responsibility for managing professional development of individuals and groups\n          </html:div>",
+        "@language": "en"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlNotation": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/notation_cf8830b885"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "6"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlScopeNote": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/note_3f4e92f924"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/25831c2"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2020-06-15",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#startDate": [
+      {
+        "@value": "2020-06-24",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/25831c2"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlDefinition": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/note_2df617e48c"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v.2."
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#status": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/concept-status/CURRENT"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@value": "<html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Note\">The descriptor for the first cycle in the Framework for Qualifications of the European Higher Education Area agreed by the ministers responsible for higher education at their meeting in Bergen in May 2005 in the framework of the Bologna process corresponds to the learning outcomes for EQF level 6.</html:div>",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "6"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/eqf/7",
+    "http://www.w3.org/2008/05/skos-xl#prefLabel": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_ea1c3d6766"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_330b4bf745"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_a22a1ab589"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_11c1e3340e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_468c595e84"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_3212a61c5c"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_90a1bc5f8d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_5ab82313f6"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_1acf90c5e7"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_a4d1ee7c06"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_e4d6189044"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_57fbbfbbd5"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_875cc55668"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_1af886730f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_7451d14897"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_96ad4b7794"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_cdf52ec9a5"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_edfec8de98"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_05a635bd59"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_93e538f497"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_0d574e41ce"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_ca9c52fcae"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_a437594eca"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_3e60cf4840"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_6aeaf94bc2"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_a7c0f6a2b6"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_2f1e33141b"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_a8fdd9940d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/eqf/label_bfc28cd724"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2020-06-15",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Taso 7",
+        "@language": "fi"
+      },
+      {
+        "@value": "Livello 7",
+        "@language": "it"
+      },
+      {
+        "@value": "Leibhéal 7",
+        "@language": "ga"
+      },
+      {
+        "@value": "Úroveň 7",
+        "@language": "cs"
+      },
+      {
+        "@value": "Úroveň 7",
+        "@language": "sk"
+      },
+      {
+        "@value": "7. Tase",
+        "@language": "et"
+      },
+      {
+        "@value": "Nivå 7",
+        "@language": "no"
+      },
+      {
+        "@value": "Nivå 7",
+        "@language": "sv"
+      },
+      {
+        "@value": "7 Lygis",
+        "@language": "lt"
+      },
+      {
+        "@value": "Nivelul 7",
+        "@language": "ro"
+      },
+      {
+        "@value": "Ниво 7",
+        "@language": "bg"
+      },
+      {
+        "@value": "Ниво 7",
+        "@language": "mk"
+      },
+      {
+        "@value": "Livell 7",
+        "@language": "mt"
+      },
+      {
+        "@value": "Επίπεδο 7",
+        "@language": "el"
+      },
+      {
+        "@value": "Nivel 7",
+        "@language": "es"
+      },
+      {
+        "@value": "Raven 7",
+        "@language": "sl"
+      },
+      {
+        "@value": "Līmenis 7",
+        "@language": "lv"
+      },
+      {
+        "@value": "Þrep 7",
+        "@language": "is"
+      },
+      {
+        "@value": "Level 7",
+        "@language": "en"
+      },
+      {
+        "@value": "7. Szint",
+        "@language": "hu"
+      },
+      {
+        "@value": "7. Stepen",
+        "@language": "sr"
+      },
+      {
+        "@value": "Nível 7",
+        "@language": "pt"
+      },
+      {
+        "@value": "Razina 7",
+        "@language": "hr"
+      },
+      {
+        "@value": "Seviye 7",
+        "@language": "tr"
+      },
+      {
+        "@value": "Poziom 7",
+        "@language": "pl"
+      },
+      {
+        "@value": "Niveau 7",
+        "@language": "da"
+      },
+      {
+        "@value": "Niveau 7",
+        "@language": "de"
+      },
+      {
+        "@value": "Niveau 7",
+        "@language": "fr"
+      },
+      {
+        "@value": "Niveau 7",
+        "@language": "nl"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/25831c2"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#scopeNote": [
+      {
+        "@value": "<html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Note\">The descriptor for the second cycle in the Framework for Qualifications of the European Higher Education Area agreed by the ministers responsible for higher education at their meeting in Bergen in May 2005 in the framework of the Bologna process corresponds to the learning outcomes for EQF level 7.</html:div>",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+      {
+        "@value": "<html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Knowledge\">highly specialised knowledge, some of which is at the forefront of knowledge in a field of work or study, as the basis for original thinking and/or research\n            <html:br></html:br>critical awareness of knowledge issues in a field and at the interface between different fields\n          </html:div>\n          <html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Skill\">specialised problem-solving skills required in research and/or innovation in order to develop new knowledge and procedures and to integrate knowledge from different fields</html:div>\n          <html:div xmlns:html=\"http://www.w3.org/1999/xhtml\" class=\"Competence\">manage and transform work or study contexts that are complex, unpredictable and require new strategic approaches\n            <html:br></html:br>take responsibility for contributing to professional knowledge and practice and/or for reviewing the strategic performance of teams\n          </html:div>",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://publications.europa.eu/ontology/euvoc#startDate": [
+      {
+        "@value": "2020-06-24",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v.2."
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlNotation": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/notation_18a01fa9bd"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#status": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/concept-status/CURRENT"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "7"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlDefinition": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/note_8ec98f44c3"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "7"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/25831c2"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlScopeNote": [
+      {
+        "@id": "http://data.europa.eu/snb/eqf/note_6bbcf88ff1"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/isced-f/00",
+    "http://www.w3.org/2008/05/skos-xl#prefLabel": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_faa3e8daf8"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_f0e467be8e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_68eee14b8d"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_091a2539cf"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_9e9721d7c1"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_0e09b91cbd"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_14817af448"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_fb39c9256b"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_c9c4170250"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_f0a26dd129"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_a914789489"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_89411aae25"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_70286906a4"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_decae2ab61"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_5885a1344f"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_c1d11eacfa"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_ad54291847"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_340359ad1e"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_0e13d9d520"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_081509a0bb"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_8f5d4419cc"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_5abc284445"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_df91d93ffd"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_909bddc3f1"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/label_8657c63fef"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#startDate": [
+      {
+        "@value": "2020-06-24",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2020-06-15",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#narrower": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/001"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/003"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/009"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/002"
+      },
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/000"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Általános programok és képesítések",
+        "@language": "hu"
+      },
+      {
+        "@value": "Cláir agus cáilíochtaí cineálacha",
+        "@language": "ga"
+      },
+      {
+        "@value": "Programy i kwalifikacje ogólne",
+        "@language": "pl"
+      },
+      {
+        "@value": "Programmes et certifications génériques",
+        "@language": "fr"
+      },
+      {
+        "@value": "Programe și calificări generice",
+        "@language": "ro"
+      },
+      {
+        "@value": "Üldkavad ja kvalifikatsioonid",
+        "@language": "et"
+      },
+      {
+        "@value": "Programas e qualificações genéricos",
+        "@language": "pt"
+      },
+      {
+        "@value": "Allgemeine Bildungsprogramme und Qualifikationen",
+        "@language": "de"
+      },
+      {
+        "@value": "Yleissivistävät koulutusohjelmat ja tutkinnot",
+        "@language": "fi"
+      },
+      {
+        "@value": "Vispārīgas programmas un kvalifikācijas",
+        "@language": "lv"
+      },
+      {
+        "@value": "Pagrindinės programos ir kvalifikacijos",
+        "@language": "lt"
+      },
+      {
+        "@value": "Generic programmes and qualifications",
+        "@language": "en"
+      },
+      {
+        "@value": "Общи програми и квалификации",
+        "@language": "bg"
+      },
+      {
+        "@value": "Osnovne in splošne izobraževalne aktivnosti/izidi",
+        "@language": "sl"
+      },
+      {
+        "@value": "Algemene programma's en kwalificaties",
+        "@language": "nl"
+      },
+      {
+        "@value": "Almennar námsbrautir og prófgráður",
+        "@language": "is"
+      },
+      {
+        "@value": "Il-programmi u l-kwalifiki ġeneriċi",
+        "@language": "mt"
+      },
+      {
+        "@value": "Všeobecné programy a kvalifikace",
+        "@language": "cs"
+      },
+      {
+        "@value": "Programmi e qualifiche generali",
+        "@language": "it"
+      },
+      {
+        "@value": "Generelle programmer og kvalifikasjoner",
+        "@language": "no"
+      },
+      {
+        "@value": "Γενικά προγράμματα και προσόντα",
+        "@language": "el"
+      },
+      {
+        "@value": "Všeobecné programy a kvalifikácie",
+        "@language": "sk"
+      },
+      {
+        "@value": "Programas y certificaciones genéricos",
+        "@language": "es"
+      },
+      {
+        "@value": "Generelle programmer og kvalifikationer",
+        "@language": "da"
+      },
+      {
+        "@value": "Generički programi i kvalifikacije",
+        "@language": "hr"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#xlNotation": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/notation_d9a5f785cb"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "00"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "00"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v.1."
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#topConceptOf": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/25831c2"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://data.europa.eu/snb/isced-f/25831c2"
+      }
+    ],
+    "http://publications.europa.eu/ontology/euvoc#status": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/concept-status/CURRENT"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/snb/isced-f/25831c2",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/atu",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/atu/FIN",
+    "http://publications.europa.eu/ontology/authority/start.use": [
+      {
+        "@value": "1997-01-01"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#broader": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/atu/EUR"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/deprecated": [
+      {
+        "@value": "false"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/atu"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Finland",
+        "@language": "sv"
+      },
+      {
+        "@value": "Finland",
+        "@language": "en"
+      },
+      {
+        "@value": "Suomi",
+        "@language": "fi"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/authority-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/country",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/country/BEL",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Belgique",
+        "@language": "fr"
+      },
+      {
+        "@value": "Belçika",
+        "@language": "tr"
+      },
+      {
+        "@value": "Belgium",
+        "@language": "en"
+      },
+      {
+        "@value": "Belgium",
+        "@language": "hu"
+      },
+      {
+        "@value": "Belgien",
+        "@language": "sv"
+      },
+      {
+        "@value": "Belgien",
+        "@language": "da"
+      },
+      {
+        "@value": "Belgien",
+        "@language": "de"
+      },
+      {
+        "@value": "Belgie",
+        "@language": "cs"
+      },
+      {
+        "@value": "Белгија",
+        "@language": "sr"
+      },
+      {
+        "@value": "Белгија",
+        "@language": "mk"
+      },
+      {
+        "@value": "Bélxica",
+        "@language": "gl"
+      },
+      {
+        "@value": "Il-Belġju",
+        "@language": "mt"
+      },
+      {
+        "@value": "Belgía",
+        "@language": "is"
+      },
+      {
+        "@value": "Bélgica",
+        "@language": "es"
+      },
+      {
+        "@value": "Bélgica",
+        "@language": "pt"
+      },
+      {
+        "@value": "Belgicko",
+        "@language": "sk"
+      },
+      {
+        "@value": "Бeлгия",
+        "@language": "bg"
+      },
+      {
+        "@value": "Belgija",
+        "@language": "sl"
+      },
+      {
+        "@value": "Belgija",
+        "@language": "bs"
+      },
+      {
+        "@value": "Belgija",
+        "@language": "hr"
+      },
+      {
+        "@value": "Belgija",
+        "@language": "lt"
+      },
+      {
+        "@value": "Belgjika",
+        "@language": "sq"
+      },
+      {
+        "@value": "Bèlgica",
+        "@language": "ca"
+      },
+      {
+        "@value": "Бельгія",
+        "@language": "uk"
+      },
+      {
+        "@value": "Бельгія",
+        "@language": "be"
+      },
+      {
+        "@value": "Βέλγιο",
+        "@language": "el"
+      },
+      {
+        "@value": "België",
+        "@language": "nl"
+      },
+      {
+        "@value": "An Bheilg",
+        "@language": "ga"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "pl"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "rm"
+      },
+      {
+        "@value": "Бельгия",
+        "@language": "ru"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "ro"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "et"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "fo"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "fi"
+      },
+      {
+        "@value": "Belgia",
+        "@language": "no"
+      },
+      {
+        "@value": "Belgio",
+        "@language": "it"
+      },
+      {
+        "@value": "Beļģija",
+        "@language": "lv"
+      },
+      {
+        "@value": "Belgika",
+        "@language": "eu"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "Belgikako Erresuma",
+        "@language": "eu"
+      },
+      {
+        "@value": "Reino de Bélgica",
+        "@language": "es"
+      },
+      {
+        "@value": "Regno del Belgio",
+        "@language": "it"
+      },
+      {
+        "@value": "Кралство Белгия",
+        "@language": "bg"
+      },
+      {
+        "@value": "Belgian kuningaskunta",
+        "@language": "fi"
+      },
+      {
+        "@value": "Królestwo Belgii",
+        "@language": "pl"
+      },
+      {
+        "@value": "Каралеўства Бельгія",
+        "@language": "be"
+      },
+      {
+        "@value": "Regne de Bèlgica",
+        "@language": "ca"
+      },
+      {
+        "@value": "Краљевина Белгија",
+        "@language": "sr"
+      },
+      {
+        "@value": "Konungariket Belgien",
+        "@language": "sv"
+      },
+      {
+        "@value": "Belgia Kuningriik",
+        "@language": "et"
+      },
+      {
+        "@value": "Kingdom of Belgium",
+        "@language": "en"
+      },
+      {
+        "@value": "Reginavel da la Belgia",
+        "@language": "rm"
+      },
+      {
+        "@value": "Reino da Bélgica",
+        "@language": "pt"
+      },
+      {
+        "@value": "Mbretëria Belge",
+        "@language": "sq"
+      },
+      {
+        "@value": "Belçika Krallığı",
+        "@language": "tr"
+      },
+      {
+        "@value": "Ríocht na Beilge",
+        "@language": "ga"
+      },
+      {
+        "@value": "Reino da Bélxica",
+        "@language": "gl"
+      },
+      {
+        "@value": "Koninkrijk België",
+        "@language": "nl"
+      },
+      {
+        "@value": "Ir-Renju tal-Belġju",
+        "@language": "mt"
+      },
+      {
+        "@value": "Konungsríkið Belgía",
+        "@language": "is"
+      },
+      {
+        "@value": "Belgijos Karalystė",
+        "@language": "lt"
+      },
+      {
+        "@value": "Beļģijas Karaliste",
+        "@language": "lv"
+      },
+      {
+        "@value": "Königreich Belgien",
+        "@language": "de"
+      },
+      {
+        "@value": "Regatul Belgiei",
+        "@language": "ro"
+      },
+      {
+        "@value": "Belga Királyság",
+        "@language": "hu"
+      },
+      {
+        "@value": "Кралство Белгија",
+        "@language": "mk"
+      },
+      {
+        "@value": "Belgické království",
+        "@language": "cs"
+      },
+      {
+        "@value": "Royaume de Belgique",
+        "@language": "fr"
+      },
+      {
+        "@value": "Kongeriget Belgien",
+        "@language": "da"
+      },
+      {
+        "@value": "Королівство Бельгія",
+        "@language": "uk"
+      },
+      {
+        "@value": "Kraljevina Belgija",
+        "@language": "sl"
+      },
+      {
+        "@value": "Kraljevina Belgija",
+        "@language": "hr"
+      },
+      {
+        "@value": "Kraljevina Belgija",
+        "@language": "bs"
+      },
+      {
+        "@value": "Kongeriket Belgia",
+        "@language": "no"
+      },
+      {
+        "@value": "Belgické kráľovstvo",
+        "@language": "sk"
+      },
+      {
+        "@value": "Королевство Бельгия",
+        "@language": "ru"
+      },
+      {
+        "@value": "Kongsríki Belgia",
+        "@language": "fo"
+      },
+      {
+        "@value": "Βασίλειο του Βελγίου",
+        "@language": "el"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-mapped-code": [
+      {
+        "@id": "_:b16"
+      },
+      {
+        "@id": "_:b17"
+      },
+      {
+        "@id": "_:b18"
+      },
+      {
+        "@id": "_:b19"
+      },
+      {
+        "@id": "_:b20"
+      },
+      {
+        "@id": "_:b21"
+      },
+      {
+        "@id": "_:b22"
+      },
+      {
+        "@id": "_:b23"
+      },
+      {
+        "@id": "_:b24"
+      },
+      {
+        "@id": "_:b25"
+      },
+      {
+        "@id": "_:b26"
+      },
+      {
+        "@id": "_:b27"
+      },
+      {
+        "@id": "_:b28"
+      },
+      {
+        "@id": "_:b29"
+      },
+      {
+        "@id": "_:b30"
+      },
+      {
+        "@id": "_:b31"
+      },
+      {
+        "@id": "_:b32"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#hiddenLabel": [
+      {
+        "@value": "Белгия",
+        "@language": "bg"
+      },
+      {
+        "@value": "Belgijos",
+        "@language": "lt"
+      },
+      {
+        "@value": "Beļģijas",
+        "@language": "lv"
+      },
+      {
+        "@value": "an Bheilg",
+        "@language": "ga"
+      },
+      {
+        "@value": "ir-Renju tal-Belġju",
+        "@language": "mt"
+      },
+      {
+        "@value": "il-Belġju",
+        "@language": "mt"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol-order": [
+      {
+        "@value": "EU-01"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/authority-code": [
+      {
+        "@value": "BEL"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "BEL"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "BEL"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "BEL"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/deprecated": [
+      {
+        "@value": "false"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol.order": [
+      {
+        "@value": "EU-01"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/start.use": [
+      {
+        "@value": "1950-05-09"
+      }
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/country/ESP",
+    "http://publications.europa.eu/ontology/authority/op-mapped-code": [
+      {
+        "@id": "_:b33"
+      },
+      {
+        "@id": "_:b34"
+      },
+      {
+        "@id": "_:b35"
+      },
+      {
+        "@id": "_:b36"
+      },
+      {
+        "@id": "_:b37"
+      },
+      {
+        "@id": "_:b38"
+      },
+      {
+        "@id": "_:b39"
+      },
+      {
+        "@id": "_:b40"
+      },
+      {
+        "@id": "_:b41"
+      },
+      {
+        "@id": "_:b42"
+      },
+      {
+        "@id": "_:b43"
+      },
+      {
+        "@id": "_:b44"
+      },
+      {
+        "@id": "_:b45"
+      },
+      {
+        "@id": "_:b46"
+      },
+      {
+        "@id": "_:b47"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Spanje",
+        "@language": "nl"
+      },
+      {
+        "@value": "Ispanija",
+        "@language": "lt"
+      },
+      {
+        "@value": "Spain",
+        "@language": "en"
+      },
+      {
+        "@value": "Hispaania",
+        "@language": "et"
+      },
+      {
+        "@value": "Spagna",
+        "@language": "it"
+      },
+      {
+        "@value": "Spagna",
+        "@language": "rm"
+      },
+      {
+        "@value": "Espanya",
+        "@language": "ca"
+      },
+      {
+        "@value": "Espainia",
+        "@language": "eu"
+      },
+      {
+        "@value": "Hiszpania",
+        "@language": "pl"
+      },
+      {
+        "@value": "Španělsko",
+        "@language": "cs"
+      },
+      {
+        "@value": "Spanja",
+        "@language": "sq"
+      },
+      {
+        "@value": "Spanja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Spania",
+        "@language": "fo"
+      },
+      {
+        "@value": "Spania",
+        "@language": "no"
+      },
+      {
+        "@value": "Spania",
+        "@language": "ro"
+      },
+      {
+        "@value": "Espanja",
+        "@language": "fi"
+      },
+      {
+        "@value": "Шпанија",
+        "@language": "sr"
+      },
+      {
+        "@value": "Шпанија",
+        "@language": "mk"
+      },
+      {
+        "@value": "Испания",
+        "@language": "ru"
+      },
+      {
+        "@value": "Španielsko",
+        "@language": "sk"
+      },
+      {
+        "@value": "Ισπανία",
+        "@language": "el"
+      },
+      {
+        "@value": "Spānija",
+        "@language": "lv"
+      },
+      {
+        "@value": "España",
+        "@language": "es"
+      },
+      {
+        "@value": "España",
+        "@language": "gl"
+      },
+      {
+        "@value": "Иcпaния",
+        "@language": "bg"
+      },
+      {
+        "@value": "Espagne",
+        "@language": "fr"
+      },
+      {
+        "@value": "Іспанія",
+        "@language": "uk"
+      },
+      {
+        "@value": "Іспанія",
+        "@language": "be"
+      },
+      {
+        "@value": "Španjolska",
+        "@language": "hr"
+      },
+      {
+        "@value": "An Spáinn",
+        "@language": "ga"
+      },
+      {
+        "@value": "Espanha",
+        "@language": "pt"
+      },
+      {
+        "@value": "Spánn",
+        "@language": "is"
+      },
+      {
+        "@value": "Spanien",
+        "@language": "sv"
+      },
+      {
+        "@value": "Spanien",
+        "@language": "da"
+      },
+      {
+        "@value": "Spanien",
+        "@language": "de"
+      },
+      {
+        "@value": "Spanyolország",
+        "@language": "hu"
+      },
+      {
+        "@value": "İspanya",
+        "@language": "tr"
+      },
+      {
+        "@value": "Španija",
+        "@language": "sl"
+      },
+      {
+        "@value": "Španija",
+        "@language": "bs"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://publications.europa.eu/ontology/authority/authority-code": [
+      {
+        "@value": "ESP"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "Reginavel da la Spagna",
+        "@language": "rm"
+      },
+      {
+        "@value": "Kongeriket Spania",
+        "@language": "no"
+      },
+      {
+        "@value": "Hispaania Kuningriik",
+        "@language": "et"
+      },
+      {
+        "@value": "Espaniako Erresuma",
+        "@language": "eu"
+      },
+      {
+        "@value": "Regne d’Espanya",
+        "@language": "ca"
+      },
+      {
+        "@value": "Kongsríki Spania",
+        "@language": "fo"
+      },
+      {
+        "@value": "Espanjan kuningaskunta",
+        "@language": "fi"
+      },
+      {
+        "@value": "Королевство Испания",
+        "@language": "ru"
+      },
+      {
+        "@value": "Кралство Испания",
+        "@language": "bg"
+      },
+      {
+        "@value": "Regatul Spaniei",
+        "@language": "ro"
+      },
+      {
+        "@value": "Краљевина Шпанија",
+        "@language": "sr"
+      },
+      {
+        "@value": "Spānijas Karaliste",
+        "@language": "lv"
+      },
+      {
+        "@value": "Кралство Шпанија",
+        "@language": "mk"
+      },
+      {
+        "@value": "Kongeriget Spanien",
+        "@language": "da"
+      },
+      {
+        "@value": "Koninkrijk Spanje",
+        "@language": "nl"
+      },
+      {
+        "@value": "Mbretëria Spanjolle",
+        "@language": "sq"
+      },
+      {
+        "@value": "Kingdom of Spain",
+        "@language": "en"
+      },
+      {
+        "@value": "Βασίλειο της Ισπανίας",
+        "@language": "el"
+      },
+      {
+        "@value": "Königreich Spanien",
+        "@language": "de"
+      },
+      {
+        "@value": "Španělské království",
+        "@language": "cs"
+      },
+      {
+        "@value": "Royaume d’Espagne",
+        "@language": "fr"
+      },
+      {
+        "@value": "Reino de España",
+        "@language": "es"
+      },
+      {
+        "@value": "Reino de España",
+        "@language": "gl"
+      },
+      {
+        "@value": "Španielske kráľovstvo",
+        "@language": "sk"
+      },
+      {
+        "@value": "Konungsríkið Spánn",
+        "@language": "is"
+      },
+      {
+        "@value": "Konungariket Spanien",
+        "@language": "sv"
+      },
+      {
+        "@value": "Королівство Іспанія",
+        "@language": "uk"
+      },
+      {
+        "@value": "Ispanijos Karalystė",
+        "@language": "lt"
+      },
+      {
+        "@value": "İspanya Krallığı",
+        "@language": "tr"
+      },
+      {
+        "@value": "Ir-Renju ta’ Spanja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Królestwo Hiszpanii",
+        "@language": "pl"
+      },
+      {
+        "@value": "Reino de Espanha",
+        "@language": "pt"
+      },
+      {
+        "@value": "Spanyol Királyság",
+        "@language": "hu"
+      },
+      {
+        "@value": "Ríocht na Spáinne",
+        "@language": "ga"
+      },
+      {
+        "@value": "Каралеўства Іспанія",
+        "@language": "be"
+      },
+      {
+        "@value": "Regno di Spagna",
+        "@language": "it"
+      },
+      {
+        "@value": "Kraljevina Španjolska",
+        "@language": "hr"
+      },
+      {
+        "@value": "Kraljevina Španija",
+        "@language": "sl"
+      },
+      {
+        "@value": "Kraljevina Španija",
+        "@language": "bs"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "ESP"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#hiddenLabel": [
+      {
+        "@value": "an Spáinn",
+        "@language": "ga"
+      },
+      {
+        "@value": "Испания",
+        "@language": "bg"
+      },
+      {
+        "@value": "ir-Renju ta' Spanja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Ispanijos",
+        "@language": "lt"
+      },
+      {
+        "@value": "Spānijas",
+        "@language": "lv"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "ESP"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "ESP"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol-order": [
+      {
+        "@value": "EU-09"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/deprecated": [
+      {
+        "@value": "false"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol.order": [
+      {
+        "@value": "EU-09"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/start.use": [
+      {
+        "@value": "1975-11-22"
+      }
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/country/FIN",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Finlandia",
+        "@language": "eu"
+      },
+      {
+        "@value": "Finlandia",
+        "@language": "gl"
+      },
+      {
+        "@value": "Finlandia",
+        "@language": "it"
+      },
+      {
+        "@value": "Finlandia",
+        "@language": "pl"
+      },
+      {
+        "@value": "Finsko",
+        "@language": "cs"
+      },
+      {
+        "@value": "Финлaндия",
+        "@language": "bg"
+      },
+      {
+        "@value": "Suomija",
+        "@language": "lt"
+      },
+      {
+        "@value": "An Fhionlainn",
+        "@language": "ga"
+      },
+      {
+        "@value": "Finlandiya",
+        "@language": "tr"
+      },
+      {
+        "@value": "Finlândia",
+        "@language": "pt"
+      },
+      {
+        "@value": "Финска",
+        "@language": "sr"
+      },
+      {
+        "@value": "Финска",
+        "@language": "mk"
+      },
+      {
+        "@value": "Finland",
+        "@language": "nl"
+      },
+      {
+        "@value": "Finland",
+        "@language": "en"
+      },
+      {
+        "@value": "Finland",
+        "@language": "no"
+      },
+      {
+        "@value": "Finland",
+        "@language": "sv"
+      },
+      {
+        "@value": "Finland",
+        "@language": "da"
+      },
+      {
+        "@value": "Finlanda",
+        "@language": "sq"
+      },
+      {
+        "@value": "Suomi",
+        "@language": "fi"
+      },
+      {
+        "@value": "Finlanda",
+        "@language": "rm"
+      },
+      {
+        "@value": "Finlanda",
+        "@language": "ro"
+      },
+      {
+        "@value": "Soome",
+        "@language": "et"
+      },
+      {
+        "@value": "Il-Finlandja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Finska",
+        "@language": "sl"
+      },
+      {
+        "@value": "Finska",
+        "@language": "bs"
+      },
+      {
+        "@value": "Finska",
+        "@language": "hr"
+      },
+      {
+        "@value": "Finnland",
+        "@language": "de"
+      },
+      {
+        "@value": "Finnland",
+        "@language": "fo"
+      },
+      {
+        "@value": "Finnland",
+        "@language": "is"
+      },
+      {
+        "@value": "Фінляндыя",
+        "@language": "be"
+      },
+      {
+        "@value": "Finlande",
+        "@language": "fr"
+      },
+      {
+        "@value": "Φινλανδία",
+        "@language": "el"
+      },
+      {
+        "@value": "Fínsko",
+        "@language": "sk"
+      },
+      {
+        "@value": "Фінляндія",
+        "@language": "uk"
+      },
+      {
+        "@value": "Finnország",
+        "@language": "hu"
+      },
+      {
+        "@value": "Финляндия",
+        "@language": "ru"
+      },
+      {
+        "@value": "Finlandia",
+        "@language": "es"
+      },
+      {
+        "@value": "Finlàndia",
+        "@language": "ca"
+      },
+      {
+        "@value": "Somija",
+        "@language": "lv"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "Republikken Finland",
+        "@language": "no"
+      },
+      {
+        "@value": "Republikken Finland",
+        "@language": "da"
+      },
+      {
+        "@value": "Finn Köztársaság",
+        "@language": "hu"
+      },
+      {
+        "@value": "Finlandiako Errepublika",
+        "@language": "eu"
+      },
+      {
+        "@value": "Somijas Republika",
+        "@language": "lv"
+      },
+      {
+        "@value": "Fínska republika",
+        "@language": "sk"
+      },
+      {
+        "@value": "Lýðveldið Finnland",
+        "@language": "is"
+      },
+      {
+        "@value": "Lýðveldið Finnland",
+        "@language": "fo"
+      },
+      {
+        "@value": "República Finlandesa",
+        "@language": "gl"
+      },
+      {
+        "@value": "Republica da la Finlanda",
+        "@language": "rm"
+      },
+      {
+        "@value": "République de Finlande",
+        "@language": "fr"
+      },
+      {
+        "@value": "Republika Finlandeze",
+        "@language": "sq"
+      },
+      {
+        "@value": "Ir-Repubblika tal-Finlandja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Δημοκρατία της Φινλανδίας",
+        "@language": "el"
+      },
+      {
+        "@value": "Soome Vabariik",
+        "@language": "et"
+      },
+      {
+        "@value": "Финляндская Республика",
+        "@language": "ru"
+      },
+      {
+        "@value": "Suomen tasavalta",
+        "@language": "fi"
+      },
+      {
+        "@value": "República de Finlàndia",
+        "@language": "ca"
+      },
+      {
+        "@value": "República da Finlândia",
+        "@language": "pt"
+      },
+      {
+        "@value": "Repubblica di Finlandia",
+        "@language": "it"
+      },
+      {
+        "@value": "Republika Finska",
+        "@language": "sl"
+      },
+      {
+        "@value": "Republic of Finland",
+        "@language": "en"
+      },
+      {
+        "@value": "Рэспу́бліка Фінляндыя",
+        "@language": "be"
+      },
+      {
+        "@value": "Republika Finska",
+        "@language": "hr"
+      },
+      {
+        "@value": "Republika Finska",
+        "@language": "bs"
+      },
+      {
+        "@value": "Finská republika",
+        "@language": "cs"
+      },
+      {
+        "@value": "Poblacht na Fionlainne",
+        "@language": "ga"
+      },
+      {
+        "@value": "Suomijos Respublika",
+        "@language": "lt"
+      },
+      {
+        "@value": "Finlandiya Cumhuriyeti",
+        "@language": "tr"
+      },
+      {
+        "@value": "Фінляндська Республіка",
+        "@language": "uk"
+      },
+      {
+        "@value": "Republica Finlanda",
+        "@language": "ro"
+      },
+      {
+        "@value": "Republika Finlandii",
+        "@language": "pl"
+      },
+      {
+        "@value": "Republiken Finland",
+        "@language": "sv"
+      },
+      {
+        "@value": "Република Финландия",
+        "@language": "bg"
+      },
+      {
+        "@value": "República de Finlandia",
+        "@language": "es"
+      },
+      {
+        "@value": "Republik Finnland",
+        "@language": "de"
+      },
+      {
+        "@value": "Република Финска",
+        "@language": "sr"
+      },
+      {
+        "@value": "Република Финска",
+        "@language": "mk"
+      },
+      {
+        "@value": "Republiek Finland",
+        "@language": "nl"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-mapped-code": [
+      {
+        "@id": "_:b0"
+      },
+      {
+        "@id": "_:b1"
+      },
+      {
+        "@id": "_:b2"
+      },
+      {
+        "@id": "_:b3"
+      },
+      {
+        "@id": "_:b4"
+      },
+      {
+        "@id": "_:b5"
+      },
+      {
+        "@id": "_:b6"
+      },
+      {
+        "@id": "_:b7"
+      },
+      {
+        "@id": "_:b8"
+      },
+      {
+        "@id": "_:b9"
+      },
+      {
+        "@id": "_:b10"
+      },
+      {
+        "@id": "_:b11"
+      },
+      {
+        "@id": "_:b12"
+      },
+      {
+        "@id": "_:b13"
+      },
+      {
+        "@id": "_:b14"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#hiddenLabel": [
+      {
+        "@value": "finsk",
+        "@language": "sv"
+      },
+      {
+        "@value": "Финландия",
+        "@language": "bg"
+      },
+      {
+        "@value": "an Fhionlainn",
+        "@language": "ga"
+      },
+      {
+        "@value": "Suomijos",
+        "@language": "lt"
+      },
+      {
+        "@value": "ir-Repubblika tal-Finlandja",
+        "@language": "mt"
+      },
+      {
+        "@value": "il-Finlandja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Somijas",
+        "@language": "lv"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol.order": [
+      {
+        "@value": "EU-26"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/protocol-order": [
+      {
+        "@value": "EU-26"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/deprecated": [
+      {
+        "@value": "false"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/authority-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "FIN"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/start.use": [
+      {
+        "@value": "1950-05-09"
+      }
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/country/OP_DATPRO",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Sonraí sealadacha",
+        "@language": "ga"
+      },
+      {
+        "@value": "Dane tymczasowe",
+        "@language": "pl"
+      },
+      {
+        "@value": "Datos provisionales",
+        "@language": "es"
+      },
+      {
+        "@value": "Dados provisórios",
+        "@language": "pt"
+      },
+      {
+        "@value": "Date provizorii",
+        "@language": "ro"
+      },
+      {
+        "@value": "Privremeni podaci",
+        "@language": "hr"
+      },
+      {
+        "@value": "Predbežné údaje",
+        "@language": "sk"
+      },
+      {
+        "@value": "Προσωρινά δεδομένα",
+        "@language": "el"
+      },
+      {
+        "@value": "Laikinieji duomenys",
+        "@language": "lt"
+      },
+      {
+        "@value": "Midlertidige data",
+        "@language": "da"
+      },
+      {
+        "@value": "Esialgsed andmed",
+        "@language": "et"
+      },
+      {
+        "@value": "Provisional data",
+        "@language": "en"
+      },
+      {
+        "@value": "Données provisoires",
+        "@language": "fr"
+      },
+      {
+        "@value": "Začasni podatki",
+        "@language": "sl"
+      },
+      {
+        "@value": "Vorläufige Daten",
+        "@language": "de"
+      },
+      {
+        "@value": "Provizoriski dati",
+        "@language": "lv"
+      },
+      {
+        "@value": "Ideiglenes adatok",
+        "@language": "hu"
+      },
+      {
+        "@value": "Voorlopige gegevens",
+        "@language": "nl"
+      },
+      {
+        "@value": "НЕОКОНЧАТЕЛНИ ДАННИ",
+        "@language": "bg"
+      },
+      {
+        "@value": "Alustavat tiedot",
+        "@language": "fi"
+      },
+      {
+        "@value": "Dati provvisori",
+        "@language": "it"
+      },
+      {
+        "@value": "Tillfälliga uppgifter",
+        "@language": "sv"
+      },
+      {
+        "@value": "Předběžné údaje",
+        "@language": "cs"
+      },
+      {
+        "@value": "Dejta provviżorja",
+        "@language": "mt"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/country"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/file-type",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/file-type/7Z",
+    "http://publications.europa.eu/ontology/authority/start.use": [
+      {
+        "@value": "2000-01-01"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "7z",
+        "@language": "et"
+      },
+      {
+        "@value": "7z",
+        "@language": "en"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://publications.europa.eu/ontology/authority/op-mapped-code": [
+      {
+        "@id": "_:b15"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/deprecated": [
+      {
+        "@value": "false"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "7Z"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "7Z"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/file-type"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "7-Zip compressed file",
+        "@language": "en"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "7Z"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/authority-code": [
+      {
+        "@value": "7Z"
+      }
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/language",
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/language/OP_DATPRO",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "Voorlopige gegevens",
+        "@language": "nl"
+      },
+      {
+        "@value": "Laikinieji duomenys",
+        "@language": "lt"
+      },
+      {
+        "@value": "Tillfälliga uppgifter",
+        "@language": "sv"
+      },
+      {
+        "@value": "Dati provvisori",
+        "@language": "it"
+      },
+      {
+        "@value": "Privremeni podaci",
+        "@language": "hr"
+      },
+      {
+        "@value": "Données provisoires",
+        "@language": "fr"
+      },
+      {
+        "@value": "Předběžné údaje",
+        "@language": "cs"
+      },
+      {
+        "@value": "Provizoriski dati",
+        "@language": "lv"
+      },
+      {
+        "@value": "Dane tymczasowe",
+        "@language": "pl"
+      },
+      {
+        "@value": "Predbežné údaje",
+        "@language": "sk"
+      },
+      {
+        "@value": "Dejta provviżorja",
+        "@language": "mt"
+      },
+      {
+        "@value": "Ideiglenes adatok",
+        "@language": "hu"
+      },
+      {
+        "@value": "Alustavat tiedot",
+        "@language": "fi"
+      },
+      {
+        "@value": "Dados provisórios",
+        "@language": "pt"
+      },
+      {
+        "@value": "Date provizorii",
+        "@language": "ro"
+      },
+      {
+        "@value": "Sonraí sealadacha",
+        "@language": "ga"
+      },
+      {
+        "@value": "Datos provisionales",
+        "@language": "es"
+      },
+      {
+        "@value": "Esialgsed andmed",
+        "@language": "et"
+      },
+      {
+        "@value": "Provisional data",
+        "@language": "en"
+      },
+      {
+        "@value": "Προσωρινά δεδομένα",
+        "@language": "el"
+      },
+      {
+        "@value": "Začasni podatki",
+        "@language": "sl"
+      },
+      {
+        "@value": "Midlertidige data",
+        "@language": "da"
+      },
+      {
+        "@value": "НЕОКОНЧАТЕЛНИ ДАННИ",
+        "@language": "bg"
+      },
+      {
+        "@value": "Vorläufige Daten",
+        "@language": "de"
+      }
+    ],
+    "http://publications.europa.eu/ontology/authority/op-code": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ],
+    "http://purl.org/dc/elements/1.1/identifier": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ],
+    "http://publications.europa.eu/resource/authority/op-code": [
+      {
+        "@value": "OP_DATPRO"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept"
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.oxygenxml.com/",
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+      {
+        "@value": "prefLabel0",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#notation": [
+      {
+        "@value": "notation0"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+      {
+        "@id": "http://www.oxygenxml.com/"
+      }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+      {
+        "@value": "altLabel0",
+        "@language": "en"
+      },
+      {
+        "@value": "altLabel1",
+        "@language": "fi"
+      }
+    ],
+    "@type": [
+      "http://www.w3.org/2004/02/skos/core#Concept",
+      "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+    ]
+  },
+  {
+    "@id": "mailto:another-contact@jamk.edu",
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Mailbox"
+    ]
+  },
+  {
+    "@id": "mailto:contact@unix.edu",
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Mailbox"
+    ]
+  },
+  {
+    "@id": "mailto:research.alliance@eu.edu.com",
+    "@type": [
+      "http://data.europa.eu/snb/model/elm/Mailbox"
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+<ehcache
+        xsi:noNamespaceSchemaLocation="ehcache.xsd"
+        updateCheck="true"
+        monitoring="autodetect"
+        dynamicConfig="true"
+>
+    <diskStore path="java.io.tmpdir"/>
+
+    <cache name="CL_sparQL"
+           maxEntriesLocalDisk="10000"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_sparQLPage"
+           maxEntriesLocalDisk="1000"
+           maxEntriesLocalHeap="100"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_esco"
+           maxEntriesLocalDisk="10000"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_FileType"
+           maxEntriesLocalDisk="20"
+           maxEntriesLocalHeap="10"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_ISOLanguage"
+           maxEntriesLocalDisk="40"
+           maxEntriesLocalHeap="40"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_ISOLanguages"
+           maxEntriesLocalDisk="20"
+           maxEntriesLocalHeap="20"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="CL_ProfileUri"
+           maxEntriesLocalDisk="8"
+           maxEntriesLocalHeap="8"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+    <cache name="AC_Accreditation"
+           maxEntriesLocalDisk="5000"
+           maxEntriesLocalHeap="200"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           memoryStoreEvictionPolicy="LFU"/>
+
+</ehcache>

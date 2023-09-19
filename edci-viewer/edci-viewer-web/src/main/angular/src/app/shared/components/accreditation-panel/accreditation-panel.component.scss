@@ -1,0 +1,62 @@
+.accreditation {
+    &_main {
+        &-title {
+            color: #353535;
+            font-size: 20px !important;
+            font-weight: bold;
+        }
+    }
+
+    &_show-more {
+        width: fit-content;
+
+        &-text {
+            color: #004494 !important;
+            padding-right: 8px;
+        }
+
+        &-img {
+            color: #004494;
+            font-size: 20px;
+            transition: all 0.5s ease;
+
+            &.rotate-180 {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &_title {
+        font-weight: bold;
+        padding-bottom: 8px;
+        padding-right: 6px;
+    }
+
+    &_description {
+        padding-bottom: 24px;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    // &_section {
+    //     padding-bottom: 18px;
+    // }
+
+    p {
+        color: #353535;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .pr-60 {
+        padding-right: 60px;
+    }
+
+    &_f-14 {
+        p {
+            font-size: 14px !important;
+        }
+    }
+}

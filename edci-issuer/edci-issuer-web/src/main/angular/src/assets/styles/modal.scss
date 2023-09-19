@@ -1,0 +1,64 @@
+.signature-modal {
+    white-space: break-spaces;
+
+    .ux-modal__header {
+        display: none;
+    }
+
+    .ux-modal__body {
+        padding: 3rem 2rem;
+    }
+}
+
+// Modal focus
+.ux-modal__header-close {
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+div[id^="newModal"] {
+    .ux-modal__dialog {
+        padding-top: 2.5%;
+        height: 95%;
+    }
+}
+
+#newModal1 {
+    margin-top: 0;
+    padding-top: 2.5%;
+    padding-left: 2.5%;
+    right: -2.5%;
+    bottom: -2.5%;
+}
+
+/* Custom dialog [blue] */
+.cdk-overlay-container {
+    z-index: 2023;
+}
+
+.blueBackdrop {
+    background: linear-gradient(to right bottom, #2956bd, #5d5bd0);
+
+    & + .cdk-global-overlay-wrapper {
+        .mat-dialog-container {
+            align-items: center;
+            background: transparent;
+            box-shadow: none;
+            color: var(--eui-base-color-white);
+            display: flex;
+            flex: 1;
+            font-size: 1.8rem;
+            justify-content: center;
+            margin: 0 auto;
+            text-align: center;
+            text-shadow: 0 2px 6px #0000004a;
+            width: 60vw;
+
+            .mat-dialog-content {
+                overflow: hidden;
+            }
+        }
+    }
+}
