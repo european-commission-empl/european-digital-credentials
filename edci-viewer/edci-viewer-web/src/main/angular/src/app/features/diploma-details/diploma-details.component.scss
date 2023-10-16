@@ -80,11 +80,12 @@ p {
 // Style for "badge" item for details (nested entities)
 .entity-container {
     margin-bottom: 0;
-    .entity-container_item-badge {
-        background-color: var(--eui-base-color-primary-100);
-        border-radius: var(--eui-base-spacing-xs);
-        color: var(--eui-base-color-white)!important;
-        padding: var(--eui-base-spacing-xs) var(--eui-base-spacing-m);
-        text-decoration: underline !important;
-    }
+        .entity-container_item-badge {
+            display:inline-block;
+            background-color: var(--eui-base-color-primary-100);
+            border-radius: var(--eui-base-spacing-xs);
+            padding: var(--eui-base-spacing-xs) var(--eui-base-spacing-m);
+            color: var(--eui-base-color-white)!important;
+            text-decoration: underline !important;
+        }
 }

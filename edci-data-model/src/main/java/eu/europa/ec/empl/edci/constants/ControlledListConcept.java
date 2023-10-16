@@ -26,7 +26,7 @@ public enum ControlledListConcept {
     CREDENTIAL_TYPE_GENERIC(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/e34929035b"),
     CREDENTIAL_TYPE_CONVERTED(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/c_7e400154"),
     CREDENTIAL_TYPE_DIPLOMA_SUPPLEMENT(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/6dff8a0f87"),
-    CREDENTIAL_TYPE_ACCREDITATION(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/c_ae121a00"),
+    CREDENTIAL_TYPE_ACCREDITATION(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/6cf8e68c43"),
     CREDENTIAL_TYPE_ISSUED_MANDATE(ControlledList.CREDENTIAL_TYPE, "http://data.europa.eu/snb/credential/c_9a31f32a"),
 
     ACCREDITATION_TYPE_INSTITUTIONAL_LICENSE(ControlledList.ACCREDITATION, "http://data.europa.eu/snb/accreditation/003293d2ce"),

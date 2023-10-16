@@ -268,7 +268,6 @@ export class CredentialsFormComponent implements OnInit, OnDestroy {
         });
         this.formGroup.get('accreditation').valueChanges.pipe(
             debounceTime(500),
-            distinctUntilChanged(),
             takeUntil(this.destroy$),
             switchMap(val => {
                 this.isAccreditationLoading = true;

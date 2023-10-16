@@ -73,7 +73,7 @@ implements ControlValueAccessor, OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
     loading: boolean;
 
-    ACCEPTED_CREDENTIAL_TYPES = ['http://data.europa.eu/snb/credential/e34929035b', 'http://data.europa.eu/snb/credential/6dff8a0f87', 'http://data.europa.eu/snb/credential/c_ae121a00'];
+    ACCEPTED_CREDENTIAL_TYPES = ['http://data.europa.eu/snb/credential/e34929035b', 'http://data.europa.eu/snb/credential/6dff8a0f87', 'http://data.europa.eu/snb/credential/6cf8e68c43'];
     READONLY_ITEMS = 'http://data.europa.eu/snb/credential/6dff8a0f87';
 
     get selectedEntity() {
