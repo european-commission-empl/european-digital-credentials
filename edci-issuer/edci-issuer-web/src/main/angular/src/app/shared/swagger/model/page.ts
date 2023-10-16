@@ -14,15 +14,15 @@ import { Sort } from './sort';
 
 
 export interface Page { 
-    totalPages?: number;
     totalElements?: number;
-    sort?: Sort;
-    first?: boolean;
-    last?: boolean;
-    pageable?: Pageable;
-    numberOfElements?: number;
+    totalPages?: number;
     size?: number;
     content?: Array<any>;
     number?: number;
+    sort?: Sort;
+    last?: boolean;
+    first?: boolean;
+    numberOfElements?: number;
+    pageable?: Pageable;
     empty?: boolean;
 }
