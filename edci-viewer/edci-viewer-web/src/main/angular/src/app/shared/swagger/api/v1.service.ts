@@ -427,21 +427,26 @@ export class V1Service {
      * Downloads a file containing verifiable presentation of the credential
      * 
      * @param file 
+     * @param pdfType The information that we want into the PDF: full/diploma. By default Diploma
      * @param locale locale
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
-    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
+    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (file === null || file === undefined) {
-            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationXMLFromFile.');
+            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationPDFFromFile.');
         }
 
 
+
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (pdfType !== undefined && pdfType !== null) {
+            queryParameters = queryParameters.set('pdfType', <any>pdfType);
+        }
         if (locale !== undefined && locale !== null) {
             queryParameters = queryParameters.set('locale', <any>locale);
         }
@@ -450,7 +455,7 @@ export class V1Service {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/octet-stream'
+            'application/pdf'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {

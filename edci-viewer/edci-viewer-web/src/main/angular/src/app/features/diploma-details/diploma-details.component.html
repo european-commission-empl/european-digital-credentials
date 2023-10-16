@@ -3,77 +3,77 @@
         <div class="col-12 d-inline-flex mb-4 p-3 details-header">
             <div id="headerPage" class="row">
                 <div class="col-12 float-left d-inline-flex">
-                    <div *ngIf="diplomaImg?.length > 0">
-                        <img *ngIf="diplomaImg && diplomaImg[0]" class="diplomaThumbnail"
-                            [src]="diplomaImg[0] | edciSanitize: 'resourceUrl'" routerLink="/diploma-details/diploma"
-                            routerLinkActive="d-none" />
-                    </div>
-                    <div class="col-12">
-                        <div *ngIf="header.title" class="col-12 mb-1 info-diploma">
-                            <p class="credential-title">
-                                {{ header.title }}
-                            </p>
+                    <div class="row">
+                        <div class="col-1" *ngIf="diplomaImg?.length > 0">
+                            <img *ngIf="diplomaImg && diplomaImg[0]" class="diplomaThumbnail"
+                                [src]="diplomaImg[0] | edciSanitize: 'resourceUrl'"
+                                routerLink="/diploma-details/diploma" routerLinkActive="d-none" />
                         </div>
+                        <div class="col-11">
+                            <div class="row">
+                                <div *ngIf="header.title" class="col-12 mb-1 info-diploma">
+                                    <p class="credential-title">
+                                        {{ header.title }}
+                                    </p>
+                                </div>
 
-                        <div class="col-12 d-inline-flex info-diploma">
-                            <p *ngIf="header.issued" class="mr-3 credential-info">
-                                <strong>{{
-                                    'details.diploma-details-tab.issued'
-                                    | translate
-                                    }}:
-                                </strong>
-                                {{ header.issued }}
-                            </p>
-                            <p *ngIf="header.validFrom" class="mr-3 credential-info">
-                                <strong>{{
-                                    'details.diploma-details-tab.validFrom'
-                                    | translate
-                                    }}:
-                                </strong>
-                                {{ header.validFrom }}
-                            </p>
-                            <p *ngIf="header.expiryDate" class="mr-2 credential-info">
-                                <strong>{{
-                                    'details.diploma-details-tab.expiryDate'
-                                    | translate
-                                    }}:
-                                </strong>
-                                {{ header.expiryDate }}
-                            </p>
-                            <p *ngIf="header.credentialType" class="ml-2 credential-info border-left pl-3">
-                                <strong>
-                                    {{
-                                    'details.diploma-details-tab.type'
-                                    | translate
-                                    }}:
-                                </strong>
-                                {{ header.credentialType }}
-                            </p>
-                            <p *ngIf="header.uuid" class="ml-2 credential-info border-left pl-3">
-                                <strong>
-                                    {{
-                                    'details.diploma-details-tab.uuid'
-                                    | translate
-                                    }}:
-                                </strong>
-                                {{ header.uuid }}
-                            </p>
-                        </div>
-                        <div *ngIf="linkExpirationDate" class="col-12 info-diploma pt-3 d-inline-flex">
-                            <p class="credential-info">
-                                {{ 'credentialExpire' | translate }}:
-                                {{ linkExpirationDate }}
-                            </p>
+                                <div class="col-12 d-inline-flex info-diploma">
+                                    <p *ngIf="header.issued" class="mr-3 credential-info">
+                                        <strong>{{
+                                            'details.diploma-details-tab.issued'
+                                            | translate
+                                            }}:
+                                        </strong>
+                                        {{ header.issued }}
+                                    </p>
+                                    <p *ngIf="header.validFrom" class="mr-3 credential-info">
+                                        <strong>{{
+                                            'details.diploma-details-tab.validFrom'
+                                            | translate
+                                            }}:
+                                        </strong>
+                                        {{ header.validFrom }}
+                                    </p>
+                                    <p *ngIf="header.expiryDate" class="mr-2 credential-info">
+                                        <strong>{{
+                                            'details.diploma-details-tab.expiryDate'
+                                            | translate
+                                            }}:
+                                        </strong>
+                                        {{ header.expiryDate }}
+                                    </p>
+                                    <p *ngIf="header.credentialType" class="ml-2 credential-info border-left pl-3">
+                                        <strong>
+                                            {{
+                                            'details.diploma-details-tab.type'
+                                            | translate
+                                            }}:
+                                        </strong>
+                                        {{ header.credentialType }}
+                                    </p>
+                                    <p *ngIf="header.uuid" class="ml-2 credential-info border-left pl-3">
+                                        <strong>
+                                            {{
+                                            'details.diploma-details-tab.uuid'
+                                            | translate
+                                            }}:
+                                        </strong>
+                                        {{ header.uuid }}
+                                    </p>
+                                </div>
+                                <div *ngIf="linkExpirationDate" class="col-12 info-diploma pt-3 d-inline-flex">
+                                    <p class="credential-info">
+                                        {{ 'credentialExpire' | translate }}:
+                                        {{ linkExpirationDate }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-2 img-container text-right" *ngIf="issuerLogo">
-                <img
-                    alt="issuer-logo"
-                    class="img-resp-height"
-                    [src]="issuerLogo | edciSanitize: 'resourceUrl'"
-                />
+                <img alt="issuer-logo" class="img-resp-height" [src]="issuerLogo | edciSanitize: 'resourceUrl'" />
             </div>
         </div>
         <edci-viewer-diploma-toolbar class="col-12 p-0 mb-4" [credId]="credId" [userId]="userId"
@@ -100,4 +100,3 @@
         </mat-progress-spinner>
     </ng-template>
 </div>
-

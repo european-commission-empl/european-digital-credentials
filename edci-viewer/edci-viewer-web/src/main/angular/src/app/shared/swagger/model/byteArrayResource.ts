@@ -16,10 +16,10 @@ export interface ByteArrayResource {
     byteArray?: Array<string>;
     description?: string;
     inputStream?: InputStream;
-    open?: boolean;
-    file?: Blob;
-    url?: string;
     readable?: boolean;
+    url?: string;
     uri?: string;
     filename?: string;
+    open?: boolean;
+    file?: Blob;
 }
