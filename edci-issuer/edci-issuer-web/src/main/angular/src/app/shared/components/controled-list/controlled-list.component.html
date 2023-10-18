@@ -5,6 +5,7 @@
         <div class="eui-input-group-addon">
                 <eui-autocomplete
                     #autocompleteTag
+                    [isFreeValueAllowed]="false"
                     *ngIf="!isSingleSelection; else singleSelection"
                     chipsPosition="bottom"
                     chipsSortOrder="ASC"
@@ -21,6 +22,7 @@
                 <ng-template #singleSelection>
                     <eui-autocomplete
                         #autocomplete
+                        [isFreeValueAllowed]="false"
                         itemsSortOrder="ASC"
                         [placeholder]="placeHolder"
                         (focusout)="onSingleEntityFocusOut()"
@@ -28,7 +30,7 @@
                         [autocompleteData]="searchList"
                         [formControl]="singleEntity"
                         [readonly]="isDisabled || !isPrimaryLanguage"
-                        [isFreeValueAllowed]="false" 
+                        [isFreeValueAllowed]="false"
                         isForceSelection
                     ></eui-autocomplete>
             </ng-template>

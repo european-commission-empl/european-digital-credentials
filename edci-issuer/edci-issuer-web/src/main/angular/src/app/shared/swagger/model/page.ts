@@ -16,13 +16,13 @@ import { Sort } from './sort';
 export interface Page { 
     totalElements?: number;
     totalPages?: number;
+    sort?: Sort;
+    first?: boolean;
+    last?: boolean;
+    pageable?: Pageable;
+    numberOfElements?: number;
     size?: number;
     content?: Array<any>;
     number?: number;
-    sort?: Sort;
-    last?: boolean;
-    first?: boolean;
-    numberOfElements?: number;
-    pageable?: Pageable;
     empty?: boolean;
 }
