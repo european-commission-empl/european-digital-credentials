@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.viewer</groupId>
-        <version>2.2.0</version>
+        <version>2.2.1</version>
         <artifactId>edci-viewer</artifactId>
     </parent>
 
@@ -117,13 +117,13 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-viewer-common</artifactId>
-            <version>2.2.0</version>
+            <version>2.2.1</version>
         </dependency>
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-viewer-service</artifactId>
-            <version>2.2.0</version>
+            <version>2.2.1</version>
         </dependency>
 
         <dependency>
