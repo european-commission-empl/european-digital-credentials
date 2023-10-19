@@ -354,99 +354,24 @@ export class V1Service {
     }
 
     /**
-     * Downloads a file containing verifiable presentation of the credential in PDF format
-     * 
-     * @param walletAddress 
-     * @param body 
-     * @param pdfType The information that we want into the PDF: full/diploma. By default Diploma
-     * @param expirationDate The expiration date for the sharelink that will contain the PDF in format: yyyy-MM-dd
-     * @param locale locale
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public downloadVerifiablePresentationPDF(walletAddress: string, body?: CredentialBaseView, pdfType?: string, expirationDate?: Date, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
-    public downloadVerifiablePresentationPDF(walletAddress: string, body?: CredentialBaseView, pdfType?: string, expirationDate?: Date, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
-    public downloadVerifiablePresentationPDF(walletAddress: string, body?: CredentialBaseView, pdfType?: string, expirationDate?: Date, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
-    public downloadVerifiablePresentationPDF(walletAddress: string, body?: CredentialBaseView, pdfType?: string, expirationDate?: Date, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (walletAddress === null || walletAddress === undefined) {
-            throw new Error('Required parameter walletAddress was null or undefined when calling downloadVerifiablePresentationPDF.');
-        }
-
-
-
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (walletAddress !== undefined && walletAddress !== null) {
-            queryParameters = queryParameters.set('walletAddress', <any>walletAddress);
-        }
-        if (pdfType !== undefined && pdfType !== null) {
-            queryParameters = queryParameters.set('pdfType', <any>pdfType);
-        }
-        if (expirationDate !== undefined && expirationDate !== null) {
-            queryParameters = queryParameters.set('expirationDate', <any>expirationDate.toISOString());
-        }
-        if (locale !== undefined && locale !== null) {
-            queryParameters = queryParameters.set('locale', <any>locale);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-            'application/pdf'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<ByteArrayResource>(`${this.basePath}/v1/credentials/verifiable`,
-            body,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Downloads a file containing verifiable presentation of the credential
      * 
      * @param file 
-     * @param pdfType The information that we want into the PDF: full/diploma. By default Diploma
      * @param locale locale
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
-    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
-    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
-    public downloadVerifiablePresentationPDFFromFile(file: Blob, pdfType?: string, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<ByteArrayResource>;
+    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ByteArrayResource>>;
+    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ByteArrayResource>>;
+    public downloadVerifiablePresentationXMLFromFile(file: Blob, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (file === null || file === undefined) {
-            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationPDFFromFile.');
+            throw new Error('Required parameter file was null or undefined when calling downloadVerifiablePresentationXMLFromFile.');
         }
-
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (pdfType !== undefined && pdfType !== null) {
-            queryParameters = queryParameters.set('pdfType', <any>pdfType);
-        }
         if (locale !== undefined && locale !== null) {
             queryParameters = queryParameters.set('locale', <any>locale);
         }
@@ -455,7 +380,7 @@ export class V1Service {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'application/pdf'
+            'application/octet-stream'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -487,6 +412,66 @@ export class V1Service {
 
         return this.httpClient.post<ByteArrayResource>(`${this.basePath}/v1/credentials/presentation`,
             convertFormParamsToString ? formParams.toString() : formParams,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Downloads a file containing verifiable presentation of the credential in JSON-LD format
+     * 
+     * @param walletAddress 
+     * @param body 
+     * @param locale locale
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public downloadVerification(walletAddress: string, body?: CredentialBaseView, locale?: string, observe?: 'body', reportProgress?: boolean): Observable<Array<string>>;
+    public downloadVerification(walletAddress: string, body?: CredentialBaseView, locale?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<string>>>;
+    public downloadVerification(walletAddress: string, body?: CredentialBaseView, locale?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<string>>>;
+    public downloadVerification(walletAddress: string, body?: CredentialBaseView, locale?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (walletAddress === null || walletAddress === undefined) {
+            throw new Error('Required parameter walletAddress was null or undefined when calling downloadVerification.');
+        }
+
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (walletAddress !== undefined && walletAddress !== null) {
+            queryParameters = queryParameters.set('walletAddress', <any>walletAddress);
+        }
+        if (locale !== undefined && locale !== null) {
+            queryParameters = queryParameters.set('locale', <any>locale);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/octet-stream'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<Array<string>>(`${this.basePath}/v1/credentials/verifiable`,
+            body,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

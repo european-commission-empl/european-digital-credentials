@@ -41,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         private viewerService: ViewerService,
         private router: Router,
         private renderer: Renderer2,
-        private api: V1Service,
+        private apiService: V1Service,
         private i18nService: I18nService,
         private shareDataService: ShareDataService
     ) {
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
                 'https://europa.eu/webtools/load.js?globan=1110'
             );
         }
-        this.api
+        this.apiService
             .getUserDetails(this.translateService.currentLang)
             .pipe(takeUntil(this.destroy$))
             .subscribe((userDetails: UserDetailsView) => {
@@ -140,9 +140,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
      * Log-in / Log-out methods
      */
     onLogin(): void {
-        window.location.href = `${environment.viewerBaseUrl}${
-            environment.loginUrl
-        }?redirectURI=${encodeURIComponent(window.location.href)}`;
+        window.location.href = `${environment.viewerBaseUrl}${environment.loginUrl
+            }?redirectURI=${encodeURIComponent(window.location.href)}`;
     }
 
     onLogout(): void {
@@ -183,8 +182,22 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
                         this.renderer.removeChild(document.body, element);
                         this.shareDataService.isPreview = true;
                         this.shareDataService.getUploadDetails('').subscribe({
-                            complete: () => this.router.navigate(['diploma-details'])
+                            complete: () => {
+                                let jsonFile = new Blob([this.shareDataService.diplomaJSON], {
+                                    type: 'application/ld+json',
+                                });
+
+                                this.shareDataService.setPresentationViewObs(
+                                    (lang: string) => this.apiService.getCredentialDetail(jsonFile, lang)
+                                );
+
+                                this.shareDataService.setDiplomaViewObs(
+                                    (lang: string) => this.apiService.getCredentialDiploma(jsonFile, lang)
+                                );
+                                this.router.navigate(['diploma-details']);
+                            }
                         });
+
                     }
                 }
             }
