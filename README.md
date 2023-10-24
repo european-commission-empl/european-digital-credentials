@@ -24,6 +24,6 @@ More information: [Issuer](edci-issuer/README.md)
 
 ### Viewer
 
-The EDCI Viewer is used to view a Europass Digital Credential received by e-mai or uploaded to a wallet. The credential contains rich data about your accomplishments. The tool will allow you to check the authenticity and validity of the credential, as well as print or download it as pdf.
+The EDCI Viewer is used to view a European Digital Credential received by e-mai or uploaded to a wallet. The credential contains rich data about your accomplishments. The tool will allow you to check the authenticity and validity of the credential, as well as print or download it as pdf.
 
 More information: [Viewer](edci-viewer/README.md)
