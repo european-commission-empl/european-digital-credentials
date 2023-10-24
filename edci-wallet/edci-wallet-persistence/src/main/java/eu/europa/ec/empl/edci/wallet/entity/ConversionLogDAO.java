@@ -57,27 +57,11 @@ public class ConversionLogDAO implements IGenericDAO {
     }
 
     public ConversionLogDAO(Long walletPk, String walletAddress, String email, Long credentialPk, String credentialId) {
-        this.walletAddress = walletAddress;
-        this.walletPk = walletPk;
-        this.email = email;
-        this.credentialId = credentialId;
-        this.credentialPk = credentialPk;
-    }
-
-    public Long getWalletPk() {
-        return walletPk;
-    }
-
-    public void setWalletPk(Long walletPk) {
-        this.walletPk = walletPk;
-    }
-
-    public Long getCredentialPk() {
-        return credentialPk;
-    }
-
-    public void setCredentialPk(Long credentialPk) {
-        this.credentialPk = credentialPk;
+        this.setWalletAddress(walletAddress);
+        this.setWalletPk(walletPk);
+        this.setEmail(email);
+        this.setCredentialId(credentialId);
+        this.setCredentialPk(credentialPk);
     }
 
     @Override
@@ -98,6 +82,14 @@ public class ConversionLogDAO implements IGenericDAO {
         this.walletAddress = walletAddress;
     }
 
+    public Long getWalletPk() {
+        return walletPk;
+    }
+
+    public void setWalletPk(Long walletPk) {
+        this.walletPk = walletPk;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -114,14 +106,19 @@ public class ConversionLogDAO implements IGenericDAO {
         this.credentialId = credentialId;
     }
 
+    public Long getCredentialPk() {
+        return credentialPk;
+    }
+
+    public void setCredentialPk(Long credentialPk) {
+        this.credentialPk = credentialPk;
+    }
+
     public String getInfo() {
         return info;
     }
 
     public void setInfo(String info) {
-        if (info != null && info.length() > 4000) {
-            info = info.substring(0,3999);
-        }
         this.info = info;
     }
 

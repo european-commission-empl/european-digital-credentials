@@ -164,6 +164,9 @@ public class MigrateToFileSystemTask {
                     if (cred.getCreateDate().before(new SimpleDateFormat("dd-MM-yyyy").parse("25-10-2021"))) {
                         errorDesc = "Credential generated before 25-10-2021 (Official EDC launch) - " + errorDesc;
                     }
+                    if (errorDesc != null && errorDesc.length() > 4000) {
+                        errorDesc = errorDesc.substring(0,3999);
+                    }
                     conversionLog.setInfo(errorDesc);
                     logger.error("Credential's migration process log - Error converting credential: " + credPk);
 
@@ -176,12 +179,19 @@ public class MigrateToFileSystemTask {
                     if (cred.getCreateDate().before(new SimpleDateFormat("dd-MM-yyyy").parse("25-10-2021"))) {
                         errorDesc = "Credential generated before 25-10-2021 (Official EDC launch) - " + errorDesc;
                     }
+                    if (errorDesc != null && errorDesc.length() > 4000) {
+                        errorDesc = errorDesc.substring(0,3999);
+                    }
                     conversionLog.setInfo(errorDesc);
                     logger.error("Credential's migration process log - Error converting credential: " + credPk);
 
                 } catch (Exception e) {
                     conversionLog.setErrorCode(ErrorCode.UNDEFINED.getCode());
-                    conversionLog.setInfo(edciMessageService.getMessage(e.getMessage()));
+                    String errorDesc = edciMessageService.getMessage(e.getMessage());
+                    if (errorDesc != null && errorDesc.length() > 4000) {
+                        errorDesc = errorDesc.substring(0,3999);
+                    }
+                    conversionLog.setInfo(errorDesc);
                     logger.error("Credential's migration process log - Error converting credential: " + credPk);
                 }
                 try {
