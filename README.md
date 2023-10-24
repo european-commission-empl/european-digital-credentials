@@ -1,4 +1,4 @@
-# EDCI - Europ Deanigital Credential Interoperability
+# EDCI - European Digital Credential Interoperability
 [![license: EUPL](licence-EUPL%201.2-brightgreen.svg)](https://github.com/teamdigitale/licenses/blob/master/EUPL-1.2)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
