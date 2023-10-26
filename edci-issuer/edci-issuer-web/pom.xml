@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.issuer</groupId>
-        <version>2.2.1</version>
+        <version>2.2.2</version>
         <artifactId>edci-issuer</artifactId>
     </parent>
 
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-issuer-web-rest</artifactId>
-            <version>2.2.1</version>
+            <version>2.2.2</version>
         </dependency>
 
     </dependencies>
@@ -74,7 +74,7 @@
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>edci-issuer-web-rest-swagger</artifactId>
-                        <version>2.2.1</version>
+                        <version>2.2.2</version>
                     </dependency>
                 </dependencies>
             </plugin>

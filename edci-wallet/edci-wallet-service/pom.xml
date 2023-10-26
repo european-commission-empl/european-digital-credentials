@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.europa.ec.empl.edci.wallet</groupId>
-        <version>2.2.1</version>
+        <version>2.2.2</version>
         <artifactId>edci-wallet</artifactId>
     </parent>
     <artifactId>edci-wallet-service</artifactId>
@@ -97,14 +97,14 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-wallet-common</artifactId>
-            <version>2.2.1</version>
+            <version>2.2.2</version>
         </dependency>
 
 
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>edci-wallet-persistence</artifactId>
-            <version>2.2.1</version>
+            <version>2.2.2</version>
         </dependency>
 
         <dependency>
