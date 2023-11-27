@@ -4,7 +4,6 @@
 export const environment = {
     production: window['EDCIContext'].production === 'true',
     enableDevToolRedux: window['EDCIContext'].enableDevToolRedux === 'true',
-    hasLabelsOnly: window['EDCIContext'].hasLabelsOnly === 'true',
     issuerBaseUrl: window['EDCIContext'].issuerBaseUrl,
     apiBaseUrl: window['EDCIContext'].apiBaseUrl,
     viewerBaseUrl: window['EDCIContext'].viewerBaseUrl,
@@ -22,8 +21,6 @@ export const environment = {
         window['EDCIContext'].homeCredentialsForIssuersTitle,
     homeCredentialsForIssuersDescription:
         window['EDCIContext'].homeCredentialsForIssuersDescription,
-    homeCredentialsForIssuersDescriptionWithLink:
-        window['EDCIContext'].homeCredentialsForIssuersDescriptionWithLink,
     enabledLocalSealing: window['EDCIContext'].enabledLocalSealing === 'true',
     maxUploadSizeMB: window['EDCIContext'].maxUploadSizeMB,
     limitDate: window['EDCIContext'].limitDate,

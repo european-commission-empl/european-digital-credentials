@@ -13,9 +13,6 @@ export const environment: EuiEnvConfig = {
     enableDevToolRedux: window['EDCIContext']
         ? window['EDCIContext'].enableDevToolRedux
         : true,
-    hasLabelsOnly: window['EDCIContext']
-        ? window['EDCIContext'].hasLabelsOnly
-        : true,
     apiBaseUrl: window['EDCIContext']
         ? window['EDCIContext'].apiBaseUrl
         : 'http://localhost:8282/europass2/edci-viewer/api',

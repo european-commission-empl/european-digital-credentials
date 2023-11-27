@@ -30,8 +30,6 @@ export class HomeComponent implements OnDestroy {
         environment.homeCredentialsForIssuersTitle;
     homeCredentialsForIssuersDescription: string =
         environment.homeCredentialsForIssuersDescription;
-    homeCredentialsForIssuersDescriptionWithLink: string =
-        environment.homeCredentialsForIssuersDescriptionWithLink;
     private destroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(

@@ -96,10 +96,6 @@ public abstract class EDCIConfig {
         public static final String IDP_END_SESSION_URL = "oidc.idp.end.session.url";
     }
 
-    public class QMSAccreditation {
-        public static final String QMS_ACCREDITATION_URi = "qms.qmsaccreditation.uri";
-    }
-
     public class Mail {
         public static final String ENCODE_MAIL_ATTACHMENT = "encode.mail.attachment";
     }

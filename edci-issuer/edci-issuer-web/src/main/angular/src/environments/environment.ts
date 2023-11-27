@@ -8,9 +8,6 @@ export const environment: EuiEnvConfig = {
     enableDevToolRedux: window['EDCIContext']
         ? window['EDCIContext'].enableDevToolRedux
         : true,
-    hasLabelsOnly: window['EDCIContext']
-        ? window['EDCIContext'].hasLabelsOnly
-        : true,
     issuerBaseUrl: window['EDCIContext']
         ? window['EDCIContext'].issuerBaseUrl
         : 'http://localhost:8383/europass2/edci-issuer',
@@ -54,9 +51,6 @@ export const environment: EuiEnvConfig = {
     homeCredentialsForIssuersDescription: window['EDCIContext']
         ? window['EDCIContext'].homeCredentialsForIssuersDescription
         : 'home.menu-links.credentials-for-issuers.content.description-1',
-    homeCredentialsForIssuersDescriptionWithLink: window['EDCIContext']
-        ? window['EDCIContext'].homeCredentialsForIssuersDescriptionWithLink
-        : 'home.menu-links.credentials-for-issuers.content.description-2',
     enabledLocalSealing: window['EDCIContext']
         ? window['EDCIContext'].enabledLocalSealing
         : false,
